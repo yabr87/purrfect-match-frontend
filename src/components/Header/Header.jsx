@@ -1,4 +1,4 @@
-import { AppHeader, LogoLink } from './Header.styles';
+import { AppHeader } from './Header.styles';
 
 const Header = () => {
   return (
