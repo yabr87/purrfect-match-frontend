@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 
 const modalRoot = document.querySelector('#modal-root');
 
-const Modal = ({ close, children }) => {
+const ModalApproveAction = ({ close, children }) => {
   const closeModal = ({ target, currentTarget, code }) => {
     if (target === currentTarget || code === 'Escape') {
       close();
@@ -25,4 +25,4 @@ const Modal = ({ close, children }) => {
   );
 };
 
-export default Modal;
+export default ModalApproveAction;
