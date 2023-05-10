@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-import { MainLayout } from 'layouts/MainLayout';
+import SharedLayout from 'layouts/SharedLayout';
 import HomePage from 'pages/HomePage';
 
 // const HomePage = lazy(() => import('pages/HomePage'));z
@@ -9,7 +9,7 @@ import HomePage from 'pages/HomePage';
 const App = () => {
   return (
     <Routes>
-      <Route path="/" element={<MainLayout />}>
+      <Route path="/" element={<SharedLayout />}>
         <Route index element={<HomePage />} />
       </Route>
 

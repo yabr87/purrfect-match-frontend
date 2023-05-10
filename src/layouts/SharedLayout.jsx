@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom';
 
 const Header = lazy(() => import('components/Header'));
 
-export const MainLayout = () => {
+export const SharedLayout = () => {
   return (
     <>
       <Header />
@@ -13,3 +13,5 @@ export const MainLayout = () => {
     </>
   );
 };
+
+export default SharedLayout;
