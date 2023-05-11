@@ -12,19 +12,19 @@ import Logo from './Logo';
 import Container from 'shared/components/Container';
 import AuthNav from './AuthNav';
 import Nav from './Nav';
-// import UserNav from './UserNav';
-// import { useAuth } from 'shared/hooks/useAuth';
+import UserNav from './UserNav';
+import useAuth  from 'shared/hooks/useAuth';
 
 const Header = () => {
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);  
-// const { isLoggedIn } = useAuth();
+const { isLoggedIn } = useAuth();
   const screenSize = useMedia(
     ['(min-width: 1280px)', '(min-width: 768px)'],
     ['desktop', 'tablet'],
     'xs'
   );
-  const authNav = useMemo(() => <AuthNav />, []);
-  // const authNav = useMemo(() => isLoggedIn ? <UserNav /> : <AuthNav />, [isLoggedIn]);
+  // const authNav = useMemo(() => <AuthNav />, []);
+  const userBar = useMemo(() => isLoggedIn ? <UserNav /> : <AuthNav />, [isLoggedIn]);
   const nav = useMemo(() => <Nav />, []);
 
   const isDesktop = screenSize === 'desktop';
@@ -38,10 +38,10 @@ const Header = () => {
           {isDesktop && (
             <>
               {nav}
-              {authNav}
+              {userBar}
             </>
           )}
-          {isTablet && !isMobileNavOpen && authNav}
+          {isTablet && !isMobileNavOpen && userBar}
           {!isDesktop && (
             <>
               <OpenLinksButton
@@ -52,7 +52,7 @@ const Header = () => {
               </OpenLinksButton>
               {isMobileNavOpen && (
                 <MobileContainer>
-                  {!isTablet && <MobileAuth>{authNav}</MobileAuth>}
+                  {!isTablet && <MobileAuth>{userBar}</MobileAuth>}
                   {nav}
                 </MobileContainer>
               )}
