@@ -2,7 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 import { MainLayout } from 'layouts/MainLayout';
 import HomePage from 'pages/HomePage';
 import { ThemeProvider } from 'styled-components';
-import { colorTheme } from 'utils/theme';
+import { theme } from 'utils/theme';
 import { Container } from './App.styles';
 
 // const HomePage = lazy(() => import('pages/HomePage'));z
@@ -11,8 +11,8 @@ import { Container } from './App.styles';
 
 const App = () => {
   return (
-    <ThemeProvider theme={colorTheme}>
-      <Container />
+    <ThemeProvider theme={theme}>
+      <Container as="button">Click me</Container>
       <Routes>
         <Route path="/" element={<MainLayout />}>
           <Route index element={<HomePage />} />

@@ -1,4 +1,4 @@
-const theme = {
+export const theme = {
   colors: {
     accent: '#FF8356',
     background: '#FEF9F9',
@@ -26,7 +26,7 @@ const theme = {
     l: '24px',
     xl: '28px',
     title: '48px',
-    homeTitle: '68px',
+    heroTitle: '68px',
   },
   fontWeiths: {
     normal: '400',
@@ -39,11 +39,9 @@ const theme = {
     small: '16px',
     round: '50%',
   },
-};
-
-export const buttonTheme = {
-  default: {
-    border: '2px solid #54ADFF',
-    borderRadius: '40px',
+  mediaPoints: {
+    mobile: '320px',
+    tablet: '768px',
+    desktop: '1280px',
   },
 };
