@@ -1,5 +1,11 @@
 @import-normalize;
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   font-family: 'Inter', 'Manrope', sans-serif;
@@ -17,19 +23,12 @@ body {
   max-height: 100vh;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-
 h1,
 h2,
 h3,
 h4,
-p,
-ul {
+p {
   margin: 0;
-  padding: 0;
 }
 
 img,
@@ -41,6 +40,8 @@ svg {
 
 ul {
   list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 a {
