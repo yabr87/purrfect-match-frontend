@@ -1,8 +1,15 @@
-import { Field } from 'formik';
+import { Field, Form } from 'formik';
 import styled from 'styled-components';
 
+export const SearchForm = styled(Form)`
+  max-width: 608px;
+  height: 44px;
+  position: relative;
+  margin: 0 auto;
+`;
+
 export const SearchInput = styled(Field)`
-  padding: 14px 20px;
+  padding: 14px 71px 14px 20px;
   border: none;
   width: 100%;
   font-family: 'Inter';
@@ -20,10 +27,43 @@ export const SearchInput = styled(Field)`
   outline: none;
 
   @media screen and (min-width: 768px) {
-    padding: 10px 20px;
+    padding: 10px 71px 10px 20px;
     font-size: 20px;
     font-weight: 500;
     line-height: 1.2;
     max-width: 608px;
   }
+`;
+
+export const IconBlock = styled.div`
+  display: flex;
+  position: absolute;
+  width: 78px;
+  transform: translate(-100%, -50%);
+  top: 50%;
+  left: 100%;
+  justify-content: flex-end;
+  align-items: flex-end;
+`;
+
+export const IconButton = styled.button`
+  background-color: transparent;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+
+  :last-child {
+    margin-right: 13px;
+    margin-left: 10px;
+  }
+`;
+
+export const IconSearchBar = styled.img`
+  width: 17px;
+  height: 17px;
 `;

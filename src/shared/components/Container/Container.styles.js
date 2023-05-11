@@ -3,6 +3,7 @@ export const Wrapper = styled.div`
   width: 100%;
   margin: 0 auto;
   padding: 0 20px;
+  background-color: #cccccc;
 
   @media screen and (min-width: 480px) {
     max-width: 480px;
