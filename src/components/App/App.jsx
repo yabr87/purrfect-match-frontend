@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import { MainLayout } from 'layouts/MainLayout';
 import HomePage from 'pages/HomePage';
+import { ThemeProvider } from 'styled-components';
 
 // const HomePage = lazy(() => import('pages/HomePage'));z
 // const RegisterPage = lazy(() => import('pages/RegisterPage'));
@@ -8,13 +9,15 @@ import HomePage from 'pages/HomePage';
 
 const App = () => {
   return (
-    <Routes>
-      <Route path="/" element={<MainLayout />}>
-        <Route index element={<HomePage />} />
-      </Route>
+    <ThemeProvider theme={theme}>
+      <Routes>
+        <Route path="/" element={<MainLayout />}>
+          <Route index element={<HomePage />} />
+        </Route>
 
-      {/* <Route path="*" element={<ErrorPage />} /> */}
-    </Routes>
+        {/* <Route path="*" element={<ErrorPage />} /> */}
+      </Routes>
+    </ThemeProvider>
   );
 };
 
