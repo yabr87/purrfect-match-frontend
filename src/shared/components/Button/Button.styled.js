@@ -38,7 +38,8 @@ export const Btn = styled.button`
   align-items: center;
   justify-content: center;
 
-  width: ${props => props.width};
+  width: ${props => props.w}px;
+  height: ${props => props.h}px;
   padding: 10px;
 
   font-family: 'Manrope';
@@ -52,6 +53,8 @@ export const Btn = styled.button`
   border-radius: 40px;
   border: 1px solid;
   outline: none;
+
+  cursor: pointer;
 
   transition-property: color, background;
   transition-duration: 250ms;

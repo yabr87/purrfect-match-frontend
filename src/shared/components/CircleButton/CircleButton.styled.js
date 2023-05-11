@@ -22,6 +22,8 @@ export const CircleBtn = styled.button`
   outline: none;
   box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
 
+  cursor: pointer;
+
   transition: background 250ms ease;
 
   &:hover {
