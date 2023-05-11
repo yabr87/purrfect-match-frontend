@@ -1,12 +1,14 @@
-import { UserLink } from './UserNav.styles';
+import { UserContainer, UserLink, UserName } from './UserNav.styles';
 import {BiUserCircle} from "react-icons/bi";
 
 const UserNav = () => {
   return (
+    <UserContainer>
     <UserLink to="/user">
-      <BiUserCircle />
-      <p>User</p>
-    </UserLink>
+      <BiUserCircle size={28}/>
+      <UserName>User</UserName>
+      </UserLink>
+    </UserContainer>
     )
 };
 

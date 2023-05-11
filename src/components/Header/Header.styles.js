@@ -37,7 +37,7 @@ export const OpenLinksButton = styled.button`
   cursor: pointer;
 
   @media (min-width: 768px) {
-    margin-left: ${(props) => (props.isMobileNavOpen ? "auto" : "20px")};
+    margin-left: ${(props) => (props.isMobileNavOpen ? "auto" : "22px")};
   }
 `;
 
