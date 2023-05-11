@@ -16,12 +16,8 @@ const Logout = ({ close }) => {
     <Container>
       <Section>
         <Title>Already leaving?</Title>
-        <Button type="button" onBtnClick={() => close()}>
-          Cancel
-        </Button>
-        <Button type="button" onBtnClick={ApproveLogout}>
-          Logout
-        </Button>
+        <Button type="button" text="Cancel" onBtnClick={() => close()} />
+        <Button type="button" text="Logout" onBtnClick={ApproveLogout} />
       </Section>
     </Container>
   );

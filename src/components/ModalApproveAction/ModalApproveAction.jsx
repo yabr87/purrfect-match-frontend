@@ -1,35 +1,33 @@
-import { useEffect, useCallback } from 'react';
+import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 
 import {
   ModalView,
   ModalOverlay,
   CloseIcon,
-} from './ModalApproveAction.styles';
+} from './ModalApprooveAction.styles';
 
 const modalRoot = document.querySelector('#modal-root');
 
 const ModalApproveAction = ({ close, children }) => {
-  const closeModal = useCallback(
-    ({ target, currentTarget, code }) => {
+  useEffect(() => {
+    const closeModal = ({ target, currentTarget, code }) => {
       if (target === currentTarget || code === 'Escape') {
         close();
       }
-    },
-    [close]
-  );
-
-  useEffect(() => {
+    };
     document.addEventListener('keydown', closeModal);
     return () => {
       window.removeEventListener('keydown', closeModal);
     };
-  }, [closeModal]);
+  }, [close]);
 
   return createPortal(
-    <ModalOverlay onClick={closeModal}>
-      <CloseIcon onClck={close}>X</CloseIcon>
-      <ModalView>{children}</ModalView>
+    <ModalOverlay onClick={close}>
+      <ModalView>
+        <CloseIcon onClck={close}>X</CloseIcon>
+        {children}
+      </ModalView>
     </ModalOverlay>,
     modalRoot
   );
