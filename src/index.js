@@ -9,7 +9,7 @@ import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <BrowserRouter basename="purrfect-match-frontend">
+    <BrowserRouter basename="/purrfect-match-frontend">
       <App />
     </BrowserRouter>
   </React.StrictMode>
