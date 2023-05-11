@@ -4,11 +4,11 @@ import Section from 'shared/components/Section';
 import { Title } from './Logout.styles';
 
 const Logout = ({ close }) => {
-  const CloseModal = ({ target, currentTarget, code }) => {
-    if (target === currentTarget || code === 'Escape') {
-      close();
-    }
-  };
+  //   const CloseModal = ({ target, currentTarget, code }) => {
+  //     if (target === currentTarget || code === 'Escape') {
+  //       close();
+  //     }
+  //   };
 
   const ApproveLogout = () => {};
 
@@ -16,7 +16,7 @@ const Logout = ({ close }) => {
     <Container>
       <Section>
         <Title>Already leaving?</Title>
-        <Button type="button" onBtnClick={CloseModal}>
+        <Button type="button" onBtnClick={() => close()}>
           Cancel
         </Button>
         <Button type="button" onBtnClick={ApproveLogout}>
