@@ -10,7 +10,7 @@ const Logout = ({ close }) => {
     }
   };
 
-  const ApproveLogout = () => [];
+  const ApproveLogout = () => {};
 
   return (
     <Container>
