@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 
+import { ModalView, ModalOverlay } from './ModalApproveAction.styles';
+
 const modalRoot = document.querySelector('#modal-root');
 
 const ModalApproveAction = ({ close, children }) => {
@@ -18,9 +20,9 @@ const ModalApproveAction = ({ close, children }) => {
   }, [closeModal]);
 
   return createPortal(
-    <div onClick={closeModal}>
-      <div>{children}</div>
-    </div>,
+    <ModalOverlay onClick={closeModal}>
+      <ModalView>{children}</ModalView>
+    </ModalOverlay>,
     modalRoot
   );
 };
