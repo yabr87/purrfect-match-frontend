@@ -11,6 +11,11 @@ const theme = {
   font: {
     title: "Manrope",
 
+export const fontTheme = {
+  title: {
+    fontFamily: 'Manrope',
+    fontSize: '48px',
+    fontWeith: '700',
   },
   fontWeith: {
     title: 700,
