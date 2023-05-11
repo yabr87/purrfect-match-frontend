@@ -9,7 +9,6 @@ export const NavContainer = styled.nav`
   justify-content: center;
   list-style: none; //прибрити після стилів контейнеру
   gap: 20px;
-  padding-top: 40px;
 
   @media screen and (min-width: 768px) {
     gap: 60px;
@@ -27,7 +26,6 @@ export const NavContainer = styled.nav`
 export const NavItem = styled(NavLink)`
   display: block;
   font-size: 16px;
-  padding: 8px 0; 
   
   color: #111;  
   
@@ -61,7 +59,8 @@ letter-spacing: 0.04em;
     font-weight: 500;
   }
 
-  @media (min-width: 1280px) {
+  @media (min-width: 1280px) { 
+    padding: 8px 0; 
     font-size: 20px;
     line-height: 1.35;
   }

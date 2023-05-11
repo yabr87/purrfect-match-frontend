@@ -1,16 +1,22 @@
 import styled from 'styled-components';
 
 export const AppHeader = styled.header`
+
 `;
 
 export const HeaderContainer = styled.div`
-  width: 100%;
   display: flex;
   align-items: center;
+  height: 42px;
   padding-top: 20px;
 
+  @media screen and (min-width: 768px) {
+  padding-top: 24px;
+    height: 68px;
+  }
+
   @media screen and (min-width: 1280px) {
-    height: 80px;
+  padding-top: 20px;
   }
 `;
 
@@ -25,36 +31,32 @@ export const OpenLinksButton = styled.button`
   border: none;
   color: black;
 
-  font-size: 30px;
+  font-size: 20px;
   background-color: #fff;
 
   cursor: pointer;
 
-  @media (min-width: 1280px) {
-    margin-left: 20px;
-    display: none;
-  }
-
-  @media (min-width: 1280px) {
-    display: none;
+  @media (min-width: 768px) {
+    margin-left: ${(props) => (props.isMobileNavOpen ? "auto" : "20px")};
   }
 `;
 
 export const MobileContainer = styled.div`
-  display: fixed;
+  display: flex;
   flex-direction: column;
-  justify-content: center;
+  align-items: center;
 
   position: fixed;
-  top: 68px;
+  top: 42px;
   left: 0;
   height: 100vh;
   width: 100%;
   background-color: #fff;
-  margin-top: 40px;
 
-  @media (min-width: 1280px) {
-    display: none;
+    @media screen and (min-width: 768px) {
+    top: 68px;
   }
 `;
   
+export const MobileAuth = styled.div`
+`
