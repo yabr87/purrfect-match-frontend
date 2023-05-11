@@ -1,40 +1,60 @@
 import styled from 'styled-components';
 
 export const AppHeader = styled.header`
-  align-items: center;
-  padding-top: 20px;
 `;
 
 export const HeaderContainer = styled.div`
   width: 100%;
-  height: ${(props) => (props.extendNavbar ? "100vh" : "80px")};
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
 
   @media screen and (min-width: 1280px) {
     height: 80px;
   }
 `;
 
-export const BurgerButton = styled.div`
-  display: block;
-  justify-content: center;
+export const OpenLinksButton = styled.button`
+  display: flex;
   align-items: center;
-  cursor: pointer;
-  width: 24px;
-  height: 24px;
-  margin-left: 8px;
+  justify-content: center;
   margin-left: auto;
 
-  @media screen and (min-width: 768px) {
-  margin-left: 20px;
-  }
+  width: 24px;
+  height: 24px;
+  border: none;
+  color: black;
 
-  @media screen and (min-width: 1280px) {
+  font-size: 30px;
+  background-color: #fff;
+
+  cursor: pointer;
+
+  @media (min-width: 1280px) {
+    margin-left: 20px;
     display: none;
   }
-  `;
 
-export const BurgerIcon = styled.div`
-  width: 24;
-  `
+  @media (min-width: 1280px) {
+    display: none;
+  }
+`;
+
+export const MobileContainer = styled.div`
+  display: fixed;
+  flex-direction: column;
+  justify-content: center;
+
+  position: fixed;
+  top: 68px;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  background-color: #fff;
+  margin-top: 40px;
+
+  @media (min-width: 1280px) {
+    display: none;
+  }
+`;
+  

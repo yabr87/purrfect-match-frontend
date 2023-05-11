@@ -3,8 +3,18 @@ import styled from 'styled-components';
 
 export const AuthContainer = styled.ul`
     display: flex;
-    gap: 20px;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
     list-style: none;
+
+    @media screen and (min-width: 768px) {
+      flex-direction: row;
+      gap: 20px;
+      margin-left: auto;
+    }
+
+
 `;
 
 export const AuthItem = styled.li`
@@ -17,6 +27,7 @@ export const AuthLink = styled(NavLink)`
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 100%;
     padding: 7px 20px; 
 
     font-family: 'Manrope';

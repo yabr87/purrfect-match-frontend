@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { AppHeader, BurgerButton, BurgerIcon, HeaderContainer } from './Header.styles';
+import { AppHeader, HeaderContainer, MobileContainer, OpenLinksButton } from './Header.styles';
 import Logo from './Logo';
 import BurgerMenu from './BurgerMenu';
 import Container from 'shared/components/Container';
@@ -16,10 +16,17 @@ const Header = () => {
         <HeaderContainer isMobileNavOpen={isMobileNavOpen}>
           <Logo />
           <Navigation />
-          <BurgerButton onClick={() =>setIsMobileNavOpen((current) => !current)}>
-            {isMobileNavOpen ? <BurgerIcon>X</BurgerIcon> : <BurgerIcon>Открыть</BurgerIcon> }
-          </BurgerButton>
-          {isMobileNavOpen && <BurgerMenu />}
+          <OpenLinksButton
+            onClick={() => {
+              setIsMobileNavOpen((current) => !current);
+            }}
+          >
+          {isMobileNavOpen ? <>&#10005;</> : <> &#8801;</>}
+          </OpenLinksButton>
+          {isMobileNavOpen && (
+              <MobileContainer>
+                <BurgerMenu />
+              </MobileContainer>)}
         </HeaderContainer>
       </Container>
     </AppHeader>
