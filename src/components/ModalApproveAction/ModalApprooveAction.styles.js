@@ -25,7 +25,7 @@ export const ModalView = styled.div`
   transform: translate(-50%, -50%);
 `;
 
-export const Close = styled.span`
+export const CloseIcon = styled.span`
   color: red;
   font-size: 18px;
   font-weight: bold;
