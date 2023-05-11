@@ -1,16 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
-import {
-  fetchLogin,
-  fetchSignup,
-  fetchCurrent,
-  fetchLogout,
-} from './authOperations';
+
+import { signup, login, logout, current } from './authOperations';
 
 const initialState = {
   user: {},
-  token: '',
   isLogin: false,
-  loading: false,
+  token: null,
+  isRefreshing: false,
   error: null,
 };
 
@@ -19,64 +15,57 @@ const authSlice = createSlice({
   initialState,
   extraReducers: builder => {
     builder
-      .addCase(fetchSignup.pending, state => {
-        state.loading = true;
-        state.error = null;
+      .addCase(signup.pending, store => {
+        store.error = null;
       })
-      .addCase(fetchSignup.fulfilled, (state, { payload }) => {
-        const { user, token } = payload;
-        state.loading = false;
-        state.user = user;
-        state.token = token;
-        state.isLogin = true;
+      .addCase(signup.fulfilled, (store, { payload }) => {
+        store.user = payload.user;
+        store.token = payload.token;
+        store.isLogin = true;
       })
-      .addCase(fetchSignup.rejected, (state, { payload }) => {
-        state.loading = false;
-        state.error = payload;
+      .addCase(signup.rejected, (store, { payload }) => {
+        store.error = payload;
+        store.isLogin = false;
       })
-      .addCase(fetchLogin.pending, state => {
-        state.loading = true;
-        state.error = null;
+      .addCase(login.pending, store => {
+        store.error = null;
       })
-      .addCase(fetchLogin.fulfilled, (state, { payload }) => {
-        console.log('fetchLogin', payload);
-        const { user, token } = payload;
-        state.loading = false;
-        state.user = user;
-        state.token = token;
-        state.isLogin = true;
+      .addCase(login.fulfilled, (store, { payload }) => {
+        store.user = payload.user;
+        store.token = payload.token;
+        store.isLogin = true;
       })
-      .addCase(fetchLogin.rejected, (state, { payload }) => {
-        state.loading = false;
-        state.error = payload;
+      .addCase(login.rejected, (store, { payload }) => {
+        store.error = payload;
+        store.isLogin = false;
       })
-      .addCase(fetchCurrent.pending, state => {
-        state.loading = true;
-        state.error = null;
+      .addCase(logout.pending, store => {
+        store.isRefreshing = true;
+        store.error = null;
       })
-      .addCase(fetchCurrent.fulfilled, (state, { payload }) => {
-        state.loading = false;
-        state.user = payload;
-        state.isLogin = true;
+      .addCase(logout.fulfilled, store => {
+        store.isRefreshing = false;
+        store.user = {};
+        store.token = null;
+        store.isLogin = false;
       })
-      .addCase(fetchCurrent.rejected, (state, { payload }) => {
-        state.loading = false;
-        state.token = '';
-        state.error = payload;
+      .addCase(logout.rejected, (store, { payload }) => {
+        store.isRefreshing = false;
+        store.error = payload;
       })
-      .addCase(fetchLogout.pending, state => {
-        state.loading = true;
-        state.error = null;
+      .addCase(current.pending, store => {
+        store.isRefreshing = true;
+        store.error = null;
       })
-      .addCase(fetchLogout.fulfilled, state => {
-        state.loading = false;
-        state.user = {};
-        state.token = '';
-        state.isLogin = false;
+      .addCase(current.fulfilled, (store, { payload }) => {
+        store.isRefreshing = false;
+        store.user = payload;
+        store.isLogin = true;
       })
-      .addCase(fetchLogout.rejected, (state, { payload }) => {
-        state.loading = false;
-        state.error = payload;
+      .addCase(current.rejected, (store, { payload }) => {
+        store.isRefreshing = false;
+        store.token = null;
+        store.error = payload;
       });
   },
 });
