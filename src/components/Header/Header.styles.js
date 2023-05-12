@@ -25,19 +25,25 @@ export const OpenLinksButton = styled.button`
   align-items: center;
   justify-content: center;
   margin-left: auto;
+  padding: 0;
+  background: transparent;
+  color: #FFC107;
 
   width: 24px;
   height: 24px;
   border: none;
-  color: black;
-
-  font-size: 20px;
-  background-color: #fff;
 
   cursor: pointer;
 
+      &:hover {
+        color: #111; 
+      }
+
+  transition: color 250ms ease;
+
+
   @media (min-width: 768px) {
-    margin-left: ${(props) => (props.isMobileNavOpen ? "auto" : "20px")};
+    margin-left: ${(props) => (props.isMobileNavOpen ? "auto" : "22px")};
   }
 `;
 
@@ -51,7 +57,8 @@ export const MobileContainer = styled.div`
   left: 0;
   height: 100vh;
   width: 100%;
-  background-color: #fff;
+  
+  background-color: #FEF9F9;
 
     @media screen and (min-width: 768px) {
     top: 68px;
@@ -59,4 +66,5 @@ export const MobileContainer = styled.div`
 `;
   
 export const MobileAuth = styled.div`
+  align-items: center;
 `
