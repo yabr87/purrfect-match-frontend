@@ -57,9 +57,10 @@ export const MobileContainer = styled.div`
   left: 0;
   height: 100vh;
   width: 100%;
+  z-index: 999;
+  background-color: #FEF9F9;
   overflow: scroll;
   
-  background-color: #FEF9F9;
 
     @media screen and (min-width: 768px) {
     top: 68px;
