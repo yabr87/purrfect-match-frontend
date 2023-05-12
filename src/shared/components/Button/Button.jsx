@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { Btn } from './Button.styled';
+import { Btn } from './Button.styles';
 
 const Button = ({ children, onClick, type = 'submit', ...props }) => {
   return (

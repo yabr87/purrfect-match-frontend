@@ -13,7 +13,7 @@ export const ListItem = styled.li``;
 export const StyledNavLink = styled(NavLink)`
   box-sizing: border-box;
   margin: 0;
-  padding: 8px 16px;
+  padding: 9px 16px;
   height: 35px;
   background: #cce4fb;
   border-radius: 40px;
