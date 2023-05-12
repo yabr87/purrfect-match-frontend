@@ -58,7 +58,7 @@ export const MobileContainer = styled.div`
   height: 100vh;
   width: 100%;
   
-  background-color: #fff;
+  background-color: #FEF9F9;
 
     @media screen and (min-width: 768px) {
     top: 68px;

@@ -8,6 +8,7 @@ export const NavContainer = styled.nav`
   align-items: center;
   justify-content: center;
   gap: 20px;
+  list-style: none;
 
   @media screen and (min-width: 768px) {
     gap: 60px;
