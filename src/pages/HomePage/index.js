@@ -1,3 +1,3 @@
-import HomePage from '../AddPetPage/';
+import HomePage from './HomePage';
 
 export default HomePage;
