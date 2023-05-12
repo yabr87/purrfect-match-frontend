@@ -1,12 +1,47 @@
 @import-normalize;
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Inter', 'Manrope', sans-serif;
+  background-color: #fef9f9;
+  background-repeat: no-repeat;
+  background-position: top;
+  background-size: cover;
+  background-image: url('./images//background/bg-mobile-min.png');
+
+  @media (min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+    background-image: url('./images/background/bg-mobile@2x-min.png');
+  }
+
+  @media screen and (min-width: 768px) {
+    background-size: cover;
+    background-image: url('./images/background/bg-tablet-min.png');
+
+    @media screen and (min-width: 768px) and (min-device-pixel-ratio: 2),
+      (min-resolution: 192dpi),
+      (min-resolution: 2dppx) {
+      background-image: url('./images/background/bg-tablet@2x-min.png');
+    }
+  }
+
+  @media screen and (min-width: 1280px) {
+    background-size: cover;
+    background-image: url('./images/background/bg-desktop-min.png');
+
+    @media screen and (min-width: 1280px) and (min-device-pixel-ratio: 2),
+      (min-resolution: 192dpi),
+      (min-resolution: 2dppx) {
+      background-image: url('./images/background/bg-desktop@2x-min.png');
+    }
+  }
 }
 
 .root {
@@ -21,36 +56,12 @@ body {
   max-height: 100vh;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-
 h1,
 h2,
 h3,
 h4,
-p,
-ul {
+p {
   margin: 0;
-  padding: 0;
-}
-
-img,
-svg {
-  display: block;
-  max-width: 100%;
-  height: auto;
-}
-
-h1,
-h2,
-h3,
-h4,
-p,
-ul {
-  margin: 0;
-  padding: 0;
 }
 
 img,
@@ -62,11 +73,8 @@ svg {
 
 ul {
   list-style: none;
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
+  margin: 0;
+  padding: 0;
 }
 
 a {
