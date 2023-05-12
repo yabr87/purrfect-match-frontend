@@ -12,40 +12,50 @@ import Logo from './Logo';
 import Container from 'shared/components/Container';
 import AuthNav from './AuthNav';
 import Nav from './Nav';
+import Icon from 'shared/components/Icon/Icon';
+// import UserNav from './UserNav';
+// import useAuth  from 'shared/hooks/useAuth';
 
 const Header = () => {
-  const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
+  const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);  
+// const { isLoggedIn } = useAuth();
   const screenSize = useMedia(
-    ['(min-width: 1280px)', '(min-width: 768px)', '(min-width: 480px)', '(max-width: 480px)'],
-    ['desktop', 'tablet', 'mobile', 'small'],
+    ['(min-width: 1280px)', '(min-width: 768px)'],
+    ['desktop', 'tablet'],
     'xs'
   );
-  const authNav = useMemo(() => <AuthNav />, []);
+  const userBar = useMemo(() => <AuthNav />, []);
+  // const userBar = useMemo(() => isLoggedIn ? <UserNav /> : <AuthNav />, [isLoggedIn]);
   const nav = useMemo(() => <Nav />, []);
+
+  const isDesktop = screenSize === 'desktop';
+  const isTablet = screenSize === 'tablet';
 
   return (
     <AppHeader>
       <Container>
         <HeaderContainer>
           <Logo />
-          {screenSize === 'desktop' && (
+          {isDesktop && (
             <>
               {nav}
-              {authNav}
+              {userBar}
             </>
           )}
-          {screenSize === 'tablet' && !isMobileNavOpen && authNav}
-          {screenSize !== 'desktop' && (
+          {isTablet && !isMobileNavOpen && userBar}
+          {!isDesktop && (
             <>
               <OpenLinksButton
                 isMobileNavOpen={isMobileNavOpen}
                 onClick={() => setIsMobileNavOpen((current) => !current)}
               >
-                {isMobileNavOpen ? <>&#10005;</> : <> &#8801;</>}
+                {isMobileNavOpen
+                  ? <Icon id="cross" />
+                  : <Icon id="burger" />}
               </OpenLinksButton>
               {isMobileNavOpen && (
                 <MobileContainer>
-                  {screenSize !== 'tablet' && <MobileAuth>{authNav}</MobileAuth>}
+                  {!isTablet && <MobileAuth>{userBar}</MobileAuth>}
                   {nav}
                 </MobileContainer>
               )}
