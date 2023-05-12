@@ -1,3 +1,11 @@
+// import styled from 'styled-components';
+// використання теми в вашому компоненті: в файлі стилізації component.styled.js -
+// export const Container = styled.div`
+//   width: 300px;
+//   background-color: ${props => props.theme.colors.lightBlue};
+//   border-color: ${props => props.theme.colors.accent};
+// `;
+
 export const theme = {
   colors: {
     accent: '#FF8356',
