@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import SharedLayout from 'layouts/SharedLayout';
 import HomePage from 'pages/HomePage';
 import { ThemeProvider } from 'styled-components';
@@ -16,6 +16,7 @@ const App = () => {
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<HomePage />} />
           <Route path="/notices/:categoryName" element={<NoticesPage />} />
+          <Route path="/notices" element={<Navigate to="/notices/sell" />} />
         </Route>
         {/* <Route path="*" element={<ErrorPage />} /> */}
       </Routes>
