@@ -15,7 +15,9 @@ color: #FFC107;
 `;
 
 export const UserName = styled.p`
-
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.35;
 `;
 
 export const UserContainer = styled.div`

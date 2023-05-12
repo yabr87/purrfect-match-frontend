@@ -25,16 +25,24 @@ export const OpenLinksButton = styled.button`
   align-items: center;
   justify-content: center;
   margin-left: auto;
+  padding: 0;
+  background: transparent;
+  color: #FFC107;
 
   width: 24px;
   height: 24px;
   border: none;
-  color: black;
-
-  font-size: 20px;
-  background-color: #fff;
 
   cursor: pointer;
+
+      &:hover {
+        color: #111; 
+      }
+
+  transition-property: color;
+  transition-duration: 250ms;
+  transition-timing-function: ease;
+
 
   @media (min-width: 768px) {
     margin-left: ${(props) => (props.isMobileNavOpen ? "auto" : "22px")};
@@ -59,4 +67,5 @@ export const MobileContainer = styled.div`
 `;
   
 export const MobileAuth = styled.div`
+  align-items: center;
 `
