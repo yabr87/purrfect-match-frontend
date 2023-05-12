@@ -1,10 +1,11 @@
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
+import Container from 'shared/components/Container';
 
 import {
   ModalView,
   ModalOverlay,
-  CloseIcon,
+  // CloseIcon,
 } from './ModalApprooveAction.styles';
 
 const modalRoot = document.querySelector('#modal-root');
@@ -24,10 +25,12 @@ const ModalApproveAction = ({ close, children }) => {
 
   return createPortal(
     <ModalOverlay onClick={close}>
-      <ModalView>
-        <CloseIcon onClck={close}>X</CloseIcon>
-        {children}
-      </ModalView>
+      <Container>
+        <ModalView>
+          {/* <CloseIcon onClck={close}>X</CloseIcon> */}
+          {children}
+        </ModalView>
+      </Container>
     </ModalOverlay>,
     modalRoot
   );

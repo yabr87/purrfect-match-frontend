@@ -9,7 +9,7 @@ export const ModalOverlay = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(87, 86, 86, 0.6);
   z-index: 999;
 `;
 
@@ -17,8 +17,8 @@ export const ModalView = styled.div`
   padding: 20px;
   border-radius: 20px;
   background-color: #fff;
-  min-height: 200px;
-  min-width: 200px;
+  min-height: 287px;
+  // min-width: 200px;
   position: absolute;
   top: 50%;
   left: 50%;

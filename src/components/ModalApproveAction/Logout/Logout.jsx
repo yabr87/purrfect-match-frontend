@@ -4,18 +4,13 @@ import Section from 'shared/components/Section';
 import { Title } from './Logout.styles';
 
 const Logout = ({ close }) => {
-  //   const CloseModal = ({ target, currentTarget, code }) => {
-  //     if (target === currentTarget || code === 'Escape') {
-  //       close();
-  //     }
-  //   };
 
   const ApproveLogout = () => {};
 
   return (
     <Container>
       <Section>
-        <Title>Already leaving?</Title>
+        <Title as="h2">Already leaving?</Title>
         <Button type="button" text="Cancel" onBtnClick={() => close()} />
         <Button type="button" text="Logout" onBtnClick={ApproveLogout} />
       </Section>
