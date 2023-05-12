@@ -6,7 +6,20 @@ import { Cover } from './NoticesSearch.styles';
 
 const NoticesSearch = () => {
   const handleSubmit = (values, action) => {
-    console.log(values);
+    console.log(action);
+
+    // getPetBySerch(values.search );
+
+    // export const getPetBySerch = async (query, category = "sell", page = 1) => {
+    //   const { data } = await instance.get('/', {
+    //     params: {
+    //       query,
+    //       category,
+    //       page,
+    //     },
+    //   });
+    //   return data;
+    // };
   };
   return (
     <Cover>

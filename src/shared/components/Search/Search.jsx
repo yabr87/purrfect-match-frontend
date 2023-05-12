@@ -33,7 +33,12 @@ const Search = ({ initValue, handleSubmit }) => {
     >
       {props => (
         <SearchForm>
-          <SearchInput name="search" type="text" placeholder="Search" />
+          <SearchInput
+            name="search"
+            type="text"
+            placeholder="Search"
+            onBlur={() => props.setErrors(null)}
+          />
           <FormError name="search" />
           <IconBlock>
             <IconButton type="submit">
