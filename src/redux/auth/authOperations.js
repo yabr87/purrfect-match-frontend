@@ -1,61 +1,79 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import * as api from '../../utils/Api';
 
-import { signup, login, logout, getCurrent } from 'utils/Api';
+export const signup = createAsyncThunk(
+  'auth/signup',
+  async (data, { rejectWithValue }) => {
+    try {
+      const result = await api.signup(data);
+      return result;
+    } catch ({ response }) {
+      const { status, data } = response;
+      const error = {
+        status,
+        message: data.message,
+      };
+      return rejectWithValue(error);
+    }
+  }
+);
 
-export const fetchCurrent = createAsyncThunk(
+export const login = createAsyncThunk(
+  'auth/login',
+  async (data, { rejectWithValue }) => {
+    try {
+      const result = await api.login(data);
+      return result;
+    } catch ({ response }) {
+      const { status, data } = response;
+      const error = {
+        status,
+        message: data.message,
+      };
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const logout = createAsyncThunk(
+  'auth/logout',
+  async (_, { rejectWithValue }) => {
+    try {
+      const result = await api.logout();
+      return result;
+    } catch ({ response }) {
+      const { status, data } = response;
+      const error = {
+        status,
+        message: data.message,
+      };
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const current = createAsyncThunk(
   'auth/current',
   async (_, { rejectWithValue, getState }) => {
     try {
       const { auth } = getState();
-      const data = await getCurrent(auth.token);
-      return data;
+      const result = await api.getCurrent(auth.token);
+      return result;
     } catch ({ response }) {
-      return rejectWithValue(response);
+      const { status, data } = response;
+      const error = {
+        status,
+        message: data.message,
+      };
+      return rejectWithValue(error);
     }
   },
   {
     condition: (_, { getState }) => {
       const { auth } = getState();
-      /*якщо токен пустий запит не робиться*/
       if (!auth.token) {
         return false;
       }
     },
-  }
-);
-
-export const fetchSignup = createAsyncThunk(
-  'auth/signup',
-  async (data, { rejectWithValue }) => {
-    try {
-      const result = await signup(data);
-      return result;
-    } catch ({ response }) {
-      return rejectWithValue(response);
-    }
-  }
-);
-
-export const fetchLogin = createAsyncThunk(
-  'auth/login',
-  async (data, { rejectWithValue }) => {
-    try {
-      const result = await login(data);
-      return result;
-    } catch ({ response }) {
-      return rejectWithValue(response);
-    }
-  }
-);
-
-export const fetchLogout = createAsyncThunk(
-  'auth/logout',
-  async (_, { rejectWithValue }) => {
-    try {
-      const data = await logout();
-      return data;
-    } catch ({ response }) {
-      return rejectWithValue(response);
-    }
   }
 );

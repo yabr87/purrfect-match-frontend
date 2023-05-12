@@ -1,8 +1,9 @@
 import { Route, Routes } from 'react-router-dom';
-import { MainLayout } from 'layouts/MainLayout';
+import SharedLayout from 'layouts/SharedLayout';
 import HomePage from 'pages/HomePage';
 import { ThemeProvider } from 'styled-components';
 import { theme } from 'utils/theme';
+import NoticesPage from '../../pages/NoticesPage/NoticesPage';
 
 // const HomePage = lazy(() => import('pages/HomePage'));z
 // const RegisterPage = lazy(() => import('pages/RegisterPage'));

@@ -1,0 +1,86 @@
+[
+    {
+        "description": "Description for CatItem",
+        "category": "sell",
+        "location": "Kyiv",
+        "age": "1 year",
+        "sex": "male"
+    },
+    {
+        "description": "Description for CatItem",
+        "category": "sell",
+        "location": "Lviv",
+        "age": "2 years",
+        "sex": "female"
+    },
+    {
+        "description": "Description for CatItem",
+        "category": "sell",
+        "location": "Kharkiv",
+        "age": "6 months",
+        "sex": "male"
+    },
+    {
+        "description": "Description for CatItem",
+        "category": "sell",
+        "location": "Dnipro",
+        "age": "3 years",
+        "sex": "female"
+    },
+    {
+        "description": "Description for CatItem",
+        "category": "for-free",
+        "location": "Odessa",
+        "age": "2 years",
+        "sex": "male"
+    },
+    {
+        "description": "Description for CatItem",
+        "category": "lost-found",
+        "location": "Kyiv",
+        "age": "1 year",
+        "sex": "female"
+    },
+    {
+        "description": "Description for CatItem",
+        "category": "for-free",
+        "location": "Odessa",
+        "age": "2 years",
+        "sex": "male"
+    },
+    {
+        "description": "Description for CatItem",
+        "category": "lost-found",
+        "location": "Kyiv",
+        "age": "1 year",
+        "sex": "female"
+    },
+    {
+        "description": "Description for CatItem",
+        "category": "for-free",
+        "location": "Odessa",
+        "age": "2 years",
+        "sex": "male"
+    },
+    {
+        "description": "Description for CatItem",
+        "category": "lost-found",
+        "location": "Kyiv",
+        "age": "1 year",
+        "sex": "female"
+    },
+    {
+        "description": "Description for CatItem",
+        "category": "for-free",
+        "location": "Odessa",
+        "age": "2 years",
+        "sex": "male"
+    },
+    {
+        "description": "Description for CatItem",
+        "category": "lost-found",
+        "location": "Kyiv",
+        "age": "1 year",
+        "sex": "female"
+    }
+]

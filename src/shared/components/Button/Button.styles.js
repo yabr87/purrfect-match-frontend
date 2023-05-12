@@ -1,23 +1,69 @@
 import styled from 'styled-components';
 
+const setColor = props => {
+  switch (props.shape) {
+    case 'solid':
+      return '#fef9f9';
+    case 'yellow':
+      return '#FFC107';
+    default:
+      return '#54ADFF';
+  }
+};
+
+const setBackground = props => {
+  switch (props.shape) {
+    case 'solid':
+      return 'linear-gradient(#54ADFF, #54ADFF)';
+    case 'yellow':
+      return 'inherit';
+    default:
+      return 'inherit';
+  }
+};
+
+const setHoverBackground = props => {
+  switch (props.shape) {
+    case 'solid':
+      return 'linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%)';
+    case 'yellow':
+      return '#FFC107';
+    default:
+      return 'linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%)';
+  }
+};
+
 export const Btn = styled.button`
-  height: 21px;
-  font-family: inherit;
-  background-color: white;
-  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: ${props => props.g || 12}px;
 
-  border-radius: 5px;
-  border: 1px solid darkgray;
+  width: ${props => props.w}px;
+  height: ${props => props.h}px;
+  padding: 10px;
+
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.38;
+  color: ${setColor};
+
+  background: ${setBackground};
+  border-radius: 40px;
+  border: 1px solid;
   outline: none;
-  line-height: 1;
-  padding: 3px 8px;
-  transition: all 0.2s ease;
-  box-shadow: 0 2px darkgray;
-  max-width: 120px;
-  min-width: 65px;
 
-  &:hover {
-    box-shadow: 0 1px darkgray;
-    transform: translateY(2px);
+  cursor: pointer;
+
+  transition-property: color, background;
+  transition-duration: 250ms;
+  transition-timing-function: ease;
+
+  &:hover,
+  &:focus {
+    color: #fef9f9;
+    background: ${setHoverBackground};
   }
 `;
