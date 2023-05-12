@@ -13,10 +13,10 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <Routes>
-        <Route path="/" element={<MainLayout />}>
+        <Route path="/" element={<SharedLayout />}>
           <Route index element={<HomePage />} />
+          <Route path="/notices/:categoryName" element={<NoticesPage />} />
         </Route>
-
         {/* <Route path="*" element={<ErrorPage />} /> */}
       </Routes>
     </ThemeProvider>
