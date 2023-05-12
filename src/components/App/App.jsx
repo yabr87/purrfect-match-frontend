@@ -18,6 +18,8 @@ const App = () => {
           <Route index element={<HomePage />} />
           <Route path="/notices/:categoryName" element={<NoticesPage />} />
           <Route path="/add-pet" element={<AddPetPage />} />
+          <Route path="/notices" element={<Navigate to="/notices/sell" />} />
+       
         </Route>
         {/* <Route path="*" element={<ErrorPage />} /> */}
       </Routes>
