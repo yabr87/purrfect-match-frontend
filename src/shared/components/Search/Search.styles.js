@@ -5,7 +5,7 @@ export const SearchForm = styled(Form)`
   max-width: 608px;
   height: 44px;
   position: relative;
-  margin: 0 auto;
+  margin: 40px auto 0;
 `;
 
 export const SearchInput = styled(Field)`
@@ -61,9 +61,4 @@ export const IconButton = styled.button`
     margin-right: 13px;
     margin-left: 10px;
   }
-`;
-
-export const IconSearchBar = styled.img`
-  width: 17px;
-  height: 17px;
 `;

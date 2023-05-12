@@ -3,7 +3,7 @@ import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 // import { useSelector } from 'react-redux';
 
-// import NoticesSearch from './NoticesSearch/NoticesSearch';
+import NoticesSearch from './NoticesSearch';
 import NoticesCategoriesNav from './NoticesCategoriesNav/NoticesCategoriesNav';
 // import NoticesFilters from './NoticesFilters/NoticesFilters';
 import NoticesCategoriesList from './NoticesCategoriesList/NoticesCategoriesList';
@@ -29,7 +29,7 @@ function NoticesPage() {
 
   return (
     <Container>
-      {/* <NoticesSearch /> */}
+      <NoticesSearch />
       {/* <NoticesFilters /> */}
       <div
         style={{
