@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import NoticeCategoryItem from '../NoticeCategoryItem/NoticeCategoryItem';
+
+import { CollectionContainer } from './NoticesCategoriesList.styles.js';
+
 import data from './data.json';
 
 const NoticesCategoriesList = ({ categoryName }) => {
@@ -9,7 +12,15 @@ const NoticesCategoriesList = ({ categoryName }) => {
     const categoryNotices = data.filter(
       notice => notice.category === categoryName
     );
-    setNotices(categoryNotices);
+
+    const noticesWithImages = categoryNotices.map(notice => ({
+      ...notice,
+      imageUrl: `https://placekitten.com/${
+        Math.floor(Math.random() * 1000) + 300
+      }/${Math.floor(Math.random() * 1000) + 300}`,
+    }));
+
+    setNotices(noticesWithImages);
   }, [categoryName]);
 
   // useEffect(() => {
@@ -26,11 +37,11 @@ const NoticesCategoriesList = ({ categoryName }) => {
   // }, [categoryName]);
 
   return (
-    <div>
+    <CollectionContainer>
       {notices.map(notice => (
         <NoticeCategoryItem key={notice.id} notice={notice} />
       ))}
-    </div>
+    </CollectionContainer>
   );
 };
 

@@ -4,6 +4,7 @@ export const CircleBtn = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column-reverse;
 
   width: 80px;
   height: 80px;
@@ -26,7 +27,12 @@ export const CircleBtn = styled.button`
 
   transition: background 250ms ease;
 
-  &:hover {
+  &:hover,
+  &:focus {
     background: linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%);
+  }
+
+  svg {
+    margin-bottom: 4px;
   }
 `;
