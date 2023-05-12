@@ -4,6 +4,7 @@ import HomePage from 'pages/HomePage';
 import { ThemeProvider } from 'styled-components';
 import { theme } from 'utils/theme';
 import NoticesPage from '../../pages/NoticesPage/NoticesPage';
+import NewsPage from 'pages/NewsPage';
 
 // const HomePage = lazy(() => import('pages/HomePage'));z
 // const RegisterPage = lazy(() => import('pages/RegisterPage'));
@@ -15,6 +16,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<HomePage />} />
+          <Route path="/news" element={<NewsPage />} />
           <Route path="/notices/:categoryName" element={<NoticesPage />} />
         </Route>
         {/* <Route path="*" element={<ErrorPage />} /> */}
