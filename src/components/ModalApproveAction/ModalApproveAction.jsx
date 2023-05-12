@@ -1,14 +1,19 @@
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import Container from 'shared/components/Container';
+import Icon from 'shared/components/Icon';
 
-import {
-  ModalView,
-  ModalOverlay,
-  // CloseIcon,
-} from './ModalApprooveAction.styles';
+import { ModalView, ModalOverlay } from './ModalApprooveAction.styles';
 
 const modalRoot = document.querySelector('#modal-root');
+
+// Функція закриття для передачі в пропс
+
+// const [isModalOpen, setIsModalOpen] = useState(false);
+
+// const close = () => {
+//   setIsModalOpen(false);
+// };
 
 const ModalApproveAction = ({ close, children }) => {
   useEffect(() => {
@@ -27,7 +32,7 @@ const ModalApproveAction = ({ close, children }) => {
     <ModalOverlay onClick={close}>
       <Container>
         <ModalView>
-          {/* <CloseIcon onClck={close}>X</CloseIcon> */}
+          <Icon id="cross" s="#54ADFF" onClck={close} />
           {children}
         </ModalView>
       </Container>
