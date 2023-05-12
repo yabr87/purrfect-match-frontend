@@ -57,6 +57,7 @@ export const MobileContainer = styled.div`
   left: 0;
   height: 100vh;
   width: 100%;
+  overflow: scroll;
   
   background-color: #FEF9F9;
 
