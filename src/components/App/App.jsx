@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import SharedLayout from 'layouts/SharedLayout';
 import HomePage from 'pages/HomePage';
 import { ThemeProvider } from 'styled-components';
