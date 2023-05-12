@@ -12,14 +12,14 @@ export const NavContainer = styled.nav`
 
   @media screen and (min-width: 768px) {
     gap: 60px;
-    padding-top: 92px;
+    padding: 92px;
   }
 
   @media (min-width: 1280px) {
   flex-direction: row;
   margin-left: 159px;
   gap: 40px;
-  padding-top: 0;
+  padding: 0;
   }
 `;
 
