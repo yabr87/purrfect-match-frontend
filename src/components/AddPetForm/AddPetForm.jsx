@@ -91,13 +91,13 @@ const AddPetForm = () => {
                             {currentStep !== 3 && (
                                 <Button type="button" w="248" h="48" shape="solid" disabled={isSubmitting} onClick={handleNext}>
                                     Next
-                                    <Icon id="paw" f="#FEF9F9" />
+                                    <Icon id="paw" f="currentColor" s="none" />
                                 </Button>
                             )}
                             {currentStep === 3 && (
                                 <Button type="button" w="248" h="48" shape="solid" disabled={isSubmitting}>
                                     Done
-                                    <Icon id="paw" f="#FEF9F9" />
+                                    <Icon id="paw" f="currentColor" s="none" />
                                 </Button>
                             )}
                             {currentStep !== 1 && (
