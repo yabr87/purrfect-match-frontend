@@ -1,19 +1,23 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import { Btn } from './Button.styles';
 
-const Button = ({ text, type, onBtnClick }) => {
+const Button = ({ children, onClick, type = 'submit', ...props }) => {
   return (
-    <Btn type={type} onClick={onBtnClick}>
-      {text}
+    <Btn onClick={onClick} type={type} {...props}>
+      {children}
     </Btn>
   );
 };
 
+Button.defaultProps = {
+  onClick: () => null,
+  children: null,
+};
+
 Button.propTypes = {
+  children: PropTypes.node,
   onClick: PropTypes.func,
-  text: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
+  type: PropTypes.string,
 };
 
 export default Button;
