@@ -10,10 +10,10 @@ import {
 } from './Header.styles';
 import Logo from './Logo';
 import Container from 'shared/components/Container';
-// import AuthNav from './AuthNav';
+import AuthNav from './AuthNav';
 import Nav from './Nav';
-import UserNav from './UserNav';
 import Icon from 'shared/components/Icon/Icon';
+// import UserNav from './UserNav';
 // import useAuth  from 'shared/hooks/useAuth';
 
 const Header = () => {
@@ -24,7 +24,7 @@ const Header = () => {
     ['desktop', 'tablet'],
     'xs'
   );
-  const userBar = useMemo(() => <UserNav />, []);
+  const userBar = useMemo(() => <AuthNav />, []);
   // const userBar = useMemo(() => isLoggedIn ? <UserNav /> : <AuthNav />, [isLoggedIn]);
   const nav = useMemo(() => <Nav />, []);
 
