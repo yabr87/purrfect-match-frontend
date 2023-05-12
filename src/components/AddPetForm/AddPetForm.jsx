@@ -15,6 +15,7 @@ import MoreInfoInHands from './MoreInfoInHands';
 import FormWrapper from './FormWrapper';
 
 
+//це мабуть варто винести в окремі файли
 const options = [
   { label: 'your pet', value: 'your pet' },
   { label: 'sell', value: 'sell' },
@@ -22,6 +23,7 @@ const options = [
   { label: 'in good hands', value: 'in good hands' },
 ];
 
+//це мабуть варто винести в окремі файли
 const personalDetailsSteps = {
   'your pet': [
     <PersonalDetailsMyPet key="personalDetailsMyPet" />,
@@ -37,6 +39,7 @@ const personalDetailsSteps = {
   ],
 };
 
+//це мабуть варто винести в окремі файли
 const moreInfo = {
   'your pet': [
     <MoreInfoMyPet key="moreInfoMyPet" />,
