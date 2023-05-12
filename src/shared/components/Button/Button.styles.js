@@ -37,6 +37,7 @@ export const Btn = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: ${props => props.g || 12}px;
 
   width: ${props => props.w}px;
   height: ${props => props.h}px;
@@ -60,7 +61,8 @@ export const Btn = styled.button`
   transition-duration: 250ms;
   transition-timing-function: ease;
 
-  &:hover {
+  &:hover,
+  &:focus {
     color: #fef9f9;
     background: ${setHoverBackground};
   }
