@@ -9,6 +9,39 @@
 body {
   margin: 0;
   font-family: 'Inter', 'Manrope', sans-serif;
+  background-color: #fef9f9;
+  background-repeat: no-repeat;
+  background-position: top;
+  background-size: cover;
+  background-image: url('./images//background/bg-mobile-min.png');
+
+  @media (min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+    background-image: url('./images/background/bg-mobile@2x-min.png');
+  }
+
+  @media screen and (min-width: 768px) {
+    background-size: cover;
+    background-image: url('./images/background/bg-tablet-min.png');
+
+    @media screen and (min-width: 768px) and (min-device-pixel-ratio: 2),
+      (min-resolution: 192dpi),
+      (min-resolution: 2dppx) {
+      background-image: url('./images/background/bg-tablet@2x-min.png');
+    }
+  }
+
+  @media screen and (min-width: 1280px) {
+    background-size: cover;
+    background-image: url('./images/background/bg-desktop-min.png');
+
+    @media screen and (min-width: 1280px) and (min-device-pixel-ratio: 2),
+      (min-resolution: 192dpi),
+      (min-resolution: 2dppx) {
+      background-image: url('./images/background/bg-desktop@2x-min.png');
+    }
+  }
 }
 
 .root {

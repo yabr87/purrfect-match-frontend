@@ -7,6 +7,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 import NoticesCategoriesNav from './NoticesCategoriesNav/NoticesCategoriesNav';
 // import NoticesFilters from './NoticesFilters/NoticesFilters';
 import NoticesCategoriesList from './NoticesCategoriesList/NoticesCategoriesList';
+import Button from 'shared/components/Button';
+import Container from 'shared/components/Container';
 
 function NoticesPage() {
   // беремо статус аутентицікації юзера
@@ -26,21 +28,24 @@ function NoticesPage() {
   };
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'space-around',
-        marginTop: '43px',
-      }}
-    >
+    <Container>
       {/* <NoticesSearch /> */}
       {/* <NoticesFilters /> */}
-      <NoticesCategoriesNav />
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          marginTop: '43px',
+        }}
+      >
+        <NoticesCategoriesNav />
+        <Button onClick={handleAddPet} disabled={!isAuthenticated}>
+          Add pet +
+        </Button>
+      </div>
+
       <NoticesCategoriesList categoryName={categoryName} />
-      <button onClick={handleAddPet} disabled={!isAuthenticated}>
-        Add pet
-      </button>
-    </div>
+    </Container>
   );
 }
 
