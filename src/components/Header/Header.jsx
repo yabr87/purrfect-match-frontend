@@ -32,7 +32,7 @@ const Header = () => {
   const isTablet = screenSize === 'tablet';
 
   return (
-    <AppHeader>
+    <AppHeader isMobileNavOpen={isMobileNavOpen}>
       <Container>
         <HeaderContainer>
           <Logo />
