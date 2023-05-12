@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import Container from 'shared/components/Container';
+import Button from 'shared/components/Button';
 import Icon from 'shared/components/Icon';
 
 import { ModalView, ModalOverlay } from './ModalApprooveAction.styles';
@@ -15,7 +16,15 @@ const modalRoot = document.querySelector('#modal-root');
 //   setIsModalOpen(false);
 // };
 
-const ModalApproveAction = ({ close, children }) => {
+// const approve = () => {};
+
+const ModalApproveAction = ({
+  close,
+  children,
+  approve,
+  textBtnApprove,
+  textBtnCancel,
+}) => {
   useEffect(() => {
     const closeModal = ({ target, currentTarget, code }) => {
       if (target === currentTarget || code === 'Escape') {
@@ -34,6 +43,8 @@ const ModalApproveAction = ({ close, children }) => {
         <ModalView>
           <Icon id="cross" s="#54ADFF" onClck={close} />
           {children}
+          <Button type="button" text={textBtnCancel} onBtnClick={close} />
+          <Button type="button" text={textBtnApprove} onBtnClick={approve} />
         </ModalView>
       </Container>
     </ModalOverlay>,
