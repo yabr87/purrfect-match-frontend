@@ -20,6 +20,7 @@ const ChooseOptionStep = ({ name, options, onSelect, value }) => {
             value={option.value}
             checked={checkedValue === option.value}
             onChange={handleChange}
+            onBlur={() => { }}
           />
           {option.label}
         </RadioLabel>
