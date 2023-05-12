@@ -6,7 +6,6 @@ export const AuthContainer = styled.ul`
   flex-direction: column;
   gap: 12px;
   padding: 40px 0;
-  list-style: none;
 
   @media screen and (min-width: 768px) {
     flex-direction: row;
@@ -22,11 +21,14 @@ export const AuthItem = styled.li`
   gap: 8px;
   min-width: 142px;
   height: 40px;
+
+  font-weight: 600;
+
   border: 2px solid #FFC107;
   border-radius: 40px;
+
   color: #FFC107;
   background-color: #FEF9F9;
-  font-weight: 600;
   transition: color 250ms ease, background 250ms ease;
 
   &:hover, &:focus  {
@@ -52,11 +54,11 @@ export const AuthLink = styled(NavLink)`
   display: flex;
   align-items: center;
   justify-content: center;
-  
+
   width: 100%;
   height: 100%;
   gap: 8px;
-  font-family: 'Manrope';
+
   font-size: 16px;
   line-height: 1.38;
 

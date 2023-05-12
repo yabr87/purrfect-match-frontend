@@ -39,9 +39,7 @@ export const OpenLinksButton = styled.button`
         color: #111; 
       }
 
-  transition-property: color;
-  transition-duration: 250ms;
-  transition-timing-function: ease;
+  transition: color 250ms ease;
 
 
   @media (min-width: 768px) {
@@ -59,6 +57,7 @@ export const MobileContainer = styled.div`
   left: 0;
   height: 100vh;
   width: 100%;
+  
   background-color: #fff;
 
     @media screen and (min-width: 768px) {
