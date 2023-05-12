@@ -1,4 +1,4 @@
-import { NavContainer, ActiveStep, FinalizedStep, Step } from "./FormNav.styles";
+import { NavContainer, Step } from "./FormNav.styles";
 
 const Nav = ({ currentStep }) => {
 return (
