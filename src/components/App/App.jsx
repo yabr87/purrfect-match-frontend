@@ -1,6 +1,8 @@
 import { Route, Routes } from 'react-router-dom';
 import SharedLayout from 'layouts/SharedLayout';
 import HomePage from 'pages/HomePage';
+import { ThemeProvider } from 'styled-components';
+import { theme } from 'utils/theme';
 import NoticesPage from '../../pages/NoticesPage/NoticesPage';
 import AddPetPage from 'pages/AddPetPage';
 
@@ -10,15 +12,15 @@ import AddPetPage from 'pages/AddPetPage';
 
 const App = () => {
   return (
-    <Routes>
-      <Route path="/" element={<SharedLayout />}>
-        <Route index element={<HomePage />} />
-        <Route path="/notices/:categoryName" element={<NoticesPage />} />
-        
-        <Route path="/add-pet" element={<AddPetPage />} />
-      </Route>
-      {/* <Route path="*" element={<ErrorPage />} /> */}
-    </Routes>
+    <ThemeProvider theme={theme}>
+      <Routes>
+        <Route path="/" element={<SharedLayout />}>
+          <Route index element={<HomePage />} />
+          <Route path="/notices/:categoryName" element={<NoticesPage />} />
+        </Route>
+        {/* <Route path="*" element={<ErrorPage />} /> */}
+      </Routes>
+    </ThemeProvider>
   );
 };
 
