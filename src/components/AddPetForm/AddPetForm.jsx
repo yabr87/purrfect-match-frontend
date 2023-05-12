@@ -24,31 +24,31 @@ const options = [
 
 const personalDetailsSteps = {
   'your pet': [
-    <PersonalDetailsMyPet />,
+    <PersonalDetailsMyPet key="personalDetailsMyPet" />,
   ],
   'sell': [
-    <PersonalDetailsSell />
+    <PersonalDetailsSell key="personalDetailsSell" />
   ],
   'lost/found': [
-    <PersonalDetailsLost />
+    <PersonalDetailsLost key="personalDetailsLost" />
   ],
   'in good hands': [
-    <PersonalDetailsInHands />
+    <PersonalDetailsInHands key="personalDetailsInHands" />
   ],
 };
 
 const moreInfo = {
   'your pet': [
-    <MoreInfoMyPet />,
+    <MoreInfoMyPet key="moreInfoMyPet" />,
   ],
   'sell': [
-    <MoreInfoSell />
+    <MoreInfoSell key="moreInfoSell" />
   ],
   'lost/found': [
-    <MoreInfoLost />
+    <MoreInfoLost key="moreInfoLost" />
   ],
   'in good hands': [
-    <MoreInfoInHands />
+    <MoreInfoInHands key="moreInfoInHands" />
   ],
 };
 
