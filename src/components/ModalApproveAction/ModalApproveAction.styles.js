@@ -18,19 +18,22 @@ export const ModalView = styled.div`
   border-radius: 20px;
   background-color: #fff;
   min-height: 287px;
-  // min-width: 200px;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+
+  @media screen and (min-width: 768px) {
+    height: 354px;
+    width: 608px;
+  }
 `;
 
-export const CloseIcon = styled.span`
-  color: red;
-  font-size: 18px;
-  font-weight: bold;
+export const CloseIcon = styled.button`
+  background: transparent;
+  border: none;
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 12px;
+  right: 12px;
   cursor: pointer;
 `;
