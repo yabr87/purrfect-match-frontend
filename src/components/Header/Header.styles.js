@@ -43,7 +43,7 @@ export const OpenLinksButton = styled.button`
 
 
   @media (min-width: 768px) {
-    margin-left: ${(props) => (props.isMobileNavOpen ? "auto" : "22px")};
+    margin-left: ${({isMobileNavOpen}) => (isMobileNavOpen ? "auto" : "22px")};
   }
 `;
 

@@ -7,7 +7,7 @@ const AuthNav = () => {
       <AuthItem>
         <AuthLink to="/login">
           Log IN
-        <Icon id="paw" />
+        <Icon id="paw" f="#FEF9F9"/>
         </AuthLink>
       </AuthItem>
       <AuthItem>
