@@ -1,6 +1,6 @@
 import { NavContainer, Step } from "./FormNav.styles";
 
-const Nav = ({ currentStep }) => {
+const FormNav = ({ currentStep }) => {
     return (
         <NavContainer>
             <Step active={currentStep === 1}>
@@ -16,4 +16,4 @@ const Nav = ({ currentStep }) => {
     );
 };
 
-export default Nav;
+export default FormNav;
