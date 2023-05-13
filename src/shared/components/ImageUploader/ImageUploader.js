@@ -1,35 +1,32 @@
 import React, { useRef } from 'react';
-import {FileInput, BtnImg } from "./imageUploader.styles";
+import { FileInput } from './imageUploader.styles';
 
 const handleFileUpload = event => {
-    console.log(event.target.files[0].name);
+  console.log(event.target.files[0].name);
 };
 
-const ImageUploader = ({handleChange, ...props}) => {
-    //const id = useMemo(()=> nanoid(), []);
-    const inputRef = useRef(null);
-    let imgSrc = null;
+const ImageUploader = ({ handleChange, ...props }) => {
+  //const id = useMemo(()=> nanoid(), []);
+  const inputRef = useRef(null);
+  let imgSrc = null;
 
-    return (
-        <div>
-          <FileInput>
-            <input
-                ref={inputRef}
-                onChange={handleFileUpload}
-                type="file"
-                accept="image/png, image/gif, image/jpeg"
-                multiple={false}
-            />
-          </FileInput>
+  return (
+    <div>
+      <FileInput>
+        <input
+          ref={inputRef}
+          onChange={handleFileUpload}
+          type="file"
+          accept="image/png, image/gif, image/jpeg"
+          multiple={false}
+        />
+      </FileInput>
 
-          <a onClick={() => inputRef.current.click()}>
-            { imgSrc ? <img src={imgSrc}/>
-              : <span>+</span>
-            }
-          </a>
-
-        </div>
-    )
-}
+      <button type="button" onClick={() => inputRef.current.click()}>
+        {imgSrc ? <img src={imgSrc} alt="Uploaded" /> : <span>+</span>}
+      </button>
+    </div>
+  );
+};
 
 export default ImageUploader;
