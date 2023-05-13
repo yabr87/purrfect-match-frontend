@@ -23,6 +23,11 @@ const options = [
   { label: 'in good hands', value: 'in good hands' },
 ];
 
+const sexOptions = [
+  { label: 'Male', value: 'male' },
+  { label: 'Female', value: 'female' }
+];
+
 //це мабуть варто винести в окремі файли
 const personalDetailsSteps = {
   'your pet': [<PersonalDetailsMyPet key="personalDetailsMyPet" />],
@@ -34,7 +39,7 @@ const personalDetailsSteps = {
 //це мабуть варто винести в окремі файли
 const moreInfo = {
   'your pet': [<MoreInfoMyPet key="moreInfoMyPet" />],
-  sell: [<MoreInfoSell key="moreInfoSell" />],
+  sell: [<MoreInfoSell key="moreInfoSell" options={sexOptions}/>],
   'lost/found': [<MoreInfoLost key="moreInfoLost" />],
   'in good hands': [<MoreInfoInHands key="moreInfoInHands" />],
 };
