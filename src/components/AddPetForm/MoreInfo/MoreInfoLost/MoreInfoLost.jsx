@@ -5,13 +5,13 @@ import { useState } from "react";
 
 const MoreInfoLost = ({ name, options,  value, onSelect}) => {
     const [checkedValue, setCheckedValue] = useState(value);
-    
+
     const handleChange = (e) => {
         setCheckedValue(e.target.value);
-        onSelect(e.target.value);
+        //onSelect(e.target.value);
     }
     return (
-    <div>
+    <>
         <label>The Sex: </label>
         <div role="group" aria-labelledby="choose-pet-option">
           {options.map((option) => (
@@ -28,7 +28,7 @@ const MoreInfoLost = ({ name, options,  value, onSelect}) => {
             </div>
         ))}
     </div>
-        <label>The Sex: </label>
+        <label>Location: </label>
         <Field name="location" id="location" />
 
         <label>Price: </label>
@@ -36,7 +36,7 @@ const MoreInfoLost = ({ name, options,  value, onSelect}) => {
 
         <label>Comments: </label>
         <Field name="comments" id="comments" />
-    </div>)
+    </>)
 };
 
 export default MoreInfoLost;

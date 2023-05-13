@@ -26,13 +26,13 @@ const MoreInfoSell = ({ name, options, value, onSelect}) => {
             </div>
         ))}
         </div>
-
-        <label>The Sex: </label>
+        <br/>
+        <label>Location: </label>
         <Field name="location" id="location" />
-
+        <br/>
         <label>Price: </label>
         <Field name="price" id="price" />
-
+        <br/>
         <label>Comments: </label>
         <Field name="comments" id="comments" />
     </>
