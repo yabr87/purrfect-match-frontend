@@ -21,6 +21,8 @@ const App = () => {
           <Route path="/notices/:categoryName" element={<NoticesPage />} />
           <Route path="/add-pet" element={<AddPetPage />} />
           <Route path="/notices" element={<Navigate to="/notices/sell" />} />
+          <Route path="/news" element={<NewsPage />} />
+          <Route path="/user" element={<UserPage />} />
         </Route>
         {/* <Route path="*" element={<ErrorPage />} /> */}
       </Routes>

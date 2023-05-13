@@ -83,6 +83,7 @@ export const theme = {
     tablet: '768px',
     desktop: '1280px',
   },
+  transition: 'color 300ms, cubic-bezier(0.4, 0, 0.2, 1)',
   media: {
     phone: 'screen and (min-width: 480)',
     tab: 'screen and (min-width: 768px)',
@@ -104,6 +105,5 @@ export const theme = {
   //         font-weight: 500;
   //         font-size: "28px";
   //         line-height: 1.35;
-  //       }`,
-  transition: 'color 300ms, cubic-bezier(0.4, 0, 0.2, 1)',
+  //
 };
