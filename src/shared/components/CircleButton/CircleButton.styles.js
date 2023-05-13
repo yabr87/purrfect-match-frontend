@@ -1,27 +1,37 @@
 import styled from 'styled-components';
 
 export const CircleBtn = styled.button`
+  z-index: ${prpops => prpops.z};
+  position: ${prpops => prpops.pos};
+  left: ${prpops => prpops.l};
+  right: ${prpops => prpops.r};
+  top: ${prpops => prpops.t};
+  bottom: ${prpops => prpops.b};
+
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column-reverse;
+  gap: 4px;
 
   width: 80px;
   height: 80px;
   padding: 10px;
 
   font-family: 'Manrope';
-  font-style: normal;
-  font-weight: 600;
-  font-size: 12px;
+  font-weight: ${({ theme }) => theme.fontWeiths.semiBold};
+  font-size: ${({ theme }) => theme.fontSizes.xs};
   line-height: 1.33;
   color: #ffffff;
 
-  background: linear-gradient(#54adff, #54adff);
-  border-radius: 50px;
+  background: linear-gradient(
+    ${({ theme }) => theme.colors.link},
+    ${({ theme }) => theme.colors.link}
+  );
+  border-radius: ${({ theme }) => theme.radius.round};
   border: none;
   outline: none;
-  box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
+  box-shadow: ${({ theme }) => theme.shadows.default};
 
   cursor: pointer;
 
@@ -29,10 +39,6 @@ export const CircleBtn = styled.button`
 
   &:hover,
   &:focus {
-    background: linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%);
-  }
-
-  svg {
-    margin-bottom: 4px;
+    background: ${({ theme }) => theme.colors.gradient};
   }
 `;
