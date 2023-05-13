@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import SharedLayout from 'layouts/SharedLayout';
 import HomePage from 'pages/HomePage';
+import UserPage from 'pages/UserPage';
 import { ThemeProvider } from 'styled-components';
 import { theme } from 'utils/theme';
 import NoticesPage from '../../pages/NoticesPage/NoticesPage';
@@ -16,6 +17,7 @@ const App = () => {
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<HomePage />} />
           <Route path="/notices/:categoryName" element={<NoticesPage />} />
+          <Route path="/user" element={<UserPage />} />
         </Route>
         {/* <Route path="*" element={<ErrorPage />} /> */}
       </Routes>
