@@ -1,10 +1,14 @@
 import styled from 'styled-components';
 
 export const FormContainer = styled.div`
-  width: 608px;
+  max-width: 608px;
+  width: 100%;
   background: #ffffff;
-  box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
+  box-shadow: ${props => props.theme.shadows.default};
   border-radius: 40px;
+  @media (min-width: 768px) {
+    width: 608px;
+  }
 `;
 export const CenrteredDiv = styled.div`
   display: flex;
@@ -12,4 +16,11 @@ export const CenrteredDiv = styled.div`
   justify-content: center;
 
   height: 100%;
+  padding: 0 20px;
+  @media (min-width: 768px) {
+    padding: 0 80px;
+  }
+  @media (min-width: 1240px) {
+    padding: 0;
+  }
 `;
