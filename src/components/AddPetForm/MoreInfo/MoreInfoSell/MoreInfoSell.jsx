@@ -1,12 +1,12 @@
 import { Field } from "formik";
 import { useState } from "react";
 
-const MoreInfoSell = ({ name, options,  value, onSelect}) => {
+const MoreInfoSell = ({ name, options, value, onSelect}) => {
     const [checkedValue, setCheckedValue] = useState(value);
 
     const handleChange = (e) => {
         setCheckedValue(e.target.value);
-        onSelect(e.target.value);
+        //onSelect(e.target.value);
     }
     return (
     <>
