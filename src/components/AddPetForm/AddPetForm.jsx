@@ -4,16 +4,16 @@ import ChooseOptionStep from './ChooseOptionStep';
 import validationSchema  from './validationSchema';
 import Button from 'shared/components/Button';
 import Icon from 'shared/components/Icon/Icon';
-import MoreInfoMyPet from './MoreInfoMyPet';
-import MoreInfoSell from './MoreInfoSell';
-import MoreInfoLost from './MoreInfoLost';
-import MoreInfoInHands from './MoreInfoInHands';
+import MoreInfoMyPet from './MoreInfo/MoreInfoMyPet';
+import MoreInfoSell from './MoreInfo/MoreInfoSell';
+import MoreInfoLost from './MoreInfo/MoreInfoLost';
+import MoreInfoInHands from './MoreInfo/MoreInfoInHands';
 import FormWrapper from './FormWrapper';
-import { ButtonsBox, FormTitle } from './AddPetForm.styles';
-import PersonalDetailsMyPet from './PersonalDetailsMyPet';
-import PersonalDetailsSell from './PersonalDetailsSell';
-import PersonalDetailsLost from './PersonalDetailsLost';
-import PersonalDetailsInHands from './PersonalDetailsInHands';
+import { ButtonsBox } from './AddPetForm.styles';
+import PersonalDetailsMyPet from './PersonalDetails/PersonalDetailsMyPet';
+import PersonalDetailsSell from './PersonalDetails/PersonalDetailsSell';
+import PersonalDetailsLost from './PersonalDetails/PersonalDetailsLost';
+import PersonalDetailsInHands from './PersonalDetails/PersonalDetailsInHands';
 
 
 //це мабуть варто винести в окремі файли
@@ -64,7 +64,7 @@ const formTitles = {
 
 const AddPetForm = () => {
   const [currentStep, setCurrentStep] = useState(1);
-  const [selectedOption, setSelectedOption] = useState("sell");
+  const [selectedOption, setSelectedOption] = useState('sell');
     
   const handleSubmit = (values) => {
     // відправка даних на бекенд
