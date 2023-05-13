@@ -14,19 +14,14 @@ export const ModalOverlay = styled.div`
 `;
 
 export const ModalView = styled.div`
-  padding: 20px;
   border-radius: 20px;
   background-color: #fff;
-  min-height: 287px;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-
-  @media screen and (min-width: 768px) {
-    height: 354px;
-    width: 608px;
-  }
+  // width: 100%;
+  // height: 100%;
 `;
 
 export const CloseIcon = styled.button`

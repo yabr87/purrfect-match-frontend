@@ -1,7 +1,8 @@
-import { useEffect, useMedia, useState } from 'react';
+import { useEffect } from 'react';
+// useMedia, useState;
 import { createPortal } from 'react-dom';
 import Container from 'shared/components/Container';
-import Button from 'shared/components/Button';
+// import Button from 'shared/components/Button';
 import Icon from 'shared/components/Icon';
 
 import {
@@ -32,13 +33,7 @@ const modalRoot = document.querySelector('#modal-root');
 //     setIsFavorite(true);
 // }
 
-const ModalApproveAction = ({
-  close,
-  children,
-  approve,
-  // textBtnApprove,
-  // textBtnCancel,
-}) => {
+const ModalApproveAction = ({ close, children, approve }) => {
   // const [isLogin, setIsLogin] = useState(false);
   // const screenSize = useMedia(
   //   [
@@ -110,7 +105,7 @@ const ModalApproveAction = ({
             <Icon id="cross" s="#54ADFF" />
           </CloseIcon>
           {children}
-          <Button type="button" onBtnClick={close} w="256" h="40">
+          {/* <Button type="button" onBtnClick={close} w="256" h="40">
             Cancel
           </Button>
           <Button
@@ -123,7 +118,7 @@ const ModalApproveAction = ({
           >
             Add to
             <Icon id="heart" f="white" s="white" />
-          </Button>
+          </Button> */}
         </ModalView>
       </Container>
     </ModalOverlay>,

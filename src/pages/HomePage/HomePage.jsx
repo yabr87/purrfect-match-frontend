@@ -1,5 +1,7 @@
 import ModalApproveAction from 'components/ModalApproveAction';
-import Logout from 'components/ModalApproveAction/Logout';
+import Congrats from 'components/ModalApproveAction/Congrats';
+// import Logout from 'components/ModalApproveAction/Logout';
+// import Delete from 'components/ModalApproveAction/Delete';
 // import { useState } from 'react';
 import {} from './HomePage.styles';
 
@@ -33,7 +35,9 @@ const HomePage = () => {
         // close={close}
         // approve={approveLogout}
         >
-          <Logout></Logout>
+          {/* <Delete /> */}
+          <Congrats />
+          {/* <Logout /> */}
         </ModalApproveAction>
         PURRFECT MATCH
       </div>
