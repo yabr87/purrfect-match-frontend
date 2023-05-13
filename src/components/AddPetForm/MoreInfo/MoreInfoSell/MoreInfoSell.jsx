@@ -9,7 +9,7 @@ const MoreInfoSell = ({ name, options,  value, onSelect}) => {
         onSelect(e.target.value);
     }
     return (
-    <div>
+    <>
         <label>The Sex: </label>
         <div role="group" aria-labelledby="choose-pet-option">
           {options.map((option) => (
@@ -25,7 +25,8 @@ const MoreInfoSell = ({ name, options,  value, onSelect}) => {
               {option.label}
             </div>
         ))}
-    </div>
+        </div>
+
         <label>The Sex: </label>
         <Field name="location" id="location" />
 
@@ -34,7 +35,8 @@ const MoreInfoSell = ({ name, options,  value, onSelect}) => {
 
         <label>Comments: </label>
         <Field name="comments" id="comments" />
-    </div>)
+    </>
+    )
 };
 
 export default MoreInfoSell;
