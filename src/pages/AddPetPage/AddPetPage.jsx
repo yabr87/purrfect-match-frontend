@@ -1,12 +1,15 @@
 import AddPetForm from "components/AddPetForm";
 import { AddPetWrapper } from "./AddPetPage.styles";
+import Container from "shared/components/Container";
 
 
 const AddPetPage = () => {
   return (
-    <AddPetWrapper>
-      <AddPetForm />
-    </AddPetWrapper>
+    <Container>
+      <AddPetWrapper>
+        <AddPetForm />
+      </AddPetWrapper>
+    </Container>
   );
 };
 
