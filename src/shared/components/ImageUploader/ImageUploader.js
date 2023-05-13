@@ -8,6 +8,7 @@ const handleFileUpload = event => {
 const ImageUploader = ({handleChange, ...props}) => {
     //const id = useMemo(()=> nanoid(), []);
     const inputRef = useRef(null);
+    let imgSrc = null;
 
     return (
         <div>
@@ -20,9 +21,13 @@ const ImageUploader = ({handleChange, ...props}) => {
                 multiple={false}
             />
           </FileInput>
-          <BtnImg>
-            <button  onClick={() => inputRef.current.click()}>+</button>
-          </BtnImg>
+
+          <a onClick={() => inputRef.current.click()}>
+            { imgSrc ? <img src={imgSrc}/>
+              : <span>+</span>
+            }
+          </a>
+
         </div>
     )
 }

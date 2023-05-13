@@ -40,8 +40,8 @@ const personalDetailsSteps = {
 const moreInfo = {
   'your pet': [<MoreInfoMyPet key="moreInfoMyPet" />],
   sell: [<MoreInfoSell key="moreInfoSell" options={sexOptions}/>],
-  'lost/found': [<MoreInfoLost key="moreInfoLost" />],
-  'in good hands': [<MoreInfoInHands key="moreInfoInHands" />],
+  'lost/found': [<MoreInfoLost key="moreInfoLost" options={sexOptions}/>],
+  'in good hands': [<MoreInfoInHands key="moreInfoInHands" options={sexOptions}/>],
 };
 const formTitles = {
   'your pet': 'Add pet',

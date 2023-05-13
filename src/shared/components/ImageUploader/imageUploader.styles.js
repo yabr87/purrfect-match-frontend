@@ -4,7 +4,7 @@ export const FileInput = styled.div`
 display: none;
 `;
 
-export const BtnImg = styled.div`
+export const BtnImg = styled.button`
     width: 182px;
     height: 182px;
     color: #54ADFF;
