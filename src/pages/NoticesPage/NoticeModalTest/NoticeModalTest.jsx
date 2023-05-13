@@ -15,7 +15,7 @@ const ModalNoticeTest = ({ close }) => {
     return () => {
       document.removeEventListener('keydown', closeModal);
     };
-  }, [close]);
+  });
 
   return createPortal(
     <div
