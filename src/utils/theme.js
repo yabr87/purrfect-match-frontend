@@ -24,7 +24,7 @@ export const theme = {
     hover: '7px 13px 14px rgba(116, 177, 232, 0.24)',
   },
   fonts: {
-    main: 'Monrope, san-serif',
+    main: 'Manrope, san-serif',
     placeholders: 'Inter, san-serif',
   },
   fontSizes: {
@@ -83,5 +83,27 @@ export const theme = {
     tablet: '768px',
     desktop: '1280px',
   },
+  media: {
+    phone: 'screen and (min-width: 480)',
+    tab: 'screen and (min-width: 768px)',
+    desk: 'screen and (min-width: 1280px)',
+  },
+
+  // add: `text-align:"start";
+  //       font-weight: 500;
+  //       font-size: "20px";
+  //       line-height: 1.35;
+  //       text-align: "center";
+
+  //       @media screen and (min-width: 768px){
+  //         font-weight: 500;
+  //         font-size: "28px";
+  //         line-height: 1.35;
+  //       }
+  //       @media screen and (min-width: 1280px){
+  //         font-weight: 500;
+  //         font-size: "28px";
+  //         line-height: 1.35;
+  //       }`,
   transition: 'color 300ms, cubic-bezier(0.4, 0, 0.2, 1)',
 };
