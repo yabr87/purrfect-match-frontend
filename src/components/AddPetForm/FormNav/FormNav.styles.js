@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const NavContainer = styled.div`
     display: flex;
     gap: 12px;
+    margin-top: 24px;
 `;
 
 export const Step = styled.p`

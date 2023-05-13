@@ -1,12 +1,12 @@
 import AddPetForm from "components/AddPetForm";
-import { AddPetContainer } from "./AddPetPage.styles";
+import { AddPetWrapper } from "./AddPetPage.styles";
 
 
 const AddPetPage = () => {
   return (
-    <AddPetContainer>
+    <AddPetWrapper>
       <AddPetForm />
-    </AddPetContainer>
+    </AddPetWrapper>
   );
 };
 

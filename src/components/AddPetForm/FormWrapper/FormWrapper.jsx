@@ -1,4 +1,6 @@
+import { FormTitle } from "../AddPetForm.styles";
 import FormNav from "../FormNav";
+import { FormBox} from "./FormWrapper.styles";
 
 
 const FormWrapper = ({
@@ -6,10 +8,10 @@ const FormWrapper = ({
   currentStep,
 }) => {
   return (
-    <div>
+    <FormBox>
       <FormNav currentStep={currentStep} />
       {children}
-    </div>
+    </FormBox>
   );
 };
 
