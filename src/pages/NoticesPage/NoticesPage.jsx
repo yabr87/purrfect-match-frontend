@@ -21,7 +21,7 @@ function NoticesPage() {
 
   const handleAddPet = () => {
     if (isAuthenticated) {
-      navigate('/addpet');
+      navigate('/add-pet');
     }
   };
 
@@ -41,7 +41,7 @@ function NoticesPage() {
             style={{
               zIndex: '999',
               position: 'fixed',
-              bottom: '160px',
+              bottom: '50px',
               right: '24px',
             }}
             onClick={handleAddPet}
@@ -50,7 +50,7 @@ function NoticesPage() {
         ) : (
           <Button onClick={handleAddPet} disabled={!isAuthenticated}>
             Add pet
-            <Icon id="plus" h="18" w="18" />
+            <Icon id="plus-small" />
           </Button>
         )}
       </div>
