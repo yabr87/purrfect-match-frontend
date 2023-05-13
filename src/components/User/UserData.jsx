@@ -1,5 +1,7 @@
+import { Container } from './UserData.styled';
+
 const UserData = () => {
-  return <></>;
+  return <Container></Container>;
 };
 
 export default UserData;
