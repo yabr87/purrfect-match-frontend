@@ -34,7 +34,7 @@ const validateShecma = Yup.object().shape({
     .required('Required'),
 });
 
-const LoginForm = () => {
+const RegisterForm = () => {
   const dispatch = useDispatch();
   return (
     <Formik
@@ -83,7 +83,7 @@ const LoginForm = () => {
               placeholder={'Confirm password'}
             />
           </InputContainer>
-          <Button shape={'solid'} w={458} h={48}>
+          <Button shape={'solid'} w={'458'} h={'48'}>
             Register
           </Button>
           <Text>
@@ -96,4 +96,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default RegisterForm;

@@ -29,9 +29,6 @@ const validateShecma = Yup.object().shape({
       'Password must contain at least 1 uppercase letter, 1 lowercase letter and 1 number'
     )
     .required('Required'),
-  confirmedPassword: Yup.string()
-    .oneOf([Yup.ref('password'), null], 'Passwords must match')
-    .required('Required'),
 });
 const LoginForm = () => {
   const dispatch = useDispatch();
@@ -89,7 +86,7 @@ const LoginForm = () => {
               placeholder={'Password'}
             />
           </InputContainer>
-          <Button shape={'solid'} w={458} h={48}>
+          <Button shape={'solid'} w={'458'} h={'48'}>
             Login
           </Button>
           <Text>

@@ -6,7 +6,7 @@ export const signup = createAsyncThunk(
   async (data, { rejectWithValue }) => {
     try {
       const result = await api.signup(data);
-      return result;
+      return result.data;
     } catch ({ response }) {
       const { status, data } = response;
       const error = {
@@ -23,7 +23,7 @@ export const login = createAsyncThunk(
   async (data, { rejectWithValue }) => {
     try {
       const result = await api.login(data);
-      return result;
+      return result.data;
     } catch ({ response }) {
       const { status, data } = response;
       const error = {
