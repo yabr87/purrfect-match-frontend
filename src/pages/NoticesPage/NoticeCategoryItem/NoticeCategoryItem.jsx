@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import {
   Card,
   CardImage,
@@ -8,40 +8,79 @@ import {
   ImageCategory,
   PhotoDescription,
   BelowItemContainer,
-  AddToFavoriteBtn,
 } from './NoticeCategoryItem.styles';
 
 import Icon from 'shared/components/Icon/Icon';
-
 import Button from 'shared/components/Button';
+
+import ModalNoticeTest from '../NoticeModalTest/NoticeModalTest';
+
 const AddToFavorite = () => {
+  const [fill, setFill] = useState('transparent');
   const isAuthenticated = true;
 
-  const handleisAuthenticated = () => {
+  const handleisAuthenticated = useCallback(() => {
     if (!isAuthenticated) {
       alert('Please sign in to add to favorites');
+      return;
     }
-  };
+  }, [isAuthenticated]);
+
+  const handleMouseOver = useCallback(() => {
+    if (isAuthenticated) {
+      setFill('#54adff');
+    }
+  }, [isAuthenticated]);
+
+  const handleMouseOut = useCallback(() => {
+    if (isAuthenticated) {
+      setFill('transparent');
+    }
+  }, [isAuthenticated]);
 
   return (
-    isAuthenticated && (
-      <AddToFavoriteBtn onClick={handleisAuthenticated}>
-        <Icon id="heart" h="22" w="22" s="#54ADFF" strokeWidth="1.5" />
-      </AddToFavoriteBtn>
-    )
+    <Button
+      style={{
+        zIndex: 999,
+        position: 'absolute',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: 40,
+        height: 40,
+        right: 12,
+        top: 12,
+        background: '#cce4fb',
+        borderRadius: '50%',
+        border: 'none',
+        outline: 'none',
+        transition: 'fill 250ms ease',
+      }}
+      onMouseEnter={handleMouseOver}
+      onFocus={handleMouseOver}
+      onMouseLeave={handleMouseOut}
+      onBlur={handleMouseOut}
+      onClick={handleisAuthenticated}
+    >
+      <Icon id="heart" h="22" w="22" f={fill} s="#54ADFF" strokeWidth="1.5" />
+    </Button>
   );
 };
 
-const LearnMore = () => {
+const LearnMore = ({ onButtonClick }) => {
   const [isHoveredOrFocused, setIsHoveredOrFocused] = useState(false);
-  // Заготовка для кнопки
   return (
     <Button
-      style={{ width: '100%', marginTop: '20px' }}
+      style={{
+        width: '100%',
+        marginTop: '20px',
+        transition: 'stroke 250ms ease',
+      }}
       onMouseEnter={() => setIsHoveredOrFocused(true)}
       onMouseLeave={() => setIsHoveredOrFocused(false)}
       onFocus={() => setIsHoveredOrFocused(true)}
       onBlur={() => setIsHoveredOrFocused(false)}
+      onClick={onButtonClick}
     >
       Learn More
       {isHoveredOrFocused && <Icon id="paw" f="#FEF9F9" w="24" h="24" />}
@@ -50,6 +89,7 @@ const LearnMore = () => {
 };
 
 const NoticeCategoryItem = ({ notice }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   return (
     <Card>
       <AddToFavorite />
@@ -80,8 +120,9 @@ const NoticeCategoryItem = ({ notice }) => {
       </CardImageContainer>
       <BelowItemContainer>
         <PhotoDescription>{notice.description}</PhotoDescription>
-        <LearnMore />
+        <LearnMore onButtonClick={() => setIsModalOpen(true)} />
       </BelowItemContainer>
+      {isModalOpen && <ModalNoticeTest close={() => setIsModalOpen(false)} />}
     </Card>
   );
 };
