@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import css from "./imageUploader.module.css";
+import {FileInput, BtnImg } from "./imageUploader.styles";
 
 const handleFileUpload = event => {
     console.log(event.target.files[0].name);
@@ -11,15 +11,18 @@ const ImageUploader = ({handleChange, ...props}) => {
 
     return (
         <div>
+          <FileInput>
             <input
                 ref={inputRef}
                 onChange={handleFileUpload}
                 type="file"
-                style={{ display: "none" }}
                 accept="image/png, image/gif, image/jpeg"
                 multiple={false}
             />
-            <button className={css.btnImg} onClick={() => inputRef.current.click()}>+</button>
+          </FileInput>
+          <BtnImg>
+            <button  onClick={() => inputRef.current.click()}>+</button>
+          </BtnImg>
         </div>
     )
 }
