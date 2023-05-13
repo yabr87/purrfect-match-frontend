@@ -4,8 +4,6 @@ export const NavContainer = styled.div`
     display: flex;
     gap: 12px;
     margin-top: 24px;
-
-    margin-bottom: 40px;
 `;
 
 export const Step = styled.p`
