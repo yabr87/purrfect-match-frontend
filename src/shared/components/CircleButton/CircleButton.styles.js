@@ -1,6 +1,13 @@
 import styled from 'styled-components';
 
 export const CircleBtn = styled.button`
+  z-index: ${prpops => prpops.z};
+  position: ${prpops => prpops.pos};
+  left: ${prpops => prpops.l};
+  right: ${prpops => prpops.r};
+  top: ${prpops => prpops.t};
+  bottom: ${prpops => prpops.b};
+
   display: flex;
   align-items: center;
   justify-content: center;
