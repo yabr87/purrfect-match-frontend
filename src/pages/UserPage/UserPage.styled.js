@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
-export const Container = styled.div``;
+export const User = styled.div`
+  margin-top: 40px;
+`;
 
 export const Title = styled.p`
   font-family: 'Manrope';
@@ -8,8 +10,6 @@ export const Title = styled.p`
   font-weight: 500;
   font-size: 20px;
   line-height: 27px;
-  display: flex;
-  align-items: center;
   letter-spacing: 0.04em;
   color: #000000;
 `;

@@ -1,11 +1,14 @@
-import { Title, Container } from './';
-import UserData from 'components/User/UserData';
+import { Title, User } from './';
+import UserData from 'components/User';
+import Container from 'shared/components/Container';
 
 const UserPage = () => {
   return (
     <Container>
-      <Title>My information:</Title>
-      <UserData />
+      <User>
+        <Title>My information:</Title>
+        <UserData />
+      </User>
     </Container>
   );
 };
