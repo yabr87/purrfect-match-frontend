@@ -1,1 +1,1 @@
-export { default } from './CircleButton.jsx';
+export { default } from './CircleButton';

@@ -1,25 +1,23 @@
 import React from 'react';
-// import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-// import { useSelector } from 'react-redux';
 
 import NoticesSearch from './NoticesSearch';
 import NoticesCategoriesNav from './NoticesCategoriesNav/NoticesCategoriesNav';
-// import NoticesFilters from './NoticesFilters/NoticesFilters';
 import NoticesCategoriesList from './NoticesCategoriesList/NoticesCategoriesList';
 import Button from 'shared/components/Button';
+import CircleButton from 'shared/components/CircleButton/CircleButton';
 import Container from 'shared/components/Container';
+import Icon from 'shared/components/Icon/Icon';
+import { useMedia } from 'shared/hooks/useMedia';
 
 function NoticesPage() {
-  // беремо статус аутентицікації юзера
-  //   const user = useSelector(state => state.user);
+  const isUpToWidth480 = useMedia(['(max-width: 480px)'], [true], false);
 
   const { categoryName } = useParams();
 
   const navigate = useNavigate();
 
-  // перевіряємо чи юзер ідентифікований.
-  const isAuthenticated = false;
+  const isAuthenticated = true;
 
   const handleAddPet = () => {
     if (isAuthenticated) {
@@ -30,7 +28,6 @@ function NoticesPage() {
   return (
     <Container>
       <NoticesSearch />
-      {/* <NoticesFilters /> */}
       <div
         style={{
           display: 'flex',
@@ -39,9 +36,23 @@ function NoticesPage() {
         }}
       >
         <NoticesCategoriesNav />
-        <Button onClick={handleAddPet} disabled={!isAuthenticated}>
-          Add pet +
-        </Button>
+        {isUpToWidth480 ? (
+          <CircleButton
+            style={{
+              zIndex: '999',
+              position: 'fixed',
+              bottom: '160px',
+              right: '24px',
+            }}
+            onClick={handleAddPet}
+            disabled={!isAuthenticated}
+          />
+        ) : (
+          <Button onClick={handleAddPet} disabled={!isAuthenticated}>
+            Add pet
+            <Icon id="plus" h="18" w="18" />
+          </Button>
+        )}
       </div>
 
       <NoticesCategoriesList categoryName={categoryName} />

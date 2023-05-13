@@ -1,20 +1,31 @@
 import styled from 'styled-components';
 
-const setColor = props => {
-  switch (props.shape) {
-    case 'solid':
-      return '#fef9f9';
-    case 'yellow':
-      return '#FFC107';
+const setWidth = ({ w }) => {
+  switch (w.endsWith('%')) {
+    case true:
+      return `${w}`;
+    case false:
+      return `${w}px`;
     default:
-      return '#54ADFF';
+      return `${w}px`;
   }
 };
 
-const setBackground = props => {
-  switch (props.shape) {
+const setColor = ({ shape, theme }) => {
+  switch (shape) {
     case 'solid':
-      return 'linear-gradient(#54ADFF, #54ADFF)';
+      return `${theme.colors.background}`;
+    case 'yellow':
+      return `${theme.colors.yellow}`;
+    default:
+      return `${theme.colors.link}`;
+  }
+};
+
+const setBackground = ({ shape, theme }) => {
+  switch (shape) {
+    case 'solid':
+      return `linear-gradient(${theme.colors.link}, ${theme.colors.link})`;
     case 'yellow':
       return 'inherit';
     default:
@@ -22,14 +33,14 @@ const setBackground = props => {
   }
 };
 
-const setHoverBackground = props => {
-  switch (props.shape) {
+const setHoverBackground = ({ shape, theme }) => {
+  switch (shape) {
     case 'solid':
-      return 'linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%)';
+      return `${theme.colors.gradient}`;
     case 'yellow':
       return '#FFC107';
     default:
-      return 'linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%)';
+      return `${theme.colors.gradient}`;
   }
 };
 
@@ -39,20 +50,20 @@ export const Btn = styled.button`
   justify-content: center;
   gap: ${props => props.g || 12}px;
 
-  width: ${props => props.w}px;
-  height: ${props => props.h}px;
+  width: ${setWidth};
+  height: ${props => props.h || 40}px;
   padding: 10px;
 
   font-family: 'Manrope';
-  font-style: normal;
-  font-weight: 600;
-  font-size: 16px;
+  font-weight: ${({ theme }) => theme.fontWeiths.semiBold};
+  font-size: ${({ theme }) => theme.fontSizes.s};
   line-height: 1.38;
   color: ${setColor};
 
   background: ${setBackground};
-  border-radius: 40px;
+  border-radius: ${({ theme }) => theme.radius.normal};
   border: 1px solid;
+
   outline: none;
 
   cursor: pointer;
@@ -63,7 +74,7 @@ export const Btn = styled.button`
 
   &:hover,
   &:focus {
-    color: #fef9f9;
+    color: ${({ theme }) => theme.colors.background};
     background: ${setHoverBackground};
   }
 `;
