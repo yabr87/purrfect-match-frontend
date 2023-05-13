@@ -9,7 +9,7 @@ import MoreInfoSell from './MoreInfoSell';
 import MoreInfoLost from './MoreInfoLost';
 import MoreInfoInHands from './MoreInfoInHands';
 import FormWrapper from './FormWrapper';
-import { ButtonsBox } from './AddPetForm.styles';
+import { ButtonsBox, FormTitle } from './AddPetForm.styles';
 import PersonalDetailsMyPet from './PersonalDetailsMyPet';
 import PersonalDetailsSell from './PersonalDetailsSell';
 import PersonalDetailsLost from './PersonalDetailsLost';
@@ -55,6 +55,12 @@ const moreInfo = {
     <MoreInfoInHands key="moreInfoInHands" />
   ],
 };
+const formTitles = {
+ 'your pet': "Add pet",
+  'sell': "Add pet for sale",
+  'lost/found': "Add lost pet",
+  'in good hands': "Add pet",
+};
 
 const AddPetForm = () => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -80,7 +86,7 @@ const AddPetForm = () => {
       {({ isSubmitting }) => (
 
         <Form>
-          <FormWrapper currentStep={currentStep} >
+          <FormWrapper currentStep={currentStep} text={formTitles[selectedOption]}>
             {currentStep === 1 && (
 
               <ChooseOptionStep
