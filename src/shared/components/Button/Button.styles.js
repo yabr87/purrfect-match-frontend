@@ -1,13 +1,11 @@
 import styled from 'styled-components';
 
 const setWidth = ({ w }) => {
-  switch (w.endsWith('%')) {
-    case true:
-      return `${w}`;
-    case false:
-      return `${w}px`;
-    default:
-      return `${w}px`;
+  if (!w) return 'none';
+  if (w && w.endsWith('%')) {
+    return `${w}`;
+  } else {
+    return `${w}px`;
   }
 };
 
