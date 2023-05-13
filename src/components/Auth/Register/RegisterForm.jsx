@@ -17,7 +17,7 @@ import Button from 'shared/components/Button/Button';
 import Title from 'shared/components/Title/Title';
 import Icon from 'shared/components/Icon/Icon';
 
-import { signup } from 'utils/Api';
+import { signup } from 'redux/auth/authOperations';
 
 const validateShecma = Yup.object().shape({
   email: Yup.string().email('Invalid email address').required('Required'),
