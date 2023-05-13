@@ -1,0 +1,136 @@
+/* Компонент рендеримо і прописуємо пропси або беремо заготовку нижче
+опис пропсів: 
+
+- as="p" вписуємо тег під яким хочемо щоб компонент відображався
+за замовчуванням h1
+
+- size="", tabSize, deskSize - відповідає властивості font-size для 
+для медіа запросів відповідно mobilefirst, tablet, desktop
+
+- weight={}, tabWeight, deskWeight - відповідає властивості font-weight для 
+для медіа запросів відповідно mobilefirst, tablet, desktop 
+
+-align="" - text-align відповідно. За замовчуванням center
+
+-color="tomato" - колір, за замовчуванням "#111111"
+
+-font - відповідно font-family default - 'Manrope, san-serif'
+
+-line, tabLine, deskLine - відповідає line-height для медіа запросів відповідно mobilefirst, tablet, desktop 
+
+-letterSpacing - відповідно letter-spacing
+*/
+
+/* готові заготовки макету
+Add pet, Add lost pet, Add pet for sale : 
+
+      <Title
+        as="h3"
+        align="start"
+        weight={500}
+        size='20'
+        line={1.35}
+        tabSize='28'
+        deskSize='28'
+        weight={500}
+        tabLine={1.35}
+      >
+        Add pet
+      </Title>
+
+заголовок під карткою тварини :
+
+      <Title as="h3"
+             align="start" 
+             tabSize="24" 
+             deskSize="24">
+        Сute dog looking for a home
+      </Title>
+    
+ в модалці:
+      <Title as="h3"
+             color="#000000"
+             letterSpacing="-0.01em"
+             align="start" 
+             tabSize="28"
+             tabLine={1.357}
+             deskSize="28">
+        Сute dog looking for a home
+      </Title>
+
+News title 
+      <Title as="h2" letterSpacing="-0.01em">
+        On Pets, Moral Logic and Love 
+      </Title>
+     
+ and article title:
+      <Title as="h3" letterSpacing="-0.01em">
+        On Pets, Moral Logic and Love 
+      </Title>
+
+Привітальна сторінка      
+      <Title as="h1" 
+             align="start"
+             size="32"
+             tabSize="68"
+             tabLine="1.47"
+             deskSize="68" 
+             deskLine="1.3"
+             deskWeight="800"
+             color="#000000">
+        Take good care of 
+        your small pets
+      </Title>      
+
+сторінка Our friends
+      <Title as="h2" 
+             color="#000000"
+             >
+        Our friends 
+      </Title>
+
+логін, реєстрація
+  <Title as="p" 
+         weight="500"
+         tabSize="36"
+         tabLine="1.36"
+         tabweight="500"
+         deskWeight="500"
+         deskSize="36"
+         deskLine="1.36"
+       >
+        Login
+      </Title>      
+
+Congrats
+      <Title as="p" 
+         letterSpacing="0.04em"
+         weight="500"
+         tabSize="36"
+         tabLine="1.36"
+         tabweight="500"
+         deskWeight="500"
+         deskSize="36"
+         deskLine="1.36"
+       >
+        Congrats
+      </Title>  
+
+Profile info
+<Title as="p" 
+         letterSpacing="0.04em"
+         weight="500"
+         line="1.35"
+         size="20"
+         tabSize="28"
+         tabLine="1.36"
+         tabweight="500"
+         deskWeight="500"
+         deskSize="28"
+         deskLine="1.36"
+       >
+        Congrats
+      </Title> 
+
+
+      */
