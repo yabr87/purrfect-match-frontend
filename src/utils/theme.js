@@ -78,11 +78,6 @@ export const theme = {
     small: '16px',
     round: '50%',
   },
-  mediaPoints: {
-    mobile: '480px',
-    tablet: '768px',
-    desktop: '1280px',
-  },
   transition: 'color 300ms, cubic-bezier(0.4, 0, 0.2, 1)',
   media: {
     phone: 'screen and (min-width: 480)',
