@@ -1,6 +1,7 @@
 import { Field } from "formik";
 import { RadioContainer, RadioLabel } from "./ChooseOptionStep.styles";
 import { useState } from "react";
+import { FormTitle } from "../AddPetForm.styles";
 
 const ChooseOptionStep = ({ name, options, onSelect, value }) => {
   const [checkedValue, setCheckedValue] = useState(value);

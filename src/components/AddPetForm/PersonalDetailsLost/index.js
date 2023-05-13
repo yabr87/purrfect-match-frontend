@@ -1,3 +1,3 @@
-import PersonalDetailsInHands from './PersonalDetailsInHands';
+import PersonalDetailsLost from './PersonalDetailsLost';
 
-export default PersonalDetailsInHands;
+export default PersonalDetailsLost;

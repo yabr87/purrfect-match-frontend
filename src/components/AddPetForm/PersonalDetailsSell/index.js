@@ -1,3 +1,3 @@
-import PersonalDetailsLost from './PersonalDetailsLost';
+import PersonalDetailsSell from './PersonalDetailsSell';
 
-export default PersonalDetailsLost;
+export default PersonalDetailsSell;
