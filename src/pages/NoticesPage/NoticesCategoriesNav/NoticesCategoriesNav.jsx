@@ -5,7 +5,12 @@ import {
   StyledNavLink,
 } from './NoticesCategoriesNav.styles';
 
+import { useSelector } from 'react-redux';
+
+import { isAuth } from 'redux/auth/authSelectors';
+
 function NoticesCategoriesNav() {
+  const isAuthenticated = useSelector(isAuth);
   return (
     <Nav>
       <List>

@@ -1,4 +1,8 @@
 import React, { useState, useCallback } from 'react';
+import { useSelector } from 'react-redux';
+
+import { isAuth } from 'redux/auth/authSelectors';
+
 import {
   Card,
   CardImage,
@@ -17,7 +21,7 @@ import ModalNoticeTest from '../NoticeModalTest/NoticeModalTest';
 
 const AddToFavorite = () => {
   const [fill, setFill] = useState('transparent');
-  const isAuthenticated = true;
+  const isAuthenticated = useSelector(isAuth);
 
   const handleisAuthenticated = useCallback(() => {
     if (!isAuthenticated) {
