@@ -6,6 +6,7 @@ import * as ItemStyled from './UserDataItem.styled';
 import * as PetStyled from './PetsData.styled';
 
 export const Container = Styled.Container;
+export const PetContainer = PetStyled.PetContainer;
 export const Title = Styled.Title;
 export const PetHeader = PetStyled.PetHeader;
 export const PetInfoWrap = PetStyled.PetInfoWrap;
@@ -13,6 +14,7 @@ export const PetInfoItem = PetStyled.PetInfoItem;
 export const PetInfoTitle = PetStyled.PetInfoTitle;
 export const DelPetBtn = PetStyled.DelPetBtn;
 export const Avatar = Styled.Avatar;
+export const AvatarContainer = Styled.AvatarContainer;
 export const PetAvatar = PetStyled.PetAvatar;
 export const EditAvatarBtn = Styled.EditAvatarBtn;
 export const LogOutBtn = Styled.LogOutBtn;

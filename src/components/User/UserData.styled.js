@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  position: relative;
   width: 100%;
   height: auto;
   margin-left: auto;
@@ -11,8 +10,12 @@ export const Container = styled.div`
   margin-top: 18px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+
+  @media screen and (min-width: 768px) {
+    flex-direction: row-reverse;
+  }
 `;
+
 export const Title = styled.p`
   font-family: 'Manrope';
   font-style: normal;
@@ -29,6 +32,18 @@ export const Avatar = styled.div`
   background: #54adff;
   border-radius: 40px;
   margin-top: 20px;
+`;
+
+export const AvatarContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @media screen and (min-width: 768px) {
+    margin-left: 71px;
+    margin-right: 76px;
+    margin-bottom: 28px;
+  }
 `;
 
 export const EditAvatarBtn = styled.button`
@@ -48,6 +63,12 @@ export const LogOutBtn = styled.button`
   background-color: transparent;
   margin-top: 21px;
   margin-bottom: 25px;
+
+  @media screen and (min-width: 768px) {
+    position: absolute;
+    left: 0px;
+    bottom: -60px;
+  }
 `;
 
 export const BtnText = styled.p`
@@ -75,6 +96,12 @@ export const InputContainer = styled.div`
   margin-top: 21px;
   padding: 0 8px;
   width: 100%;
+
+  @media screen and (min-width: 768px) {
+    position: relative;
+    gap: 8px;
+    margin-bottom: 56px;
+  }
 `;
 export const ItemContainer = styled.div`
   display: flex;

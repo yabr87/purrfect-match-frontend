@@ -1,7 +1,7 @@
 import Icon from 'shared/components/Icon/Icon';
 import {
   Title,
-  Container,
+  PetContainer,
   PetAvatar,
   PetHeader,
   PetInfoWrap,
@@ -25,7 +25,7 @@ const PetsData = () => {
         <Icon id="cross-small" s={props => props.theme.colors.background} />
       </Button> */}
       </PetHeader>
-      <Container>
+      <PetContainer>
         <PetAvatar />
         <PetInfoWrap>
           <DelPetBtn>
@@ -44,7 +44,7 @@ const PetsData = () => {
             <PetInfoTitle>Comments:</PetInfoTitle> ...
           </PetInfoItem>
         </PetInfoWrap>
-      </Container>
+      </PetContainer>
     </>
   );
 };

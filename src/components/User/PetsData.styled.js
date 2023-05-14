@@ -1,11 +1,36 @@
 import styled from 'styled-components';
 
+export const PetContainer = styled.div`
+  width: 100%;
+  height: auto;
+  margin-left: auto;
+  background: #ffffff;
+  box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
+  border-radius: 20px;
+  margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+  }
+`;
+
 export const PetAvatar = styled.div`
+  align-self: center;
   width: 240px;
   height: 240px;
   background: #54adff;
   border-radius: 20px;
   margin-top: 20px;
+  margin-right: 20px;
+  margin-bottom: 108px;
+
+  @media screen and (min-width: 768px) {
+    width: 128px;
+    height: 128px;
+    margin-left: 20px;
+  }
 `;
 
 export const PetHeader = styled.div`
@@ -20,8 +45,14 @@ export const PetInfoWrap = styled.div`
   flex-direction: column;
   gap: 12px;
   width: 100%;
-  padding: 20px 20px 40px 20px;
   align-items: flex-start;
+
+  @media screen and (min-width: 768px) {
+    margin-top: 20px;
+    margin-right: 20px;
+    flex-grow: 1;
+    width: auto;
+  }
 `;
 
 export const PetInfoItem = styled.p`

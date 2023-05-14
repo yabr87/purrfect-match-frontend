@@ -9,7 +9,11 @@ export const Input = styled.input`
 
 export const EditInputBtn = styled.button`
   position: absolute;
-  right: 12px;
+  right: 28px;
   background-color: transparent;
   border: none;
+
+  @media screen and (min-width: 768px) {
+    right: 10px;
+  }
 `;

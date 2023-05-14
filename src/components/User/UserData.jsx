@@ -1,6 +1,7 @@
 import {
   Container,
   Avatar,
+  AvatarContainer,
   Title,
   EditAvatarBtn,
   LogOutBtn,
@@ -16,24 +17,24 @@ const UserData = () => {
     <>
       <Title>My information:</Title>
       <Container>
-        <div>
+        <AvatarContainer>
           <Avatar />
           <EditAvatarBtn>
             <Icon id="camera" s={props => props.theme.colors.link} />
             <BtnText>Edit photo</BtnText>
           </EditAvatarBtn>
-        </div>
+        </AvatarContainer>
         <InputContainer>
           <InputItem name={'Name'} />
           <InputItem name={'Email'} />
           <InputItem name={'Birthday'} />
           <InputItem name={'Phone'} />
           <InputItem name={'City'} />
+          <LogOutBtn>
+            <Icon id="logout" s={props => props.theme.colors.link} />
+            <LogOutText>Log Out</LogOutText>
+          </LogOutBtn>
         </InputContainer>
-        <LogOutBtn>
-          <Icon id="logout" s={props => props.theme.colors.link} />
-          <LogOutText>Log Out</LogOutText>
-        </LogOutBtn>
       </Container>
     </>
   );
