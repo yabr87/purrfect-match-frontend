@@ -1,13 +1,30 @@
 import { Field } from "formik";
 import ImageUploader from "../../../../shared/components/ImageUploader"
 
-const MoreInfoMyPet = () => {
+const MoreInfoMyPet = props => {
+  const {
+    values,
+    handleChange,
+    touched,
+    errors,
+    dirty,
+    handleBlur,
+    handleSubmit,
+    handleReset
+  } = props;
     return (
     <div>
         <label>Add photo: </label>
-        <ImageUploader></ImageUploader>
+        <ImageUploader placeholderIconId="add-photo-pet"
+                       onChange={handleChange}
+                       name="petPhoto"
+                       value={values["petPhoto"]}>
+        </ImageUploader>
         <label>Comments: </label>
-        <Field name="comments" id="comments" />
+        <Field name="personalComment"
+               id="personalComment"
+               onChange={handleChange}
+               value={values["personalComment"]}/>
     </div>)
 };
 
