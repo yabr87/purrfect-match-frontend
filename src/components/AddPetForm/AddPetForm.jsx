@@ -90,7 +90,7 @@ const AddPetForm = () => {
       onSubmit={handleSubmit}
       validationSchema={validationSchema}
     >
-      {({ isSubmitting }) => (
+      {({ isSubmitting, errors, touched })  => (
         <Form>
           <FormWrapper
             currentStep={currentStep}

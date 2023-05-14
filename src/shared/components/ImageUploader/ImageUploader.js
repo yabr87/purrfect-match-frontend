@@ -1,41 +1,32 @@
-import React, { useRef, useState } from 'react';
-import { FileInput, ImageContainer } from './imageUploader.styles';
-import Icon from '../Icon';
+import React, { useRef } from 'react';
+import { FileInput } from './imageUploader.styles';
 
+const handleFileUpload = event => {
+  console.log(event.target.files[0].name);
+};
 
-const ImageUploader = ({photo, placeholderIconId, name, onChange, handleReset, ...props}) => {
-    const inputRef = useRef(null);
-    const [photoSrc, setPhotoSrc] = useState(photo);
+const ImageUploader = ({ handleChange, ...props }) => {
+  //const id = useMemo(()=> nanoid(), []);
+  const inputRef = useRef(null);
+  let imgSrc = null;
 
-    const handleFileUpload = event => {
-      //const r = URL.createObjectURL(event.target.files[0]);
-      if (FileReader && event.target.files[0] && event.target.files.length) {
-        const fr = new FileReader();
-        fr.onload = function () {
-          setPhotoSrc(fr.result);
-          onChange({...event.target, ["target"]: {name: name, value: fr.result}});
-        }
-        fr.readAsDataURL(event.target.files[0]);
-      }
-    };
+  return (
+    <div>
+      <FileInput>
+        <input
+          ref={inputRef}
+          onChange={handleFileUpload}
+          type="file"
+          accept="image/png, image/gif, image/jpeg"
+          multiple={false}
+        />
+      </FileInput>
 
-    return (
-        <ImageContainer>
-          <FileInput>
-            <input
-                ref={inputRef}
-                onChange={handleFileUpload}
-                type="file"
-                accept="image/png, image/gif, image/jpeg"
-                multiple={false}
-            />
-          </FileInput>
-
-          <a onClick={() => inputRef.current.click()}>
-            {photoSrc ? <img src={photoSrc} alt=""/> : <Icon id={placeholderIconId}></Icon>}
-          </a>
-        </ImageContainer>
-    )
-}
+      <button type="button" onClick={() => inputRef.current.click()}>
+        {imgSrc ? <img src={imgSrc} alt="Uploaded" /> : <span>+</span>}
+      </button>
+    </div>
+  );
+};
 
 export default ImageUploader;
