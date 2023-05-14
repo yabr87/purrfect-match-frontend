@@ -3,12 +3,13 @@ import { useState } from 'react';
 import ImageUploader from 'shared/components/ImageUploader';
 import { FormLabel } from '../AddPetForm.styles';
 
-const MoreInfo = ({ option, handleChange, handleBlur, values }) => {
+const MoreInfo = ({ option, handleChange, handleBlur, values, setFieldValue  }) => {
   const [checkedValue, setCheckedValue] = useState('');
 
   const handleRadioButtons = e => {
     setCheckedValue(e.target.value);
-  };
+    };
+    
 
   return (
     <>
