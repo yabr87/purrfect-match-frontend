@@ -14,6 +14,7 @@ import PersonalDetailsMyPet from './PersonalDetails/PersonalDetailsMyPet';
 import PersonalDetailsSell from './PersonalDetails/PersonalDetailsSell';
 import PersonalDetailsLost from './PersonalDetails/PersonalDetailsLost';
 import PersonalDetailsInHands from './PersonalDetails/PersonalDetailsInHands';
+import InitialState from './IniatialState';
 
 //це мабуть варто винести в окремі файли
 const options = [
@@ -28,21 +29,7 @@ const sexOptions = [
   { label: 'Female', value: 'female' }
 ];
 
-//це мабуть варто винести в окремі файли
-const personalDetailsSteps = {
-  'your pet': [<PersonalDetailsMyPet key="personalDetailsMyPet" />],
-  sell: [<PersonalDetailsSell key="personalDetailsSell" />],
-  'lost/found': [<PersonalDetailsLost key="personalDetailsLost" />],
-  'in good hands': [<PersonalDetailsInHands key="personalDetailsInHands" />],
-};
 
-//це мабуть варто винести в окремі файли
-const moreInfo = {
-  'your pet': [<MoreInfoMyPet key="moreInfoMyPet" />],
-  sell: [<MoreInfoSell key="moreInfoSell" options={sexOptions}/>],
-  'lost/found': [<MoreInfoLost key="moreInfoLost" options={sexOptions}/>],
-  'in good hands': [<MoreInfoInHands key="moreInfoInHands" options={sexOptions}/>],
-};
 const formTitles = {
   'your pet': 'Add pet',
   sell: 'Add pet for sale',
@@ -53,6 +40,7 @@ const formTitles = {
 const AddPetForm = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [selectedOption, setSelectedOption] = useState('sell');
+  const [state, setState] = useState({ ...InitialState });
 
   const handleSubmit = values => {
     // відправка даних на бекенд
@@ -69,7 +57,34 @@ const AddPetForm = () => {
   const handleOptionSelect = option => {
     setSelectedOption(option);
   };
+
+  const handleChange = ({target}) => {
+    const { name, value } = target;
+    console.log('NAME:', name, 'value:', value);
+    setState(prevState => {
+      return {...prevState, [name]: value}
+    })
+  }
+
+  //це мабуть варто винести в окремі файли
+  const personalDetailsSteps = {
+    'your pet': [<PersonalDetailsMyPet key="personalDetailsMyPet" values={state} handleChange={handleChange}/>],
+    sell: [<PersonalDetailsSell key="personalDetailsSell"  handleChange={handleChange}/>],
+    'lost/found': [<PersonalDetailsLost key="personalDetailsLost"  handleChange={handleChange}/>],
+    'in good hands': [<PersonalDetailsInHands key="personalDetailsInHands"  handleChange={handleChange}/>],
+  };
+
+//це мабуть варто винести в окремі файли
+  const moreInfo = {
+    'your pet': [<MoreInfoMyPet key="moreInfoMyPet" values={state} handleChange={handleChange}/>],
+    sell: [<MoreInfoSell key="moreInfoSell" options={sexOptions} handleChange={handleChange}/>],
+    'lost/found': [<MoreInfoLost key="moreInfoLost" options={sexOptions} handleChange={handleChange}/>],
+    'in good hands': [<MoreInfoInHands key="moreInfoInHands" options={sexOptions} handleChange={handleChange}/>],
+  };
+
+
   return (
+    <>
     <Formik
       initialValues={{}}
       onSubmit={handleSubmit}
@@ -136,6 +151,11 @@ const AddPetForm = () => {
         </Form>
       )}
     </Formik>
+
+      <div>
+        <code>values:</code> {JSON.stringify(state, null, 2)}
+      </div>
+    </>
   );
 };
 

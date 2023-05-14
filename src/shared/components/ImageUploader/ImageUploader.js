@@ -1,17 +1,25 @@
-import React, { useRef } from 'react';
-import {FileInput, BtnImg } from "./imageUploader.styles";
+import React, { useRef, useState } from 'react';
+import { FileInput, ImageContainer } from './imageUploader.styles';
 
-const handleFileUpload = event => {
-    console.log(event.target.files[0].name);
-};
 
-const ImageUploader = ({handleChange, ...props}) => {
-    //const id = useMemo(()=> nanoid(), []);
+const ImageUploader = ({photo, photoPlaceholder, name, onChange, handleReset, ...props}) => {
     const inputRef = useRef(null);
-    let imgSrc = null;
+    const [photoSrc, setPhotoSrc] = useState(photo ? photo : photoPlaceholder);
+
+    const handleFileUpload = event => {
+      //const r = URL.createObjectURL(event.target.files[0]);
+      if (FileReader && event.target.files[0] && event.target.files.length) {
+        const fr = new FileReader();
+        fr.onload = function () {
+          setPhotoSrc(fr.result);
+          onChange({...event.target, ["target"]: {name: name, value: fr.result}});
+        }
+        fr.readAsDataURL(event.target.files[0]);
+      }
+    };
 
     return (
-        <div>
+        <ImageContainer>
           <FileInput>
             <input
                 ref={inputRef}
@@ -23,12 +31,9 @@ const ImageUploader = ({handleChange, ...props}) => {
           </FileInput>
 
           <a onClick={() => inputRef.current.click()}>
-            { imgSrc ? <img src={imgSrc}/>
-              : <span>+</span>
-            }
+              <img src={photoSrc} alt=""/>
           </a>
-
-        </div>
+        </ImageContainer>
     )
 }
 
