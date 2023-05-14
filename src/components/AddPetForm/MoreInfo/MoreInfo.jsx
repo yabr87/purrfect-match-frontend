@@ -1,8 +1,10 @@
 import { Field } from "formik";
 import { useState } from "react";
+import ImageUploader from "shared/components/ImageUploader";
+import { FormLabel } from "../AddPetForm.styles";
 
 const MoreInfo = ({ option }) => {
-    const [checkedValue, setCheckedValue] = useState(null);
+    const [checkedValue, setCheckedValue] = useState('');
 
     const handleChange = (e) => {
         setCheckedValue(e.target.value);
@@ -10,9 +12,17 @@ const MoreInfo = ({ option }) => {
     
     return (
         <>
-            {option !== 'your pet' &&
+            <FormLabel>
+                {option === 'my-pet' ? <span>Add photo</span> : <span>Load the pet&#96;s image:</span>}
+                <ImageUploader photo=""
+                    onChange={handleChange}
+                    name="photo"
+                    value=''>
+                </ImageUploader>
+            </FormLabel>
+            {option !== 'my-pet' &&
                 (<>
-                    <span> The Sex: </span>
+                    <p> The Sex: </p>
                     <div role="group" aria-labelledby="choose-pet-option">
                         <label>
                             Male
@@ -36,11 +46,24 @@ const MoreInfo = ({ option }) => {
                                 onBlur={() => { }}
                             />
                         </label>
+                        <FormLabel>Location
+                            <Field name="location" placeholder="Type of location"
+                                onChange={handleChange} />
+                        </FormLabel>
+                    {option === 'sell' &&
+                        <FormLabel>Price
+                            <Field name="price" placeholder="Type of price"
+                                onChange={handleChange} />
+                        </FormLabel>}
                     </div>
                 </>)}
-            </>
-    );
             
+            <FormLabel>Comments
+                <Field as="textarea" name="comments" placeholder="Type breed"
+                    onChange={handleChange} />
+            </FormLabel>
+        </>
+    );
 };
 
 export default MoreInfo;

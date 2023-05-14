@@ -9,6 +9,7 @@ import MoreInfo from './MoreInfo';
 import Button from 'shared/components/Button';
 import Icon from 'shared/components/Icon/Icon';
 import { ButtonsBox } from './AddPetForm.styles';
+import initialState from './initialState';
 
 //це мабуть варто винести в окремі файли
 const options = [
@@ -17,7 +18,6 @@ const options = [
   { label: 'lost-found', value: 'lost-found' },
   { label: 'for-free', value: 'for-free' },
 ];
-
 
 const formTitles = {
   'my-pet': 'Add pet',
@@ -47,7 +47,7 @@ const AddPetForm = () => {
   };
   return (
     <Formik
-      initialValues={{}}
+      initialValues={initialState}
       onSubmit={handleSubmit}
       validationSchema={validationSchema}
     >
@@ -66,6 +66,7 @@ const AddPetForm = () => {
             )}
             {currentStep === 2 && <PersonalDetails 
               option={selectedOption} />}
+            
             {currentStep === 3 && <MoreInfo 
               option={selectedOption}  
               onSelect={handleOptionSelect}/>}

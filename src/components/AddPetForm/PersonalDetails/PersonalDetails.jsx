@@ -1,25 +1,28 @@
 import { Field } from "formik";
+import { FormLabel } from "../AddPetForm.styles";
+import { DetailsWrapper } from "./PersonalDetails.styles";
 
 
-const PersonalDetails = ({option}) => {
+const PersonalDetails = ({ option }) => {
     
     
-    return (        
-        <>
-            {option === 'my-pet' && (
+    return (
+        <DetailsWrapper>
+            {option !== 'my-pet' && (
                 <>
-                <label>Title of add: </label>
-                    <Field name="titleOfAdd" id="titleOfAdd" />
+                    <FormLabel>Title of add: </FormLabel>
+                    <Field name="title" placeholder="Type name pet"/>
                 </>)}
-        <label>Name Pet: </label>
-        <Field name="petName" id="petName" />
-
-        <label>Date of birth: </label>
-        <Field name="dateOfBirth" id="dateOfBirth" />
-
-        <label>Breed: </label>
-        <Field name="breed" id="breed" />
-    </>)
+            <FormLabel>Name Pet
+                <Field name="name" placeholder="Type name pet"/>
+            </FormLabel>
+            <FormLabel>Date of birth
+                <Field name="birth" placeholder="Type date of birth"/>
+            </FormLabel>
+            <FormLabel>Breed
+                <Field name="breed" placeholder="Type breed"/>
+            </FormLabel>
+        </DetailsWrapper>)
 };
 
 export default PersonalDetails;
