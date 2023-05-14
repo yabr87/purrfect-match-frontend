@@ -25,10 +25,18 @@ export const LoaderWrapper = styled.div`
   left: 50%;
   transform-origin: 50% 50%;
   transform: rotate(90deg) translate(-50%, 0%);
-  font-size: 50px;
+  font-size: 25px;
   width: 1em;
   height: 3em;
   color: #54adff;
+
+  @media screen and (min-width: 768px) {
+    font-size: 35px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    font-size: 50px;
+  }
 `;
 
 export const Paw = styled.div`

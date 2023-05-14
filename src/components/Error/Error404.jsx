@@ -7,8 +7,11 @@ import imageTablet from '../../images/error/404-tablet-min.png';
 import imageTablet2x from '../../images/error/404-tablet@2x-min.png';
 import imageDesktop from '../../images/error/404-desktop-min.png';
 import imageDesktop2x from '../../images/error/404-desktop@2x-min.png';
+import Loader from 'shared/components/Loader';
+import { useState } from 'react';
 
 const Error404 = () => {
+  const [loading, setLoading] = useState(true);
   const screenWidth = window.innerWidth;
   const pixelRatio = window.devicePixelRatio;
 
@@ -25,15 +28,21 @@ const Error404 = () => {
   return (
     <Container>
       <ErrorContainer>
-        <Title>
-          <h1>Ooops! </h1>
-          <h2>This page not found :(</h2>
-        </Title>
-        <Image src={imageSrc} alt="404 Error" />
-        <Link to="/">
-          To main page
-          <Icon id="paw" f="currentColor" s="none" />
-        </Link>
+      {loading ? (
+        <Loader />
+      ) : (
+<>
+<Title>
+            <h1>Ooops! </h1>
+            <h2>This page not found :(</h2>
+          </Title>
+          <Image src={imageSrc} alt="404 Error" />
+          <Link to="/">
+            To main page
+            <Icon id="paw" f="currentColor" s="none" />
+          </Link></>
+        
+      )}
       </ErrorContainer>
     </Container>
   );
