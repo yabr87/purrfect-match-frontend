@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import useAuth from 'shared/hooks/useAuth';
 
 import NoticesSearch from './NoticesSearch';
 import NoticesCategoriesNav from './NoticesCategoriesNav/NoticesCategoriesNav';
@@ -12,8 +12,6 @@ import Container from 'shared/components/Container';
 import Icon from 'shared/components/Icon/Icon';
 import { useMedia } from 'shared/hooks/useMedia';
 
-import { isAuth } from 'redux/auth/authSelectors';
-
 function NoticesPage() {
   const isUpToWidth480 = useMedia(['(max-width: 480px)'], [true], false);
 
@@ -21,10 +19,10 @@ function NoticesPage() {
 
   const navigate = useNavigate();
 
-  const isAuthenticated = useSelector(isAuth);
+  const { isLoggedIn } = useAuth();
 
   const handleAddPet = () => {
-    isAuthenticated
+    isLoggedIn
       ? navigate('/add-pet')
       : alert('Please register or sign in to be able to add pet');
   };
@@ -49,7 +47,7 @@ function NoticesPage() {
               right: '24px',
             }}
             onClick={handleAddPet}
-            disabled={!isAuthenticated}
+            disabled={!isLoggedIn}
           />
         ) : (
           <Button onClick={handleAddPet}>

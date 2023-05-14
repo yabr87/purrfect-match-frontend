@@ -1,7 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import { useSelector } from 'react-redux';
-
-import { isAuth } from 'redux/auth/authSelectors';
+import useAuth from 'shared/hooks/useAuth';
 
 import {
   Card,
@@ -20,27 +18,27 @@ import Button from 'shared/components/Button';
 import ModalNoticeTest from '../NoticeModalTest/NoticeModalTest';
 
 const AddToFavorite = () => {
+  const { isLoggedIn } = useAuth();
   const [fill, setFill] = useState('transparent');
-  const isAuthenticated = useSelector(isAuth);
 
   const handleisAuthenticated = useCallback(() => {
-    if (!isAuthenticated) {
+    if (!isLoggedIn) {
       alert('Please sign in to add to favorites');
       return;
     }
-  }, [isAuthenticated]);
+  }, [isLoggedIn]);
 
   const handleMouseOver = useCallback(() => {
-    if (isAuthenticated) {
+    if (isLoggedIn) {
       setFill('#54adff');
     }
-  }, [isAuthenticated]);
+  }, [isLoggedIn]);
 
   const handleMouseOut = useCallback(() => {
-    if (isAuthenticated) {
+    if (isLoggedIn) {
       setFill('transparent');
     }
-  }, [isAuthenticated]);
+  }, [isLoggedIn]);
 
   return (
     <Button

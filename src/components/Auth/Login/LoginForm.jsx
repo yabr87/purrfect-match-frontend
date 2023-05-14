@@ -22,8 +22,7 @@ import Icon from 'shared/components/Icon/Icon';
 import { login } from 'redux/auth/authOperations';
 
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { isAuth } from 'redux/auth/authSelectors';
+import useAuth from 'shared/hooks/useAuth';
 
 const validateShecma = Yup.object().shape({
   email: Yup.string().email('Invalid email address').required('Required'),
@@ -38,13 +37,13 @@ const validateShecma = Yup.object().shape({
 });
 const LoginForm = () => {
   const navigate = useNavigate();
-  const isAuthenticated = useSelector(isAuth);
+  const { isLoggedIn } = useAuth();
 
   useEffect(() => {
-    if (isAuthenticated) {
+    if (isLoggedIn) {
       navigate('/notices/sell');
     }
-  }, [isAuthenticated, navigate]);
+  }, [isLoggedIn, navigate]);
 
   const dispatch = useDispatch();
   const validateEmail = value => {
