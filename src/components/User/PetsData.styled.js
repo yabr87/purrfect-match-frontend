@@ -7,6 +7,8 @@ export const PetContainer = styled.div`
   background: #ffffff;
   box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
   border-radius: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
   margin-top: 18px;
   display: flex;
   flex-direction: column;
@@ -22,11 +24,12 @@ export const PetAvatar = styled.div`
   height: 240px;
   background: #54adff;
   border-radius: 20px;
-  margin: 20px;
+  margin: 20px 0;
 
   @media screen and (min-width: 768px) {
     width: 128px;
     height: 128px;
+    margin-right: 20px;
     margin-bottom: 108px;
   }
 `;
@@ -44,6 +47,7 @@ export const PetInfoWrap = styled.div`
   gap: 12px;
   width: 100%;
   align-items: flex-start;
+  margin-bottom: 40px;
 
   @media screen and (min-width: 768px) {
     margin-top: 20px;
@@ -67,8 +71,9 @@ export const PetInfoTitle = styled.span`
 `;
 
 export const DelPetBtn = styled.button`
+  padding: 0;
   position: absolute;
-  right: 16px;
+  right: 0px;
   border: none;
   background-color: transparent;
 `;

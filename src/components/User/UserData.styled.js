@@ -14,6 +14,11 @@ export const Container = styled.div`
   @media screen and (min-width: 768px) {
     flex-direction: row-reverse;
   }
+
+  @media screen and (min-width: 1280px) {
+    width: 395px;
+    flex-direction: column;
+  }
 `;
 
 export const Title = styled.p`
