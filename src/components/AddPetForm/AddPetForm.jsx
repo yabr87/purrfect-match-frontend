@@ -13,7 +13,6 @@ import { ButtonsBox } from './AddPetForm.styles';
 const initialState = {
   category: "",
   title: "",
-  option: "",
   name: "",
   birthday: "",
   breed: "",
@@ -107,7 +106,7 @@ const AddPetForm = () => {
               )}
               {currentStep !== 3 && (
                 <Button
-                  type="submit"
+                  type="button"
                   w="248"
                   h="48"
                   shape="solid"
