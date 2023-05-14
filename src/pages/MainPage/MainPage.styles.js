@@ -6,14 +6,6 @@ import tabPet2 from '../../images/mainPage/pets@2x-tab.png';
 import deskPet1 from '../../images/mainPage/pets@1x-desk.png';
 import deskPet2 from '../../images/mainPage/pets@2x-desk.png';
 
-export const Container = styled.div`
-  position: relative;
-  width: 100%;
-  min-height: 100vh;
-  margin-left: auto;
-  margin-right: auto;
-`;
-
 export const Title = styled.h1`
   position: absolute;
   width: 280px;

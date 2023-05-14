@@ -1,4 +1,5 @@
-import { Container, Title, Pictures } from './MainPage.styles';
+import Container from 'shared/components/Container';
+import { Title, Pictures } from './MainPage.styles';
 
 const MainPage = () => {
   return (
