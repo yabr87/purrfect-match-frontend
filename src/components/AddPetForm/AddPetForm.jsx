@@ -66,11 +66,11 @@ const AddPetForm = () => {
   };
   return (
     <Formik
-      initialValues={{}}
+      initialValues={initialState}
       onSubmit={handleSubmit}
       validationSchema={validationSchema}
     >
-      {({ isSubmitting }) => (
+      {({ isSubmitting, errors, touched })  => (
         <Form>
           <FormWrapper
             currentStep={currentStep}
@@ -83,11 +83,12 @@ const AddPetForm = () => {
                 value={selectedOption}
               />
             )}
-            {currentStep === 2 &&
-              selectedOption &&
-              personalDetailsSteps[selectedOption]}
-            {currentStep === 3 && selectedOption && moreInfo[selectedOption]}
-
+            {currentStep === 2 && <PersonalDetails 
+              option={selectedOption} />}
+            
+            {currentStep === 3 && <MoreInfo 
+              option={selectedOption}  
+              onSelect={handleOptionSelect}/>}
             <ButtonsBox>
               {currentStep === 1 && (
                 <Button type="button" w="248" h="48">

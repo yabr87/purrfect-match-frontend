@@ -1,1 +1,4 @@
-export { default } from './CircleButton';
+
+import CircleButton from './CircleButton';
+
+export default CircleButton;

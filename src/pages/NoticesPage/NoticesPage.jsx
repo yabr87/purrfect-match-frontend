@@ -1,9 +1,11 @@
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import useAuth from 'shared/hooks/useAuth';
 
 import NoticesSearch from './NoticesSearch';
 import NoticesCategoriesNav from './NoticesCategoriesNav/NoticesCategoriesNav';
 import NoticesCategoriesList from './NoticesCategoriesList/NoticesCategoriesList';
+
 import Button from 'shared/components/Button';
 import CircleButton from 'shared/components/CircleButton/CircleButton';
 import Container from 'shared/components/Container';
@@ -18,11 +20,12 @@ function NoticesPage() {
   const navigate = useNavigate();
 
   const isAuthenticated = true;
+  const { isLoggedIn } = useAuth();
 
   const handleAddPet = () => {
-    if (isAuthenticated) {
-      navigate('/addpet');
-    }
+    isLoggedIn
+      ? navigate('/add-pet')
+      : alert('Please register or sign in to be able to add pet');
   };
 
   return (

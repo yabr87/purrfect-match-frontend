@@ -1,4 +1,5 @@
 import { Field } from "formik";
+// import * as Yup from "yup";
 import { RadioContainer, RadioLabel } from "./ChooseOptionStep.styles";
 import { useState } from "react";
 
@@ -13,7 +14,7 @@ const ChooseOptionStep = ({ name, options, onSelect, value }) => {
   return (
     <RadioContainer role="group" aria-labelledby="choose-pet-option">
       {options.map((option) => (
-        <RadioLabel key={option.value}>
+        <RadioLabel key={option.value} checked={checkedValue === option.value}>
           <Field
             type="radio"
             name={name}

@@ -1,13 +1,13 @@
 import { NavContainer, NavItem } from './Nav.styles';
 
 
-const Nav=()=> {
+const Nav=({handleLinkClick})=> {
   return (
     <>
       <NavContainer>
-        <li><NavItem to="/news">News</NavItem></li>
-        <li><NavItem to="/notices">Find pet</NavItem></li>
-        <li><NavItem to="/friends">Our Friends</NavItem></li>        
+        <li><NavItem to="/news" onClick={handleLinkClick}>News</NavItem></li>
+        <li><NavItem to="/notices" onClick={handleLinkClick}>Find pet</NavItem></li>
+        <li><NavItem to="/friends" onClick={handleLinkClick}>Our Friends</NavItem></li>        
     </NavContainer>
     </>
   );
