@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useFormikContext } from 'formik';
 import {  FileInput, ImageContainer } from './imageUploader.styles';
-import Icon from '../Icon';
 
 const ImageUploader = ({ field }) => {
   const [file, setFile] = useState('');
