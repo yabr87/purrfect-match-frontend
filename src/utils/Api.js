@@ -6,9 +6,15 @@ const instance = axios.create({
 
 // const setToken = token => {};
 
-export const signup = async data => {};
+export const signup = async data => {
+  const response = await instance.post('/api/users/register', data);
+  return response;
+};
 
-export const login = async data => {};
+export const login = async data => {
+  const response = await instance.post('/api/users/login', data);
+  return response;
+};
 
 export const logout = async () => {};
 
