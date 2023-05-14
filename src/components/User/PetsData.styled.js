@@ -22,14 +22,12 @@ export const PetAvatar = styled.div`
   height: 240px;
   background: #54adff;
   border-radius: 20px;
-  margin-top: 20px;
-  margin-right: 20px;
-  margin-bottom: 108px;
+  margin: 20px;
 
   @media screen and (min-width: 768px) {
     width: 128px;
     height: 128px;
-    margin-left: 20px;
+    margin-bottom: 108px;
   }
 `;
 
