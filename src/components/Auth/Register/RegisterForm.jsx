@@ -52,7 +52,16 @@ const RegisterForm = () => {
     >
       {({ errors }) => (
         <Forms autoComplete="on">
-          <Title deskWeight={500} deskSize="36px">
+          <Title
+            as="p"
+            weight="500"
+            tabSize="36"
+            tabLine="1.36"
+            tabweight="500"
+            deskWeight="500"
+            deskSize="36"
+            deskLine="1.36"
+          >
             Register
           </Title>
           <InputContainer>
@@ -83,7 +92,7 @@ const RegisterForm = () => {
               placeholder={'Confirm password'}
             />
           </InputContainer>
-          <Button shape={'solid'} w={'458'} h={'48'}>
+          <Button shape={'solid'} w={'100%'} h={'48'}>
             Register
           </Button>
           <Text>

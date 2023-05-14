@@ -5,19 +5,22 @@ export const Forms = styled(Form)`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 60px 75px;
+  padding: 40px 12px;
+  @media (min-width: 481px) {
+    padding: 60px 75px;
+  }
 `;
 export const InputEmail = styled(Field)`
   width: 100%;
   padding: 12px 16px;
   border: 1px solid;
   border-color: ${props => props.error};
-  border-radius: 40px;
+  border-radius: ${props => props.theme.radius.normal};
 
   ::placeholder {
-    font-weight: 400;
-    font-size: 16px;
-    color: #888888;
+    font-weight: ${props => props.theme.fontWeiths.normal};
+    font-size: ${props => props.theme.fontSizes.s};
+    color: ${props => props.theme.colors.grey};
   }
   :focus {
     outline: none;
@@ -28,12 +31,12 @@ export const InputPassword = styled(Field)`
   padding: 12px 16px;
   border: 1px solid;
   border-color: ${props => props.error};
-  border-radius: 40px;
+  border-radius: ${props => props.theme.radius.normal};
 
   ::placeholder {
-    font-weight: 400;
-    font-size: 16px;
-    color: #888888;
+    font-weight: ${props => props.theme.fontWeiths.normal};
+    font-size: ${props => props.theme.fontSizes.s};
+    color: ${props => props.theme.colors.grey};
   }
   :focus {
     outline: none;
@@ -48,24 +51,22 @@ export const InputContainer = styled.div`
   width: 100%;
 `;
 export const Text = styled.p`
-  font-weight: 400;
-  font-size: 12px;
+  font-weight: ${props => props.theme.fontWeiths.normal};
+  font-size: ${props => props.theme.fontSizes.xs};
   line-height: 16px;
-  color: #888888;
+  color: ${props => props.theme.colors.grey};
   margin-top: 20px;
 `;
-
 export const StyledLink = styled(Link)`
-  color: #54adff;
+  color: ${props => props.theme.colors.link};
 `;
 export const Error = styled.p`
-  font-weight: 400;
-  font-size: 12px;
-  color: #f43f5e;
+  font-weight: ${props => props.theme.fontWeiths.normal};
+  font-size: ${props => props.theme.fontSizes.xs};
+  color: ${props => props.theme.colors.red};
   padding-left: 12px;
   margin-top: 4px;
 `;
-
 export const Lable = styled.label`
   position: relative;
 `;

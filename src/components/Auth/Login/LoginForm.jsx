@@ -59,7 +59,16 @@ const LoginForm = () => {
     >
       {({ errors }) => (
         <Forms>
-          <Title deskWeight={500} deskSize="36px">
+          <Title
+            as="p"
+            weight="500"
+            tabSize="36"
+            tabLine="1.36"
+            tabweight="500"
+            deskWeight="500"
+            deskSize="36"
+            deskLine="1.36"
+          >
             Login
           </Title>
           <InputContainer>
@@ -86,7 +95,7 @@ const LoginForm = () => {
               placeholder={'Password'}
             />
           </InputContainer>
-          <Button shape={'solid'} w={'458'} h={'48'}>
+          <Button shape={'solid'} w={'100%'} h={'48'}>
             Login
           </Button>
           <Text>
