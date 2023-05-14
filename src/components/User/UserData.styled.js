@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+  position: relative;
   width: 100%;
   height: auto;
   margin-left: auto;
@@ -12,6 +13,15 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
 `;
+export const Title = styled.p`
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 27px;
+  letter-spacing: 0.04em;
+  color: #000000;
+`;
 
 export const Avatar = styled.div`
   width: 182px;
@@ -21,13 +31,23 @@ export const Avatar = styled.div`
   margin-top: 20px;
 `;
 
-export const EditBtn = styled.button`
+export const EditAvatarBtn = styled.button`
   display: flex;
   gap: 8px;
   border: none;
   background-color: transparent;
   margin-top: 15px;
   align-items: center;
+`;
+
+export const LogOutBtn = styled.button`
+  display: flex;
+  align-self: flex-start;
+  gap: 12px;
+  border: none;
+  background-color: transparent;
+  margin-top: 21px;
+  margin-bottom: 25px;
 `;
 
 export const BtnText = styled.p`
@@ -38,6 +58,25 @@ export const BtnText = styled.p`
   line-height: 22px;
 `;
 
+export const LogOutText = styled.p`
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: 0.04em;
+  color: #888888;
+`;
+
 export const InputContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
   margin-top: 21px;
+  padding: 0 8px;
+  width: 100%;
+`;
+export const ItemContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
 `;
