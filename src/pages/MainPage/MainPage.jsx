@@ -1,11 +1,11 @@
-import { Title, Pictures } from './MainPage.styles';
+import { Container, Title, Pictures } from './MainPage.styles';
 
 const MainPage = () => {
   return (
-    <div style={{ position: 'relative' }}>
+    <Container>
       <Title>Take good care of your small pets</Title>
       <Pictures />
-    </div>
+    </Container>
   );
 };
 
