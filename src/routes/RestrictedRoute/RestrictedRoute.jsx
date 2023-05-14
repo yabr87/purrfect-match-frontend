@@ -1,6 +1,6 @@
 // import PropTypes from 'prop-types';
 import PropTypes from 'prop-types';
-import { useAuth } from 'components/shared/hooks/useAuth';
+import useAuth from 'shared/hooks/useAuth';
 import { Navigate } from 'react-router-dom';
 
 export const RestrictedRoute = ({ component: Component, redirectTo }) => {
