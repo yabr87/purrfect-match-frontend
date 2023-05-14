@@ -1,5 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import useAuth from 'shared/hooks/useAuth';
+// import ModalApproveAction from 'components/ModalApproveAction/ModalApproveAction';
 
 import {
   Card,
@@ -91,6 +92,7 @@ const LearnMore = ({ onButtonClick }) => {
 };
 
 const NoticeCategoryItem = ({ notice }) => {
+  const { isLoggedIn, user } = useAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
   return (
     <Card>
@@ -125,6 +127,28 @@ const NoticeCategoryItem = ({ notice }) => {
         <LearnMore onButtonClick={() => setIsModalOpen(true)} />
       </BelowItemContainer>
       {isModalOpen && <ModalNoticeTest close={() => setIsModalOpen(false)} />}
+      {isLoggedIn && user.userId === notice.userId && (
+        <Button
+          style={{
+            zIndex: 999,
+            position: 'absolute',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            width: 40,
+            height: 40,
+            right: 12,
+            top: 68,
+            background: '#cce4fb',
+            borderRadius: '50%',
+            border: 'none',
+            outline: 'none',
+          }}
+          onClick={() => setIsModalOpen(true)}
+        >
+          <Icon id="trash" h="22" w="22" s="#54ADFF" strokeWidth="1.5" />
+        </Button>
+      )}
     </Card>
   );
 };
