@@ -44,7 +44,8 @@ const AddPetForm = () => {
   const [selectedOption, setSelectedOption] = useState('sell');
 
   const handleSubmit = values => {
-        console.log(values);
+    const newPet = { ...initialState, ...values };
+        console.log(newPet);
   };
 
   const handleGoBack = () => {
@@ -66,7 +67,7 @@ const AddPetForm = () => {
       onSubmit={handleSubmit}
       validationSchema={validationSchema}
     >
-      {({ isSubmitting, errors, touched, setFieldValue })  => (
+      {({ isSubmitting, handleChange, handleBlur, values })  => (
         <Form>
           <FormWrapper
             currentStep={currentStep}
@@ -81,12 +82,15 @@ const AddPetForm = () => {
             )}
             {currentStep === 2 && <PersonalDetails 
               option={selectedOption}
-              setFieldValue={setFieldValue} />}
+              handleChange={handleChange}
+            handleBlur={handleBlur}
+            values={values} />}
             
             {currentStep === 3 && <MoreInfo 
               option={selectedOption}  
-              onSelect={handleOptionSelect}
-              setFieldValue={setFieldValue} 
+              handleChange={handleChange}
+              handleBlur={handleBlur} 
+               values={values}
               />}
 
             <ButtonsBox>
