@@ -4,24 +4,27 @@ import NoticeCategoryItem from '../NoticeCategoryItem/NoticeCategoryItem';
 import { CollectionContainer } from './NoticesCategoriesList.styles.js';
 
 import data from './data.json';
+import useAuth from 'shared/hooks/useAuth';
 
 const NoticesCategoriesList = ({ categoryName }) => {
   const [notices, setNotices] = useState([]);
+  const { user } = useAuth();
 
   useEffect(() => {
     const categoryNotices = data.filter(
       notice => notice.category === categoryName
     );
 
-    const noticesWithImages = categoryNotices.map(notice => ({
+    const noticesWithImagesAnsUserId = categoryNotices.map(notice => ({
       ...notice,
       imageUrl: `https://placekitten.com/${
         Math.floor(Math.random() * 1000) + 300
       }/${Math.floor(Math.random() * 1000) + 300}`,
+      userId: user.id,
     }));
 
-    setNotices(noticesWithImages);
-  }, [categoryName]);
+    setNotices(noticesWithImagesAnsUserId);
+  }, [categoryName, user.id]);
 
   // useEffect(() => {
   //   const fetchNotices = async () => {
@@ -39,7 +42,7 @@ const NoticesCategoriesList = ({ categoryName }) => {
   return (
     <CollectionContainer>
       {notices.map(notice => (
-        <NoticeCategoryItem key={notice.id} notice={notice} />
+        <NoticeCategoryItem key={notice.id} notice={notice} userId={user.id} />
       ))}
     </CollectionContainer>
   );

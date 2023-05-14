@@ -1,5 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import useAuth from 'shared/hooks/useAuth';
+// import ModalApproveAction from 'components/ModalApproveAction/ModalApproveAction';
 
 import {
   Card,
@@ -91,7 +92,21 @@ const LearnMore = ({ onButtonClick }) => {
 };
 
 const NoticeCategoryItem = ({ notice }) => {
+  const [isTrashHoveredOrFocused, setIsTrashHoveredOrFocused] = useState(false);
+  const [trashIconColor, setTrashIconColor] = useState('#54ADFF');
+  const { isLoggedIn, user } = useAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleHover = useCallback(() => {
+    setIsTrashHoveredOrFocused(true);
+    setTrashIconColor('#FFFFFF');
+  }, []);
+
+  const handleBlur = useCallback(() => {
+    setIsTrashHoveredOrFocused(false);
+    setTrashIconColor('#54ADFF');
+  }, []);
+
   return (
     <Card>
       <AddToFavorite />
@@ -125,6 +140,32 @@ const NoticeCategoryItem = ({ notice }) => {
         <LearnMore onButtonClick={() => setIsModalOpen(true)} />
       </BelowItemContainer>
       {isModalOpen && <ModalNoticeTest close={() => setIsModalOpen(false)} />}
+      {isLoggedIn && user.userId === notice.userId && (
+        <Button
+          style={{
+            zIndex: 999,
+            position: 'absolute',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            width: 40,
+            height: 40,
+            right: 12,
+            top: 68,
+            background: isTrashHoveredOrFocused ? '#54adff' : '#cce4fb',
+            borderRadius: '50%',
+            border: 'none',
+            outline: 'none',
+          }}
+          onMouseEnter={handleHover}
+          onMouseLeave={handleBlur}
+          onFocus={handleHover}
+          onBlur={handleBlur}
+          onClick={() => setIsModalOpen(true)}
+        >
+          <Icon id="trash" h="22" w="22" s={trashIconColor} strokeWidth="1.5" />
+        </Button>
+      )}
     </Card>
   );
 };
