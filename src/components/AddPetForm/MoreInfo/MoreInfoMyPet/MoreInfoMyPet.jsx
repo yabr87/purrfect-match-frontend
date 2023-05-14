@@ -15,7 +15,7 @@ const MoreInfoMyPet = props => {
     return (
     <div>
         <label>Add photo: </label>
-        <ImageUploader photo="https://cdn.neighbourly.co.nz/images/cache/message_max_size/message_images/643cb225c02fc7.94390756.jpeg?170410"
+        <ImageUploader placeholderIconId="add-photo-pet"
                        onChange={handleChange}
                        name="petPhoto"
                        value={values["petPhoto"]}>

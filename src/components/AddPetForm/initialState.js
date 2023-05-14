@@ -1,4 +1,4 @@
-const InitialState = {
+const initialState = {
   option: "",
   petName: "",
   petBirthDate: "",
@@ -10,4 +10,4 @@ const InitialState = {
   location: "",
   price: "",
 }
-export default InitialState;
+export default initialState;

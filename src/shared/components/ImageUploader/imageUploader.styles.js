@@ -9,20 +9,15 @@ export const ImageContainer = styled.div`
       vertical-align: top;
       line-height: 1;
     };
+    svg {
+      width: 182px;
+      height: 182px;
+      stroke: none;
+    }
     &:hover {cursor: pointer};
-
     display: inline-block;
-    color: #54ADFF;
-    background: #CCE4FB;
-    border-radius: 40px;
     border: none;
     overflow: hidden;
+    border-radius: 40px;
     max-width: 182px;
 `;
-
-
-export const RoundedImg = styled.img`
-  vertical-align: top;
-  line-height: 1;
-`;
-

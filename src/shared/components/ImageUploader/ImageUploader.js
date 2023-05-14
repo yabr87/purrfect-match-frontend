@@ -1,10 +1,11 @@
 import React, { useRef, useState } from 'react';
 import { FileInput, ImageContainer } from './imageUploader.styles';
+import Icon from '../Icon';
 
 
-const ImageUploader = ({photo, photoPlaceholder, name, onChange, handleReset, ...props}) => {
+const ImageUploader = ({photo, placeholderIconId, name, onChange, handleReset, ...props}) => {
     const inputRef = useRef(null);
-    const [photoSrc, setPhotoSrc] = useState(photo ? photo : photoPlaceholder);
+    const [photoSrc, setPhotoSrc] = useState(photo);
 
     const handleFileUpload = event => {
       //const r = URL.createObjectURL(event.target.files[0]);
@@ -31,7 +32,7 @@ const ImageUploader = ({photo, photoPlaceholder, name, onChange, handleReset, ..
           </FileInput>
 
           <a onClick={() => inputRef.current.click()}>
-              <img src={photoSrc} alt=""/>
+            {photoSrc ? <img src={photoSrc} alt=""/> : <Icon id={placeholderIconId}></Icon>}
           </a>
         </ImageContainer>
     )

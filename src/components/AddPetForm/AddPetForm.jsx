@@ -14,7 +14,7 @@ import PersonalDetailsMyPet from './PersonalDetails/PersonalDetailsMyPet';
 import PersonalDetailsSell from './PersonalDetails/PersonalDetailsSell';
 import PersonalDetailsLost from './PersonalDetails/PersonalDetailsLost';
 import PersonalDetailsInHands from './PersonalDetails/PersonalDetailsInHands';
-import InitialState from './IniatialState';
+import initialState from './initialState';
 
 //це мабуть варто винести в окремі файли
 const options = [
@@ -40,7 +40,7 @@ const formTitles = {
 const AddPetForm = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [selectedOption, setSelectedOption] = useState('sell');
-  const [state, setState] = useState({ ...InitialState });
+  const [state, setState] = useState({ ...initialState });
 
   const handleSubmit = values => {
     // відправка даних на бекенд
