@@ -24,10 +24,12 @@ function NoticesCategoriesNav() {
         {isLoggedIn && (
           <>
             <ListItem>
-              <StyledNavLink to="/notices/favorite">favorites</StyledNavLink>
+              <StyledNavLink to="/notices/favorite">
+                favorites adds
+              </StyledNavLink>
             </ListItem>
             <ListItem>
-              <StyledNavLink to="/notices/own">my notices</StyledNavLink>
+              <StyledNavLink to="/notices/own">my ads</StyledNavLink>
             </ListItem>
           </>
         )}
