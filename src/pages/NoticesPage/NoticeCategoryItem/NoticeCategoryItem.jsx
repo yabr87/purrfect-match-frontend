@@ -92,8 +92,21 @@ const LearnMore = ({ onButtonClick }) => {
 };
 
 const NoticeCategoryItem = ({ notice }) => {
+  const [isTrashHoveredOrFocused, setIsTrashHoveredOrFocused] = useState(false);
+  const [trashIconColor, setTrashIconColor] = useState('#54ADFF');
   const { isLoggedIn, user } = useAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleHover = useCallback(() => {
+    setIsTrashHoveredOrFocused(true);
+    setTrashIconColor('#FFFFFF'); // Change the color to the one you want on hover
+  }, []);
+
+  const handleBlur = useCallback(() => {
+    setIsTrashHoveredOrFocused(false);
+    setTrashIconColor('#54ADFF'); // Reset the color when not hovered
+  }, []);
+
   return (
     <Card>
       <AddToFavorite />
@@ -139,14 +152,18 @@ const NoticeCategoryItem = ({ notice }) => {
             height: 40,
             right: 12,
             top: 68,
-            background: '#cce4fb',
+            background: isTrashHoveredOrFocused ? '#54adff' : '#cce4fb',
             borderRadius: '50%',
             border: 'none',
             outline: 'none',
           }}
+          onMouseEnter={handleHover}
+          onMouseLeave={handleBlur}
+          onFocus={handleHover}
+          onBlur={handleBlur}
           onClick={() => setIsModalOpen(true)}
         >
-          <Icon id="trash" h="22" w="22" s="#54ADFF" strokeWidth="1.5" />
+          <Icon id="trash" h="22" w="22" s={trashIconColor} strokeWidth="1.5" />
         </Button>
       )}
     </Card>
