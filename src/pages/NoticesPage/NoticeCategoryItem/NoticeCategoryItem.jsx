@@ -99,12 +99,12 @@ const NoticeCategoryItem = ({ notice }) => {
 
   const handleHover = useCallback(() => {
     setIsTrashHoveredOrFocused(true);
-    setTrashIconColor('#FFFFFF'); // Change the color to the one you want on hover
+    setTrashIconColor('#FFFFFF');
   }, []);
 
   const handleBlur = useCallback(() => {
     setIsTrashHoveredOrFocused(false);
-    setTrashIconColor('#54ADFF'); // Reset the color when not hovered
+    setTrashIconColor('#54ADFF');
   }, []);
 
   return (
