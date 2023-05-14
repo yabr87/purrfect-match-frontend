@@ -9,12 +9,12 @@ const ImageUploader = ({ field }) => {
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
     setFile(selectedFile);
-    setFieldValue(field.name, selectedFile);
+    setFieldValue('photo', selectedFile);
   };
 
   const handleReset = () => {
     setFile('');
-    setFieldValue(field.name, '');
+    setFieldValue('photo', '');
   };
 
   return (
