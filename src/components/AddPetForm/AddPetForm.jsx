@@ -9,9 +9,9 @@ import MoreInfo from './MoreInfo';
 import Button from 'shared/components/Button';
 import Icon from 'shared/components/Icon/Icon';
 import { ButtonsBox } from './AddPetForm.styles';
+import validationSchema from './validationSchema';
 
 const initialState = {
-  category: "",
   title: "",
   name: "",
   birthday: "",
@@ -42,10 +42,11 @@ const AddPetForm = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [selectedOption, setSelectedOption] = useState('sell');
 
-  const handleSubmit = values => {
+  const handleSubmit = (values, actions) => {
     const newPet = Object.keys(values).reduce((acc, key) => {
       return values[key] ? { ...acc, [key]: values[key] } : acc;
     }, {});
+    actions.setSubmitting(false);
     console.log(newPet);
   };
 
@@ -66,6 +67,8 @@ const AddPetForm = () => {
     <Formik
       initialValues={initialState}
       onSubmit={handleSubmit}
+      validationSchema={validationSchema}
+      validateOnChange={true}
     >
       {({ isSubmitting, handleChange, handleBlur, values, errors }) => (
         <Form>
@@ -113,6 +116,7 @@ const AddPetForm = () => {
                   h="48"
                   shape="solid"
                   onClick={handleNext}
+                  disabled={isSubmitting}
                 >
                   Next
                   <Icon id="paw" f="currentColor" s="none" />
@@ -125,6 +129,7 @@ const AddPetForm = () => {
                   w="248"
                   h="48"
                   shape="solid"
+                  disabled={isSubmitting}
                 >
                   Done
                   <Icon id="paw" f="currentColor" s="none" />

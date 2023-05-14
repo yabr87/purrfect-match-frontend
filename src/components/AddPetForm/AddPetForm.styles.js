@@ -1,3 +1,4 @@
+import { ErrorMessage } from 'formik';
 import styled from 'styled-components';
 
 export const ButtonsBox = styled.div`
@@ -19,7 +20,12 @@ export const FormTitle = styled.label`
 `;
 
 export const FormLabel = styled.label`
+display: flex;
+flex-direction: column;
 font-weight: 500;
 font-size: 20px;
 line-height: 1.3;
-`
+`;
+
+export const Error = styled(ErrorMessage)`
+color: red;`
