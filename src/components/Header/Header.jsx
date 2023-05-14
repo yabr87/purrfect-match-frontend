@@ -13,23 +13,29 @@ import Container from 'shared/components/Container';
 import AuthNav from './AuthNav';
 import Nav from './Nav';
 import Icon from 'shared/components/Icon/Icon';
-// import UserNav from './UserNav';
-// import useAuth  from 'shared/hooks/useAuth';
+import UserNav from './UserNav';
+import useAuth  from 'shared/hooks/useAuth';
 
 const Header = () => {
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);  
-// const { isLoggedIn } = useAuth();
+const { isLoggedIn } = useAuth();
   const screenSize = useMedia(
     ['(min-width: 1280px)', '(min-width: 768px)'],
     ['desktop', 'tablet'],
     'xs'
   );
-  const userBar = useMemo(() => <AuthNav />, []);
-  // const userBar = useMemo(() => isLoggedIn ? <UserNav /> : <AuthNav />, [isLoggedIn]);
-  const nav = useMemo(() => <Nav />, []);
+  // const userBar = useMemo(() => <AuthNav />, []);
+  const handleLinkClick = () => {
+  setIsMobileNavOpen(false);
+  };
+  
+  const userBar = isLoggedIn ? <UserNav /> : <AuthNav />;
+  const nav = useMemo(() => <Nav handleLinkClick= {handleLinkClick} />, []);
 
   const isDesktop = screenSize === 'desktop';
   const isTablet = screenSize === 'tablet';
+
+  
 
   return (
     <AppHeader isMobileNavOpen={isMobileNavOpen}>
