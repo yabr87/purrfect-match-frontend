@@ -9,7 +9,20 @@ import MoreInfo from './MoreInfo';
 import Button from 'shared/components/Button';
 import Icon from 'shared/components/Icon/Icon';
 import { ButtonsBox } from './AddPetForm.styles';
-import initialState from './initialState';
+
+const initialState = {
+  category: "",
+  title: "",
+  option: "",
+  name: "",
+  birthday: "",
+  breed: "",
+  photo: "",
+  comments: "",
+  sex: "",
+  location: "",
+  price: "",
+}
 
 //це мабуть варто винести в окремі файли
 const options = [
@@ -31,7 +44,7 @@ const AddPetForm = () => {
   const [selectedOption, setSelectedOption] = useState('sell');
 
   const handleSubmit = values => {
-    // відправка даних на бекенд
+        console.log(values);
   };
 
   const handleGoBack = () => {
@@ -45,13 +58,15 @@ const AddPetForm = () => {
   const handleOptionSelect = option => {
     setSelectedOption(option);
   };
+
+  
   return (
     <Formik
       initialValues={initialState}
       onSubmit={handleSubmit}
       validationSchema={validationSchema}
     >
-      {({ isSubmitting, errors, touched })  => (
+      {({ isSubmitting, errors, touched, setFieldValue })  => (
         <Form>
           <FormWrapper
             currentStep={currentStep}
@@ -65,11 +80,14 @@ const AddPetForm = () => {
               />
             )}
             {currentStep === 2 && <PersonalDetails 
-              option={selectedOption} />}
+              option={selectedOption}
+              setFieldValue={setFieldValue} />}
             
             {currentStep === 3 && <MoreInfo 
               option={selectedOption}  
-              onSelect={handleOptionSelect}/>}
+              onSelect={handleOptionSelect}
+              setFieldValue={setFieldValue} 
+              />}
 
             <ButtonsBox>
               {currentStep === 1 && (
@@ -85,7 +103,7 @@ const AddPetForm = () => {
               )}
               {currentStep !== 3 && (
                 <Button
-                  type="button"
+                  type="submit"
                   w="248"
                   h="48"
                   shape="solid"
@@ -99,7 +117,7 @@ const AddPetForm = () => {
 
               {currentStep === 3 && (
                 <Button
-                  type="button"
+                  type="submit"
                   w="248"
                   h="48"
                   shape="solid"

@@ -3,64 +3,63 @@ import { useState } from "react";
 import ImageUploader from "shared/components/ImageUploader";
 import { FormLabel } from "../AddPetForm.styles";
 
-const MoreInfo = ({ option }) => {
+const MoreInfo = ({ option, setFieldValue  }) => {
     const [checkedValue, setCheckedValue] = useState('');
 
-    const handleChange = (e) => {
+    const handleRadioButtons = (e) => {
         setCheckedValue(e.target.value);
     };
-    
+
     return (
         <>
             <FormLabel>
                 {option === 'my-pet' ? <span>Add photo</span> : <span>Load the pet&#96;s image:</span>}
-                <ImageUploader photo=""
-                    onChange={handleChange}
+                <ImageUploader
+                    onChange={(value) => setFieldValue('photo', value)}
                     name="photo"
-                    value=''>
+                    >
                 </ImageUploader>
             </FormLabel>
             {option !== 'my-pet' &&
                 (<>
                     <p> The Sex: </p>
                     <div role="group" aria-labelledby="choose-pet-option">
-                        <label>
+                        <label htmlFor="radio">
                             Male
                             <Field
                                 type="radio"
                                 name='sex'
                                 value='male'
                                 checked={checkedValue === 'male'}
-                                onChange={handleChange}
+                                onChange={handleRadioButtons}
                                 onBlur={() => { }}
                             />
                         </label>
-                        <label>
+                        <label htmlFor="radio">
                             Female
                             <Field
                                 type="radio"
                                 name='sex'
                                 value='female'
                                 checked={checkedValue === 'female'}
-                                onChange={handleChange}
+                                onChange={handleRadioButtons}
                                 onBlur={() => { }}
-                            />
-                        </label>
-                        <FormLabel>Location
-                            <Field name="location" placeholder="Type of location"
-                                onChange={handleChange} />
-                        </FormLabel>
-                    {option === 'sell' &&
-                        <FormLabel>Price
-                            <Field name="price" placeholder="Type of price"
-                                onChange={handleChange} />
-                        </FormLabel>}
+                        />
+                    </label>
                     </div>
+                        <FormLabel htmlFor="location">Location
+                            <Field name="location" placeholder="Type of location" />
+                        </FormLabel>
+                        {option === 'sell' &&
+                            <FormLabel htmlFor="price">Price
+                                <Field name="price" placeholder="Type of price" 
+                     />
+                            </FormLabel>}
+                    
                 </>)}
             
-            <FormLabel>Comments
-                <Field as="textarea" name="comments" placeholder="Type breed"
-                    onChange={handleChange} />
+            <FormLabel htmlFor="comments">Comments
+                <Field as="textarea" name="comments" placeholder="Type breed" />
             </FormLabel>
         </>
     );

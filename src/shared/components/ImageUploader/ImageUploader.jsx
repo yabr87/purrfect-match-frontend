@@ -1,20 +1,18 @@
 import React, { useState } from 'react';
-import { useFormikContext } from 'formik';
 import {  FileInput, ImageContainer } from './imageUploader.styles';
 
-const ImageUploader = ({ field }) => {
+const ImageUploader = ({ field, onChange }) => {
   const [file, setFile] = useState('');
-  const { setFieldValue } = useFormikContext();
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
     setFile(selectedFile);
-    setFieldValue(field.name, selectedFile);
+    onChange(selectedFile);
   };
 
   const handleReset = () => {
-    setFile('');
-    setFieldValue(field.name, '');
+    setFile(null);
+    onChange(null);
   };
 
   return (
