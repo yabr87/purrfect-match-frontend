@@ -13,7 +13,9 @@ import {
 import Icon from 'shared/components/Icon/Icon';
 import Button from 'shared/components/Button';
 
-import ModalNoticeTest from '../NoticeModalTest/NoticeModalTest';
+// import ModalNoticeTest from '../NoticeModalTest/NoticeModalTest';
+import ModalApproveAction from 'components/ModalApproveAction';
+import PetCard from 'components/ModalApproveAction/PetCard';
 
 const AddToFavorite = () => {
   const [fill, setFill] = useState('transparent');
@@ -90,6 +92,12 @@ const LearnMore = ({ onButtonClick }) => {
 
 const NoticeCategoryItem = ({ notice }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  // const [idPet, setIdPet] = useState(null);
+
+  const showPetCard = ({ id }) => {
+    setIsModalOpen(true);
+    // setIdPet(id);
+  };
   return (
     <Card>
       <AddToFavorite />
@@ -120,9 +128,15 @@ const NoticeCategoryItem = ({ notice }) => {
       </CardImageContainer>
       <BelowItemContainer>
         <PhotoDescription>{notice.description}</PhotoDescription>
-        <LearnMore onButtonClick={() => setIsModalOpen(true)} />
+        {/* <LearnMore onButtonClick={() => setIsModalOpen(true)} /> */}
+        <LearnMore onButtonClick={showPetCard} />
       </BelowItemContainer>
-      {isModalOpen && <ModalNoticeTest close={() => setIsModalOpen(false)} />}
+      {/* {isModalOpen && <ModalNoticeTest close={() => setIsModalOpen(false)} />} */}
+      {isModalOpen && (
+        <ModalApproveAction close={() => setIsModalOpen(false)}>
+          <PetCard close={() => setIsModalOpen(false)} />
+        </ModalApproveAction>
+      )}
     </Card>
   );
 };

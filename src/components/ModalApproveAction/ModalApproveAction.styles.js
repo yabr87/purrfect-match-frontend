@@ -10,7 +10,7 @@ export const ModalOverlay = styled.div`
   justify-content: center;
   align-items: center;
   background-color: rgba(87, 86, 86, 0.6);
-  z-index: 999;
+  z-index: 1001;
 `;
 
 export const ModalView = styled.div`
@@ -20,8 +20,6 @@ export const ModalView = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  // width: 100%;
-  // height: 100%;
 `;
 
 export const CloseIcon = styled.button`

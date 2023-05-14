@@ -20,8 +20,12 @@ export const PetCardData = styled.div`
 `;
 
 export const Wrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   @media screen and (min-width: 768px) {
     display: flex;
+    flex-direction: row;
   }
 `;
 
@@ -38,18 +42,15 @@ export const Title = styled.h2`
 `;
 
 export const ButtonWrap = styled.div`
-  display: flex;
-  flex-direction: column;
   @media screen and (min-width: 768px) {
+    display: flex;
     flex-direction: row;
-    justify-content: end;
   }
 `;
 
 export const PetImage = styled.img`
   width: 240px;
   height: 240px;
-  align-items: center;
   border-radius: 0px 0px 40px 40px;
   background-color: aqua;
   margin-bottom: 12px;
@@ -60,9 +61,9 @@ export const PetImage = styled.img`
 `;
 
 export const PetDataListWrap = styled.div`
+  min-width: 256px;
   @media screen and (min-width: 768px) {
-    // display: flex;
-    // flex-direction: column;
+    max-width: 321px;
   }
 `;
 

@@ -1,15 +1,11 @@
-import ModalApproveAction from 'components/ModalApproveAction';
-// import Congrats from 'components/ModalApproveAction/Congrats';
-// import Logout from 'components/ModalApproveAction/Logout';
-// import Delete from 'components/ModalApproveAction/Delete';
-import PetCard from 'components/ModalApproveAction/PetCard';
+// import ModalApproveAction from 'components/ModalApproveAction';
 // import { useState } from 'react';
 import {} from './HomePage.styles';
 
 const HomePage = () => {
-  // const [isModalOpen, setIsModalOpen] = useState(false);
-  // const [isFavorite, setIsFavorite] = useState(false);
-
+  // const [isModalOpen, setIsModalOpen] = useState(true);
+  // // const [isFavorite, setIsFavorite] = useState(false);
+  // setIsModalOpen(true);
   // const close = () => {
   //   setIsModalOpen(false);
   // };
@@ -32,15 +28,10 @@ const HomePage = () => {
           color: '#010101',
         }}
       >
-        <ModalApproveAction
-        // close={close}
-        // approve={approveLogout}
-        >
-          {/* <Delete /> */}
-          {/* <Congrats /> */}
-          {/* <Logout /> */}
-          <PetCard />
-        </ModalApproveAction>
+        {/* <ModalApproveAction
+          close={close}
+          // approve={approveLogout}
+        /> */}
         PURRFECT MATCH
       </div>
     </>
@@ -48,3 +39,16 @@ const HomePage = () => {
 };
 
 export default HomePage;
+
+// import Congrats from 'components/ModalApproveAction/Congrats';
+// import Logout from 'components/ModalApproveAction/Logout';
+// import Delete from 'components/ModalApproveAction/Delete';
+// import PetCard from 'components/ModalApproveAction/PetCard';
+
+/* <Delete /> */
+
+/* <Congrats /> */
+
+/* <Logout /> */
+
+/* <PetCard /> */

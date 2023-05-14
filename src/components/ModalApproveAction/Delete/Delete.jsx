@@ -4,7 +4,7 @@
 // import Section from 'shared/components/Section';
 import Button from 'shared/components/Button';
 import {
-  Title,
+  // Title,
   Text,
   TextAccent,
   ContainerView,
@@ -13,6 +13,7 @@ import {
 } from './Delete.styles';
 
 import Icon from 'shared/components/Icon';
+import Title from 'shared/components/Title';
 // import { ModalView } from '../ModalApproveAction.styles';
 
 const Delete = ({ close, approve }) => {
