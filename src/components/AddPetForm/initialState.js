@@ -1,13 +1,15 @@
 const initialState = {
+  category: "",
+  title: "",
   option: "",
-  petName: "",
-  petBirthDate: "",
-  petBreed: "",
-  petPhoto: "",
-  personalComment: "",
-  titleOfAdd: "",
+  name: "",
+  birthday: "",
+  breed: "",
+  photo: "",
+  comments: "",
   sex: "",
   location: "",
   price: "",
 }
+
 export default initialState;

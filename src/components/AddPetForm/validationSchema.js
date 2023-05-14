@@ -24,10 +24,6 @@ const validationSchema = Yup.object({
     is: (option) => option === 'moreInfo',
     then: Yup.string().required('Please enter your personal comment'),
   }),
-  location: Yup.string().when('option', {
-    is: (option) => option === 'moreInfo',
-    then: Yup.string().required('Please enter your location'),
-  }),
 });
 
 export default validationSchema;
