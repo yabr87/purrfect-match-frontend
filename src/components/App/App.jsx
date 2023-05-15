@@ -10,10 +10,13 @@ import SharedLayout from 'layouts/SharedLayout';
 import MainPage from 'pages/MainPage';
 import NoticesPage from '../../pages/NoticesPage/NoticesPage';
 import AddPetPage from 'pages/AddPetPage';
-import ErrorPage from '../../pages/ErrorPage';
+import ErrorPage from 'pages/ErrorPage';
 import RegisterPage from 'pages/RegisterPage';
 import LoginPage from 'pages/LoginPage';
 import NewsPage from 'pages/NewsPage';
+import OurFriendsPage from 'pages/OurFriendsPage';
+
+// const HomePage = lazy(() => import('pages/HomePage'));
 import RestrictedRoute from 'routes/RestrictedRoute';
 import PrivateRoute from 'routes/PrivateRoute';
 
@@ -38,6 +41,7 @@ const App = () => {
           <Route path="/register"  element={<RestrictedRoute redirectTo='/user' component={<RegisterPage />} />} />
           <Route path="/login" element={<RestrictedRoute redirectTo='/user' component={<LoginPage />} />} />
           <Route path="/news" element={<NewsPage />} />
+          <Route path="/friends" element={<OurFriendsPage />} />
           <Route path="*" element={<ErrorPage />} />
         </Route>
       </Routes>
