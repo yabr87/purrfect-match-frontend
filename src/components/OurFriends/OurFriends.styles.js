@@ -152,6 +152,11 @@ export const InfoItemText = styled.div`
   font-size: 12px;
   line-height: calc(16 / 12);
 
+  transition: color 250ms ease;
+  &:hover {
+    color: #54adff;
+  }
+
   @media screen and (min-width: 768px) {
     font-weight: 400;
     font-size: 14px;
