@@ -96,8 +96,6 @@ export const ValueCategory = styled.th`
   font-weight: 500;
   font-size: 12px;
   line-height: 16.39px;
-  color: ${props => props.$colorContacts || 'black'};
-  text-decoration-line: ${props => props.$underline || 'none'};
 `;
 
 export const PetComents = styled.p`
@@ -130,4 +128,20 @@ cursor: pointer;
   &:focus {
     color: #FFFFFF;
     background:  #54ADFF;
+  }
+`;
+
+export const ContactLinkItem = styled.a`
+  text-align: start;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16.39px;
+  color: black;
+  text-decoration-line: 'none';
+  &:hover,
+  &:focus {
+    color: #ffc107;
+    text-decoration-line: underline;
+  }
 `;

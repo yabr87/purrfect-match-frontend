@@ -15,6 +15,7 @@ import {
   NameCategory,
   ValueCategory,
   ContactLink,
+  ContactLinkItem,
 } from './NoticeModal.styles';
 
 import { useMedia } from 'shared/hooks/useMedia';
@@ -47,7 +48,6 @@ const NoticeModal = ({ id, close }) => {
     }
     setFavorite(current => !current);
     console.log(favorite);
-    // const favPetIcon = favorite === true ? setFill('#ffffff') :  setFill('transparent');
     if (favorite === true) {
       setFill('#ffffff');
     }
@@ -93,24 +93,24 @@ const NoticeModal = ({ id, close }) => {
                 </PetDataItem>
                 <PetDataItem>
                   <NameCategory>The sex:</NameCategory>
-                  <ValueCategory>mail</ValueCategory>
+                  <ValueCategory>male</ValueCategory>
                 </PetDataItem>
                 <PetDataItem>
                   <NameCategory>Email:</NameCategory>
                   <ValueCategory
-                    $colorContacts="#FFC107"
-                    $underline="underline"
                   >
-                    3223224@mail.com
+                    <ContactLinkItem href="mailto:">
+                      3223224@mail.com
+                    </ContactLinkItem>
                   </ValueCategory>
                 </PetDataItem>
                 <PetDataItem>
                   <NameCategory>Phone:</NameCategory>
                   <ValueCategory
-                    $colorContacts="#FFC107"
-                    $underline="underline"
                   >
-                    +38097-654-098-98
+                    <ContactLinkItem href="tel:">
+                      +38097-654-098-98
+                    </ContactLinkItem>
                   </ValueCategory>
                 </PetDataItem>
               </tbody>
