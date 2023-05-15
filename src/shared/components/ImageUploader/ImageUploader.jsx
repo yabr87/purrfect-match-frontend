@@ -6,10 +6,16 @@ const ImageUploader = () => {
   const [file, setFile] = useState('');
   const { setFieldValue } = useFormikContext();
 
-  const handleFileChange = e => {
+  const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
-    setFile(selectedFile);
-    setFieldValue('photo', selectedFile);
+    if (selectedFile && selectedFile.size <= 3 * 1024 * 1024) {
+      setFile(selectedFile);
+      setFieldValue('photo', selectedFile);
+    } else {
+      setFile('');
+      setFieldValue('photo', '');
+      alert('Please select a file smaller than 3 MB.');
+    }
   };
 
   const handleReset = () => {
