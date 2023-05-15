@@ -25,16 +25,10 @@ const initialState = {
   price: "",
 }
 
-const formTitles = {
-  'my-pet': 'Add pet',
-  'sell': 'Add pet for sale',
-  'lost-found': 'Add lost pet',
-  'for-free': 'Add pet',
-};
-
 const AddPetForm = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const navigate = useNavigate();
+  const [selectedCategory, setSelectedCategory] = useState(initialState.category);
   
 
   const handleSubmit = (values, {resetForm}) => {
@@ -59,39 +53,43 @@ const AddPetForm = () => {
    const handleCancel = () => {
     navigate(-1); 
   };
-
+const handleCategoryChange = (category) => {
+    setSelectedCategory(category);
+  };
   
   return (
     <Formik
       initialValues={initialState}
       onSubmit={handleSubmit}
-      validationSchema={validationSchema(currentStep)}
+      validationSchema={validationSchema(currentStep, selectedCategory)}
     >
       {({ isSubmitting, handleChange, handleBlur, values, errors, isValid, touched }) => (
         <Form>
           <FormWrapper
             currentStep={currentStep}
-            text={values.category === 'lost-found' ? 'Add lost pet': values.category === 'sell' ? 'Add pet for sale': 'Add pet'}
+            text={selectedCategory === 'lost-found' ? 'Add lost pet': selectedCategory === 'sell' ? 'Add pet for sale': 'Add pet'}
           >
             {currentStep === 1 && (
               <ChooseOptionStep
                 handleChange={handleChange}
                 handleBlur={handleBlur}
                 values={values} 
+                onSelectCategory={handleCategoryChange}
               />
             )}
             {currentStep === 2 && <PersonalDetails
-              option={values.category}
+              option={selectedCategory}
               handleChange={handleChange}
               handleBlur={handleBlur}
               values={values} 
               touched={touched} 
               errors={errors}
               isValid={isValid}
+              
               />}
             
             {currentStep === 3 && <MoreInfo
-              option={values.category}
+              option={selectedCategory}
               handleChange={handleChange}
               handleBlur={handleBlur}
               values={values}

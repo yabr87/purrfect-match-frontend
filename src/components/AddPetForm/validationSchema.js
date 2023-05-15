@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
 
-const validationSchema = ( currentStep, selectedOption) => {
+const validationSchema = ( currentStep, selectedCategory) => {
   let schema = Yup.object();
 
   if (currentStep === 1) {
@@ -63,11 +63,11 @@ const validationSchema = ( currentStep, selectedOption) => {
     });
   }
 
-  if (selectedOption === 'my-pet') {
+  if (selectedCategory === 'my-pet') {
     schema = schema.omit(['title', 'sex', 'price', 'location']);
   }
 
-  if (selectedOption === 'lost-found' || selectedOption === 'for-free') {
+  if (selectedCategory === 'lost-found' || selectedCategory === 'for-free') {
     schema = schema.omit(['price']);
   }
 
