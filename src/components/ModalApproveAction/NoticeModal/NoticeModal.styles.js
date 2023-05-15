@@ -106,3 +106,28 @@ export const PetComents = styled.p`
     margin-bottom: 70px;
   }
 `;
+
+export const ContactLink = styled.a`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 129px;
+  height: 40px
+  padding: 10px;
+
+  font-family: 'Manrope';
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.38;
+  color: #54ADFF;
+
+border: 2px solid #54ADFF;
+border-radius: 40px;
+
+cursor: pointer;
+
+  &:hover,
+  &:focus {
+    color: #FFFFFF;
+    background:  #54ADFF;
+`;

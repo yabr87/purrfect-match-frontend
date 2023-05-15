@@ -16,9 +16,9 @@ import {
 import Icon from 'shared/components/Icon/Icon';
 import Button from 'shared/components/Button';
 
-import ModalNoticeTest from '../NoticeModalTest/NoticeModalTest';
-// import ModalApproveAction from 'components/ModalApproveAction';
-// import PetCard from 'components/ModalApproveAction/PetCard';
+// import ModalNoticeTest from '../NoticeModalTest/NoticeModalTest';
+import ModalApproveAction from 'components/ModalApproveAction';
+import NoticeModal from 'components/ModalApproveAction/NoticeModal';
 
 const AddToFavorite = () => {
   const { isLoggedIn } = useAuth();
@@ -148,12 +148,12 @@ const NoticeCategoryItem = ({ notice }) => {
         <LearnMore onButtonClick={() => setIsModalOpen(true)} />
         {/* <LearnMore onButtonClick={showPetCard} /> */}
       </BelowItemContainer>
-      {isModalOpen && <ModalNoticeTest close={() => setIsModalOpen(false)} />}
-      {/* {isModalOpen && (
+      {/* {isModalOpen && <ModalNoticeTest close={() => setIsModalOpen(false)} />} */}
+      {isModalOpen && (
         <ModalApproveAction close={() => setIsModalOpen(false)}>
-          <PetCard close={() => setIsModalOpen(false)} />
+          <NoticeModal close={() => setIsModalOpen(false)} />
         </ModalApproveAction>
-      )} */}
+      )}
       {isLoggedIn && user.userId === notice.userId && (
         <Button
           style={{

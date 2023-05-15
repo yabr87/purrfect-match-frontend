@@ -1,9 +1,5 @@
 import React, { useState } from 'react';
 
-import { useNavigate } from 'react-router-dom';
-
-// useLocation;
-
 import Button from 'shared/components/Button';
 import {
   Title,
@@ -18,20 +14,22 @@ import {
   Wrap,
   NameCategory,
   ValueCategory,
-} from './PetCard.styles';
+  ContactLink,
+} from './NoticeModal.styles';
 
 import { useMedia } from 'shared/hooks/useMedia';
 
 import Icon from 'shared/components/Icon';
 
 import useAuth from 'shared/hooks/useAuth';
+// import { current } from 'redux/auth/authOperations';
 
 // import data from './data.json';
 
-const PetCard = ({ id, close }) => {
+const NoticeModal = ({ id, close }) => {
   const { isLoggedIn } = useAuth();
   const [fill, setFill] = useState('transparent');
-  //   const [favorite, setFavorite] = useState('false');
+  const [favorite, setFavorite] = useState(false);
 
   const screenSize = useMedia(
     ['(min-width: 1280px)', '(min-width: 768px)', '(min-width: 480px)'],
@@ -42,20 +40,20 @@ const PetCard = ({ id, close }) => {
   //   const isDesktop = screenSize === 'desktop';
   const isMobile = screenSize === 'mobile';
 
-  //   const location = useLocation();
-
-  //   const from = location.state?.from || '/notices/sell';
-
-  const navigate = useNavigate();
-
   const approveAddFavorite = () => {
     if (!isLoggedIn) {
       alert('Please sign in to add to favorites');
       return;
     }
-    setFill('#ffffff');
-    // setFavorite('true');
-    navigate(-1);
+    setFavorite(current => !current);
+    console.log(favorite);
+    // const favPetIcon = favorite === true ? setFill('#ffffff') :  setFill('transparent');
+    if (favorite === true) {
+      setFill('#ffffff');
+    }
+    if (favorite === false) {
+      setFill('transparent');
+    }
   };
   return (
     <ContainerView>
@@ -149,7 +147,7 @@ const PetCard = ({ id, close }) => {
                 marginBottom: '8px',
               }}
             >
-              Cancel
+              Contact
             </Button>
           </ButtonWrap>
         </>
@@ -170,9 +168,10 @@ const PetCard = ({ id, close }) => {
               Add to
               <Icon id="heart" f={fill} s="white" />
             </Button>
-            <Button type="button" onClick={close} w="129" h="40">
-              Cancel
-            </Button>
+            {/* <Button type="button" onClick={close} w="129" h="40">
+              Contact
+            </Button> */}
+            <ContactLink href="tel:+380961111111">Contact</ContactLink>
           </ButtonWrap>
         </>
       )}
@@ -180,4 +179,13 @@ const PetCard = ({ id, close }) => {
   );
 };
 
-export default PetCard;
+export default NoticeModal;
+
+// import { useNavigate, useLocation } from 'react-router-dom';
+// const location = useLocation();
+
+// const from = location.state?.from || '/notices/sell';
+
+// const navigate = useNavigate();
+
+// console.log(navigate(-1));
