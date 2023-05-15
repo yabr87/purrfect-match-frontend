@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Field } from "formik";
 import { RadioContainer, RadioLabel } from "./ChooseOptionStep.styles";
 import { useState } from "react";
@@ -27,6 +28,19 @@ const ChooseOptionStep = ({ name, options, onSelect, value }) => {
       ))}
     </RadioContainer>
   );
+};
+
+
+ChooseOptionStep.propTypes = {
+  name: PropTypes.string.isRequired,
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      value: PropTypes.string.isRequired,
+      label: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  onSelect: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired,
 };
 
 export default ChooseOptionStep;

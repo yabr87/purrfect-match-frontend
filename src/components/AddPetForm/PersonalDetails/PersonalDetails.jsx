@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Field } from 'formik';
 import { Error, FormLabel } from '../AddPetForm.styles';
 import { DetailsWrapper } from './PersonalDetails.styles';
@@ -61,6 +62,13 @@ const PersonalDetails = ({ option, handleChange, handleBlur, values }) => {
             </FormLabel>
         </DetailsWrapper>
     );
+};
+
+PersonalDetails.propTypes = {
+  option: PropTypes.string.isRequired,
+  handleChange: PropTypes.func.isRequired,
+  handleBlur: PropTypes.func.isRequired,
+  values: PropTypes.object.isRequired,
 };
 
 export default PersonalDetails;

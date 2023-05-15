@@ -1,0 +1,98 @@
+[
+    {
+        "id": 1,
+        "description": "Description for CatItem",
+        "category": "sell",
+        "location": "Kyiv",
+        "age": "1 year",
+        "sex": "male"
+    },
+    {
+        "id": 2,
+        "description": "Description for CatItem",
+        "category": "sell",
+        "location": "Lviv",
+        "age": "2 years",
+        "sex": "female"
+    },
+    {
+        "id": 3,
+        "description": "Description for CatItem",
+        "category": "sell",
+        "location": "Kharkiv",
+        "age": "6 months",
+        "sex": "male"
+    },
+    {
+        "id": 4,
+        "description": "Description for CatItem",
+        "category": "sell",
+        "location": "Dnipro",
+        "age": "3 years",
+        "sex": "female"
+    },
+    {
+        "id": 5,
+        "description": "Description for CatItem",
+        "category": "for-free",
+        "location": "Odessa",
+        "age": "2 years",
+        "sex": "male"
+    },
+    {
+        "id": 6,
+        "description": "Description for CatItem",
+        "category": "lost-found",
+        "location": "Kyiv",
+        "age": "1 year",
+        "sex": "female"
+    },
+    {
+        "id": 7,
+        "description": "Description for CatItem",
+        "category": "for-free",
+        "location": "Odessa",
+        "age": "2 years",
+        "sex": "male"
+    },
+    {
+        "id": 8,
+        "description": "Description for CatItem",
+        "category": "lost-found",
+        "location": "Kyiv",
+        "age": "1 year",
+        "sex": "female"
+    },
+    {
+        "id": 9,
+        "description": "Description for CatItem",
+        "category": "for-free",
+        "location": "Odessa",
+        "age": "2 years",
+        "sex": "male"
+    },
+    {
+        "id": 10,
+        "description": "Description for CatItem",
+        "category": "lost-found",
+        "location": "Kyiv",
+        "age": "1 year",
+        "sex": "female"
+    },
+    {
+        "id": 11,
+        "description": "Description for CatItem",
+        "category": "for-free",
+        "location": "Odessa",
+        "age": "2 years",
+        "sex": "male"
+    },
+    {
+        "id": 12,
+        "description": "Description for CatItem",
+        "category": "lost-found",
+        "location": "Kyiv",
+        "age": "1 year",
+        "sex": "female"
+    }
+]

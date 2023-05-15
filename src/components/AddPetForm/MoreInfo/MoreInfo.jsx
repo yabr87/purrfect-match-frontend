@@ -1,16 +1,9 @@
+import PropTypes from 'prop-types';
 import { Field } from 'formik';
-import { useState } from 'react';
 import ImageUploader from 'shared/components/ImageUploader';
-import { FormLabel } from '../AddPetForm.styles';
+import { Error, FormLabel } from '../AddPetForm.styles';
 
-const MoreInfo = ({ option, handleChange, handleBlur, values, setFieldValue  }) => {
-  const [checkedValue, setCheckedValue] = useState('');
-
-  const handleRadioButtons = e => {
-    setCheckedValue(e.target.value);
-    };
-    
-
+const MoreInfo = ({ option, handleChange, handleBlur, values }) => {
   return (
     <>
       <FormLabel>
@@ -22,9 +15,11 @@ const MoreInfo = ({ option, handleChange, handleBlur, values, setFieldValue  }) 
         <ImageUploader
           onChange={handleChange}
           name="photo"
-                  value={values.photo}
-                  field={values.photo}
-        ></ImageUploader>
+          value={values.photo}
+          field={values.photo}
+              ></ImageUploader>
+              
+        <Error name="photo" component="p" />
       </FormLabel>
       {option !== 'my-pet' && (
         <>
@@ -36,8 +31,7 @@ const MoreInfo = ({ option, handleChange, handleBlur, values, setFieldValue  }) 
                 type="radio"
                 name="sex"
                 value="male"
-                checked={checkedValue === 'male'}
-                onChange={handleRadioButtons}
+                onChange={handleChange}
                 onBlur={handleBlur}
               />
             </label>
@@ -47,10 +41,10 @@ const MoreInfo = ({ option, handleChange, handleBlur, values, setFieldValue  }) 
                 type="radio"
                 name="sex"
                 value="female"
-                checked={checkedValue === 'female'}
-                onChange={handleRadioButtons}
+                onChange={handleChange}
                 onBlur={handleBlur}
               />
+              <Error name="sex" component="p" />
             </label>
           </div>
           <FormLabel htmlFor="location">
@@ -62,6 +56,7 @@ const MoreInfo = ({ option, handleChange, handleBlur, values, setFieldValue  }) 
               onBlur={handleBlur}
               value={values.location}
             />
+            <Error name="location" component="p" />
           </FormLabel>
           {option === 'sell' && (
             <FormLabel htmlFor="price">
@@ -73,6 +68,7 @@ const MoreInfo = ({ option, handleChange, handleBlur, values, setFieldValue  }) 
                 onBlur={handleBlur}
                 value={values.price}
               />
+              <Error name="price" component="p" />
             </FormLabel>
           )}
         </>
@@ -87,10 +83,19 @@ const MoreInfo = ({ option, handleChange, handleBlur, values, setFieldValue  }) 
           onChange={handleChange}
           onBlur={handleBlur}
           value={values.comments}
-        />
+              />
+              
+        <Error name="comments" component="p" />
       </FormLabel>
     </>
   );
+};
+
+MoreInfo.propTypes = {
+  option: PropTypes.string.isRequired,
+  handleChange: PropTypes.func.isRequired,
+  handleBlur: PropTypes.func.isRequired,
+  values: PropTypes.object.isRequired,
 };
 
 export default MoreInfo;
