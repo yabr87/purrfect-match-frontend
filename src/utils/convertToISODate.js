@@ -7,3 +7,4 @@ export const convertToISODate = dateString => {
 };
 
 // console.log(convertToISODate('15.05.2023')); // 2023-05-15T00:00:00+03:00
+
