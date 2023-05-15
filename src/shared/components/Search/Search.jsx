@@ -11,7 +11,7 @@ import * as Yup from 'yup';
 
 const Search = ({ initValue, handleSubmit }) => {
   const validation = Yup.object({
-    search: Yup.string().required('Type something'),
+    search: Yup.string().trim('Type something').required('Type something'),
   });
 
   const FormError = ({ name }) => {

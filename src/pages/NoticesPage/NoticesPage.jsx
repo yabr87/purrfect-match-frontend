@@ -29,7 +29,7 @@ function NoticesPage() {
 
   return (
     <Container>
-      <NoticesSearch />
+      <NoticesSearch categoryName={categoryName} />
       <div
         style={{
           display: 'flex',

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import NoticeCategoryItem from '../NoticeCategoryItem/NoticeCategoryItem';
 
 import { CollectionContainer } from './NoticesCategoriesList.styles.js';
+import Pagination from 'shared/hooks/pagination';
 
 import data from './data.json';
 import useAuth from 'shared/hooks/useAuth';
@@ -44,6 +45,7 @@ const NoticesCategoriesList = ({ categoryName }) => {
       {notices.map(notice => (
         <NoticeCategoryItem key={notice.id} notice={notice} userId={user.id} />
       ))}
+      {notices.length > 2 && <Pagination />}
     </CollectionContainer>
   );
 };
