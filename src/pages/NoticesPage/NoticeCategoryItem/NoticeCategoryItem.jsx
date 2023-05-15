@@ -1,5 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import useAuth from 'shared/hooks/useAuth';
+// import ModalApproveAction from 'components/ModalApproveAction/ModalApproveAction';
 
 import {
   Card,
@@ -16,6 +17,8 @@ import Icon from 'shared/components/Icon/Icon';
 import Button from 'shared/components/Button';
 
 import ModalNoticeTest from '../NoticeModalTest/NoticeModalTest';
+// import ModalApproveAction from 'components/ModalApproveAction';
+// import PetCard from 'components/ModalApproveAction/PetCard';
 
 const AddToFavorite = () => {
   const { isLoggedIn } = useAuth();
@@ -91,7 +94,27 @@ const LearnMore = ({ onButtonClick }) => {
 };
 
 const NoticeCategoryItem = ({ notice }) => {
+  const [isTrashHoveredOrFocused, setIsTrashHoveredOrFocused] = useState(false);
+  const [trashIconColor, setTrashIconColor] = useState('#54ADFF');
+  const { isLoggedIn, user } = useAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  // const [idPet, setIdPet] = useState(null);
+
+  // const showPetCard = ({ id }) => {
+  //   setIsModalOpen(true);
+  //   // setIdPet(id);
+  // };
+
+  const handleHover = useCallback(() => {
+    setIsTrashHoveredOrFocused(true);
+    setTrashIconColor('#FFFFFF');
+  }, []);
+
+  const handleBlur = useCallback(() => {
+    setIsTrashHoveredOrFocused(false);
+    setTrashIconColor('#54ADFF');
+  }, []);
+
   return (
     <Card>
       <AddToFavorite />
@@ -123,8 +146,40 @@ const NoticeCategoryItem = ({ notice }) => {
       <BelowItemContainer>
         <PhotoDescription>{notice.description}</PhotoDescription>
         <LearnMore onButtonClick={() => setIsModalOpen(true)} />
+        {/* <LearnMore onButtonClick={showPetCard} /> */}
       </BelowItemContainer>
       {isModalOpen && <ModalNoticeTest close={() => setIsModalOpen(false)} />}
+      {/* {isModalOpen && (
+        <ModalApproveAction close={() => setIsModalOpen(false)}>
+          <PetCard close={() => setIsModalOpen(false)} />
+        </ModalApproveAction>
+      )} */}
+      {isLoggedIn && user.userId === notice.userId && (
+        <Button
+          style={{
+            zIndex: 999,
+            position: 'absolute',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            width: 40,
+            height: 40,
+            right: 12,
+            top: 68,
+            background: isTrashHoveredOrFocused ? '#54adff' : '#cce4fb',
+            borderRadius: '50%',
+            border: 'none',
+            outline: 'none',
+          }}
+          onMouseEnter={handleHover}
+          onMouseLeave={handleBlur}
+          onFocus={handleHover}
+          onBlur={handleBlur}
+          onClick={() => setIsModalOpen(true)}
+        >
+          <Icon id="trash" h="22" w="22" s={trashIconColor} strokeWidth="1.5" />
+        </Button>
+      )}
     </Card>
   );
 };

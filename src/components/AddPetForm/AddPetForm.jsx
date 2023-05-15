@@ -1,49 +1,59 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Formik, Form } from 'formik';
+import FormWrapper from './FormWrapper';
 import ChooseOptionStep from './ChooseOptionStep';
-import validationSchema from './validationSchema';
+import PersonalDetails from './PersonalDetails';
+import MoreInfo from './MoreInfo';
+
 import Button from 'shared/components/Button';
 import Icon from 'shared/components/Icon/Icon';
-import MoreInfoMyPet from './MoreInfo/MoreInfoMyPet';
-import MoreInfoSell from './MoreInfo/MoreInfoSell';
-import MoreInfoLost from './MoreInfo/MoreInfoLost';
-import MoreInfoInHands from './MoreInfo/MoreInfoInHands';
-import FormWrapper from './FormWrapper';
 import { ButtonsBox } from './AddPetForm.styles';
-import PersonalDetailsMyPet from './PersonalDetails/PersonalDetailsMyPet';
-import PersonalDetailsSell from './PersonalDetails/PersonalDetailsSell';
-import PersonalDetailsLost from './PersonalDetails/PersonalDetailsLost';
-import PersonalDetailsInHands from './PersonalDetails/PersonalDetailsInHands';
-import initialState from './initialState';
+import validationSchema from './validationSchema';
+import { convertToISODate } from 'utils/convertToISODate';
 
-//це мабуть варто винести в окремі файли
+const initialState = {
+  category: "",
+  title: "",
+  name: "",
+  birthday: "",
+  breed: "",
+  photo: "",
+  comments: "",
+  sex: "",
+  location: "",
+  price: "",
+}
+
 const options = [
-  { label: 'your pet', value: 'your pet' },
+  { label: 'my-pet', value: 'my-pet' },
   { label: 'sell', value: 'sell' },
-  { label: 'lost/found', value: 'lost/found' },
-  { label: 'in good hands', value: 'in good hands' },
+  { label: 'lost-found', value: 'lost-found' },
+  { label: 'for-free', value: 'for-free' },
 ];
-
-const sexOptions = [
-  { label: 'Male', value: 'male' },
-  { label: 'Female', value: 'female' }
-];
-
 
 const formTitles = {
-  'your pet': 'Add pet',
-  sell: 'Add pet for sale',
-  'lost/found': 'Add lost pet',
-  'in good hands': 'Add pet',
+  'my-pet': 'Add pet',
+  'sell': 'Add pet for sale',
+  'lost-found': 'Add lost pet',
+  'for-free': 'Add pet',
 };
 
 const AddPetForm = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [selectedOption, setSelectedOption] = useState('sell');
-  const [state, setState] = useState({ ...initialState });
+  const navigate = useNavigate();
+  
 
-  const handleSubmit = values => {
-    // відправка даних на бекенд
+  const handleSubmit = (values, {resetForm}) => {
+    const newPet = Object.keys(values).reduce((acc, key) => {
+      return values[key] ? { ...acc, [key]: values[key] } : acc;
+    }, {});
+
+    newPet.birthday = convertToISODate(newPet.birthday);
+    console.log(newPet);
+    navigate('/user'); 
+    resetForm();
   };
 
   const handleGoBack = () => {
@@ -51,46 +61,25 @@ const AddPetForm = () => {
   };
 
   const handleNext = () => {
-    setCurrentStep(step => step + 1);
-  };
+      setCurrentStep((step) => step + 1);
+    }
 
   const handleOptionSelect = option => {
     setSelectedOption(option);
   };
 
-  const handleChange = ({target}) => {
-    const { name, value } = target;
-    console.log('NAME:', name, 'value:', value);
-    setState(prevState => {
-      return {...prevState, [name]: value}
-    })
-  }
-
-  //це мабуть варто винести в окремі файли
-  const personalDetailsSteps = {
-    'your pet': [<PersonalDetailsMyPet key="personalDetailsMyPet" values={state} handleChange={handleChange}/>],
-    sell: [<PersonalDetailsSell key="personalDetailsSell"  handleChange={handleChange}/>],
-    'lost/found': [<PersonalDetailsLost key="personalDetailsLost"  handleChange={handleChange}/>],
-    'in good hands': [<PersonalDetailsInHands key="personalDetailsInHands"  handleChange={handleChange}/>],
+   const handleCancel = () => {
+    navigate(-1); 
   };
 
-//це мабуть варто винести в окремі файли
-  const moreInfo = {
-    'your pet': [<MoreInfoMyPet key="moreInfoMyPet" values={state} handleChange={handleChange}/>],
-    sell: [<MoreInfoSell key="moreInfoSell" options={sexOptions} handleChange={handleChange}/>],
-    'lost/found': [<MoreInfoLost key="moreInfoLost" options={sexOptions} handleChange={handleChange}/>],
-    'in good hands': [<MoreInfoInHands key="moreInfoInHands" options={sexOptions} handleChange={handleChange}/>],
-  };
-
-
+  
   return (
-    <>
     <Formik
-      initialValues={{}}
+      initialValues={initialState}
       onSubmit={handleSubmit}
-      validationSchema={validationSchema}
+      validationSchema={validationSchema(selectedOption, currentStep)}
     >
-      {({ isSubmitting, errors, touched })  => (
+      {({ isSubmitting, handleChange, handleBlur, values, errors, isValid, touched }) => (
         <Form>
           <FormWrapper
             currentStep={currentStep}
@@ -98,19 +87,33 @@ const AddPetForm = () => {
           >
             {currentStep === 1 && (
               <ChooseOptionStep
+                name="category"
                 options={options}
                 onSelect={handleOptionSelect}
                 value={selectedOption}
               />
             )}
-            {currentStep === 2 &&
-              selectedOption &&
-              personalDetailsSteps[selectedOption]}
-            {currentStep === 3 && selectedOption && moreInfo[selectedOption]}
+            {currentStep === 2 && <PersonalDetails
+              option={selectedOption}
+              handleChange={handleChange}
+              handleBlur={handleBlur}
+              values={values} 
+              touched={touched} 
+              errors={errors}
+              isValid={isValid}
+              />}
+            
+            {currentStep === 3 && <MoreInfo
+              option={selectedOption}
+              handleChange={handleChange}
+              handleBlur={handleBlur}
+              values={values}
+            />}
 
             <ButtonsBox>
               {currentStep === 1 && (
-                <Button type="button" w="248" h="48">
+                <Button type="button" w="248" h="48" 
+                  onClick={handleCancel}>
                   Cancel
                 </Button>
               )}
@@ -122,12 +125,12 @@ const AddPetForm = () => {
               )}
               {currentStep !== 3 && (
                 <Button
-                  type="button"
+                  type='button'
                   w="248"
                   h="48"
                   shape="solid"
-                  disabled={isSubmitting}
                   onClick={handleNext}
+                  disabled={currentStep === 2 && (!isValid || !touched.name || !touched.birthday || !touched.breed)}
                 >
                   Next
                   <Icon id="paw" f="currentColor" s="none" />
@@ -136,7 +139,7 @@ const AddPetForm = () => {
 
               {currentStep === 3 && (
                 <Button
-                  type="button"
+                  type="submit"
                   w="248"
                   h="48"
                   shape="solid"
@@ -151,11 +154,6 @@ const AddPetForm = () => {
         </Form>
       )}
     </Formik>
-
-      <div>
-        <code>values:</code> {JSON.stringify(state, null, 2)}
-      </div>
-    </>
   );
 };
 

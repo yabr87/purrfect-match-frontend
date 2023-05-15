@@ -1,12 +1,12 @@
 // import PropTypes from 'prop-types';
 import PropTypes from 'prop-types';
-import { useAuth } from 'components/shared/hooks/useAuth';
+import  useAuth  from 'shared/hooks/useAuth';
 import { Navigate } from 'react-router-dom';
 
 export const PrivateRoute = ({ component: Component, redirectTo }) => {
-  const { isLogin } = useAuth();
+  const { isLoggedIn } = useAuth();
 
-  return !isLogin ? <Navigate to={redirectTo} /> : Component;
+  return !isLoggedIn ? <Navigate to={redirectTo} /> : Component;
 };
 
 PrivateRoute.propTypes = {
