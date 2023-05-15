@@ -28,7 +28,7 @@ const Pagination = () => {
     // if (!cards) {
     //   return;
     // }
-    const getCardsByPage = async (page = 1, category = 'sell') => {
+    const getCardsByPage = async (category = 'sell', page = 1) => {
       setIsFetching(true);
       try {
         const { data, headers } = await axios.get(
@@ -41,7 +41,6 @@ const Pagination = () => {
           }
         );
         setCards([...data]);
-        console.log(data, headers);
       } catch (error) {
         console.log(error);
       } finally {
@@ -53,7 +52,7 @@ const Pagination = () => {
 
       return;
     };
-    getCardsByPage(currentPage, categoryName);
+    getCardsByPage(categoryName, currentPage);
   }, [currentPage]);
   //   const getPetBySerch = async (title, category = 'sell') => {
   //     const { data } = await axios.get(
@@ -68,6 +67,13 @@ const Pagination = () => {
   //     return console.log(data);
   //   };
 
+  // const pathDecr = () => {
+  //           if (currentPage === 1) {
+  //             return;
+  //           }
+  //           return `?category=${categoryName}&page=${currentPage - 1}`;
+  //         };
+
   const handleClick = ({ target }) => {
     const numberPage = numberValue(target.id);
     if (currentPage === numberPage) {
@@ -81,7 +87,6 @@ const Pagination = () => {
       return;
     }
     setCurrentPage(prev => prev - 1);
-    console.log(currentPage);
   };
 
   const arrowHandleIncr = () => {
@@ -92,11 +97,20 @@ const Pagination = () => {
   return (
     <Box>
       <Flex>
-        <ButtonPage id="prev" onClick={arrowHandleDecr}>
+        <ButtonPage
+          to={
+            currentPage !== 1 &&
+            `?category=${categoryName}&page=${currentPage - 1}`
+          }
+          id="prev"
+          onClick={arrowHandleDecr}
+        >
           <Icon id="arrow-left" s="#54ADFF" f="#54ADFF"></Icon>
         </ButtonPage>
+
         {pages.map(page => (
           <ButtonPage
+            to={`?category=${categoryName}&page=${page}`}
             key={page}
             className={page === currentPage && 'current_page'}
             id={page}
@@ -106,7 +120,11 @@ const Pagination = () => {
           </ButtonPage>
         ))}
         {pagesCount > 5 && (
-          <ButtonPage id="next" onClick={arrowHandleIncr}>
+          <ButtonPage
+            to={`?category=${categoryName}&page=${currentPage + 1}`}
+            id="next"
+            onClick={arrowHandleIncr}
+          >
             <Icon
               id="arrow-left"
               s="#54ADFF"

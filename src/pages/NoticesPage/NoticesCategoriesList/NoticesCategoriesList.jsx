@@ -41,12 +41,18 @@ const NoticesCategoriesList = ({ categoryName }) => {
   // }, [categoryName]);
 
   return (
-    <CollectionContainer>
-      {notices.map(notice => (
-        <NoticeCategoryItem key={notice.id} notice={notice} userId={user.id} />
-      ))}
+    <>
+      <CollectionContainer>
+        {notices.map(notice => (
+          <NoticeCategoryItem
+            key={notice.id}
+            notice={notice}
+            userId={user.id}
+          />
+        ))}
+      </CollectionContainer>
       {notices.length > 2 && <Pagination />}
-    </CollectionContainer>
+    </>
   );
 };
 

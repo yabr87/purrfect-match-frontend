@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
-export const ButtonPage = styled.a`
+export const ButtonPage = styled(Link)`
   display: flex;
   color: #cce4fb;
   align-items: center;
@@ -34,7 +35,7 @@ export const Flex = styled.div`
   border-radius: 45px;
 `;
 export const Box = styled.div`
-  margin: 60px 0 192px;
+  margin: 60px auto 105px;
   width: 100%;
   max-width: 320px;
 `;
