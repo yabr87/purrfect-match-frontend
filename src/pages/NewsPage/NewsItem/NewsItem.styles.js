@@ -92,3 +92,9 @@ export const Link = styled.a`
     color: ${({ theme }) => theme.colors.yellow};
   }
 `;
+
+// a:hover {
+//   border-bottom: 1px solid black;
+//  }
+
+// text-decoration: underline;
