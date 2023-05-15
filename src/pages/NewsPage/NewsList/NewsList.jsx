@@ -7,7 +7,6 @@ const NewsList = ({ items }) => {
   const elements = items.map(({ id, ...props }) => (
     <NewsItem key={id} {...props} />
   ));
-  console.log('elements:', elements);
 
   return <List>{elements}</List>;
 };

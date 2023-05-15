@@ -46,5 +46,77 @@
     "date": "2023-03-16T16:12:57+0000",
     "url": "https://www.nytimes.com/2023/03/16/world/europe/dog-poisoning-france.html",
     "id": "nyt://article/111d57a8-01f0-5bc5-b7ac-d9056ee73b35"
+  },
+  {
+    "imgUrl": "https://www.nytimes.com/images/2023/02/27/sports/27nba-suns-dogs-dip/27nba-suns-dogs-dip-blog480.jpg",
+    "title": "How a Trade Changed Everything for Two N.B.A. Players and Their Dogs",
+    "text": "Professional sports can be a tough business. When Mikal Bridges was dealt from the Suns to the Nets, his friend Cam Payne had to give the news to Sonny and Uno.",
+    "date": "2023-02-27T05:01:09+0000",
+    "url": "https://www.nytimes.com/2023/02/27/sports/basketball/nba-suns-dogs-payne-bridges.html",
+    "id": "nyt://article/3282e4e2-702b-5f0c-b24c-07e3be494f83"
+  },
+  {
+    "imgUrl": "https://www.nytimes.com/images/2023/02/23/multimedia/00ukraine-shelter-02-jgvt/00ukraine-shelter-02-jgvt-blog480.jpg",
+    "title": "For Ukraine’s Animals, a Home Is Getting Harder to Find",
+    "text": "Early in the war, thousands of pets were ferried out of danger, mostly to other European countries. But now adoptions are waning.",
+    "date": "2023-02-28T05:00:10+0000",
+    "url": "https://www.nytimes.com/2023/02/28/business/economy/ukraine-war-animals.html",
+    "id": "nyt://article/9a1f03cd-a7a8-5afb-8dcc-cb5edeefb2f1"
+  },
+  {
+    "imgUrl": "https://www.nytimes.com/images/2023/02/04/multimedia/00xp-high-dogs-01-pmgh/00xp-high-dogs-01-pmgh-blog480.jpg",
+    "title": "Nausea, Wobbling, Confusion: Dogs Are Getting Sick From Discarded Weed",
+    "text": "In places where recreational use is legal, dogs are getting sick from eating the remains of joints and other cannabis products, veterinarians and poison-control centers say.",
+    "date": "2023-02-13T14:02:29+0000",
+    "url": "https://www.nytimes.com/2023/02/13/nyregion/dogs-weed-nyc.html",
+    "id": "nyt://article/9cda24bb-5520-587b-97aa-039cd981ea91"
+  },
+  {
+    "imgUrl": "https://www.nytimes.com/images/2023/01/29/multimedia/21DOGWALKERS-01-btgf/21DOGWALKERS-01-btgf-blog480.jpg",
+    "title": "How These Dog Walkers Make Over $100,000 a Year",
+    "text": "It’s all those pandemic puppies.",
+    "date": "2023-01-22T10:00:17+0000",
+    "url": "https://www.nytimes.com/2023/01/22/style/dog-walkers-six-figures-100k-nyc.html",
+    "id": "nyt://article/2370993e-9e7c-5fb8-b217-56a5d5355a5c"
+  },
+  {
+    "imgUrl": "https://www.nytimes.com/images/2023/01/29/multimedia/21DOGWALKERS-01-btgf/21DOGWALKERS-01-btgf-blog480.jpg",
+    "title": "How These Dog Walkers Make Over $100,000 a Year",
+    "text": "It’s all those pandemic puppies.",
+    "date": "2023-01-22T10:00:17+0000",
+    "url": "https://www.nytimes.com/2023/01/22/style/dog-walkers-six-figures-100k-nyc.html",
+    "id": "nyt://article/2370993e-9e7c-5fb8-b217-56a5d5355a5c"
+  },
+  {
+    "imgUrl": "https://www.nytimes.com/images/2022/12/15/multimedia/15ny-petstore-1-a63a/15ny-petstore-1-a63a-blog480.jpg",
+    "title": "New York Bans Pet Stores From Selling Dogs, Cats and Rabbits",
+    "text": "The ban, which takes effect in December 2024, is meant to prevent the sale of animals raised by commercial breeders accused of keeping them in inhumane conditions.",
+    "date": "2022-12-15T18:16:51+0000",
+    "url": "https://www.nytimes.com/2022/12/15/nyregion/pet-store-ban-ny.html",
+    "id": "nyt://article/676367e0-cf7f-5b0c-a5bb-019fab5d953e"
+  },
+  {
+    "imgUrl": "https://www.nytimes.com/images/2022/12/15/nyregion/00ny-santos/00ny-santos-blog480.jpg",
+    "title": "Who Is Rep.-Elect George Santos? His Résumé May Be Largely Fiction.",
+    "text": "Mr. Santos, a Republican from New York, says he’s the “embodiment of the American dream.” But he seems to have misrepresented a number of his career highlights.",
+    "date": "2022-12-19T08:00:11+0000",
+    "url": "https://www.nytimes.com/2022/12/19/nyregion/george-santos-ny-republicans.html",
+    "id": "nyt://article/c7f6c06e-4c6a-5b4a-a598-69789bdf61c8"
+  },
+  {
+    "imgUrl": "https://www.nytimes.com/images/2022/12/15/nyregion/00ny-santos/00ny-santos-blog480.jpg",
+    "title": "Who Is Rep.-Elect George Santos? His Résumé May Be Largely Fiction.",
+    "text": "Mr. Santos, a Republican from New York, says he’s the “embodiment of the American dream.” But he seems to have misrepresented a number of his career highlights.",
+    "date": "2022-12-19T08:00:11+0000",
+    "url": "https://www.nytimes.com/2022/12/19/nyregion/george-santos-ny-republicans.html",
+    "id": "nyt://article/c7f6c06e-4c6a-5b4a-a598-69789bdf61c8"
+  },
+  {
+    "imgUrl": "https://www.nytimes.com/images/2022/12/16/opinion/12renkl-1/12renkl-1-blog480.jpg",
+    "title": "What Do Stray Dogs Tell Us About the South?",
+    "text": "A film about dogs conveys the complex reality behind the stories of neglect.",
+    "date": "2022-12-12T10:00:15+0000",
+    "url": "https://www.nytimes.com/2022/12/12/opinion/stray-dogs-american-south.html",
+    "id": "nyt://article/7eb67158-7f6e-531d-aa1a-a09ddd6cc724"
   }
 ]
