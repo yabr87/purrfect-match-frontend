@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
+// useLocation;
 
 import Button from 'shared/components/Button';
 import {
@@ -24,15 +26,15 @@ import Icon from 'shared/components/Icon';
 
 import useAuth from 'shared/hooks/useAuth';
 
-import data from './data.json';
+// import data from './data.json';
 
 const PetCard = ({ id, close }) => {
   const { isLoggedIn } = useAuth();
   const [fill, setFill] = useState('transparent');
-  const [favorite, setFavorite] = useState('false');
+  //   const [favorite, setFavorite] = useState('false');
 
   const screenSize = useMedia(
-    ['(min-width: 1280px)', '(min-width: 768px)', '(min-width: 460px)'],
+    ['(min-width: 1280px)', '(min-width: 768px)', '(min-width: 480px)'],
     ['desktop', 'tablet', 'mobile'],
     'xs'
   );
@@ -40,9 +42,9 @@ const PetCard = ({ id, close }) => {
   //   const isDesktop = screenSize === 'desktop';
   const isMobile = screenSize === 'mobile';
 
-  const location = useLocation();
+  //   const location = useLocation();
 
-  const from = location.state?.from || '/notices/sell';
+  //   const from = location.state?.from || '/notices/sell';
 
   const navigate = useNavigate();
 
@@ -52,7 +54,7 @@ const PetCard = ({ id, close }) => {
       return;
     }
     setFill('#ffffff');
-    setFavorite('true');
+    // setFavorite('true');
     navigate(-1);
   };
   return (
@@ -179,13 +181,3 @@ const PetCard = ({ id, close }) => {
 };
 
 export default PetCard;
-
-/* <PetDataList>
-              <PetDataItem>Name: {}</PetDataItem>
-              <PetDataItem>Birthday: {}</PetDataItem>
-              <PetDataItem>Breed: {}</PetDataItem>
-              <PetDataItem>Place: {}</PetDataItem>
-              <PetDataItem>The sex: {}</PetDataItem>
-              <PetDataItem>Email: {}</PetDataItem>
-              <PetDataItem>Phone: {}</PetDataItem>
-            </PetDataList> */

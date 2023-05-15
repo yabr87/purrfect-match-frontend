@@ -1,7 +1,4 @@
-// import { useEffect } from 'react';
 
-// import Container from 'shared/components/Container';
-// import Section from 'shared/components/Section';
 import Button from 'shared/components/Button';
 import { Title, ContainerView, ButtonWrap } from './Logout.styles';
 

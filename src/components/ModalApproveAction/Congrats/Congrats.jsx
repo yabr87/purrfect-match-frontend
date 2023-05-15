@@ -27,14 +27,4 @@ const Congrats = ({ approve }) => {
 
 export default Congrats;
 
-//   useEffect(() => {
-//     const closeModal = ({ target, currentTarget, code }) => {
-//       if (target === currentTarget || code === 'Escape') {
-//         close();
-//       }
-//     };
-//     document.addEventListener('keydown', closeModal);
-//     return () => {
-//       window.removeEventListener('keydown', closeModal);
-//     };
-//   }, [close]);
+

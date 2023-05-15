@@ -1,10 +1,10 @@
 import { useEffect, useCallback } from 'react';
 import { createPortal } from 'react-dom';
-// import Container from 'shared/components/Container';
-import Icon from 'shared/components/Icon';
-import useAuth from 'shared/hooks/useAuth';
 
-import Congrats from 'components/ModalApproveAction/Congrats';
+import Icon from 'shared/components/Icon';
+// import useAuth from 'shared/hooks/useAuth';
+
+// import Congrats from 'components/ModalApproveAction/Congrats';
 // import Logout from 'components/ModalApproveAction/Logout';
 // import Delete from 'components/ModalApproveAction/Delete';
 // import PetCard from 'components/ModalApproveAction/PetCard';
@@ -38,13 +38,7 @@ const modalRoot = document.querySelector('#modal-root');
 // }
 
 const ModalApproveAction = ({ close, children, approve }) => {
-  const { isLoggedIn } = useAuth();
-
-  // const userAuthNotice = isLoggedIn ? (
-  //   <Congrats close={close} approve={approve} />
-  // ) : (
-  //   <Logout close={close} approve={approve} />
-  // );
+  // const { isLoggedIn } = useAuth();
 
   const closeModal = useCallback(
     ({ target, currentTarget, code }) => {
@@ -70,8 +64,6 @@ const ModalApproveAction = ({ close, children, approve }) => {
         </CloseIcon>
         {/* {!isLoggedIn(<Congrats close={close} approve={approve} />)} */}
         {children}
-
-        {/* {userAuthNotice} */}
         {/* <Congrats close={close} approve={approve} /> */}
         {/* <Logout close={close} approve={approveLogout} /> */}
         {/* <Delete close={close} approve={approveDelete}/> */}
@@ -96,59 +88,3 @@ export default ModalApproveAction;
 //   ['desktop', 'tablet', 'mobile', 'small'],
 //   'xs'
 // );
-
-/* <Button type="button" onBtnClick={close} w="256" h="40">
-            Cancel
-          </Button>
-          <Button
-            type="button"
-            onBtnClick={approve}
-            w="256"
-            h="40"
-            shape="solid"
-            g="8"
-          >
-            Add to
-            <Icon id="heart" f="white" s="white" />
-          </Button> */
-// ______________________________________
-/* {screenSize === 'small' &&
-          isLogin(
-            <ModalView>
-              <CloseIcon onClck={close}>
-                <Icon id="cross" s="#54ADFF" />
-              </CloseIcon>
-              {children}
-              <Button
-                type="button"
-                onBtnClick={approve}
-                w="256"
-                h="40"
-                shape="solid"
-                g="8"
-              >
-                Go to profile
-                <Icon id="paw" s="white" />
-              </Button>
-            </ModalView>
-          )} */
-/* {screenSize === 'small' &&
-          !isLogin(
-            <ModalView>
-              <CloseIcon onClck={close}>
-                <Icon id="cross" s="#54ADFF" />
-              </CloseIcon>
-              {children}
-              <Button
-                type="button"
-                onBtnClick={approve}
-                w="256"
-                h="40"
-                shape="solid"
-                g="8"
-              >
-                Go to profile
-                <Icon id="paw" s="white" />
-              </Button>
-            </ModalView>
-          )} */

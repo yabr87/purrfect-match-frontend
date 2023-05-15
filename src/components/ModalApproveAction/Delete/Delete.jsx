@@ -4,7 +4,6 @@
 // import Section from 'shared/components/Section';
 import Button from 'shared/components/Button';
 import {
-  // Title,
   Text,
   TextAccent,
   ContainerView,
@@ -14,21 +13,8 @@ import {
 
 import Icon from 'shared/components/Icon';
 import Title from 'shared/components/Title';
-// import { ModalView } from '../ModalApproveAction.styles';
 
 const Delete = ({ close, approve }) => {
-  //   useEffect(() => {
-  //     const closeModal = ({ target, currentTarget, code }) => {
-  //       if (target === currentTarget || code === 'Escape') {
-  //         close();
-  //       }
-  //     };
-  //     document.addEventListener('keydown', closeModal);
-  //     return () => {
-  //       window.removeEventListener('keydown', closeModal);
-  //     };
-  //   }, [close]);
-
   return (
     <ContainerView>
       <Title as="h2">Delete adverstiment?!</Title>
