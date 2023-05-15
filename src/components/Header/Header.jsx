@@ -24,7 +24,7 @@ const { isLoggedIn } = useAuth();
     ['desktop', 'tablet'],
     'xs'
   );
-  // const userBar = useMemo(() => <AuthNav />, []);
+  
   const handleLinkClick = () => {
   setIsMobileNavOpen(false);
   };

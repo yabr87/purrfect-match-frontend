@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import { Field } from 'formik';
 import ImageUploader from 'shared/components/ImageUploader';
 import { FormLabel } from '../AddPetForm.styles';
@@ -82,6 +83,13 @@ const MoreInfo = ({ option, handleChange, handleBlur, values  }) => {
       </FormLabel>
     </>
   );
+};
+
+MoreInfo.propTypes = {
+  option: PropTypes.string.isRequired,
+  handleChange: PropTypes.func.isRequired,
+  handleBlur: PropTypes.func.isRequired,
+  values: PropTypes.object.isRequired,
 };
 
 export default MoreInfo;
