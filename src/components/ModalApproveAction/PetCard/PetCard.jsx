@@ -14,6 +14,8 @@ import {
   PetDataItem,
   PetComents,
   Wrap,
+  NameCategory,
+  ValueCategory,
 } from './PetCard.styles';
 
 import { useMedia } from 'shared/hooks/useMedia';
@@ -21,6 +23,8 @@ import { useMedia } from 'shared/hooks/useMedia';
 import Icon from 'shared/components/Icon';
 
 import useAuth from 'shared/hooks/useAuth';
+
+import data from './data.json';
 
 const PetCard = ({ id, close }) => {
   const { isLoggedIn } = useAuth();
@@ -32,8 +36,8 @@ const PetCard = ({ id, close }) => {
     ['desktop', 'tablet', 'mobile'],
     'xs'
   );
-  const isTablet = screenSize === 'tablet';
-  const isDesktop = screenSize === 'desktop';
+  //   const isTablet = screenSize === 'tablet';
+  //   const isDesktop = screenSize === 'desktop';
   const isMobile = screenSize === 'mobile';
 
   const location = useLocation();
@@ -49,7 +53,7 @@ const PetCard = ({ id, close }) => {
     }
     setFill('#ffffff');
     setFavorite('true');
-    navigate(from);
+    navigate(-1);
   };
   return (
     <ContainerView>
@@ -70,13 +74,46 @@ const PetCard = ({ id, close }) => {
               for a home
             </Title>
             <PetDataList>
-              <PetDataItem>Name: {}</PetDataItem>
-              <PetDataItem>Birthday: {}</PetDataItem>
-              <PetDataItem>Breed: {}</PetDataItem>
-              <PetDataItem>Place: {}</PetDataItem>
-              <PetDataItem>The sex: {}</PetDataItem>
-              <PetDataItem>Email: {}</PetDataItem>
-              <PetDataItem>Phone: {}</PetDataItem>
+              <tbody>
+                <PetDataItem>
+                  <NameCategory>Name:</NameCategory>
+                  <ValueCategory>Pet</ValueCategory>
+                </PetDataItem>
+                <PetDataItem>
+                  <NameCategory>Birthday:</NameCategory>
+                  <ValueCategory>21.12.20</ValueCategory>
+                </PetDataItem>
+                <PetDataItem>
+                  <NameCategory>Breed:</NameCategory>
+                  <ValueCategory>York</ValueCategory>
+                </PetDataItem>
+                <PetDataItem>
+                  <NameCategory>Place:</NameCategory>
+                  <ValueCategory>Kyiv</ValueCategory>
+                </PetDataItem>
+                <PetDataItem>
+                  <NameCategory>The sex:</NameCategory>
+                  <ValueCategory>mail</ValueCategory>
+                </PetDataItem>
+                <PetDataItem>
+                  <NameCategory>Email:</NameCategory>
+                  <ValueCategory
+                    $colorContacts="#FFC107"
+                    $underline="underline"
+                  >
+                    3223224@mail.com
+                  </ValueCategory>
+                </PetDataItem>
+                <PetDataItem>
+                  <NameCategory>Phone:</NameCategory>
+                  <ValueCategory
+                    $colorContacts="#FFC107"
+                    $underline="underline"
+                  >
+                    +38097-654-098-98
+                  </ValueCategory>
+                </PetDataItem>
+              </tbody>
             </PetDataList>
           </PetDataListWrap>
         </Wrap>
@@ -142,3 +179,13 @@ const PetCard = ({ id, close }) => {
 };
 
 export default PetCard;
+
+/* <PetDataList>
+              <PetDataItem>Name: {}</PetDataItem>
+              <PetDataItem>Birthday: {}</PetDataItem>
+              <PetDataItem>Breed: {}</PetDataItem>
+              <PetDataItem>Place: {}</PetDataItem>
+              <PetDataItem>The sex: {}</PetDataItem>
+              <PetDataItem>Email: {}</PetDataItem>
+              <PetDataItem>Phone: {}</PetDataItem>
+            </PetDataList> */

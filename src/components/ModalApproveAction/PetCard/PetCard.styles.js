@@ -44,7 +44,8 @@ export const Title = styled.h2`
 export const ButtonWrap = styled.div`
   @media screen and (min-width: 768px) {
     display: flex;
-    flex-direction: row;
+    width: 100%;
+    justify-content: end;
   }
 `;
 
@@ -61,25 +62,42 @@ export const PetImage = styled.img`
 `;
 
 export const PetDataListWrap = styled.div`
-  min-width: 256px;
+  width: 100%;
   @media screen and (min-width: 768px) {
     max-width: 321px;
   }
 `;
 
-export const PetDataList = styled.ul`
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+export const PetDataList = styled.table`
+  width: 100%;
   margin-bottom: 12px;
 `;
 
-export const PetDataItem = styled.li`
-  display: block;
+export const PetDataItem = styled.tr`
   margin-bottom: 8px;
   &:last-child {
     margin-bottom: 0;
   }
+`;
+
+export const NameCategory = styled.th`
+  text-align: start;
+  font-family: inherit;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 19.12px;
+  width: 80px;
+`;
+
+export const ValueCategory = styled.th`
+  text-align: start;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16.39px;
+  color: ${props => props.$colorContacts || 'black'};
+  text-decoration-line: ${props => props.$underline || 'none'};
 `;
 
 export const PetComents = styled.p`
