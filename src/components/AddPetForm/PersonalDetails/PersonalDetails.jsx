@@ -1,15 +1,13 @@
 import PropTypes from 'prop-types';
-import { Field } from 'formik';
-import { Error, FormLabel } from '../AddPetForm.styles';
+import { Error, FormLabel, StyledField } from '../AddPetForm.styles';
 import { DetailsWrapper } from './PersonalDetails.styles';
 
-const PersonalDetails = ({ option, handleChange, handleBlur, values }) => {
+const PersonalDetails = ({ option, handleChange, handleBlur, values, touched, errors,isValid }) => {
     return (
         <DetailsWrapper>
             {option !== 'my-pet' && (
-                <>
-                    <FormLabel htmlFor="title">Title of add: </FormLabel>
-                    <Field
+                    <FormLabel htmlFor="title">Title of add: 
+                    <StyledField
                         name="title"
                         placeholder="Type name pet"
                         onChange={handleChange}
@@ -18,12 +16,12 @@ const PersonalDetails = ({ option, handleChange, handleBlur, values }) => {
                         onBlur={handleBlur}
                         value={values.title}
                     />
-                    <Error name="title" component="p" />
-                </>
+                        <Error name="title" component="p" />
+                        </FormLabel>
             )}
             <FormLabel htmlFor="name">
                 Name Pet
-                <Field
+                <StyledField
                     name="name"
                     placeholder="Type name pet"
                     pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -36,7 +34,7 @@ const PersonalDetails = ({ option, handleChange, handleBlur, values }) => {
             </FormLabel>
             <FormLabel htmlFor="birthday">
                 Date of birth
-                <Field
+                <StyledField
                     name="birthday"
                     placeholder="Type date of birth"
                     pattern="^(0?[1-9]|[12]\d|3[01])[\/\-](0?[1-9]|1[012])[\/\-](19|20)\d{2}$"
@@ -49,7 +47,7 @@ const PersonalDetails = ({ option, handleChange, handleBlur, values }) => {
             </FormLabel>
             <FormLabel htmlFor="breed">
                 Breed
-                <Field
+                <StyledField
                     name="breed"
                     placeholder="Type breed"
                     pattern="^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$"
@@ -60,6 +58,9 @@ const PersonalDetails = ({ option, handleChange, handleBlur, values }) => {
                 />
                 <Error name="breed" component="p" />
             </FormLabel>
+            {!isValid && (
+                  <p>Please fill all the fields</p>
+                )}
         </DetailsWrapper>
     );
 };
@@ -68,7 +69,8 @@ PersonalDetails.propTypes = {
   option: PropTypes.string.isRequired,
   handleChange: PropTypes.func.isRequired,
   handleBlur: PropTypes.func.isRequired,
-  values: PropTypes.object.isRequired,
+    values: PropTypes.object.isRequired,
+  touched: PropTypes.object.isRequired, 
 };
 
 export default PersonalDetails;
