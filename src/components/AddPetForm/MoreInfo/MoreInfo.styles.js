@@ -17,4 +17,16 @@ min-height: 79px;
 resize: none;
 
 background: #fff;
-`
+`;
+
+export const ImageLabel = styled.label`
+display: flex;
+align-items: center;
+column-gap: 27px;
+font-weight:  ${props => props.theme.fontWeiths.semi};
+font-size: 14px;
+line-height: 1.3;
+`;
+
+export const MoreInfoTitle = styled.p`
+margin-left: 12px;`

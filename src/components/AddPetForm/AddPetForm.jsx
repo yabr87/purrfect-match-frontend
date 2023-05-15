@@ -8,7 +8,7 @@ import MoreInfo from './MoreInfo';
 
 import Button from 'shared/components/Button';
 import Icon from 'shared/components/Icon/Icon';
-import { ButtonsBox } from './AddPetForm.styles';
+import { ButtonsBox, FormButton } from './AddPetForm.styles';
 import validationSchema from './validationSchema';
 import { convertToISODate } from 'utils/convertToISODate';
 
@@ -97,16 +97,17 @@ const handleCategoryChange = (category) => {
 
             <ButtonsBox>
               {currentStep === 1 && (
-                <Button type="button" w="248" h="48" 
+                <FormButton type="button" w="248" h="48" 
                   onClick={handleCancel}>
+                  <Icon id="arrow-left" />
                   Cancel
-                </Button>
+                </FormButton>
               )}
               {currentStep !== 1 && (
-                <Button type="button" w="248" h="48" onClick={handleGoBack}>
+                <FormButton type="button" w="248" h="48" onClick={handleGoBack}>
                   <Icon id="arrow-left" />
                   Back
-                </Button>
+                </FormButton>
               )}
               {currentStep !== 3 && (
                 <Button
@@ -115,7 +116,7 @@ const handleCategoryChange = (category) => {
                   h="48"
                   shape="solid"
                   onClick={handleNext}
-                  disabled={currentStep === 2 && (!isValid || !touched.name || !touched.birthday || !touched.breed)}
+                  disabled={currentStep === 2 && (!isValid || !touched.name || !touched.birthday)}
                 >
                   Next
                   <Icon id="paw" f="currentColor" s="none" />

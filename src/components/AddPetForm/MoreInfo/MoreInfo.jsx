@@ -2,24 +2,24 @@ import PropTypes from 'prop-types';
 import { Field } from 'formik';
 import ImageUploader from 'shared/components/ImageUploader';
 import { Error, FormLabel, StyledField } from '../AddPetForm.styles';
-import { MoreInfoWrapper, TextField } from './MoreInfo.styles';
+import { ImageLabel, MoreInfoWrapper, TextField } from './MoreInfo.styles';
 
 const MoreInfo = ({ option, handleChange, handleBlur, values }) => {
   return (
     <MoreInfoWrapper>
-      <FormLabel>
-        {option === 'my-pet' ? (
-          <span>Add photo</span>
-        ) : (
+      <ImageLabel>
+        {/* {option === 'my-pet' ? ( */}
+          <p>Add photo</p>
+        {/* ) : (
           <span>Load the pet&#96;s image:</span>
-        )}
+        )} */}
         <ImageUploader
           onChange={handleChange}
           name="photo"
           value={values.photo}
         ></ImageUploader>
         <Error name="photo" component="p" />
-      </FormLabel>
+      </ImageLabel>
       {option !== 'my-pet' && (
         <>
           <p> The Sex: </p>
