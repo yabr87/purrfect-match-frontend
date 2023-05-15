@@ -18,7 +18,7 @@ const validationSchema = (selectedOption, currentStep) => {
       comments: Yup.string().required('Comments is required'),
       sex: Yup.string().required('Sex is required'),
       location: Yup.string().required('Location is required'),
-      price: Yup.number().required('Price is required'),
+      price: Yup.number('Please enter number value').required('Price is required'),
     });
   }
 

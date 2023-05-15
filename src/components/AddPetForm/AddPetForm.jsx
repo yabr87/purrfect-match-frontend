@@ -44,22 +44,13 @@ const AddPetForm = () => {
   const navigate = useNavigate();
   
 
-  const handleSubmit = (values, { resetForm }) => {
-    // Виконати перевірку валідності даних на бекенді і відправити запит
-    try {
-      const newPet = Object.keys(values).reduce((acc, key) => {
+  const handleSubmit = (values, {resetForm}) => {
+    const newPet = Object.keys(values).reduce((acc, key) => {
       return values[key] ? { ...acc, [key]: values[key] } : acc;
     }, {});
     console.log(newPet);
-    setCurrentStep(1);
-      // Отримати результат відправлення запиту
-      // Якщо успішно створено картку
-      navigate('/user'); // Переадресувати на сторінку UserPage
-      resetForm();
-    } catch (error) {
-      // Обробити помилку відправлення запиту
-      // Відобразити повідомлення користувачу про помилку
-    }
+    navigate('/user'); 
+    resetForm();
   };
 
   const handleGoBack = () => {
@@ -87,7 +78,6 @@ const AddPetForm = () => {
     >
       {({ isSubmitting, handleChange, handleBlur, values, errors, isValid }) => (
         <Form>
-        <div>{JSON.stringify(errors)}</div>
           <FormWrapper
             currentStep={currentStep}
             text={formTitles[selectedOption]}
@@ -128,12 +118,12 @@ const AddPetForm = () => {
               )}
               {currentStep !== 3 && (
                 <Button
-                  type="button"
+                  type='button'
                   w="248"
                   h="48"
                   shape="solid"
                   onClick={handleNext}
-                  disabled={currentStep === 2 && !values}
+                  disabled={!isValid && currentStep === 2}
                 >
                   Next
                   <Icon id="paw" f="currentColor" s="none" />
@@ -146,6 +136,7 @@ const AddPetForm = () => {
                   w="248"
                   h="48"
                   shape="solid"
+                  disabled={isSubmitting}
                 >
                   Done
                   <Icon id="paw" f="currentColor" s="none" />

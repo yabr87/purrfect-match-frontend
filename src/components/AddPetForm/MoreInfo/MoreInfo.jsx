@@ -17,7 +17,9 @@ const MoreInfo = ({ option, handleChange, handleBlur, values }) => {
           name="photo"
           value={values.photo}
           field={values.photo}
-        ></ImageUploader>
+              ></ImageUploader>
+              
+        <Error name="photo" component="p" />
       </FormLabel>
       {option !== 'my-pet' && (
         <>
@@ -81,7 +83,9 @@ const MoreInfo = ({ option, handleChange, handleBlur, values }) => {
           onChange={handleChange}
           onBlur={handleBlur}
           value={values.comments}
-        />
+              />
+              
+        <Error name="comments" component="p" />
       </FormLabel>
     </>
   );
