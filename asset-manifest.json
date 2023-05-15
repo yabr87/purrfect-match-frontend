@@ -1,0 +1,30 @@
+{
+  "files": {
+    "main.css": "/purrfect-match-frontend/static/css/main.51076749.css",
+    "main.js": "/purrfect-match-frontend/static/js/main.db51e583.js",
+    "static/js/606.da340158.chunk.js": "/purrfect-match-frontend/static/js/606.da340158.chunk.js",
+    "static/media/pets@2x-tab.png": "/purrfect-match-frontend/static/media/pets@2x-tab.814dae5601e0e6388e03.png",
+    "static/media/pets@2x-desk.png": "/purrfect-match-frontend/static/media/pets@2x-desk.620fc5aa79877c43434f.png",
+    "static/media/pets@1x-tab.png": "/purrfect-match-frontend/static/media/pets@1x-tab.cb4e927b1d57911a554d.png",
+    "static/media/pets@1x-desk.png": "/purrfect-match-frontend/static/media/pets@1x-desk.d499a78473902da5d823.png",
+    "static/media/pets@2x-mob.png": "/purrfect-match-frontend/static/media/pets@2x-mob.6c31fea90bcb192d59d3.png",
+    "static/media/pets@1x-mob.png": "/purrfect-match-frontend/static/media/pets@1x-mob.f1d9cca4f5e947daa014.png",
+    "static/media/404-desktop@2x-min.png": "/purrfect-match-frontend/static/media/404-desktop@2x-min.6e439be7e03bcd9d0f84.png",
+    "static/media/404-tablet@2x-min.png": "/purrfect-match-frontend/static/media/404-tablet@2x-min.5fe2128aa9ddf8809406.png",
+    "static/media/icons.svg": "/purrfect-match-frontend/static/media/icons.6f0a7585136beb9066d8b5e025fea200.svg",
+    "static/media/404-desktop-min.png": "/purrfect-match-frontend/static/media/404-desktop-min.ac0f2590a2ca78092d74.png",
+    "static/media/404-tablet-min.png": "/purrfect-match-frontend/static/media/404-tablet-min.276408d52c4657810f1f.png",
+    "static/media/404-mobile@2x-min.png": "/purrfect-match-frontend/static/media/404-mobile@2x-min.9c40d0badfe62fa9f796.png",
+    "static/media/bg-tablet@2x-min.png": "/purrfect-match-frontend/static/media/bg-tablet@2x-min.1c957ddf6b859193c85d.png",
+    "static/media/bg-desktop@2x-min.png": "/purrfect-match-frontend/static/media/bg-desktop@2x-min.1954466d442f313190b4.png",
+    "static/media/bg-tablet-min.png": "/purrfect-match-frontend/static/media/bg-tablet-min.1f23f50a8de903ac9b8e.png",
+    "index.html": "/purrfect-match-frontend/index.html",
+    "main.51076749.css.map": "/purrfect-match-frontend/static/css/main.51076749.css.map",
+    "main.db51e583.js.map": "/purrfect-match-frontend/static/js/main.db51e583.js.map",
+    "606.da340158.chunk.js.map": "/purrfect-match-frontend/static/js/606.da340158.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.51076749.css",
+    "static/js/main.db51e583.js"
+  ]
+}
