@@ -13,6 +13,7 @@ import AddPetPage from 'pages/AddPetPage';
 import ErrorPage from 'pages/ErrorPage';
 import RegisterPage from 'pages/RegisterPage';
 import LoginPage from 'pages/LoginPage';
+import UserPage from 'pages/UserPage';
 import NewsPage from 'pages/NewsPage';
 import OurFriendsPage from 'pages/OurFriendsPage';
 
@@ -36,10 +37,34 @@ const App = () => {
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<MainPage />} />
           <Route path="/notices/:categoryName" element={<NoticesPage />} />
-          <Route path="/add-pet" element={<PrivateRoute redirectTo='/login' component={<AddPetPage />} />} />
+          <Route
+            path="/add-pet"
+            element={
+              <PrivateRoute redirectTo="/login" component={<AddPetPage />} />
+            }
+          />
           <Route path="/notices" element={<Navigate to="/notices/sell" />} />
-          <Route path="/register"  element={<RestrictedRoute redirectTo='/user' component={<RegisterPage />} />} />
-          <Route path="/login" element={<RestrictedRoute redirectTo='/user' component={<LoginPage />} />} />
+          <Route
+            path="/register"
+            element={
+              <RestrictedRoute
+                redirectTo="/user"
+                component={<RegisterPage />}
+              />
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <RestrictedRoute redirectTo="/user" component={<LoginPage />} />
+            }
+          />
+          <Route
+            path="/user"
+            element={
+              <PrivateRoute redirectTo="/login" component={<UserPage />} />
+            }
+          />
           <Route path="/news" element={<NewsPage />} />
           <Route path="/friends" element={<OurFriendsPage />} />
           <Route path="*" element={<ErrorPage />} />
