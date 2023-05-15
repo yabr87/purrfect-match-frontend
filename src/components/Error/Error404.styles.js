@@ -73,13 +73,12 @@ export const Link = styled(NavLink)`
 
   color: #fef9f9;
   background-color: #54adff;
-  transition: color 250ms ease, background 250ms ease;
+  transition: color 250ms ease, background-color 250ms ease;
 
   &:hover,
   &:focus {
     background-color: #fef9f9;
     color: #54adff;
-    outline: none;
   }
   @media screen and (min-width: 768px) {
     margin-top: 70px;

@@ -1,11 +1,12 @@
 import PropTypes from 'prop-types';
 import { Field } from 'formik';
 import ImageUploader from 'shared/components/ImageUploader';
-import { Error, FormLabel } from '../AddPetForm.styles';
+import { Error, FormLabel, StyledField } from '../AddPetForm.styles';
+import { MoreInfoWrapper, TextField } from './MoreInfo.styles';
 
 const MoreInfo = ({ option, handleChange, handleBlur, values }) => {
   return (
-    <>
+    <MoreInfoWrapper>
       <FormLabel>
         {option === 'my-pet' ? (
           <span>Add photo</span>
@@ -16,7 +17,6 @@ const MoreInfo = ({ option, handleChange, handleBlur, values }) => {
           onChange={handleChange}
           name="photo"
           value={values.photo}
-          field={values.photo}
               ></ImageUploader>
               
         <Error name="photo" component="p" />
@@ -49,7 +49,7 @@ const MoreInfo = ({ option, handleChange, handleBlur, values }) => {
           </div>
           <FormLabel htmlFor="location">
             Location
-            <Field
+            <StyledField
               name="location"
               placeholder="Type of location"
               onChange={handleChange}
@@ -61,7 +61,7 @@ const MoreInfo = ({ option, handleChange, handleBlur, values }) => {
           {option === 'sell' && (
             <FormLabel htmlFor="price">
               Price
-              <Field
+              <StyledField
                 name="price"
                 placeholder="Type of price"
                 onChange={handleChange}
@@ -76,7 +76,7 @@ const MoreInfo = ({ option, handleChange, handleBlur, values }) => {
 
       <FormLabel htmlFor="comments">
         Comments
-        <Field
+        <TextField
           as="textarea"
           name="comments"
           placeholder="Type breed"
@@ -87,7 +87,7 @@ const MoreInfo = ({ option, handleChange, handleBlur, values }) => {
               
         <Error name="comments" component="p" />
       </FormLabel>
-    </>
+    </MoreInfoWrapper>
   );
 };
 

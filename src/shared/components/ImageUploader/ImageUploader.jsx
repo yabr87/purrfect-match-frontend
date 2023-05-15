@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useFormikContext } from 'formik';
 import {  FileInput, ImageContainer } from './imageUploader.styles';
 
-const ImageUploader = ({ field }) => {
+const ImageUploader = () => {
   const [file, setFile] = useState('');
   const { setFieldValue } = useFormikContext();
 
@@ -20,7 +20,7 @@ const ImageUploader = ({ field }) => {
   return (
     <ImageContainer>
       <FileInput type="file" onChange={handleFileChange} 
-                accept="image/png, image/gif, image/jpeg"
+                accept="image/png, image/jpeg"
                 multiple={false}/>
       {file && (
         <div>

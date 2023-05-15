@@ -10,6 +10,7 @@ import Button from 'shared/components/Button';
 import Icon from 'shared/components/Icon/Icon';
 import { ButtonsBox } from './AddPetForm.styles';
 import validationSchema from './validationSchema';
+import { convertToISODate } from 'utils/convertToISODate';
 
 const initialState = {
   category: "",
@@ -48,6 +49,8 @@ const AddPetForm = () => {
     const newPet = Object.keys(values).reduce((acc, key) => {
       return values[key] ? { ...acc, [key]: values[key] } : acc;
     }, {});
+
+    newPet.birthday = convertToISODate(newPet.birthday);
     console.log(newPet);
     navigate('/user'); 
     resetForm();
@@ -76,7 +79,7 @@ const AddPetForm = () => {
       onSubmit={handleSubmit}
       validationSchema={validationSchema(selectedOption, currentStep)}
     >
-      {({ isSubmitting, handleChange, handleBlur, values, errors, isValid }) => (
+      {({ isSubmitting, handleChange, handleBlur, values, errors, isValid, touched }) => (
         <Form>
           <FormWrapper
             currentStep={currentStep}
@@ -94,7 +97,11 @@ const AddPetForm = () => {
               option={selectedOption}
               handleChange={handleChange}
               handleBlur={handleBlur}
-              values={values} />}
+              values={values} 
+              touched={touched} 
+              errors={errors}
+              isValid={isValid}
+              />}
             
             {currentStep === 3 && <MoreInfo
               option={selectedOption}
@@ -123,7 +130,7 @@ const AddPetForm = () => {
                   h="48"
                   shape="solid"
                   onClick={handleNext}
-                  disabled={!isValid && currentStep === 2}
+                  disabled={currentStep === 2 && (!isValid || !touched.name || !touched.birthday || !touched.breed)}
                 >
                   Next
                   <Icon id="paw" f="currentColor" s="none" />

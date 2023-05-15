@@ -1,4 +1,4 @@
-import { ErrorMessage } from 'formik';
+import { ErrorMessage, Field } from 'formik';
 import styled from 'styled-components';
 
 export const ButtonsBox = styled.div`
@@ -28,4 +28,17 @@ line-height: 1.3;
 `;
 
 export const Error = styled(ErrorMessage)`
-color: red;`
+margin-top: 8px;
+font-size: 14px;
+color: red;`;
+
+export const StyledField = styled(Field)`
+display: block;
+border: 1px solid #54ADFF;
+border-radius: 40px;
+padding: 12px 16px;
+margin-top: 8px;
+
+font-size: 16px;
+
+background: #fff;`
