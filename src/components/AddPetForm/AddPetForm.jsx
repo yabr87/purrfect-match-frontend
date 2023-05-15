@@ -44,13 +44,22 @@ const AddPetForm = () => {
   const navigate = useNavigate();
   
 
-  const handleSubmit = (values, {resetForm}) => {
-    const newPet = Object.keys(values).reduce((acc, key) => {
+  const handleSubmit = (values, { resetForm }) => {
+    // Виконати перевірку валідності даних на бекенді і відправити запит
+    try {
+      const newPet = Object.keys(values).reduce((acc, key) => {
       return values[key] ? { ...acc, [key]: values[key] } : acc;
     }, {});
     console.log(newPet);
     setCurrentStep(1);
-    resetForm();
+      // Отримати результат відправлення запиту
+      // Якщо успішно створено картку
+      navigate('/user'); // Переадресувати на сторінку UserPage
+      resetForm();
+    } catch (error) {
+      // Обробити помилку відправлення запиту
+      // Відобразити повідомлення користувачу про помилку
+    }
   };
 
   const handleGoBack = () => {

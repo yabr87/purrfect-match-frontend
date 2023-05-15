@@ -32,7 +32,6 @@ const MoreInfo = ({ option, handleChange, handleBlur, values }) => {
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
-              <Error name="sex" component="p" />
             </label>
             <label htmlFor="radio">
               Female
