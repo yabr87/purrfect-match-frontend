@@ -25,13 +25,6 @@ const initialState = {
   price: "",
 }
 
-const formTitles = {
-  'my-pet': 'Add pet',
-  'sell': 'Add pet for sale',
-  'lost-found': 'Add lost pet',
-  'for-free': 'Add pet',
-};
-
 const AddPetForm = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const navigate = useNavigate();
