@@ -14,6 +14,8 @@ import ErrorPage from '../../pages/ErrorPage';
 import RegisterPage from 'pages/RegisterPage';
 import LoginPage from 'pages/LoginPage';
 import NewsPage from 'pages/NewsPage';
+import RestrictedRoute from 'routes/RestrictedRoute';
+import PrivateRoute from 'routes/PrivateRoute';
 
 // const RegisterPage = lazy(() => import('pages/RegisterPage'));
 // const LoginPage = lazy(() => import('pages/LoginPage'));
@@ -31,10 +33,10 @@ const App = () => {
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<MainPage />} />
           <Route path="/notices/:categoryName" element={<NoticesPage />} />
-          <Route path="/add-pet" element={<AddPetPage />} />
+          <Route path="/add-pet" element={<PrivateRoute redirectTo='/login' component={<AddPetPage />} />} />
           <Route path="/notices" element={<Navigate to="/notices/sell" />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register"  element={<RestrictedRoute redirectTo='/user' component={<RegisterPage />} />} />
+          <Route path="/login" element={<RestrictedRoute redirectTo='/user' component={<LoginPage />} />} />
           <Route path="/news" element={<NewsPage />} />
           <Route path="*" element={<ErrorPage />} />
         </Route>
