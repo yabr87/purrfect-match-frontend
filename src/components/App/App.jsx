@@ -33,10 +33,28 @@ const App = () => {
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<MainPage />} />
           <Route path="/notices/:categoryName" element={<NoticesPage />} />
-          <Route path="/add-pet" element={<PrivateRoute redirectTo='/login' component={<AddPetPage />} />} />
+          <Route
+            path="/add-pet"
+            element={
+              <PrivateRoute redirectTo="/login" component={<AddPetPage />} />
+            }
+          />
           <Route path="/notices" element={<Navigate to="/notices/sell" />} />
-          <Route path="/register"  element={<RestrictedRoute redirectTo='/user' component={<RegisterPage />} />} />
-          <Route path="/login" element={<RestrictedRoute redirectTo='/user' component={<LoginPage />} />} />
+          <Route
+            path="/register"
+            element={
+              <RestrictedRoute
+                redirectTo="/user"
+                component={<RegisterPage />}
+              />
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <RestrictedRoute redirectTo="/user" component={<LoginPage />} />
+            }
+          />
           <Route path="/news" element={<NewsPage />} />
           <Route path="*" element={<ErrorPage />} />
         </Route>

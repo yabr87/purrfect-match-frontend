@@ -42,16 +42,43 @@ export const theme = {
     semiBold: '600',
     bold: '700',
   },
+  titles: {
+    h1Mobile: {
+      fontFamily: 'Manrope, san-serif',
+      fontStyle: 'normal',
+      fontWeight: '700',
+      fontSize: '24px',
+      lineHeight: '1.38',
+      textAlign: 'center',
+    },
+    h1Desk: {
+      fontFamily: 'Manrope, san-serif',
+      fontStyle: 'normal',
+      fontWeight: '700',
+      fontSize: '48px',
+      lineHeight: '1.38',
+    },
+    mainTitleMobile: {
+      fontFamily: 'Manrope, san-serif',
+      fontStyle: 'normal',
+      fontWeight: '700',
+      fontSize: '32px',
+      lineHeight: '1.38',
+    },
+    mainTitleDesk: {
+      fontFamily: 'Manrope, san-serif',
+      fontStyle: 'normal',
+      fontWeight: '800',
+      fontSize: '68px',
+      lineHeight: '13.0',
+    },
+  },
   radius: {
     normal: '40px',
     small: '16px',
     round: '50%',
   },
-  mediaPoints: {
-    mobile: '480px',
-    tablet: '768px',
-    desktop: '1280px',
-  },
+  transition: 'color 300ms, cubic-bezier(0.4, 0, 0.2, 1)',
   media: {
     phone: 'screen and (min-width: 480)',
     tab: 'screen and (min-width: 768px)',
@@ -73,5 +100,5 @@ export const theme = {
   //         font-weight: 500;
   //         font-size: "28px";
   //         line-height: 1.35;
-  //       }`,
+  //
 };

@@ -11,6 +11,7 @@ import {
   ImageCategory,
   PhotoDescription,
   BelowItemContainer,
+  AddToFavoriteBtn,
 } from './NoticeCategoryItem.styles';
 
 import Icon from 'shared/components/Icon/Icon';

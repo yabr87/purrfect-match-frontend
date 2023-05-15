@@ -41,7 +41,8 @@ const validationSchema = (selectedOption, currentStep) => {
   if (currentStep === 3) {
     schema = schema.shape({
       photo: Yup.string().required('To finish form, please upload foto'),
-      comments: Yup.string().required('Comments is required')
+      comments: Yup.string()
+        .required('Comments is required')
         .min(10, 'Comments must be at least 10 characters')
         .max(200, 'Comments must not exceed 200 characters'),
       sex: Yup.string().required('Sex is required').oneOf(['male', 'female']),

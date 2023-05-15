@@ -8,11 +8,15 @@ import NoticesCategoriesList from './NoticesCategoriesList/NoticesCategoriesList
 
 import Button from 'shared/components/Button';
 import CircleButton from 'shared/components/CircleButton/CircleButton';
+import CircleButton from 'shared/components/CircleButton/CircleButton';
 import Container from 'shared/components/Container';
+import Icon from 'shared/components/Icon/Icon';
+import { useMedia } from 'shared/hooks/useMedia';
 import Icon from 'shared/components/Icon/Icon';
 import { useMedia } from 'shared/hooks/useMedia';
 
 function NoticesPage() {
+  const isUpToWidth480 = useMedia(['(max-width: 480px)'], [true], false);
   const isUpToWidth480 = useMedia(['(max-width: 480px)'], [true], false);
 
   const { categoryName } = useParams();
