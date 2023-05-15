@@ -1,6 +1,6 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Formik, Form } from 'formik';
-// import validationSchema from './validationSchema';
 import FormWrapper from './FormWrapper';
 import ChooseOptionStep from './ChooseOptionStep';
 import PersonalDetails from './PersonalDetails';
@@ -12,6 +12,7 @@ import { ButtonsBox } from './AddPetForm.styles';
 import validationSchema from './validationSchema';
 
 const initialState = {
+  category: "",
   title: "",
   name: "",
   birthday: "",
@@ -23,7 +24,6 @@ const initialState = {
   price: "",
 }
 
-//це мабуть варто винести в окремі файли
 const options = [
   { label: 'my-pet', value: 'my-pet' },
   { label: 'sell', value: 'sell' },
@@ -41,13 +41,16 @@ const formTitles = {
 const AddPetForm = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [selectedOption, setSelectedOption] = useState('sell');
+  const navigate = useNavigate();
+  
 
-  const handleSubmit = (values, actions) => {
+  const handleSubmit = (values, {resetForm}) => {
     const newPet = Object.keys(values).reduce((acc, key) => {
       return values[key] ? { ...acc, [key]: values[key] } : acc;
     }, {});
-    actions.setSubmitting(false);
     console.log(newPet);
+    setCurrentStep(1);
+    resetForm();
   };
 
   const handleGoBack = () => {
@@ -55,11 +58,15 @@ const AddPetForm = () => {
   };
 
   const handleNext = () => {
-    setCurrentStep(step => step + 1);
-  };
+      setCurrentStep((step) => step + 1);
+    }
 
   const handleOptionSelect = option => {
     setSelectedOption(option);
+  };
+
+   const handleCancel = () => {
+    navigate(-1); 
   };
 
   
@@ -67,18 +74,18 @@ const AddPetForm = () => {
     <Formik
       initialValues={initialState}
       onSubmit={handleSubmit}
-      validationSchema={validationSchema}
-      validateOnChange={true}
+      validationSchema={validationSchema(selectedOption, currentStep)}
     >
-      {({ isSubmitting, handleChange, handleBlur, values, errors }) => (
+      {({ isSubmitting, handleChange, handleBlur, values, errors, isValid }) => (
         <Form>
-          <div>{JSON.stringify(errors)}</div>
+        <div>{JSON.stringify(errors)}</div>
           <FormWrapper
             currentStep={currentStep}
             text={formTitles[selectedOption]}
           >
             {currentStep === 1 && (
               <ChooseOptionStep
+                name="category"
                 options={options}
                 onSelect={handleOptionSelect}
                 value={selectedOption}
@@ -99,7 +106,8 @@ const AddPetForm = () => {
 
             <ButtonsBox>
               {currentStep === 1 && (
-                <Button type="button" w="248" h="48">
+                <Button type="button" w="248" h="48" 
+                  onClick={handleCancel}>
                   Cancel
                 </Button>
               )}
@@ -116,7 +124,7 @@ const AddPetForm = () => {
                   h="48"
                   shape="solid"
                   onClick={handleNext}
-                  disabled={isSubmitting}
+                  disabled={currentStep === 2 && !values}
                 >
                   Next
                   <Icon id="paw" f="currentColor" s="none" />
@@ -129,7 +137,6 @@ const AddPetForm = () => {
                   w="248"
                   h="48"
                   shape="solid"
-                  disabled={isSubmitting}
                 >
                   Done
                   <Icon id="paw" f="currentColor" s="none" />

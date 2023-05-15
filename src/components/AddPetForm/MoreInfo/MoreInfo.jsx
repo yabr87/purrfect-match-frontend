@@ -1,10 +1,9 @@
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 import { Field } from 'formik';
 import ImageUploader from 'shared/components/ImageUploader';
-import { FormLabel } from '../AddPetForm.styles';
+import { Error, FormLabel } from '../AddPetForm.styles';
 
-const MoreInfo = ({ option, handleChange, handleBlur, values  }) => {
-  
+const MoreInfo = ({ option, handleChange, handleBlur, values }) => {
   return (
     <>
       <FormLabel>
@@ -16,8 +15,8 @@ const MoreInfo = ({ option, handleChange, handleBlur, values  }) => {
         <ImageUploader
           onChange={handleChange}
           name="photo"
-                  value={values.photo}
-                  field={values.photo}
+          value={values.photo}
+          field={values.photo}
         ></ImageUploader>
       </FormLabel>
       {option !== 'my-pet' && (
@@ -33,6 +32,7 @@ const MoreInfo = ({ option, handleChange, handleBlur, values  }) => {
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
+              <Error name="sex" component="p" />
             </label>
             <label htmlFor="radio">
               Female
@@ -43,6 +43,7 @@ const MoreInfo = ({ option, handleChange, handleBlur, values  }) => {
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
+              <Error name="sex" component="p" />
             </label>
           </div>
           <FormLabel htmlFor="location">
@@ -54,6 +55,7 @@ const MoreInfo = ({ option, handleChange, handleBlur, values  }) => {
               onBlur={handleBlur}
               value={values.location}
             />
+            <Error name="location" component="p" />
           </FormLabel>
           {option === 'sell' && (
             <FormLabel htmlFor="price">
@@ -65,6 +67,7 @@ const MoreInfo = ({ option, handleChange, handleBlur, values  }) => {
                 onBlur={handleBlur}
                 value={values.price}
               />
+              <Error name="price" component="p" />
             </FormLabel>
           )}
         </>
