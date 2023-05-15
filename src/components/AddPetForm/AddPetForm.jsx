@@ -13,7 +13,7 @@ import validationSchema from './validationSchema';
 import { convertToISODate } from 'utils/convertToISODate';
 
 const initialState = {
-  category: "",
+  category: "sell",
   title: "",
   name: "",
   birthday: "",
@@ -25,13 +25,6 @@ const initialState = {
   price: "",
 }
 
-const options = [
-  { label: 'my-pet', value: 'my-pet' },
-  { label: 'sell', value: 'sell' },
-  { label: 'lost-found', value: 'lost-found' },
-  { label: 'for-free', value: 'for-free' },
-];
-
 const formTitles = {
   'my-pet': 'Add pet',
   'sell': 'Add pet for sale',
@@ -41,7 +34,6 @@ const formTitles = {
 
 const AddPetForm = () => {
   const [currentStep, setCurrentStep] = useState(1);
-  const [selectedOption, setSelectedOption] = useState('sell');
   const navigate = useNavigate();
   
 
@@ -64,10 +56,6 @@ const AddPetForm = () => {
       setCurrentStep((step) => step + 1);
     }
 
-  const handleOptionSelect = option => {
-    setSelectedOption(option);
-  };
-
    const handleCancel = () => {
     navigate(-1); 
   };
@@ -77,24 +65,23 @@ const AddPetForm = () => {
     <Formik
       initialValues={initialState}
       onSubmit={handleSubmit}
-      validationSchema={validationSchema(selectedOption, currentStep)}
+      validationSchema={validationSchema(currentStep)}
     >
       {({ isSubmitting, handleChange, handleBlur, values, errors, isValid, touched }) => (
         <Form>
           <FormWrapper
             currentStep={currentStep}
-            text={formTitles[selectedOption]}
+            text={values.category === 'lost-found' ? 'Add lost pet': values.category === 'sell' ? 'Add pet for sale': 'Add pet'}
           >
             {currentStep === 1 && (
               <ChooseOptionStep
-                name="category"
-                options={options}
-                onSelect={handleOptionSelect}
-                value={selectedOption}
+                handleChange={handleChange}
+                handleBlur={handleBlur}
+                values={values} 
               />
             )}
             {currentStep === 2 && <PersonalDetails
-              option={selectedOption}
+              option={values.category}
               handleChange={handleChange}
               handleBlur={handleBlur}
               values={values} 
@@ -104,7 +91,7 @@ const AddPetForm = () => {
               />}
             
             {currentStep === 3 && <MoreInfo
-              option={selectedOption}
+              option={values.category}
               handleChange={handleChange}
               handleBlur={handleBlur}
               values={values}
