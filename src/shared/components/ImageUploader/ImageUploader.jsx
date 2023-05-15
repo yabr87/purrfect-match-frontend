@@ -14,7 +14,7 @@ const ImageUploader = () => {
     } else {
       setFile('');
       setFieldValue('photo', '');
-      alert('Please select a file smaller than 3 MB.');
+      alert('Please select a file smaller than 3 MB.'); //можно заменить модальным окном
     }
   };
 

@@ -29,7 +29,7 @@ const { isLoggedIn } = useAuth();
   setIsMobileNavOpen(false);
   };
   
-  const userBar = isLoggedIn ? <UserNav /> : <AuthNav />;
+  const userBar = isLoggedIn ? <UserNav handleLinkClick= {handleLinkClick}/> : <AuthNav handleLinkClick= {handleLinkClick}/>;
   const nav = useMemo(() => <Nav handleLinkClick= {handleLinkClick} />, []);
 
   const isDesktop = screenSize === 'desktop';
