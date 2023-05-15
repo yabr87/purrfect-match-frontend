@@ -6,6 +6,7 @@ const MainPage = () => {
     <Container>
       <Title>Take good care of your small pets</Title>
       <Pictures />
+      <Pictures />
     </Container>
   );
 };
