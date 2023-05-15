@@ -110,7 +110,11 @@ const OurFriends = ({ friends }) => {
 
       return (
         <Friend key={id}>
-          <FriendTitle href={url} rel="noreferrer noopener nofollow">
+          <FriendTitle
+            href={url}
+            target="_blank"
+            rel="noreferrer noopener nofollow"
+          >
             {title}
           </FriendTitle>
           <FriendBlock>
@@ -139,7 +143,11 @@ const OurFriends = ({ friends }) => {
               <InfoItem>
                 <InfoItemTitle>Adress:</InfoItemTitle>
                 <InfoItemText>
-                  <InfoItemAddress href={addressUrl}>
+                  <InfoItemAddress
+                    href={addressUrl}
+                    target="_blank"
+                    rel="noreferrer noopener nofollow"
+                  >
                     {address ? address : 'on the website'}
                   </InfoItemAddress>
                 </InfoItemText>
@@ -148,7 +156,11 @@ const OurFriends = ({ friends }) => {
                 <InfoItemTitle>Email: </InfoItemTitle>
                 <InfoItemText>
                   {email ? (
-                    <InfoItemEmail href={`mailto:${email}`}>
+                    <InfoItemEmail
+                      href={`mailto:${email}`}
+                      target="_blank"
+                      rel="noreferrer noopener nofollow"
+                    >
                       {email}
                     </InfoItemEmail>
                   ) : (
@@ -160,7 +172,13 @@ const OurFriends = ({ friends }) => {
                 <InfoItemTitle>Phone:</InfoItemTitle>
                 <InfoItemText>
                   {phone ? (
-                    <InfoItemPhone href={`tel:${phone}`}>{phone}</InfoItemPhone>
+                    <InfoItemPhone
+                      href={`tel:${phone}`}
+                      target="_blank"
+                      rel="noreferrer noopener nofollow"
+                    >
+                      {phone}
+                    </InfoItemPhone>
                   ) : (
                     'on the website'
                   )}
