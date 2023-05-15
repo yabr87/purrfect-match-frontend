@@ -1,4 +1,7 @@
 import React, { useState, useCallback } from 'react';
+import useAuth from 'shared/hooks/useAuth';
+// import ModalApproveAction from 'components/ModalApproveAction/ModalApproveAction';
+
 import {
   Card,
   CardImage,
@@ -18,27 +21,27 @@ import ModalNoticeTest from '../NoticeModalTest/NoticeModalTest';
 // import PetCard from 'components/ModalApproveAction/PetCard';
 
 const AddToFavorite = () => {
+  const { isLoggedIn } = useAuth();
   const [fill, setFill] = useState('transparent');
-  const isAuthenticated = true;
 
   const handleisAuthenticated = useCallback(() => {
-    if (!isAuthenticated) {
+    if (!isLoggedIn) {
       alert('Please sign in to add to favorites');
       return;
     }
-  }, [isAuthenticated]);
+  }, [isLoggedIn]);
 
   const handleMouseOver = useCallback(() => {
-    if (isAuthenticated) {
+    if (isLoggedIn) {
       setFill('#54adff');
     }
-  }, [isAuthenticated]);
+  }, [isLoggedIn]);
 
   const handleMouseOut = useCallback(() => {
-    if (isAuthenticated) {
+    if (isLoggedIn) {
       setFill('transparent');
     }
-  }, [isAuthenticated]);
+  }, [isLoggedIn]);
 
   return (
     <Button
@@ -91,6 +94,9 @@ const LearnMore = ({ onButtonClick }) => {
 };
 
 const NoticeCategoryItem = ({ notice }) => {
+  const [isTrashHoveredOrFocused, setIsTrashHoveredOrFocused] = useState(false);
+  const [trashIconColor, setTrashIconColor] = useState('#54ADFF');
+  const { isLoggedIn, user } = useAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
   // const [idPet, setIdPet] = useState(null);
 
@@ -98,6 +104,17 @@ const NoticeCategoryItem = ({ notice }) => {
   //   setIsModalOpen(true);
   //   // setIdPet(id);
   // };
+
+  const handleHover = useCallback(() => {
+    setIsTrashHoveredOrFocused(true);
+    setTrashIconColor('#FFFFFF');
+  }, []);
+
+  const handleBlur = useCallback(() => {
+    setIsTrashHoveredOrFocused(false);
+    setTrashIconColor('#54ADFF');
+  }, []);
+
   return (
     <Card>
       <AddToFavorite />
@@ -137,6 +154,32 @@ const NoticeCategoryItem = ({ notice }) => {
           <PetCard close={() => setIsModalOpen(false)} />
         </ModalApproveAction>
       )} */}
+      {isLoggedIn && user.userId === notice.userId && (
+        <Button
+          style={{
+            zIndex: 999,
+            position: 'absolute',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            width: 40,
+            height: 40,
+            right: 12,
+            top: 68,
+            background: isTrashHoveredOrFocused ? '#54adff' : '#cce4fb',
+            borderRadius: '50%',
+            border: 'none',
+            outline: 'none',
+          }}
+          onMouseEnter={handleHover}
+          onMouseLeave={handleBlur}
+          onFocus={handleHover}
+          onBlur={handleBlur}
+          onClick={() => setIsModalOpen(true)}
+        >
+          <Icon id="trash" h="22" w="22" s={trashIconColor} strokeWidth="1.5" />
+        </Button>
+      )}
     </Card>
   );
 };

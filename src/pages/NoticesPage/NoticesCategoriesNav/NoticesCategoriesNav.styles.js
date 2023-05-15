@@ -35,8 +35,7 @@ export const StyledNavLink = styled(NavLink)`
   letter-spacing: 0.04em;
   color: #54adff;
 
-  &:hover,
-  &:focus {
+  &.active {
     color: #fef9f9;
     background: #54adff;
   }

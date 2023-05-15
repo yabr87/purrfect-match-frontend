@@ -3,8 +3,8 @@ import { ErrorContainer, Title, Image, Link } from './Error404.styles';
 import Icon from '../../shared/components/Icon/Icon';
 import imageMobile from '../../images/error/404-mobile-min.png';
 import imageMobile2x from '../../images/error/404-mobile@2x-min.png';
-import imageTablet from '../../images/error/404-tablet@2x-min.png';
-import imageTablet2x from '../../images/error/404-tablet-min.png';
+import imageTablet from '../../images/error/404-tablet-min.png';
+import imageTablet2x from '../../images/error/404-tablet@2x-min.png';
 import imageDesktop from '../../images/error/404-desktop-min.png';
 import imageDesktop2x from '../../images/error/404-desktop@2x-min.png';
 

@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+
 import { ErrorMessage, Formik } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
@@ -19,6 +21,9 @@ import Icon from 'shared/components/Icon/Icon';
 
 import { login } from 'redux/auth/authOperations';
 
+import { useNavigate } from 'react-router-dom';
+import useAuth from 'shared/hooks/useAuth';
+
 const validateShecma = Yup.object().shape({
   email: Yup.string().email('Invalid email address').required('Required'),
   password: Yup.string()
@@ -31,6 +36,15 @@ const validateShecma = Yup.object().shape({
     .required('Required'),
 });
 const LoginForm = () => {
+  const navigate = useNavigate();
+  const { isLoggedIn } = useAuth();
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate('/notices/sell');
+    }
+  }, [isLoggedIn, navigate]);
+
   const dispatch = useDispatch();
   const validateEmail = value => {
     let error;
