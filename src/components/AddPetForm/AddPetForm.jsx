@@ -10,6 +10,7 @@ import Button from 'shared/components/Button';
 import Icon from 'shared/components/Icon/Icon';
 import { ButtonsBox } from './AddPetForm.styles';
 import validationSchema from './validationSchema';
+import { convertToISODate } from 'utils/convertToISODate';
 
 const initialState = {
   category: "",
@@ -48,6 +49,8 @@ const AddPetForm = () => {
     const newPet = Object.keys(values).reduce((acc, key) => {
       return values[key] ? { ...acc, [key]: values[key] } : acc;
     }, {});
+
+    newPet.birthday = convertToISODate(newPet.birthday);
     console.log(newPet);
     navigate('/user'); 
     resetForm();

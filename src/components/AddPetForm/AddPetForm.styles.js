@@ -28,6 +28,8 @@ line-height: 1.3;
 `;
 
 export const Error = styled(ErrorMessage)`
+margin-top: 8px;
+font-size: 14px;
 color: red;`;
 
 export const StyledField = styled(Field)`
@@ -36,5 +38,7 @@ border: 1px solid #54ADFF;
 border-radius: 40px;
 padding: 12px 16px;
 margin-top: 8px;
+
+font-size: 16px;
 
 background: #fff;`

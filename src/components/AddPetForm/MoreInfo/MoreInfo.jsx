@@ -17,7 +17,6 @@ const MoreInfo = ({ option, handleChange, handleBlur, values }) => {
           onChange={handleChange}
           name="photo"
           value={values.photo}
-          field={values.photo}
               ></ImageUploader>
               
         <Error name="photo" component="p" />
