@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const Item = styled.li`
   position: relative;
-  // height: 578px;
   max-width: 336px;
   border-radius: 20px;
   cursor: pointer;
@@ -12,7 +11,7 @@ export const Item = styled.li`
   transition: scale 250ms ease;
 
   &:hover {
-    scale: 1.05;
+    scale: 1.03;
     transition: scale 250ms ease;
   }
 
@@ -85,10 +84,16 @@ export const Bottom = styled.div`
 export const Link = styled.a`
   color: ${({ theme }) => theme.colors.link};
   outline: none;
-  transition: color 250ms ease;
+  transition: border-bottom 250ms ease;
 
   &:hover,
   &:focus {
-    color: ${({ theme }) => theme.colors.yellow};
+    border-bottom: 1px solid currentColor;
   }
 `;
+
+// a:hover {
+//   border-bottom: 1px solid black;
+//  }
+
+// text-decoration: underline;
