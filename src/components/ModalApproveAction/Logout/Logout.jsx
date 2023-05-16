@@ -1,4 +1,3 @@
-
 import Button from 'shared/components/Button';
 import { Title, ContainerView, ButtonWrap } from './Logout.styles';
 
@@ -11,7 +10,7 @@ const Logout = ({ close, approve }) => {
       <ButtonWrap>
         <Button
           type="button"
-          onBtnClick={close}
+          onClick={close}
           w="129"
           h="40"
           style={{
@@ -23,7 +22,7 @@ const Logout = ({ close, approve }) => {
         </Button>
         <Button
           type="button"
-          onBtnClick={approve}
+          onClick={approve}
           w="129"
           h="40"
           shape="solid"
