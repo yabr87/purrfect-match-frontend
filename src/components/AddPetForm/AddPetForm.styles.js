@@ -17,7 +17,8 @@ export const FormTitle = styled.p`
     margin: 0;
     text-align: ${props =>
       props.category !== 'my-pet' && props.currentStep === 3 && 'center'};
-  }`;
+  }
+`;
 
 export const FormLabel = styled.label`
   display: flex;
