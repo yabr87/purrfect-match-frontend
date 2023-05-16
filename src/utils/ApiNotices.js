@@ -5,8 +5,13 @@ const noticesInstance = axios.create({
 });
 
 export const getNotices = async params => {
-  const result = await noticesInstance.get('/api/notices', { params });
-  return result;
+  try {
+    const result = await noticesInstance.get('/api/notices', { params });
+    return result;
+  } catch (error) {
+    console.error('Failed to update notice', error);
+    throw error;
+  }
 };
 
 export const addNotice = async params => {
