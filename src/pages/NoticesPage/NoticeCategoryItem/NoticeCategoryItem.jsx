@@ -2,6 +2,9 @@ import React, { useState, useCallback } from 'react';
 import useAuth from 'shared/hooks/useAuth';
 // import ModalApproveAction from 'components/ModalApproveAction/ModalApproveAction';
 
+import { deleteNotice } from '../../../utils/ApiNotices';
+import { updateNotice } from '../../../utils/ApiNotices';
+
 import {
   Card,
   CardImage,
@@ -24,12 +27,20 @@ const AddToFavorite = () => {
   const { isLoggedIn } = useAuth();
   const [fill, setFill] = useState('transparent');
 
-  const handleisAuthenticated = useCallback(() => {
-    if (!isLoggedIn) {
-      alert('Please sign in to add to favorites');
-      return;
+  const handleUpdate = async notice => {
+    try {
+      if (!isLoggedIn) {
+        alert('Please sign in to add to favorites');
+        return;
+      }
+      const updateToFavorite = {
+        favorite: 'true',
+      };
+      await updateNotice(notice._id, updateToFavorite);
+    } catch (error) {
+      alert('Failed to update notice. Please try again later.');
     }
-  }, [isLoggedIn]);
+  };
 
   const handleMouseOver = useCallback(() => {
     if (isLoggedIn) {
@@ -65,7 +76,7 @@ const AddToFavorite = () => {
       onFocus={handleMouseOver}
       onMouseLeave={handleMouseOut}
       onBlur={handleMouseOut}
-      onClick={handleisAuthenticated}
+      onClick={handleUpdate}
     >
       <Icon id="heart" h="22" w="22" f={fill} s="#54ADFF" strokeWidth="1.5" />
     </Button>
@@ -98,6 +109,20 @@ const NoticeCategoryItem = ({ notice }) => {
   const [trashIconColor, setTrashIconColor] = useState('#54ADFF');
   const { isLoggedIn, user } = useAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const calculateAge = () => {
+    const birthDate = new Date(notice.birthday);
+    const today = new Date();
+
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const month = today.getMonth() - birthDate.getMonth();
+
+    if (month < 0 || (month === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+
+    return `${age} year`;
+  };
   // const [idPet, setIdPet] = useState(null);
 
   // const showPetCard = ({ id }) => {
@@ -115,11 +140,20 @@ const NoticeCategoryItem = ({ notice }) => {
     setTrashIconColor('#54ADFF');
   }, []);
 
+  const handleDelete = async () => {
+    try {
+      await deleteNotice(notice._id);
+      setIsModalOpen(true);
+    } catch (error) {
+      alert('Failed to delete notice. Please try again later.');
+    }
+  };
+
   return (
     <Card>
-      <AddToFavorite />
+      <AddToFavorite notice={notice} />
       <CardImageContainer>
-        <CardImage src={notice.imageUrl} alt={notice.description} />
+        <CardImage src={notice.photoUrl} alt={notice.title} />
         <ImageCategory>
           {notice.category.replace('for-free', 'for free').replace(/-/g, '/')}
         </ImageCategory>
@@ -131,7 +165,7 @@ const NoticeCategoryItem = ({ notice }) => {
           </ImageDetailsItem>
           <ImageDetailsItem>
             <Icon id="clock" h="18" w="18" s="#54ADFF" />
-            {notice.age}
+            {calculateAge()}
           </ImageDetailsItem>
           <ImageDetailsItem>
             {notice.sex === 'male' ? (
@@ -144,7 +178,7 @@ const NoticeCategoryItem = ({ notice }) => {
         </ImageDetails>
       </CardImageContainer>
       <BelowItemContainer>
-        <PhotoDescription>{notice.description}</PhotoDescription>
+        <PhotoDescription>{notice.title}</PhotoDescription>
         <LearnMore onButtonClick={() => setIsModalOpen(true)} />
         {/* <LearnMore onButtonClick={showPetCard} /> */}
       </BelowItemContainer>
@@ -154,7 +188,7 @@ const NoticeCategoryItem = ({ notice }) => {
           <PetCard close={() => setIsModalOpen(false)} />
         </ModalApproveAction>
       )} */}
-      {isLoggedIn && user.userId === notice.userId && (
+      {isLoggedIn && user && notice.own && (
         <Button
           style={{
             zIndex: 999,
@@ -175,7 +209,7 @@ const NoticeCategoryItem = ({ notice }) => {
           onMouseLeave={handleBlur}
           onFocus={handleHover}
           onBlur={handleBlur}
-          onClick={() => setIsModalOpen(true)}
+          onClick={handleDelete}
         >
           <Icon id="trash" h="22" w="22" s={trashIconColor} strokeWidth="1.5" />
         </Button>
