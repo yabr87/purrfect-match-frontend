@@ -1,8 +1,4 @@
-import axios from 'axios';
-
-const noticesInstance = axios.create({
-  baseURL: process.env.REACT_APP_API_URL,
-});
+import { instance as noticesInstance } from './Api';
 
 export const getNotices = async params => {
   try {
@@ -17,11 +13,11 @@ export const getNotices = async params => {
 
 export const addNotice = async newNoticeParams => {
   try {
-    const { data: result } = await noticesInstance.post(
+    const { data } = await noticesInstance.postForm(
       '/api/notices',
       newNoticeParams
     );
-    return result;
+    return data;
   } catch (error) {
     console.error('Failed to add notice', error);
     throw error;
@@ -38,12 +34,15 @@ export const deleteNotice = async id => {
   }
 };
 
-export const updateNotice = async (id, params) => {
+export const updateFavoriteNotice = async (id, params) => {
   try {
-    const response = await noticesInstance.patch(`/api/notices/${id}`, {
-      params,
-    });
-    return response.data;
+    const { data } = await noticesInstance.patch(
+      `/api/notices/${id}/favorite`,
+      {
+        params,
+      }
+    );
+    return data;
   } catch (error) {
     console.error('Failed to update notice', error);
     throw error;

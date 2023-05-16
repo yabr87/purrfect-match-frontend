@@ -42,10 +42,12 @@ const AddPetForm = () => {
     newPet.birthday = convertToISODate(newPet.birthday);
 
     try {
-      await addNotice(newPet);
+      if (selectedCategory !== 'my-pet') {
+        await addNotice(newPet);
+      }
       console.log('Pet added successfully');
-      navigate('/user');
       resetForm();
+      navigate(`/${selectedCategory}`);
     } catch (error) {
       console.error('Failed to add pet', error);
     }
