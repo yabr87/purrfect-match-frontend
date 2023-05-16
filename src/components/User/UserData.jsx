@@ -22,7 +22,7 @@ const UserData = () => {
           <AvatarContainer>
             <Avatar />
             <EditAvatarBtn>
-              <Icon id="camera" s={props => props.theme.colors.link} />
+              <Icon id="camera" s="#54ADFF" />
               <BtnText>Edit photo</BtnText>
             </EditAvatarBtn>
           </AvatarContainer>
@@ -33,7 +33,7 @@ const UserData = () => {
             <InputItem name={'Phone'} />
             <InputItem name={'City'} />
             <LogOutBtn>
-              <Icon id="logout" s={props => props.theme.colors.link} />
+              <Icon id="logout" s="#54ADFF" />
               <LogOutText>Log Out</LogOutText>
             </LogOutBtn>
           </InputContainer>

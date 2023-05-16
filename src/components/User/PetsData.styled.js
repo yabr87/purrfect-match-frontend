@@ -43,6 +43,9 @@ export const PetAvatar = styled.div`
     margin-right: 20px;
     margin-bottom: 108px;
   }
+  @media screen and (min-width: 1280px) {
+    margin-bottom: 31px;
+  }
 `;
 
 export const PetHeader = styled.div`

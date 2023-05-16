@@ -31,7 +31,7 @@ const PetsData = () => {
           <PetAvatar />
           <PetInfoWrap>
             <DelPetBtn>
-              <Icon id="trash" s={props => props.theme.colors.link} />
+              <Icon id="trash" s="#54ADFF" />
             </DelPetBtn>
             <PetInfoItem>
               <PetInfoTitle>Name:</PetInfoTitle> ...
