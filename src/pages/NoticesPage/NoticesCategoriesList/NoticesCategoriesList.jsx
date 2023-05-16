@@ -1,40 +1,34 @@
-import React, { useEffect, useState } from 'react';
-import NoticeCategoryItem from '../NoticeCategoryItem/NoticeCategoryItem';
+import React from 'react';
 
-import { useParams } from 'react-router-dom';
+import NoticeCategoryItem from '../NoticeCategoryItem/NoticeCategoryItem';
 
 import { CollectionContainer } from './NoticesCategoriesList.styles.js';
 import Pagination from 'shared/hooks/pagination';
 
-import { getNotices } from '../../../utils/ApiNotices';
-
-const NoticesCategoriesList = () => {
-  const [totalPages, setTotalPages] = useState(null);
-  const [currentPage, setCurrentPage] = useState(1);
-
-  const [notices, setNotices] = useState([]);
-
-  let { categoryName } = useParams();
-
-  useEffect(() => {
-    getNotices({ category: categoryName, page: currentPage }).then(
-      ({ data }) => {
-        console.log(data.results);
-        setNotices(data.results);
-        setCurrentPage(data.page);
-        setTotalPages(data.totalPages);
-      }
-    );
-  }, [categoryName, currentPage]);
-
+const NoticesCategoriesList = ({
+  totalPages,
+  currentPage,
+  notices,
+  setCurrentPage,
+}) => {
   return (
     <>
       <CollectionContainer>
-        {notices.map(notice => (
-          <NoticeCategoryItem key={notice._id} notice={notice} />
-        ))}
+        {notices.length ? (
+          notices.map(notice => (
+            <NoticeCategoryItem key={notice._id} notice={notice} />
+          ))
+        ) : (
+          <div>There is no result</div>
+        )}
       </CollectionContainer>
-      {notices.length > 2 && <Pagination title={title} />}
+      {totalPages > 1 && (
+        <Pagination
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          totalPages={totalPages}
+        />
+      )}
     </>
   );
 };

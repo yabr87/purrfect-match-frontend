@@ -1,5 +1,6 @@
-import React from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+
+import { useNavigate } from 'react-router-dom';
 import useAuth from 'shared/hooks/useAuth';
 
 import NoticesFilters from './NoticesFilters/NoticesFilters';
@@ -13,26 +14,11 @@ import Container from 'shared/components/Container';
 import Icon from 'shared/components/Icon/Icon';
 import { useMedia } from 'shared/hooks/useMedia';
 
-import axios from 'axios';
-
-export const getPetBySerch = async (category = 'sell', title, page = 1) => {
-  const { data } = await axios.get(
-    'https://purrfect-match.onrender.com/api/notices',
-    {
-      params: {
-        category,
-        title,
-        page,
-      },
-    }
-  );
-  return data;
-};
+import { useParams } from 'react-router-dom';
+import { getNotices } from 'utils/ApiNotices';
 
 function NoticesPage() {
   const isUpToWidth480 = useMedia(['(max-width: 480px)'], [true], false);
-
-  const { categoryName } = useParams();
 
   const navigate = useNavigate();
 
@@ -43,11 +29,27 @@ function NoticesPage() {
       ? navigate('/add-pet')
       : alert('Please register or sign in to be able to add pet');
   };
-  // тимчасове апі для пошуку , далі буде імпортована ф-ція апі
+
+  const [totalPages, setTotalPages] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [notices, setNotices] = useState([]);
+
+  let { categoryName } = useParams();
+
+  useEffect(() => {
+    getNotices({ category: categoryName, page: currentPage }).then(
+      ({ data }) => {
+        console.log(data.results);
+        setNotices(data.results);
+        setCurrentPage(data.page);
+        setTotalPages(data.totalPages);
+      }
+    );
+  }, [categoryName, currentPage]);
 
   return (
     <Container>
-      <NoticesSearch />
+      <NoticesSearch setItems={setNotices} />
       <div
         style={{
           display: 'flex',
@@ -78,7 +80,12 @@ function NoticesPage() {
         </div>
       </div>
 
-      <NoticesCategoriesList categoryName={categoryName} />
+      <NoticesCategoriesList
+        totalPages={totalPages}
+        currentPage={currentPage}
+        notices={notices}
+        setCurrentPage={setCurrentPage}
+      />
     </Container>
   );
 }

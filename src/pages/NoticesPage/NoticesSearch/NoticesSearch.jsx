@@ -3,13 +3,13 @@ import React from 'react';
 import Search from 'shared/components/Search/Search';
 import Title from 'shared/components/Title';
 import { Cover } from './NoticesSearch.styles';
-import { getPetBySerch } from '../NoticesPage';
+import { getNotices } from 'utils/ApiNotices';
 
-const NoticesSearch = () => {
+const NoticesSearch = ({ setItems }) => {
   return (
     <Cover>
       <Title>Find your favorite pet</Title>
-      <Search onFormSubmit={getPetBySerch} />
+      <Search onFormSubmit={getNotices} setItems={setItems} />
     </Cover>
   );
 };

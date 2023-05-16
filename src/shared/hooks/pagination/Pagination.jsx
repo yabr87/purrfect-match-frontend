@@ -1,40 +1,31 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
-import { useParams, useSearchParams } from 'react-router-dom';
-
+import { useSearchParams } from 'react-router-dom';
 import { ButtonPage, Flex, Box } from './Pagination.styles';
 import Icon from 'shared/components/Icon';
-import { getPetBySerch } from 'pages/NoticesPage/NoticesPage';
-const Pagination = () => {
-  const [currentPage, setCurrentPage] = useState(1);
+// import { useEffect } from 'react';
+/////////////////////////////////////////
+// import { getNotices } from 'utils/ApiNotices';
 
+const Pagination = ({ currentPage, setCurrentPage, totalPages }) => {
   const [searchParams, setSearchParams] = useSearchParams();
+
   const title = searchParams.get('title');
-  const { categoryName } = useParams();
 
   const numberValue = page => Number(page);
-  const pagesCount = Math.ceil(100 / 12);
+
+  // функція відповідає за візуалізацію рендеру кількості сторінок та
+  // та стилізації поточної сторінки
   const pages =
-    pagesCount <= 5 || currentPage < 3
+    totalPages <= 5 || currentPage < 3
       ? Array.from(
-          { length: pagesCount > 5 ? 5 : pagesCount },
+          { length: totalPages > 5 ? 5 : totalPages },
           (_, index) => 1 + index
         )
       : Array.from({ length: 5 }, (_, index) =>
-          currentPage + 2 > pagesCount
-            ? pagesCount - 4 + index
+          currentPage + 2 > totalPages
+            ? totalPages - 4 + index
             : currentPage + index - 2
         );
-
-  useEffect(() => {
-    // if (!cards) {
-    //   return;
-    // }
-
-    //тимчасове апі для пагінації
-    getPetBySerch(categoryName, title, currentPage);
-    //   setTotalPets(count);
-  }, [currentPage, categoryName, title]);
 
   const handleClick = ({ target }) => {
     const numberPage = numberValue(target.id);
@@ -57,7 +48,7 @@ const Pagination = () => {
   };
 
   const arrowHandleIncr = () => {
-    if (currentPage === pagesCount) {
+    if (currentPage === totalPages) {
       return;
     }
     setSearchParams({ title, page: currentPage + 1 });

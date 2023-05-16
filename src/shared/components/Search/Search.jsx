@@ -10,7 +10,7 @@ import { Formik, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useSearchParams, useParams } from 'react-router-dom';
 
-const Search = ({ onFormSubmit }) => {
+const Search = ({ onFormSubmit, setItems }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const { categoryName } = useParams();
   const title = searchParams.get('title');
@@ -20,8 +20,11 @@ const Search = ({ onFormSubmit }) => {
   });
 
   const handleSubmit = values => {
+    const { search } = values;
     setSearchParams({ title: values.search, page: 1 });
-    onFormSubmit(categoryName, values.search);
+    onFormSubmit({ category: categoryName, title: search.trim() }).then(
+      ({ data }) => setItems(data.results)
+    );
   };
 
   const FormError = ({ name }) => {
@@ -44,7 +47,6 @@ const Search = ({ onFormSubmit }) => {
       {props => (
         <SearchForm>
           <SearchInput
-            onChange={props.handleChange}
             name="search"
             type="text"
             placeholder="Search"
