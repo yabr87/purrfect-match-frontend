@@ -96,6 +96,7 @@ const LearnMore = ({ onButtonClick }) => {
 };
 
 const NoticeCategoryItem = ({ notice }) => {
+  const [notices, setNotices] = useState([]);
   // const [isTrashHoveredOrFocused, setIsTrashHoveredOrFocused] = useState(false);
   // const [trashIconColor, setTrashIconColor] = useState('#54ADFF');
   const { isLoggedIn, user } = useAuth();
@@ -118,10 +119,11 @@ const NoticeCategoryItem = ({ notice }) => {
   //   setTrashIconColor('#54ADFF');
   // }, []);
 
-  const handleDelete = async () => {
+  const handleDelete = async id => {
     try {
-      await deleteNotice(notice._id);
-      setIsModalOpen(true);
+      await deleteNotice(id);
+      // Оновлюємо стан після видалення оголошення
+      setNotices(notices.filter(notice => notice._id !== id));
     } catch (error) {
       alert('Failed to delete notice. Please try again later.');
     }
