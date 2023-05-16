@@ -16,7 +16,9 @@ export const login = async data => {
   return response;
 };
 
-export const logout = async () => {};
+export const logout = async () => {
+  await instance.post('api/users/logout');
+};
 
 export const getCurrent = async token => {};
 
