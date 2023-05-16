@@ -12,34 +12,43 @@ import { ButtonsBox } from './AddPetForm.styles';
 import validationSchema from './validationSchema';
 import { convertToISODate } from 'utils/convertToISODate';
 
+import { addNotice } from 'utils/ApiNotices';
+
 const initialState = {
-  category: "sell",
-  title: "",
-  name: "",
-  birthday: "",
-  breed: "",
-  photo: "",
-  comments: "",
-  sex: "",
-  location: "",
-  price: "",
-}
+  category: 'sell',
+  title: '',
+  name: '',
+  birthday: '',
+  breed: '',
+  photo: '',
+  comments: '',
+  sex: '',
+  location: '',
+  price: '',
+};
 
 const AddPetForm = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const navigate = useNavigate();
-  const [selectedCategory, setSelectedCategory] = useState(initialState.category);
-  
+  const [selectedCategory, setSelectedCategory] = useState(
+    initialState.category
+  );
 
-  const handleSubmit = (values, {resetForm}) => {
+  const handleSubmit = async (values, { resetForm }) => {
     const newPet = Object.keys(values).reduce((acc, key) => {
       return values[key] ? { ...acc, [key]: values[key] } : acc;
     }, {});
 
     newPet.birthday = convertToISODate(newPet.birthday);
-    console.log(newPet);
-    navigate('/user'); 
-    resetForm();
+
+    try {
+      await addNotice(newPet);
+      console.log('Pet added successfully');
+      navigate('/user');
+      resetForm();
+    } catch (error) {
+      console.error('Failed to add pet', error);
+    }
   };
 
   const handleGoBack = () => {
@@ -47,58 +56,74 @@ const AddPetForm = () => {
   };
 
   const handleNext = () => {
-      setCurrentStep((step) => step + 1);
-    }
-
-   const handleCancel = () => {
-    navigate(-1); 
+    setCurrentStep(step => step + 1);
   };
-const handleCategoryChange = (category) => {
+
+  const handleCancel = () => {
+    navigate(-1);
+  };
+  const handleCategoryChange = category => {
     setSelectedCategory(category);
   };
-  
+
   return (
     <Formik
       initialValues={initialState}
       onSubmit={handleSubmit}
       validationSchema={validationSchema(currentStep, selectedCategory)}
     >
-      {({ isSubmitting, handleChange, handleBlur, values, errors, isValid, touched }) => (
+      {({
+        isSubmitting,
+        handleChange,
+        handleBlur,
+        values,
+        errors,
+        isValid,
+        touched,
+      }) => (
         <Form>
           <FormWrapper
             currentStep={currentStep}
-            text={selectedCategory === 'lost-found' ? 'Add lost pet': selectedCategory === 'sell' ? 'Add pet for sale': 'Add pet'}
+            text={
+              selectedCategory === 'lost-found'
+                ? 'Add lost pet'
+                : selectedCategory === 'sell'
+                ? 'Add pet for sale'
+                : 'Add pet'
+            }
           >
             {currentStep === 1 && (
               <ChooseOptionStep
                 handleChange={handleChange}
                 handleBlur={handleBlur}
-                values={values} 
+                values={values}
                 onSelectCategory={handleCategoryChange}
               />
             )}
-            {currentStep === 2 && <PersonalDetails
-              option={selectedCategory}
-              handleChange={handleChange}
-              handleBlur={handleBlur}
-              values={values} 
-              touched={touched} 
-              errors={errors}
-              isValid={isValid}
-              
-              />}
-            
-            {currentStep === 3 && <MoreInfo
-              option={selectedCategory}
-              handleChange={handleChange}
-              handleBlur={handleBlur}
-              values={values}
-            />}
+            {currentStep === 2 && (
+              <PersonalDetails
+                option={selectedCategory}
+                handleChange={handleChange}
+                handleBlur={handleBlur}
+                values={values}
+                touched={touched}
+                errors={errors}
+                isValid={isValid}
+              />
+            )}
+
+            {currentStep === 3 && (
+              <MoreInfo
+                option={selectedCategory}
+                handleChange={handleChange}
+                handleBlur={handleBlur}
+                values={values}
+              />
+            )}
 
             <ButtonsBox>
               {currentStep === 1 && (
-                <Button type="button" w="248" h="48" 
-                  onClick={handleCancel}>
+                <Button type="button" w="248" h="48" onClick={handleCancel}>
                   Cancel
                 </Button>
               )}
@@ -110,12 +135,18 @@ const handleCategoryChange = (category) => {
               )}
               {currentStep !== 3 && (
                 <Button
-                  type='button'
+                  type="button"
                   w="248"
                   h="48"
                   shape="solid"
                   onClick={handleNext}
-                  disabled={currentStep === 2 && (!isValid || !touched.name || !touched.birthday || !touched.breed)}
+                  disabled={
+                    currentStep === 2 &&
+                    (!isValid ||
+                      !touched.name ||
+                      !touched.birthday ||
+                      !touched.breed)
+                  }
                 >
                   Next
                   <Icon id="paw" f="currentColor" s="none" />

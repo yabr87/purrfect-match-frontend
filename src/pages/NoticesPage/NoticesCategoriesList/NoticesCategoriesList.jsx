@@ -16,14 +16,22 @@ const NoticesCategoriesList = () => {
   let { categoryName } = useParams();
 
   useEffect(() => {
-    getNotices({ category: categoryName, page: currentPage }).then(
-      ({ data }) => {
+    const fetchNotices = async () => {
+      try {
+        const { data } = await getNotices({
+          category: categoryName,
+          page: currentPage,
+        });
         console.log(data.results);
         setNotices(data.results);
         setCurrentPage(data.page);
         setTotalPages(data.totalPages);
+      } catch (error) {
+        console.error('Failed to fetch notices', error);
       }
-    );
+    };
+
+    fetchNotices();
   }, [categoryName, currentPage]);
 
   return (

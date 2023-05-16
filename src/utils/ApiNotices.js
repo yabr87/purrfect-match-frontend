@@ -1,29 +1,41 @@
 import axios from 'axios';
 
 const noticesInstance = axios.create({
-  baseURL: `https://purrfect-match.onrender.com`,
+  baseURL: process.env.REACT_APP_API_URL,
 });
 
 export const getNotices = async params => {
   try {
-    const result = await noticesInstance.get('/api/notices', { params });
-    return result;
+    const response = await noticesInstance.get('/api/notices', { params });
+    console.log(response);
+    return response;
   } catch (error) {
     console.error('Failed to get notices', error);
     throw error;
   }
 };
 
-export const addNotice = async params => {
-  const { data: result } = await noticesInstance.post('/api/notices', {
-    params,
-  });
-  return result;
+export const addNotice = async newNoticeParams => {
+  try {
+    const { data: result } = await noticesInstance.post(
+      '/api/notices',
+      newNoticeParams
+    );
+    return result;
+  } catch (error) {
+    console.error('Failed to add notice', error);
+    throw error;
+  }
 };
 
 export const deleteNotice = async id => {
-  const { data } = await noticesInstance.delete(`/api/notices/${id}`);
-  return data;
+  try {
+    const { data } = await noticesInstance.delete(`/api/notices/${id}`);
+    return data;
+  } catch (error) {
+    console.error('Failed to delete notice', error);
+    throw error;
+  }
 };
 
 export const updateNotice = async (id, params) => {
