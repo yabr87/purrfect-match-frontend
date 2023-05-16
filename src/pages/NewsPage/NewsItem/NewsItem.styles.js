@@ -4,7 +4,6 @@ export const Item = styled.li`
   position: relative;
   max-width: 336px;
   border-radius: 20px;
-  cursor: pointer;
   box-shadow: ${({ theme }) => theme.shadows.default};
 
   scale: 1;

@@ -1,9 +1,7 @@
 // import { useState, useEffect, useCallback } from 'react';
 
-import Section from 'shared/components/Section';
 import Container from 'shared/components/Container';
 import Title from 'shared/components/Title';
-// import SearchTemporary from './SearchTemporary';
 import Search from 'shared/components/Search';
 import NewsList from './NewsList';
 // import Button from 'shared/components/Button';
@@ -52,25 +50,17 @@ const NewsPage = () => {
   // }, []);
 
   return (
-    <>
-      <Section>
-        <Container>
-          <Title>News</Title>
-          <Search />
-        </Container>
-      </Section>
+    <Container>
+      <Title>News</Title>
+      <Search />
 
-      <Section pt="0" pb="20">
-        <Container>
-          {/* {error && <p>{error.message}</p>} */}
+      {/* {error && <p>{error.message}</p>} */}
 
-          {/* {loading && <div>Loading...</div>} */}
+      {/* {loading && <div>Loading...</div>} */}
 
-          {Boolean(items.length) && <NewsList items={items} />}
-          {/* <Button onClick={loadMore}>Load more</Button> */}
-        </Container>
-      </Section>
-    </>
+      {Boolean(items.length) && <NewsList items={items} />}
+      {/* <Button onClick={loadMore}>Load more</Button> */}
+    </Container>
   );
 };
 
