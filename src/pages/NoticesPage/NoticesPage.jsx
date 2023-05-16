@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import useAuth from 'shared/hooks/useAuth';
-
+import axios from 'axios';
 import NoticesSearch from './NoticesSearch';
 import NoticesCategoriesNav from './NoticesCategoriesNav/NoticesCategoriesNav';
 import NoticesCategoriesList from './NoticesCategoriesList/NoticesCategoriesList';
@@ -11,6 +11,20 @@ import CircleButton from 'shared/components/CircleButton/CircleButton';
 import Container from 'shared/components/Container';
 import Icon from 'shared/components/Icon/Icon';
 import { useMedia } from 'shared/hooks/useMedia';
+
+export const getPetBySerch = async (category = 'sell', title, page = 1) => {
+  const { data } = await axios.get(
+    'https://purrfect-match.onrender.com/api/notices',
+    {
+      params: {
+        category,
+        title,
+        page,
+      },
+    }
+  );
+  return data;
+};
 
 function NoticesPage() {
   const isUpToWidth480 = useMedia(['(max-width: 480px)'], [true], false);
@@ -26,10 +40,11 @@ function NoticesPage() {
       ? navigate('/add-pet')
       : alert('Please register or sign in to be able to add pet');
   };
+  // тимчасове апі для пошуку , далі буде імпортована ф-ція апі
 
   return (
     <Container>
-      <NoticesSearch categoryName={categoryName} />
+      <NoticesSearch />
       <div
         style={{
           display: 'flex',

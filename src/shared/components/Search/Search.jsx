@@ -8,11 +8,21 @@ import {
 import Icon from 'shared/components/Icon';
 import { Formik, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import { useSearchParams, useParams } from 'react-router-dom';
 
-const Search = ({ initValue, handleSubmit }) => {
+const Search = ({ onFormSubmit }) => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const { categoryName } = useParams();
+  const title = searchParams.get('title');
+
   const validation = Yup.object({
     search: Yup.string().trim('Type something').required('Type something'),
   });
+
+  const handleSubmit = values => {
+    setSearchParams({ title: values.search, page: 1 });
+    onFormSubmit(categoryName, values.search);
+  };
 
   const FormError = ({ name }) => {
     return (
@@ -27,13 +37,14 @@ const Search = ({ initValue, handleSubmit }) => {
 
   return (
     <Formik
-      initialValues={initValue}
+      initialValues={{ search: title || '' }}
       onSubmit={handleSubmit}
       validationSchema={validation}
     >
       {props => (
         <SearchForm>
           <SearchInput
+            onChange={props.handleChange}
             name="search"
             type="text"
             placeholder="Search"
@@ -45,7 +56,12 @@ const Search = ({ initValue, handleSubmit }) => {
               <Icon id="search" f="#54ADFF" s="none" />
             </IconButton>
             {props.values.search && (
-              <IconButton type="button" onClick={props.resetForm}>
+              <IconButton
+                type="button"
+                onClick={() => {
+                  props.setValues({ search: '' });
+                }}
+              >
                 <Icon id="cross" s="#FFC107" style={{ strokeWidth: '1.5px' }} />
               </IconButton>
             )}

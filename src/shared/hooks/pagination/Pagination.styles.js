@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-export const ButtonPage = styled(Link)`
+export const ButtonPage = styled.button`
   display: flex;
   color: #cce4fb;
   align-items: center;

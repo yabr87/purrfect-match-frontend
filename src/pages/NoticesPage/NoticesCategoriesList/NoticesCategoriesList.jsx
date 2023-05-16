@@ -7,7 +7,7 @@ import Pagination from 'shared/hooks/pagination';
 import data from './data.json';
 import useAuth from 'shared/hooks/useAuth';
 
-const NoticesCategoriesList = ({ categoryName }) => {
+const NoticesCategoriesList = ({ categoryName, title }) => {
   const [notices, setNotices] = useState([]);
   const { user } = useAuth();
 
@@ -51,7 +51,7 @@ const NoticesCategoriesList = ({ categoryName }) => {
           />
         ))}
       </CollectionContainer>
-      {notices.length > 2 && <Pagination />}
+      {notices.length > 2 && <Pagination title={title} />}
     </>
   );
 };
