@@ -2,6 +2,7 @@ import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import useAuth from 'shared/hooks/useAuth';
 
+import NoticesFilters from './NoticesFilters/NoticesFilters';
 import NoticesSearch from './NoticesSearch';
 import NoticesCategoriesNav from './NoticesCategoriesNav/NoticesCategoriesNav';
 import NoticesCategoriesList from './NoticesCategoriesList/NoticesCategoriesList';
@@ -38,23 +39,26 @@ function NoticesPage() {
         }}
       >
         <NoticesCategoriesNav />
-        {isUpToWidth480 ? (
-          <CircleButton
-            style={{
-              zIndex: '999',
-              position: 'fixed',
-              bottom: '50px',
-              right: '24px',
-            }}
-            onClick={handleAddPet}
-            disabled={!isLoggedIn}
-          />
-        ) : (
-          <Button onClick={handleAddPet}>
-            Add pet
-            <Icon id="plus-small" />
-          </Button>
-        )}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+          <NoticesFilters />
+          {isUpToWidth480 ? (
+            <CircleButton
+              style={{
+                zIndex: '999',
+                position: 'fixed',
+                bottom: '50px',
+                right: '24px',
+              }}
+              onClick={handleAddPet}
+              disabled={!isLoggedIn}
+            />
+          ) : (
+            <Button onClick={handleAddPet}>
+              Add pet
+              <Icon id="plus-small" />
+            </Button>
+          )}
+        </div>
       </div>
 
       <NoticesCategoriesList categoryName={categoryName} />

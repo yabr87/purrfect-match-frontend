@@ -13,7 +13,7 @@ function Logo() {
   const isDesktop = screenSize === 'desktop';
 
   return (
-    <LogoLink to="/main">
+    <LogoLink to="/">
       {isTablet || isDesktop ? (
         <Icon id="logo" h="28" w="162" s="none" />
       ) : (
