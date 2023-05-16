@@ -51,7 +51,9 @@ function NoticesPage() {
               }}
               onClick={handleAddPet}
               disabled={!isLoggedIn}
-            />
+            >
+              Add pet
+            </CircleButton>
           ) : (
             <Button onClick={handleAddPet}>
               Add pet

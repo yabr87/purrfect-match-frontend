@@ -41,7 +41,7 @@ const AddPetForm = () => {
 
     newPet.birthday = convertToISODate(newPet.birthday);
 
-    //добавив функціонал
+    //добавив функціонал щодо апі
     try {
       if (selectedCategory !== 'my-pet') {
         await addNotice(newPet);

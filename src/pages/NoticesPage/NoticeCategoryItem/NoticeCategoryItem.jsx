@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import useAuth from 'shared/hooks/useAuth';
 // import ModalApproveAction from 'components/ModalApproveAction/ModalApproveAction';
 
@@ -19,6 +19,7 @@ import {
 
 import Icon from 'shared/components/Icon/Icon';
 import Button from 'shared/components/Button';
+import CircleButton from 'shared/components/CircleButton';
 
 import ModalNoticeTest from '../NoticeModalTest/NoticeModalTest';
 // import ModalApproveAction from 'components/ModalApproveAction';
@@ -26,8 +27,6 @@ import ModalNoticeTest from '../NoticeModalTest/NoticeModalTest';
 
 const AddToFavorite = ({ notice }) => {
   const { isLoggedIn } = useAuth();
-  const [fill, setFill] = useState('transparent');
-
   const handleUpdate = async () => {
     try {
       if (!isLoggedIn) {
@@ -47,44 +46,31 @@ const AddToFavorite = ({ notice }) => {
     }
   };
 
-  const handleMouseOver = useCallback(() => {
-    if (isLoggedIn) {
-      setFill('#54adff');
-    }
-  }, [isLoggedIn]);
+  // const handleMouseOver = useCallback(() => {
+  //   if (isLoggedIn) {
+  //     setFill('#54adff');
+  //   }
+  // }, [isLoggedIn]);
 
-  const handleMouseOut = useCallback(() => {
-    if (isLoggedIn) {
-      setFill('transparent');
-    }
-  }, [isLoggedIn]);
+  // const handleMouseOut = useCallback(() => {
+  //   if (isLoggedIn) {
+  //     setFill('transparent');
+  //   }
+  // }, [isLoggedIn]);
 
   return (
-    <Button
-      style={{
-        zIndex: 999,
-        position: 'absolute',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: 40,
-        height: 40,
-        right: 12,
-        top: 12,
-        background: '#cce4fb',
-        borderRadius: '50%',
-        border: 'none',
-        outline: 'none',
-        transition: 'fill 250ms ease',
-      }}
-      onMouseEnter={handleMouseOver}
-      onFocus={handleMouseOver}
-      onMouseLeave={handleMouseOut}
-      onBlur={handleMouseOut}
+    <CircleButton
+      id="heart"
+      z="999"
+      pos="absolute"
+      t="12px"
+      r="12px"
+      // onMouseEnter={handleMouseOver}
+      // onFocus={handleMouseOver}
+      // onMouseLeave={handleMouseOut}
+      // onBlur={handleMouseOut}
       onClick={handleUpdate}
-    >
-      <Icon id="heart" h="22" w="22" f={fill} s="#54ADFF" strokeWidth="1.5" />
-    </Button>
+    ></CircleButton>
   );
 };
 
@@ -110,8 +96,8 @@ const LearnMore = ({ onButtonClick }) => {
 };
 
 const NoticeCategoryItem = ({ notice }) => {
-  const [isTrashHoveredOrFocused, setIsTrashHoveredOrFocused] = useState(false);
-  const [trashIconColor, setTrashIconColor] = useState('#54ADFF');
+  // const [isTrashHoveredOrFocused, setIsTrashHoveredOrFocused] = useState(false);
+  // const [trashIconColor, setTrashIconColor] = useState('#54ADFF');
   const { isLoggedIn, user } = useAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -122,15 +108,15 @@ const NoticeCategoryItem = ({ notice }) => {
   //   // setIdPet(id);
   // };
 
-  const handleHover = useCallback(() => {
-    setIsTrashHoveredOrFocused(true);
-    setTrashIconColor('#FFFFFF');
-  }, []);
+  // const handleHover = useCallback(() => {
+  //   setIsTrashHoveredOrFocused(true);
+  //   setTrashIconColor('#FFFFFF');
+  // }, []);
 
-  const handleBlur = useCallback(() => {
-    setIsTrashHoveredOrFocused(false);
-    setTrashIconColor('#54ADFF');
-  }, []);
+  // const handleBlur = useCallback(() => {
+  //   setIsTrashHoveredOrFocused(false);
+  //   setTrashIconColor('#54ADFF');
+  // }, []);
 
   const handleDelete = async () => {
     try {
@@ -181,30 +167,33 @@ const NoticeCategoryItem = ({ notice }) => {
         </ModalApproveAction>
       )} */}
       {isLoggedIn && user && notice.own && (
-        <Button
-          style={{
-            zIndex: 999,
-            position: 'absolute',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            width: 40,
-            height: 40,
-            right: 12,
-            top: 68,
-            background: isTrashHoveredOrFocused ? '#54adff' : '#cce4fb',
-            borderRadius: '50%',
-            border: 'none',
-            outline: 'none',
-          }}
-          onMouseEnter={handleHover}
-          onMouseLeave={handleBlur}
-          onFocus={handleHover}
-          onBlur={handleBlur}
+        <CircleButton
+          id="trash"
+          z="999"
+          pos="absolute"
+          t="68px"
+          r="12px"
+          // style={{
+          //   zIndex: 999,
+          //   position: 'absolute',
+          //   display: 'flex',
+          //   justifyContent: 'center',
+          //   alignItems: 'center',
+          //   width: 40,
+          //   height: 40,
+          //   right: 12,
+          //   top: 68,
+          //   background: isTrashHoveredOrFocused ? '#54adff' : '#cce4fb',
+          //   borderRadius: '50%',
+          //   border: 'none',
+          //   outline: 'none',
+          // }}
+          // onMouseEnter={handleHover}
+          // onMouseLeave={handleBlur}
+          // onFocus={handleHover}
+          // onBlur={handleBlur}
           onClick={handleDelete}
-        >
-          <Icon id="trash" h="22" w="22" s={trashIconColor} strokeWidth="1.5" />
-        </Button>
+        ></CircleButton>
       )}
     </Card>
   );
