@@ -38,9 +38,7 @@ export const updateFavoriteNotice = async (id, params) => {
   try {
     const { data } = await noticesInstance.patch(
       `/api/notices/${id}/favorite`,
-      {
-        params,
-      }
+      params
     );
     return data;
   } catch (error) {

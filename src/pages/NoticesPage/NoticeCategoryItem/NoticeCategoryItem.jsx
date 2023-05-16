@@ -23,14 +23,18 @@ import ModalNoticeTest from '../NoticeModalTest/NoticeModalTest';
 // import ModalApproveAction from 'components/ModalApproveAction';
 // import PetCard from 'components/ModalApproveAction/PetCard';
 
-const AddToFavorite = () => {
+const AddToFavorite = ({ notice }) => {
   const { isLoggedIn } = useAuth();
   const [fill, setFill] = useState('transparent');
 
-  const handleUpdate = async notice => {
+  const handleUpdate = async () => {
     try {
       if (!isLoggedIn) {
         alert('Please sign in to add to favorites');
+        return;
+      }
+      if (!notice || !notice._id) {
+        console.error('Notice is undefined or does not have an _id property');
         return;
       }
       const updateToFavorite = {

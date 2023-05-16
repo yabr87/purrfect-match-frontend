@@ -47,7 +47,7 @@ const AddPetForm = () => {
       }
       console.log('Pet added successfully');
       resetForm();
-      navigate(`/${selectedCategory}`);
+      navigate(`notices/${selectedCategory}`);
     } catch (error) {
       console.error('Failed to add pet', error);
     }
