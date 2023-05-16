@@ -23,7 +23,9 @@ export const deleteNotice = async id => {
 
 export const updateNotice = async (id, params) => {
   try {
-    const response = await noticesInstance.patch(`/api/notices/${id}`, params);
+    const response = await noticesInstance.patch(`/api/notices/${id}`, {
+      params,
+    });
     return response.data;
   } catch (error) {
     console.error('Failed to update notice', error);

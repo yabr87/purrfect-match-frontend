@@ -3,7 +3,7 @@ import useAuth from 'shared/hooks/useAuth';
 // import ModalApproveAction from 'components/ModalApproveAction/ModalApproveAction';
 
 import { deleteNotice } from '../../../utils/ApiNotices';
-import { updateNotice } from '../../../utils/ApiNotices';
+// import { updateNotice } from '../../../utils/ApiNotices';
 
 import {
   Card,
@@ -33,10 +33,10 @@ const AddToFavorite = () => {
         alert('Please sign in to add to favorites');
         return;
       }
-      const updateToFavorite = {
-        favorite: 'true',
-      };
-      await updateNotice(notice._id, updateToFavorite);
+      // const updateToFavorite = {
+      //   favorite: 'true',
+      // };
+      // await updateNotice(notice._id, updateToFavorite);
     } catch (error) {
       alert('Failed to update notice. Please try again later.');
     }
