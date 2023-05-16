@@ -72,7 +72,6 @@ export const Pictures = styled.img`
     top: -520px;
     left: 333px;
     width: 953px;
-    height: 935px;
     content: url(${deskPet1});
 
     @media screen and (min-width: 1280px) and (min-device-pixel-ratio: 2),
