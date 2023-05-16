@@ -6,10 +6,10 @@ const PersonalDetails = ({ option, handleChange, handleBlur, values, touched, er
     return (
         <DetailsWrapper>
             {option !== 'my-pet' && (
-                    <FormLabel htmlFor="title">Title of add: 
+                    <FormLabel htmlFor="title">Title of add
                     <StyledField
                         name="title"
-                        placeholder="Type name pet"
+                        placeholder="Type title of publication"
                         onChange={handleChange}
                         onBlur={handleBlur}
                         value={values.title}
@@ -21,7 +21,7 @@ const PersonalDetails = ({ option, handleChange, handleBlur, values, touched, er
                 Name Pet
                 <StyledField
                     name="name"
-                    placeholder="Type name pet"
+                    placeholder="Type name of the pet"
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.name}
@@ -51,7 +51,7 @@ const PersonalDetails = ({ option, handleChange, handleBlur, values, touched, er
                 <Error name="breed" component="p" />
             </FormLabel>
             {!isValid && (
-                  <p>Please fill all the fields</p>
+                  <Error>Please fill all the fields</Error>
                 )}
         </DetailsWrapper>
     );

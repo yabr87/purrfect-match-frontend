@@ -6,10 +6,11 @@ import { FormBox} from "./FormWrapper.styles";
 const FormWrapper = ({
   children,
   currentStep,
+  category,
   text
 }) => {
   return (
-    <FormBox>
+    <FormBox currentStep={currentStep} category={category}>
       <FormTitle>{text}</FormTitle>
       <FormNav currentStep={currentStep} />
       {children}
