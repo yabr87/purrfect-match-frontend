@@ -58,9 +58,8 @@ const MoreInfo = ({
             </div>
           </>
         )}
-        <ImageLabel 
-            option={option}>
-            <p>Add photo</p>
+        <ImageLabel option={option}>
+          <p>Add photo</p>
           <ImageUploader
             onChange={handleChange}
             name="photo"

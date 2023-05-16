@@ -21,11 +21,13 @@ export const FormBox = styled.div`
     padding: 32px 20px;
     min-height: 542px;
     padding: 20px 32px;
-    width: ${props => props.category !== 'my-pet' && props.currentStep === 3 && '704px'};
-    
+    width: ${props =>
+      props.category !== 'my-pet' && props.currentStep === 3 && '704px'};
   }
   @media screen and (min-width: 1280px) {
-    width: ${props => props.category !== 'my-pet' && props.currentStep === 3 && '822px'};
-    padding: ${props => props.category !== 'my-pet' && props.currentStep === 3 && '20px 75px'};
+    width: ${props =>
+      props.category !== 'my-pet' && props.currentStep === 3 && '822px'};
+    padding: ${props =>
+      props.category !== 'my-pet' && props.currentStep === 3 && '20px 75px'};
   }
 `;
