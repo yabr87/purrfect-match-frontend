@@ -27,7 +27,12 @@ export const login = async data => {
 
 export const logout = async () => {};
 
-export const getCurrent = async token => {};
+export const getCurrent = async token => {
+  setToken(token);
+  const response = await instance.get('/api/users/current');
+
+  return response;
+};
 
 export const getMyPets = async () => {};
 

@@ -37,14 +37,23 @@ function NoticesPage() {
   let { categoryName } = useParams();
 
   useEffect(() => {
-    getNotices({ category: categoryName, page: currentPage }).then(
-      ({ data }) => {
-        console.log(data.results);
-        setNotices(data.results);
-        setCurrentPage(data.page);
-        setTotalPages(data.totalPages);
-      }
-    );
+    const params = { page: currentPage };
+    if (['sell', 'lost-found', 'for-free'].includes(categoryName)) {
+      params.category = categoryName;
+    }
+    if (categoryName === 'favorite') {
+      params.favorite = true;
+    }
+    if (categoryName === 'own') {
+      params.own = true;
+    }
+
+    getNotices(params).then(({ data }) => {
+      console.log(data.results);
+      setNotices(data.results);
+      setCurrentPage(data.page);
+      setTotalPages(data.totalPages);
+    });
   }, [categoryName, currentPage]);
 
   return (
