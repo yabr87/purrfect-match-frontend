@@ -13,6 +13,8 @@ import Container from 'shared/components/Container';
 import Icon from 'shared/components/Icon/Icon';
 import { useMedia } from 'shared/hooks/useMedia';
 
+import axios from 'axios';
+
 export const getPetBySerch = async (category = 'sell', title, page = 1) => {
   const { data } = await axios.get(
     'https://purrfect-match.onrender.com/api/notices',
