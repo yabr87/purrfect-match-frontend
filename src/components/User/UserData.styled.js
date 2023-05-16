@@ -21,6 +21,13 @@ export const Container = styled.div`
   }
 `;
 
+export const Wrap = styled.div`
+  @media screen and (min-width: 1280px) {
+    display: flex;
+    flex-direction: column;
+  }
+`;
+
 export const Title = styled.p`
   font-family: 'Manrope';
   font-style: normal;
