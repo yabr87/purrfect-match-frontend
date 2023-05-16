@@ -1,0 +1,28 @@
+Інструкція по рендеру Delete:
+
+1. в компонент NoticeCategoryItem імпортуємо
+
+import ModalApproveAction from 'components/ModalApproveAction';
+import Delete from 'components/ModalApproveAction/Delete';
+
+2. в функціональний компонент додадємо:
+-  відповідний стейт - const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false), 
+- передаємо функцію відкриття Delete на кнопку <Button onClick={() => setIsModalDeleteOpen(true)} />
+- робимо ренедер за умовою
+
+const NoticeCategoryItem = () => {
+      const [isModalOpen, setIsModalOpen] = useState(false);
+
+return (
+    <>
+    {isLoggedIn && user.userId === notice.userId && (
+         <Button onClick={() => setIsModalDeleteOpen(true)} />
+    )}
+    {isModalDeleteOpen && (
+        <ModalApproveAction close={() => setIsModalDeleteOpen(false)}>
+          <Delete close={() => setIsModalDeleteOpen(false)} />
+        </ModalApproveAction>
+      )}
+    </>
+)
+}

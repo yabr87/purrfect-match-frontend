@@ -19,6 +19,7 @@ import Button from 'shared/components/Button';
 import ModalNoticeTest from '../NoticeModalTest/NoticeModalTest';
 // import ModalApproveAction from 'components/ModalApproveAction';
 // import NoticeModal from 'components/ModalApproveAction/NoticeModal';
+// import Delete from 'components/ModalApproveAction/Delete';
 
 const AddToFavorite = () => {
   const { isLoggedIn } = useAuth();
@@ -99,6 +100,7 @@ const NoticeCategoryItem = ({ notice }) => {
   const { isLoggedIn, user } = useAuth();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  // const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false);
 
   const handleHover = useCallback(() => {
     setIsTrashHoveredOrFocused(true);
@@ -170,10 +172,16 @@ const NoticeCategoryItem = ({ notice }) => {
           onFocus={handleHover}
           onBlur={handleBlur}
           onClick={() => setIsModalOpen(true)}
+          // onClick={() => setIsModalDeleteOpen(true)}
         >
           <Icon id="trash" h="22" w="22" s={trashIconColor} strokeWidth="1.5" />
         </Button>
       )}
+      {/* {isModalDeleteOpen && (
+        <ModalApproveAction close={() => setIsModalDeleteOpen(false)}>
+          <Delete close={() => setIsModalDeleteOpen(false)} />
+        </ModalApproveAction>
+      )} */}
     </Card>
   );
 };
