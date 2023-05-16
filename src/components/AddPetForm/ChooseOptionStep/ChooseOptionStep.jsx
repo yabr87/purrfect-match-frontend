@@ -4,10 +4,11 @@ import { RadioContainer, RadioLabel } from "./ChooseOptionStep.styles";
 
 const ChooseOptionStep = ({ handleBlur, values, handleChange, onSelectCategory }) => {
   
-const handleCategoryChange = (category) => {
+  const handleCategoryChange = (category) => {
     handleChange({ target: { name: "category", value: category } });
     onSelectCategory(category);
   };
+
   return (
   <RadioContainer role="group" aria-labelledby="choose-pet-option">
     <RadioLabel 
@@ -15,7 +16,7 @@ const handleCategoryChange = (category) => {
       <Field
         type="radio"
         name='category'
-          value='my-pet'
+        value='my-pet'
         onChange={() => handleCategoryChange('my-pet')}
           onBlur={handleBlur}
           checked={values.category === 'my-pet'}

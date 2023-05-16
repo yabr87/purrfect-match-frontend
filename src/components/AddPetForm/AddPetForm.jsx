@@ -53,7 +53,8 @@ const AddPetForm = () => {
    const handleCancel = () => {
     navigate(-1); 
   };
-const handleCategoryChange = (category) => {
+  
+  const handleCategoryChange = (category) => {
     setSelectedCategory(category);
   };
   
@@ -67,7 +68,8 @@ const handleCategoryChange = (category) => {
         <Form>
           <FormWrapper
             currentStep={currentStep}
-            text={selectedCategory === 'lost-found' ? 'Add lost pet': selectedCategory === 'sell' ? 'Add pet for sale': 'Add pet'}
+            category={selectedCategory}
+            text={selectedCategory === 'lost-found' ? 'Add lost pet': selectedCategory === 'sell' ? 'Add pet for sale': selectedCategory === 'my-pet' ? 'Add my pet': 'Add pet'}
           >
             {currentStep === 1 && (
               <ChooseOptionStep
