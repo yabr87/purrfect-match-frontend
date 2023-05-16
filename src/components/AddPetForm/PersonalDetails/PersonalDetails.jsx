@@ -22,7 +22,7 @@ const PersonalDetails = ({
             onChange={handleChange}
             onBlur={handleBlur}
             value={values.title}
-            hasError={touched.title && errors.title}
+            errors={touched.title && errors.title}
           />
           <Error name="title" component="p" />
         </FormLabel>
@@ -35,7 +35,7 @@ const PersonalDetails = ({
           onChange={handleChange}
           onBlur={handleBlur}
           value={values.name}
-          hasError={touched.name && errors.name}
+          errors={touched.name && errors.name}
         />
         <Error name="name" component="p" />
       </FormLabel>
@@ -47,7 +47,7 @@ const PersonalDetails = ({
           onChange={handleChange}
           onBlur={handleBlur}
           value={values.birthday}
-          hasError={touched.birthday && errors.birthday}
+          errors={touched.birthday && errors.birthday}
         />
         <Error name="birthday" component="p" />
       </FormLabel>
@@ -59,7 +59,7 @@ const PersonalDetails = ({
           onChange={handleChange}
           onBlur={handleBlur}
           value={values.breed}
-          hasError={touched.breed && errors.breed}
+          errors={touched.breed && errors.breed}
         />
         <Error name="breed" component="p" />
       </FormLabel>

@@ -11,8 +11,8 @@ const FormWrapper = ({
 }) => {
   return (
     <FormBox currentStep={currentStep} category={category}>
-      <FormTitle>{text}</FormTitle>
-      <FormNav currentStep={currentStep} />
+      <FormTitle currentStep={currentStep} category={category}>{text}</FormTitle>
+      <FormNav currentStep={currentStep} category={category} />
       {children}
     </FormBox>
   );

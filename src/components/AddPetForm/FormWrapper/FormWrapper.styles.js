@@ -14,13 +14,18 @@ export const FormBox = styled.div`
   @media screen and (min-width: 480px) {
     margin-left: auto;
     margin-right: auto;
-    max-width: 458px;
+    width: 458px;
   }
 
   @media screen and (min-width: 768px) {
     padding: 32px 20px;
     min-height: 542px;
     padding: 20px 32px;
-    width: 704px;
+    width: ${props => props.category !== 'my-pet' && props.currentStep === 3 && '704px'};
+    
+  }
+  @media screen and (min-width: 1280px) {
+    width: ${props => props.category !== 'my-pet' && props.currentStep === 3 && '822px'};
+    padding: ${props => props.category !== 'my-pet' && props.currentStep === 3 && '20px 75px'};
   }
 `;
