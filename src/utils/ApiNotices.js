@@ -9,7 +9,7 @@ export const getNotices = async params => {
     const result = await noticesInstance.get('/api/notices', { params });
     return result;
   } catch (error) {
-    console.error('Failed to update notice', error);
+    console.error('Failed to get notices', error);
     throw error;
   }
 };
