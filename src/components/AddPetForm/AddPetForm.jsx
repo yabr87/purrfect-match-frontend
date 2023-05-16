@@ -87,11 +87,14 @@ const AddPetForm = () => {
         <Form>
           <FormWrapper
             currentStep={currentStep}
+            category={selectedCategory}
             text={
               selectedCategory === 'lost-found'
                 ? 'Add lost pet'
                 : selectedCategory === 'sell'
                 ? 'Add pet for sale'
+                : selectedCategory === 'my-pet'
+                ? 'Add my pet'
                 : 'Add pet'
             }
           >
@@ -126,7 +129,8 @@ const AddPetForm = () => {
 
             <ButtonsBox>
               {currentStep === 1 && (
-                <Button type="button" w="248" h="48" onClick={handleCancel}>
+                <FormButton type="button" w="248" h="48" onClick={handleCancel}>
+                  <Icon id="arrow-left" />
                   Cancel
                 </FormButton>
               )}
@@ -145,10 +149,7 @@ const AddPetForm = () => {
                   onClick={handleNext}
                   disabled={
                     currentStep === 2 &&
-                    (!isValid ||
-                      !touched.name ||
-                      !touched.birthday ||
-                      !touched.breed)
+                    (!isValid || !touched.name || !touched.birthday)
                   }
                 >
                   Next

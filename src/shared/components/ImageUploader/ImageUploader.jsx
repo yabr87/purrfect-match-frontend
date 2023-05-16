@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useFormikContext } from 'formik';
-import { FileInput, ImageContainer, ImageWrapper, Photo, PhotoWrapper } from './imageUploader.styles';
+import { FileInput, ImageWrapper, Photo, PhotoWrapper } from './imageUploader.styles';
 import Icon from '../Icon';
 
 const ImageUploader = () => {

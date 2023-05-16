@@ -3,6 +3,8 @@ import { Field } from 'formik';
 import ImageUploader from 'shared/components/ImageUploader';
 import { Error, FormLabel, StyledField } from '../AddPetForm.styles';
 import {
+  AdaptiveBoxOne,
+  AdaptiveBoxTwo,
   ImageLabel,
   MoreInfoRadio,
   MoreInfoWrapper,
@@ -14,6 +16,7 @@ import Icon from 'shared/components/Icon';
 const MoreInfo = ({ option, handleChange, handleBlur, values }) => {
   return (
     <MoreInfoWrapper>
+      <AdaptiveBoxOne>
       {option !== 'my-pet' && (
         <>
           <div role="group" aria-labelledby="choose-pet-option">
@@ -52,7 +55,7 @@ const MoreInfo = ({ option, handleChange, handleBlur, values }) => {
             {/* {option === 'my-pet' ? ( */}
             <p>Add photo</p>
             {/* ) : (
-          <span>Load the pet&#96;s image:</span>
+          <p>Load the pet&#96;s image:</p>
         )} */}
             <ImageUploader
               onChange={handleChange}
@@ -60,14 +63,16 @@ const MoreInfo = ({ option, handleChange, handleBlur, values }) => {
               value={values.photo}
             ></ImageUploader>
           </ImageLabel>
-            <Error name="photo" component="p" />
+        <Error name="photo" component="p" />
+      </AdaptiveBoxOne>
+      <AdaptiveBoxTwo>
       {option !== 'my-pet' && (
         <>
           <FormLabel htmlFor="location">
             Location
             <StyledField
               name="location"
-              placeholder="Type of location"
+              placeholder="Type your location"
               onChange={handleChange}
               onBlur={handleBlur}
               value={values.location}
@@ -100,7 +105,8 @@ const MoreInfo = ({ option, handleChange, handleBlur, values }) => {
           value={values.comments}
         />
         <Error name="comments" component="p" />
-      </FormLabel>
+        </FormLabel>
+        </AdaptiveBoxTwo>
     </MoreInfoWrapper>
   );
 };

@@ -6,7 +6,9 @@ display: flex;
 flex-direction: column;
 margin-top: 36px;
 margin-bottom: 24px;
-gap: 20px;
+gap: 16px;
+
+
 `
 
 export const TextField = styled(Field)`
@@ -77,3 +79,19 @@ align-items: center;
     margin: 0;
   }
 `;
+export const AdaptiveBoxOne= styled.div`
+display: flex;
+flex-direction: column;
+gap: 16px;
+
+@media screen and (min-width: 768px) {
+  
+gap: 48px;
+  }
+`
+
+export const AdaptiveBoxTwo = styled.div`
+display: flex;
+flex-direction: column;
+gap: 20px;
+`
