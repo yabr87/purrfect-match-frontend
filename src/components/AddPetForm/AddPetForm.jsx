@@ -41,13 +41,14 @@ const AddPetForm = () => {
 
     newPet.birthday = convertToISODate(newPet.birthday);
 
+    //добавив функціонал
     try {
       if (selectedCategory !== 'my-pet') {
         await addNotice(newPet);
       }
       console.log('Pet added successfully');
       resetForm();
-      navigate(`notices/${selectedCategory}`);
+      navigate(`/notices/${selectedCategory}`);
     } catch (error) {
       console.error('Failed to add pet', error);
     }
