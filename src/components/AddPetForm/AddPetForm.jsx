@@ -13,7 +13,7 @@ import validationSchema from './validationSchema';
 import { convertToISODate } from 'utils/convertToISODate';
 
 const initialState = {
-  category: "",
+  category: "sell",
   title: "",
   name: "",
   birthday: "",
@@ -25,24 +25,10 @@ const initialState = {
   price: "",
 }
 
-const options = [
-  { label: 'my-pet', value: 'my-pet' },
-  { label: 'sell', value: 'sell' },
-  { label: 'lost-found', value: 'lost-found' },
-  { label: 'for-free', value: 'for-free' },
-];
-
-const formTitles = {
-  'my-pet': 'Add pet',
-  'sell': 'Add pet for sale',
-  'lost-found': 'Add lost pet',
-  'for-free': 'Add pet',
-};
-
 const AddPetForm = () => {
   const [currentStep, setCurrentStep] = useState(1);
-  const [selectedOption, setSelectedOption] = useState('sell');
   const navigate = useNavigate();
+  const [selectedCategory, setSelectedCategory] = useState(initialState.category);
   
 
   const handleSubmit = (values, {resetForm}) => {
@@ -64,47 +50,46 @@ const AddPetForm = () => {
       setCurrentStep((step) => step + 1);
     }
 
-  const handleOptionSelect = option => {
-    setSelectedOption(option);
-  };
-
    const handleCancel = () => {
     navigate(-1); 
   };
-
+const handleCategoryChange = (category) => {
+    setSelectedCategory(category);
+  };
   
   return (
     <Formik
       initialValues={initialState}
       onSubmit={handleSubmit}
-      validationSchema={validationSchema(selectedOption, currentStep)}
+      validationSchema={validationSchema(currentStep, selectedCategory)}
     >
       {({ isSubmitting, handleChange, handleBlur, values, errors, isValid, touched }) => (
         <Form>
           <FormWrapper
             currentStep={currentStep}
-            text={formTitles[selectedOption]}
+            text={selectedCategory === 'lost-found' ? 'Add lost pet': selectedCategory === 'sell' ? 'Add pet for sale': 'Add pet'}
           >
             {currentStep === 1 && (
               <ChooseOptionStep
-                name="category"
-                options={options}
-                onSelect={handleOptionSelect}
-                value={selectedOption}
+                handleChange={handleChange}
+                handleBlur={handleBlur}
+                values={values} 
+                onSelectCategory={handleCategoryChange}
               />
             )}
             {currentStep === 2 && <PersonalDetails
-              option={selectedOption}
+              option={selectedCategory}
               handleChange={handleChange}
               handleBlur={handleBlur}
               values={values} 
               touched={touched} 
               errors={errors}
               isValid={isValid}
+              
               />}
             
             {currentStep === 3 && <MoreInfo
-              option={selectedOption}
+              option={selectedCategory}
               handleChange={handleChange}
               handleBlur={handleBlur}
               values={values}
