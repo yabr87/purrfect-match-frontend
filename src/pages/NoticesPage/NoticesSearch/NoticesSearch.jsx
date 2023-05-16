@@ -1,30 +1,15 @@
 import React from 'react';
-// import Section from 'shared/components/Section';
+
 import Search from 'shared/components/Search/Search';
 import Title from 'shared/components/Title';
 import { Cover } from './NoticesSearch.styles';
+import { getNotices } from 'utils/ApiNotices';
 
-const NoticesSearch = () => {
-  const handleSubmit = (values, action) => {
-    console.log(action);
-
-    // getPetBySerch(values.search );
-
-    // export const getPetBySerch = async (query, category = "sell", page = 1) => {
-    //   const { data } = await instance.get('/', {
-    //     params: {
-    //       query,
-    //       category,
-    //       page,
-    //     },
-    //   });
-    //   return data;
-    // };
-  };
+const NoticesSearch = ({ setItems }) => {
   return (
     <Cover>
       <Title>Find your favorite pet</Title>
-      <Search initValue={{ search: '' }} handleSubmit={handleSubmit} />
+      <Search onFormSubmit={getNotices} setItems={setItems} />
     </Cover>
   );
 };

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useFormikContext } from 'formik';
-import { FileInput, ImageContainer } from './imageUploader.styles';
+import { FileInput, ImageWrapper, Photo, PhotoWrapper } from './imageUploader.styles';
+import Icon from '../Icon';
 
 const ImageUploader = () => {
   const [file, setFile] = useState('');
@@ -18,28 +19,22 @@ const ImageUploader = () => {
     }
   };
 
-  const handleReset = () => {
-    setFile('');
-    setFieldValue('photo', '');
-  };
-
   return (
-    <ImageContainer>
+    <ImageWrapper>
       <FileInput
         type="file"
         onChange={handleFileChange}
         accept="image/png, image/jpeg"
         multiple={false}
       />
-      {file && (
-        <div>
-          <img src={URL.createObjectURL(file)} alt="Selected file" />
-          <button type="reset" onClick={handleReset}>
-            Reset
-          </button>
-        </div>
-      )}
-    </ImageContainer>
+      
+      {file ? (
+        <PhotoWrapper>
+          <Photo src={URL.createObjectURL(file)} alt="Selected file" />
+        </PhotoWrapper>
+      ): 
+      <Icon id="plus" w="30" h="30" s="#54ADFF"/>}
+    </ImageWrapper>
   );
 };
 
