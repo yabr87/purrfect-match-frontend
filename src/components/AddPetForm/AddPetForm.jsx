@@ -124,10 +124,12 @@ const AddPetForm = () => {
                 handleChange={handleChange}
                 handleBlur={handleBlur}
                 values={values}
+                touched={touched}
+                errors={errors}
               />
             )}
 
-            <ButtonsBox>
+            <ButtonsBox category={selectedCategory}>
               {currentStep === 1 && (
                 <FormButton type="button" w="248" h="48" onClick={handleCancel}>
                   <Icon id="arrow-left" />

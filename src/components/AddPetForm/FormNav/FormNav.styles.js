@@ -4,6 +4,9 @@ export const NavContainer = styled.div`
     display: flex;
     gap: 12px;
     margin-top: 24px;
+
+    @media screen and (min-width: 768px) {
+    justify-content: ${props => props.category !== 'my-pet' && 'center'};}
 `;
 
 export const Step = styled.p`

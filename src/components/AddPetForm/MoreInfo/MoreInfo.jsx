@@ -13,100 +13,107 @@ import {
 } from './MoreInfo.styles';
 import Icon from 'shared/components/Icon';
 
-const MoreInfo = ({ option, handleChange, handleBlur, values }) => {
+const MoreInfo = ({
+  option,
+  handleChange,
+  handleBlur,
+  values,
+  touched,
+  errors,
+}) => {
   return (
-    <MoreInfoWrapper>
+    <MoreInfoWrapper option={option}>
       <AdaptiveBoxOne>
-      {option !== 'my-pet' && (
-        <>
-          <div role="group" aria-labelledby="choose-pet-option">
-            <FormLabel>The sex</FormLabel>
-            <RadioBox>
-            <MoreInfoRadio checked={values.sex === 'female'}>
-              <Icon id="female" w="10" h="18" />
-              Female
-              <Field
-                type="radio"
-                name="sex"
-                value="female"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                checked={values.sex === 'female'}
-              />
-            </MoreInfoRadio>
-            <MoreInfoRadio checked={values.sex === 'male'}>
-              <Icon id="male" w="10" h="18" />
-              Male
-              <Field
-                type="radio"
-                name="sex"
-                value="male"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                checked={values.sex === 'male'}
-              />
-              </MoreInfoRadio>
-            </RadioBox>
-            <Error name="sex" component="p" />
-          </div>
-        </>
-      )}
-          <ImageLabel>
-            {/* {option === 'my-pet' ? ( */}
+        {option !== 'my-pet' && (
+          <>
+            <div role="group" aria-labelledby="choose-pet-option">
+              <FormLabel>The Sex</FormLabel>
+              <RadioBox>
+                <MoreInfoRadio checked={values.sex === 'female'}>
+                  <Icon id="female" w="10" h="18" />
+                  Female
+                  <Field
+                    type="radio"
+                    name="sex"
+                    value="female"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    checked={values.sex === 'female'}
+                  />
+                </MoreInfoRadio>
+                <MoreInfoRadio checked={values.sex === 'male'}>
+                  <Icon id="male" w="10" h="18" />
+                  Male
+                  <Field
+                    type="radio"
+                    name="sex"
+                    value="male"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    checked={values.sex === 'male'}
+                  />
+                </MoreInfoRadio>
+              </RadioBox>
+              <Error name="sex" component="p" />
+            </div>
+          </>
+        )}
+        <ImageLabel 
+            option={option}>
             <p>Add photo</p>
-            {/* ) : (
-          <p>Load the pet&#96;s image:</p>
-        )} */}
-            <ImageUploader
-              onChange={handleChange}
-              name="photo"
-              value={values.photo}
-            ></ImageUploader>
-          </ImageLabel>
+          <ImageUploader
+            onChange={handleChange}
+            name="photo"
+            value={values.photo}
+          ></ImageUploader>
+        </ImageLabel>
         <Error name="photo" component="p" />
       </AdaptiveBoxOne>
       <AdaptiveBoxTwo>
-      {option !== 'my-pet' && (
-        <>
-          <FormLabel htmlFor="location">
-            Location
+        {option !== 'my-pet' && (
+          <>
+            <FormLabel htmlFor="location">
+              Location
+              <StyledField
+                name="location"
+                placeholder="Type your location"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.location}
+                errors={touched.location && errors.location}
+              />
+              <Error name="location" component="p" />
+            </FormLabel>
+          </>
+        )}
+        {option === 'sell' && (
+          <FormLabel htmlFor="price">
+            Price
             <StyledField
-              name="location"
-              placeholder="Type your location"
+              name="price"
+              placeholder="Type of price"
               onChange={handleChange}
               onBlur={handleBlur}
-              value={values.location}
+              value={values.price}
+              errors={touched.price && errors.price}
             />
-            <Error name="location" component="p" />
+            <Error name="price" component="p" />
           </FormLabel>
-        </>
-      )}
-      {option === 'sell' && (
-        <FormLabel htmlFor="price">
-          Price
-          <StyledField
-            name="price"
-            placeholder="Type of price"
+        )}
+        <FormLabel htmlFor="comments">
+          Comments
+          <TextField
+            as="textarea"
+            name="comments"
+            placeholder="Type breed"
             onChange={handleChange}
             onBlur={handleBlur}
-            value={values.price}
+            value={values.comments}
+            errors={touched.comments && errors.comments}
           />
-          <Error name="price" component="p" />
+          <Error name="comments" component="p" />
         </FormLabel>
-      )}
-      <FormLabel htmlFor="comments">
-        Comments
-        <TextField
-          as="textarea"
-          name="comments"
-          placeholder="Type breed"
-          onChange={handleChange}
-          onBlur={handleBlur}
-          value={values.comments}
-        />
-        <Error name="comments" component="p" />
-        </FormLabel>
-        </AdaptiveBoxTwo>
+      </AdaptiveBoxTwo>
     </MoreInfoWrapper>
   );
 };

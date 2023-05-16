@@ -2,7 +2,7 @@ import { ErrorMessage, Field } from 'formik';
 import Button from 'shared/components/Button';
 import styled from 'styled-components';
 
-export const FormTitle = styled.label`
+export const FormTitle = styled.p`
   margin-left: 12px;
 
   font-weight: ${props => props.theme.fontWeiths.semi};
@@ -15,8 +15,9 @@ export const FormTitle = styled.label`
     font-size: ${props => props.theme.fontSizes.xl};
     line-height: 1.36;
     margin: 0;
-  }
-`;
+    text-align: ${props =>
+      props.category !== 'my-pet' && props.currentStep === 3 && 'center'};
+  }`;
 
 export const FormLabel = styled.label`
   display: flex;
@@ -24,27 +25,26 @@ export const FormLabel = styled.label`
   font-weight: ${props => props.theme.fontWeiths.semi};
   font-size: 14px;
   line-height: 1.3;
-  gap: 4px;
 
-   @media screen and (min-width: 768px) {
-    gap: 8px;
+  @media screen and (min-width: 768px) {
     font-size: ${props => props.theme.fontSizes.m};
   }
 `;
 
 export const Error = styled(ErrorMessage)`
-  margin-top: 8px;
+  margin-left: 16px;
+  margin-top: 4px;
   font-size: 14px;
-  color: red;
+  color: ${props => props.theme.colors.red};
 
-  font-family: ${props => props.theme.fontWeiths.semi};
-
-  font-size: 14px;
+  font-size: 12px;
+  line-height: 1.3;
 `;
 
 export const StyledField = styled(Field)`
   padding: 10px 16px;
   height: 40px;
+  margin-top: 4px;
 
   font-family: ${props => props.theme.fonts.main};
   font-size: 14px;
@@ -56,10 +56,13 @@ export const StyledField = styled(Field)`
 
   color: ${props => props.theme.colors.grey};
   background: #fff;
-  border: 1px solid #54adff;
   border-radius: ${props => props.theme.radius.normal};
+  border: ${props =>
+    props.errors ? '1px solid #F43F5E' : '1px solid #54adff'};
+  outline: none;
 
   @media screen and (min-width: 768px) {
+    margin-top: 8px;
     height: 48px;
     padding: 12px 16px;
     font-size: ${props => props.theme.fontSizes.s};
@@ -73,6 +76,7 @@ export const ButtonsBox = styled.div`
   margin-top: auto;
 
   @media screen and (min-width: 768px) {
+    justify-content: ${props => props.category !== 'my-pet' && 'center'};
     flex-direction: row;
     bottom: 20px;
     right: 32px;
