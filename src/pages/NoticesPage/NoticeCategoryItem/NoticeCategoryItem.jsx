@@ -95,8 +95,7 @@ const LearnMore = ({ onButtonClick }) => {
   );
 };
 
-const NoticeCategoryItem = ({ notice }) => {
-  const [notices, setNotices] = useState([]);
+const NoticeCategoryItem = ({ notice, deleteAndRefresh }) => {
   // const [isTrashHoveredOrFocused, setIsTrashHoveredOrFocused] = useState(false);
   // const [trashIconColor, setTrashIconColor] = useState('#54ADFF');
   const { isLoggedIn, user } = useAuth();
@@ -122,8 +121,7 @@ const NoticeCategoryItem = ({ notice }) => {
   const handleDelete = async id => {
     try {
       await deleteNotice(id);
-      // Оновлюємо стан після видалення оголошення
-      setNotices(notices.filter(notice => notice._id !== id));
+      deleteAndRefresh(id);
     } catch (error) {
       alert('Failed to delete notice. Please try again later.');
     }
@@ -194,7 +192,7 @@ const NoticeCategoryItem = ({ notice }) => {
           // onMouseLeave={handleBlur}
           // onFocus={handleHover}
           // onBlur={handleBlur}
-          onClick={handleDelete}
+          onClick={() => handleDelete(notice._id)}
         ></CircleButton>
       )}
     </Card>
