@@ -4,6 +4,7 @@ import useAuth from 'shared/hooks/useAuth';
 
 import { deleteNotice } from '../../../utils/ApiNotices';
 import { updateFavoriteNotice } from '../../../utils/ApiNotices';
+import { calculateAge } from 'utils/calculateAge';
 
 import {
   Card,
@@ -114,19 +115,6 @@ const NoticeCategoryItem = ({ notice }) => {
   const { isLoggedIn, user } = useAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const calculateAge = () => {
-    const birthDate = new Date(notice.birthday);
-    const today = new Date();
-
-    let age = today.getFullYear() - birthDate.getFullYear();
-    const month = today.getMonth() - birthDate.getMonth();
-
-    if (month < 0 || (month === 0 && today.getDate() < birthDate.getDate())) {
-      age--;
-    }
-
-    return `${age} year`;
-  };
   // const [idPet, setIdPet] = useState(null);
 
   // const showPetCard = ({ id }) => {
@@ -169,7 +157,7 @@ const NoticeCategoryItem = ({ notice }) => {
           </ImageDetailsItem>
           <ImageDetailsItem>
             <Icon id="clock" h="18" w="18" s="#54ADFF" />
-            {calculateAge()}
+            {calculateAge(notice.birthday)}
           </ImageDetailsItem>
           <ImageDetailsItem>
             {notice.sex === 'male' ? (
