@@ -97,8 +97,7 @@ const NoticeModal = ({ id, close }) => {
                 </PetDataItem>
                 <PetDataItem>
                   <NameCategory>Email:</NameCategory>
-                  <ValueCategory
-                  >
+                  <ValueCategory>
                     <ContactLinkItem href="mailto:">
                       3223224@mail.com
                     </ContactLinkItem>
@@ -106,8 +105,7 @@ const NoticeModal = ({ id, close }) => {
                 </PetDataItem>
                 <PetDataItem>
                   <NameCategory>Phone:</NameCategory>
-                  <ValueCategory
-                  >
+                  <ValueCategory>
                     <ContactLinkItem href="tel:">
                       +38097-654-098-98
                     </ContactLinkItem>

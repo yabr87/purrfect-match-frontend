@@ -16,9 +16,9 @@ import {
 import Icon from 'shared/components/Icon/Icon';
 import Button from 'shared/components/Button';
 
-// import ModalNoticeTest from '../NoticeModalTest/NoticeModalTest';
-import ModalApproveAction from 'components/ModalApproveAction';
-import NoticeModal from 'components/ModalApproveAction/NoticeModal';
+import ModalNoticeTest from '../NoticeModalTest/NoticeModalTest';
+// import ModalApproveAction from 'components/ModalApproveAction';
+// import NoticeModal from 'components/ModalApproveAction/NoticeModal';
 
 const AddToFavorite = () => {
   const { isLoggedIn } = useAuth();
@@ -97,13 +97,8 @@ const NoticeCategoryItem = ({ notice }) => {
   const [isTrashHoveredOrFocused, setIsTrashHoveredOrFocused] = useState(false);
   const [trashIconColor, setTrashIconColor] = useState('#54ADFF');
   const { isLoggedIn, user } = useAuth();
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  // const [idPet, setIdPet] = useState(null);
 
-  // const showPetCard = ({ id }) => {
-  //   setIsModalOpen(true);
-  //   // setIdPet(id);
-  // };
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleHover = useCallback(() => {
     setIsTrashHoveredOrFocused(true);
@@ -146,14 +141,13 @@ const NoticeCategoryItem = ({ notice }) => {
       <BelowItemContainer>
         <PhotoDescription>{notice.description}</PhotoDescription>
         <LearnMore onButtonClick={() => setIsModalOpen(true)} />
-        {/* <LearnMore onButtonClick={showPetCard} /> */}
       </BelowItemContainer>
-      {/* {isModalOpen && <ModalNoticeTest close={() => setIsModalOpen(false)} />} */}
-      {isModalOpen && (
+      {isModalOpen && <ModalNoticeTest close={() => setIsModalOpen(false)} />}
+      {/* {isModalOpen && (
         <ModalApproveAction close={() => setIsModalOpen(false)}>
           <NoticeModal close={() => setIsModalOpen(false)} />
         </ModalApproveAction>
-      )}
+      )} */}
       {isLoggedIn && user.userId === notice.userId && (
         <Button
           style={{
