@@ -53,7 +53,6 @@ const RegisterForm = () => {
           })
         );
         actions.resetForm();
-
         // navigate('/notices/sell', { state: { isModalOpen: true } });
       }}
       validationSchema={validateShecma}
