@@ -13,7 +13,7 @@ import {
 } from './MoreInfo.styles';
 import Icon from 'shared/components/Icon';
 
-const MoreInfo = ({ option, handleChange, handleBlur, values }) => {
+const MoreInfo = ({ option, handleChange, handleBlur, values, touched, errors }) => {
   return (
     <MoreInfoWrapper>
       <AdaptiveBoxOne>
@@ -76,6 +76,7 @@ const MoreInfo = ({ option, handleChange, handleBlur, values }) => {
               onChange={handleChange}
               onBlur={handleBlur}
               value={values.location}
+              hasError={touched.location && errors.location}
             />
             <Error name="location" component="p" />
           </FormLabel>
@@ -90,6 +91,7 @@ const MoreInfo = ({ option, handleChange, handleBlur, values }) => {
             onChange={handleChange}
             onBlur={handleBlur}
             value={values.price}
+            hasError={touched.price && errors.price}
           />
           <Error name="price" component="p" />
         </FormLabel>
@@ -102,7 +104,8 @@ const MoreInfo = ({ option, handleChange, handleBlur, values }) => {
           placeholder="Type breed"
           onChange={handleChange}
           onBlur={handleBlur}
-          value={values.comments}
+            value={values.comments}
+            hasError={touched.comments && errors.comments}
         />
         <Error name="comments" component="p" />
         </FormLabel>

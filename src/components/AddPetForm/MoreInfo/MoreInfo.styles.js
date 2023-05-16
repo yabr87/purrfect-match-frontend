@@ -6,10 +6,7 @@ display: flex;
 flex-direction: column;
 margin-top: 36px;
 margin-bottom: 24px;
-gap: 16px;
-
-
-`
+gap: 16px;`
 
 export const TextField = styled(Field)`
 display: block;
@@ -24,7 +21,7 @@ letter-spacing: 0.04em;
 
 background: #fff;
 color: ${props => props.theme.colors.grey};
-border: 1px solid #54ADFF;
+border: ${props => (props.hasError ? '1px solid #F43F5E' : '1px solid #54adff')};
 border-radius: 20px;
 
 ::placeholder {

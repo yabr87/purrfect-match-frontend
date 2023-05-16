@@ -124,6 +124,9 @@ const AddPetForm = () => {
                 handleChange={handleChange}
                 handleBlur={handleBlur}
                 values={values}
+                touched={touched}
+                errors={errors}
+                isValid={isValid}
               />
             )}
 

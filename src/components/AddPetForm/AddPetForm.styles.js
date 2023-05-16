@@ -24,27 +24,27 @@ export const FormLabel = styled.label`
   font-weight: ${props => props.theme.fontWeiths.semi};
   font-size: 14px;
   line-height: 1.3;
-  gap: 4px;
 
    @media screen and (min-width: 768px) {
-    gap: 8px;
     font-size: ${props => props.theme.fontSizes.m};
   }
 `;
 
 export const Error = styled(ErrorMessage)`
-  margin-top: 8px;
+  margin-left: 16px;
+  margin-top: 4px;
   font-size: 14px;
-  color: red;
+  color: ${props => props.theme.colors.red};;
 
-  font-family: ${props => props.theme.fontWeiths.semi};
+  font-size: 12px;
+  line-height: 1.3;
 
-  font-size: 14px;
 `;
 
 export const StyledField = styled(Field)`
   padding: 10px 16px;
   height: 40px;
+  margin-top: 4px;
 
   font-family: ${props => props.theme.fonts.main};
   font-size: 14px;
@@ -56,10 +56,12 @@ export const StyledField = styled(Field)`
 
   color: ${props => props.theme.colors.grey};
   background: #fff;
-  border: 1px solid #54adff;
   border-radius: ${props => props.theme.radius.normal};
+  border: ${props => (props.hasError ? '1px solid #F43F5E' : '1px solid #54adff')};
+  outline: none;
 
   @media screen and (min-width: 768px) {
+    margin-top: 8px;
     height: 48px;
     padding: 12px 16px;
     font-size: ${props => props.theme.fontSizes.s};
