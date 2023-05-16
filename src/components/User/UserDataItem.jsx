@@ -8,7 +8,7 @@ const UserDataItem = ({ name }) => {
       <label>{name}:</label>
       <Input />
       <EditInputBtn>
-        <Icon id="edit" s={props => props.theme.colors.link} />
+        <Icon id="edit" s="#54ADFF" />
       </EditInputBtn>
     </ItemContainer>
   );

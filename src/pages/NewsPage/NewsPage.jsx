@@ -56,6 +56,7 @@ const NewsPage = () => {
       <Section>
         <Title>News</Title>
         <div>Search Form</div>
+
         {/* <SearchTemporary onFormSubmit={onFormSubmit} /> */}
         {/* <Search ininitValue={{ search: '' }} /> */}
 

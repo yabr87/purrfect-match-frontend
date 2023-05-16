@@ -6,6 +6,8 @@ import * as ItemStyled from './UserDataItem.styled';
 import * as PetStyled from './PetsData.styled';
 
 export const Container = Styled.Container;
+export const Wrap = Styled.Wrap;
+export const PetWrap = PetStyled.PetWrap;
 export const PetContainer = PetStyled.PetContainer;
 export const Title = Styled.Title;
 export const PetHeader = PetStyled.PetHeader;
