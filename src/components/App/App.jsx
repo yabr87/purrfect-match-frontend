@@ -2,9 +2,9 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import { theme } from 'utils/theme';
 
-// import { useDispatch } from 'react-redux';
-// import { useEffect } from 'react';
-// import { current } from 'redux/auth/authOperations';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { current } from 'redux/auth/authOperations';
 
 import SharedLayout from 'layouts/SharedLayout';
 import MainPage from 'pages/MainPage';
@@ -25,11 +25,11 @@ import PrivateRoute from 'routes/PrivateRoute';
 // const LoginPage = lazy(() => import('pages/LoginPage'));
 
 const App = () => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   dispatch(current());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(current());
+  }, [dispatch]);
 
   return (
     <ThemeProvider theme={theme}>

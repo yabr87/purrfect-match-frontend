@@ -1,9 +1,10 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import useAuth from 'shared/hooks/useAuth';
 // import ModalApproveAction from 'components/ModalApproveAction/ModalApproveAction';
 
 import { deleteNotice } from '../../../utils/ApiNotices';
-// import { updateNotice } from '../../../utils/ApiNotices';
+import { updateFavoriteNotice } from '../../../utils/ApiNotices';
+import { calculateAge } from 'utils/calculateAge';
 
 import {
   Card,
@@ -18,68 +19,58 @@ import {
 
 import Icon from 'shared/components/Icon/Icon';
 import Button from 'shared/components/Button';
+import CircleButton from 'shared/components/CircleButton';
 
 import ModalNoticeTest from '../NoticeModalTest/NoticeModalTest';
 // import ModalApproveAction from 'components/ModalApproveAction';
 // import PetCard from 'components/ModalApproveAction/PetCard';
 
-const AddToFavorite = () => {
+const AddToFavorite = ({ notice }) => {
   const { isLoggedIn } = useAuth();
-  const [fill, setFill] = useState('transparent');
-
-  const handleUpdate = async notice => {
+  const handleUpdate = async () => {
     try {
       if (!isLoggedIn) {
         alert('Please sign in to add to favorites');
         return;
       }
-      // const updateToFavorite = {
-      //   favorite: 'true',
-      // };
-      // await updateNotice(notice._id, updateToFavorite);
+      if (!notice || !notice._id) {
+        console.error('Notice is undefined or does not have an _id property');
+        return;
+      }
+      const updateToFavorite = {
+        favorite: !notice.favorite,
+      };
+      await updateFavoriteNotice(notice._id, updateToFavorite);
     } catch (error) {
       alert('Failed to update notice. Please try again later.');
     }
   };
 
-  const handleMouseOver = useCallback(() => {
-    if (isLoggedIn) {
-      setFill('#54adff');
-    }
-  }, [isLoggedIn]);
+  // const handleMouseOver = useCallback(() => {
+  //   if (isLoggedIn) {
+  //     setFill('#54adff');
+  //   }
+  // }, [isLoggedIn]);
 
-  const handleMouseOut = useCallback(() => {
-    if (isLoggedIn) {
-      setFill('transparent');
-    }
-  }, [isLoggedIn]);
+  // const handleMouseOut = useCallback(() => {
+  //   if (isLoggedIn) {
+  //     setFill('transparent');
+  //   }
+  // }, [isLoggedIn]);
 
   return (
-    <Button
-      style={{
-        zIndex: 999,
-        position: 'absolute',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: 40,
-        height: 40,
-        right: 12,
-        top: 12,
-        background: '#cce4fb',
-        borderRadius: '50%',
-        border: 'none',
-        outline: 'none',
-        transition: 'fill 250ms ease',
-      }}
-      onMouseEnter={handleMouseOver}
-      onFocus={handleMouseOver}
-      onMouseLeave={handleMouseOut}
-      onBlur={handleMouseOut}
+    <CircleButton
+      id="heart"
+      z="999"
+      pos="absolute"
+      t="12px"
+      r="12px"
+      // onMouseEnter={handleMouseOver}
+      // onFocus={handleMouseOver}
+      // onMouseLeave={handleMouseOut}
+      // onBlur={handleMouseOut}
       onClick={handleUpdate}
-    >
-      <Icon id="heart" h="22" w="22" f={fill} s="#54ADFF" strokeWidth="1.5" />
-    </Button>
+    ></CircleButton>
   );
 };
 
@@ -105,24 +96,12 @@ const LearnMore = ({ onButtonClick }) => {
 };
 
 const NoticeCategoryItem = ({ notice }) => {
-  const [isTrashHoveredOrFocused, setIsTrashHoveredOrFocused] = useState(false);
-  const [trashIconColor, setTrashIconColor] = useState('#54ADFF');
+  const [notices, setNotices] = useState([]);
+  // const [isTrashHoveredOrFocused, setIsTrashHoveredOrFocused] = useState(false);
+  // const [trashIconColor, setTrashIconColor] = useState('#54ADFF');
   const { isLoggedIn, user } = useAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const calculateAge = () => {
-    const birthDate = new Date(notice.birthday);
-    const today = new Date();
-
-    let age = today.getFullYear() - birthDate.getFullYear();
-    const month = today.getMonth() - birthDate.getMonth();
-
-    if (month < 0 || (month === 0 && today.getDate() < birthDate.getDate())) {
-      age--;
-    }
-
-    return `${age} year`;
-  };
   // const [idPet, setIdPet] = useState(null);
 
   // const showPetCard = ({ id }) => {
@@ -130,20 +109,21 @@ const NoticeCategoryItem = ({ notice }) => {
   //   // setIdPet(id);
   // };
 
-  const handleHover = useCallback(() => {
-    setIsTrashHoveredOrFocused(true);
-    setTrashIconColor('#FFFFFF');
-  }, []);
+  // const handleHover = useCallback(() => {
+  //   setIsTrashHoveredOrFocused(true);
+  //   setTrashIconColor('#FFFFFF');
+  // }, []);
 
-  const handleBlur = useCallback(() => {
-    setIsTrashHoveredOrFocused(false);
-    setTrashIconColor('#54ADFF');
-  }, []);
+  // const handleBlur = useCallback(() => {
+  //   setIsTrashHoveredOrFocused(false);
+  //   setTrashIconColor('#54ADFF');
+  // }, []);
 
-  const handleDelete = async () => {
+  const handleDelete = async id => {
     try {
-      await deleteNotice(notice._id);
-      setIsModalOpen(true);
+      await deleteNotice(id);
+      // Оновлюємо стан після видалення оголошення
+      setNotices(notices.filter(notice => notice._id !== id));
     } catch (error) {
       alert('Failed to delete notice. Please try again later.');
     }
@@ -165,7 +145,7 @@ const NoticeCategoryItem = ({ notice }) => {
           </ImageDetailsItem>
           <ImageDetailsItem>
             <Icon id="clock" h="18" w="18" s="#54ADFF" />
-            {calculateAge()}
+            {calculateAge(notice.birthday)}
           </ImageDetailsItem>
           <ImageDetailsItem>
             {notice.sex === 'male' ? (
@@ -189,30 +169,33 @@ const NoticeCategoryItem = ({ notice }) => {
         </ModalApproveAction>
       )} */}
       {isLoggedIn && user && notice.own && (
-        <Button
-          style={{
-            zIndex: 999,
-            position: 'absolute',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            width: 40,
-            height: 40,
-            right: 12,
-            top: 68,
-            background: isTrashHoveredOrFocused ? '#54adff' : '#cce4fb',
-            borderRadius: '50%',
-            border: 'none',
-            outline: 'none',
-          }}
-          onMouseEnter={handleHover}
-          onMouseLeave={handleBlur}
-          onFocus={handleHover}
-          onBlur={handleBlur}
+        <CircleButton
+          id="trash"
+          z="999"
+          pos="absolute"
+          t="68px"
+          r="12px"
+          // style={{
+          //   zIndex: 999,
+          //   position: 'absolute',
+          //   display: 'flex',
+          //   justifyContent: 'center',
+          //   alignItems: 'center',
+          //   width: 40,
+          //   height: 40,
+          //   right: 12,
+          //   top: 68,
+          //   background: isTrashHoveredOrFocused ? '#54adff' : '#cce4fb',
+          //   borderRadius: '50%',
+          //   border: 'none',
+          //   outline: 'none',
+          // }}
+          // onMouseEnter={handleHover}
+          // onMouseLeave={handleBlur}
+          // onFocus={handleHover}
+          // onBlur={handleBlur}
           onClick={handleDelete}
-        >
-          <Icon id="trash" h="22" w="22" s={trashIconColor} strokeWidth="1.5" />
-        </Button>
+        ></CircleButton>
       )}
     </Card>
   );
