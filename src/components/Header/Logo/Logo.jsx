@@ -15,9 +15,9 @@ function Logo() {
   return (
     <LogoLink to="/">
       {isTablet || isDesktop ? (
-        <Icon id="logo" h="28" w="162" />
+        <Icon id="logo" h="28" w="162" s="none" />
       ) : (
-        <Icon id="logo-small" h="20" w="116" />
+        <Icon id="logo-small" h="20" w="116" s="none" />
       )}
     </LogoLink>
   );

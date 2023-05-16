@@ -14,31 +14,88 @@ export const CircleBtn = styled.button`
   flex-direction: column-reverse;
   gap: 4px;
 
-  width: 80px;
-  height: 80px;
-  padding: 10px;
+  width: ${setSize};
+  height: ${setSize};
 
   font-family: 'Manrope';
   font-weight: ${({ theme }) => theme.fontWeiths.semiBold};
   font-size: ${({ theme }) => theme.fontSizes.xs};
   line-height: 1.33;
-  color: #ffffff;
+  color: ${setColor};
 
-  background: linear-gradient(
-    ${({ theme }) => theme.colors.link},
-    ${({ theme }) => theme.colors.link}
-  );
+  background: ${setBackground};
   border-radius: ${({ theme }) => theme.radius.round};
   border: none;
   outline: none;
-  box-shadow: ${({ theme }) => theme.shadows.default};
+  box-shadow: ${setBoxShadow};
 
-  cursor: pointer;
+  transition-property: color, background;
+  transition-duration: 250ms;
+  transition-timing-function: ease;
 
-  transition: background 250ms ease;
+  :not([disabled]):hover,
+  :not([disabled]):focus-visible {
+    cursor: pointer;
+    color: ${setHoverColor};
+    background: ${setHoverBackground};
+  }
 
-  &:hover,
-  &:focus {
-    background: ${({ theme }) => theme.colors.gradient};
+  :active,
+  :disabled {
+    filter: opacity(0.6);
   }
 `;
+
+function setSize({ id }) {
+  switch (id === 'heart' || id === 'trash') {
+    case true:
+      return `40px`;
+    default:
+      return `80px`;
+  }
+}
+
+function setBackground({ id, theme }) {
+  switch (id === 'heart' || id === 'trash') {
+    case true:
+      return `${theme.colors.lightBlue}`;
+    default:
+      return `linear-gradient(${theme.colors.link}, ${theme.colors.link})`;
+  }
+}
+
+function setColor({ id, theme }) {
+  switch (id === 'heart' || id === 'trash') {
+    case true:
+      return `${theme.colors.link}`;
+    default:
+      return `#ffffff`;
+  }
+}
+
+function setBoxShadow({ id, theme }) {
+  switch (id === 'heart' || id === 'trash') {
+    case true:
+      return `none`;
+    default:
+      return `${theme.shadows.default}`;
+  }
+}
+
+function setHoverColor({ id, theme }) {
+  switch (id === 'heart' || id === 'trash') {
+    case true:
+      return `${theme.colors.lightBlue}`;
+    default:
+      return `#ffffff`;
+  }
+}
+
+function setHoverBackground({ id, theme }) {
+  switch (id === 'heart' || id === 'trash') {
+    case true:
+      return `${theme.colors.link}`;
+    default:
+      return `${theme.colors.gradient}`;
+  }
+}
