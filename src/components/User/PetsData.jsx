@@ -1,4 +1,3 @@
-import Icon from 'shared/components/Icon/Icon';
 import {
   Title,
   PetContainer,
@@ -10,22 +9,23 @@ import {
   PetInfoTitle,
   DelPetBtn,
 } from './';
-// import Button from 'shared/components/Button';
-// import Icon from 'shared/components/Icon/Icon';
+import Button from 'shared/components/Button';
+import Icon from 'shared/components/Icon/Icon';
 
 const PetsData = () => {
-  // const handleClick = () => {
-  //   console.log('add new pet');
-  // };
+  const handleClick = () => {
+    console.log('add new pet');
+  };
 
   return (
     <>
       <PetWrap>
         <PetHeader>
           <Title>My pets:</Title>
-          {/* <Button onClick={handleClick} type="button">
-        <Icon id="cross-small" s={props => props.theme.colors.background} />
-      </Button> */}
+          <Button onClick={handleClick} type="button" shape="solid" g="8">
+            <p>Add pet</p>
+            <Icon id="plus-small" s="#FEF9F9" />
+          </Button>
         </PetHeader>
         <PetContainer>
           <PetAvatar />
