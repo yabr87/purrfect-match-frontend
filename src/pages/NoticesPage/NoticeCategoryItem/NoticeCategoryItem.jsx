@@ -1,6 +1,9 @@
 import React, { useState, useCallback } from 'react';
 import useAuth from 'shared/hooks/useAuth';
+// import { useDispatch } from 'react-redux';
 // import ModalApproveAction from 'components/ModalApproveAction/ModalApproveAction';
+
+// import { deleteMyPet } from 'redux/pets/myPetsOperations';
 
 import {
   Card,
@@ -17,6 +20,7 @@ import Icon from 'shared/components/Icon/Icon';
 import Button from 'shared/components/Button';
 
 import ModalNoticeTest from '../NoticeModalTest/NoticeModalTest';
+// _____________Modal Componenets________________
 // import ModalApproveAction from 'components/ModalApproveAction';
 // import NoticeModal from 'components/ModalApproveAction/NoticeModal';
 // import Delete from 'components/ModalApproveAction/Delete';
@@ -102,6 +106,8 @@ const NoticeCategoryItem = ({ notice }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   // const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false);
 
+  // const dispatch = useDispatch();
+
   const handleHover = useCallback(() => {
     setIsTrashHoveredOrFocused(true);
     setTrashIconColor('#FFFFFF');
@@ -111,6 +117,11 @@ const NoticeCategoryItem = ({ notice }) => {
     setIsTrashHoveredOrFocused(false);
     setTrashIconColor('#54ADFF');
   }, []);
+
+  // const handleDelete = () => {
+  //   setIsModalDeleteOpen(false);
+  //   dispatch(deleteMyPet());
+  // };
 
   return (
     <Card>
@@ -179,7 +190,10 @@ const NoticeCategoryItem = ({ notice }) => {
       )}
       {/* {isModalDeleteOpen && (
         <ModalApproveAction close={() => setIsModalDeleteOpen(false)}>
-          <Delete close={() => setIsModalDeleteOpen(false)} />
+          <Delete
+            approve={() => handleDelete()}
+            close={() => setIsModalDeleteOpen(false)}
+          />
         </ModalApproveAction>
       )} */}
     </Card>

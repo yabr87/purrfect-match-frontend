@@ -1,9 +1,19 @@
+import { useDispatch } from 'react-redux';
+
 import Button from 'shared/components/Button';
 import { Title, ContainerView, ButtonWrap } from './Logout.styles';
 
 import Icon from 'shared/components/Icon';
 
-const Logout = ({ close, approve }) => {
+import { logout } from 'redux/auth/authOperations';
+
+const Logout = ({ close, idUser }) => {
+  const dispatch = useDispatch();
+
+  const onLogout = idUser => {
+    dispatch(logout(idUser));
+  };
+
   return (
     <ContainerView>
       <Title as="h2">Already leaving?</Title>
@@ -22,7 +32,7 @@ const Logout = ({ close, approve }) => {
         </Button>
         <Button
           type="button"
-          onClick={approve}
+          onClick={() => onLogout(idUser)}
           w="129"
           h="40"
           shape="solid"
