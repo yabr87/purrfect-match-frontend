@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { Input, ItemContainer, EditInputBtn } from './';
 import Icon from 'shared/components/Icon/Icon';
 
-const UserDataItem = ({ name, type, pattern }) => {
-  const [value, setValue] = useState('');
+const UserDataItem = ({ name, type, pattern, value }) => {
+  const [data, setData] = useState(value);
   const [disable, setDisable] = useState(true);
 
   const handleInputEdit = () => {
@@ -16,8 +16,8 @@ const UserDataItem = ({ name, type, pattern }) => {
       <label>{name}:</label>
       <Input
         type={type}
-        value={value}
-        onChange={({ target }) => setValue(target.value)}
+        value={data}
+        onChange={({ target }) => setData(target.value)}
         pattern={pattern}
         name={name}
         disabled={disable}
