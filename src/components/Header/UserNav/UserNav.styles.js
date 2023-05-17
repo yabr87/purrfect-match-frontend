@@ -5,12 +5,14 @@ export const UserLink = styled(NavLink)`
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 8px 16px;
-  margin-left: auto;
 
   font-size: 16px;
   line-height: 1.38;
   color: #ffc107;
+
+  @media screen and (min-width: 768px) {
+    padding: 8px 16px;
+  }
 `;
 
 export const UserName = styled.p`
