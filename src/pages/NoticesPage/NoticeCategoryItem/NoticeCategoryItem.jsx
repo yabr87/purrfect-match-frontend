@@ -173,25 +173,6 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh }) => {
           pos="absolute"
           t="68px"
           r="12px"
-          // style={{
-          //   zIndex: 999,
-          //   position: 'absolute',
-          //   display: 'flex',
-          //   justifyContent: 'center',
-          //   alignItems: 'center',
-          //   width: 40,
-          //   height: 40,
-          //   right: 12,
-          //   top: 68,
-          //   background: isTrashHoveredOrFocused ? '#54adff' : '#cce4fb',
-          //   borderRadius: '50%',
-          //   border: 'none',
-          //   outline: 'none',
-          // }}
-          // onMouseEnter={handleHover}
-          // onMouseLeave={handleBlur}
-          // onFocus={handleHover}
-          // onBlur={handleBlur}
           onClick={() => handleDelete(notice._id)}
         ></CircleButton>
       )}
