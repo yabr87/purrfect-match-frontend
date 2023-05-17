@@ -27,13 +27,12 @@ export const ImageLabel = styled.label`
   line-height: 1.3;
 
   @media screen and (min-width: 768px) {
-    align-items: ${props => props.option !== 'my-pet' && 'start'};;
+    align-items: ${props => props.option !== 'my-pet' && 'start'};
     gap: ${props => props.option !== 'my-pet' && '8px'};
     flex-direction: ${props => props.option !== 'my-pet' && 'column'};
     font-size: ${props => props.theme.fontSizes.m};
     line-height: 1.3;
-    }
-
+  }
 `;
 
 export const RadioLabel = styled.p`
@@ -85,16 +84,18 @@ export const TextField = styled(Field)`
 
   background: #fff;
   color: ${props => props.theme.colors.grey};
-  border: ${props =>props.errors ? '1px solid #F43F5E' : '1px solid #54adff'};
+  border: ${props =>
+    props.errors ? '1px solid #F43F5E' : '1px solid #54adff'};
   border-radius: 20px;
 
   ::placeholder {
     font-family: ${props => props.theme.fonts.main};
   }
 
-  @media screen and (min-width: 768px) {
+  @media ${props => props.theme.media.tab} {
     margin-top: 8px;
-    height: ${props =>props.errors ? '1px solid #F43F5E' : '1px solid #54adff'};
+    height: ${props =>
+      props.errors ? '1px solid #F43F5E' : '1px solid #54adff'};
     padding-top: 12px 16px 10px;
   }
 `;
@@ -104,7 +105,7 @@ export const AdaptiveBoxOne = styled.div`
   flex-direction: column;
   gap: 16px;
 
-  @media screen and (min-width: 768px) {
+  @media ${props => props.theme.media.tab} {
     gap: 48px;
   }
 `;
@@ -114,7 +115,7 @@ export const AdaptiveBoxTwo = styled.div`
   flex-direction: column;
   gap: 20px;
 
-  @media screen and (min-width: 768px) {
+  @media ${props => props.theme.media.tab} {
     flex-grow: 1;
   }
 `;

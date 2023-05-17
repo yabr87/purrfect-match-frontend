@@ -7,7 +7,6 @@ export const AppHeader = styled.header`
   width: 100%;
   z-index: 1000;
   overflow: ${({ isMobileNavOpen }) => isMobileNavOpen && 'clip'};
-
   background-color: ${props => props.theme.colors.background};
 `;
 
@@ -17,12 +16,12 @@ export const HeaderContainer = styled.div`
   padding-top: 20px;
   height: 42px;
 
-  @media screen and (min-width: 768px) {
+  @media ${props => props.theme.media.tab} {
     padding-top: 24px;
     height: 68px;
   }
 
-  @media screen and (min-width: 1280px) {
+  @media ${props => props.theme.media.desk} {
     padding-top: 20px;
   }
 `;
@@ -62,7 +61,7 @@ export const MobileContainer = styled.div`
   background-color: ${props => props.theme.colors.background};
   overflow: scroll;
 
-  @media screen and (min-width: 768px) {
+  @media ${props => props.theme.media.tab} {
     top: 68px;
   }
 `;
@@ -77,7 +76,7 @@ export const HeaderIcons = styled.div`
   margin-left: auto;
   gap: 24px;
 
-  @media screen and (min-width: 1280px) {
+  @media ${props => props.theme.media.desk} {
     margin-left: 0;
   }
 `;
