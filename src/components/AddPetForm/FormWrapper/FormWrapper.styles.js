@@ -17,14 +17,13 @@ export const FormBox = styled.div`
     width: 458px;
   }
 
-  @media screen and (min-width: 768px) {
-    padding: 32px 20px;
+  @media ${props => props.theme.media.tab} {
     min-height: 542px;
     padding: 20px 32px;
     width: ${props =>
       props.category !== 'my-pet' && props.currentStep === 3 && '704px'};
   }
-  @media screen and (min-width: 1280px) {
+  @media ${props => props.theme.media.desk} {
     width: ${props =>
       props.category !== 'my-pet' && props.currentStep === 3 && '822px'};
     padding: ${props =>

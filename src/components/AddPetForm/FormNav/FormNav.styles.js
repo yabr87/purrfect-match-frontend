@@ -5,10 +5,9 @@ export const NavContainer = styled.div`
   gap: 12px;
   margin-top: 24px;
 
-  @media screen and (min-width: 768px) {
+  @media ${props => props.theme.media.tab} {
     justify-content: ${props => props.category !== 'my-pet' && 'center'};
-  }
-`;
+  }`;
 
 export const Step = styled.p`
   font-weight: ${props => props.theme.fontWeiths.semi};
@@ -46,8 +45,8 @@ export const Step = styled.p`
     }};
   }
 
-  @media screen and (min-width: 768px) {
-    font-size: 16px;
+  @media ${props => props.theme.media.tab} {
+    font-size: ${props => props.theme.fontSizes.s};
     line-height: 1.6;
     width: 122px;
 

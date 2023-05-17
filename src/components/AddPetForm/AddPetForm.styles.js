@@ -11,7 +11,7 @@ export const FormTitle = styled.p`
 
   color: ${props => props.theme.colors.black};
 
-  @media screen and (min-width: 768px) {
+  @media ${props => props.theme.media.tab} {
     font-size: ${props => props.theme.fontSizes.xl};
     line-height: 1.36;
     margin: 0;
@@ -62,7 +62,7 @@ export const StyledField = styled(Field)`
     props.errors ? '1px solid #F43F5E' : '1px solid #54adff'};
   outline: none;
 
-  @media screen and (min-width: 768px) {
+  @media ${props => props.theme.media.tab}  {
     margin-top: 8px;
     height: 48px;
     padding: 12px 16px;
@@ -76,7 +76,7 @@ export const ButtonsBox = styled.div`
   flex-direction: column-reverse;
   margin-top: auto;
 
-  @media screen and (min-width: 768px) {
+  @media ${props => props.theme.media.tab} {
     justify-content: ${props => props.category !== 'my-pet' && 'center'};
     flex-direction: row;
     bottom: 20px;
@@ -88,7 +88,7 @@ export const FormButton = styled(Button)`
   border: none;
   outline: none;
 
-  @media screen and (min-width: 768px) {
+  @media ${props => props.theme.media.tab} {
     width: 146px;
   }
 `;

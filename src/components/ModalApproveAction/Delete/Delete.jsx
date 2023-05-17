@@ -1,7 +1,4 @@
-// import { useEffect } from 'react';
 
-// import Container from 'shared/components/Container';
-// import Section from 'shared/components/Section';
 import Button from 'shared/components/Button';
 import {
   Text,
@@ -15,6 +12,8 @@ import Icon from 'shared/components/Icon';
 import Title from 'shared/components/Title';
 
 const Delete = ({ close, approve }) => {
+
+
   return (
     <ContainerView>
       <Title as="h2">Delete adverstiment?!</Title>
@@ -29,7 +28,7 @@ const Delete = ({ close, approve }) => {
       <ButtonWrap>
         <Button
           type="button"
-          onBtnClick={close}
+          onClick={close}
           w="129"
           h="40"
           style={{
@@ -41,7 +40,7 @@ const Delete = ({ close, approve }) => {
         </Button>
         <Button
           type="button"
-          onBtnClick={approve}
+          onClick={approve}
           w="129"
           h="40"
           shape="solid"

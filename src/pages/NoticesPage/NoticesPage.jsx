@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 
-import { useNavigate } from 'react-router-dom';
 import useAuth from 'shared/hooks/useAuth';
 
 import NoticesFilters from './NoticesFilters/NoticesFilters';
@@ -14,7 +14,6 @@ import Container from 'shared/components/Container';
 import Icon from 'shared/components/Icon/Icon';
 import { useMedia } from 'shared/hooks/useMedia';
 
-import { useParams } from 'react-router-dom';
 import { getNotices } from 'utils/ApiNotices';
 
 function NoticesPage() {

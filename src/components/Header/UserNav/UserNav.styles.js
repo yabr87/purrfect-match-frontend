@@ -5,17 +5,19 @@ export const UserLink = styled(NavLink)`
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 8px 16px;
-  margin-left: auto;
 
-  font-size: 16px;
+  font-size: ${props => props.theme.fontSizes.s};
   line-height: 1.38;
-  color: #ffc107;
+  color: ${props => props.theme.colors.yellow};
+
+  @media ${props => props.theme.media.tab} {
+    padding: 8px 16px;
+  }
 `;
 
 export const UserName = styled.p`
-  font-weight: 500;
-  font-size: 16px;
+  font-weight: ${props => props.theme.fontWeiths.semi};
+  font-size: ${props => props.theme.fontSizes.s};
   line-height: 1.35;
 `;
 
@@ -24,7 +26,7 @@ export const UserContainer = styled.div`
   padding-bottom: 84px;
   margin-left: auto;
 
-  @media screen and (min-width: 768px) {
+  @media ${props => props.theme.media.tab} {
     padding: 0;
   }
 `;
