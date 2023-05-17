@@ -8,8 +8,8 @@ import {
 } from '../../redux/auth/authSelectors';
 
 const useAuth = () => {
-  const user = useSelector(selectIsAuth);
-  const isLoggedIn = useSelector(selectUser);
+  const user = useSelector(selectUser);
+  const isLoggedIn = useSelector(selectIsAuth);
   const isRefreshing = useSelector(selectIsRefreshing);
   const isError = useSelector(selectAuthError);
   return {
