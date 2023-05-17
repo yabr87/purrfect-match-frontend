@@ -9,8 +9,6 @@ import {
   FilterContainer,
   FilterOptions,
   FiltersTitle,
-  FiltersSection,
-  FiltersSectionTitle,
 } from './NoticesFilters.styles';
 
 function NoticesFilters({ fetchData }) {
@@ -19,8 +17,8 @@ function NoticesFilters({ fetchData }) {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [isAgeOpen, setIsAgeOpen] = useState(false);
   const [isGenderOpen, setIsGenderOpen] = useState(false);
-  const [age, setAge] = useState(null);
-  const [gender, setGender] = useState(null);
+  // const [age, setAge] = useState(null);
+  // const [gender, setGender] = useState(null);
 
   const handleFilterClick = () => {
     setIsFilterOpen(!isFilterOpen);
@@ -35,23 +33,23 @@ function NoticesFilters({ fetchData }) {
   };
 
   const handleAgeChange = event => {
-    const value = event.target.value;
-    setAge(prevState =>
-      prevState.includes(value)
-        ? prevState.filter(item => item !== value)
-        : [...prevState, value]
-    );
-    fetchData();
+    // const value = event.target.value;
+    // setAge(prevState =>
+    //   prevState.includes(value)
+    //     ? prevState.filter(item => item !== value)
+    //     : [...prevState, value]
+    // );
+    // fetchData();
   };
 
   const handleGenderChange = event => {
-    const value = event.target.value;
-    setGender(prevState =>
-      prevState.includes(value)
-        ? prevState.filter(item => item !== value)
-        : [...prevState, value]
-    );
-    fetchData();
+    // const value = event.target.value;
+    // setGender(prevState =>
+    //   prevState.includes(value)
+    //     ? prevState.filter(item => item !== value)
+    //     : [...prevState, value]
+    // );
+    // fetchData();
   };
 
   return (
