@@ -5,7 +5,10 @@ export const SearchForm = styled(Form)`
   max-width: 608px;
   height: 44px;
   position: relative;
-  margin: 40px auto 0;
+  margin: 24px auto 0;
+  @media screen and (min-width: 768px) {
+    margin-top: 40px;
+  }
 `;
 
 export const SearchInput = styled(Field)`

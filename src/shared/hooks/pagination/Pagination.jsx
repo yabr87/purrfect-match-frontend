@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { ButtonPage, Flex, Box } from './Pagination.styles';
 import Icon from 'shared/components/Icon';
-// import { useEffect } from 'react';
+
 /////////////////////////////////////////
 // import { getNotices } from 'utils/ApiNotices';
 
@@ -38,6 +38,23 @@ const Pagination = ({ currentPage, setCurrentPage, totalPages }) => {
     }
     setCurrentPage(numberPage);
   };
+
+  ////////////////////////////////////////////// mobile
+  const handleScroll = ({ target }) => {
+    // !title
+    //   ? setSearchParams({ page: currentPage + 1 })
+    //   : setSearchParams({ title, page: currentPage + 1 });
+    // if (currentPage === totalPages) {
+    //   return;
+    // }
+    // setCurrentPage(currentPage + 1);
+    console.log(target.documentElement.scrollHeight);
+  };
+  // const [items, setItems] = useState([]);
+  useEffect(() => {
+    document.addEventListener('scroll', handleScroll);
+    return () => document.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const arrowHandleDecr = () => {
     if (currentPage === 1) {
