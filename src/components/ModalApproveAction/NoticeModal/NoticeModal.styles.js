@@ -96,13 +96,52 @@ export const ValueCategory = styled.th`
   font-weight: 500;
   font-size: 12px;
   line-height: 16.39px;
-  color: ${props => props.$colorContacts || 'black'};
-  text-decoration-line: ${props => props.$underline || 'none'};
 `;
 
 export const PetComents = styled.p`
   margin-bottom: 12px;
   @media screen and (min-width: 768px) {
     margin-bottom: 70px;
+  }
+`;
+
+export const ContactLink = styled.a`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 129px;
+  height: 40px
+  padding: 10px;
+
+  font-family: 'Manrope';
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.38;
+  color: #54ADFF;
+
+border: 2px solid #54ADFF;
+border-radius: 40px;
+
+cursor: pointer;
+
+  &:hover,
+  &:focus {
+    color: #FFFFFF;
+    background:  #54ADFF;
+  }
+`;
+
+export const ContactLinkItem = styled.a`
+  text-align: start;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16.39px;
+  color: black;
+  text-decoration-line: 'none';
+  &:hover,
+  &:focus {
+    color: #ffc107;
+    text-decoration-line: underline;
   }
 `;

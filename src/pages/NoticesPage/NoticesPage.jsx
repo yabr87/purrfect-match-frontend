@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 
-import { useNavigate } from 'react-router-dom';
 import useAuth from 'shared/hooks/useAuth';
 
 import NoticesFilters from './NoticesFilters/NoticesFilters';

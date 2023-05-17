@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import useAuth from 'shared/hooks/useAuth';
-// import ModalApproveAction from 'components/ModalApproveAction/ModalApproveAction';
 
 import { deleteNotice } from '../../../utils/ApiNotices';
 import { updateFavoriteNotice } from '../../../utils/ApiNotices';
@@ -22,8 +21,10 @@ import Button from 'shared/components/Button';
 import CircleButton from 'shared/components/CircleButton';
 
 import ModalNoticeTest from '../NoticeModalTest/NoticeModalTest';
+// _____________Modal Componenets________________
 // import ModalApproveAction from 'components/ModalApproveAction';
-// import PetCard from 'components/ModalApproveAction/PetCard';
+// import NoticeModal from 'components/ModalApproveAction/NoticeModal';
+// import Delete from 'components/ModalApproveAction/Delete';
 
 const AddToFavorite = ({ notice }) => {
   const { isLoggedIn } = useAuth();
@@ -99,14 +100,11 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh }) => {
   // const [isTrashHoveredOrFocused, setIsTrashHoveredOrFocused] = useState(false);
   // const [trashIconColor, setTrashIconColor] = useState('#54ADFF');
   const { isLoggedIn, user } = useAuth();
+
   const [isModalOpen, setIsModalOpen] = useState(false);
+  // const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false);
 
-  // const [idPet, setIdPet] = useState(null);
-
-  // const showPetCard = ({ id }) => {
-  //   setIsModalOpen(true);
-  //   // setIdPet(id);
-  // };
+  // const dispatch = useDispatch();
 
   // const handleHover = useCallback(() => {
   //   setIsTrashHoveredOrFocused(true);
@@ -158,12 +156,11 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh }) => {
       <BelowItemContainer>
         <PhotoDescription>{notice.title}</PhotoDescription>
         <LearnMore onButtonClick={() => setIsModalOpen(true)} />
-        {/* <LearnMore onButtonClick={showPetCard} /> */}
       </BelowItemContainer>
       {isModalOpen && <ModalNoticeTest close={() => setIsModalOpen(false)} />}
       {/* {isModalOpen && (
         <ModalApproveAction close={() => setIsModalOpen(false)}>
-          <PetCard close={() => setIsModalOpen(false)} />
+          <NoticeModal close={() => setIsModalOpen(false)} />
         </ModalApproveAction>
       )} */}
       {isLoggedIn && user && notice.own && (
@@ -176,6 +173,16 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh }) => {
           onClick={() => handleDelete(notice._id)}
         ></CircleButton>
       )}
+      {/* {isModalDeleteOpen && (
+        <ModalApproveAction
+          close={() => setIsModalDeleteOpen(false)}
+        >
+          <Delete
+            approve={() => handleDelete(notice._id)}
+            close={() => setIsModalDeleteOpen(false)}
+          />
+        </ModalApproveAction>
+      )} */}
     </Card>
   );
 };
