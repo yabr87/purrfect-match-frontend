@@ -146,7 +146,7 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh }) => {
           pos="absolute"
           t="68px"
           r="12px"
-          onClick={() => handleDelete(notice._id)}
+          onClick={() => setIsModalDeleteOpen(true)}
         ></CircleButton>
       )}
       {isModalDeleteOpen && (
