@@ -1,6 +1,4 @@
 import React from 'react';
-// import { useState, useEffect } from 'react';
-// import { useLocation } from 'react-router-dom';
 
 import { useParams, useNavigate } from 'react-router-dom';
 import useAuth from 'shared/hooks/useAuth';
@@ -15,23 +13,7 @@ import Container from 'shared/components/Container';
 import Icon from 'shared/components/Icon/Icon';
 import { useMedia } from 'shared/hooks/useMedia';
 
-// ____________for Modal Congrats__________________
-// import ModalApproveAction from 'components/ModalApproveAction';
-// import Congrats from 'components/ModalApproveAction/Congrats';
-
 function NoticesPage() {
-  // const [isOpen, setIsModalOpen] = useState(false);
-  // const location = useLocation();
-  // useEffect(() => {
-  //   const state = location.state;
-
-  //   if (state) {
-  //     console.log(state);
-  //     const { isModalOpen } = location.state;
-  //     setIsModalOpen(isModalOpen);
-  //   }
-  // }, [location.state]);
-
   const isUpToWidth480 = useMedia(['(max-width: 480px)'], [true], false);
 
   const { categoryName } = useParams();
@@ -48,11 +30,6 @@ function NoticesPage() {
 
   return (
     <Container>
-      {/* {isOpen && (
-        <ModalApproveAction close={() => setIsModalOpen(false)}>
-          <Congrats close={() => setIsModalOpen(false)} />
-        </ModalApproveAction>
-      )} */}
       <NoticesSearch />
       <div
         style={{
