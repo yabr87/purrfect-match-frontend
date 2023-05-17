@@ -38,29 +38,17 @@ const validateShecma = Yup.object().shape({
 const LoginForm = () => {
   const navigate = useNavigate();
   const { isLoggedIn } = useAuth();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (isLoggedIn) {
       navigate('/notices/sell');
     }
   }, [isLoggedIn, navigate]);
-
-  const dispatch = useDispatch();
-  const validateEmail = value => {
-    let error;
-    if (!value) {
-      error = 'Required';
-    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)) {
-      error = 'Invalid email address';
-    }
-    return error;
-  };
-
   return (
     <Formik
       initialValues={{ email: '', password: '' }}
       onSubmit={(values, actions) => {
-        console.log(values);
         dispatch(
           login({
             email: values.email,
@@ -71,7 +59,7 @@ const LoginForm = () => {
       }}
       validationSchema={validateShecma}
     >
-      {({ errors }) => (
+      {({ errors, touched, values }) => (
         <Forms>
           <Title
             as="p"
@@ -91,10 +79,9 @@ const LoginForm = () => {
                 type="text"
                 name="email"
                 placeholder="Email"
-                error={errors.email ? '#f43f5e' : '#54adff'}
-                validate={validateEmail}
+                error={errors.email && touched.email ? '#f43f5e' : '#54adff'}
               />
-              {errors.email && (
+              {errors.email && touched.email && (
                 <>
                   <AbsoluteDiv>
                     <Icon id={'cross'} s={'red'} />
@@ -104,9 +91,11 @@ const LoginForm = () => {
               )}
             </Lable>
             <Input
-              errors={errors?.password}
+              error={errors.password}
+              touched={touched.password}
               name={'password'}
               placeholder={'Password'}
+              value={values.password}
             />
           </InputContainer>
           <Button shape={'solid'} w={'100%'} h={'48'}>
@@ -114,7 +103,7 @@ const LoginForm = () => {
           </Button>
           <Text>
             Don't have an account?
-            <StyledLink to={'/register'}>Register</StyledLink>
+            <StyledLink to={'/register'}> Register</StyledLink>
           </Text>
         </Forms>
       )}

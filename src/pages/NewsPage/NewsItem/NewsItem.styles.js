@@ -2,17 +2,15 @@ import styled from 'styled-components';
 
 export const Item = styled.li`
   position: relative;
-  // height: 578px;
   max-width: 336px;
   border-radius: 20px;
-  cursor: pointer;
   box-shadow: ${({ theme }) => theme.shadows.default};
 
   scale: 1;
   transition: scale 250ms ease;
 
   &:hover {
-    scale: 1.05;
+    scale: 1.03;
     transition: scale 250ms ease;
   }
 
@@ -30,12 +28,16 @@ export const Item = styled.li`
     content: '';
     display: block;
     position: absolute;
-    top: -22px;
+    top: -20px;
     left: 0;
     right: 0;
     height: 8px;
     background: ${({ theme }) => theme.colors.gradient};
     border-radius: 8px;
+
+    @media ${({ theme }) => theme.media.tab} {
+      top: -22px;
+    }
   }
 `;
 
@@ -85,10 +87,16 @@ export const Bottom = styled.div`
 export const Link = styled.a`
   color: ${({ theme }) => theme.colors.link};
   outline: none;
-  transition: color 250ms ease;
+  transition: border-bottom 250ms ease;
 
   &:hover,
   &:focus {
-    color: ${({ theme }) => theme.colors.yellow};
+    border-bottom: 1px solid currentColor;
   }
 `;
+
+// a:hover {
+//   border-bottom: 1px solid black;
+//  }
+
+// text-decoration: underline;

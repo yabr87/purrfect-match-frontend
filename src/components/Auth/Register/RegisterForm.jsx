@@ -57,8 +57,8 @@ const RegisterForm = () => {
       }}
       validationSchema={validateShecma}
     >
-      {({ errors }) => (
-        <Forms autoComplete="on">
+      {({ errors, touched, values }) => (
+        <Forms>
           <Title
             as="p"
             weight="500"
@@ -77,9 +77,9 @@ const RegisterForm = () => {
                 type="text"
                 name="email"
                 placeholder="Email"
-                error={errors.email ? '#f43f5e' : '#54adff'}
+                error={errors.email && touched.email ? '#f43f5e' : '#54adff'}
               />
-              {errors.email && (
+              {errors.email && touched.email && (
                 <>
                   <AbsoluteDiv>
                     <Icon id={'cross'} s={'red'} />
@@ -89,12 +89,16 @@ const RegisterForm = () => {
               )}
             </Lable>
             <Input
-              errors={errors?.password}
+              error={errors.password}
+              touched={touched.password}
               name={'password'}
               placeholder={'Password'}
+              value={values.password}
             />
             <Input
-              errors={errors?.confirmedPassword}
+              error={errors.confirmedPassword}
+              touched={touched.confirmedPassword}
+              value={values.confirmedPassword}
               name={'confirmedPassword'}
               placeholder={'Confirm password'}
             />
@@ -104,7 +108,7 @@ const RegisterForm = () => {
           </Button>
           <Text>
             Already have an account?
-            <StyledLink to={'/login'}>Login</StyledLink>
+            <StyledLink to={'/login'}> Login</StyledLink>
           </Text>
         </Forms>
       )}

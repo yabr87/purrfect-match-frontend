@@ -1,32 +1,73 @@
 import * as Yup from 'yup';
 
-const validationSchema = (selectedOption, currentStep) => {
+const validationSchema = ( currentStep, selectedCategory) => {
   let schema = Yup.object();
-  
+
+  if (currentStep === 1) {
+    schema = schema.shape({
+      category: Yup.string()
+        .required()
+        .oneOf(['my-pet', 'sell', 'lost-found', 'for-free']),
+    });
+  }
+
   if (currentStep === 2) {
     schema = schema.shape({
-      title: Yup.string().required('Title is required'),
-      name: Yup.string().required('Name is required'),
-      birthday: Yup.string().required('Birthday is required'),
-      breed: Yup.string().required('Breed is required'),
+      title: Yup.string()
+        .matches(
+          /^[a-zA-Zа-яА-ЯІіЇїЄєҐґ]+(([' -][a-zA-Zа-яА-ЯІіЇїЄєҐґ ])?[a-zA-Zа-яА-ЯІіЇїЄєҐґ]*)*$/,
+          'Title may contain only letters, apostrophes, dashes, and spaces. For example: Adorable Puppies for Adoption'
+        )
+        .required('Title is required')
+        .min(2, 'Name must be at least 2 characters')
+        .max(20, 'Name must not exceed 50 characters'),
+      name: Yup.string()
+        .required('Name is required')
+        .matches(
+          /^[a-zA-Zа-яА-ЯІіЇїЄєҐґ]+(([' -][a-zA-Zа-яА-ЯІіЇїЄєҐґ ])?[a-zA-Zа-яА-ЯІіЇїЄєҐґ]*)*$/,
+          'Name may contain only letters, apostrophe, dash, and spaces. For example: Bobby, Buddy'
+        )
+        .min(2, 'Name must be at least 2 characters')
+        .max(16, 'Name must not exceed 16 characters'),
+      birthday: Yup.string()
+        .required('Birthday is required')
+        .matches(
+          /^(0[1-9]|1[0-9]|2[0-9]|3[01])\.(0[1-9]|1[012])\.\d{4}$/,
+          'Birthday must be in the format dd.mm.yyyy'
+        ),
+      breed: Yup.string()
+        .required('Breed is required')
+        .matches(
+          /^[a-zA-Zа-яА-ЯІіЇїЄєҐґ]+(([',. -][a-zA-Zа-яА-ЯІіЇїЄєҐґ ])?[a-zA-Zа-яА-ЯІіЇїЄєҐґ]*)*$/,
+          "Please enter your pet's breed using only letters, hyphens, apostrophes, commas, periods, and spaces. (For example: Golden Retriever, Siamese, Bulldog)"
+        )
+        .min(2, 'Name must be at least 2 characters')
+        .max(16, 'Name must not exceed 16 characters'),
     });
   }
 
   if (currentStep === 3) {
     schema = schema.shape({
-      photo: Yup.string().required('Photo is required'),
-      comments: Yup.string().required('Comments is required'),
-      sex: Yup.string().required('Sex is required'),
-      location: Yup.string().required('Location is required'),
-      price: Yup.number('Please enter number value').required('Price is required'),
+      photo: Yup.string().required('To finish form, please upload foto'),
+      comments: Yup.string()
+        .required('Comments is required')
+        .min(8, 'Comments must be at least 8 characters')
+        .max(120, 'Comments must not exceed 120 characters'),
+      sex: Yup.string().required('Sex is required').oneOf(['male', 'female']),
+      location: Yup.string()
+        .required('Location is required')
+        .matches(/^[\p{L}\s,']+$/u, 'Invalid city format'),
+      price: Yup.number()
+        .typeError('Price must be a number')
+        .required('Price is required'),
     });
   }
 
-  if (selectedOption === 'my-pet') {
+  if (selectedCategory === 'my-pet') {
     schema = schema.omit(['title', 'sex', 'price', 'location']);
   }
 
-  if (selectedOption === 'lost-found' || selectedOption === 'for-free') {
+  if (selectedCategory === 'lost-found' || selectedCategory === 'for-free') {
     schema = schema.omit(['price']);
   }
 

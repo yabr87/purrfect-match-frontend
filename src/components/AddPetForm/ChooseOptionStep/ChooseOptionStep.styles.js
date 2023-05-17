@@ -18,11 +18,11 @@ export const RadioLabel = styled.label`
   border-radius: 40px;
 
   font-weight: 500;
-font-size: 14px;
-line-height: 1,4;
+  font-size: 14px;
+  line-height: 1, 4;
 
-  background-color: ${props => props.checked ? '#54adff' : '#CCE4FB'};
-  color: ${props => props.checked ? '#FEF9F9' : '#54ADFF'};
+  background-color: ${props => (props.checked ? '#54adff' : '#CCE4FB')};
+  color: ${props => (props.checked ? '#FEF9F9' : '#54ADFF')};
 
   input[type='radio'] {
     appearance: none;

@@ -1,46 +1,73 @@
 import PropTypes from 'prop-types';
-import { Field } from "formik";
-import { RadioContainer, RadioLabel } from "./ChooseOptionStep.styles";
-import { useState } from "react";
+import { Field } from 'formik';
+import { RadioContainer, RadioLabel } from './ChooseOptionStep.styles';
 
-const ChooseOptionStep = ({ name, options, onSelect, value }) => {
-  const [checkedValue, setCheckedValue] = useState(value);
-
-  const handleChange = (e) => {
-    setCheckedValue(e.target.value);
-    onSelect(e.target.value);
+const ChooseOptionStep = ({
+  handleBlur,
+  values,
+  handleChange,
+  onSelectCategory,
+}) => {
+  const handleCategoryChange = category => {
+    handleChange({ target: { name: 'category', value: category } });
+    onSelectCategory(category);
   };
 
   return (
     <RadioContainer role="group" aria-labelledby="choose-pet-option">
-      {options.map((option) => (
-        <RadioLabel key={option.value} checked={checkedValue === option.value}>
-          <Field
-            type="radio"
-            name={name}
-            value={option.value}
-            checked={checkedValue === option.value}
-            onChange={handleChange}
-            onBlur={() => { }}
-          />
-          {option.label}
-        </RadioLabel>
-      ))}
+      <RadioLabel checked={values.category === 'my-pet'}>
+        <Field
+          type="radio"
+          name="category"
+          value="my-pet"
+          onChange={() => handleCategoryChange('my-pet')}
+          onBlur={handleBlur}
+          checked={values.category === 'my-pet'}
+        />
+        your pet
+      </RadioLabel>
+      <RadioLabel checked={values.category === 'sell'}>
+        <Field
+          type="radio"
+          name="category"
+          value="sell"
+          onChange={() => handleCategoryChange('sell')}
+          onBlur={handleBlur}
+          checked={values.category === 'sell'}
+        />
+        sell
+      </RadioLabel>
+      <RadioLabel checked={values.category === 'lost-found'}>
+        <Field
+          type="radio"
+          name="category"
+          value="lost-found"
+          onChange={() => handleCategoryChange('lost-found')}
+          onBlur={handleBlur}
+          checked={values.category === 'lost-found'}
+        />
+        lost/found
+      </RadioLabel>
+      <RadioLabel checked={values.category === 'for-free'}>
+        <Field
+          type="radio"
+          name="category"
+          value="for-free"
+          onChange={() => handleCategoryChange('for-free')}
+          onBlur={handleBlur}
+          checked={values.category === 'for-free'}
+        />
+        in good hands
+      </RadioLabel>
     </RadioContainer>
   );
 };
 
-
 ChooseOptionStep.propTypes = {
-  name: PropTypes.string.isRequired,
-  options: PropTypes.arrayOf(
-    PropTypes.shape({
-      value: PropTypes.string.isRequired,
-      label: PropTypes.string.isRequired,
-    })
-  ).isRequired,
-  onSelect: PropTypes.func.isRequired,
-  value: PropTypes.string.isRequired,
+  handleBlur: PropTypes.func.isRequired,
+  values: PropTypes.object.isRequired,
+  handleChange: PropTypes.func.isRequired,
+  onSelectCategory: PropTypes.func.isRequired,
 };
 
 export default ChooseOptionStep;

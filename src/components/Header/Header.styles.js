@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 
 export const AppHeader = styled.header`
-  position: ${({isMobileNavOpen}) => (isMobileNavOpen && 'fixed')};
+  position: ${({ isMobileNavOpen }) => isMobileNavOpen && 'fixed'};
   top: 0;
   left: 0;
   width: 100%;
   z-index: 1000;
-  overflow: ${({isMobileNavOpen}) => (isMobileNavOpen && 'clip')};
-  
-  background-color: #FEF9F9;
+  overflow: ${({ isMobileNavOpen }) => isMobileNavOpen && 'clip'};
+
+  background-color: #fef9f9;
 `;
 
 export const HeaderContainer = styled.div`
@@ -18,12 +18,12 @@ export const HeaderContainer = styled.div`
   padding-top: 20px;
 
   @media screen and (min-width: 768px) {
-  padding-top: 24px;
+    padding-top: 24px;
     height: 68px;
   }
 
   @media screen and (min-width: 1280px) {
-  padding-top: 20px;
+    padding-top: 20px;
   }
 `;
 
@@ -31,10 +31,10 @@ export const OpenLinksButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-left: auto;
   padding: 0;
   background: transparent;
-  color: #FFC107;
+  color: #ffc107;
+  margin-left: ${({ isMobileNavOpen }) => (isMobileNavOpen ? 'auto' : '0')};
 
   width: 24px;
   height: 24px;
@@ -42,16 +42,11 @@ export const OpenLinksButton = styled.button`
 
   cursor: pointer;
 
-      &:hover {
-        color: #111; 
-      }
+  &:hover {
+    color: #111;
+  }
 
   transition: color 250ms ease;
-
-
-  @media (min-width: 768px) {
-    margin-left: ${({isMobileNavOpen}) => (isMobileNavOpen ? "auto" : "22px")};
-  }
 `;
 
 export const MobileContainer = styled.div`
@@ -65,15 +60,14 @@ export const MobileContainer = styled.div`
   height: 100vh;
   width: 100%;
   z-index: 999;
-  background-color: #FEF9F9;
+  background-color: #fef9f9;
   overflow: scroll;
-  
 
-    @media screen and (min-width: 768px) {
+  @media screen and (min-width: 768px) {
     top: 68px;
   }
 `;
-  
+
 export const MobileAuth = styled.div`
   align-items: center;
-`
+`;

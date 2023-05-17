@@ -1,47 +1,5 @@
 import styled from 'styled-components';
 
-const setWidth = ({ w }) => {
-  if (!w) return 'none';
-  if (w && w.endsWith('%')) {
-    return `${w}`;
-  } else {
-    return `${w}px`;
-  }
-};
-
-const setColor = ({ shape, theme }) => {
-  switch (shape) {
-    case 'solid':
-      return `${theme.colors.background}`;
-    case 'yellow':
-      return `${theme.colors.yellow}`;
-    default:
-      return `${theme.colors.link}`;
-  }
-};
-
-const setBackground = ({ shape, theme }) => {
-  switch (shape) {
-    case 'solid':
-      return `linear-gradient(${theme.colors.link}, ${theme.colors.link})`;
-    case 'yellow':
-      return 'inherit';
-    default:
-      return 'inherit';
-  }
-};
-
-const setHoverBackground = ({ shape, theme }) => {
-  switch (shape) {
-    case 'solid':
-      return `${theme.colors.gradient}`;
-    case 'yellow':
-      return '#FFC107';
-    default:
-      return `${theme.colors.gradient}`;
-  }
-};
-
 export const Btn = styled.button`
   display: flex;
   align-items: center;
@@ -64,15 +22,61 @@ export const Btn = styled.button`
 
   outline: none;
 
-  cursor: pointer;
-
   transition-property: color, background;
   transition-duration: 250ms;
   transition-timing-function: ease;
 
-  &:hover,
-  &:focus {
+  :not([disabled]):hover,
+  :not([disabled]):focus-visible {
+    cursor: pointer;
     color: ${({ theme }) => theme.colors.background};
     background: ${setHoverBackground};
   }
+
+  :active,
+  :disabled {
+    filter: opacity(0.6);
+  }
 `;
+
+function setWidth({ w }) {
+  if (!w) return 'none';
+  if (w && w.endsWith('%')) {
+    return `${w}`;
+  } else {
+    return `${w}px`;
+  }
+}
+
+function setColor({ shape, theme }) {
+  switch (shape) {
+    case 'solid':
+      return `${theme.colors.background}`;
+    case 'yellow':
+      return `${theme.colors.yellow}`;
+    default:
+      return `${theme.colors.link}`;
+  }
+}
+
+function setBackground({ shape, theme }) {
+  switch (shape) {
+    case 'solid':
+      return `linear-gradient(${theme.colors.link}, ${theme.colors.link})`;
+    case 'yellow':
+      return 'inherit';
+    default:
+      return 'inherit';
+  }
+}
+
+function setHoverBackground({ shape, theme }) {
+  switch (shape) {
+    case 'solid':
+      return `${theme.colors.gradient}`;
+    case 'yellow':
+      return '#FFC107';
+    default:
+      return `${theme.colors.gradient}`;
+  }
+}

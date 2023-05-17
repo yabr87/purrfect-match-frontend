@@ -10,11 +10,10 @@ export const Forms = styled(Form)`
     padding: 60px 75px;
   }
 `;
-export const InputEmail = styled(Field)`
+export const Input = styled(Field)`
   width: 100%;
   padding: 12px 16px;
   border: 1px solid;
-  border-color: ${props => props.error};
   border-radius: ${props => props.theme.radius.normal};
 
   ::placeholder {
@@ -26,21 +25,11 @@ export const InputEmail = styled(Field)`
     outline: none;
   }
 `;
-export const InputPassword = styled(Field)`
-  width: 100%;
-  padding: 12px 16px;
-  border: 1px solid;
+export const InputEmail = styled(Input)`
   border-color: ${props => props.error};
-  border-radius: ${props => props.theme.radius.normal};
-
-  ::placeholder {
-    font-weight: ${props => props.theme.fontWeiths.normal};
-    font-size: ${props => props.theme.fontSizes.s};
-    color: ${props => props.theme.colors.grey};
-  }
-  :focus {
-    outline: none;
-  }
+`;
+export const InputPassword = styled(Input)`
+  border-color: ${props => props.error};
 `;
 export const InputContainer = styled.div`
   display: flex;
