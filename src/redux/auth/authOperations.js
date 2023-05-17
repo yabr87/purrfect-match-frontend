@@ -57,8 +57,8 @@ export const current = createAsyncThunk(
   async (_, { rejectWithValue, getState }) => {
     try {
       const { auth } = getState();
-      const result = await api.getCurrent(auth.token);
-      return result.data;
+      const {data} = await api.getCurrent(auth.token);
+      return data;
     } catch ({ response }) {
       const { status, data } = response;
       const error = {
