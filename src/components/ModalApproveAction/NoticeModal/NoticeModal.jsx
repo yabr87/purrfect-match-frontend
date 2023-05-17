@@ -27,11 +27,8 @@ import { updateFavoriteNotice } from '../../../utils/ApiNotices';
 import { calculateAge } from 'utils/calculateAge';
 
 const NoticeModal = ({ notice, close }) => {
-  console.log(notice.favorite);
   const { isLoggedIn } = useAuth();
   const [favorite, setFavorite] = useState(!!notice.favorite);
-
-  console.log(favorite);
 
   const screenSize = useMedia(
     ['(min-width: 1280px)', '(min-width: 768px)', '(min-width: 480px)'],
@@ -58,11 +55,6 @@ const NoticeModal = ({ notice, close }) => {
       await updateFavoriteNotice(notice._id, updateToFavorite);
       notice.favorite = !favorite;
       setFavorite(!favorite);
-      // const updateToFavorite = {
-      //   favorite: !notice.favorite,
-      // };
-      // await updateFavoriteNotice(notice._id, updateToFavorite);
-      // setFavorite(current => !current);
     } catch (error) {
       alert('Failed to update notice. Please try again later.');
     }
