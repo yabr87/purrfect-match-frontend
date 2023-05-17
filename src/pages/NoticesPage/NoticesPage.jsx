@@ -80,16 +80,18 @@ function NoticesPage() {
           {isUpToWidth480 ? (
             <CircleButton
               style={{
-                zIndex: '999',
+                zIndex: '1999',
                 position: 'fixed',
                 bottom: '50px',
                 right: '24px',
               }}
               onClick={handleAddPet}
               disabled={!isLoggedIn}
-            />
+            >
+              Add pet
+            </CircleButton>
           ) : (
-            <Button onClick={handleAddPet}>
+            <Button style={{ width: '129px' }} onClick={handleAddPet}>
               Add pet
               <Icon id="plus-small" />
             </Button>
