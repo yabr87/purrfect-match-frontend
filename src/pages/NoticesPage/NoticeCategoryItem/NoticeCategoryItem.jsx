@@ -26,9 +26,10 @@ import ModalApproveAction from 'components/ModalApproveAction';
 import NoticeModal from 'components/ModalApproveAction/NoticeModal';
 import Delete from 'components/ModalApproveAction/Delete';
 
-const AddToFavorite = ({ notice }) => {
+const AddToFavorite = ({ notice, setIsFavorite }) => {
   const { isLoggedIn } = useAuth();
-  const [isFavorite, setIsFavorite] = useState(!!notice.favorite);
+  const isFavorite = notice.favorite;
+
   const [isHovered, setIsHovered] = useState(false);
 
   const handleUpdate = async () => {
@@ -39,10 +40,9 @@ const AddToFavorite = ({ notice }) => {
       }
 
       const updateToFavorite = {
-        favorite: !notice.favorite,
+        favorite: !isFavorite,
       };
       await updateFavoriteNotice(notice._id, updateToFavorite);
-      notice.favorite = !isFavorite;
       setIsFavorite(!isFavorite);
     } catch (error) {
       alert('Failed to update notice. Please try again later.');
@@ -87,13 +87,21 @@ const LearnMore = ({ onButtonClick }) => {
   );
 };
 
-const NoticeCategoryItem = ({ notice, deleteAndRefresh }) => {
+const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
   const { isLoggedIn, user } = useAuth();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false);
 
   // const dispatch = useDispatch();
+
+  const setIsFavorite = favorite => {
+    setNotices(prevNotices => {
+      const notices = [...prevNotices];
+      notices.find(({ _id }) => notice._id === _id).favorite = favorite;
+      return notices;
+    });
+  };
 
   const handleDelete = async id => {
     try {
@@ -106,7 +114,7 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh }) => {
 
   return (
     <Card>
-      <AddToFavorite notice={notice} />
+      <AddToFavorite notice={notice} setIsFavorite={setIsFavorite} />
       <CardImageContainer>
         <CardImage src={notice.photoUrl} alt={notice.title} />
         <ImageCategory>
