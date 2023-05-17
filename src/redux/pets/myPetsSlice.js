@@ -51,7 +51,7 @@ const petsSlice = createSlice({
         store.error = null;
         store.events = null;
         const index = store.myPets.findIndex(item => item.id === meta.arg);
-        store.contacts.splice(index, 1);
+        store.myPets.splice(index, 1);
       })
       .addCase(deleteMyPet.rejected, (store, { payload }) => {
         store.isLoading = false;
