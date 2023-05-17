@@ -1,4 +1,4 @@
-// import { useDispatch } from 'react-redux';
+
 import Button from 'shared/components/Button';
 import {
   Text,
@@ -11,13 +11,8 @@ import {
 import Icon from 'shared/components/Icon';
 import Title from 'shared/components/Title';
 
-// import { deleteMyPet } from 'redux/pets/myPetsOperations';
-
 const Delete = ({ close, approve }) => {
-  // const dispatch = useDispatch();
-  // const handleDelete = idPet => {
-  //   dispatch(deleteMyPet(idPet));
-  // };
+
 
   return (
     <ContainerView>

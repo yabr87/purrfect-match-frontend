@@ -1,5 +1,8 @@
 import React, { useState, useCallback } from 'react';
 import useAuth from 'shared/hooks/useAuth';
+
+// import { deleteNotice } from '../../../utils/ApiNotices';
+// import { updateFavoriteNotice } from '../../../utils/ApiNotices';
 // import { useDispatch } from 'react-redux';
 // import ModalApproveAction from 'components/ModalApproveAction/ModalApproveAction';
 
@@ -118,11 +121,6 @@ const NoticeCategoryItem = ({ notice }) => {
     setTrashIconColor('#54ADFF');
   }, []);
 
-  // const handleDelete = () => {
-  //   setIsModalDeleteOpen(false);
-  //   dispatch(deleteMyPet());
-  // };
-
   return (
     <Card>
       <AddToFavorite />
@@ -189,9 +187,11 @@ const NoticeCategoryItem = ({ notice }) => {
         </Button>
       )}
       {/* {isModalDeleteOpen && (
-        <ModalApproveAction close={() => setIsModalDeleteOpen(false)}>
+        <ModalApproveAction
+          close={() => setIsModalDeleteOpen(false)}
+        >
           <Delete
-            approve={() => handleDelete()}
+            approve={() => handleDelete(notice._id)}
             close={() => setIsModalDeleteOpen(false)}
           />
         </ModalApproveAction>

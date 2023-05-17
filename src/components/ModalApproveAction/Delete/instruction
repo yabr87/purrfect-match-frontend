@@ -11,7 +11,7 @@ import Delete from 'components/ModalApproveAction/Delete';
 - робимо ренедер за умовою
 
 const NoticeCategoryItem = () => {
-      const [isModalOpen, setIsModalOpen] = useState(false);
+      const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false);
 
 return (
     <>
