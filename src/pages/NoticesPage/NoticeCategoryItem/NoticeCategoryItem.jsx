@@ -95,8 +95,7 @@ const LearnMore = ({ onButtonClick }) => {
   );
 };
 
-const NoticeCategoryItem = ({ notice }) => {
-  const [notices, setNotices] = useState([]);
+const NoticeCategoryItem = ({ notice, deleteAndRefresh }) => {
   // const [isTrashHoveredOrFocused, setIsTrashHoveredOrFocused] = useState(false);
   // const [trashIconColor, setTrashIconColor] = useState('#54ADFF');
   const { isLoggedIn, user } = useAuth();
@@ -122,8 +121,7 @@ const NoticeCategoryItem = ({ notice }) => {
   const handleDelete = async id => {
     try {
       await deleteNotice(id);
-      // Оновлюємо стан після видалення оголошення
-      setNotices(notices.filter(notice => notice._id !== id));
+      deleteAndRefresh(id);
     } catch (error) {
       alert('Failed to delete notice. Please try again later.');
     }
@@ -175,26 +173,7 @@ const NoticeCategoryItem = ({ notice }) => {
           pos="absolute"
           t="68px"
           r="12px"
-          // style={{
-          //   zIndex: 999,
-          //   position: 'absolute',
-          //   display: 'flex',
-          //   justifyContent: 'center',
-          //   alignItems: 'center',
-          //   width: 40,
-          //   height: 40,
-          //   right: 12,
-          //   top: 68,
-          //   background: isTrashHoveredOrFocused ? '#54adff' : '#cce4fb',
-          //   borderRadius: '50%',
-          //   border: 'none',
-          //   outline: 'none',
-          // }}
-          // onMouseEnter={handleHover}
-          // onMouseLeave={handleBlur}
-          // onFocus={handleHover}
-          // onBlur={handleBlur}
-          onClick={handleDelete}
+          onClick={() => handleDelete(notice._id)}
         ></CircleButton>
       )}
     </Card>
