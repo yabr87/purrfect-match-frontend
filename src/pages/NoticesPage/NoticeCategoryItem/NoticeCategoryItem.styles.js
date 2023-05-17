@@ -9,9 +9,11 @@ export const Card = styled.div`
   border-radius: 0px 0px 40px 40px;
   transition: transform 250ms ease;
 
-  &:hover,
-  &:focus {
-    transform: perspective(800px) rotateX(5deg) rotateY(0deg) rotateZ(0deg);
+  @media screen and (min-width: 768px) {
+    &:hover,
+    &:focus {
+      transform: perspective(800px) rotateX(5deg) rotateY(0deg) rotateZ(0deg);
+    }
   }
 
   @media screen and (min-width: 768px) and (max-width: 1280px) {
