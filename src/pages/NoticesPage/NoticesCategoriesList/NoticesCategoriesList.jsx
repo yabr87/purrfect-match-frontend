@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { useState, useEffect } from 'react';
+
 import NoticeCategoryItem from '../NoticeCategoryItem/NoticeCategoryItem';
 
 import { CollectionContainer } from './NoticesCategoriesList.styles.js';
@@ -11,12 +13,26 @@ const NoticesCategoriesList = ({
   notices,
   setCurrentPage,
 }) => {
+  const [noticesAfterDel, setNoticesAfterDel] = useState(notices);
+
+  useEffect(() => {
+    setNoticesAfterDel(notices);
+  }, [notices]);
+
+  const deleteAndRefresh = id => {
+    setNoticesAfterDel(noticesAfterDel.filter(notice => notice._id !== id));
+  };
+
   return (
     <>
       <CollectionContainer>
-        {notices.length ? (
-          notices.map(notice => (
-            <NoticeCategoryItem key={notice._id} notice={notice} />
+        {noticesAfterDel.length ? (
+          noticesAfterDel.map(notice => (
+            <NoticeCategoryItem
+              key={notice._id}
+              notice={notice}
+              deleteAndRefresh={deleteAndRefresh}
+            />
           ))
         ) : (
           <div>There is no result</div>

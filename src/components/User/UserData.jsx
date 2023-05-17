@@ -1,3 +1,4 @@
+import { useDispatch } from 'react-redux';
 import {
   Container,
   Avatar,
@@ -12,8 +13,15 @@ import {
   Wrap,
 } from './';
 import Icon from 'shared/components/Icon/Icon';
+import { logout } from 'redux/auth/authOperations';
 
 const UserData = () => {
+  const dispatch = useDispatch();
+
+  const handleLogOut = () => {
+    dispatch(logout());
+  };
+
   return (
     <>
       <Wrap>
@@ -32,7 +40,7 @@ const UserData = () => {
             <InputItem name={'Birthday'} />
             <InputItem name={'Phone'} />
             <InputItem name={'City'} />
-            <LogOutBtn>
+            <LogOutBtn onClick={handleLogOut}>
               <Icon id="logout" s="#54ADFF" />
               <LogOutText>Log Out</LogOutText>
             </LogOutBtn>
