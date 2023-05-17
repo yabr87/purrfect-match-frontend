@@ -4,7 +4,7 @@ import Button from 'shared/components/Button';
 import Icon from 'shared/components/Icon';
 
 import { useMedia } from 'shared/hooks/useMedia';
-
+import CircleButton from 'shared/components/CircleButton';
 import {
   FilterContainer,
   FilterOptions,
@@ -59,25 +59,17 @@ function NoticesFilters({ fetchData }) {
       }}
     >
       {isUpToWidth480 ? (
-        <Button
+        <CircleButton
+          id="filters"
+          pos="absolute"
+          t="0"
+          r="0"
           style={{
-            position: 'absolute',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            top: 0,
-            right: 0,
             width: 40,
             height: 40,
-            background: '#cce4fb',
-            borderRadius: '50%',
-            border: 'none',
-            outline: 'none',
           }}
           onClick={handleFilterClick}
-        >
-          <Icon id="filters" h="22" w="22" s="#54ADFF" strokeWidth="1.5" />
-        </Button>
+        ></CircleButton>
       ) : (
         <Button style={{ width: '152px' }} onClick={handleFilterClick}>
           Filter
