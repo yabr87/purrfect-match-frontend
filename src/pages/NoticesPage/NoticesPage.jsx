@@ -14,7 +14,6 @@ import Container from 'shared/components/Container';
 import Icon from 'shared/components/Icon/Icon';
 import { useMedia } from 'shared/hooks/useMedia';
 
-import { useParams } from 'react-router-dom';
 import { getNotices } from 'utils/ApiNotices';
 
 function NoticesPage() {
