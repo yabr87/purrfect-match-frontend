@@ -5,6 +5,9 @@ export const Forms = styled(Form)`
   display: flex;
   flex-direction: column;
   align-items: center;
+  background: ${props => props.theme.colors.backgroundColor};
+  border-radius: 37px;
+  color: ${props => props.theme.colors.color};
   padding: 40px 12px;
   @media (min-width: 481px) {
     padding: 60px 75px;
@@ -15,6 +18,8 @@ export const Input = styled(Field)`
   padding: 12px 16px;
   border: 1px solid;
   border-radius: ${props => props.theme.radius.normal};
+  background: ${props => props.theme.colors.backgroundColor};
+  color: inherit;
 
   ::placeholder {
     font-weight: ${props => props.theme.fontWeiths.normal};

@@ -1,15 +1,9 @@
-// import styled from 'styled-components';
-// використання теми в вашому компоненті: в файлі стилізації component.styled.js -
-// export const Container = styled.div`
-//   width: 300px;
-//   background-color: ${props => props.theme.colors.lightBlue};
-//   border-color: ${props => props.theme.colors.accent};
-// `;
-
 export const lightTheme = {
   colors: {
     accent: '#FF8356',
-    background: '#FEF9F9',
+    backgroundColor: '#FEF9F9',
+    backgroundModal: '#ffffff',
+    textColor: '#121212',
     link: '#54ADFF',
     grey: '#888888',
     black: '#111111',
@@ -18,10 +12,6 @@ export const lightTheme = {
     red: '#F43F5E',
     lightBlue: '#CCE4FB',
     gradient: 'linear-gradient(290.46deg, #419EF1 0%, #9BD0FF 107.89%)',
-
-    backgroundColor: '#fff',
-    color: '#121212',
-    linkT: '#888888',
   },
   shadows: {
     default: '3px 8px 14px rgba(136, 198, 253, 0.19)',
@@ -61,27 +51,14 @@ export const lightTheme = {
     tab: 'screen and (min-width: 768px)',
     desk: 'screen and (min-width: 1280px)',
   },
-  // add: `text-align:"start";
-  //       font-weight: 500;
-  //       font-size: "20px";
-  //       line-height: 1.35;
-  //       text-align: "center";
-
-  //       @media screen and (min-width: 768px){
-  //         font-weight: 500;
-  //         font-size: "28px";
-  //         line-height: 1.35;
-  //       }
-  //       @media screen and (min-width: 1280px){
-  //         font-weight: 500;
-  //         font-size: "28px";
-  //         line-height: 1.35;
-  //       }`,
 };
+
 export const darkTheme = {
   colors: {
     accent: '#FF8356',
-    background: '#FEF9F9',
+    backgroundColor: '#121212',
+    backgroundModal: '#121212',
+    textColor: '#fff',
     link: '#54ADFF',
     grey: '#888888',
     black: '#111111',
@@ -90,9 +67,6 @@ export const darkTheme = {
     red: '#F43F5E',
     lightBlue: '#CCE4FB',
     gradient: 'linear-gradient(290.46deg, #419EF1 0%, #9BD0FF 107.89%)',
-
-    backgroundColor: '#121212',
-    color: '#fff',
   },
   shadows: {
     default: '3px 8px 14px rgba(136, 198, 253, 0.19)',

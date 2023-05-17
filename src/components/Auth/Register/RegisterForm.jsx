@@ -68,6 +68,7 @@ const RegisterForm = () => {
             deskWeight="500"
             deskSize="36"
             deskLine="1.36"
+            color="inherit"
           >
             Register
           </Title>
