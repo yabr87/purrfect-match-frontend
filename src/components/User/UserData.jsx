@@ -23,6 +23,10 @@ const UserData = () => {
   const [isModalLogoutOpen, setIsModalLogoutOpen] = useState(false);
   // const dispatch = useDispatch();
 
+  // useEffect(() => {
+  //   dispatch();
+  // }, [dispatch]);
+
   const handleLogOut = () => {
     setIsModalLogoutOpen(true);
     // dispatch(logout());
@@ -41,11 +45,11 @@ const UserData = () => {
             </EditAvatarBtn>
           </AvatarContainer>
           <InputContainer>
-            <InputItem name={'Name'} />
-            <InputItem name={'Email'} />
-            <InputItem name={'Birthday'} />
-            <InputItem name={'Phone'} />
-            <InputItem name={'City'} />
+            <InputItem name={'Name'} type="text" />
+            <InputItem name={'Email'} type="email" />
+            <InputItem name={'Birthday'} type="text" />
+            <InputItem name={'Phone'} type="phone" />
+            <InputItem name={'City'} type="text" />
             <LogOutBtn onClick={handleLogOut}>
               <Icon id="logout" s="#54ADFF" />
               <LogOutText>Log Out</LogOutText>
