@@ -12,7 +12,7 @@ import {
 } from './Input.styles';
 import { useEffect } from 'react';
 
-const Input = ({ error, touched, name, placeholder, value }) => {
+const Input = ({ error, touched, name, placeholder, value, background }) => {
   const [passwordType, setPasswordType] = useState('password');
   const [isValide, setIsValide] = useState(false);
   const togglePassword = () => {
@@ -42,6 +42,7 @@ const Input = ({ error, touched, name, placeholder, value }) => {
   return (
     <Lable>
       <InputPassword
+        background={background}
         type={passwordType}
         name={name}
         placeholder={placeholder}

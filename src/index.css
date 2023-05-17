@@ -79,3 +79,7 @@ a {
   text-decoration: none;
   color: inherit;
 }
+
+.dark {
+  background-color: #121212;
+}

@@ -24,6 +24,8 @@ import { login } from 'redux/auth/authOperations';
 import { useNavigate } from 'react-router-dom';
 import useAuth from 'shared/hooks/useAuth';
 
+import { useSelector } from 'react-redux';
+import { useTheme } from 'styled-components';
 const validateShecma = Yup.object().shape({
   email: Yup.string().email('Invalid email address').required('Required'),
   password: Yup.string()
@@ -40,6 +42,8 @@ const LoginForm = () => {
   const { isLoggedIn } = useAuth();
   const dispatch = useDispatch();
 
+  const currentTheme = useSelector(state => state.theme);
+  const theme = useTheme();
   useEffect(() => {
     if (isLoggedIn) {
       navigate('/notices/sell');
@@ -60,7 +64,10 @@ const LoginForm = () => {
       validationSchema={validateShecma}
     >
       {({ errors, touched, values }) => (
-        <Forms>
+        <Forms
+          background={theme[currentTheme].backgroundColor}
+          color={theme[currentTheme].color}
+        >
           <Title
             as="p"
             weight="500"
@@ -70,12 +77,14 @@ const LoginForm = () => {
             deskWeight="500"
             deskSize="36"
             deskLine="1.36"
+            color="inherit"
           >
             Login
           </Title>
           <InputContainer>
             <Lable>
               <InputEmail
+                background={theme[currentTheme].backgroundColor}
                 type="text"
                 name="email"
                 placeholder="Email"
@@ -91,6 +100,7 @@ const LoginForm = () => {
               )}
             </Lable>
             <Input
+              background={theme[currentTheme].backgroundColor}
               error={errors.password}
               touched={touched.password}
               name={'password'}
@@ -101,7 +111,7 @@ const LoginForm = () => {
           <Button shape={'solid'} w={'100%'} h={'48'}>
             Login
           </Button>
-          <Text>
+          <Text color={theme[currentTheme].link}>
             Don't have an account?
             <StyledLink to={'/register'}> Register</StyledLink>
           </Text>

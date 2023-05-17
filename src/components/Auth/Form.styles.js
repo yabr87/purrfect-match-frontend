@@ -6,6 +6,9 @@ export const Forms = styled(Form)`
   flex-direction: column;
   align-items: center;
   padding: 40px 12px;
+  background-color: ${props => props.background};
+  color: ${props => props.color};
+  border-radius: 40px;
   @media (min-width: 481px) {
     padding: 60px 75px;
   }
@@ -15,7 +18,8 @@ export const Input = styled(Field)`
   padding: 12px 16px;
   border: 1px solid;
   border-radius: ${props => props.theme.radius.normal};
-
+  background-color: ${props => props.background};
+  color: inherit;
   ::placeholder {
     font-weight: ${props => props.theme.fontWeiths.normal};
     font-size: ${props => props.theme.fontSizes.s};
@@ -43,7 +47,7 @@ export const Text = styled.p`
   font-weight: ${props => props.theme.fontWeiths.normal};
   font-size: ${props => props.theme.fontSizes.xs};
   line-height: 16px;
-  color: ${props => props.theme.colors.grey};
+  color: ${props => props.color};
   margin-top: 20px;
 `;
 export const StyledLink = styled(Link)`

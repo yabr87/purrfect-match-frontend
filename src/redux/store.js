@@ -14,6 +14,7 @@ import storage from 'redux-persist/lib/storage';
 
 import petsReducer from './pets/myPetsSlice';
 import authReducer from './auth/authSlice';
+import themeReducer from './theme/themeSlice';
 
 const persistConfig = {
   key: 'auth',
@@ -25,6 +26,7 @@ export const store = configureStore({
   reducer: {
     auth: persistReducer(persistConfig, authReducer),
     pets: petsReducer,
+    theme: themeReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

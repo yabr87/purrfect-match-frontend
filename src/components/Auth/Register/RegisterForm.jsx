@@ -1,6 +1,7 @@
 import { ErrorMessage, Formik } from 'formik';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import * as Yup from 'yup';
+import { useTheme } from 'styled-components';
 
 import {
   Forms,
@@ -36,6 +37,9 @@ const validateShecma = Yup.object().shape({
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
+
+  const currentTheme = useSelector(state => state.theme);
+  const theme = useTheme();
   return (
     <Formik
       initialValues={{ email: '', password: '', confirmedPassword: '' }}
@@ -51,7 +55,10 @@ const RegisterForm = () => {
       validationSchema={validateShecma}
     >
       {({ errors, touched, values }) => (
-        <Forms>
+        <Forms
+          background={theme[currentTheme].backgroundColor}
+          color={theme[currentTheme].color}
+        >
           <Title
             as="p"
             weight="500"
@@ -61,12 +68,14 @@ const RegisterForm = () => {
             deskWeight="500"
             deskSize="36"
             deskLine="1.36"
+            color="inherit"
           >
             Register
           </Title>
           <InputContainer>
             <Lable>
               <InputEmail
+                background={theme[currentTheme].backgroundColor}
                 type="text"
                 name="email"
                 placeholder="Email"
@@ -82,6 +91,7 @@ const RegisterForm = () => {
               )}
             </Lable>
             <Input
+              background={theme[currentTheme].backgroundColor}
               error={errors.password}
               touched={touched.password}
               name={'password'}
@@ -89,6 +99,7 @@ const RegisterForm = () => {
               value={values.password}
             />
             <Input
+              background={theme[currentTheme].backgroundColor}
               error={errors.confirmedPassword}
               touched={touched.confirmedPassword}
               value={values.confirmedPassword}

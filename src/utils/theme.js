@@ -57,7 +57,20 @@ export const theme = {
     tab: 'screen and (min-width: 768px)',
     desk: 'screen and (min-width: 1280px)',
   },
-
+  dark: {
+    backgroundColor: '#121212',
+    color: '#fff',
+    link: '#fff',
+    toggleBorder: '#6B8096',
+    gradient: 'linear-gradient(#FFC107, #1E215D)',
+  },
+  light: {
+    backgroundColor: '#fff',
+    color: '#121212',
+    link: '#888888',
+    toggleBorder: '#fff',
+    gradient: 'linear-gradient(#79D7ED,#FFC107)',
+  },
   // add: `text-align:"start";
   //       font-weight: 500;
   //       font-size: "20px";
