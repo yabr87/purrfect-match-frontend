@@ -28,36 +28,25 @@ import ModalNoticeTest from '../NoticeModalTest/NoticeModalTest';
 
 const AddToFavorite = ({ notice }) => {
   const { isLoggedIn } = useAuth();
+  const [isFavorite, setIsFavorite] = useState(!!notice.favorite);
+  const [isHovered, setIsHovered] = useState(false);
+
   const handleUpdate = async () => {
     try {
       if (!isLoggedIn) {
         alert('Please sign in to add to favorites');
         return;
       }
-      if (!notice || !notice._id) {
-        console.error('Notice is undefined or does not have an _id property');
-        return;
-      }
+
       const updateToFavorite = {
         favorite: !notice.favorite,
       };
       await updateFavoriteNotice(notice._id, updateToFavorite);
+      setIsFavorite(!isFavorite);
     } catch (error) {
       alert('Failed to update notice. Please try again later.');
     }
   };
-
-  // const handleMouseOver = useCallback(() => {
-  //   if (isLoggedIn) {
-  //     setFill('#54adff');
-  //   }
-  // }, [isLoggedIn]);
-
-  // const handleMouseOut = useCallback(() => {
-  //   if (isLoggedIn) {
-  //     setFill('transparent');
-  //   }
-  // }, [isLoggedIn]);
 
   return (
     <CircleButton
@@ -66,11 +55,10 @@ const AddToFavorite = ({ notice }) => {
       pos="absolute"
       t="12px"
       r="12px"
-      // onMouseEnter={handleMouseOver}
-      // onFocus={handleMouseOver}
-      // onMouseLeave={handleMouseOut}
-      // onBlur={handleMouseOut}
       onClick={handleUpdate}
+      f={isHovered ? '#CCE4FB' : isFavorite ? '#54adff' : '#CCE4FB'}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     ></CircleButton>
   );
 };
@@ -97,24 +85,12 @@ const LearnMore = ({ onButtonClick }) => {
 };
 
 const NoticeCategoryItem = ({ notice, deleteAndRefresh }) => {
-  // const [isTrashHoveredOrFocused, setIsTrashHoveredOrFocused] = useState(false);
-  // const [trashIconColor, setTrashIconColor] = useState('#54ADFF');
   const { isLoggedIn, user } = useAuth();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   // const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false);
 
   // const dispatch = useDispatch();
-
-  // const handleHover = useCallback(() => {
-  //   setIsTrashHoveredOrFocused(true);
-  //   setTrashIconColor('#FFFFFF');
-  // }, []);
-
-  // const handleBlur = useCallback(() => {
-  //   setIsTrashHoveredOrFocused(false);
-  //   setTrashIconColor('#54ADFF');
-  // }, []);
 
   const handleDelete = async id => {
     try {
