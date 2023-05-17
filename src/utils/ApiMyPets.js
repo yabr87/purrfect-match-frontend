@@ -5,9 +5,9 @@ export const getMyPets = async () => {
   return data;
 };
 
-export const addMyPet = async data => {
-  const { data: result } = await instance.post('/api/pets', data);
-  return result;
+export const addMyPet = async params => {
+  const { data } = await instance.postForm('/api/pets', params);
+  return data;
 };
 
 export const removeMyPet = async petId => {

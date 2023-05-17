@@ -13,6 +13,7 @@ import validationSchema from './validationSchema';
 import { convertToISODate } from 'utils/convertToISODate';
 
 import { addNotice } from 'utils/ApiNotices';
+import { addMyPet } from 'utils/ApiMyPets';
 
 const initialState = {
   category: 'sell',
@@ -36,16 +37,19 @@ const AddPetForm = () => {
 
   const handleSubmit = async (values, { resetForm }) => {
     const newPet = Object.keys(values).reduce((acc, key) => {
+      if (key === 'category' && values[key] === 'my-pet') {
+        return acc;
+      }
       return values[key] ? { ...acc, [key]: values[key] } : acc;
     }, {});
 
     newPet.birthday = convertToISODate(newPet.birthday);
 
-    //добавив функціонал щодо апі
     try {
       if (selectedCategory !== 'my-pet') {
         await addNotice(newPet);
       }
+      await addMyPet(newPet);
       console.log('Pet added successfully');
       resetForm();
       navigate(`/notices/${selectedCategory}`);
