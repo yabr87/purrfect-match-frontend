@@ -25,7 +25,8 @@ export const login = async data => {
   return response;
 };
 
-export const refresh = async () => {
+export const refresh = async token => {
+  setToken(token);
   const response = await instance.post('/api/users/refresh');
   setToken(response.data.token);
   return response;

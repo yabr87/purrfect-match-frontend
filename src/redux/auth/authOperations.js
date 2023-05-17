@@ -37,10 +37,11 @@ export const login = createAsyncThunk(
 
 export const refresh = createAsyncThunk(
   'auth/refresh',
-  async (_, { rejectWithValue }) => {
+  async (_, { rejectWithValue, getState }) => {
     try {
-      const result = await api.refresh();
-      return result;
+      const { auth } = getState();
+      const result = await api.refresh(auth.token);
+      return result.data;
     } catch ({ response }) {
       const { status, data } = response;
       const error = {
