@@ -38,4 +38,16 @@ export const getCurrent = async token => {
   return response;
 };
 
+export const addAvatar = async (token, data) => {
+  setToken(token);
+  const response = await instance.patch('api/users/current/avatar', data);
+  return response;
+};
+
+export const updateUserInfo = async (token, data) => {
+  setToken(token);
+  const response = await instance.patch('api/users/current', data);
+  return response;
+};
+
 export default instance;
