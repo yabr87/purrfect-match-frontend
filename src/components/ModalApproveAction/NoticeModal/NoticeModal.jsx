@@ -56,6 +56,7 @@ const NoticeModal = ({ notice, close }) => {
         favorite: !notice.favorite,
       };
       await updateFavoriteNotice(notice._id, updateToFavorite);
+      notice.favorite = !favorite;
       setFavorite(!favorite);
       // const updateToFavorite = {
       //   favorite: !notice.favorite,

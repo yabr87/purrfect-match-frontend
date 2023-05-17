@@ -42,6 +42,7 @@ const AddToFavorite = ({ notice }) => {
         favorite: !notice.favorite,
       };
       await updateFavoriteNotice(notice._id, updateToFavorite);
+      notice.favorite = !isFavorite;
       setIsFavorite(!isFavorite);
     } catch (error) {
       alert('Failed to update notice. Please try again later.');
@@ -56,7 +57,9 @@ const AddToFavorite = ({ notice }) => {
       t="12px"
       r="12px"
       onClick={handleUpdate}
-      f={isHovered ? '#CCE4FB' : isFavorite ? '#54adff' : '#CCE4FB'}
+      f={
+        isHovered ? '#CCE4FB' : isLoggedIn && isFavorite ? '#54adff' : '#CCE4FB'
+      }
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     ></CircleButton>
