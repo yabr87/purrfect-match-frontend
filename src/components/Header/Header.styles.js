@@ -87,6 +87,7 @@ export const HeaderLogout = styled.button`
   justify-content: center;
   padding: 0;
   border: none;
+  cursor: pointer;
 
   background: transparent;
   color: ${props => props.theme.colors.yellow};
