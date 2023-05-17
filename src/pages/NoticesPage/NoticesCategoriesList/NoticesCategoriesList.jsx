@@ -12,6 +12,7 @@ const NoticesCategoriesList = ({
   currentPage,
   notices,
   setCurrentPage,
+  setFetching,
 }) => {
   const [noticesAfterDel, setNoticesAfterDel] = useState(notices);
 
@@ -43,6 +44,7 @@ const NoticesCategoriesList = ({
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}
           totalPages={totalPages}
+          setFetching={setFetching}
         />
       )}
     </>

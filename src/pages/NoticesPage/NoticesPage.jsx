@@ -33,10 +33,12 @@ function NoticesPage() {
   const [totalPages, setTotalPages] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [notices, setNotices] = useState([]);
+  const [fetching, setFetching] = useState(true);
 
   let { categoryName } = useParams();
 
   useEffect(() => {
+    setFetching(false);
     const params = { page: currentPage };
     if (['sell', 'lost-found', 'for-free'].includes(categoryName)) {
       params.category = categoryName;
@@ -48,13 +50,20 @@ function NoticesPage() {
       params.own = true;
     }
 
-    getNotices(params).then(({ data }) => {
-      console.log(data.results);
-      setNotices(data.results);
-      setCurrentPage(data.page);
-      setTotalPages(data.totalPages);
-    });
-  }, [categoryName, currentPage]);
+    if (fetching) {
+      getNotices(params)
+        .then(({ data }) => {
+          if (isUpToWidth480) {
+            setCurrentPage(prev => prev + 1);
+            setNotices(prev => [...prev, ...data.results]);
+            return;
+          }
+          setNotices(data.results);
+          setTotalPages(data.totalPages);
+        })
+        .finally(setFetching(false));
+    }
+  }, [fetching]);
 
   return (
     <Container>
@@ -94,6 +103,7 @@ function NoticesPage() {
         currentPage={currentPage}
         notices={notices}
         setCurrentPage={setCurrentPage}
+        setFetching={setFetching}
       />
     </Container>
   );

@@ -53,7 +53,7 @@ export const theme = {
     desktop: '1280px',
   },
   media: {
-    phone: 'screen and (min-width: 480)',
+    phone: 'screen and (min-width: 480px)',
     tab: 'screen and (min-width: 768px)',
     desk: 'screen and (min-width: 1280px)',
   },
