@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import useAuth from 'shared/hooks/useAuth';
 
 import Button from 'shared/components/Button';
 import {
@@ -22,15 +23,19 @@ import { useMedia } from 'shared/hooks/useMedia';
 
 import Icon from 'shared/components/Icon';
 
-import useAuth from 'shared/hooks/useAuth';
-// import { current } from 'redux/auth/authOperations';
+import { updateFavoriteNotice } from '../../../utils/ApiNotices';
 
-// import data from './data.json';
-
-const NoticeModal = ({ id, close }) => {
+const NoticeModal = ({ notice, close }) => {
   const { isLoggedIn } = useAuth();
   const [fill, setFill] = useState('transparent');
   const [favorite, setFavorite] = useState(false);
+
+  useEffect(() => {
+    if (notice.favorite === true) {
+      setFavorite(true);
+      setFill('#ffffff');
+    }
+  }, [notice.favorite]);
 
   const screenSize = useMedia(
     ['(min-width: 1280px)', '(min-width: 768px)', '(min-width: 480px)'],
@@ -41,20 +46,54 @@ const NoticeModal = ({ id, close }) => {
   //   const isDesktop = screenSize === 'desktop';
   const isMobile = screenSize === 'mobile';
 
-  const approveAddFavorite = () => {
-    if (!isLoggedIn) {
-      alert('Please sign in to add to favorites');
-      return;
-    }
-    setFavorite(current => !current);
-    console.log(favorite);
-    if (favorite === true) {
-      setFill('#ffffff');
-    }
-    if (favorite === false) {
-      setFill('transparent');
+  const approveAddFavorite = async notice => {
+    try {
+      if (!isLoggedIn) {
+        alert('Please sign in to add to favorites');
+        return;
+      }
+      setFavorite(current => !current);
+      console.log(favorite);
+      if (favorite === true) {
+        setFill('#ffffff');
+      }
+      if (favorite === false) {
+        setFill('transparent');
+      }
+      if (!notice || !notice._id) {
+        console.error('Notice is undefined or does not have an _id property');
+        return;
+      }
+      const updateToFavorite = {
+        favorite: !notice.favorite,
+      };
+      await updateFavoriteNotice(notice._id, updateToFavorite);
+    } catch (error) {
+      alert('Failed to update notice. Please try again later.');
     }
   };
+
+  // const approveAddFavorite = async notice => {
+  //   try {
+  //     if (!isLoggedIn) {
+  //       alert('Please sign in to add to favorites');
+  //       return;
+  //     }
+  // if (!notice || !notice._id) {
+  //   console.error('Notice is undefined or does not have an _id property');
+  //   return;
+  // }
+  // const updateToFavorite = {
+  //   favorite: !notice.favorite,
+  // };
+  // await updateFavoriteNotice(notice._id, updateToFavorite);
+  //   } catch (error) {
+  //     alert('Failed to update notice. Please try again later.');
+  //   }
+  // };
+
+  console.log(favorite);
+
   return (
     <ContainerView>
       <PetCardData>
@@ -127,7 +166,7 @@ const NoticeModal = ({ id, close }) => {
           <ButtonWrap>
             <Button
               type="button"
-              onClick={approveAddFavorite}
+              onClick={() => approveAddFavorite(notice)}
               w="256"
               h="40"
               shape="solid"
@@ -154,7 +193,7 @@ const NoticeModal = ({ id, close }) => {
           <ButtonWrap>
             <Button
               type="button"
-              onClick={approveAddFavorite}
+              onClick={() => approveAddFavorite(notice)}
               w="129"
               h="40"
               shape="solid"
