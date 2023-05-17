@@ -9,28 +9,50 @@ import {
   FilterContainer,
   FilterOptions,
   FiltersTitle,
+  FiltersSection,
+  FiltersSectionTitle,
 } from './NoticesFilters.styles';
 
-function NoticesFilters() {
+function NoticesFilters({ fetchData }) {
   const isUpToWidth480 = useMedia(['(max-width: 480px)'], [true], false);
 
   const [isFilterOpen, setIsFilterOpen] = useState(false);
-  //   const [age, setAge] = useState(null);
-  //   const [gender, setGender] = useState(null);
+  const [isAgeOpen, setIsAgeOpen] = useState(false);
+  const [isGenderOpen, setIsGenderOpen] = useState(false);
+  const [age, setAge] = useState(null);
+  const [gender, setGender] = useState(null);
 
   const handleFilterClick = () => {
     setIsFilterOpen(!isFilterOpen);
   };
 
-  //   const handleAgeChange = event => {
-  //     setAge(event.target.value);
-  //   };
+  const handleAgeClick = () => {
+    setIsAgeOpen(!isAgeOpen);
+  };
 
-  //   const handleGenderChange = event => {
-  //     setGender(event.target.value);
-  //   };
+  const handleGenderClick = () => {
+    setIsGenderOpen(!isGenderOpen);
+  };
 
-  //
+  const handleAgeChange = event => {
+    const value = event.target.value;
+    setAge(prevState =>
+      prevState.includes(value)
+        ? prevState.filter(item => item !== value)
+        : [...prevState, value]
+    );
+    fetchData();
+  };
+
+  const handleGenderChange = event => {
+    const value = event.target.value;
+    setGender(prevState =>
+      prevState.includes(value)
+        ? prevState.filter(item => item !== value)
+        : [...prevState, value]
+    );
+    fetchData();
+  };
 
   return (
     <FilterContainer
@@ -67,6 +89,60 @@ function NoticesFilters() {
       {isFilterOpen && (
         <FilterOptions>
           <FiltersTitle>Filters</FiltersTitle>
+          <div>
+            <h3 onClick={handleAgeClick}>By age</h3>
+            {isAgeOpen && (
+              <div>
+                <label>
+                  <input
+                    type="checkbox"
+                    value="young"
+                    onChange={handleAgeChange}
+                  />
+                  3-12m
+                </label>
+                <label>
+                  <input
+                    type="checkbox"
+                    value="adult"
+                    onChange={handleAgeChange}
+                  />
+                  1 year
+                </label>
+                <label>
+                  <input
+                    type="checkbox"
+                    value="old"
+                    onChange={handleAgeChange}
+                  />
+                  2 year
+                </label>
+              </div>
+            )}
+          </div>
+          <div>
+            <h3 onClick={handleGenderClick}>By gender</h3>
+            {isGenderOpen && (
+              <div>
+                <label>
+                  <input
+                    type="checkbox"
+                    value="male"
+                    onChange={handleGenderChange}
+                  />
+                  male
+                </label>
+                <label>
+                  <input
+                    type="checkbox"
+                    value="female"
+                    onChange={handleGenderChange}
+                  />
+                  female
+                </label>
+              </div>
+            )}
+          </div>
         </FilterOptions>
       )}
     </FilterContainer>
