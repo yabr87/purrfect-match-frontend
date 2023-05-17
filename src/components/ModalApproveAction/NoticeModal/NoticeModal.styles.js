@@ -50,6 +50,7 @@ export const ButtonWrap = styled.div`
 `;
 
 export const PetImage = styled.img`
+  object-fit: cover;
   width: 240px;
   height: 240px;
   border-radius: 0px 0px 40px 40px;

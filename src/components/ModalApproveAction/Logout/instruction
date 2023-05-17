@@ -11,7 +11,7 @@ import Logout from 'components/ModalApproveAction/Logout';
 - робимо ренедер за умовою
 
 const UserData = () => {
-      const [isModalOpen, setIsModalOpen] = useState(false);
+      const [isModalLogoutOpen, setIsModalLogoutOpen] = useState(false);
 
 return (
     <>
