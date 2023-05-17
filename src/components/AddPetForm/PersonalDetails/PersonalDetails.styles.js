@@ -7,12 +7,12 @@ export const DetailsWrapper = styled.div`
   margin-bottom: 24px;
   gap: 20px;
 
-  @media screen and (min-width: 768px) {
+  @media ${props => props.theme.media.tab}  {
     gap: 24px;
     margin-bottom: 32px;
   }
 
-  @media screen and (min-width: 1280px) {
+  @media ${props => props.theme.media.desk}  {
     margin-bottom: 36px;
   }
 `;

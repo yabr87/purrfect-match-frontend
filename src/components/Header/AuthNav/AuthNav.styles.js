@@ -7,7 +7,7 @@ export const AuthContainer = styled.ul`
   gap: 12px;
   padding: 40px 0;
 
-  @media screen and (min-width: 768px) {
+  @media ${props => props.theme.media.tab} {
     flex-direction: row;
     gap: 20px;
     margin-left: auto;
@@ -22,30 +22,30 @@ export const AuthItem = styled.li`
   min-width: 142px;
   height: 40px;
 
-  font-weight: 600;
+  font-weight: ${props => props.theme.fontWeiths.semibold};
 
   border: 2px solid #FFC107;
-  border-radius: 40px;
+  border-radius: ${props => props.theme.radius.normal};
 
-  color: #FFC107;
-  background-color: #FEF9F9;
+  color: ${props => props.theme.colors.yellow};
+  background-color: ${props => props.theme.colors.background};
   transition: color 250ms ease, background 250ms ease;
 
   &:hover, &:focus  {
-    background-color: #FFC107;
-    color: #FEF9F9;
+    background-color: ${props => props.theme.colors.yellow};
+    color: ${props => props.theme.colors.background};
     outline: none;
   }
 
   &:first-of-type {
     min-width: 165px;
-    font-weight: 700;
-    background-color: #FFC107;
-    color: #FEF9F9;
+    font-weight: ${props => props.theme.fontWeiths.bold};
+    background-color: ${props => props.theme.colors.yellow};
+    color: ${props => props.theme.colors.background};
 
     &:hover, &:focus  {
-      color: #FFC107;
-      background-color: #FEF9F9;
+      color: ${props => props.theme.colors.yellow};
+      background-color: ${props => props.theme.colors.background};
     }
   }
 `;
@@ -62,7 +62,7 @@ export const AuthLink = styled(NavLink)`
   font-size: 16px;
   line-height: 1.38;
 
-  @media screen and (min-width: 768px) {
+  @media ${props => props.theme.media.tab} {
     padding: 8px 20px; 
   }
 `;
