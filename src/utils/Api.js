@@ -25,12 +25,28 @@ export const login = async data => {
   return response;
 };
 
-export const logout = async () => {};
+export const logout = async () => {
+  const data = await instance.post('/api/users/logout');
+  setToken();
+  return data;
+};
 
 export const getCurrent = async token => {
   setToken(token);
   const response = await instance.get('/api/users/current');
 
+  return response;
+};
+
+export const addAvatar = async (token, data) => {
+  setToken(token);
+  const response = await instance.patch('api/users/current/avatar', data);
+  return response;
+};
+
+export const updateUserInfo = async (token, data) => {
+  setToken(token);
+  const response = await instance.patch('api/users/current', data);
   return response;
 };
 
