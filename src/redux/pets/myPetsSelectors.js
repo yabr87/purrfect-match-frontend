@@ -1,2 +1,3 @@
-export const isLoading = ({ myPets }) => myPets.isLoading;
-export const events = ({ myPets }) => myPets.events;
+export const selectIsLoading = ({ myPets }) => myPets.isLoading;
+export const selectEvents = ({ myPets }) => myPets.events;
+export const selectMyPetsError = ({ myPets }) => myPets.error || {};

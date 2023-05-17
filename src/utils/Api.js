@@ -25,7 +25,11 @@ export const login = async data => {
   return response;
 };
 
-export const logout = async () => {};
+export const logout = async () => {
+  const data = await instance.post('/api/users/logout');
+  setToken();
+  return data;
+};
 
 export const getCurrent = async token => {
   setToken(token);
@@ -33,11 +37,5 @@ export const getCurrent = async token => {
 
   return response;
 };
-
-export const getMyPets = async () => {};
-
-export const addMyPet = async data => {};
-
-export const removeMyPet = async id => {};
 
 export default instance;

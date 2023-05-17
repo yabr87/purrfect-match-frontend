@@ -2,30 +2,31 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const UserLink = styled(NavLink)`
-display: flex;
-align-items: center;
-gap: 12px;
-padding: 8px 16px; 
-margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
 
+  font-size: ${props => props.theme.fontSizes.s};
+  line-height: 1.38;
+  color: ${props => props.theme.colors.yellow};
 
-font-size: 16px;
-line-height: 1.38;
-color: #FFC107;
+  @media ${props => props.theme.media.tab} {
+    padding: 8px 16px;
+  }
 `;
 
 export const UserName = styled.p`
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 1.35;
+  font-weight: ${props => props.theme.fontWeiths.semi};
+  font-size: ${props => props.theme.fontSizes.s};
+  line-height: 1.35;
 `;
 
 export const UserContainer = styled.div`
-padding-top: 40px;
-padding-bottom: 84px;
+  padding-top: 40px;
+  padding-bottom: 84px;
+  margin-left: auto;
 
- @media screen and (min-width: 768px) {
-  padding: 0;
-margin-left: auto;
+  @media ${props => props.theme.media.tab} {
+    padding: 0;
   }
-`
+`;

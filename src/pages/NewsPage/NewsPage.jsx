@@ -1,10 +1,8 @@
 // import { useState, useEffect, useCallback } from 'react';
 
 import Container from 'shared/components/Container';
-import Section from 'shared/components/Section';
 import Title from 'shared/components/Title';
-// import SearchTemporary from './SearchTemporary';
-// import Search from 'shared/components/Search';
+import Search from 'shared/components/Search';
 import NewsList from './NewsList';
 // import Button from 'shared/components/Button';
 
@@ -53,20 +51,15 @@ const NewsPage = () => {
 
   return (
     <Container>
-      <Section>
-        <Title>News</Title>
-        <div>Search Form</div>
+      <Title>News</Title>
+      <Search />
 
-        {/* <SearchTemporary onFormSubmit={onFormSubmit} /> */}
-        {/* <Search ininitValue={{ search: '' }} /> */}
+      {/* {error && <p>{error.message}</p>} */}
 
-        {/* {error && <p>{error.message}</p>} */}
+      {/* {loading && <div>Loading...</div>} */}
 
-        {/* {loading && <div>Loading...</div>} */}
-
-        {Boolean(items.length) && <NewsList items={items} />}
-        {/* <Button onClick={loadMore}>Load more</Button> */}
-      </Section>
+      {Boolean(items.length) && <NewsList items={items} />}
+      {/* <Button onClick={loadMore}>Load more</Button> */}
     </Container>
   );
 };

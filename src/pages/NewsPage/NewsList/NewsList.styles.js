@@ -6,10 +6,10 @@ export const List = styled.ul`
   justify-content: center;
   row-gap: 44px;
   margin-top: 44px;
+  column-gap: 32px;
 
   @media ${({ theme }) => theme.media.tab} {
     row-gap: 46px;
-    column-gap: 32px;
     margin-top: 62px;
   }
 

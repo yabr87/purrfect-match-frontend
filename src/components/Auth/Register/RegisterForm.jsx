@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import * as Yup from 'yup';
 import { useTheme } from 'styled-components';
 
+// import { useNavigate } from 'react-router-dom';
+
 import {
   Forms,
   InputEmail,
@@ -36,6 +38,10 @@ const validateShecma = Yup.object().shape({
 });
 
 const RegisterForm = () => {
+  // _____________for Modal Congrats______________
+
+  // const navigate = useNavigate();
+  // _____________________________________________
   const dispatch = useDispatch();
 
   const currentTheme = useSelector(state => state.theme);
@@ -51,6 +57,7 @@ const RegisterForm = () => {
           })
         );
         actions.resetForm();
+        // navigate('/notices/sell', { state: { isModalOpen: true } });
       }}
       validationSchema={validateShecma}
     >

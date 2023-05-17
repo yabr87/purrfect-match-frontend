@@ -1,8 +1,5 @@
-import React, { useState } from 'react';
-
-import { useNavigate } from 'react-router-dom';
-
-// useLocation;
+import React, { useState, useEffect } from 'react';
+import useAuth from 'shared/hooks/useAuth';
 
 import Button from 'shared/components/Button';
 import {
@@ -18,20 +15,27 @@ import {
   Wrap,
   NameCategory,
   ValueCategory,
-} from './PetCard.styles';
+  ContactLink,
+  ContactLinkItem,
+} from './NoticeModal.styles';
 
 import { useMedia } from 'shared/hooks/useMedia';
 
 import Icon from 'shared/components/Icon';
 
-import useAuth from 'shared/hooks/useAuth';
+import { updateFavoriteNotice } from '../../../utils/ApiNotices';
 
-// import data from './data.json';
-
-const PetCard = ({ id, close }) => {
+const NoticeModal = ({ notice, close }) => {
   const { isLoggedIn } = useAuth();
   const [fill, setFill] = useState('transparent');
-  //   const [favorite, setFavorite] = useState('false');
+  const [favorite, setFavorite] = useState(false);
+
+  useEffect(() => {
+    if (notice.favorite === true) {
+      setFavorite(true);
+      setFill('#ffffff');
+    }
+  }, [notice.favorite]);
 
   const screenSize = useMedia(
     ['(min-width: 1280px)', '(min-width: 768px)', '(min-width: 480px)'],
@@ -42,21 +46,54 @@ const PetCard = ({ id, close }) => {
   //   const isDesktop = screenSize === 'desktop';
   const isMobile = screenSize === 'mobile';
 
-  //   const location = useLocation();
-
-  //   const from = location.state?.from || '/notices/sell';
-
-  const navigate = useNavigate();
-
-  const approveAddFavorite = () => {
-    if (!isLoggedIn) {
-      alert('Please sign in to add to favorites');
-      return;
+  const approveAddFavorite = async notice => {
+    try {
+      if (!isLoggedIn) {
+        alert('Please sign in to add to favorites');
+        return;
+      }
+      setFavorite(current => !current);
+      console.log(favorite);
+      if (favorite === true) {
+        setFill('#ffffff');
+      }
+      if (favorite === false) {
+        setFill('transparent');
+      }
+      if (!notice || !notice._id) {
+        console.error('Notice is undefined or does not have an _id property');
+        return;
+      }
+      const updateToFavorite = {
+        favorite: !notice.favorite,
+      };
+      await updateFavoriteNotice(notice._id, updateToFavorite);
+    } catch (error) {
+      alert('Failed to update notice. Please try again later.');
     }
-    setFill('#ffffff');
-    // setFavorite('true');
-    navigate(-1);
   };
+
+  // const approveAddFavorite = async notice => {
+  //   try {
+  //     if (!isLoggedIn) {
+  //       alert('Please sign in to add to favorites');
+  //       return;
+  //     }
+  // if (!notice || !notice._id) {
+  //   console.error('Notice is undefined or does not have an _id property');
+  //   return;
+  // }
+  // const updateToFavorite = {
+  //   favorite: !notice.favorite,
+  // };
+  // await updateFavoriteNotice(notice._id, updateToFavorite);
+  //   } catch (error) {
+  //     alert('Failed to update notice. Please try again later.');
+  //   }
+  // };
+
+  console.log(favorite);
+
   return (
     <ContainerView>
       <PetCardData>
@@ -95,24 +132,22 @@ const PetCard = ({ id, close }) => {
                 </PetDataItem>
                 <PetDataItem>
                   <NameCategory>The sex:</NameCategory>
-                  <ValueCategory>mail</ValueCategory>
+                  <ValueCategory>male</ValueCategory>
                 </PetDataItem>
                 <PetDataItem>
                   <NameCategory>Email:</NameCategory>
-                  <ValueCategory
-                    $colorContacts="#FFC107"
-                    $underline="underline"
-                  >
-                    3223224@mail.com
+                  <ValueCategory>
+                    <ContactLinkItem href="mailto:">
+                      3223224@mail.com
+                    </ContactLinkItem>
                   </ValueCategory>
                 </PetDataItem>
                 <PetDataItem>
                   <NameCategory>Phone:</NameCategory>
-                  <ValueCategory
-                    $colorContacts="#FFC107"
-                    $underline="underline"
-                  >
-                    +38097-654-098-98
+                  <ValueCategory>
+                    <ContactLinkItem href="tel:">
+                      +38097-654-098-98
+                    </ContactLinkItem>
                   </ValueCategory>
                 </PetDataItem>
               </tbody>
@@ -131,7 +166,7 @@ const PetCard = ({ id, close }) => {
           <ButtonWrap>
             <Button
               type="button"
-              onClick={approveAddFavorite}
+              onClick={() => approveAddFavorite(notice)}
               w="256"
               h="40"
               shape="solid"
@@ -149,7 +184,7 @@ const PetCard = ({ id, close }) => {
                 marginBottom: '8px',
               }}
             >
-              Cancel
+              Contact
             </Button>
           </ButtonWrap>
         </>
@@ -158,7 +193,7 @@ const PetCard = ({ id, close }) => {
           <ButtonWrap>
             <Button
               type="button"
-              onClick={approveAddFavorite}
+              onClick={() => approveAddFavorite(notice)}
               w="129"
               h="40"
               shape="solid"
@@ -170,9 +205,10 @@ const PetCard = ({ id, close }) => {
               Add to
               <Icon id="heart" f={fill} s="white" />
             </Button>
-            <Button type="button" onClick={close} w="129" h="40">
-              Cancel
-            </Button>
+            {/* <Button type="button" onClick={close} w="129" h="40">
+              Contact
+            </Button> */}
+            <ContactLink href="tel:+380961111111">Contact</ContactLink>
           </ButtonWrap>
         </>
       )}
@@ -180,4 +216,13 @@ const PetCard = ({ id, close }) => {
   );
 };
 
-export default PetCard;
+export default NoticeModal;
+
+// import { useNavigate, useLocation } from 'react-router-dom';
+// const location = useLocation();
+
+// const from = location.state?.from || '/notices/sell';
+
+// const navigate = useNavigate();
+
+// console.log(navigate(-1));
