@@ -28,12 +28,16 @@ export const Item = styled.li`
     content: '';
     display: block;
     position: absolute;
-    top: -22px;
+    top: -20px;
     left: 0;
     right: 0;
     height: 8px;
     background: ${({ theme }) => theme.colors.gradient};
     border-radius: 8px;
+
+    @media ${({ theme }) => theme.media.tab} {
+      top: -22px;
+    }
   }
 `;
 
