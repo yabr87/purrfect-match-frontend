@@ -1,4 +1,5 @@
-import { useDispatch } from 'react-redux';
+import { useState } from 'react';
+// import { useDispatch } from 'react-redux';
 import {
   Container,
   Avatar,
@@ -13,13 +14,18 @@ import {
   Wrap,
 } from './';
 import Icon from 'shared/components/Icon/Icon';
-import { logout } from 'redux/auth/authOperations';
+// import { logout } from 'redux/auth/authOperations';
+
+import ModalApproveAction from 'components/ModalApproveAction';
+import Logout from 'components/ModalApproveAction/Logout';
 
 const UserData = () => {
-  const dispatch = useDispatch();
+  const [isModalLogoutOpen, setIsModalLogoutOpen] = useState(false);
+  // const dispatch = useDispatch();
 
   const handleLogOut = () => {
-    dispatch(logout());
+    setIsModalLogoutOpen(true);
+    // dispatch(logout());
   };
 
   return (
@@ -45,6 +51,11 @@ const UserData = () => {
               <LogOutText>Log Out</LogOutText>
             </LogOutBtn>
           </InputContainer>
+          {isModalLogoutOpen && (
+            <ModalApproveAction close={() => setIsModalLogoutOpen(false)}>
+              <Logout close={() => setIsModalLogoutOpen(false)} />
+            </ModalApproveAction>
+          )}
         </Container>
       </Wrap>
     </>

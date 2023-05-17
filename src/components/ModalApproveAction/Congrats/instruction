@@ -28,6 +28,7 @@ import Congrats from 'components/ModalApproveAction/Congrats';
 const UserPage = () => {
   const [isOpen, setIsModalOpen] = useState(false);
   const location = useLocation();
+  
   useEffect(() => {
     const state = location.state;
 
