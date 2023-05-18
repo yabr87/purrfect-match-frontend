@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useFormikContext } from 'formik';
 import {
   FileInput,
@@ -10,7 +10,7 @@ import Icon from '../Icon';
 
 const ImageUploader = () => {
   const [file, setFile] = useState('');
-  const { setFieldValue } = useFormikContext();
+  const { setFieldValue, values, errors } = useFormikContext();
 
   const handleFileChange = e => {
     const selectedFile = e.target.files[0];
@@ -23,6 +23,12 @@ const ImageUploader = () => {
       alert('Please select a file smaller than 3 MB.'); //можно заменить модальным окном
     }
   };
+
+  useEffect(() => {
+    if (values.photo && !errors.photo) {
+      setFile(values.photo);
+    }
+  }, [values.photo, errors.photo]);
 
   return (
     <ImageWrapper>
