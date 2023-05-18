@@ -75,34 +75,6 @@ const NoticeModal = ({ notice, close }) => {
     }
   };
 
-  // const params =  notice._id ;
-
-  // const getNoticeById = async id => {
-  //   try {
-  //     const { data } = await noticesInstance.delete(`/api/notices/${id}`);
-  //     return data;
-  //   } catch (error) {
-  //     console.error('Failed to delete notice', error);
-  //     throw error;
-  //   }
-  // };
-
-  // getNoticeById(notice._id)
-  //   .then(res => {
-  //     console.log(res.owner);
-  //     // const ownerContacts
-  //   })
-  //   .catch(e => console.log(e));
-
-  // const getOwnerContacts = async id => {
-  //   const { data } = await getNoticeById(id);
-  //   return data;
-  // };
-
-  // console.log(getOwnerContacts(notice._id));
-
-  // getOwnerContacts(notice._id);
-
   return (
     <ContainerView>
       <PetCardData>
