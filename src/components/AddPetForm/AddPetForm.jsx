@@ -10,7 +10,6 @@ import Button from 'shared/components/Button';
 import Icon from 'shared/components/Icon/Icon';
 import { ButtonsBox, FormButton } from './AddPetForm.styles';
 import validationSchema from './validationSchema';
-import { convertToISODate } from 'utils/convertToISODate';
 
 import { addNotice } from 'utils/ApiNotices';
 
@@ -39,7 +38,7 @@ const AddPetForm = () => {
       return values[key] ? { ...acc, [key]: values[key] } : acc;
     }, {});
 
-    newPet.birthday = convertToISODate(newPet.birthday);
+    console.log(newPet);
 
     //добавив функціонал щодо апі
     try {

@@ -30,11 +30,7 @@ const validationSchema = ( currentStep, selectedCategory) => {
         .min(2, 'Name must be at least 2 characters')
         .max(16, 'Name must not exceed 16 characters'),
       birthday: Yup.string()
-        .required('Birthday is required')
-        .matches(
-          /^(0[1-9]|1[0-9]|2[0-9]|3[01])\.(0[1-9]|1[012])\.\d{4}$/,
-          'Birthday must be in the format dd.mm.yyyy'
-        ),
+        .required('Birthday is required'),
       breed: Yup.string()
         .required('Breed is required')
         .matches(

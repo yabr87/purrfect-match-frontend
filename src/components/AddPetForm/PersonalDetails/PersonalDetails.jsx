@@ -1,6 +1,10 @@
 import PropTypes from 'prop-types';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import { addDays } from 'date-fns'; 
 import { Error, FormLabel, StyledField } from '../AddPetForm.styles';
 import { DetailsWrapper } from './PersonalDetails.styles';
+import { useFormikContext } from 'formik';
 
 const PersonalDetails = ({
   option,
@@ -11,6 +15,10 @@ const PersonalDetails = ({
   errors,
   isValid,
 }) => {
+  const { setFieldValue } = useFormikContext();
+  const birthdayDate = values.birthday ? new Date(values.birthday) : null;
+  const maxDate = addDays(new Date(), 0);
+
   return (
     <DetailsWrapper>
       {option !== 'my-pet' && (
@@ -39,14 +47,20 @@ const PersonalDetails = ({
         />
         <Error name="name" component="p" />
       </FormLabel>
-      <FormLabel htmlFor="birthday">
+      <FormLabel>
         Date of birth
-        <StyledField
+        <DatePicker
           name="birthday"
           placeholder="Type date of birth"
-          onChange={handleChange}
+          onChange={date => setFieldValue('birthday', date)}
           onBlur={handleBlur}
+          selected={birthdayDate}
           value={values.birthday}
+          dateFormat="dd.MM.yyyy"
+          maxDate={maxDate}
+          showMonthDropdown
+          showYearDropdown
+          dropdownMode="select" 
           errors={touched.birthday && errors.birthday}
         />
         <Error name="birthday" component="p" />
