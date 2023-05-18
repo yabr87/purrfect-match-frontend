@@ -13,6 +13,7 @@ import validationSchema from './validationSchema';
 
 import { addNotice } from 'utils/ApiNotices';
 import { addMyPet } from 'utils/ApiMyPets';
+import Loader from 'shared/components/Loader';
 
 const initialState = {
   category: 'sell',
@@ -47,10 +48,9 @@ const AddPetForm = () => {
     try {
       if (selectedCategory !== 'my-pet') {
         await addNotice(newPet);
-      }
-      else {
+      } else {
         await addMyPet(newPet);
-      }      
+      }
       console.log('Pet added successfully');
       resetForm();
       navigate(`/notices/${selectedCategory}`);
@@ -90,94 +90,108 @@ const AddPetForm = () => {
         touched,
       }) => (
         <Form>
-          <FormWrapper
-            currentStep={currentStep}
-            category={selectedCategory}
-            text={
-              selectedCategory === 'lost-found'
-                ? 'Add lost pet'
-                : selectedCategory === 'sell'
-                ? 'Add pet for sale'
-                : selectedCategory === 'my-pet'
-                ? 'Add my pet'
-                : 'Add pet'
-            }
-          >
-            {currentStep === 1 && (
-              <ChooseOptionStep
-                handleChange={handleChange}
-                handleBlur={handleBlur}
-                values={values}
-                onSelectCategory={handleCategoryChange}
-              />
-            )}
-            {currentStep === 2 && (
-              <PersonalDetails
-                option={selectedCategory}
-                handleChange={handleChange}
-                handleBlur={handleBlur}
-                values={values}
-                touched={touched}
-                errors={errors}
-                isValid={isValid}
-              />
-            )}
-
-            {currentStep === 3 && (
-              <MoreInfo
-                option={selectedCategory}
-                handleChange={handleChange}
-                handleBlur={handleBlur}
-                values={values}
-                touched={touched}
-                errors={errors}
-              />
-            )}
-
-            <ButtonsBox category={selectedCategory}>
+          {isSubmitting ? (
+            <Loader />
+          ) : (
+            <FormWrapper
+              currentStep={currentStep}
+              category={selectedCategory}
+              text={
+                selectedCategory === 'lost-found'
+                  ? 'Add lost pet'
+                  : selectedCategory === 'sell'
+                  ? 'Add pet for sale'
+                  : selectedCategory === 'my-pet'
+                  ? 'Add my pet'
+                  : 'Add pet'
+              }
+            >
               {currentStep === 1 && (
-                <FormButton type="button" w="248" h="48" onClick={handleCancel}>
-                  <Icon id="arrow-left" />
-                  Cancel
-                </FormButton>
+                <ChooseOptionStep
+                  handleChange={handleChange}
+                  handleBlur={handleBlur}
+                  values={values}
+                  onSelectCategory={handleCategoryChange}
+                />
               )}
-              {currentStep !== 1 && (
-                <FormButton type="button" w="248" h="48" onClick={handleGoBack}>
-                  <Icon id="arrow-left" />
-                  Back
-                </FormButton>
-              )}
-              {currentStep !== 3 && (
-                <Button
-                  type="button"
-                  w="248"
-                  h="48"
-                  shape="solid"
-                  onClick={handleNext}
-                  disabled={
-                    currentStep === 2 &&
-                    (!isValid || !touched.name || !touched.birthday)
-                  }
-                >
-                  Next
-                  <Icon id="paw" f="currentColor" s="none" />
-                </Button>
+              {currentStep === 2 && (
+                <PersonalDetails
+                  option={selectedCategory}
+                  handleChange={handleChange}
+                  handleBlur={handleBlur}
+                  values={values}
+                  touched={touched}
+                  errors={errors}
+                  isValid={isValid}
+                />
               )}
 
               {currentStep === 3 && (
-                <Button
-                  type="submit"
-                  w="248"
-                  h="48"
-                  shape="solid"
-                  disabled={isSubmitting}
-                >
-                  Done
-                  <Icon id="paw" f="currentColor" s="none" />
-                </Button>
+                <MoreInfo
+                  option={selectedCategory}
+                  handleChange={handleChange}
+                  handleBlur={handleBlur}
+                  values={values}
+                  touched={touched}
+                  errors={errors}
+                />
               )}
-            </ButtonsBox>
-          </FormWrapper>
+
+              <ButtonsBox category={selectedCategory}>
+                {currentStep === 1 && (
+                  <FormButton
+                    type="button"
+                    w="248"
+                    h="48"
+                    onClick={handleCancel}
+                  >
+                    <Icon id="arrow-left" />
+                    Cancel
+                  </FormButton>
+                )}
+                {currentStep !== 1 && (
+                  <FormButton
+                    type="button"
+                    w="248"
+                    h="48"
+                    onClick={handleGoBack}
+                  >
+                    <Icon id="arrow-left" />
+                    Back
+                  </FormButton>
+                )}
+                {currentStep !== 3 && (
+                  <Button
+                    type="button"
+                    w="248"
+                    h="48"
+                    shape="solid"
+                    onClick={handleNext}
+                    disabled={
+                      currentStep === 2 &&
+                      (!isValid || !touched.name || !touched.birthday)
+                    }
+                  >
+                    Next
+                    <Icon id="paw" f="currentColor" s="none" />
+                  </Button>
+                )}
+
+                {currentStep === 3 && (
+                  <Button
+                    type="submit"
+                    w="248"
+                    h="48"
+                    shape="solid"
+                    disabled={isSubmitting}
+                  >
+                    Done
+                    <Icon id="paw" f="currentColor" s="none" />
+                  </Button>
+                )}
+              </ButtonsBox>
+            </FormWrapper>
+          )}
         </Form>
       )}
     </Formik>
