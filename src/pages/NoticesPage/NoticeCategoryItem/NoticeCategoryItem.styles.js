@@ -72,6 +72,36 @@ export const ImageDetailsItem = styled.p`
   color: #111111;
 `;
 
+export const ImageDetailsText = styled.span`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 40px;
+`;
+
+export const ImageDetailsTextLong = styled(ImageDetailsText)`
+  transition: all 250ms ease;
+
+  &:hover,
+  &:focus {
+    position: absolute;
+    z-index: 1;
+    top: 17px;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 28px;
+    min-width: 100px;
+    overflow: visible;
+    max-width: 100%;
+    background: white;
+    border-radius: 16px;
+    font-family: 'Manrope';
+    font-weight: 600;
+    font-size: 12px;
+  }
+`;
+
 export const ImageCategory = styled.p`
   position: absolute;
   width: 126px;
