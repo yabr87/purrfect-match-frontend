@@ -10,7 +10,6 @@ import Button from 'shared/components/Button';
 import Icon from 'shared/components/Icon/Icon';
 import { ButtonsBox, FormButton } from './AddPetForm.styles';
 import validationSchema from './validationSchema';
-import { convertToISODate } from 'utils/convertToISODate';
 
 import { addNotice } from 'utils/ApiNotices';
 import { addMyPet } from 'utils/ApiMyPets';
@@ -43,13 +42,15 @@ const AddPetForm = () => {
       return values[key] ? { ...acc, [key]: values[key] } : acc;
     }, {});
 
-    newPet.birthday = convertToISODate(newPet.birthday);
+    newPet.birthday = newPet.birthday.toISOString();
 
     try {
       if (selectedCategory !== 'my-pet') {
         await addNotice(newPet);
       }
-      await addMyPet(newPet);
+      else {
+        await addMyPet(newPet);
+      }      
       console.log('Pet added successfully');
       resetForm();
       navigate(`/notices/${selectedCategory}`);
