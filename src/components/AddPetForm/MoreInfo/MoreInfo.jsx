@@ -28,7 +28,7 @@ const MoreInfo = ({
           <>
             <div role="group" aria-labelledby="choose-pet-option">
               <FormLabel>The Sex</FormLabel>
-              <RadioBox>
+              <RadioBox sex={values.sex}>
                 <MoreInfoRadio checked={values.sex === 'female'}>
                   <Icon id="female" w="10" h="18" />
                   Female

@@ -94,9 +94,3 @@ export const Link = styled.a`
     border-bottom: 1px solid currentColor;
   }
 `;
-
-// a:hover {
-//   border-bottom: 1px solid black;
-//  }
-
-// text-decoration: underline;
