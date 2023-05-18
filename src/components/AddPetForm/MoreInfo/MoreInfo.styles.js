@@ -43,8 +43,6 @@ export const RadioLabel = styled.p`
 `;
 
 export const RadioBox = styled.div`
-  ${props => console.log('props:', props)};
-
   display: flex;
   gap: 16px;
   margin-top: 8px;
@@ -73,9 +71,9 @@ export const MoreInfoRadio = styled.label`
   background-color: transparent;
   color: ${props => (props.checked ? '#00C3AD' : '#888')};
 
-   input[type='radio'] {
+  input[type='radio'] {
     position: absolute;
-    height: 1px; 
+    height: 1px;
     width: 1px;
     opacity: 0;
     clip: rect(0 0 0 0);
