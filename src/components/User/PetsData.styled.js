@@ -50,6 +50,7 @@ export const PetAvatar = styled.div`
 
 export const PetHeader = styled.div`
   display: flex;
+  justify-content: space-between;
   margin-top: 46px;
   margin-bottom: 31px;
 

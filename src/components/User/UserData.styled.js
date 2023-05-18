@@ -75,6 +75,7 @@ export const LogOutBtn = styled.button`
   background-color: transparent;
   margin-top: 21px;
   margin-bottom: 25px;
+  cursor: pointer;
 
   @media screen and (min-width: 768px) {
     position: absolute;
