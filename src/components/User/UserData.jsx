@@ -19,8 +19,16 @@ import { getCurrent } from 'utils/Api';
 import ModalApproveAction from 'components/ModalApproveAction';
 import Logout from 'components/ModalApproveAction/Logout';
 
+const initialState = {
+  name: '',
+  email: '',
+  birthday: '',
+  phone: '',
+  city: '',
+};
+
 const UserData = () => {
-  const [user, setUser] = useState([]);
+  const [user, setUser] = useState(initialState);
   const [isModalLogoutOpen, setIsModalLogoutOpen] = useState(false);
   const token = useSelector(store => store.auth.token);
 
@@ -52,12 +60,12 @@ const UserData = () => {
             <InputItem name="name" type="text" value={user.name || 'User'} />
             <InputItem name="email" type="text" value={user.email} />
             <InputItem
-              name={'birthday'}
+              name="birthday"
               type="text"
               value={user.birthday || ''}
             />
-            <InputItem name={'phone'} type="text" value={user.phone} />
-            <InputItem name={'city'} type="text" value={user.city || ''} />
+            <InputItem name="phone" type="text" value={user.phone} />
+            <InputItem name="city" type="text" value={user.city || ''} />
             <LogOutBtn onClick={handleLogOut}>
               <Icon id="logout" s="#54ADFF" />
               <LogOutText>Log Out</LogOutText>
