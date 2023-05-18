@@ -73,10 +73,16 @@ export const MoreInfoRadio = styled.label`
   background-color: transparent;
   color: ${props => (props.checked ? '#00C3AD' : '#888')};
 
-  input[type='radio'] {
-    -webkit-appearance: none;
-    appearance: none;
-    margin: 0;
+   input[type='radio'] {
+    position: absolute;
+    height: 1px; 
+    width: 1px;
+    opacity: 0;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    overflow: hidden;
+    white-space: nowrap;
+    pointer-events: none;
   }
 
   svg {
