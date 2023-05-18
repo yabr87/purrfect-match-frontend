@@ -12,7 +12,7 @@ export const ContainerView = styled.div`
 `;
 
 export const Title = styled.h2`
-  font-family: inherit;
+  font-family: 'Manrope';
   font-style: normal;
   font-weight: 500;
   font-size: 24px;
@@ -20,19 +20,31 @@ export const Title = styled.h2`
   margin-bottom: 24px;
   @media screen and (min-width: 768px) {
     margin-bottom: 52px;
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 500;
     font-size: 36px;
+    line-height: 49px;
+    letter-spacing: 0.04em;
   }
 `;
 
 export const Text = styled.p`
-  font-family: inherit;
+  font-family: 'Manrope';
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
   line-height: 22px;
+  letter-spacing: 0.04em;
   margin-bottom: 40px;
+  
   @media screen and (min-width: 768px) {
     margin-bottom: 60px;
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 500;
     font-size: 24px;
+    line-height: 33px;
+    letter-spacing: 0.04em;
   }
 `;

@@ -1,27 +1,14 @@
-// import { useEffect } from 'react';
-
-import Button from 'shared/components/Button';
 import { Title, Text, ContainerView } from './Congrats.styles';
 
 import Icon from 'shared/components/Icon';
-import { useNavigate } from 'react-router-dom';
+import Button from 'shared/components/Button';
 
-const Congrats = () => {
-  const navigate = useNavigate();
+const Congrats = ({ close }) => {
   return (
     <ContainerView>
-      <Title as="h2">Congrats!</Title>
-      <Text>Youre registration is success</Text>
-      <Button
-        type="button"
-        onClick={() => {
-          navigate('/user', { state: {} });
-        }}
-        w="256"
-        h="40"
-        shape="solid"
-        g="8"
-      >
+      <Title>Congrats!</Title>
+      <Text>You're registration is success</Text>
+      <Button onClick={close} w="256" h="40" shape="solid" g="8">
         Go to profile
         <Icon id="paw" f="white" />
       </Button>
