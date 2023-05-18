@@ -43,9 +43,19 @@ export const RadioLabel = styled.p`
 `;
 
 export const RadioBox = styled.div`
+  ${props => console.log('props:', props)};
+
   display: flex;
   gap: 16px;
   margin-top: 8px;
+
+  label > svg {
+    stroke: ${setFemaleIconStroke};
+  }
+
+  label:last-child > svg {
+    stroke: ${setMaleIconStroke};
+  }
 `;
 
 export const MoreInfoRadio = styled.label`
@@ -63,10 +73,20 @@ export const MoreInfoRadio = styled.label`
   background-color: transparent;
   color: ${props => (props.checked ? '#00C3AD' : '#888')};
 
-  input[type='radio'] {
-    appearance: none;
-    background-color: #fff;
-    margin: 0;
+   input[type='radio'] {
+    position: absolute;
+    height: 1px; 
+    width: 1px;
+    opacity: 0;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    overflow: hidden;
+    white-space: nowrap;
+    pointer-events: none;
+  }
+
+  svg {
+    stroke-width: 2px;
   }
 `;
 
@@ -119,3 +139,21 @@ export const AdaptiveBoxTwo = styled.div`
     flex-grow: 1;
   }
 `;
+
+function setMaleIconStroke({ sex, theme }) {
+  switch (sex) {
+    case 'male':
+      return `${theme.colors.link}`;
+    default:
+      return `${theme.colors.grey}`;
+  }
+}
+
+function setFemaleIconStroke({ sex, theme }) {
+  switch (sex) {
+    case 'female':
+      return `${theme.colors.red}`;
+    default:
+      return `${theme.colors.grey}`;
+  }
+}

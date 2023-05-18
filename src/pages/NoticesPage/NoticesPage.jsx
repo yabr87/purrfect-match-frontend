@@ -68,7 +68,7 @@ function NoticesPage() {
         .catch(e => console.log(e))
         .finally(setFetching(false));
     }
-  }, [categoryName, currentPage]);
+  }, [categoryName, currentPage, fetching, isUpToWidth480, title]);
 
   return (
     <Container>

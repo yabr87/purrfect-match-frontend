@@ -1,5 +1,6 @@
 import React from 'react';
-import { useSearchParams, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+// import { useSearchParams } from 'react-router-dom';
 import Search from 'shared/components/Search/Search';
 import Title from 'shared/components/Title';
 // import { Cover } from './NoticesSearch.styles';
@@ -11,7 +12,7 @@ const NoticesSearch = ({
   setFetching,
   setCurrentPage,
 }) => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  // const [searchParams, setSearchParams] = useSearchParams();
   const { categoryName } = useParams();
   const onSubmit = values => {
     const params = { page: 1, title: values.search };
@@ -33,7 +34,7 @@ const NoticesSearch = ({
       .catch(e => console.log(e))
       .finally(setFetching(false));
 
-    setSearchParams(params);
+    // setSearchParams(params);
   };
   return (
     <>
