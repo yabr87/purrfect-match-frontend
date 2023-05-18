@@ -1,7 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
-
 export const NavContainer = styled.nav`
   display: flex;
   flex-direction: column;
@@ -10,53 +9,53 @@ export const NavContainer = styled.nav`
   gap: 20px;
   list-style: none;
 
-  @media screen and (min-width: 768px) {
+  @media ${props => props.theme.media.tab} {
     gap: 60px;
     padding: 92px;
   }
 
-  @media (min-width: 1280px) {
-  flex-direction: row;
-  margin-left: 159px;
-  gap: 40px;
-  padding: 0;
+  @media ${props => props.theme.media.desk} {
+    flex-direction: row;
+    margin-left: 159px;
+    gap: 40px;
+    padding: 0;
   }
 `;
 
 export const NavItem = styled(NavLink)`
   display: block;
 
-  font-size: 16px;
-  font-weight: 500;
+  font-weight: ${props => props.theme.fontWeiths.semi};
   font-size: 32px;
   line-height: 1.37;
   letter-spacing: 0.04em;
 
-  color: #111;  
+  color: ${props => props.theme.colors.black};
   outline: none;
   transition: color 250ms ease;
 
-
-  &:hover, :focus {
-    color: #FFC107;  
+  &:hover,
+  &:focus {
+    color: ${props => props.theme.colors.yellow};
     font-weight: 700;
   }
 
   &:active {
-    color: #FFC107; 
-      }
-
-  @media (min-width: 768px) {
-    font-size: 48px;
-
-    &:hover, :focus {
-    font-weight: 500;
+    color: ${props => props.theme.colors.yellow};
   }
 
-  @media (min-width: 1280px) { 
-    padding: 8px 0; 
-    font-size: 20px;
-    line-height: 1.35;
+  @media ${props => props.theme.media.tab} {
+    font-size: ${props => props.theme.fontSizes.title};
+
+    &:hover,
+    &:focus {
+      font-weight: ${props => props.theme.fontWeiths.semi};
+    }
+
+    @media ${props => props.theme.media.desk} {
+      padding: 8px 0;
+      font-size: ${props => props.theme.fontSizes.m};
+      line-height: 1.35;
+    }
   }
-  }  
 `;

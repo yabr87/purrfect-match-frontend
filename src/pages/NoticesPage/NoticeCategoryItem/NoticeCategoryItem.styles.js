@@ -9,9 +9,11 @@ export const Card = styled.div`
   border-radius: 0px 0px 40px 40px;
   transition: transform 250ms ease;
 
-  &:hover,
-  &:focus {
-    transform: perspective(800px) rotateX(5deg) rotateY(0deg) rotateZ(0deg);
+  @media screen and (min-width: 768px) {
+    &:hover,
+    &:focus {
+      transform: perspective(800px) rotateX(5deg) rotateY(0deg) rotateZ(0deg);
+    }
   }
 
   @media screen and (min-width: 768px) and (max-width: 1280px) {
@@ -68,6 +70,36 @@ export const ImageDetailsItem = styled.p`
   align-items: center;
 
   color: #111111;
+`;
+
+export const ImageDetailsText = styled.span`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 40px;
+`;
+
+export const ImageDetailsTextLong = styled(ImageDetailsText)`
+  transition: all 250ms ease;
+
+  &:hover,
+  &:focus {
+    position: absolute;
+    z-index: 1;
+    top: 17px;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 28px;
+    min-width: 100px;
+    overflow: visible;
+    max-width: 100%;
+    background: white;
+    border-radius: 16px;
+    font-family: 'Manrope';
+    font-weight: 600;
+    font-size: 12px;
+  }
 `;
 
 export const ImageCategory = styled.p`

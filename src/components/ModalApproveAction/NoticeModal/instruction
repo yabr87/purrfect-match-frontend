@@ -1,0 +1,31 @@
+Інструкція по рендеру NoticeModal:
+
+1. в компонент NoticeCategoryItem імпортуємо
+
+import ModalApproveAction from 'components/ModalApproveAction';
+import NoticeModal from 'components/ModalApproveAction/NoticeModal';
+
+2. в функціональний компонент додадємо:
+-  відповідний стейт -    const [isModalOpen, setIsModalOpen] = useState(false), 
+- передаємо функцію відкриття NoticeModal на кнопку <LearnMore onButtonClick={() => setIsModalOpen(true)} />
+- робимо ренедер за умовою
+
+const NoticeCategoryItem = () => {
+      const [isModalOpen, setIsModalOpen] = useState(false);
+
+return (
+    <>
+      <LearnMore onButtonClick={() => setIsModalOpen(true)} />
+    
+      {isModalOpen && (
+        <ModalApproveAction close={() => setIsModalOpen(false)}>
+          <NoticeModal close={() => setIsModalOpen(false)} />
+        </ModalApproveAction>
+      )}
+    </>
+)
+}
+
+
+
+

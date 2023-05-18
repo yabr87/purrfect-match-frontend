@@ -20,7 +20,6 @@ const modalRoot = document.querySelector('#modal-root');
 // Функція закриття для передачі в пропс
 
 // const [isModalOpen, setIsModalOpen] = useState(false);
-// const [isFavorite, setIsFavorite] = useState(false);
 
 // const close = () => {
 //   setIsModalOpen(false);
@@ -38,6 +37,7 @@ const modalRoot = document.querySelector('#modal-root');
 // }
 
 const ModalApproveAction = ({ close, children, approve }) => {
+  // const [isModalOpen, setIsModalOpen] = useState(false);
   // const { isLoggedIn } = useAuth();
 
   const closeModal = useCallback(
@@ -62,7 +62,7 @@ const ModalApproveAction = ({ close, children, approve }) => {
         <CloseIcon onClick={close}>
           <Icon id="cross" s="#54ADFF" />
         </CloseIcon>
-        {/* {!isLoggedIn(<Congrats close={close} approve={approve} />)} */}
+        {/* {isModalOpen(<Congrats close={close} approve={approve} />)} */}
         {children}
         {/* <Congrats close={close} approve={approve} /> */}
         {/* <Logout close={close} approve={approveLogout} /> */}

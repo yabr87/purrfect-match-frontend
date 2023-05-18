@@ -1,31 +1,46 @@
 import React from 'react';
-// import Section from 'shared/components/Section';
+import { useParams } from 'react-router-dom';
+// import { useSearchParams } from 'react-router-dom';
 import Search from 'shared/components/Search/Search';
 import Title from 'shared/components/Title';
-import { Cover } from './NoticesSearch.styles';
+// import { Cover } from './NoticesSearch.styles';
+import { getNotices } from 'utils/ApiNotices';
 
-const NoticesSearch = () => {
-  const handleSubmit = (values, action) => {
-    console.log(action);
+const NoticesSearch = ({
+  setItems,
+  setTotalPages,
+  setFetching,
+  setCurrentPage,
+}) => {
+  // const [searchParams, setSearchParams] = useSearchParams();
+  const { categoryName } = useParams();
+  const onSubmit = values => {
+    const params = { page: 1, title: values.search };
+    if (['sell', 'lost-found', 'for-free'].includes(categoryName)) {
+      params.category = categoryName;
+    }
+    if (categoryName === 'favorite') {
+      params.favorite = true;
+    }
+    if (categoryName === 'own') {
+      params.own = true;
+    }
+    setCurrentPage(1);
+    getNotices(params)
+      .then(({ data }) => {
+        setItems(data.results);
+        setTotalPages(data.totalPages);
+      })
+      .catch(e => console.log(e))
+      .finally(setFetching(false));
 
-    // getPetBySerch(values.search );
-
-    // export const getPetBySerch = async (query, category = "sell", page = 1) => {
-    //   const { data } = await instance.get('/', {
-    //     params: {
-    //       query,
-    //       category,
-    //       page,
-    //     },
-    //   });
-    //   return data;
-    // };
+    // setSearchParams(params);
   };
   return (
-    <Cover>
+    <>
       <Title>Find your favorite pet</Title>
-      <Search initValue={{ search: '' }} handleSubmit={handleSubmit} />
-    </Cover>
+      <Search onFormSubmit={onSubmit} />
+    </>
   );
 };
 

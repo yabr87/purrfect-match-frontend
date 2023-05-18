@@ -1,5 +1,17 @@
 import styled from 'styled-components';
 
+export const FriendsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1280px) {
+  }
+`;
+
 export const FriendsList = styled.ul`
   margin-top: 24px;
   display: grid;
@@ -80,10 +92,11 @@ export const FriendBlock = styled.div`
     gap: 16px;
   }
 `;
+
 export const FriendImg = styled.img`
   width: 100px;
   height: 68px;
-  justi @media screen and (min-width: 768px) {
+  @media screen and (min-width: 768px) {
     width: 124px;
     height: 88px;
   }

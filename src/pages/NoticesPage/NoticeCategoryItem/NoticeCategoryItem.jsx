@@ -1,9 +1,9 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import useAuth from 'shared/hooks/useAuth';
-// import ModalApproveAction from 'components/ModalApproveAction/ModalApproveAction';
 
 import { deleteNotice } from '../../../utils/ApiNotices';
-// import { updateNotice } from '../../../utils/ApiNotices';
+import { updateFavoriteNotice } from '../../../utils/ApiNotices';
+import { calculateAge } from 'utils/calculateAge';
 
 import {
   Card,
@@ -14,72 +14,57 @@ import {
   ImageCategory,
   PhotoDescription,
   BelowItemContainer,
+  ImageDetailsText,
+  ImageDetailsTextLong,
 } from './NoticeCategoryItem.styles';
 
 import Icon from 'shared/components/Icon/Icon';
 import Button from 'shared/components/Button';
+import CircleButton from 'shared/components/CircleButton';
 
-import ModalNoticeTest from '../NoticeModalTest/NoticeModalTest';
-// import ModalApproveAction from 'components/ModalApproveAction';
-// import PetCard from 'components/ModalApproveAction/PetCard';
+// import ModalNoticeTest from '../NoticeModalTest/NoticeModalTest';
+// _____________Modal Componenets________________
+import ModalApproveAction from 'components/ModalApproveAction';
+import NoticeModal from 'components/ModalApproveAction/NoticeModal';
+import Delete from 'components/ModalApproveAction/Delete';
 
-const AddToFavorite = () => {
+const AddToFavorite = ({ notice, setIsFavorite }) => {
   const { isLoggedIn } = useAuth();
-  const [fill, setFill] = useState('transparent');
+  const isFavorite = notice.favorite;
 
-  const handleUpdate = async notice => {
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleUpdate = async () => {
     try {
       if (!isLoggedIn) {
         alert('Please sign in to add to favorites');
         return;
       }
-      // const updateToFavorite = {
-      //   favorite: 'true',
-      // };
-      // await updateNotice(notice._id, updateToFavorite);
+
+      const updateToFavorite = {
+        favorite: !isFavorite,
+      };
+      await updateFavoriteNotice(notice._id, updateToFavorite);
+      setIsFavorite(!isFavorite);
     } catch (error) {
       alert('Failed to update notice. Please try again later.');
     }
   };
 
-  const handleMouseOver = useCallback(() => {
-    if (isLoggedIn) {
-      setFill('#54adff');
-    }
-  }, [isLoggedIn]);
-
-  const handleMouseOut = useCallback(() => {
-    if (isLoggedIn) {
-      setFill('transparent');
-    }
-  }, [isLoggedIn]);
-
   return (
-    <Button
-      style={{
-        zIndex: 999,
-        position: 'absolute',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: 40,
-        height: 40,
-        right: 12,
-        top: 12,
-        background: '#cce4fb',
-        borderRadius: '50%',
-        border: 'none',
-        outline: 'none',
-        transition: 'fill 250ms ease',
-      }}
-      onMouseEnter={handleMouseOver}
-      onFocus={handleMouseOver}
-      onMouseLeave={handleMouseOut}
-      onBlur={handleMouseOut}
+    <CircleButton
+      id="heart"
+      z="999"
+      pos="absolute"
+      t="12px"
+      r="12px"
       onClick={handleUpdate}
-    >
-      <Icon id="heart" h="22" w="22" f={fill} s="#54ADFF" strokeWidth="1.5" />
-    </Button>
+      f={
+        isHovered ? '#CCE4FB' : isLoggedIn && isFavorite ? '#54adff' : '#CCE4FB'
+      }
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    ></CircleButton>
   );
 };
 
@@ -104,46 +89,26 @@ const LearnMore = ({ onButtonClick }) => {
   );
 };
 
-const NoticeCategoryItem = ({ notice }) => {
-  const [isTrashHoveredOrFocused, setIsTrashHoveredOrFocused] = useState(false);
-  const [trashIconColor, setTrashIconColor] = useState('#54ADFF');
+const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
   const { isLoggedIn, user } = useAuth();
+
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false);
 
-  const calculateAge = () => {
-    const birthDate = new Date(notice.birthday);
-    const today = new Date();
+  // const dispatch = useDispatch();
 
-    let age = today.getFullYear() - birthDate.getFullYear();
-    const month = today.getMonth() - birthDate.getMonth();
-
-    if (month < 0 || (month === 0 && today.getDate() < birthDate.getDate())) {
-      age--;
-    }
-
-    return `${age} year`;
+  const setIsFavorite = favorite => {
+    setNotices(prevNotices => {
+      const notices = [...prevNotices];
+      notices.find(({ _id }) => notice._id === _id).favorite = favorite;
+      return notices;
+    });
   };
-  // const [idPet, setIdPet] = useState(null);
 
-  // const showPetCard = ({ id }) => {
-  //   setIsModalOpen(true);
-  //   // setIdPet(id);
-  // };
-
-  const handleHover = useCallback(() => {
-    setIsTrashHoveredOrFocused(true);
-    setTrashIconColor('#FFFFFF');
-  }, []);
-
-  const handleBlur = useCallback(() => {
-    setIsTrashHoveredOrFocused(false);
-    setTrashIconColor('#54ADFF');
-  }, []);
-
-  const handleDelete = async () => {
+  const handleDelete = async id => {
     try {
-      await deleteNotice(notice._id);
-      setIsModalOpen(true);
+      await deleteNotice(id);
+      deleteAndRefresh(id);
     } catch (error) {
       alert('Failed to delete notice. Please try again later.');
     }
@@ -151,7 +116,7 @@ const NoticeCategoryItem = ({ notice }) => {
 
   return (
     <Card>
-      <AddToFavorite notice={notice} />
+      <AddToFavorite notice={notice} setIsFavorite={setIsFavorite} />
       <CardImageContainer>
         <CardImage src={notice.photoUrl} alt={notice.title} />
         <ImageCategory>
@@ -161,11 +126,15 @@ const NoticeCategoryItem = ({ notice }) => {
         <ImageDetails>
           <ImageDetailsItem>
             <Icon id="location" h="18" w="18" s="#54ADFF" />
-            {notice.location}
+            {notice.location.length > 4 ? (
+              <ImageDetailsTextLong>{notice.location}</ImageDetailsTextLong>
+            ) : (
+              <ImageDetailsText>{notice.location}</ImageDetailsText>
+            )}
           </ImageDetailsItem>
           <ImageDetailsItem>
             <Icon id="clock" h="18" w="18" s="#54ADFF" />
-            {calculateAge()}
+            {calculateAge(notice.birthday)}
           </ImageDetailsItem>
           <ImageDetailsItem>
             {notice.sex === 'male' ? (
@@ -180,39 +149,30 @@ const NoticeCategoryItem = ({ notice }) => {
       <BelowItemContainer>
         <PhotoDescription>{notice.title}</PhotoDescription>
         <LearnMore onButtonClick={() => setIsModalOpen(true)} />
-        {/* <LearnMore onButtonClick={showPetCard} /> */}
       </BelowItemContainer>
-      {isModalOpen && <ModalNoticeTest close={() => setIsModalOpen(false)} />}
-      {/* {isModalOpen && (
+      {/* {isModalOpen && <ModalNoticeTest close={() => setIsModalOpen(false)} />} */}
+      {isModalOpen && (
         <ModalApproveAction close={() => setIsModalOpen(false)}>
-          <PetCard close={() => setIsModalOpen(false)} />
+          <NoticeModal notice={notice} close={() => setIsModalOpen(false)} />
         </ModalApproveAction>
-      )} */}
+      )}
       {isLoggedIn && user && notice.own && (
-        <Button
-          style={{
-            zIndex: 999,
-            position: 'absolute',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            width: 40,
-            height: 40,
-            right: 12,
-            top: 68,
-            background: isTrashHoveredOrFocused ? '#54adff' : '#cce4fb',
-            borderRadius: '50%',
-            border: 'none',
-            outline: 'none',
-          }}
-          onMouseEnter={handleHover}
-          onMouseLeave={handleBlur}
-          onFocus={handleHover}
-          onBlur={handleBlur}
-          onClick={handleDelete}
-        >
-          <Icon id="trash" h="22" w="22" s={trashIconColor} strokeWidth="1.5" />
-        </Button>
+        <CircleButton
+          id="trash"
+          z="999"
+          pos="absolute"
+          t="68px"
+          r="12px"
+          onClick={() => setIsModalDeleteOpen(true)}
+        ></CircleButton>
+      )}
+      {isModalDeleteOpen && (
+        <ModalApproveAction close={() => setIsModalDeleteOpen(false)}>
+          <Delete
+            approve={() => handleDelete(notice._id)}
+            close={() => setIsModalDeleteOpen(false)}
+          />
+        </ModalApproveAction>
       )}
     </Card>
   );

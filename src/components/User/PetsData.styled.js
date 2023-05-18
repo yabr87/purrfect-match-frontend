@@ -16,6 +16,17 @@ export const PetContainer = styled.div`
   @media screen and (min-width: 768px) {
     flex-direction: row;
   }
+  @media screen and (min-width: 1280px) {
+    margin-left: 32px;
+  }
+`;
+
+export const PetWrap = styled.div`
+  @media screen and (min-width: 1280px) {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
 `;
 
 export const PetAvatar = styled.div`
@@ -32,12 +43,19 @@ export const PetAvatar = styled.div`
     margin-right: 20px;
     margin-bottom: 108px;
   }
+  @media screen and (min-width: 1280px) {
+    margin-bottom: 31px;
+  }
 `;
 
 export const PetHeader = styled.div`
   display: flex;
   margin-top: 46px;
   margin-bottom: 31px;
+
+  @media screen and (min-width: 1280px) {
+    margin: 0;
+  }
 `;
 
 export const PetInfoWrap = styled.div`

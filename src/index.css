@@ -22,7 +22,6 @@ body {
   }
 
   @media screen and (min-width: 768px) {
-    background-size: cover;
     background-image: url('./images/background/bg-tablet-min.png');
 
     @media screen and (min-width: 768px) and (min-device-pixel-ratio: 2),
@@ -33,7 +32,6 @@ body {
   }
 
   @media screen and (min-width: 1280px) {
-    background-size: cover;
     background-image: url('./images/background/bg-desktop-min.png');
 
     @media screen and (min-width: 1280px) and (min-device-pixel-ratio: 2),
@@ -44,7 +42,7 @@ body {
   }
 }
 
-.root {
+/* .root {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -54,6 +52,16 @@ body {
 .root main {
   flex: 1;
   max-height: 100vh;
+} */
+
+main {
+  padding-top: 40px;
+  padding-bottom: 40px;
+
+  @media screen and (min-width: 768px) {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
 }
 
 h1,

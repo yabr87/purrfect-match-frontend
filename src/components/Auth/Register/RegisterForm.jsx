@@ -1,6 +1,9 @@
 import { ErrorMessage, Formik } from 'formik';
 import { useDispatch } from 'react-redux';
+
 import * as Yup from 'yup';
+
+import { useNavigate } from 'react-router-dom';
 
 import {
   Forms,
@@ -35,17 +38,21 @@ const validateShecma = Yup.object().shape({
 });
 
 const RegisterForm = () => {
+  const navigate = useNavigate();
+
   const dispatch = useDispatch();
   return (
     <Formik
       initialValues={{ email: '', password: '', confirmedPassword: '' }}
       onSubmit={(values, actions) => {
+        navigate('/user', { state: { isModalOpen: true } });
         dispatch(
           signup({
             email: values.email,
             password: values.password,
           })
         );
+
         actions.resetForm();
       }}
       validationSchema={validateShecma}

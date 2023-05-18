@@ -1,7 +1,4 @@
-// import { useEffect } from 'react';
-
-// import Container from 'shared/components/Container';
-// import Section from 'shared/components/Section';
+import { useMedia } from 'shared/hooks/useMedia';
 import Button from 'shared/components/Button';
 import {
   Text,
@@ -9,15 +6,22 @@ import {
   ContainerView,
   ButtonWrap,
   TextWrap,
+  Title,
 } from './Delete.styles';
 
 import Icon from 'shared/components/Icon';
-import Title from 'shared/components/Title';
 
 const Delete = ({ close, approve }) => {
+  const screenSize = useMedia(
+    ['(min-width: 1280px)', '(min-width: 768px)', '(min-width: 480px)'],
+    ['desktop', 'tablet', 'mobile'],
+    'xs'
+  );
+
+  const isMobile = screenSize === 'mobile';
   return (
     <ContainerView>
-      <Title as="h2">Delete adverstiment?!</Title>
+      <Title>Delete adverstiment?!</Title>
       <TextWrap>
         <Text>
           Are you sure you want to delete{' '}
@@ -25,32 +29,61 @@ const Delete = ({ close, approve }) => {
           You can`t undo this action.
         </Text>
       </TextWrap>
-
-      <ButtonWrap>
-        <Button
-          type="button"
-          onBtnClick={close}
-          w="129"
-          h="40"
-          style={{
-            marginRight: '17px',
-            marginBottom: '8px',
-          }}
-        >
-          Cancel
-        </Button>
-        <Button
-          type="button"
-          onBtnClick={approve}
-          w="129"
-          h="40"
-          shape="solid"
-          g="8"
-        >
-          Yes
-          <Icon id="logout" s="#FEF9F9" />
-        </Button>
-      </ButtonWrap>
+      {isMobile ? (
+        <>
+          <ButtonWrap>
+            <Button
+              type="button"
+              onClick={close}
+              w="256"
+              h="40"
+              style={{
+                marginBottom: '8px',
+              }}
+            >
+              Cancel
+            </Button>
+            <Button
+              type="button"
+              onClick={approve}
+              w="256"
+              h="40"
+              shape="solid"
+              g="8"
+            >
+              Yes
+              <Icon id="logout" s="#FEF9F9" />
+            </Button>
+          </ButtonWrap>
+        </>
+      ) : (
+        <>
+          <ButtonWrap>
+            <Button
+              type="button"
+              onClick={close}
+              w="129"
+              h="40"
+              style={{
+                marginRight: '17px',
+              }}
+            >
+              Cancel
+            </Button>
+            <Button
+              type="button"
+              onClick={approve}
+              w="129"
+              h="40"
+              shape="solid"
+              g="8"
+            >
+              Yes
+              <Icon id="logout" s="#FEF9F9" />
+            </Button>
+          </ButtonWrap>
+        </>
+      )}
     </ContainerView>
   );
 };

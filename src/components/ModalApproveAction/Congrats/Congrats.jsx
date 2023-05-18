@@ -1,23 +1,14 @@
-// import { useEffect } from 'react';
-
-import Button from 'shared/components/Button';
 import { Title, Text, ContainerView } from './Congrats.styles';
 
 import Icon from 'shared/components/Icon';
+import Button from 'shared/components/Button';
 
-const Congrats = ({ approve }) => {
+const Congrats = ({ close }) => {
   return (
     <ContainerView>
-      <Title as="h2">Congrats!</Title>
-      <Text>Youre registration is success</Text>
-      <Button
-        type="button"
-        onBtnClick={approve}
-        w="256"
-        h="40"
-        shape="solid"
-        g="8"
-      >
+      <Title>Congrats!</Title>
+      <Text>You're registration is success</Text>
+      <Button onClick={close} w="256" h="40" shape="solid" g="8">
         Go to profile
         <Icon id="paw" f="white" />
       </Button>
@@ -26,5 +17,3 @@ const Congrats = ({ approve }) => {
 };
 
 export default Congrats;
-
-
