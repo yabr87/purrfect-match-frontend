@@ -7,7 +7,7 @@ import NewsList from './NewsList';
 import Pagination from 'shared/hooks/pagination';
 // import Button from 'shared/components/Button';
 
-import { getAllNews } from 'utils/news-api';
+import { getAllNews } from 'utils/ApiNews';
 import { useSearchParams } from 'react-router-dom';
 
 const NewsPage = () => {
