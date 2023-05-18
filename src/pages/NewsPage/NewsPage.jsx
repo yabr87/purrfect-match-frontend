@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Loader from 'shared/components/Loader';
 import Container from 'shared/components/Container';
 import Title from 'shared/components/Title';
@@ -16,12 +16,76 @@ const NewsPage = () => {
   const [news, setNews] = useState([]);
   const [currentPage, setCurrentPage] = useState(() => {
     const page = searchParams.get('page');
-    return page ? Number(page) : 1;
+    return page && window.innerWidth > 480 ? Number(page) : 1;
   });
-  const [fetching, setFetching] = useState(false);
+  const [fetching, setFetching] = useState(true);
   const [totalPages, setTotalPages] = useState(null);
 
+  ////////////////////////////////////////////// mobile paggination
+
+  const handleScroll = useCallback(
+    ({ target }) => {
+      const { scrollHeight, scrollTop } = target.documentElement;
+      if (scrollHeight - (scrollTop + window.innerHeight) < 100) {
+        if (currentPage === totalPages) {
+          return;
+        }
+        !search
+          ? setSearchParams({ page: currentPage })
+          : setSearchParams({ search, page: currentPage });
+        setFetching(true);
+        console.log(window.innerWidth);
+      }
+    },
+    [currentPage, search, setSearchParams, totalPages]
+  );
+
   useEffect(() => {
+    if (window.innerWidth > 480) {
+      return;
+    }
+    document.addEventListener('scroll', handleScroll);
+    return () => document.removeEventListener('scroll', handleScroll);
+  }, [handleScroll]);
+
+  useEffect(() => {
+    if (window.innerWidth > 480) {
+      return;
+    }
+
+    const params = { page: currentPage };
+
+    if (search) {
+      params.search = search;
+    }
+    // setSearchParams(params);
+    const fetchNews = async params => {
+      try {
+        const { data } = await getAllNews(params);
+        setCurrentPage(prev => prev + 1);
+        setTotalPages(data.totalPages);
+        if (news.length < 6) {
+          setNews(data.results);
+          return;
+        }
+        setNews([...news, ...data.results]);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setFetching(false);
+      }
+    };
+    if (fetching) {
+      fetchNews(params);
+    }
+  }, [fetching, currentPage, news, search]);
+
+  ////////////////////////////////////////////////////
+
+  useEffect(() => {
+    if (window.innerWidth <= 480) {
+      return;
+    }
     setFetching(true);
     const params = { page: currentPage };
 
@@ -40,6 +104,7 @@ const NewsPage = () => {
       }
     };
     fetchNews(params);
+    setFetching(false);
   }, [currentPage, search]);
 
   const onSubmit = async values => {
@@ -48,7 +113,7 @@ const NewsPage = () => {
       const { data } = await getAllNews(params);
       setNews(data.results);
       setTotalPages(data.totalPages);
-      setCurrentPage(1);
+      window.innerWidth > 480 ? setCurrentPage(1) : setCurrentPage(2);
     } catch (error) {
       console.log(error);
     } finally {
