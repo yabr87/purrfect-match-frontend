@@ -47,7 +47,6 @@ export const Pictures = styled.img`
   position: absolute;
   top: -30px;
   width: calc(100%);
-
   content: url(${mobPet1});
 
   @media (min-device-pixel-ratio: 2),
