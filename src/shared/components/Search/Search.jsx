@@ -8,24 +8,15 @@ import {
 import Icon from 'shared/components/Icon';
 import { Formik, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { useSearchParams, useParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 
-const Search = ({ onFormSubmit, setItems }) => {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const { categoryName } = useParams();
+const Search = ({ onFormSubmit }) => {
+  const [searchParams] = useSearchParams();
   const title = searchParams.get('title');
 
   const validation = Yup.object({
     search: Yup.string().trim('Type something').required('Type something'),
   });
-
-  const handleSubmit = values => {
-    const { search } = values;
-    setSearchParams({ title: values.search, page: 1 });
-    onFormSubmit({ category: categoryName, title: search.trim() }).then(
-      ({ data }) => setItems(data.results)
-    );
-  };
 
   const FormError = ({ name }) => {
     return (
@@ -41,7 +32,7 @@ const Search = ({ onFormSubmit, setItems }) => {
   return (
     <Formik
       initialValues={{ search: title || '' }}
-      onSubmit={handleSubmit}
+      onSubmit={onFormSubmit}
       validationSchema={validation}
     >
       {props => (
