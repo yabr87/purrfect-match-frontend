@@ -3,7 +3,6 @@ import { instance as noticesInstance } from './Api';
 export const getNotices = async params => {
   try {
     const response = await noticesInstance.get('/api/notices', { params });
-    console.log(response);
     return response;
   } catch (error) {
     console.error('Failed to get notices', error);

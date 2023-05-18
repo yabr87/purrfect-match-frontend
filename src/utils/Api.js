@@ -25,6 +25,13 @@ export const login = async data => {
   return response;
 };
 
+export const refresh = async token => {
+  setToken(token);
+  const response = await instance.post('/api/users/refresh');
+  setToken(response.data.token);
+  return response;
+};
+
 export const logout = async () => {
   const data = await instance.post('/api/users/logout');
   setToken();
@@ -34,7 +41,6 @@ export const logout = async () => {
 export const getCurrent = async token => {
   setToken(token);
   const response = await instance.get('/api/users/current');
-
   return response;
 };
 

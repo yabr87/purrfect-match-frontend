@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import {
   Title,
   PetContainer,
@@ -11,10 +13,45 @@ import {
 } from './';
 import Button from 'shared/components/Button';
 import Icon from 'shared/components/Icon/Icon';
+import { deleteMyPet, fetchMyPets } from 'redux/pets/myPetsOperations';
 
 const PetsData = () => {
+  const [pets, setPets] = useState([]);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    setPets(dispatch(fetchMyPets()));
+  }, [dispatch]);
+
   const handleClick = () => {
     console.log('add new pet');
+  };
+
+  const handleDeletePet = () => {
+    dispatch(deleteMyPet());
+  };
+
+  const petCard = item => {
+    <PetContainer>
+      <PetAvatar />
+      <PetInfoWrap>
+        <DelPetBtn onClick={handleDeletePet}>
+          <Icon id="trash" s="#54ADFF" />
+        </DelPetBtn>
+        <PetInfoItem>
+          <PetInfoTitle>Name:</PetInfoTitle> {item.name}
+        </PetInfoItem>
+        <PetInfoItem>
+          <PetInfoTitle>Date of Birth:</PetInfoTitle> {item.birthday}
+        </PetInfoItem>
+        <PetInfoItem>
+          <PetInfoTitle>Breed:</PetInfoTitle> {item.breed}
+        </PetInfoItem>
+        <PetInfoItem>
+          <PetInfoTitle>Comments:</PetInfoTitle> {item.comments}
+        </PetInfoItem>
+      </PetInfoWrap>
+    </PetContainer>;
   };
 
   return (
@@ -27,26 +64,11 @@ const PetsData = () => {
             <Icon id="plus-small" s="#FEF9F9" />
           </Button>
         </PetHeader>
-        <PetContainer>
-          <PetAvatar />
-          <PetInfoWrap>
-            <DelPetBtn>
-              <Icon id="trash" s="#54ADFF" />
-            </DelPetBtn>
-            <PetInfoItem>
-              <PetInfoTitle>Name:</PetInfoTitle> ...
-            </PetInfoItem>
-            <PetInfoItem>
-              <PetInfoTitle>Date of Birth:</PetInfoTitle> ...
-            </PetInfoItem>
-            <PetInfoItem>
-              <PetInfoTitle>Breed:</PetInfoTitle> ...
-            </PetInfoItem>
-            <PetInfoItem>
-              <PetInfoTitle>Comments:</PetInfoTitle> ...
-            </PetInfoItem>
-          </PetInfoWrap>
-        </PetContainer>
+        {pets.length ? (
+          pets.map(item => petCard(item))
+        ) : (
+          <p>You have no own added pets yet(</p>
+        )}
       </PetWrap>
     </>
   );
