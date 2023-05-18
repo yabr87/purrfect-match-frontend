@@ -13,7 +13,7 @@ const UserPage = () => {
 
   console.log(location);
 
-  const [isOpen, setIsModalOpen] = useState(true);
+  const [isOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const state = location.state;
