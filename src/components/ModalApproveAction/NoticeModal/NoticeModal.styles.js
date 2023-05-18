@@ -2,12 +2,14 @@ import styled from 'styled-components';
 
 export const ContainerView = styled.div`
   display: flex;
+
   align-items: center;
   flex-direction: column;
   padding: 44px 20px 16px 20px;
   min-width: 280px;
   @media screen and (min-width: 768px) {
     width: 681px;
+
     padding: 32px 32px 32px 24px;
   }
 `;
@@ -16,6 +18,7 @@ export const PetCardData = styled.div`
   display: flex;
   flex-direction: column;
   @media screen and (min-width: 768px) {
+    width: 100%;
   }
 `;
 
@@ -23,6 +26,7 @@ export const Wrap = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
   @media screen and (min-width: 768px) {
     display: flex;
     flex-direction: row;
@@ -50,10 +54,11 @@ export const ButtonWrap = styled.div`
 `;
 
 export const PetImage = styled.img`
+  object-fit: cover;
   width: 240px;
   height: 240px;
   border-radius: 0px 0px 40px 40px;
-  background-color: aqua;
+
   margin-bottom: 12px;
   @media screen and (min-width: 768px) {
     margin-bottom: 0;

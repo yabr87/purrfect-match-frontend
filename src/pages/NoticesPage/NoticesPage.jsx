@@ -115,6 +115,7 @@ function NoticesPage() {
         currentPage={currentPage}
         notices={notices}
         setCurrentPage={setCurrentPage}
+        setNotices={setNotices}
         setFetching={setFetching}
       />
     </Container>

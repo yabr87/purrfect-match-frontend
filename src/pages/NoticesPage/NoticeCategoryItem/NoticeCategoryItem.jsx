@@ -20,15 +20,16 @@ import Icon from 'shared/components/Icon/Icon';
 import Button from 'shared/components/Button';
 import CircleButton from 'shared/components/CircleButton';
 
-import ModalNoticeTest from '../NoticeModalTest/NoticeModalTest';
+// import ModalNoticeTest from '../NoticeModalTest/NoticeModalTest';
 // _____________Modal Componenets________________
-// import ModalApproveAction from 'components/ModalApproveAction';
-// import NoticeModal from 'components/ModalApproveAction/NoticeModal';
-// import Delete from 'components/ModalApproveAction/Delete';
+import ModalApproveAction from 'components/ModalApproveAction';
+import NoticeModal from 'components/ModalApproveAction/NoticeModal';
+import Delete from 'components/ModalApproveAction/Delete';
 
-const AddToFavorite = ({ notice }) => {
+const AddToFavorite = ({ notice, setIsFavorite }) => {
   const { isLoggedIn } = useAuth();
-  const [isFavorite, setIsFavorite] = useState(!!notice.favorite);
+  const isFavorite = notice.favorite;
+
   const [isHovered, setIsHovered] = useState(false);
 
   const handleUpdate = async () => {
@@ -39,7 +40,7 @@ const AddToFavorite = ({ notice }) => {
       }
 
       const updateToFavorite = {
-        favorite: !notice.favorite,
+        favorite: !isFavorite,
       };
       await updateFavoriteNotice(notice._id, updateToFavorite);
       setIsFavorite(!isFavorite);
@@ -56,7 +57,9 @@ const AddToFavorite = ({ notice }) => {
       t="12px"
       r="12px"
       onClick={handleUpdate}
-      f={isHovered ? '#CCE4FB' : isFavorite ? '#54adff' : '#CCE4FB'}
+      f={
+        isHovered ? '#CCE4FB' : isLoggedIn && isFavorite ? '#54adff' : '#CCE4FB'
+      }
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     ></CircleButton>
@@ -84,13 +87,21 @@ const LearnMore = ({ onButtonClick }) => {
   );
 };
 
-const NoticeCategoryItem = ({ notice, deleteAndRefresh }) => {
+const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
   const { isLoggedIn, user } = useAuth();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  // const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false);
+  const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false);
 
   // const dispatch = useDispatch();
+
+  const setIsFavorite = favorite => {
+    setNotices(prevNotices => {
+      const notices = [...prevNotices];
+      notices.find(({ _id }) => notice._id === _id).favorite = favorite;
+      return notices;
+    });
+  };
 
   const handleDelete = async id => {
     try {
@@ -103,7 +114,7 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh }) => {
 
   return (
     <Card>
-      <AddToFavorite notice={notice} />
+      <AddToFavorite notice={notice} setIsFavorite={setIsFavorite} />
       <CardImageContainer>
         <CardImage src={notice.photoUrl} alt={notice.title} />
         <ImageCategory>
@@ -133,12 +144,12 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh }) => {
         <PhotoDescription>{notice.title}</PhotoDescription>
         <LearnMore onButtonClick={() => setIsModalOpen(true)} />
       </BelowItemContainer>
-      {isModalOpen && <ModalNoticeTest close={() => setIsModalOpen(false)} />}
-      {/* {isModalOpen && (
+      {/* {isModalOpen && <ModalNoticeTest close={() => setIsModalOpen(false)} />} */}
+      {isModalOpen && (
         <ModalApproveAction close={() => setIsModalOpen(false)}>
-          <NoticeModal close={() => setIsModalOpen(false)} />
+          <NoticeModal notice={notice} close={() => setIsModalOpen(false)} />
         </ModalApproveAction>
-      )} */}
+      )}
       {isLoggedIn && user && notice.own && (
         <CircleButton
           id="trash"
@@ -146,19 +157,17 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh }) => {
           pos="absolute"
           t="68px"
           r="12px"
-          onClick={() => handleDelete(notice._id)}
+          onClick={() => setIsModalDeleteOpen(true)}
         ></CircleButton>
       )}
-      {/* {isModalDeleteOpen && (
-        <ModalApproveAction
-          close={() => setIsModalDeleteOpen(false)}
-        >
+      {isModalDeleteOpen && (
+        <ModalApproveAction close={() => setIsModalDeleteOpen(false)}>
           <Delete
             approve={() => handleDelete(notice._id)}
             close={() => setIsModalDeleteOpen(false)}
           />
         </ModalApproveAction>
-      )} */}
+      )}
     </Card>
   );
 };

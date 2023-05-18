@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import useAuth from 'shared/hooks/useAuth';
 
 import Button from 'shared/components/Button';
@@ -24,26 +24,18 @@ import { useMedia } from 'shared/hooks/useMedia';
 import Icon from 'shared/components/Icon';
 
 import { updateFavoriteNotice } from '../../../utils/ApiNotices';
+import { calculateAge } from 'utils/calculateAge';
 
 const NoticeModal = ({ notice, close }) => {
   const { isLoggedIn } = useAuth();
-  const [fill, setFill] = useState('transparent');
-  const [favorite, setFavorite] = useState(false);
-
-  useEffect(() => {
-    if (notice.favorite === true) {
-      setFavorite(true);
-      setFill('#ffffff');
-    }
-  }, [notice.favorite]);
+  const [favorite, setFavorite] = useState(!!notice.favorite);
 
   const screenSize = useMedia(
     ['(min-width: 1280px)', '(min-width: 768px)', '(min-width: 480px)'],
     ['desktop', 'tablet', 'mobile'],
     'xs'
   );
-  //   const isTablet = screenSize === 'tablet';
-  //   const isDesktop = screenSize === 'desktop';
+
   const isMobile = screenSize === 'mobile';
 
   const approveAddFavorite = async notice => {
@@ -52,53 +44,27 @@ const NoticeModal = ({ notice, close }) => {
         alert('Please sign in to add to favorites');
         return;
       }
-      setFavorite(current => !current);
-      console.log(favorite);
-      if (favorite === true) {
-        setFill('#ffffff');
-      }
-      if (favorite === false) {
-        setFill('transparent');
-      }
       if (!notice || !notice._id) {
         console.error('Notice is undefined or does not have an _id property');
         return;
       }
+
       const updateToFavorite = {
         favorite: !notice.favorite,
       };
       await updateFavoriteNotice(notice._id, updateToFavorite);
+      notice.favorite = !favorite;
+      setFavorite(!favorite);
     } catch (error) {
       alert('Failed to update notice. Please try again later.');
     }
   };
 
-  // const approveAddFavorite = async notice => {
-  //   try {
-  //     if (!isLoggedIn) {
-  //       alert('Please sign in to add to favorites');
-  //       return;
-  //     }
-  // if (!notice || !notice._id) {
-  //   console.error('Notice is undefined or does not have an _id property');
-  //   return;
-  // }
-  // const updateToFavorite = {
-  //   favorite: !notice.favorite,
-  // };
-  // await updateFavoriteNotice(notice._id, updateToFavorite);
-  //   } catch (error) {
-  //     alert('Failed to update notice. Please try again later.');
-  //   }
-  // };
-
-  console.log(favorite);
-
   return (
     <ContainerView>
       <PetCardData>
         <Wrap>
-          <PetImage />
+          <PetImage src={notice.photoUrl} alt={notice.title} />
           <PetDataListWrap>
             <Title
               as="h3"
@@ -116,23 +82,23 @@ const NoticeModal = ({ notice, close }) => {
               <tbody>
                 <PetDataItem>
                   <NameCategory>Name:</NameCategory>
-                  <ValueCategory>Pet</ValueCategory>
+                  <ValueCategory>{notice.name}</ValueCategory>
                 </PetDataItem>
                 <PetDataItem>
                   <NameCategory>Birthday:</NameCategory>
-                  <ValueCategory>21.12.20</ValueCategory>
+                  <ValueCategory>{calculateAge(notice.birthday)}</ValueCategory>
                 </PetDataItem>
                 <PetDataItem>
                   <NameCategory>Breed:</NameCategory>
-                  <ValueCategory>York</ValueCategory>
+                  <ValueCategory>{notice.breed}</ValueCategory>
                 </PetDataItem>
                 <PetDataItem>
                   <NameCategory>Place:</NameCategory>
-                  <ValueCategory>Kyiv</ValueCategory>
+                  <ValueCategory>{notice.location}</ValueCategory>
                 </PetDataItem>
                 <PetDataItem>
                   <NameCategory>The sex:</NameCategory>
-                  <ValueCategory>male</ValueCategory>
+                  <ValueCategory>{notice.sex}</ValueCategory>
                 </PetDataItem>
                 <PetDataItem>
                   <NameCategory>Email:</NameCategory>
@@ -154,11 +120,7 @@ const NoticeModal = ({ notice, close }) => {
             </PetDataList>
           </PetDataListWrap>
         </Wrap>
-        <PetComents>
-          Comments: Rich would be the perfect addition to an active family that
-          loves to play and go on walks. I bet he would love having a doggy
-          playmate too!
-        </PetComents>
+        <PetComents>Comments: {notice.comments}</PetComents>
       </PetCardData>
 
       {isMobile ? (
@@ -173,7 +135,11 @@ const NoticeModal = ({ notice, close }) => {
               g="8"
             >
               Add to
-              <Icon id="heart" f={fill} s="white" />
+              <Icon
+                id="heart"
+                f={favorite ? '#ffffff' : 'transparent'}
+                s="white"
+              />
             </Button>
             <Button
               type="button"
@@ -203,11 +169,12 @@ const NoticeModal = ({ notice, close }) => {
               }}
             >
               Add to
-              <Icon id="heart" f={fill} s="white" />
+              <Icon
+                id="heart"
+                f={favorite ? '#ffffff' : 'transparent'}
+                s="white"
+              />
             </Button>
-            {/* <Button type="button" onClick={close} w="129" h="40">
-              Contact
-            </Button> */}
             <ContactLink href="tel:+380961111111">Contact</ContactLink>
           </ButtonWrap>
         </>
