@@ -19,7 +19,6 @@ import {
 
 import Icon from 'shared/components/Icon/Icon';
 import CircleButton from 'shared/components/CircleButton';
-import AddToFavorite from './components/AddToFavorite';
 
 // import ModalNoticeTest from '../NoticeModalTest/NoticeModalTest';
 // _____________Modal Componenets________________
@@ -27,6 +26,7 @@ import ModalApproveAction from 'components/ModalApproveAction';
 import NoticeModal from 'components/ModalApproveAction/NoticeModal';
 import Delete from 'components/ModalApproveAction/Delete';
 import LearnMore from './components/LearnMore';
+import AddToFavorite from './components/AddToFavorite';
 
 const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
   const { isLoggedIn, user } = useAuth();
