@@ -44,6 +44,7 @@ export const Error = styled(ErrorMessage)`
 
 export const StyledField = styled(Field)`
   padding: 10px 16px;
+  width: 100%;
   height: 40px;
   margin-top: 4px;
 

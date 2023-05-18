@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { addDays } from 'date-fns'; 
+import { addDays } from 'date-fns';
 import { Error, FormLabel, StyledField } from '../AddPetForm.styles';
 import { DetailsWrapper } from './PersonalDetails.styles';
 import { useFormikContext } from 'formik';
@@ -49,18 +49,16 @@ const PersonalDetails = ({
       </FormLabel>
       <FormLabel>
         Date of birth
-        <DatePicker
+        <StyledField
+          as={DatePicker}
           name="birthday"
-          placeholder="Type date of birth"
+          placeholderText="DD.MM.YYYY"
           onChange={date => setFieldValue('birthday', date)}
           onBlur={handleBlur}
           selected={birthdayDate}
           value={values.birthday}
           dateFormat="dd.MM.yyyy"
           maxDate={maxDate}
-          showMonthDropdown
-          showYearDropdown
-          dropdownMode="select" 
           errors={touched.birthday && errors.birthday}
         />
         <Error name="birthday" component="p" />
