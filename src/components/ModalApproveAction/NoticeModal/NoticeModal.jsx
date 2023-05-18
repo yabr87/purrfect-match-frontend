@@ -62,13 +62,6 @@ const NoticeModal = ({ notice, close }) => {
     }
   };
 
-  // const UserTel = phone => {
-  //   if (!phone) {
-  //     return 'no phone number';
-  //   }
-  //   formatUserTel(phone);
-  // };
-
   return (
     <ContainerView>
       <PetCardData>
@@ -188,12 +181,3 @@ const NoticeModal = ({ notice, close }) => {
 };
 
 export default NoticeModal;
-
-// import { useNavigate, useLocation } from 'react-router-dom';
-// const location = useLocation();
-
-// const from = location.state?.from || '/notices/sell';
-
-// const navigate = useNavigate();
-
-// console.log(navigate(-1));
