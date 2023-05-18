@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import {
   Container,
   Avatar,
@@ -14,7 +14,7 @@ import {
   Wrap,
 } from './';
 import Icon from 'shared/components/Icon/Icon';
-import { current } from 'redux/auth/authOperations';
+import { getCurrent } from 'utils/Api';
 
 import ModalApproveAction from 'components/ModalApproveAction';
 import Logout from 'components/ModalApproveAction/Logout';
@@ -22,11 +22,16 @@ import Logout from 'components/ModalApproveAction/Logout';
 const UserData = () => {
   const [user, setUser] = useState([]);
   const [isModalLogoutOpen, setIsModalLogoutOpen] = useState(false);
-  const dispatch = useDispatch();
+  const token = useSelector(store => store.auth.token);
 
   useEffect(() => {
-    setUser(dispatch(current()));
-  }, [dispatch]);
+    const getUser = async token => {
+      const res = await getCurrent(token);
+      setUser(res.data);
+      console.log(res.data);
+    };
+    getUser(token);
+  }, [token]);
 
   const handleLogOut = () => {
     setIsModalLogoutOpen(true);
@@ -45,10 +50,10 @@ const UserData = () => {
             </EditAvatarBtn>
           </AvatarContainer>
           <InputContainer>
-            <InputItem name={'name'} type="text" value={user.name || 'User'} />
-            <InputItem name={'email'} type="text" value={user.email} />
+            <InputItem name="name" type="text" value={user.name || 'User'} />
+            <InputItem name="email" type="text" value={user.email} />
             <InputItem
-              name={'Birthday'}
+              name={'birthday'}
               type="text"
               value={user.birthday || ''}
             />
