@@ -62,12 +62,12 @@ const NoticeModal = ({ notice, close }) => {
     }
   };
 
-  const UserTel = phone => {
-    if (!phone) {
-      return;
-    }
-    formatUserTel(phone);
-  };
+  // const UserTel = phone => {
+  //   if (!phone) {
+  //     return 'no phone number';
+  //   }
+  //   formatUserTel(phone);
+  // };
 
   return (
     <ContainerView>
@@ -113,7 +113,10 @@ const NoticeModal = ({ notice, close }) => {
                   <NameCategory>Phone:</NameCategory>
                   <ValueCategory>
                     <ContactLinkItem href="tel:">
-                      {UserTel(user.phone)}
+                      {user.phone
+                        ? formatUserTel(user.phone)
+                        : 'no phone number'}
+                      {/* {UserTel(user.phone)} */}
                     </ContactLinkItem>
                   </ValueCategory>
                 </PetDataItem>
