@@ -26,19 +26,32 @@ import Icon from 'shared/components/Icon';
 
 import { updateFavoriteNotice } from '../../../utils/ApiNotices';
 import { calculateAge } from 'utils/calculateAge';
-import { formatUserTel } from 'utils/formatUserTel';
+// import { formatUserTel } from 'utils/formatUserTel';
+
+import { getNoticeById } from 'utils/ApiNotices';
+import { useEffect } from 'react';
 
 const NoticeModal = ({ notice, close }) => {
-  const { isLoggedIn, user } = useAuth();
+  const { isLoggedIn } = useAuth();
   const [favorite, setFavorite] = useState(!!notice.favorite);
-
+  const [ownerContacts, setOwnerContacts] = useState({});
   const screenSize = useMedia(
     ['(min-width: 1280px)', '(min-width: 768px)', '(min-width: 480px)'],
     ['desktop', 'tablet', 'mobile'],
     'xs'
   );
-
   const isMobile = screenSize === 'mobile';
+
+  useEffect(() => {
+    getNoticeById(notice._id)
+      .then(res => {
+        // console.log(res.owner);
+        setOwnerContacts(res.owner);
+      })
+      .catch(e => console.log(e));
+  }, [notice._id]);
+
+  console.log(ownerContacts);
 
   const approveAddFavorite = async notice => {
     try {
@@ -62,13 +75,6 @@ const NoticeModal = ({ notice, close }) => {
     }
   };
 
-  const UserTel = phone => {
-    if (!phone) {
-      return;
-    }
-    formatUserTel(phone);
-  };
-
   return (
     <ContainerView>
       <PetCardData>
@@ -78,10 +84,7 @@ const NoticeModal = ({ notice, close }) => {
             {notice.category.replace('for-free', 'for free').replace(/-/g, '/')}
           </ImageCategory>
           <PetDataListWrap>
-            <Title>
-              Сute dog looking <br />
-              for a home
-            </Title>
+            <Title>{notice.title}</Title>
             <PetDataList>
               <tbody>
                 <PetDataItem>
@@ -108,7 +111,7 @@ const NoticeModal = ({ notice, close }) => {
                   <NameCategory>Email:</NameCategory>
                   <ValueCategory>
                     <ContactLinkItem href="mailto:">
-                      {user.email}
+                      {ownerContacts.email}
                     </ContactLinkItem>
                   </ValueCategory>
                 </PetDataItem>
@@ -116,7 +119,10 @@ const NoticeModal = ({ notice, close }) => {
                   <NameCategory>Phone:</NameCategory>
                   <ValueCategory>
                     <ContactLinkItem href="tel:">
-                      {UserTel(user.phone)}
+                      {ownerContacts.phone
+                        ? ownerContacts.phone
+                        : 'no phone number'}
+                      {/* {UserTel(user.phone)} */}
                     </ContactLinkItem>
                   </ValueCategory>
                 </PetDataItem>
@@ -188,12 +194,3 @@ const NoticeModal = ({ notice, close }) => {
 };
 
 export default NoticeModal;
-
-// import { useNavigate, useLocation } from 'react-router-dom';
-// const location = useLocation();
-
-// const from = location.state?.from || '/notices/sell';
-
-// const navigate = useNavigate();
-
-// console.log(navigate(-1));
