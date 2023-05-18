@@ -48,7 +48,9 @@ const AddPetForm = () => {
       if (selectedCategory !== 'my-pet') {
         await addNotice(newPet);
       }
-      await addMyPet(newPet);
+      else {
+        await addMyPet(newPet);
+      }      
       console.log('Pet added successfully');
       resetForm();
       navigate(`/notices/${selectedCategory}`);
