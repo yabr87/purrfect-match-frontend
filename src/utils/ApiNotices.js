@@ -10,6 +10,16 @@ export const getNotices = async params => {
   }
 };
 
+export const getNoticeById = async id => {
+  try {
+    const { data } = await noticesInstance.get(`/api/notices/${id}`);
+    return data;
+  } catch (error) {
+    console.error('Failed to delete notice', error);
+    throw error;
+  }
+};
+
 export const addNotice = async newNoticeParams => {
   try {
     const { data } = await noticesInstance.postForm(

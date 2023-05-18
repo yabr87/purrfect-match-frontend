@@ -8,6 +8,8 @@ export const InputPassword = styled(Field)`
   border: 1px solid;
   border-color: ${props => props.error};
   border-radius: ${props => props.theme.radius.normal};
+  background: ${props => props.theme.colors.backgroundColor};
+  color: inherit;
 
   ::placeholder {
     font-weight: ${props => props.theme.fontWeiths.normal};

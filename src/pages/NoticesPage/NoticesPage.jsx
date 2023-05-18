@@ -18,7 +18,7 @@ import { getNotices } from 'utils/ApiNotices';
 
 function NoticesPage() {
   const isUpToWidth480 = useMedia(['(max-width: 480px)'], [true], false);
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
 
   const { isLoggedIn } = useAuth();
@@ -39,6 +39,7 @@ function NoticesPage() {
 
   const { categoryName } = useParams();
   const title = searchParams.get('title');
+
   useEffect(() => {
     const params = { page: currentPage };
     if (['sell', 'lost-found', 'for-free'].includes(categoryName)) {
@@ -56,18 +57,12 @@ function NoticesPage() {
 
     getNotices(params)
       .then(({ data }) => {
-        if (isUpToWidth480) {
-          setCurrentPage(prev => prev + 1);
-          setNotices(prev => [...prev, ...data.results]);
-          return;
-        }
-        setNotices(data.results);
         setTotalPages(data.totalPages);
-        // setCurrentPage(params.c);
+        setNotices(data.results);
       })
       .catch(e => console.log(e))
       .finally(setFetching(false));
-  }, [categoryName, currentPage, isUpToWidth480, title]);
+  }, [categoryName, currentPage, title]);
 
   return (
     <Container>
@@ -76,6 +71,7 @@ function NoticesPage() {
         setTotalPages={setTotalPages}
         setFetching={setFetching}
         setCurrentPage={setCurrentPage}
+        setSearchParams={setSearchParams}
       />
       <div
         style={{

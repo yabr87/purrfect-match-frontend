@@ -1,38 +1,41 @@
+import React, { lazy } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
-import { theme } from 'utils/theme';
+import { lightTheme, darkTheme } from 'utils/theme';
 
 import { useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { refresh } from 'redux/auth/authOperations';
+import Switcher from 'components/themeSwitcher/Switcher';
 
 import SharedLayout from 'layouts/SharedLayout';
-import MainPage from 'pages/MainPage';
-import NoticesPage from '../../pages/NoticesPage/NoticesPage';
-import AddPetPage from 'pages/AddPetPage';
-import ErrorPage from 'pages/ErrorPage';
-import RegisterPage from 'pages/RegisterPage';
-import LoginPage from 'pages/LoginPage';
-import UserPage from 'pages/UserPage';
-import NewsPage from 'pages/NewsPage';
-import OurFriendsPage from 'pages/OurFriendsPage';
 
-// const HomePage = lazy(() => import('pages/HomePage'));
-import RestrictedRoute from 'routes/RestrictedRoute';
-import PrivateRoute from 'routes/PrivateRoute';
-
-// const RegisterPage = lazy(() => import('pages/RegisterPage'));
-// const LoginPage = lazy(() => import('pages/LoginPage'));
+const MainPage = lazy(() => import('pages/MainPage'));
+const NoticesPage = lazy(() => import('../../pages/NoticesPage/NoticesPage'));
+const AddPetPage = lazy(() => import('pages/AddPetPage'));
+const ErrorPage = lazy(() => import('pages/ErrorPage'));
+const RegisterPage = lazy(() => import('pages/RegisterPage'));
+const LoginPage = lazy(() => import('pages/LoginPage'));
+const UserPage = lazy(() => import('pages/UserPage'));
+const NewsPage = lazy(() => import('pages/NewsPage'));
+const OurFriendsPage = lazy(() => import('pages/OurFriendsPage'));
+const RestrictedRoute = lazy(() => import('routes/RestrictedRoute'));
+const PrivateRoute = lazy(() => import('routes/PrivateRoute'));
 
 const App = () => {
+  const [currentTheme, setCurrentTheme] = useState(lightTheme);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(refresh());
   }, [dispatch]);
+  const onClick = () => {
+    setCurrentTheme(currentTheme === lightTheme ? darkTheme : lightTheme);
+  };
 
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={currentTheme}>
+      <Switcher onClick={onClick} />
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<MainPage />} />
