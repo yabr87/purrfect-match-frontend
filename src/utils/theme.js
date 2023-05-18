@@ -19,6 +19,8 @@ export const lightTheme = {
     lightBlue: '#CCE4FB',
     gradient: 'linear-gradient(290.46deg, #419EF1 0%, #9BD0FF 107.89%)',
 
+    inputColor: '#888888',
+    backgroundModal: '#ffffff',
     backgroundColor: '#fff',
     color: '#121212',
     linkT: '#888888',
@@ -91,6 +93,8 @@ export const darkTheme = {
     lightBlue: '#CCE4FB',
     gradient: 'linear-gradient(290.46deg, #419EF1 0%, #9BD0FF 107.89%)',
 
+    inputColor: '#ffffff',
+    backgroundModal: '#121212',
     backgroundColor: '#121212',
     color: '#fff',
   },

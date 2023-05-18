@@ -60,7 +60,7 @@ export const darkTheme = {
     backgroundModal: '#121212',
     textColor: '#fff',
     link: '#54ADFF',
-    grey: '#888888',
+    inputColor: '#ffffff',
     black: '#111111',
     yellow: '#FFC107',
     green: '#00C3AD',
