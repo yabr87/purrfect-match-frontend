@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import { updateUserInfo } from 'utils/Api';
 
 const UserDataItem = ({ name, type, pattern, value }) => {
-  const [data, setData] = useState();
+  const [data, setData] = useState(value);
   const [disable, setDisable] = useState(true);
   const token = useSelector(store => store.auth.token);
 

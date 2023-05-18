@@ -28,7 +28,6 @@ const UserData = () => {
     const getUser = async token => {
       const res = await getCurrent(token);
       setUser(res.data);
-      console.log(res.data);
     };
     getUser(token);
   }, [token]);
