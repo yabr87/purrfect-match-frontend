@@ -16,18 +16,17 @@ export const LoaderContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
 `;
 
 export const LoaderWrapper = styled.div`
-  position: absolute;
-  top: 25%;
-  left: 50%;
-  transform-origin: 50% 50%;
+  // position: absolute;
+  // top: 50%;
+  // left: 50%;
+  // transform-origin: 50% 50%;
   transform: rotate(90deg) translate(-50%, 0%);
   font-size: 25px;
-  width: 1em;
-  height: 3em;
+  // width: 1em;
+  // height: 3em;
   color: #54adff;
 
   @media screen and (min-width: 768px) {
@@ -40,8 +39,8 @@ export const LoaderWrapper = styled.div`
 `;
 
 export const Paw = styled.div`
-  width: 1em;
-  height: 1em;
+  width: 2em;
+  height: 2em;
   animation: 2050ms ${pawAnimation} ease-in-out infinite;
   opacity: 0;
 
