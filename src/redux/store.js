@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import {
-  persistReducer,
   persistStore,
+  persistReducer,
   FLUSH,
   REHYDRATE,
   PAUSE,
@@ -12,8 +12,8 @@ import {
 
 import storage from 'redux-persist/lib/storage';
 
-import petsReducer from './pets/myPetsSlice';
-import authReducer from './auth/authSlice';
+import petsSlice from './pets/myPetsSlice';
+import authSlice from './auth/authSlice';
 
 const persistConfig = {
   key: 'auth',
@@ -21,10 +21,12 @@ const persistConfig = {
   whitelist: ['token'],
 };
 
+const persistAuthReduser = persistReducer(persistConfig, authSlice.reducer);
+
 export const store = configureStore({
   reducer: {
-    auth: persistReducer(persistConfig, authReducer),
-    pets: petsReducer,
+    [authSlice.name]: persistAuthReduser,
+    [petsSlice.name]: petsSlice.reducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
