@@ -52,7 +52,7 @@ const Delete = ({ close, approve }) => {
               g="8"
             >
               Yes
-              <Icon id="logout" s="#FEF9F9" />
+              <Icon id="trash" s="#FEF9F9" />
             </Button>
           </ButtonWrap>
         </>
@@ -79,7 +79,7 @@ const Delete = ({ close, approve }) => {
               g="8"
             >
               Yes
-              <Icon id="logout" s="#FEF9F9" />
+              <Icon id="trash" s="#FEF9F9" />
             </Button>
           </ButtonWrap>
         </>

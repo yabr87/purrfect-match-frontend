@@ -78,10 +78,7 @@ const NoticeModal = ({ notice, close }) => {
             {notice.category.replace('for-free', 'for free').replace(/-/g, '/')}
           </ImageCategory>
           <PetDataListWrap>
-            <Title>
-              Сute dog looking <br />
-              for a home
-            </Title>
+            <Title>{notice.title}</Title>
             <PetDataList>
               <tbody>
                 <PetDataItem>
