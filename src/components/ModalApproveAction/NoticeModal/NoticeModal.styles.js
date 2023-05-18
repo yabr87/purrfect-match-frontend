@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const ContainerView = styled.div`
   display: flex;
-
   align-items: center;
   flex-direction: column;
   padding: 44px 20px 16px 20px;
@@ -23,13 +22,16 @@ export const PetCardData = styled.div`
 `;
 
 export const Wrap = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 12px;
   width: 100%;
   @media screen and (min-width: 768px) {
     display: flex;
     flex-direction: row;
+    margin-bottom: 28px;
   }
 `;
 
@@ -41,7 +43,12 @@ export const Title = styled.h2`
   line-height: 33px;
   margin-bottom: 22px;
   @media screen and (min-width: 768px) {
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 700;
     font-size: 28px;
+    line-height: 38px;
+    letter-spacing: -0.01em;
   }
 `;
 
@@ -61,9 +68,25 @@ export const PetImage = styled.img`
 
   margin-bottom: 12px;
   @media screen and (min-width: 768px) {
+    width: 262px;
+    height: 298px;
     margin-bottom: 0;
     margin-right: 24px;
   }
+`;
+
+export const ImageCategory = styled.p`
+  position: absolute;
+  width: 126px;
+  height: 32px;
+  left: 0;
+  top: 16px;
+  display: flex;
+  padding: 11px 17px;
+  align-items: center;
+  text-align: center;
+  background: #cce4fb;
+  border-radius: 0px 16px 16px 0px;
 `;
 
 export const PetDataListWrap = styled.div`
@@ -75,7 +98,6 @@ export const PetDataListWrap = styled.div`
 
 export const PetDataList = styled.table`
   width: 100%;
-  margin-bottom: 12px;
 `;
 
 export const PetDataItem = styled.tr`
