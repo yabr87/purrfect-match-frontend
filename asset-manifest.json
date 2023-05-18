@@ -1,10 +1,10 @@
 {
   "files": {
     "main.css": "/purrfect-match-frontend/static/css/main.c69bfdc0.css",
-    "main.js": "/purrfect-match-frontend/static/js/main.570ba4c5.js",
+    "main.js": "/purrfect-match-frontend/static/js/main.664e9e24.js",
     "static/js/392.3aa70669.chunk.js": "/purrfect-match-frontend/static/js/392.3aa70669.chunk.js",
-    "static/js/462.efbf351a.chunk.js": "/purrfect-match-frontend/static/js/462.efbf351a.chunk.js",
-    "static/js/317.3252674b.chunk.js": "/purrfect-match-frontend/static/js/317.3252674b.chunk.js",
+    "static/js/570.ac5eb1e4.chunk.js": "/purrfect-match-frontend/static/js/570.ac5eb1e4.chunk.js",
+    "static/js/317.8e595716.chunk.js": "/purrfect-match-frontend/static/js/317.8e595716.chunk.js",
     "static/js/476.7366343b.chunk.js": "/purrfect-match-frontend/static/js/476.7366343b.chunk.js",
     "static/js/900.19ee8c06.chunk.js": "/purrfect-match-frontend/static/js/900.19ee8c06.chunk.js",
     "static/js/977.f3c21e3b.chunk.js": "/purrfect-match-frontend/static/js/977.f3c21e3b.chunk.js",
@@ -39,10 +39,10 @@
     "static/media/moon.svg": "/purrfect-match-frontend/static/media/moon.f43c67a800e2c0181aa454dee2444f98.svg",
     "index.html": "/purrfect-match-frontend/index.html",
     "main.c69bfdc0.css.map": "/purrfect-match-frontend/static/css/main.c69bfdc0.css.map",
-    "main.570ba4c5.js.map": "/purrfect-match-frontend/static/js/main.570ba4c5.js.map",
+    "main.664e9e24.js.map": "/purrfect-match-frontend/static/js/main.664e9e24.js.map",
     "392.3aa70669.chunk.js.map": "/purrfect-match-frontend/static/js/392.3aa70669.chunk.js.map",
-    "462.efbf351a.chunk.js.map": "/purrfect-match-frontend/static/js/462.efbf351a.chunk.js.map",
-    "317.3252674b.chunk.js.map": "/purrfect-match-frontend/static/js/317.3252674b.chunk.js.map",
+    "570.ac5eb1e4.chunk.js.map": "/purrfect-match-frontend/static/js/570.ac5eb1e4.chunk.js.map",
+    "317.8e595716.chunk.js.map": "/purrfect-match-frontend/static/js/317.8e595716.chunk.js.map",
     "476.7366343b.chunk.js.map": "/purrfect-match-frontend/static/js/476.7366343b.chunk.js.map",
     "900.19ee8c06.chunk.js.map": "/purrfect-match-frontend/static/js/900.19ee8c06.chunk.js.map",
     "977.f3c21e3b.chunk.js.map": "/purrfect-match-frontend/static/js/977.f3c21e3b.chunk.js.map",
@@ -60,6 +60,6 @@
   },
   "entrypoints": [
     "static/css/main.c69bfdc0.css",
-    "static/js/main.570ba4c5.js"
+    "static/js/main.664e9e24.js"
   ]
 }
