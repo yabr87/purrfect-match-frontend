@@ -1,7 +1,10 @@
+import PropTypes from 'prop-types';
+
 import React, { useState } from 'react';
 import useAuth from 'shared/hooks/useAuth';
 
 import { deleteNotice } from '../../../utils/ApiNotices';
+import { getNoticeById } from '../../../utils/ApiNotices';
 import { calculateAge } from 'utils/calculateAge';
 
 import {
@@ -35,12 +38,36 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
 
   // const dispatch = useDispatch();
 
-  const setIsFavorite = favorite => {
-    setNotices(prevNotices => {
-      const notices = [...prevNotices];
-      notices.find(({ _id }) => notice._id === _id).favorite = favorite;
-      return notices;
-    });
+  // const setIsFavorite = favorite => {
+  //   setNotices(prevNotices => {
+  //     const notices = [...prevNotices];
+  //     notices.find(({ _id }) => notice._id === _id).favorite = favorite;
+  //     return notices;
+  //   });
+  // };
+
+  const setIsFavorite = async id => {
+    // получаю обновленный ноутис по признаку фаворит
+    const updatedNotice = await getNoticeById(id);
+
+    if (updatedNotice.favorite) {
+      // если  ноутис фаворит, обновляю ноутисы
+      setNotices(prevNotices => {
+        const notices = [...prevNotices];
+        const noticeToUpdate = notices.find(notice => notice._id === id);
+
+        if (noticeToUpdate) {
+          noticeToUpdate.favorite = updatedNotice.favorite;
+        }
+
+        return notices;
+      });
+    } else {
+      // если ноутис не фаворит, удаляю из рендера
+      setNotices(prevNotices =>
+        prevNotices.filter(notice => notice._id !== id)
+      );
+    }
   };
 
   const handleDelete = async id => {
@@ -117,3 +144,21 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
 };
 
 export default NoticeCategoryItem;
+
+NoticeCategoryItem.propTypes = {
+  notice: PropTypes.shape({
+    photoUrl: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    category: PropTypes.string.isRequired,
+    location: PropTypes.string.isRequired,
+    birthday: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.instanceOf(Date),
+    ]).isRequired,
+    sex: PropTypes.oneOf(['male', 'female']).isRequired,
+    own: PropTypes.bool.isRequired,
+    _id: PropTypes.string.isRequired,
+  }).isRequired,
+  deleteAndRefresh: PropTypes.func.isRequired,
+  setNotices: PropTypes.func.isRequired,
+};

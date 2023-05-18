@@ -21,7 +21,7 @@ const AddToFavorite = ({ notice, setIsFavorite }) => {
         favorite: !isFavorite,
       };
       await updateFavoriteNotice(notice._id, updateToFavorite);
-      setIsFavorite(!isFavorite);
+      setIsFavorite(notice._id);
     } catch (error) {
       alert('Failed to update notice. Please try again later.');
     }
