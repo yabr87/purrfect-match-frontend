@@ -40,7 +40,7 @@ const NewsPage = () => {
       }
     };
     fetchNews(params);
-  }, [currentPage]);
+  }, [currentPage, search]);
 
   const onSubmit = async values => {
     const params = { page: 1, search: values.search };
