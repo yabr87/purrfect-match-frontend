@@ -47,7 +47,7 @@ function NoticesFilters({ fetchData }) {
     // fetchData();
   };
 
-  const handleGenderChange = event => {
+  // const handleGenderChange = event => {
     // const value = event.target.value;
     // setGender(prevState =>
     //   prevState.includes(value)
@@ -55,7 +55,7 @@ function NoticesFilters({ fetchData }) {
     //     : [...prevState, value]
     // );
     // fetchData();
-  };
+  // };
 
   return (
     <FilterContainer
