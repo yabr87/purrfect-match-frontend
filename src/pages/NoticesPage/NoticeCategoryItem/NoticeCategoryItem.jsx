@@ -14,6 +14,8 @@ import {
   ImageCategory,
   PhotoDescription,
   BelowItemContainer,
+  ImageDetailsText,
+  ImageDetailsTextLong,
 } from './NoticeCategoryItem.styles';
 
 import Icon from 'shared/components/Icon/Icon';
@@ -26,9 +28,10 @@ import ModalApproveAction from 'components/ModalApproveAction';
 import NoticeModal from 'components/ModalApproveAction/NoticeModal';
 import Delete from 'components/ModalApproveAction/Delete';
 
-const AddToFavorite = ({ notice }) => {
+const AddToFavorite = ({ notice, setIsFavorite }) => {
   const { isLoggedIn } = useAuth();
-  const [isFavorite, setIsFavorite] = useState(!!notice.favorite);
+  const isFavorite = notice.favorite;
+
   const [isHovered, setIsHovered] = useState(false);
 
   const handleUpdate = async () => {
@@ -39,7 +42,7 @@ const AddToFavorite = ({ notice }) => {
       }
 
       const updateToFavorite = {
-        favorite: !notice.favorite,
+        favorite: !isFavorite,
       };
       await updateFavoriteNotice(notice._id, updateToFavorite);
       setIsFavorite(!isFavorite);
@@ -56,7 +59,9 @@ const AddToFavorite = ({ notice }) => {
       t="12px"
       r="12px"
       onClick={handleUpdate}
-      f={isHovered ? '#CCE4FB' : isFavorite ? '#54adff' : '#CCE4FB'}
+      f={
+        isHovered ? '#CCE4FB' : isLoggedIn && isFavorite ? '#54adff' : '#CCE4FB'
+      }
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     ></CircleButton>
@@ -84,13 +89,21 @@ const LearnMore = ({ onButtonClick }) => {
   );
 };
 
-const NoticeCategoryItem = ({ notice, deleteAndRefresh }) => {
+const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
   const { isLoggedIn, user } = useAuth();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false);
 
   // const dispatch = useDispatch();
+
+  const setIsFavorite = favorite => {
+    setNotices(prevNotices => {
+      const notices = [...prevNotices];
+      notices.find(({ _id }) => notice._id === _id).favorite = favorite;
+      return notices;
+    });
+  };
 
   const handleDelete = async id => {
     try {
@@ -103,7 +116,7 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh }) => {
 
   return (
     <Card>
-      <AddToFavorite notice={notice} />
+      <AddToFavorite notice={notice} setIsFavorite={setIsFavorite} />
       <CardImageContainer>
         <CardImage src={notice.photoUrl} alt={notice.title} />
         <ImageCategory>
@@ -113,7 +126,11 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh }) => {
         <ImageDetails>
           <ImageDetailsItem>
             <Icon id="location" h="18" w="18" s="#54ADFF" />
-            {notice.location}
+            {notice.location.length > 4 ? (
+              <ImageDetailsTextLong>{notice.location}</ImageDetailsTextLong>
+            ) : (
+              <ImageDetailsText>{notice.location}</ImageDetailsText>
+            )}
           </ImageDetailsItem>
           <ImageDetailsItem>
             <Icon id="clock" h="18" w="18" s="#54ADFF" />
@@ -146,7 +163,7 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh }) => {
           pos="absolute"
           t="68px"
           r="12px"
-          onClick={() => handleDelete(notice._id)}
+          onClick={() => setIsModalDeleteOpen(true)}
         ></CircleButton>
       )}
       {isModalDeleteOpen && (

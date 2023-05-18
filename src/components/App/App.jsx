@@ -4,7 +4,7 @@ import { theme } from 'utils/theme';
 
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { current } from 'redux/auth/authOperations';
+import { refresh } from 'redux/auth/authOperations';
 
 import SharedLayout from 'layouts/SharedLayout';
 import MainPage from 'pages/MainPage';
@@ -28,7 +28,7 @@ const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(current());
+    dispatch(refresh());
   }, [dispatch]);
 
   return (
