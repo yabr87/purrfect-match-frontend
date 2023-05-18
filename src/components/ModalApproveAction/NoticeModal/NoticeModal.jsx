@@ -26,19 +26,32 @@ import Icon from 'shared/components/Icon';
 
 import { updateFavoriteNotice } from '../../../utils/ApiNotices';
 import { calculateAge } from 'utils/calculateAge';
-import { formatUserTel } from 'utils/formatUserTel';
+// import { formatUserTel } from 'utils/formatUserTel';
+
+import { getNoticeById } from 'utils/ApiNotices';
+import { useEffect } from 'react';
 
 const NoticeModal = ({ notice, close }) => {
-  const { isLoggedIn, user } = useAuth();
+  const { isLoggedIn } = useAuth();
   const [favorite, setFavorite] = useState(!!notice.favorite);
-
+  const [ownerContacts, setOwnerContacts] = useState({});
   const screenSize = useMedia(
     ['(min-width: 1280px)', '(min-width: 768px)', '(min-width: 480px)'],
     ['desktop', 'tablet', 'mobile'],
     'xs'
   );
-
   const isMobile = screenSize === 'mobile';
+
+  useEffect(() => {
+    getNoticeById(notice._id)
+      .then(res => {
+        // console.log(res.owner);
+        setOwnerContacts(res.owner);
+      })
+      .catch(e => console.log(e));
+  }, [notice._id]);
+
+  console.log(ownerContacts);
 
   const approveAddFavorite = async notice => {
     try {
@@ -61,6 +74,34 @@ const NoticeModal = ({ notice, close }) => {
       alert('Failed to update notice. Please try again later.');
     }
   };
+
+  // const params =  notice._id ;
+
+  // const getNoticeById = async id => {
+  //   try {
+  //     const { data } = await noticesInstance.delete(`/api/notices/${id}`);
+  //     return data;
+  //   } catch (error) {
+  //     console.error('Failed to delete notice', error);
+  //     throw error;
+  //   }
+  // };
+
+  // getNoticeById(notice._id)
+  //   .then(res => {
+  //     console.log(res.owner);
+  //     // const ownerContacts
+  //   })
+  //   .catch(e => console.log(e));
+
+  // const getOwnerContacts = async id => {
+  //   const { data } = await getNoticeById(id);
+  //   return data;
+  // };
+
+  // console.log(getOwnerContacts(notice._id));
+
+  // getOwnerContacts(notice._id);
 
   return (
     <ContainerView>
@@ -98,7 +139,7 @@ const NoticeModal = ({ notice, close }) => {
                   <NameCategory>Email:</NameCategory>
                   <ValueCategory>
                     <ContactLinkItem href="mailto:">
-                      {user.email}
+                      {ownerContacts.email}
                     </ContactLinkItem>
                   </ValueCategory>
                 </PetDataItem>
@@ -106,8 +147,8 @@ const NoticeModal = ({ notice, close }) => {
                   <NameCategory>Phone:</NameCategory>
                   <ValueCategory>
                     <ContactLinkItem href="tel:">
-                      {user.phone
-                        ? formatUserTel(user.phone)
+                      {ownerContacts.phone
+                        ? ownerContacts.phone
                         : 'no phone number'}
                       {/* {UserTel(user.phone)} */}
                     </ContactLinkItem>
