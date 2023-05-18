@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { ButtonPage, Flex, Box } from './Pagination.styles';
 import Icon from 'shared/components/Icon';
 import { useMedia } from 'shared/hooks/useMedia';
+import { useParams } from 'react-router-dom';
 /////////////////////////////////////////
-// import { getNotices } from 'utils/ApiNotices';
 
 const Pagination = ({
   currentPage,
@@ -17,9 +17,10 @@ const Pagination = ({
   const [searchParams, setSearchParams] = useSearchParams();
 
   const title = searchParams.get('title');
+  const search = searchParams.get('search');
 
   const numberValue = page => Number(page);
-
+  const { categoryName } = useParams();
   // функція відповідає за візуалізацію рендеру кількості сторінок та
   // та стилізації поточної сторінки
   const pages =
@@ -36,9 +37,23 @@ const Pagination = ({
 
   const handleClick = ({ target }) => {
     const numberPage = numberValue(target.id);
-    !title
-      ? setSearchParams({ page: numberPage })
-      : setSearchParams({ title, page: numberPage });
+    const params = { page: numberPage };
+    if (['sell', 'lost-found', 'for-free'].includes(categoryName)) {
+      params.category = categoryName;
+    }
+    if (categoryName === 'favorite') {
+      params.favorite = true;
+    }
+    if (categoryName === 'own') {
+      params.own = true;
+    }
+    if (search) {
+      params.search = search;
+    }
+    if (title) {
+      params.title = title;
+    }
+    setSearchParams(params);
     if (currentPage === numberPage) {
       return;
     }
@@ -47,23 +62,23 @@ const Pagination = ({
   };
 
   ////////////////////////////////////////////// mobile
-  const handleScroll = ({ target }) => {
-    const { scrollHeight, scrollTop } = target.documentElement;
-    if (scrollHeight - (scrollTop + window.innerHeight) < 100) {
-      // if (currentPage === totalPages) {
-      //   return;
-      // }
-      !title
-        ? setSearchParams({ page: currentPage + 1 })
-        : setSearchParams({ title, page: currentPage + 1 });
-      setFetching(true);
-    }
-  };
+  // const handleScroll = ({ target }) => {
+  //   const { scrollHeight, scrollTop } = target.documentElement;
+  //   if (scrollHeight - (scrollTop + window.innerHeight) < 100) {
+  //     // if (currentPage === totalPages) {
+  //     //   return;
+  //     // }
+  //     !title
+  //       ? setSearchParams({ page: currentPage + 1 })
+  //       : setSearchParams({ title, page: currentPage + 1 });
+  //     setFetching(true);
+  //   }
+  // };
 
-  useEffect(() => {
-    document.addEventListener('scroll', handleScroll);
-    return () => document.removeEventListener('scroll', handleScroll);
-  }, []);
+  // useEffect(() => {
+  //   document.addEventListener('scroll', handleScroll);
+  //   return () => document.removeEventListener('scroll', handleScroll);
+  // }, []);
 
   /////////////////////////////
 
@@ -72,7 +87,23 @@ const Pagination = ({
       return;
     }
     setFetching(true);
-    setSearchParams({ title, page: currentPage - 1 });
+    const params = { page: currentPage - 1 };
+    if (['sell', 'lost-found', 'for-free'].includes(categoryName)) {
+      params.category = categoryName;
+    }
+    if (categoryName === 'favorite') {
+      params.favorite = true;
+    }
+    if (categoryName === 'own') {
+      params.own = true;
+    }
+    if (search) {
+      params.search = search;
+    }
+    if (title) {
+      params.title = title;
+    }
+    setSearchParams(params);
     setCurrentPage(prev => prev - 1);
   };
 
@@ -81,7 +112,24 @@ const Pagination = ({
       return;
     }
     setFetching(true);
-    setSearchParams({ title, page: currentPage + 1 });
+    const params = { page: currentPage + 1 };
+
+    if (['sell', 'lost-found', 'for-free'].includes(categoryName)) {
+      params.category = categoryName;
+    }
+    if (categoryName === 'favorite') {
+      params.favorite = true;
+    }
+    if (categoryName === 'own') {
+      params.own = true;
+    }
+    if (search) {
+      params.search = search;
+    }
+    if (title) {
+      params.title = title;
+    }
+    setSearchParams(params);
     setCurrentPage(prev => prev + 1);
   };
 

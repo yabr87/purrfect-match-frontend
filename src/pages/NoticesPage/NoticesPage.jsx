@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-
+import { useParams, useSearchParams, useNavigate } from 'react-router-dom';
+import Loader from 'shared/components/Loader';
 import useAuth from 'shared/hooks/useAuth';
 
 import NoticesFilters from './NoticesFilters/NoticesFilters';
@@ -18,7 +18,7 @@ import { getNotices } from 'utils/ApiNotices';
 
 function NoticesPage() {
   const isUpToWidth480 = useMedia(['(max-width: 480px)'], [true], false);
-
+  const [searchParams] = useSearchParams();
   const navigate = useNavigate();
 
   const { isLoggedIn } = useAuth();
@@ -30,14 +30,16 @@ function NoticesPage() {
   };
 
   const [totalPages, setTotalPages] = useState(null);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(() => {
+    const page = searchParams.get('page');
+    return page ? Number(page) : 1;
+  });
   const [notices, setNotices] = useState([]);
   const [fetching, setFetching] = useState(true);
 
-  let { categoryName } = useParams();
-
+  const { categoryName } = useParams();
+  const title = searchParams.get('title');
   useEffect(() => {
-    setFetching(false);
     const params = { page: currentPage };
     if (['sell', 'lost-found', 'for-free'].includes(categoryName)) {
       params.category = categoryName;
@@ -47,6 +49,9 @@ function NoticesPage() {
     }
     if (categoryName === 'own') {
       params.own = true;
+    }
+    if (title) {
+      params.title = title;
     }
 
     if (fetching) {
@@ -60,13 +65,19 @@ function NoticesPage() {
           setNotices(data.results);
           setTotalPages(data.totalPages);
         })
+        .catch(e => console.log(e))
         .finally(setFetching(false));
     }
-  }, [fetching]);
+  }, [categoryName, currentPage]);
 
   return (
     <Container>
-      <NoticesSearch setItems={setNotices} />
+      <NoticesSearch
+        setItems={setNotices}
+        setTotalPages={setTotalPages}
+        setFetching={setFetching}
+        setCurrentPage={setCurrentPage}
+      />
       <div
         style={{
           display: 'flex',
@@ -98,7 +109,7 @@ function NoticesPage() {
           )}
         </div>
       </div>
-
+      {fetching && <Loader />}
       <NoticesCategoriesList
         totalPages={totalPages}
         currentPage={currentPage}

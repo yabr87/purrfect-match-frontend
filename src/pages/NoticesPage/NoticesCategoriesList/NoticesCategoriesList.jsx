@@ -39,7 +39,7 @@ const NoticesCategoriesList = ({
           <div>There is no result</div>
         )}
       </CollectionContainer>
-      {totalPages > 0 && (
+      {totalPages > 1 && (
         <Pagination
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}
