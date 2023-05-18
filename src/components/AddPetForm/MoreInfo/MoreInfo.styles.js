@@ -64,9 +64,15 @@ export const MoreInfoRadio = styled.label`
   color: ${props => (props.checked ? '#00C3AD' : '#888')};
 
   input[type='radio'] {
-    appearance: none;
-    background-color: #fff;
-    margin: 0;
+    position: absolute;
+    height: 1px; 
+    width: 1px;
+    opacity: 0;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    overflow: hidden;
+    white-space: nowrap;
+    pointer-events: none;
   }
 `;
 
