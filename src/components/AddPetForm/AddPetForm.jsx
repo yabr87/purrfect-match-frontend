@@ -42,7 +42,7 @@ const AddPetForm = () => {
       return values[key] ? { ...acc, [key]: values[key] } : acc;
     }, {});
 
-    console.log(newPet);
+    newPet.birthday = newPet.birthday.toISOString();
 
     try {
       if (selectedCategory !== 'my-pet') {
