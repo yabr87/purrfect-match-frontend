@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import useAuth from 'shared/hooks/useAuth';
 
 import { deleteNotice } from '../../../utils/ApiNotices';
-import { updateFavoriteNotice } from '../../../utils/ApiNotices';
 import { calculateAge } from 'utils/calculateAge';
 
 import {
@@ -19,79 +18,18 @@ import {
 } from './NoticeCategoryItem.styles';
 
 import Icon from 'shared/components/Icon/Icon';
-import Button from 'shared/components/Button';
 import CircleButton from 'shared/components/CircleButton';
+import AddToFavorite from './components/AddToFavorite';
 
 // import ModalNoticeTest from '../NoticeModalTest/NoticeModalTest';
 // _____________Modal Componenets________________
 import ModalApproveAction from 'components/ModalApproveAction';
 import NoticeModal from 'components/ModalApproveAction/NoticeModal';
 import Delete from 'components/ModalApproveAction/Delete';
-
-const AddToFavorite = ({ notice, setIsFavorite }) => {
-  const { isLoggedIn } = useAuth();
-  const isFavorite = notice.favorite;
-
-  const [isHovered, setIsHovered] = useState(false);
-
-  const handleUpdate = async () => {
-    try {
-      if (!isLoggedIn) {
-        alert('Please sign in to add to favorites');
-        return;
-      }
-
-      const updateToFavorite = {
-        favorite: !isFavorite,
-      };
-      await updateFavoriteNotice(notice._id, updateToFavorite);
-      setIsFavorite(!isFavorite);
-    } catch (error) {
-      alert('Failed to update notice. Please try again later.');
-    }
-  };
-
-  return (
-    <CircleButton
-      id="heart"
-      z="999"
-      pos="absolute"
-      t="12px"
-      r="12px"
-      onClick={handleUpdate}
-      f={
-        isHovered ? '#CCE4FB' : isLoggedIn && isFavorite ? '#54adff' : '#CCE4FB'
-      }
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    ></CircleButton>
-  );
-};
-
-const LearnMore = ({ onButtonClick }) => {
-  const [isHoveredOrFocused, setIsHoveredOrFocused] = useState(false);
-  return (
-    <Button
-      style={{
-        width: '100%',
-        marginTop: '20px',
-        transition: 'stroke 250ms ease',
-      }}
-      onMouseEnter={() => setIsHoveredOrFocused(true)}
-      onMouseLeave={() => setIsHoveredOrFocused(false)}
-      onFocus={() => setIsHoveredOrFocused(true)}
-      onBlur={() => setIsHoveredOrFocused(false)}
-      onClick={onButtonClick}
-    >
-      Learn More
-      {isHoveredOrFocused && <Icon id="paw" f="#FEF9F9" w="24" h="24" />}
-    </Button>
-  );
-};
+import LearnMore from './components/LearnMore';
 
 const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
   const { isLoggedIn, user } = useAuth();
-
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false);
 
