@@ -11,9 +11,10 @@ const NoticesSearch = ({
   setTotalPages,
   setFetching,
   setCurrentPage,
+  setSearchParams,
 }) => {
-  // const [searchParams, setSearchParams] = useSearchParams();
   const { categoryName } = useParams();
+
   const onSubmit = values => {
     const params = { page: 1, title: values.search };
     if (['sell', 'lost-found', 'for-free'].includes(categoryName)) {
@@ -26,6 +27,7 @@ const NoticesSearch = ({
       params.own = true;
     }
     setCurrentPage(1);
+    setSearchParams(params);
     getNotices(params)
       .then(({ data }) => {
         setItems(data.results);
@@ -33,8 +35,6 @@ const NoticesSearch = ({
       })
       .catch(e => console.log(e))
       .finally(setFetching(false));
-
-    // setSearchParams(params);
   };
   return (
     <>
