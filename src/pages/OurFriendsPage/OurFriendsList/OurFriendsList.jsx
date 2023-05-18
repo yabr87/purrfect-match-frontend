@@ -1,8 +1,5 @@
 import React, { useState } from 'react';
-import Container from '../../shared/components/Container';
-import Title from 'shared/components/Title';
 import {
-  FriendsContainer,
   FriendsList,
   Friend,
   FriendTitle,
@@ -20,29 +17,10 @@ import {
   InfoItemAddress,
   InfoItemEmail,
   InfoItemPhone,
-} from './OurFriends.styles';
-import friendImgPlug from '../../images/other/ourFriends-plug-min.jpeg';
+} from './OurFriendsList.styles';
+import friendImgPlug from '../../../images/other/ourFriends-plug-min.jpeg';
 
-// {
-//     "title": "Притулок для бездомних тварин 'Сіріус'",
-//     "url": "https://dogcat.com.ua",
-//     "addressUrl": "https://goo.gl/maps/iq8NXEUf31EAQCzc6",
-//     "imageUrl": "https://storage.googleapis.com/kidslikev2_bucket/pets-support/images/sponsors/frame_287.png",
-//     "address": "Fedorivka, Kyiv Oblast, Ukraine, 07372",
-//     "workDays": [
-//       { "isOpen": false },
-//       { "isOpen": false },
-//       { "isOpen": false },
-//       { "isOpen": false },
-//       { "isOpen": false },
-//       { "isOpen": true, "from": "11:00", "to": "16:00" },
-//       { "isOpen": true, "from": "11:00", "to": "16:00" }
-//     ],
-//     "phone": "+380931934069",
-//     "email": null
-//   },
-
-const OurFriends = ({ friends }) => {
+const OurFriendsList = ({ friends }) => {
   const [expandedFriendId, setExpandedFriendId] = useState(null);
 
   const renderTodayWorkday = workDays => {
@@ -96,7 +74,7 @@ const OurFriends = ({ friends }) => {
 
   const friendsList = friends.map(
     ({
-      id,
+      _id,
       title,
       url,
       addressUrl,
@@ -106,10 +84,10 @@ const OurFriends = ({ friends }) => {
       phone,
       email,
     }) => {
-      const isExpanded = expandedFriendId === id;
+      const isExpanded = expandedFriendId === _id;
 
       return (
-        <Friend key={id}>
+        <Friend key={_id}>
           <FriendTitle
             href={url}
             target="_blank"
@@ -121,7 +99,7 @@ const OurFriends = ({ friends }) => {
             <FriendImg src={imageUrl ? imageUrl : friendImgPlug} alt={title} />
             <FriendInfo>
               <InfoItemTime
-                onClick={() => toggleExpandFriend(id)}
+                onClick={() => toggleExpandFriend(_id)}
                 hasSchedule={workDays && workDays.length > 0}
               >
                 <InfoItemTitle>Time:</InfoItemTitle>
@@ -191,15 +169,10 @@ const OurFriends = ({ friends }) => {
     }
   );
   return (
-    <Container>
-      <FriendsContainer>
-        <Title as="h2" color="#000000">
-          Our friends
-        </Title>
-        <FriendsList>{friendsList}</FriendsList>
-      </FriendsContainer>
-    </Container>
+    <>
+      <FriendsList>{friendsList}</FriendsList>
+    </>
   );
 };
 
-export default OurFriends;
+export default OurFriendsList;
