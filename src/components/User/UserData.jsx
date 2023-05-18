@@ -45,15 +45,15 @@ const UserData = () => {
             </EditAvatarBtn>
           </AvatarContainer>
           <InputContainer>
-            <InputItem name={'Name'} type="text" value={user.name || 'User'} />
-            <InputItem name={'Email'} type="email" value={user.email} />
+            <InputItem name={'name'} type="text" value={user.name || 'User'} />
+            <InputItem name={'email'} type="text" value={user.email} />
             <InputItem
               name={'Birthday'}
               type="text"
               value={user.birthday || ''}
             />
-            <InputItem name={'Phone'} type="phone" value={user.phone} />
-            <InputItem name={'City'} type="text" value={user.city || ''} />
+            <InputItem name={'phone'} type="text" value={user.phone} />
+            <InputItem name={'city'} type="text" value={user.city || ''} />
             <LogOutBtn onClick={handleLogOut}>
               <Icon id="logout" s="#54ADFF" />
               <LogOutText>Log Out</LogOutText>

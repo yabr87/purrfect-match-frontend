@@ -15,7 +15,7 @@ const UserDataItem = ({ name, type, pattern, value }) => {
   };
 
   const handleInputSubmit = async () => {
-    await updateUserInfo(token, { name: data });
+    await updateUserInfo(token, { [name]: data });
   };
 
   return (
@@ -48,5 +48,6 @@ export default UserDataItem;
 UserDataItem.propTypes = {
   name: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
+  value: PropTypes.string,
   pattern: PropTypes.string,
 };
