@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { ButtonPage, Flex, Box } from './Pagination.styles';
 import Icon from 'shared/components/Icon';
@@ -62,23 +62,24 @@ const Pagination = ({
   };
 
   ////////////////////////////////////////////// mobile
-  // const handleScroll = ({ target }) => {
-  //   const { scrollHeight, scrollTop } = target.documentElement;
-  //   if (scrollHeight - (scrollTop + window.innerHeight) < 100) {
-  //     // if (currentPage === totalPages) {
-  //     //   return;
-  //     // }
-  //     !title
-  //       ? setSearchParams({ page: currentPage + 1 })
-  //       : setSearchParams({ title, page: currentPage + 1 });
-  //     setFetching(true);
-  //   }
-  // };
+  const handleScroll = ({ target }) => {
+    const { scrollHeight, scrollTop } = target.documentElement;
+    if (scrollHeight - (scrollTop + window.innerHeight) < 100) {
+      // if (currentPage === totalPages) {
+      //   return;
+      // }
+      !title
+        ? setSearchParams({ page: currentPage + 1 })
+        : setSearchParams({ title, page: currentPage + 1 });
+      setFetching(true);
+      console.log(window.innerWidth);
+    }
+  };
 
-  // useEffect(() => {
-  //   document.addEventListener('scroll', handleScroll);
-  //   return () => document.removeEventListener('scroll', handleScroll);
-  // }, []);
+  useEffect(() => {
+    document.addEventListener('scroll', handleScroll);
+    return () => document.removeEventListener('scroll', handleScroll);
+  }, []);
 
   /////////////////////////////
 
