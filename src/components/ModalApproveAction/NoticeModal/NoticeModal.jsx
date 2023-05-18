@@ -17,6 +17,7 @@ import {
   ValueCategory,
   ContactLink,
   ContactLinkItem,
+  ImageCategory,
 } from './NoticeModal.styles';
 
 import { useMedia } from 'shared/hooks/useMedia';
@@ -25,9 +26,10 @@ import Icon from 'shared/components/Icon';
 
 import { updateFavoriteNotice } from '../../../utils/ApiNotices';
 import { calculateAge } from 'utils/calculateAge';
+import { formatUserTel } from 'utils/formatUserTel';
 
 const NoticeModal = ({ notice, close }) => {
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn, user } = useAuth();
   const [favorite, setFavorite] = useState(!!notice.favorite);
 
   const screenSize = useMedia(
@@ -60,21 +62,23 @@ const NoticeModal = ({ notice, close }) => {
     }
   };
 
+  const UserTel = phone => {
+    if (!phone) {
+      return;
+    }
+    formatUserTel(phone);
+  };
+
   return (
     <ContainerView>
       <PetCardData>
         <Wrap>
           <PetImage src={notice.photoUrl} alt={notice.title} />
+          <ImageCategory>
+            {notice.category.replace('for-free', 'for free').replace(/-/g, '/')}
+          </ImageCategory>
           <PetDataListWrap>
-            <Title
-              as="h3"
-              color="#000000"
-              letterSpacing="-0.01em"
-              align="start"
-              tabSize="28"
-              tabLine={1.357}
-              deskSize="28"
-            >
+            <Title>
               Сute dog looking <br />
               for a home
             </Title>
@@ -104,7 +108,7 @@ const NoticeModal = ({ notice, close }) => {
                   <NameCategory>Email:</NameCategory>
                   <ValueCategory>
                     <ContactLinkItem href="mailto:">
-                      3223224@mail.com
+                      {user.email}
                     </ContactLinkItem>
                   </ValueCategory>
                 </PetDataItem>
@@ -112,7 +116,7 @@ const NoticeModal = ({ notice, close }) => {
                   <NameCategory>Phone:</NameCategory>
                   <ValueCategory>
                     <ContactLinkItem href="tel:">
-                      +38097-654-098-98
+                      {UserTel(user.phone)}
                     </ContactLinkItem>
                   </ValueCategory>
                 </PetDataItem>

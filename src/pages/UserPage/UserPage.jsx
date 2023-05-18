@@ -11,6 +11,8 @@ import Congrats from 'components/ModalApproveAction/Congrats';
 const UserPage = () => {
   const location = useLocation();
 
+  console.log(location);
+
   const [isOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
@@ -18,10 +20,11 @@ const UserPage = () => {
     // console.log(state);
     if (state) {
       console.log(state);
-      const { params } = location.state;
-      setIsModalOpen(params);
+      const { isModalOpen } = location.state;
+      setIsModalOpen(isModalOpen);
     }
   }, [location.state]);
+
   return (
     <Container>
       <User>

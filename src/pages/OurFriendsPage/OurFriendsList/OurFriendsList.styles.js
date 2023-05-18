@@ -92,10 +92,11 @@ export const FriendBlock = styled.div`
     gap: 16px;
   }
 `;
+
 export const FriendImg = styled.img`
   width: 100px;
   height: 68px;
-  justi @media screen and (min-width: 768px) {
+  @media screen and (min-width: 768px) {
     width: 124px;
     height: 88px;
   }

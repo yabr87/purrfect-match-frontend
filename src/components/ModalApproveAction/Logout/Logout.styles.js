@@ -8,20 +8,26 @@ export const ContainerView = styled.div`
   min-width: 280px;
   @media screen and (min-width: 768px) {
     width: 608px;
-    padding: 109px 16px;
+    padding: 108px 16px;
   }
 `;
 
 export const Title = styled.h2`
-  font-family: inherit;
+  font-family: 'Manrope';
   font-style: normal;
   font-weight: 500;
   font-size: 24px;
   line-height: 33px;
   margin-bottom: 40px;
   @media screen and (min-width: 768px) {
-    margin-bottom: 52px;
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 500;
     font-size: 36px;
+    line-height: 49px;
+    letter-spacing: 0.04em;
+
+    margin-bottom: 48px;
   }
 `;
 

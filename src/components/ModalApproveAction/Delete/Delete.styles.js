@@ -12,20 +12,44 @@ export const ContainerView = styled.div`
 `;
 
 export const Title = styled.h2`
-  font-family: inherit;
+  font-family: 'Manrope';
   font-style: normal;
   font-weight: 500;
-  font-size: 28px;
+  font-size: 24px;
   line-height: 33px;
-  margin-bottom: 40px;
+  margin-bottom: 52px;
+  @media screen and (min-width: 768px) {
+    margin-bottom: 40px;
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 38px;
+    letter-spacing: -0.01em;
+  }
 `;
 
 export const Text = styled.p`
+  font-family: 'Manrope';
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
   line-height: 22px;
-  margin-bottom: 48px;
+  letter-spacing: 0.04em;
+
+  margin-bottom: 40px;
+
+  @media screen and (min-width: 768px) {
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 22px;
+    text-align: center;
+    letter-spacing: -0.01em;
+
+    margin-bottom: 48px;
+  }
 `;
 
 export const TextWrap = styled.div`
@@ -35,11 +59,13 @@ export const TextWrap = styled.div`
 `;
 
 export const TextAccent = styled.span`
+  font-family: 'Manrope';
   font-style: normal;
   font-weight: 700;
   font-size: 16px;
   line-height: 22px;
-  margin-bottom: 40px;
+  text-align: center;
+  letter-spacing: -0.01em;
 `;
 
 export const ButtonWrap = styled.div`

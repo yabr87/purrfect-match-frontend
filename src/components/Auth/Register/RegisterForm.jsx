@@ -45,6 +45,7 @@ const RegisterForm = () => {
     <Formik
       initialValues={{ email: '', password: '', confirmedPassword: '' }}
       onSubmit={(values, actions) => {
+        navigate('/user', { state: { isModalOpen: true } });
         dispatch(
           signup({
             email: values.email,
@@ -53,7 +54,6 @@ const RegisterForm = () => {
         );
 
         actions.resetForm();
-        navigate('/user', { state: { params: true } });
       }}
       validationSchema={validateShecma}
     >

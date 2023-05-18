@@ -14,6 +14,8 @@ import {
   ImageCategory,
   PhotoDescription,
   BelowItemContainer,
+  ImageDetailsText,
+  ImageDetailsTextLong,
 } from './NoticeCategoryItem.styles';
 
 import Icon from 'shared/components/Icon/Icon';
@@ -124,7 +126,11 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
         <ImageDetails>
           <ImageDetailsItem>
             <Icon id="location" h="18" w="18" s="#54ADFF" />
-            {notice.location}
+            {notice.location.length > 4 ? (
+              <ImageDetailsTextLong>{notice.location}</ImageDetailsTextLong>
+            ) : (
+              <ImageDetailsText>{notice.location}</ImageDetailsText>
+            )}
           </ImageDetailsItem>
           <ImageDetailsItem>
             <Icon id="clock" h="18" w="18" s="#54ADFF" />
