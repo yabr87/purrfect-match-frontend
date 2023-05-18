@@ -19,8 +19,8 @@ const validationSchema = ( currentStep, selectedCategory) => {
           'Title may contain only letters, apostrophes, dashes, and spaces. For example: Adorable Puppies for Adoption'
         )
         .required('Title is required')
-        .min(2, 'Name must be at least 2 characters')
-        .max(20, 'Name must not exceed 50 characters'),
+        .min(2, ' Title be at least 2 characters')
+        .max(20, 'Title must not exceed 20 characters'),
       name: Yup.string()
         .required('Name is required')
         .matches(
@@ -37,8 +37,8 @@ const validationSchema = ( currentStep, selectedCategory) => {
           /^[a-zA-Zа-яА-ЯІіЇїЄєҐґ]+(([',. -][a-zA-Zа-яА-ЯІіЇїЄєҐґ ])?[a-zA-Zа-яА-ЯІіЇїЄєҐґ]*)*$/,
           "Please enter your pet's breed using only letters, hyphens, apostrophes, commas, periods, and spaces. (For example: Golden Retriever, Siamese, Bulldog)"
         )
-        .min(2, 'Name must be at least 2 characters')
-        .max(16, 'Name must not exceed 16 characters'),
+        .min(2, 'Breed must be at least 2 characters')
+        .max(16, 'Breed must not exceed 16 characters'),
     });
   }
 
