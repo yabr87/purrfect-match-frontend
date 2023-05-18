@@ -54,21 +54,20 @@ function NoticesPage() {
       params.title = title;
     }
 
-    if (fetching) {
-      getNotices(params)
-        .then(({ data }) => {
-          if (isUpToWidth480) {
-            setCurrentPage(prev => prev + 1);
-            setNotices(prev => [...prev, ...data.results]);
-            return;
-          }
-          setNotices(data.results);
-          setTotalPages(data.totalPages);
-        })
-        .catch(e => console.log(e))
-        .finally(setFetching(false));
-    }
-  }, [categoryName, currentPage, fetching, isUpToWidth480, title]);
+    getNotices(params)
+      .then(({ data }) => {
+        if (isUpToWidth480) {
+          setCurrentPage(prev => prev + 1);
+          setNotices(prev => [...prev, ...data.results]);
+          return;
+        }
+        setNotices(data.results);
+        setTotalPages(data.totalPages);
+        // setCurrentPage(params.c);
+      })
+      .catch(e => console.log(e))
+      .finally(setFetching(false));
+  }, [categoryName, currentPage, isUpToWidth480, title]);
 
   return (
     <Container>
