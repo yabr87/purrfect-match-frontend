@@ -26,7 +26,6 @@ import Icon from 'shared/components/Icon';
 
 import { getNoticeById } from 'utils/ApiNotices';
 import { updateFavoriteNotice } from '../../../utils/ApiNotices';
-// import { calculateAge } from 'utils/calculateAge';
 
 const NoticeModal = ({ notice, close, setIsFavorite }) => {
   const { isLoggedIn } = useAuth();
