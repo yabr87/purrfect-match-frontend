@@ -35,12 +35,35 @@ function NoticesPage() {
     return page ? Number(page) : 1;
   });
   const [notices, setNotices] = useState([]);
-  const [fetching, setFetching] = useState(true);
-
+  const [fetching, setFetching] = useState(false);
   const { categoryName } = useParams();
-  const title = searchParams.get('title');
+  const [category, setCategory] = useState(categoryName);
 
+  const [title, setTitle] = useState(() => {
+    const titleSearch = searchParams.get('title');
+    return titleSearch ? titleSearch : null;
+  });
+
+  if (categoryName !== category) {
+    const params = { page: 1 };
+    if (['sell', 'lost-found', 'for-free'].includes(categoryName)) {
+      params.category = categoryName;
+    }
+    if (categoryName === 'favorite') {
+      params.favorite = true;
+    }
+    if (categoryName === 'own') {
+      params.own = true;
+    }
+    if (title) {
+      params.title = title;
+    }
+    setSearchParams(params);
+    setCurrentPage(1);
+    setCategory(categoryName);
+  }
   useEffect(() => {
+    setFetching(true);
     const params = { page: currentPage };
     if (['sell', 'lost-found', 'for-free'].includes(categoryName)) {
       params.category = categoryName;
@@ -54,7 +77,6 @@ function NoticesPage() {
     if (title) {
       params.title = title;
     }
-
     getNotices(params)
       .then(({ data }) => {
         setTotalPages(data.totalPages);
@@ -67,9 +89,7 @@ function NoticesPage() {
   return (
     <Container>
       <NoticesSearch
-        setItems={setNotices}
-        setTotalPages={setTotalPages}
-        setFetching={setFetching}
+        setTitle={setTitle}
         setCurrentPage={setCurrentPage}
         setSearchParams={setSearchParams}
       />
@@ -104,7 +124,18 @@ function NoticesPage() {
           )}
         </div>
       </div>
-      {fetching && <Loader />}
+      {fetching && (
+        <div
+          style={{
+            position: 'absolute',
+            left: '50%',
+            transform: 'translate(-50%, -65%)',
+            zIndex: 1000,
+          }}
+        >
+          <Loader />
+        </div>
+      )}
       <NoticesCategoriesList
         totalPages={totalPages}
         currentPage={currentPage}

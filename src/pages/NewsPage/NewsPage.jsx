@@ -11,60 +11,78 @@ import { useSearchParams } from 'react-router-dom';
 
 const NewsPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const search = searchParams.get('search');
+  const query = searchParams.get('search');
+  const [search, setSearch] = useState(() => {
+    return query ? query : null;
+  });
+  const page = searchParams.get('page');
   const [news, setNews] = useState([]);
   const [currentPage, setCurrentPage] = useState(() => {
-    const page = searchParams.get('page');
     return page ? Number(page) : 1;
   });
-  const [fetching, setFetching] = useState(false);
+  const [fetching, setFetching] = useState(true);
   const [totalPages, setTotalPages] = useState(null);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
-    setFetching(true);
-    const params = { page: currentPage };
-
+    const params = {};
+    if (page) {
+      params.page = currentPage;
+    }
     if (search) {
       params.search = search;
     }
+
     const fetchNews = async params => {
       try {
+        setError(false);
+        setFetching(true);
         const { data } = await getAllNews(params);
-        console.log('data:', data);
-
         setNews(data.results);
         setTotalPages(data.totalPages);
       } catch (error) {
+        setError(error);
         console.log(error);
       } finally {
         setFetching(false);
       }
     };
-    fetchNews(params);
-  }, [currentPage, search]);
 
-  const onSubmit = async values => {
+    fetchNews(params);
+  }, [currentPage, search, page]);
+
+  const onSubmit = values => {
     const params = { page: 1, search: values.search };
-    try {
-      const { data } = await getAllNews(params);
-      setNews(data.results);
-      setTotalPages(data.totalPages);
-      setCurrentPage(1);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setFetching(false);
-    }
+    setCurrentPage(1);
     setSearchParams(params);
   };
 
   return (
     <Container>
       <Title>News</Title>
-      <Search onFormSubmit={onSubmit} setItems={setNews} />
-
-      {fetching && <Loader />}
-      {Boolean(news.length) && <NewsList items={news} />}
+      <Search
+        onFormSubmit={onSubmit}
+        setCurrentPage={setCurrentPage}
+        setQuery={setSearch}
+      />
+      {error && <p>{error.message}</p>}
+      {fetching && (
+        <div
+          style={{
+            position: 'absolute',
+            left: '50%',
+            transform: 'translate(-50%, -65%)',
+            zIndex: 1000,
+          }}
+        >
+          <Loader />
+        </div>
+      )}
+      {Boolean(news.length) ? (
+        <NewsList items={news} />
+      ) : (
+        !fetching && <div>There is no result</div>
+      )}
       {totalPages > 1 && (
         <Pagination
           currentPage={currentPage}
