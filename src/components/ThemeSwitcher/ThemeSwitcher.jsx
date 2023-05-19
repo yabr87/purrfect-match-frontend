@@ -1,22 +1,36 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
+import { useTheme } from 'styled-components';
 
 import { ToggleContainer } from './ThemeSwitcher.styles';
 import Icon from 'shared/components/Icon/Icon';
+import { useEffect } from 'react';
 
-const ThemeSwitcher = ({ onClick }) => {
-  const [isCheked, setIsCheked] = useState(false);
+const ThemeSwitcher = () => {
+  const [isCheked, setIsCheked] = useState(
+    localStorage.getItem('theme') === 'true' ? true : false
+  );
+  const isFirstRender = useRef(!isCheked);
+  const theme = useTheme();
+  useEffect(() => {
+    document.body.style.backgroundColor = theme.colors.backgroundColor;
+  }, [theme.colors.backgroundColor]);
+  useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      localStorage.setItem('theme', false);
+    }
+  }, [isFirstRender]);
 
   return (
     <ToggleContainer
       onClick={() => {
-        setIsCheked(prevIsCheked => !prevIsCheked);
-        onClick();
-        document.body.style.backgroundColor = isCheked ? '#FEF9F9' : '#121212';
+        setIsCheked(isCheked ? false : true);
+        localStorage.setItem('theme', isCheked ? false : true);
+        window.dispatchEvent(new Event('storage'));
       }}
-      lightTheme={!isCheked}
+      lightTheme={isCheked}
     >
-      <Icon id="sun" />
-      <Icon id="moon" />
+      {isCheked ? <Icon id="moon" /> : <Icon id="sun" />}
     </ToggleContainer>
   );
 };
