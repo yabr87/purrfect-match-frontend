@@ -6,6 +6,7 @@ export const Select = styled.select`
   display: block;
   border:none;
   background:transparent;
+  margin-left:10px;
 
   font-weight: ${props => props.theme.fontWeiths.semi};
   font-size: 32px;
