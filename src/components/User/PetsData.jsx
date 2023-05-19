@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import {
   Title,
   PetContainer,
@@ -22,23 +23,23 @@ const PetsData = () => {
   const { results: pets = [] } = useSelector(selectMyPets);
   console.log(pets);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(fetchMyPets());
   }, [dispatch]);
 
   const handleClick = () => {
-    console.log('add new pet');
+    navigate('/add-pet', { replace: true });
   };
 
   const handleDeletePet = id => {
     dispatch(deleteMyPet(id));
   };
 
-      
   const petCard = item => (
     <PetContainer key={item._id}>
-     <PetAvatar src={item.photoUrl} />
+      <PetAvatar src={item.photoUrl} />
       <PetInfoWrap>
         <DelPetBtn onClick={() => handleDeletePet(item._id)}>
           <Icon id="trash" s="#54ADFF" />
