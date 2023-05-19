@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from 'react';
+import React, { lazy } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme } from 'utils/theme';
@@ -40,45 +40,43 @@ const App = () => {
   return (
     <ThemeProvider theme={currentTheme}>
       <Switcher onClick={onClick} />
-      <Suspense fallback={<h1>Loading...</h1>}>
-        <Routes>
-          <Route path="/" element={<SharedLayout />}>
-            <Route index element={<MainPage />} />
-            <Route path="/notices/:categoryName" element={<NoticesPage />} />
-            <Route
-              path="/add-pet"
-              element={
-                <PrivateRoute redirectTo="/login" component={<AddPetPage />} />
-              }
-            />
-            <Route path="/notices" element={<Navigate to="/notices/sell" />} />
-            <Route
-              path="/register"
-              element={
-                <RestrictedRoute
-                  redirectTo="/user"
-                  component={<RegisterPage />}
-                />
-              }
-            />
-            <Route
-              path="/login"
-              element={
-                <RestrictedRoute redirectTo="/user" component={<LoginPage />} />
-              }
-            />
-            <Route
-              path="/user"
-              element={
-                <PrivateRoute redirectTo="/login" component={<UserPage />} />
-              }
-            />
-            <Route path="/news" element={<NewsPage />} />
-            <Route path="/friends" element={<OurFriendsPage />} />
-            <Route path="*" element={<ErrorPage />} />
-          </Route>
-        </Routes>
-      </Suspense>
+      <Routes>
+        <Route path="/" element={<SharedLayout />}>
+          <Route index element={<MainPage />} />
+          <Route path="/notices/:categoryName" element={<NoticesPage />} />
+          <Route
+            path="/add-pet"
+            element={
+              <PrivateRoute redirectTo="/login" component={<AddPetPage />} />
+            }
+          />
+          <Route path="/notices" element={<Navigate to="/notices/sell" />} />
+          <Route
+            path="/register"
+            element={
+              <RestrictedRoute
+                redirectTo="/user"
+                component={<RegisterPage />}
+              />
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <RestrictedRoute redirectTo="/user" component={<LoginPage />} />
+            }
+          />
+          <Route
+            path="/user"
+            element={
+              <PrivateRoute redirectTo="/login" component={<UserPage />} />
+            }
+          />
+          <Route path="/news" element={<NewsPage />} />
+          <Route path="/friends" element={<OurFriendsPage />} />
+          <Route path="*" element={<ErrorPage />} />
+        </Route>
+      </Routes>
     </ThemeProvider>
   );
 };
