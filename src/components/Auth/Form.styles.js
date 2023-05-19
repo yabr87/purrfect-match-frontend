@@ -19,7 +19,6 @@ export const Input = styled(Field)`
   border: 1px solid;
   border-radius: ${props => props.theme.radius.normal};
   background-color: ${props => props.theme.colors.backgroundModal};
-  color: ${props => props.theme.colors.inputColor};
 
   ::placeholder {
     font-weight: ${props => props.theme.fontWeiths.normal};
