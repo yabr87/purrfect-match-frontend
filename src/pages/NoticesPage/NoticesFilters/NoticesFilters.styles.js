@@ -11,19 +11,19 @@ export const FilterOptions = styled.div`
   right: 0;
   z-index: 1;
   width: 152px;
-  background: #ffff;
-  box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
-  border-radius: 20px;
+  background: ${props => props.theme.colors.backgroundModal};
+  box-shadow: ${props => props.theme.shadows.default};
+  border-radius: ${props => props.theme.radius.normal};
 `;
 
 export const FiltersTitle = styled.h3`
-  font-family: 'Manrope';
+  font-family: ${props => props.theme.fonts.main};
   font-style: normal;
-  font-weight: 700;
-  font-size: 16px;
+  font-weight: ${props => props.theme.fontWeiths.bold};
+  font-size: ${props => props.theme.fontSizes.s};
   line-height: 1.37;
   letter-spacing: 0.04em;
-  color: #54adff;
+  color: ${props => props.theme.colors.link};
   margin-bottom: 8px;
 `;
 
@@ -36,40 +36,36 @@ export const FiltersItems = styled.div`
   width: 100%;
   align-items: center;
   max-height: 32px;
-  background: #CCE4FB;
-  border-radius: 20px;
+  background: ${props => props.theme.colors.lightBlue};
+  border-radius: ${props => props.theme.radius.normal};
   font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
+  font-weight: ${props => props.theme.fontWeiths.normal};
+  font-size: ${props => props.theme.fontSizes.s};
 `;
 
 export const ContainerItem = styled.div`
-display: flex;
-flex-direction: column;
-align-items: flex-start;
-padding: 8px;
-gap: 10px;
-background: #CCE4FB;
-color: #54ADFF;
-border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 8px;
+  gap: 10px;
+  background: ${props => props.theme.colors.lightBlue};
+  color: ${props => props.theme.colors.link};
+  border-radius: ${props => props.theme.radius.normal};
   align-items: center;
   &:first-child {
     margin-bottom: 8px;
   }
 `;
 
-
-
 export const FilterChose = styled.div`
-display:flex;
-flex-direction: column;
-align-items: flex-start;
-padding: 0px;
-gap: 8px;
-font-style: normal;
-font-weight: 400;
-font-size: 12px;
-color: #54ADFF;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 8px;
+  font-style: normal;
+  font-weight: ${props => props.theme.fontWeiths.normal};
+  font-size: ${props => props.theme.fontSizes.xs};
+  color: ${props => props.theme.colors.link};
 `;
-
-
