@@ -17,9 +17,9 @@ const Pagination = ({
 
   const numberValue = page => Number(page);
 
-  /* функція відповідає за візуалізацію рендеру кількості сторінок та
+  /* функція відповідає за візуалізацію рендеру кількості сторінок
    та стилізації поточної сторінки*/
-  const pages =
+  const pagesNoMob =
     totalPages <= 5 || currentPage < 3
       ? Array.from(
           { length: totalPages > 5 ? 5 : totalPages },
@@ -31,6 +31,20 @@ const Pagination = ({
             : currentPage + index - 2
         );
 
+  const pagesMob =
+    totalPages <= 3 || currentPage < 2
+      ? Array.from(
+          { length: totalPages > 3 ? 3 : totalPages },
+          (_, index) => 1 + index
+        )
+      : Array.from({ length: 3 }, (_, index) =>
+          currentPage + 2 > totalPages
+            ? totalPages - 2 + index
+            : currentPage + index - 1
+        );
+
+  const pages = window.innerWidth > 480 ? pagesNoMob : pagesMob;
+
   /* scroll to top  */
 
   const scrollUp = () => {
@@ -39,6 +53,7 @@ const Pagination = ({
       behavior: 'smooth',
     });
   };
+
   /* params*/
   const checkParams = () => {
     const params = {};
@@ -60,6 +75,8 @@ const Pagination = ({
     return params;
   };
 
+  /* click on button page*/
+
   const handleClick = ({ target }) => {
     const numberPage = numberValue(target.id);
     if (currentPage === numberPage) {
@@ -72,6 +89,8 @@ const Pagination = ({
     setCurrentPage(numberPage);
     scrollUp();
   };
+
+  /* click on arrow button*/
 
   const arrowHandleDecr = () => {
     if (currentPage === 1) {
@@ -101,7 +120,12 @@ const Pagination = ({
     <Box>
       <Flex>
         <ButtonPage type="button" id="prev" onClick={arrowHandleDecr}>
-          <Icon id="arrow-left" s="#54ADFF" f="#54ADFF"></Icon>
+          <Icon
+            id="arrow-left"
+            s="#54adff"
+            f="#54adff"
+            style={{ strokeWidth: 2 }}
+          ></Icon>
         </ButtonPage>
 
         {pages.map(page => (
@@ -119,9 +143,9 @@ const Pagination = ({
           <ButtonPage id="next" onClick={arrowHandleIncr} type="button">
             <Icon
               id="arrow-left"
-              s="#54ADFF"
-              f="#54ADFF"
-              style={{ transform: 'rotate(180deg)' }}
+              s="#54adff"
+              f="#54adff"
+              style={{ transform: 'rotate(180deg)', strokeWidth: 2 }}
             ></Icon>
           </ButtonPage>
         }

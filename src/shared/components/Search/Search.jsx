@@ -10,9 +10,18 @@ import { Formik, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useSearchParams } from 'react-router-dom';
 
-const Search = ({ onFormSubmit }) => {
-  const [searchParams] = useSearchParams();
+const Search = ({ onFormSubmit, setCurrentPage }) => {
+  const [searchParams, setSearchParams] = useSearchParams();
   const title = searchParams.get('title');
+  const search = searchParams.get('search');
+
+  const clearSearchParam = () => {
+    searchParams.delete('title');
+    searchParams.delete('page');
+    searchParams.delete('search');
+    setSearchParams(searchParams);
+    setCurrentPage(1);
+  };
 
   const validation = Yup.object({
     search: Yup.string().trim('Type something').required('Type something'),
@@ -31,7 +40,7 @@ const Search = ({ onFormSubmit }) => {
 
   return (
     <Formik
-      initialValues={{ search: title || '' }}
+      initialValues={{ search: title || search || '' }}
       onSubmit={onFormSubmit}
       validationSchema={validation}
     >
@@ -53,6 +62,7 @@ const Search = ({ onFormSubmit }) => {
                 type="button"
                 onClick={() => {
                   props.setValues({ search: '' });
+                  clearSearchParam();
                 }}
               >
                 <Icon id="cross" s="#FFC107" style={{ strokeWidth: '1.5px' }} />

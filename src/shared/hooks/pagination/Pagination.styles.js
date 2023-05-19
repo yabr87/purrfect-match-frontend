@@ -2,13 +2,13 @@ import styled from 'styled-components';
 
 export const ButtonPage = styled.button`
   display: flex;
-  color: #cce4fb;
+  color: #54adff;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   width: 35px;
   height: 35px;
-  border: 1px solid #cce4fb;
+  border: 1px solid #54adff;
   border-radius: 50%;
   font-family: 'Inter';
   font-style: normal;
