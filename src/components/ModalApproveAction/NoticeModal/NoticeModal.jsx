@@ -1,3 +1,4 @@
+import { format } from 'date-fns';
 import React, { useState, useEffect } from 'react';
 import useAuth from 'shared/hooks/useAuth';
 import { useMedia } from 'shared/hooks/useMedia';
@@ -25,7 +26,6 @@ import Icon from 'shared/components/Icon';
 
 import { getNoticeById } from 'utils/ApiNotices';
 import { updateFavoriteNotice } from '../../../utils/ApiNotices';
-import { calculateAge } from 'utils/calculateAge';
 
 const NoticeModal = ({ notice, close, setIsFavorite }) => {
   const { isLoggedIn } = useAuth();
@@ -67,6 +67,10 @@ const NoticeModal = ({ notice, close, setIsFavorite }) => {
     }
   };
 
+  const formatBirthdayDate = date => {
+    return format(Date.parse(date), 'dd.MM.yyyy');
+  };
+
   return (
     <ContainerView>
       <PetCardData>
@@ -85,7 +89,9 @@ const NoticeModal = ({ notice, close, setIsFavorite }) => {
                 </PetDataItem>
                 <PetDataItem>
                   <NameCategory>Birthday:</NameCategory>
-                  <ValueCategory>{calculateAge(notice.birthday)}</ValueCategory>
+                  <ValueCategory>
+                    {formatBirthdayDate(notice.birthday)}
+                  </ValueCategory>
                 </PetDataItem>
                 <PetDataItem>
                   <NameCategory>Breed:</NameCategory>
