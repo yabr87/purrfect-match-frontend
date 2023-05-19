@@ -6,17 +6,17 @@ export const ContainerView = styled.div`
   flex-direction: column;
   padding: 44px 20px 16px 20px;
   min-width: 280px;
-  @media screen and (min-width: 768px) {
+  @media ${props => props.theme.media.tab} {
     width: 681px;
 
-    padding: 32px 32px 32px 24px;
+    padding: 32px 32px 32px 32px;
   }
 `;
 
 export const PetCardData = styled.div`
   display: flex;
   flex-direction: column;
-  @media screen and (min-width: 768px) {
+  @media ${props => props.theme.media.tab} {
     width: 100%;
   }
 `;
@@ -28,7 +28,7 @@ export const Wrap = styled.div`
   align-items: center;
   margin-bottom: 12px;
   width: 100%;
-  @media screen and (min-width: 768px) {
+  @media ${props => props.theme.media.tab} {
     display: flex;
     flex-direction: row;
     margin-bottom: 28px;
@@ -36,24 +36,26 @@ export const Wrap = styled.div`
 `;
 
 export const Title = styled.h2`
-  font-family: inherit;
+  font-family: ${props => props.theme.fonts.main};
   font-style: normal;
-  font-weight: 700;
-  font-size: 24px;
+  font-weight: ${props => props.theme.fontWeiths.bold};
+  font-size: ${props => props.theme.fontSizes.l};
   line-height: 33px;
   margin-bottom: 22px;
-  @media screen and (min-width: 768px) {
-    font-family: 'Manrope';
+  color: ${props => props.theme.colors.yellow};
+  @media ${props => props.theme.media.tab} {
+    font-family: ${props => props.theme.fonts.main};
     font-style: normal;
-    font-weight: 700;
-    font-size: 28px;
+    font-weight: ${props => props.theme.fontWeiths.bold};
+    font-size: ${props => props.theme.fontSizes.xl};
     line-height: 38px;
     letter-spacing: -0.01em;
+    color: ${props => props.theme.colors.yellow};
   }
 `;
 
 export const ButtonWrap = styled.div`
-  @media screen and (min-width: 768px) {
+  @media ${props => props.theme.media.tab} {
     display: flex;
     width: 100%;
     justify-content: end;
@@ -64,10 +66,11 @@ export const PetImage = styled.img`
   object-fit: cover;
   width: 240px;
   height: 240px;
-  border-radius: 0px 0px 40px 40px;
+  border-radius: ${props =>
+    ` 0px 0px ${props.theme.radius.normal} ${props.theme.radius.normal} `};
 
   margin-bottom: 12px;
-  @media screen and (min-width: 768px) {
+  @media ${props => props.theme.media.tab} {
     width: 262px;
     height: 298px;
     margin-bottom: 0;
@@ -85,13 +88,15 @@ export const ImageCategory = styled.p`
   padding: 11px 17px;
   align-items: center;
   text-align: center;
-  background: #cce4fb;
-  border-radius: 0px 16px 16px 0px;
+  color: ${props => props.theme.colors.yellow};
+  background: ${props => props.theme.colors.lightBlue};
+  border-radius: ${props =>
+    ` 0px ${props.theme.radius.small} ${props.theme.radius.small}  0px `};
 `;
 
 export const PetDataListWrap = styled.div`
   width: 100%;
-  @media screen and (min-width: 768px) {
+  @media ${props => props.theme.media.tab} {
     max-width: 321px;
   }
 `;
@@ -109,26 +114,30 @@ export const PetDataItem = styled.tr`
 
 export const NameCategory = styled.th`
   text-align: start;
-  font-family: inherit;
+  font-family: ${props => props.theme.fonts.main};
   font-style: normal;
-  font-weight: 600;
+  font-weight: ${props => props.theme.fontWeiths.semiBold};
   font-size: 14px;
   line-height: 19.12px;
+  color: ${props => props.theme.colors.yellow};
   width: 80px;
 `;
 
 export const ValueCategory = styled.th`
   text-align: start;
   font-style: normal;
-  font-weight: 500;
-  font-size: 12px;
+  font-weight: ${props => props.theme.fontWeiths.semi};
+  font-size: ${props => props.theme.fontSizes.xs};
   line-height: 16.39px;
+  color: ${props => props.theme.colors.yellow};
 `;
 
 export const PetComents = styled.p`
   margin-bottom: 12px;
-  @media screen and (min-width: 768px) {
+  color: ${props => props.theme.colors.yellow};
+  @media ${props => props.theme.media.tab} {
     margin-bottom: 70px;
+    color: ${props => props.theme.colors.yellow};
   }
 `;
 
@@ -140,35 +149,38 @@ export const ContactLink = styled.a`
   height: 40px
   padding: 10px;
 
-  font-family: 'Manrope';
-  font-weight: 700;
-  font-size: 16px;
+  font-family: ${props => props.theme.fonts.main};
+  font-weight: ${props => props.theme.fontWeiths.bold};
+  font-size: ${props => props.theme.fontSizes.s};
   line-height: 1.38;
-  color: #54ADFF;
+  color: ${props => props.theme.colors.link};
+ 
 
-border: 2px solid #54ADFF;
-border-radius: 40px;
+border: 2px solid ${props => props.theme.colors.link};
+border-radius: ${props => props.theme.radius.normal};
 
 cursor: pointer;
 
   &:hover,
   &:focus {
-    color: #FFFFFF;
-    background:  #54ADFF;
+    color: ${props => props.theme.colors.backgroundModal};
+    background: ${props => props.theme.colors.link};
   }
 `;
 
 export const ContactLinkItem = styled.a`
-  text-align: start;
   font-style: normal;
-  font-weight: 500;
-  font-size: 12px;
+  font-weight: ${props => props.theme.fontWeiths.semi};
+  font-size: ${props => props.theme.fontSizes.xs};
   line-height: 16.39px;
-  color: black;
+  color: ${props => props.theme.colors.yellow};
   text-decoration-line: 'none';
+  text-align: start;
   &:hover,
   &:focus {
-    color: #ffc107;
+    color: ${props => props.theme.colors.link};
     text-decoration-line: underline;
   }
 `;
+
+// color: ${props => props.theme.colors.textColor};
