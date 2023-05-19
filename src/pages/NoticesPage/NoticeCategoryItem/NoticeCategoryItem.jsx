@@ -31,12 +31,13 @@ import NoticeModal from 'components/ModalApproveAction/NoticeModal';
 import Delete from 'components/ModalApproveAction/Delete';
 import LearnMore from './components/LearnMore';
 import AddToFavorite from './components/AddToFavorite';
+import EditModal from 'components/ModalApproveAction/EditModal';
 
 const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
   const { isLoggedIn, user } = useAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false);
-
+  const [isModalEditOpen, setIsModalEditOpen] = useState(false);
   // const dispatch = useDispatch();
 
   // const setIsFavorite = favorite => {
@@ -107,6 +108,16 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
       </CardImageContainer>
       <BelowItemContainer>
         <PhotoDescription>{notice.title}</PhotoDescription>
+        {isLoggedIn && (
+          <CircleButton
+            id="edit"
+            pos="absolute"
+            t="124px"
+            r="12px"
+            onClick={() => setIsModalEditOpen(true)}
+          ></CircleButton>
+        )}
+
         <LearnMore onButtonClick={() => setIsModalOpen(true)} />
       </BelowItemContainer>
       {/* {isModalOpen && <ModalNoticeTest close={() => setIsModalOpen(false)} />} */}
@@ -134,6 +145,14 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
           <Delete
             approve={() => handleDelete(notice._id)}
             close={() => setIsModalDeleteOpen(false)}
+          />
+        </ModalApproveAction>
+      )}
+      {isModalEditOpen && (
+        <ModalApproveAction close={() => setIsModalEditOpen(false)}>
+          <EditModal
+            notice={notice}
+            close={() => setIsModalOpen(false)}
           />
         </ModalApproveAction>
       )}
