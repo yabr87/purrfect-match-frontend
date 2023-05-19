@@ -5,6 +5,7 @@ import {
   Avatar,
   Photo,
   AvatarContainer,
+  AvatarInput,
   Title,
   EditAvatarBtn,
   LogOutBtn,
@@ -26,12 +27,13 @@ const initialState = {
   birthday: '',
   phone: '',
   city: '',
-  avatarUrl: null,
+  photo: null,
 };
 
-const UserData = handleChange => {
+const UserData = () => {
   const [user, setUser] = useState(initialState);
   const [isModalLogoutOpen, setIsModalLogoutOpen] = useState(false);
+  const [isConfirm, setIsConfirm] = useState(false);
   const token = useSelector(store => store.auth.token);
 
   useEffect(() => {
@@ -43,12 +45,13 @@ const UserData = handleChange => {
   }, [token]);
 
   const handlePhotoChange = e => {
-    setUser({ ...user, avatarUrl: e.target.files[0] });
+    setUser({ ...user, photo: e.target.files[0] });
+    setIsConfirm(true);
   };
 
   const handleUploadPhoto = async () => {
-    console.log(user.photo);
-    await addAvatar(token, { avatar: user.avatarUrl });
+    await addAvatar(token, { avatar: user.photo });
+    setIsConfirm(false);
   };
 
   const handleLogOut = () => {
@@ -62,33 +65,61 @@ const UserData = handleChange => {
         <UserWrapper>
           <AvatarContainer>
             <Avatar>
-              <input
+              <AvatarInput
+                id="avatar"
                 type="file"
                 onChange={handlePhotoChange}
                 accept="image/png, image/jpeg"
                 multiple={false}
               />
-              {user.avatarUrl ? (
-                <Photo src={user.avatarUrl} alt="Selected file" />
+              {user.photo ? (
+                <Photo
+                  src={URL.createObjectURL(user.photo)}
+                  alt="Selected file"
+                />
               ) : (
-                <Icon id="add-photo-pet" w="48" h="48" s="#54ADFF" />
+                <Photo src={user.avatarUrl} alt="default avatar" />
               )}
-              <input />
             </Avatar>
-            <EditAvatarBtn onClick={handleUploadPhoto}>
-              <Icon id="camera" s="#54ADFF" />
-              <BtnText>Edit photo</BtnText>
-            </EditAvatarBtn>
+            {!isConfirm ? (
+              <EditAvatarBtn>
+                <Icon id="camera" s="#54ADFF" />
+                <label style={{ cursor: 'pointer' }} htmlFor="avatar">
+                  Edit photo
+                </label>
+              </EditAvatarBtn>
+            ) : (
+              <EditAvatarBtn onClick={handleUploadPhoto}>
+                <Icon id="complite" s="#54ADFF" />
+                <BtnText>Confirm</BtnText>
+              </EditAvatarBtn>
+            )}
           </AvatarContainer>
           <InputContainer>
-            <InputItem name="name" type="text" value={user.name || 'User'} />
-            <InputItem name="email" type="text" value={user.email} />
+            <InputItem
+              name="name"
+              type="text"
+              value={user.name || 'User'}
+              placeholder="Name"
+            />
+            <InputItem
+              name="email"
+              type="text"
+              value={user.email}
+              placeholder="Email"
+            />
             <InputItem
               name="birthday"
               type="text"
+              placeholder="DD.MM.YYYY"
               value={reverseISODate(user.birthday) || ''}
             />
-            <InputItem name="phone" type="text" value={user.phone} />
+            <InputItem
+              name="phone"
+              type="text"
+              value={user.phone}
+              placeholder="+380XXXXXXXXX"
+            />
             <InputItem name="city" type="text" value={user.city || ''} />
             <LogOutBtn onClick={handleLogOut}>
               <Icon id="logout" s="#54ADFF" />

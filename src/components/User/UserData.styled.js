@@ -46,10 +46,15 @@ export const Avatar = styled.div`
   margin-top: 20px;
 `;
 
+export const AvatarInput = styled.input`
+  display: none;
+`;
+
 export const Photo = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: 40px;
 `;
 
 export const AvatarContainer = styled.div`
@@ -71,6 +76,7 @@ export const EditAvatarBtn = styled.button`
   background-color: transparent;
   margin-top: 15px;
   align-items: center;
+  cursor: pointer;
 `;
 
 export const LogOutBtn = styled.button`

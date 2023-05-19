@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import { updateUserInfo } from 'utils/Api';
 import { convertToISODate } from 'utils/convertToISODate';
 
-const UserDataItem = ({ name, type, pattern, value }) => {
+const UserDataItem = ({ name, type, pattern, value, placeholder }) => {
   const [data, setData] = useState(value);
   const [disable, setDisable] = useState(true);
   const token = useSelector(store => store.auth.token);
@@ -25,6 +25,7 @@ const UserDataItem = ({ name, type, pattern, value }) => {
         ? { [name]: convertToISODate(data) }
         : { [name]: data };
     await updateUserInfo(token, req);
+    setDisable(true);
   };
 
   return (
@@ -35,17 +36,18 @@ const UserDataItem = ({ name, type, pattern, value }) => {
         value={data}
         onChange={e => setData(e.target.value)}
         pattern={pattern}
+        placeholder={placeholder}
         name={name}
         disabled={disable}
         autoFocus={!disable}
       />
       {disable ? (
         <EditInputBtn onClick={handleInputEdit}>
-          <Icon id="edit" s="#54ADFF" />
+          <Icon id="edit" f="#54ADFF" s="none" />
         </EditInputBtn>
       ) : (
         <EditInputBtn onClick={handleInputSubmit}>
-          <Icon id="check" s="#00C3AD" />
+          <Icon id="complite" s="#00C3AD" />
         </EditInputBtn>
       )}
     </ItemContainer>
@@ -59,4 +61,5 @@ UserDataItem.propTypes = {
   type: PropTypes.string.isRequired,
   value: PropTypes.string,
   pattern: PropTypes.string,
+  placeholder: PropTypes.string,
 };
