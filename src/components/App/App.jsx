@@ -8,10 +8,13 @@ import { useEffect, useState } from 'react';
 import { refresh } from 'redux/auth/authOperations';
 import Switcher from 'components/themeSwitcher/Switcher';
 
+import RestrictedRoute from 'routes/RestrictedRoute';
+import PrivateRoute from 'routes/PrivateRoute';
 import SharedLayout from 'layouts/SharedLayout';
+import { useRef } from 'react';
 
 const MainPage = lazy(() => import('pages/MainPage'));
-const NoticesPage = lazy(() => import('../../pages/NoticesPage/NoticesPage'));
+const NoticesPage = lazy(() => import('pages/NoticesPage/NoticesPage'));
 const AddPetPage = lazy(() => import('pages/AddPetPage'));
 const ErrorPage = lazy(() => import('pages/ErrorPage'));
 const RegisterPage = lazy(() => import('pages/RegisterPage'));
@@ -19,15 +22,16 @@ const LoginPage = lazy(() => import('pages/LoginPage'));
 const UserPage = lazy(() => import('pages/UserPage'));
 const NewsPage = lazy(() => import('pages/NewsPage'));
 const OurFriendsPage = lazy(() => import('pages/OurFriendsPage'));
-const RestrictedRoute = lazy(() => import('routes/RestrictedRoute'));
-const PrivateRoute = lazy(() => import('routes/PrivateRoute'));
 
 const App = () => {
   const [currentTheme, setCurrentTheme] = useState(lightTheme);
   const dispatch = useDispatch();
-
+  const runOnce = useRef(true);
   useEffect(() => {
-    dispatch(refresh());
+    if (runOnce.current) {
+      runOnce.current = false;
+      dispatch(refresh());
+    }
   }, [dispatch]);
   const onClick = () => {
     setCurrentTheme(currentTheme === lightTheme ? darkTheme : lightTheme);

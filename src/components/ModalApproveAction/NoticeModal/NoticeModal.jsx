@@ -31,10 +31,10 @@ import { calculateAge } from 'utils/calculateAge';
 import { getNoticeById } from 'utils/ApiNotices';
 import { useEffect } from 'react';
 
-const NoticeModal = ({ notice, close }) => {
+const NoticeModal = ({ notice, close, setIsFavorite }) => {
   const { isLoggedIn } = useAuth();
   const [favorite, setFavorite] = useState(!!notice.favorite);
-  const [ownerContacts, setOwnerContacts] = useState({});
+  const [ownerContacts, setOwnerContacts] = useState({ email: '', phone: '' });
   const screenSize = useMedia(
     ['(min-width: 1280px)', '(min-width: 768px)', '(min-width: 480px)'],
     ['desktop', 'tablet', 'mobile'],
@@ -45,8 +45,11 @@ const NoticeModal = ({ notice, close }) => {
   useEffect(() => {
     getNoticeById(notice._id)
       .then(res => {
+        if (res.owner) {
+          setOwnerContacts(res.owner);
+        }
         // console.log(res.owner);
-        setOwnerContacts(res.owner);
+        // setOwnerContacts(res.owner);
       })
       .catch(e => console.log(e));
   }, [notice._id]);
@@ -59,10 +62,6 @@ const NoticeModal = ({ notice, close }) => {
         alert('Please sign in to add to favorites');
         return;
       }
-      if (!notice || !notice._id) {
-        console.error('Notice is undefined or does not have an _id property');
-        return;
-      }
 
       const updateToFavorite = {
         favorite: !notice.favorite,
@@ -70,6 +69,7 @@ const NoticeModal = ({ notice, close }) => {
       await updateFavoriteNotice(notice._id, updateToFavorite);
       notice.favorite = !favorite;
       setFavorite(!favorite);
+      setIsFavorite(notice._id);
     } catch (error) {
       alert('Failed to update notice. Please try again later.');
     }
@@ -111,7 +111,7 @@ const NoticeModal = ({ notice, close }) => {
                   <NameCategory>Email:</NameCategory>
                   <ValueCategory>
                     <ContactLinkItem href="mailto:">
-                      {ownerContacts.email}
+                      {ownerContacts.email ? ownerContacts.email : 'no email'}
                     </ContactLinkItem>
                   </ValueCategory>
                 </PetDataItem>
@@ -122,7 +122,6 @@ const NoticeModal = ({ notice, close }) => {
                       {ownerContacts.phone
                         ? ownerContacts.phone
                         : 'no phone number'}
-                      {/* {UserTel(user.phone)} */}
                     </ContactLinkItem>
                   </ValueCategory>
                 </PetDataItem>

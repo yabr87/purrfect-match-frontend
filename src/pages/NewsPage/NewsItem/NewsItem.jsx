@@ -4,9 +4,13 @@ import { formatNewsDate } from 'utils/formatNewsDate';
 
 import { Item, Img, Title, Text, Bottom, Link } from './NewsItem.styles';
 
-// import defaultUrl from './default-img.jpg';
-
-const NewsItem = ({ imgUrl, title, text, date, url }) => {
+const NewsItem = ({
+  imgUrl = 'via.placeholder.com',
+  title,
+  text,
+  date,
+  url,
+}) => {
   const newsDate = formatNewsDate(date);
   return (
     <Item>

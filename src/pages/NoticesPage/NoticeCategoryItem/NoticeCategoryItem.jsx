@@ -1,7 +1,11 @@
+import PropTypes from 'prop-types';
+import { useParams } from 'react-router-dom';
+
 import React, { useState } from 'react';
 import useAuth from 'shared/hooks/useAuth';
 
 import { deleteNotice } from '../../../utils/ApiNotices';
+import { getNoticeById } from '../../../utils/ApiNotices';
 import { calculateAge } from 'utils/calculateAge';
 
 import {
@@ -35,12 +39,29 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
 
   // const dispatch = useDispatch();
 
-  const setIsFavorite = favorite => {
+  // const setIsFavorite = favorite => {
+  //   setNotices(prevNotices => {
+  //     const notices = [...prevNotices];
+  //     notices.find(({ _id }) => notice._id === _id).favorite = favorite;
+  //     return notices;
+  //   });
+  // };
+  const { categoryName } = useParams();
+  const setIsFavorite = async id => {
+    const updatedNotice = await getNoticeById(id);
+
     setNotices(prevNotices => {
       const notices = [...prevNotices];
-      notices.find(({ _id }) => notice._id === _id).favorite = favorite;
+      notices.find(notice => notice._id === id).favorite =
+        updatedNotice.favorite;
       return notices;
     });
+
+    if (!updatedNotice.favorite && categoryName === 'favorite') {
+      setNotices(prevNotices =>
+        prevNotices.filter(notice => notice._id !== id)
+      );
+    }
   };
 
   const handleDelete = async id => {
@@ -91,7 +112,11 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
       {/* {isModalOpen && <ModalNoticeTest close={() => setIsModalOpen(false)} />} */}
       {isModalOpen && (
         <ModalApproveAction close={() => setIsModalOpen(false)}>
-          <NoticeModal notice={notice} close={() => setIsModalOpen(false)} />
+          <NoticeModal
+            notice={notice}
+            close={() => setIsModalOpen(false)}
+            setIsFavorite={setIsFavorite}
+          />
         </ModalApproveAction>
       )}
       {isLoggedIn && user && notice.own && (
@@ -117,3 +142,21 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
 };
 
 export default NoticeCategoryItem;
+
+NoticeCategoryItem.propTypes = {
+  notice: PropTypes.shape({
+    photoUrl: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    category: PropTypes.string.isRequired,
+    location: PropTypes.string.isRequired,
+    birthday: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.instanceOf(Date),
+    ]).isRequired,
+    sex: PropTypes.oneOf(['male', 'female']).isRequired,
+    own: PropTypes.bool.isRequired,
+    _id: PropTypes.string.isRequired,
+  }).isRequired,
+  deleteAndRefresh: PropTypes.func.isRequired,
+  setNotices: PropTypes.func.isRequired,
+};

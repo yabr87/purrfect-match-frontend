@@ -5,7 +5,6 @@ import Title from 'shared/components/Title';
 import Search from 'shared/components/Search';
 import NewsList from './NewsList';
 import Pagination from 'shared/hooks/pagination';
-// import Button from 'shared/components/Button';
 
 import { getAllNews } from 'utils/ApiNews';
 import { useSearchParams } from 'react-router-dom';
@@ -31,6 +30,8 @@ const NewsPage = () => {
     const fetchNews = async params => {
       try {
         const { data } = await getAllNews(params);
+        console.log('data:', data);
+
         setNews(data.results);
         setTotalPages(data.totalPages);
       } catch (error) {
@@ -57,53 +58,13 @@ const NewsPage = () => {
     setSearchParams(params);
   };
 
-  // setNews(pageItems);
-  // const onFormSubmit = useCallback(
-  //   search => {
-  //     if (search === query) return;
-  //     setQuery(search);
-  //     setPage(1);
-  //     setItems([]);
-  //     setError(null);
-  //   },
-  //   [query]
-  // );
-
-  // useEffect(() => {
-  //   const fetchAllNews = async () => {
-  //     try {
-  //       setLoading(true);
-  //       const { hits } = await getAllNews(query, page);
-  //       // setItems([...hits]);
-  //       console.log('hits:', hits);
-  //       setItems(prevItems => [...prevItems, ...hits]);
-  //     } catch (error) {
-  //       setError(error);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
-  //   fetchAllNews();
-  // }, [page]);
-
-  // const loadMore = useCallback(() => {
-  //   setPage(prevPage => prevPage + 1);
-  // }, []);
-
   return (
     <Container>
       <Title>News</Title>
       <Search onFormSubmit={onSubmit} setItems={setNews} />
 
-      {/* {error && <p>{error.message}</p>} */}
-
-      {/* {loading && <div>Loading...</div>} */}
       {fetching && <Loader />}
-      {Boolean(news.length) ? (
-        <NewsList items={news} />
-      ) : (
-        <div>There is no result</div>
-      )}
+      {Boolean(news.length) && <NewsList items={news} />}
       {totalPages > 1 && (
         <Pagination
           currentPage={currentPage}
@@ -112,7 +73,6 @@ const NewsPage = () => {
           setFetching={setFetching}
         />
       )}
-      {/* <Button onClick={loadMore}>Load more</Button> */}
     </Container>
   );
 };
