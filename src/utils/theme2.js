@@ -57,7 +57,7 @@ export const lightTheme = {
 export const darkTheme = {
   colors: {
     accent: '#FF8356',
-  backgroundColor: '#0D0F17',
+  backgroundColor: '#121212',
   backgroundModal: '#181C25',
   inputText: '#CCCCCC',
   textColor: '#FFFFFF',
