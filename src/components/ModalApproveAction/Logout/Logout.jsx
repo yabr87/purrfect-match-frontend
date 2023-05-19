@@ -13,6 +13,7 @@ const Logout = ({ close, idUser }) => {
 
   const onLogout = idUser => {
     dispatch(logout(idUser));
+    close();
   };
   const screenSize = useMedia(
     ['(min-width: 1280px)', '(min-width: 768px)', '(min-width: 480px)'],
