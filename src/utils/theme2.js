@@ -3,6 +3,7 @@ export const lightTheme = {
     accent: '#FF8356',
     backgroundColor: '#FEF9F9',
     backgroundModal: '#ffffff',
+    inputColor: '#888888',
     textColor: '#121212',
     link: '#54ADFF',
     grey: '#888888',

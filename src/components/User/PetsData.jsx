@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   Title,
   PetContainer,
@@ -16,28 +16,31 @@ import Button from 'shared/components/Button';
 import Icon from 'shared/components/Icon/Icon';
 import { reverseISODate } from 'utils/reverseISODate';
 import { deleteMyPet, fetchMyPets } from 'redux/pets/myPetsOperations';
+import { selectMyPets } from 'redux/pets/myPetsSelectors';
 
 const PetsData = () => {
-  const [pets, setPets] = useState([]);
+  const { results: pets = [] } = useSelector(selectMyPets);
+  console.log(pets);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    setPets(dispatch(fetchMyPets()));
+    dispatch(fetchMyPets());
   }, [dispatch]);
 
   const handleClick = () => {
     console.log('add new pet');
   };
 
-  const handleDeletePet = () => {
-    dispatch(deleteMyPet());
+  const handleDeletePet = id => {
+    dispatch(deleteMyPet(id));
   };
 
-  const petCard = item => {
-    <PetContainer>
-      <PetAvatar src={item.photoUrl} />
+      
+  const petCard = item => (
+    <PetContainer key={item._id}>
+     <PetAvatar src={item.photoUrl} />
       <PetInfoWrap>
-        <DelPetBtn onClick={handleDeletePet}>
+        <DelPetBtn onClick={() => handleDeletePet(item._id)}>
           <Icon id="trash" s="#54ADFF" />
         </DelPetBtn>
         <PetInfoItem>
@@ -54,8 +57,8 @@ const PetsData = () => {
           <PetInfoTitle>Comments:</PetInfoTitle> {item.comments}
         </PetInfoItem>
       </PetInfoWrap>
-    </PetContainer>;
-  };
+    </PetContainer>
+  );
 
   return (
     <>
