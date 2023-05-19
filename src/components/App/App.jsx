@@ -1,7 +1,7 @@
 import React, { lazy } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
-import { lightTheme, darkTheme } from 'utils/theme';
+import { lightTheme, darkTheme } from 'utils/theme2';
 
 import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
