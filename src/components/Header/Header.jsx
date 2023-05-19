@@ -20,6 +20,7 @@ import {
   OpenLinksButton,
 } from './Header.styles';
 import { UserLink } from './UserNav/UserNav.styles';
+import Switcher from 'components/ThemeSwitcher';
 
 const Header = () => {
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
@@ -59,7 +60,8 @@ const Header = () => {
           {isDesktop && (
             <>
               {nav}
-              {<LanguageSwitcher />}
+              <Switcher />
+              <LanguageSwitcher />
               {userBar}
             </>
           )}
