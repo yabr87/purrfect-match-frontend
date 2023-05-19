@@ -46,6 +46,12 @@ export const Avatar = styled.div`
   margin-top: 20px;
 `;
 
+export const Photo = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`;
+
 export const AvatarContainer = styled.div`
   display: flex;
   flex-direction: column;

@@ -4,6 +4,7 @@ import { Input, ItemContainer, EditInputBtn } from './';
 import Icon from 'shared/components/Icon/Icon';
 import { useSelector } from 'react-redux';
 import { updateUserInfo } from 'utils/Api';
+import { convertToISODate } from 'utils/convertToISODate';
 
 const UserDataItem = ({ name, type, pattern, value }) => {
   const [data, setData] = useState(value);
@@ -19,7 +20,10 @@ const UserDataItem = ({ name, type, pattern, value }) => {
   };
 
   const handleInputSubmit = async () => {
-    const req = { [name]: data };
+    const req =
+      name === 'birthday'
+        ? { [name]: convertToISODate(data) }
+        : { [name]: data };
     await updateUserInfo(token, req);
   };
 

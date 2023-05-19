@@ -29,7 +29,7 @@ export const PetWrap = styled.div`
   }
 `;
 
-export const PetAvatar = styled.div`
+export const PetAvatar = styled.img`
   align-self: center;
   width: 240px;
   height: 240px;
@@ -57,6 +57,10 @@ export const PetHeader = styled.div`
   @media screen and (min-width: 1280px) {
     margin: 0;
   }
+`;
+
+export const NoPetMessage = styled.p`
+  text-align: center;
 `;
 
 export const PetInfoWrap = styled.div`
