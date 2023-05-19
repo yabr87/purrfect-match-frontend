@@ -4,8 +4,8 @@ import NewsItem from '../NewsItem';
 import { List } from './NewsList.styles';
 
 const NewsList = ({ items }) => {
-  const elements = items.map(({ id, ...props }) => (
-    <NewsItem key={id} {...props} />
+  const elements = items.map(({ _id, ...props }) => (
+    <NewsItem key={_id} {...props} />
   ));
 
   return <List>{elements}</List>;
