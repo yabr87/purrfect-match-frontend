@@ -4,19 +4,20 @@ export const Card = styled.div`
   position: relative;
   width: 288px;
   height: 456px;
-  background: #ffffff;
-  box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
-  border-radius: 0px 0px 40px 40px;
+  background: ${props => props.theme.colors.backgroundModal};
+  box-shadow: ${props => props.theme.shadows.default};
+  border-radius: ${props => props.theme.radius.normal};
   transition: transform 250ms ease;
 
-  @media screen and (min-width: 768px) {
+  @media ${props => props.theme.media.tab} {
     &:hover,
     &:focus {
       transform: perspective(800px) rotateX(5deg) rotateY(0deg) rotateZ(0deg);
     }
   }
 
-  @media screen and (min-width: 768px) and (max-width: 1280px) {
+  @media ${props => props.theme.media.tab} and (max-width: ${props =>
+      props.theme.mediaPoints.desktop}) {
     width: 336px;
     max-width: 100%;
   }
@@ -45,7 +46,7 @@ export const ImageDetails = styled.div`
   justify-content: center;
   align-items: center;
   gap: 12px;
-  color: white;
+  color: ${props => props.theme.colors.textColor};
   padding: 10px;
 `;
 
@@ -55,21 +56,22 @@ export const ImageDetailsItem = styled.p`
   white-space: nowrap;
   left: 12px;
   top: 248px;
+
   svg {
     margin-right: 8px;
   }
 
-  background: #cce4fb;
-  border-radius: 16px;
-  font-family: 'Manrope';
-  font-weight: 600;
-  font-size: 12px;
+  background: ${props => props.theme.colors.lightBlue};
+  border-radius: ${props => props.theme.radius.small};
+  font-family: ${props => props.theme.fonts.main};
+  font-weight: ${props => props.theme.fontWeiths.semiBold};
+  font-size: ${props => props.theme.fontSizes.xs};
 
   padding: 5px;
   display: flex;
   align-items: center;
 
-  color: #111111;
+  color: ${props => props.theme.colors.black};
 `;
 
 export const ImageDetailsText = styled.span`
@@ -94,11 +96,11 @@ export const ImageDetailsTextLong = styled(ImageDetailsText)`
     min-width: 100px;
     overflow: visible;
     max-width: 100%;
-    background: white;
-    border-radius: 16px;
-    font-family: 'Manrope';
-    font-weight: 600;
-    font-size: 12px;
+    background: ${props => props.theme.colors.backgroundModal};
+    border-radius: ${props => props.theme.radius.small};
+    font-family: ${props => props.theme.fonts.main};
+    font-weight: ${props => props.theme.fontWeiths.semiBold};
+    font-size: ${props => props.theme.fontSizes.xs};
   }
 `;
 
@@ -112,18 +114,18 @@ export const ImageCategory = styled.p`
   padding: 11px 17px;
   align-items: center;
   text-align: center;
-  background: #cce4fb;
-  border-radius: 0px 16px 16px 0px;
+  background: ${props => props.theme.colors.lightBlue};
+  border-radius: ${props => props.theme.radius.small} 0px;
 `;
 
 export const PhotoDescription = styled.p`
   height: 66px;
-  font-family: 'Manrope';
+  font-family: ${props => props.theme.fonts.main};
   font-style: normal;
-  font-weight: 700;
-  font-size: 24px;
+  font-weight: ${props => props.theme.fontWeiths.bold};
+  font-size: ${props => props.theme.fontSizes.l};
   line-height: 33px;
-  color: #111111;
+  color: ${props => props.theme.colors.black};
 `;
 export const BelowItemContainer = styled.div`
   padding: 20px;
@@ -139,14 +141,14 @@ export const AddToFavoriteBtn = styled.button`
   height: 40px;
   right: 12px;
   top: 12px;
-  background: #cce4fb;
-  border-radius: 50%;
+  background: ${props => props.theme.colors.lightBlue};
+  border-radius: ${props => props.theme.radius.round};
   border: none;
   outline: none;
   transition: fill 250ms ease;
 
   &:hover svg,
   &:focus svg {
-    fill: #54adff;
+    fill: ${props => props.theme.colors.link};
   }
 `;
