@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import {
   Container,
   Avatar,
+  Photo,
   AvatarContainer,
   Title,
   EditAvatarBtn,
@@ -14,7 +15,7 @@ import {
   Wrap,
 } from './';
 import Icon from 'shared/components/Icon/Icon';
-import { getCurrent } from 'utils/Api';
+import { addAvatar, getCurrent } from 'utils/Api';
 import { reverseISODate } from 'utils/reverseISODate';
 import ModalApproveAction from 'components/ModalApproveAction';
 import Logout from 'components/ModalApproveAction/Logout';
@@ -25,9 +26,10 @@ const initialState = {
   birthday: '',
   phone: '',
   city: '',
+  photo: null,
 };
 
-const UserData = () => {
+const UserData = handleChange => {
   const [user, setUser] = useState(initialState);
   const [isModalLogoutOpen, setIsModalLogoutOpen] = useState(false);
   const token = useSelector(store => store.auth.token);
@@ -40,6 +42,14 @@ const UserData = () => {
     getUser(token);
   }, [token]);
 
+  const handlePhotoChange = e => {
+    setUser({ ...user, photo: e.target.files[0] });
+  };
+
+  const handleUploadPhoto = async () => {
+    await addAvatar(token, user.photo);
+  };
+
   const handleLogOut = () => {
     setIsModalLogoutOpen(true);
   };
@@ -50,8 +60,24 @@ const UserData = () => {
         <Title>My information:</Title>
         <Container>
           <AvatarContainer>
-            <Avatar />
-            <EditAvatarBtn>
+            <Avatar>
+              <input
+                type="file"
+                onChange={handlePhotoChange}
+                accept="image/png, image/jpeg"
+                multiple={false}
+              />
+              {user.photo ? (
+                <Photo
+                  src={URL.createObjectURL(user.photo)}
+                  alt="Selected file"
+                />
+              ) : (
+                <Icon id="add-photo-pet" w="48" h="48" s="#54ADFF" />
+              )}
+              <input />
+            </Avatar>
+            <EditAvatarBtn onClick={handleUploadPhoto}>
               <Icon id="camera" s="#54ADFF" />
               <BtnText>Edit photo</BtnText>
             </EditAvatarBtn>
