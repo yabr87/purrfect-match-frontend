@@ -46,11 +46,7 @@ export const getCurrent = async token => {
 
 export const addAvatar = async (token, data) => {
   setToken(token);
-  const response = await instance.patch('api/users/current/avatar', data, {
-    headers: {
-      'Content-Type': 'multipart/form-data',
-    },
-  });
+  const response = await instance.patchForm('api/users/current/avatar', data);
   return response;
 };
 

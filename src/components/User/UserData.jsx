@@ -26,7 +26,7 @@ const initialState = {
   birthday: '',
   phone: '',
   city: '',
-  photo: null,
+  avatarUrl: null,
 };
 
 const UserData = handleChange => {
@@ -43,11 +43,12 @@ const UserData = handleChange => {
   }, [token]);
 
   const handlePhotoChange = e => {
-    setUser({ ...user, photo: e.target.files[0] });
+    setUser({ ...user, avatarUrl: e.target.files[0] });
   };
 
   const handleUploadPhoto = async () => {
-    await addAvatar(token, user.photo);
+    console.log(user.photo);
+    await addAvatar(token, { avatar: user.avatarUrl });
   };
 
   const handleLogOut = () => {
@@ -67,11 +68,8 @@ const UserData = handleChange => {
                 accept="image/png, image/jpeg"
                 multiple={false}
               />
-              {user.photo ? (
-                <Photo
-                  src={URL.createObjectURL(user.photo)}
-                  alt="Selected file"
-                />
+              {user.avatarUrl ? (
+                <Photo src={user.avatarUrl} alt="Selected file" />
               ) : (
                 <Icon id="add-photo-pet" w="48" h="48" s="#54ADFF" />
               )}
