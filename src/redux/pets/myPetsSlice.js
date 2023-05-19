@@ -61,4 +61,4 @@ const petsSlice = createSlice({
   },
 });
 
-export default petsSlice.reducer;
+export default petsSlice;

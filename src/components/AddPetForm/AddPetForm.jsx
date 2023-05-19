@@ -88,6 +88,7 @@ const AddPetForm = () => {
         errors,
         isValid,
         touched,
+        initialErrors
       }) => (
         <Form>
           {isSubmitting ? (
@@ -169,7 +170,7 @@ const AddPetForm = () => {
                     onClick={handleNext}
                     disabled={
                       currentStep === 2 &&
-                      (!isValid || !touched.name || !touched.birthday)
+                      (!values.name || !values.birthday || !values.breed || Object.keys(errors).length > 0)
                     }
                   >
                     Next

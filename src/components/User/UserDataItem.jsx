@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Input, ItemContainer, EditInputBtn } from './';
 import Icon from 'shared/components/Icon/Icon';
@@ -10,12 +10,17 @@ const UserDataItem = ({ name, type, pattern, value }) => {
   const [disable, setDisable] = useState(true);
   const token = useSelector(store => store.auth.token);
 
+  useEffect(() => {
+    setData(value);
+  }, [value]);
+
   const handleInputEdit = () => {
     setDisable(false);
   };
 
   const handleInputSubmit = async () => {
-    await updateUserInfo(token, { name: data });
+    const req = { [name]: data };
+    await updateUserInfo(token, req);
   };
 
   return (
@@ -24,7 +29,7 @@ const UserDataItem = ({ name, type, pattern, value }) => {
       <Input
         type={type}
         value={data}
-        onChange={({ target }) => setData(target.value)}
+        onChange={e => setData(e.target.value)}
         pattern={pattern}
         name={name}
         disabled={disable}
@@ -48,5 +53,6 @@ export default UserDataItem;
 UserDataItem.propTypes = {
   name: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
+  value: PropTypes.string,
   pattern: PropTypes.string,
 };
