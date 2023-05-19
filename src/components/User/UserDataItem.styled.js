@@ -13,6 +13,7 @@ export const EditInputBtn = styled.button`
   right: 28px;
   background-color: transparent;
   border: none;
+  cursor: pointer;
 
   @media screen and (min-width: 768px) {
     right: 10px;
@@ -21,4 +22,4 @@ export const EditInputBtn = styled.button`
 
 export const UserLabel = styled.label`
   color: ${props => props.theme.colors.titleColor};
-`
+`;
