@@ -26,7 +26,8 @@ export const FormLabel = styled.label`
   font-weight: ${props => props.theme.fontWeiths.semi};
   font-size: 14px;
   line-height: 1.3;
-
+  
+  color: ${props => props.theme.colors.titleColor};
   @media screen and (min-width: 768px) {
     font-size: ${props => props.theme.fontSizes.m};
   }
