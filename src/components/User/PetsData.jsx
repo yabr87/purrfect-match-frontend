@@ -67,7 +67,7 @@ const PetsData = () => {
         {pets.length ? (
           pets.map(item => petCard(item))
         ) : (
-          <p>You have no own added pets yet(</p>
+          <p>You have no own added pets yet 😔</p>
         )}
       </PetWrap>
     </>
