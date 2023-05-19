@@ -51,7 +51,7 @@ export const MobileContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-
+  gap: 40px; 
   position: fixed;
   top: 42px;
   left: 0;
@@ -62,6 +62,7 @@ export const MobileContainer = styled.div`
   overflow: scroll;
 
   @media ${props => props.theme.media.tab} {
+    gap: 0;
     top: 68px;
   }
 `;

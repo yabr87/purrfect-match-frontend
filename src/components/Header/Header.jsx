@@ -59,13 +59,18 @@ const Header = () => {
           <Logo />
           {isDesktop && (
             <>
+            <div style={{display: 'flex', gap: '40px'}}>
               {nav}
-              <Switcher />
-              <LanguageSwitcher />
+               <div style={{display: 'flex', gap: '40px'}}><Switcher />
+              <LanguageSwitcher /></div> 
+            </div>
               {userBar}
             </>
           )}
           <HeaderIcons>
+            {isTablet && !isMobileNavOpen &&
+              <><Switcher />
+              <LanguageSwitcher /></>}
             {!isMobileNavOpen && isLoggedIn && (
               <HeaderLogout onClick={handleLogout}>
                 <Icon id="logout" />
@@ -76,7 +81,7 @@ const Header = () => {
                 <Icon id="user" h="28" w="28" />
               </UserLink>
             )}
-            {isTablet && !isMobileNavOpen && userBar}
+            {isTablet && !isMobileNavOpen  && userBar}
             {!isDesktop && (
               <>
                 <OpenLinksButton
@@ -86,9 +91,12 @@ const Header = () => {
                   {isMobileNavOpen ? <Icon id="cross" /> : <Icon id="burger" />}
                 </OpenLinksButton>
                 {isMobileNavOpen && (
-                  <MobileContainer>
-                    {!isTablet && <MobileAuth>{userBar}</MobileAuth>}
-                    {nav}
+                  
+                  <MobileContainer> 
+                      <div style={{display: 'flex', alignItems: 'center', gap: '40px'}}><Switcher />
+                      <LanguageSwitcher /></div> 
+                    {!isTablet && <MobileAuth>{userBar}</MobileAuth>} 
+                      {nav}
                   </MobileContainer>
                 )}
               </>
