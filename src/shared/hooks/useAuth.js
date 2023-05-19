@@ -11,12 +11,12 @@ const useAuth = () => {
   const user = useSelector(selectUser);
   const isLoggedIn = useSelector(selectIsAuth);
   const isRefreshing = useSelector(selectIsRefreshing);
-  const isError = useSelector(selectAuthError);
+  const error = useSelector(selectAuthError);
   return {
     isLoggedIn,
     isRefreshing,
     user,
-    isError,
+    error,
   };
 };
 

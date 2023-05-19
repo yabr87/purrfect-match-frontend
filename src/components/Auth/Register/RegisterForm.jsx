@@ -1,6 +1,5 @@
 import { ErrorMessage, Formik } from 'formik';
 import { useDispatch } from 'react-redux';
-
 import * as Yup from 'yup';
 
 import { useNavigate } from 'react-router-dom';
@@ -39,8 +38,8 @@ const validateShecma = Yup.object().shape({
 
 const RegisterForm = () => {
   const navigate = useNavigate();
-
   const dispatch = useDispatch();
+
   return (
     <Formik
       initialValues={{ email: '', password: '', confirmedPassword: '' }}

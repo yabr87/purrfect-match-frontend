@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-
 import { ErrorMessage, Formik } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
@@ -23,6 +22,9 @@ import { login } from 'redux/auth/authOperations';
 
 import { useNavigate } from 'react-router-dom';
 import useAuth from 'shared/hooks/useAuth';
+import { clearError } from '../../../redux/auth/authSlice.js';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const validateShecma = Yup.object().shape({
   email: Yup.string().email('Invalid email address').required('Required'),
@@ -37,14 +39,18 @@ const validateShecma = Yup.object().shape({
 });
 const LoginForm = () => {
   const navigate = useNavigate();
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn, error } = useAuth();
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (isLoggedIn) {
       navigate('/notices/sell');
     }
-  }, [isLoggedIn, navigate]);
+    if (error.message) {
+      toast.error(`${error.message}`, { position: toast.POSITION.TOP_RIGHT });
+      dispatch(clearError());
+    }
+  }, [isLoggedIn, navigate, error, dispatch]);
   return (
     <Formik
       initialValues={{ email: '', password: '' }}
