@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { fetchMyPets, addMyPet, deleteMyPet } from './myPetsOperations';
 
 const initialState = {
-  myPets: [],
+  myPets: {},
   isLoading: false,
   events: null,
   error: null,
