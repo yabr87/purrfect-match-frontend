@@ -100,8 +100,8 @@ export const TextField = styled(Field)`
   line-height: 150%;
   letter-spacing: 0.04em;
 
-  background: #fff;
-  color: ${props => props.theme.colors.grey};
+  background: ${props => props.theme.colors.backgroundColor};
+  color: ${props => props.theme.colors.inputColor};
   border: ${props =>
     props.errors ? '1px solid #F43F5E' : '1px solid #54adff'};
   border-radius: 20px;
@@ -143,7 +143,7 @@ function setMaleIconStroke({ sex, theme }) {
     case 'male':
       return `${theme.colors.link}`;
     default:
-      return `${theme.colors.grey}`;
+      return `${theme.colors.inputColor}`;
   }
 }
 
@@ -152,6 +152,6 @@ function setFemaleIconStroke({ sex, theme }) {
     case 'female':
       return `${theme.colors.red}`;
     default:
-      return `${theme.colors.grey}`;
+      return `${theme.colors.inputColor}`;
   }
 }

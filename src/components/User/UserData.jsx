@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import {
-  Container,
+  UserWrapper,
   Avatar,
   Photo,
   AvatarContainer,
@@ -59,7 +59,7 @@ const UserData = handleChange => {
     <>
       <Wrap>
         <Title>My information:</Title>
-        <Container>
+        <UserWrapper>
           <AvatarContainer>
             <Avatar>
               <input
@@ -100,7 +100,7 @@ const UserData = handleChange => {
               <Logout close={() => setIsModalLogoutOpen(false)} />
             </ModalApproveAction>
           )}
-        </Container>
+        </UserWrapper>
       </Wrap>
     </>
   );

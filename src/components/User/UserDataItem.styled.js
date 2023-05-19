@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 
-export const Input = styled.input`
+export const UserInput = styled.input`
   width: 190px;
   border: 1px solid ${props => props.theme.colors.link};
   border-radius: 20px;
   padding: 4px 12px;
+  color: ${props => props.theme.colors.titleColor};
 `;
 
 export const EditInputBtn = styled.button`
@@ -17,3 +18,7 @@ export const EditInputBtn = styled.button`
     right: 10px;
   }
 `;
+
+export const UserLabel = styled.label`
+  color: ${props => props.theme.colors.titleColor};
+`

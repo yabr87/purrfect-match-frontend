@@ -7,7 +7,7 @@ export const FormBox = styled.div`
   min-height: 496px;
   padding: 20px 8px 7px;
 
-  background: #fff;
+  background: ${props => props.theme.colors.backgroundModal};
   box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
   border-radius: ${props => props.theme.radius.normal};
 

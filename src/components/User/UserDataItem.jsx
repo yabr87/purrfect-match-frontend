@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Input, ItemContainer, EditInputBtn } from './';
+import { UserInput, ItemContainer, EditInputBtn, UserLabel } from './';
 import Icon from 'shared/components/Icon/Icon';
 import { useSelector } from 'react-redux';
 import { updateUserInfo } from 'utils/Api';
@@ -29,8 +29,8 @@ const UserDataItem = ({ name, type, pattern, value }) => {
 
   return (
     <ItemContainer>
-      <label>{name}:</label>
-      <Input
+      <UserLabel>{name}:</UserLabel>
+      <UserInput
         type={type}
         value={data}
         onChange={e => setData(e.target.value)}

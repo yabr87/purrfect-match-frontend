@@ -28,12 +28,12 @@ export const AuthItem = styled.li`
   border-radius: ${props => props.theme.radius.normal};
 
   color: ${props => props.theme.colors.yellow};
-  background-color: ${props => props.theme.colors.background};
+  background-color:  ${props => props.theme.colors.backgroundColor};
   transition: color 250ms ease, background 250ms ease;
 
   &:hover, &:focus  {
     background-color: ${props => props.theme.colors.yellow};
-    color: ${props => props.theme.colors.background};
+    color:  ${props => props.theme.colors.backgroundColor};
     outline: none;
   }
 
@@ -41,11 +41,11 @@ export const AuthItem = styled.li`
     min-width: 165px;
     font-weight: ${props => props.theme.fontWeiths.bold};
     background-color: ${props => props.theme.colors.yellow};
-    color: ${props => props.theme.colors.background};
+    color:  ${props => props.theme.colors.backgroundColor};
 
     &:hover, &:focus  {
       color: ${props => props.theme.colors.yellow};
-      background-color: ${props => props.theme.colors.background};
+      background-color:  ${props => props.theme.colors.backgroundColor};
     }
   }
 `;
