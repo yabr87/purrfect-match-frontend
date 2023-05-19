@@ -34,7 +34,7 @@ import { useEffect } from 'react';
 const NoticeModal = ({ notice, close }) => {
   const { isLoggedIn } = useAuth();
   const [favorite, setFavorite] = useState(!!notice.favorite);
-  const [ownerContacts, setOwnerContacts] = useState({});
+  const [ownerContacts, setOwnerContacts] = useState({ email: '', phone: '' });
   const screenSize = useMedia(
     ['(min-width: 1280px)', '(min-width: 768px)', '(min-width: 480px)'],
     ['desktop', 'tablet', 'mobile'],
