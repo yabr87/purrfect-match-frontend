@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import Container from 'shared/components/Container';
 import Title from 'shared/components/Title';
@@ -10,6 +11,7 @@ import { getAllFriends } from 'utils/ApiOurFriends';
 import { FriendsContainer } from './OurFriendsPage.styles';
 
 const OurFriendsPage = () => {
+  const { t } = useTranslation();
   const [friends, setFriends] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -32,7 +34,7 @@ const OurFriendsPage = () => {
     <Container>
       <FriendsContainer>
         <Title as="h2" color="#000000">
-          Our friends
+          {t('Our_friends')}
         </Title>
         {loading && <Loader />}
         <OurFriendsList friends={friends} />

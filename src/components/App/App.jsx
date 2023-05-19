@@ -2,6 +2,8 @@ import React, { lazy } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme } from 'utils/theme';
+import { I18nextProvider } from 'react-i18next';
+import i18n from '../../utils/languages/i18n';
 
 import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
@@ -40,43 +42,45 @@ const App = () => {
   return (
     <ThemeProvider theme={currentTheme}>
       <Switcher onClick={onClick} />
-      <Routes>
-        <Route path="/" element={<SharedLayout />}>
-          <Route index element={<MainPage />} />
-          <Route path="/notices/:categoryName" element={<NoticesPage />} />
-          <Route
-            path="/add-pet"
-            element={
-              <PrivateRoute redirectTo="/login" component={<AddPetPage />} />
-            }
-          />
-          <Route path="/notices" element={<Navigate to="/notices/sell" />} />
-          <Route
-            path="/register"
-            element={
-              <RestrictedRoute
-                redirectTo="/user"
-                component={<RegisterPage />}
-              />
-            }
-          />
-          <Route
-            path="/login"
-            element={
-              <RestrictedRoute redirectTo="/user" component={<LoginPage />} />
-            }
-          />
-          <Route
-            path="/user"
-            element={
-              <PrivateRoute redirectTo="/login" component={<UserPage />} />
-            }
-          />
-          <Route path="/news" element={<NewsPage />} />
-          <Route path="/friends" element={<OurFriendsPage />} />
-          <Route path="*" element={<ErrorPage />} />
-        </Route>
-      </Routes>
+      <I18nextProvider i18n={i18n}>
+        <Routes>
+          <Route path="/" element={<SharedLayout />}>
+            <Route index element={<MainPage />} />
+            <Route path="/notices/:categoryName" element={<NoticesPage />} />
+            <Route
+              path="/add-pet"
+              element={
+                <PrivateRoute redirectTo="/login" component={<AddPetPage />} />
+              }
+            />
+            <Route path="/notices" element={<Navigate to="/notices/sell" />} />
+            <Route
+              path="/register"
+              element={
+                <RestrictedRoute
+                  redirectTo="/user"
+                  component={<RegisterPage />}
+                />
+              }
+            />
+            <Route
+              path="/login"
+              element={
+                <RestrictedRoute redirectTo="/user" component={<LoginPage />} />
+              }
+            />
+            <Route
+              path="/user"
+              element={
+                <PrivateRoute redirectTo="/login" component={<UserPage />} />
+              }
+            />
+            <Route path="/news" element={<NewsPage />} />
+            <Route path="/friends" element={<OurFriendsPage />} />
+            <Route path="*" element={<ErrorPage />} />
+          </Route>
+        </Routes>
+      </I18nextProvider>
     </ThemeProvider>
   );
 };
