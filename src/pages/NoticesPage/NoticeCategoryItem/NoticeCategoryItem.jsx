@@ -47,8 +47,6 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
   //   });
   // };
   const { categoryName } = useParams();
-
-  console.log('params', categoryName);
   const setIsFavorite = async id => {
     const updatedNotice = await getNoticeById(id);
 
@@ -114,7 +112,11 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
       {/* {isModalOpen && <ModalNoticeTest close={() => setIsModalOpen(false)} />} */}
       {isModalOpen && (
         <ModalApproveAction close={() => setIsModalOpen(false)}>
-          <NoticeModal notice={notice} close={() => setIsModalOpen(false)} />
+          <NoticeModal
+            notice={notice}
+            close={() => setIsModalOpen(false)}
+            setIsFavorite={setIsFavorite}
+          />
         </ModalApproveAction>
       )}
       {isLoggedIn && user && notice.own && (

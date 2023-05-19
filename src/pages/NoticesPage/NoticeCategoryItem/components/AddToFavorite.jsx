@@ -5,8 +5,8 @@ import { updateFavoriteNotice } from 'utils/ApiNotices';
 import CircleButton from 'shared/components/CircleButton';
 
 const AddToFavorite = ({ notice, setIsFavorite }) => {
+  const [favorite, setFavorite] = useState(!!notice.favorite);
   const { isLoggedIn } = useAuth();
-  const isFavorite = notice.favorite;
 
   const [isHovered, setIsHovered] = useState(false);
 
@@ -17,12 +17,13 @@ const AddToFavorite = ({ notice, setIsFavorite }) => {
         return;
       }
 
-      const updatedIsFavorite = !isFavorite;
       const updateToFavorite = {
-        favorite: updatedIsFavorite,
+        favorite: !notice.favorite,
       };
 
       await updateFavoriteNotice(notice._id, updateToFavorite);
+      notice.favorite = !favorite;
+      setFavorite(!favorite);
       setIsFavorite(notice._id);
     } catch (error) {
       alert('Failed to update notice. Please try again later.');
@@ -38,7 +39,11 @@ const AddToFavorite = ({ notice, setIsFavorite }) => {
       r="12px"
       onClick={handleUpdate}
       f={
-        isHovered ? '#CCE4FB' : isLoggedIn && isFavorite ? '#54adff' : '#CCE4FB'
+        isHovered
+          ? '#CCE4FB'
+          : isLoggedIn && notice.favorite
+          ? '#54adff'
+          : '#CCE4FB'
       }
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
