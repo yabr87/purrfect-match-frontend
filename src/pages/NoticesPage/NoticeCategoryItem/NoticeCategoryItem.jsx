@@ -108,16 +108,6 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
       </CardImageContainer>
       <BelowItemContainer>
         <PhotoDescription>{notice.title}</PhotoDescription>
-        {isLoggedIn && (
-          <CircleButton
-            id="edit"
-            pos="absolute"
-            t="124px"
-            r="12px"
-            onClick={() => setIsModalEditOpen(true)}
-          ></CircleButton>
-        )}
-
         <LearnMore onButtonClick={() => setIsModalOpen(true)} />
       </BelowItemContainer>
       {/* {isModalOpen && <ModalNoticeTest close={() => setIsModalOpen(false)} />} */}
@@ -131,6 +121,7 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
         </ModalApproveAction>
       )}
       {isLoggedIn && user && notice.own && (
+        <>
         <CircleButton
           id="trash"
           z="999"
@@ -139,6 +130,14 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
           r="12px"
           onClick={() => setIsModalDeleteOpen(true)}
         ></CircleButton>
+        <CircleButton
+            id="edit"
+            pos="absolute"
+            t="124px"
+            r="12px"
+            onClick={() => setIsModalEditOpen(true)}
+          ></CircleButton>
+        </>
       )}
       {isModalDeleteOpen && (
         <ModalApproveAction close={() => setIsModalDeleteOpen(false)}>
@@ -152,7 +151,7 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
         <ModalApproveAction close={() => setIsModalEditOpen(false)}>
           <EditModal
             notice={notice}
-            close={() => setIsModalOpen(false)}
+            close={() => setIsModalEditOpen(false)}
           />
         </ModalApproveAction>
       )}
