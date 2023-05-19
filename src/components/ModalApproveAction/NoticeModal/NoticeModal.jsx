@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import useAuth from 'shared/hooks/useAuth';
+import { useMedia } from 'shared/hooks/useMedia';
 
 import Button from 'shared/components/Button';
 import {
@@ -20,16 +21,11 @@ import {
   ImageCategory,
 } from './NoticeModal.styles';
 
-import { useMedia } from 'shared/hooks/useMedia';
-
 import Icon from 'shared/components/Icon';
 
+import { getNoticeById } from 'utils/ApiNotices';
 import { updateFavoriteNotice } from '../../../utils/ApiNotices';
 import { calculateAge } from 'utils/calculateAge';
-// import { formatUserTel } from 'utils/formatUserTel';
-
-import { getNoticeById } from 'utils/ApiNotices';
-import { useEffect } from 'react';
 
 const NoticeModal = ({ notice, close, setIsFavorite }) => {
   const { isLoggedIn } = useAuth();
@@ -48,13 +44,9 @@ const NoticeModal = ({ notice, close, setIsFavorite }) => {
         if (res.owner) {
           setOwnerContacts(res.owner);
         }
-        // console.log(res.owner);
-        // setOwnerContacts(res.owner);
       })
       .catch(e => console.log(e));
   }, [notice._id]);
-
-  console.log(ownerContacts);
 
   const approveAddFavorite = async notice => {
     try {
