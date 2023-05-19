@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -19,7 +19,12 @@ import { reverseISODate } from 'utils/reverseISODate';
 import { deleteMyPet, fetchMyPets } from 'redux/pets/myPetsOperations';
 import { selectMyPets } from 'redux/pets/myPetsSelectors';
 
+import ModalApproveAction from 'components/ModalApproveAction';
+import Delete from 'components/ModalApproveAction/Delete';
+
 const PetsData = () => {
+  const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false);
+
   const { results: pets = [] } = useSelector(selectMyPets);
   console.log(pets);
   const dispatch = useDispatch();
@@ -41,7 +46,7 @@ const PetsData = () => {
     <PetContainer key={item._id}>
       <PetAvatar src={item.photoUrl} />
       <PetInfoWrap>
-        <DelPetBtn onClick={() => handleDeletePet(item._id)}>
+        <DelPetBtn onClick={() => setIsModalDeleteOpen(true)}>
           <Icon id="trash" s="#54ADFF" />
         </DelPetBtn>
         <PetInfoItem>
@@ -58,6 +63,14 @@ const PetsData = () => {
           <PetInfoTitle>Comments:</PetInfoTitle> {item.comments}
         </PetInfoItem>
       </PetInfoWrap>
+      {isModalDeleteOpen && (
+        <ModalApproveAction close={() => setIsModalDeleteOpen(false)}>
+          <Delete
+            approve={() => handleDeletePet(item._id)}
+            close={() => setIsModalDeleteOpen(false)}
+          />
+        </ModalApproveAction>
+      )}
     </PetContainer>
   );
 
