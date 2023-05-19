@@ -8,6 +8,8 @@ import Pagination from 'shared/hooks/pagination';
 
 import { getAllNews } from 'utils/ApiNews';
 import { useSearchParams } from 'react-router-dom';
+import Button from 'shared/components/Button';
+import Icon from 'shared/components/Icon';
 
 const NewsPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -60,19 +62,43 @@ const NewsPage = () => {
 
   return (
     <Container>
-      <Title>News</Title>
-      <Search onFormSubmit={onSubmit} setItems={setNews} />
+      {/* <Title>News</Title> */}
+      {/* <Search onFormSubmit={onSubmit} setItems={setNews} /> */}
 
-      {fetching && <Loader />}
-      {Boolean(news.length) && <NewsList items={news} />}
-      {totalPages > 1 && (
+      {/* {fetching && <Loader />} */}
+      {/* {Boolean(news.length) && <NewsList items={news} />} */}
+      {/* {totalPages > 1 && (
         <Pagination
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}
           totalPages={totalPages}
           setFetching={setFetching}
         />
-      )}
+      )} */}
+
+      <div
+        style={{
+          width: '600px',
+          height: '100px',
+          background: '#fff',
+          display: 'flex',
+          gap: '20px',
+        }}
+      >
+        <Button w="150">Button</Button>
+        <Button shape="solid" w="150">
+          Button
+          <Icon id="paw" f="currentColor" s="none" />
+        </Button>
+        <Button shape="solid" w="150">
+          Button
+          <Icon id="camera" />
+        </Button>
+        <Button shape="yellow" w="150">
+          Button
+          <Icon id="location" />
+        </Button>
+      </div>
     </Container>
   );
 };
