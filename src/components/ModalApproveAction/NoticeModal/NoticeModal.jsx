@@ -45,8 +45,11 @@ const NoticeModal = ({ notice, close }) => {
   useEffect(() => {
     getNoticeById(notice._id)
       .then(res => {
+        if (res.owner) {
+          setOwnerContacts(res.owner);
+        }
         // console.log(res.owner);
-        setOwnerContacts(res.owner);
+        // setOwnerContacts(res.owner);
       })
       .catch(e => console.log(e));
   }, [notice._id]);
@@ -111,7 +114,7 @@ const NoticeModal = ({ notice, close }) => {
                   <NameCategory>Email:</NameCategory>
                   <ValueCategory>
                     <ContactLinkItem href="mailto:">
-                      {ownerContacts.email}
+                      {ownerContacts.email ? ownerContacts.email : 'no email'}
                     </ContactLinkItem>
                   </ValueCategory>
                 </PetDataItem>
@@ -122,7 +125,6 @@ const NoticeModal = ({ notice, close }) => {
                       {ownerContacts.phone
                         ? ownerContacts.phone
                         : 'no phone number'}
-                      {/* {UserTel(user.phone)} */}
                     </ContactLinkItem>
                   </ValueCategory>
                 </PetDataItem>
