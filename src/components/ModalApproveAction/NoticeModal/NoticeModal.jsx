@@ -31,7 +31,7 @@ import { calculateAge } from 'utils/calculateAge';
 import { getNoticeById } from 'utils/ApiNotices';
 import { useEffect } from 'react';
 
-const NoticeModal = ({ notice, close }) => {
+const NoticeModal = ({ notice, close, setIsFavorite }) => {
   const { isLoggedIn } = useAuth();
   const [favorite, setFavorite] = useState(!!notice.favorite);
   const [ownerContacts, setOwnerContacts] = useState({ email: '', phone: '' });
@@ -62,10 +62,6 @@ const NoticeModal = ({ notice, close }) => {
         alert('Please sign in to add to favorites');
         return;
       }
-      if (!notice || !notice._id) {
-        console.error('Notice is undefined or does not have an _id property');
-        return;
-      }
 
       const updateToFavorite = {
         favorite: !notice.favorite,
@@ -73,6 +69,7 @@ const NoticeModal = ({ notice, close }) => {
       await updateFavoriteNotice(notice._id, updateToFavorite);
       notice.favorite = !favorite;
       setFavorite(!favorite);
+      setIsFavorite(notice._id);
     } catch (error) {
       alert('Failed to update notice. Please try again later.');
     }
