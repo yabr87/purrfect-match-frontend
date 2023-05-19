@@ -1,6 +1,14 @@
 import { useState, useMemo } from 'react';
-import { useDispatch } from 'react-redux';
 import { useMedia } from 'shared/hooks/useMedia';
+import useAuth from 'shared/hooks/useAuth';
+import Container from 'shared/components/Container';
+import Logo from './Logo';
+import AuthNav from './AuthNav';
+import Nav from './Nav';
+import UserNav from './UserNav';
+import Icon from 'shared/components/Icon/Icon';
+import ModalApproveAction from 'components/ModalApproveAction';
+import Logout from 'components/ModalApproveAction/Logout';
 import {
   AppHeader,
   HeaderContainer,
@@ -10,20 +18,14 @@ import {
   MobileContainer,
   OpenLinksButton,
 } from './Header.styles';
-import Logo from './Logo';
-import Container from 'shared/components/Container';
-import AuthNav from './AuthNav';
-import Nav from './Nav';
-import Icon from 'shared/components/Icon/Icon';
-import UserNav from './UserNav';
-import useAuth from 'shared/hooks/useAuth';
 import { UserLink } from './UserNav/UserNav.styles';
-import { logout } from 'redux/auth/authOperations';
 
 const Header = () => {
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
+  const [isModalLogoutOpen, setIsModalLogoutOpen] = useState(false);
+
   const { isLoggedIn } = useAuth();
-  const dispatch = useDispatch();
+
   const screenSize = useMedia(
     ['(min-width: 1280px)', '(min-width: 768px)'],
     ['desktop', 'tablet'],
@@ -34,9 +36,10 @@ const Header = () => {
     setIsMobileNavOpen(false);
   };
 
-  const handleLogOut = () => {
-    dispatch(logout());
+  const handleLogout = () => {
+    setIsModalLogoutOpen(true);
   };
+
   const userBar = isLoggedIn ? (
     <UserNav handleLinkClick={handleLinkClick} />
   ) : (
@@ -60,7 +63,7 @@ const Header = () => {
           )}
           <HeaderIcons>
             {!isMobileNavOpen && isLoggedIn && (
-              <HeaderLogout onClick={handleLogOut}>
+              <HeaderLogout onClick={handleLogout}>
                 <Icon id="logout" />
               </HeaderLogout>
             )}
@@ -87,6 +90,11 @@ const Header = () => {
               </>
             )}
           </HeaderIcons>
+          {isModalLogoutOpen && (
+            <ModalApproveAction close={() => setIsModalLogoutOpen(false)}>
+              <Logout close={() => setIsModalLogoutOpen(false)} />
+            </ModalApproveAction>
+          )}
         </HeaderContainer>
       </Container>
     </AppHeader>
