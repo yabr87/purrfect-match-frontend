@@ -10,12 +10,13 @@ import { Formik, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useSearchParams } from 'react-router-dom';
 
-const Search = ({ onFormSubmit, setCurrentPage }) => {
+const Search = ({ onFormSubmit, setCurrentPage, setQuery }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const title = searchParams.get('title');
   const search = searchParams.get('search');
 
   const clearSearchParam = () => {
+    setQuery(null);
     searchParams.delete('title');
     searchParams.delete('page');
     searchParams.delete('search');

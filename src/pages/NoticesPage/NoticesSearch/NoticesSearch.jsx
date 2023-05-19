@@ -14,7 +14,11 @@ const NoticesSearch = ({ setCurrentPage, setSearchParams, setTitle }) => {
   return (
     <>
       <Title>Find your favorite pet</Title>
-      <Search onFormSubmit={onSubmit} setCurrentPage={setCurrentPage} />
+      <Search
+        onFormSubmit={onSubmit}
+        setCurrentPage={setCurrentPage}
+        setQuery={setTitle}
+      />
     </>
   );
 };

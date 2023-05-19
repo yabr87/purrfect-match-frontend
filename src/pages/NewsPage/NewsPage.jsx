@@ -11,10 +11,13 @@ import { useSearchParams } from 'react-router-dom';
 
 const NewsPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const search = searchParams.get('search');
+  const query = searchParams.get('search');
+  const [search, setSearch] = useState(() => {
+    return query ? query : null;
+  });
+  const page = searchParams.get('page');
   const [news, setNews] = useState([]);
   const [currentPage, setCurrentPage] = useState(() => {
-    const page = searchParams.get('page');
     return page ? Number(page) : 1;
   });
   const [fetching, setFetching] = useState(true);
@@ -22,18 +25,19 @@ const NewsPage = () => {
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    setError(false);
-    setFetching(true);
-    const params = { page: currentPage };
-
+    const params = {};
+    if (page) {
+      params.page = currentPage;
+    }
     if (search) {
       params.search = search;
     }
+
     const fetchNews = async params => {
       try {
+        setError(false);
+        setFetching(true);
         const { data } = await getAllNews(params);
-        console.log('data:', data);
-
         setNews(data.results);
         setTotalPages(data.totalPages);
       } catch (error) {
@@ -43,8 +47,9 @@ const NewsPage = () => {
         setFetching(false);
       }
     };
+
     fetchNews(params);
-  }, [currentPage, search]);
+  }, [currentPage, search, page]);
 
   const onSubmit = values => {
     const params = { page: 1, search: values.search };
@@ -55,7 +60,11 @@ const NewsPage = () => {
   return (
     <Container>
       <Title>News</Title>
-      <Search onFormSubmit={onSubmit} setCurrentPage={setCurrentPage} />
+      <Search
+        onFormSubmit={onSubmit}
+        setCurrentPage={setCurrentPage}
+        setQuery={setSearch}
+      />
       {error && <p>{error.message}</p>}
       {fetching && (
         <div
