@@ -71,7 +71,7 @@ export const ImageDetailsItem = styled.p`
   display: flex;
   align-items: center;
 
-  color: ${props => props.theme.colors.black};
+  color: ${props => props.theme.colors.textColor};
 `;
 
 export const ImageDetailsText = styled.span`
@@ -115,7 +115,9 @@ export const ImageCategory = styled.p`
   align-items: center;
   text-align: center;
   background: ${props => props.theme.colors.lightBlue};
-  border-radius: ${props => props.theme.radius.small} 0px;
+  color: ${props => props.theme.colors.textColor};
+  border-radius: ${props =>
+    ` 0px ${props.theme.radius.small} ${props.theme.radius.small}  0px `};
 `;
 
 export const PhotoDescription = styled.p`
@@ -125,7 +127,7 @@ export const PhotoDescription = styled.p`
   font-weight: ${props => props.theme.fontWeiths.bold};
   font-size: ${props => props.theme.fontSizes.l};
   line-height: 33px;
-  color: ${props => props.theme.colors.black};
+  color: ${props => props.theme.colors.textColor};
 `;
 export const BelowItemContainer = styled.div`
   padding: 20px;
