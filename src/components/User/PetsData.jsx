@@ -16,7 +16,7 @@ import Icon from 'shared/components/Icon/Icon';
 import { deleteMyPet, fetchMyPets } from 'redux/pets/myPetsOperations';
 
 const PetsData = () => {
-  const [pets, setPets] = useState([]);
+  const [pets, setPets] = useState({});
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -64,8 +64,8 @@ const PetsData = () => {
             <Icon id="plus-small" s="#FEF9F9" />
           </Button>
         </PetHeader>
-        {pets.length ? (
-          pets.map(item => petCard(item))
+        {pets.results.length ? (
+          pets.results.map(item => petCard(item))
         ) : (
           <p>You have no own added pets yet(</p>
         )}
