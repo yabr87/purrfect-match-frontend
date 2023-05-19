@@ -9,7 +9,7 @@ import i18n from '../../utils/languages/i18n';
 import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { refresh } from 'redux/auth/authOperations';
-import Switcher from 'components/themeSwitcher/Switcher';
+import Switcher from 'components/ThemeSwitcher';
 
 import RestrictedRoute from 'routes/RestrictedRoute';
 import PrivateRoute from 'routes/PrivateRoute';

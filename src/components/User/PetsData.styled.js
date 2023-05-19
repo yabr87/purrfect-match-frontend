@@ -4,7 +4,7 @@ export const PetContainer = styled.div`
   width: 100%;
   height: auto;
   margin-left: auto;
-  background: #ffffff;
+  background-color: ${props => props.theme.colors.backgroundModal};
   box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
   border-radius: 20px;
   padding-left: 20px;
@@ -29,7 +29,7 @@ export const PetWrap = styled.div`
   }
 `;
 
-export const PetAvatar = styled.div`
+export const PetAvatar = styled.img`
   align-self: center;
   width: 240px;
   height: 240px;
@@ -59,6 +59,10 @@ export const PetHeader = styled.div`
   }
 `;
 
+export const NoPetMessage = styled.p`
+  text-align: center;
+`;
+
 export const PetInfoWrap = styled.div`
   position: relative;
   display: flex;
@@ -83,6 +87,8 @@ export const PetInfoItem = styled.p`
   font-size: 14px;
   line-height: 1.57;
   letter-spacing: 0.04em;
+
+  color: ${props => props.theme.colors.titleColor};
 `;
 
 export const PetInfoTitle = styled.span`

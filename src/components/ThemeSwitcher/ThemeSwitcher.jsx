@@ -1,9 +1,9 @@
 import { useState } from 'react';
 
-import { ToggleContainer } from './Switcher.styles';
+import { ToggleContainer } from './ThemeSwitcher.styles';
 import Icon from 'shared/components/Icon/Icon';
 
-const Switcher = ({ onClick }) => {
+const ThemeSwitcher = ({ onClick }) => {
   const [isCheked, setIsCheked] = useState(false);
 
   return (
@@ -21,4 +21,4 @@ const Switcher = ({ onClick }) => {
   );
 };
 
-export default Switcher;
+export default ThemeSwitcher;
