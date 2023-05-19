@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const UserWrapper = styled.div`
   width: 100%;
   height: auto;
   margin-left: auto;
-  background: #ffffff;
+  background-color: ${props => props.theme.colors.backgroundModal};
   box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
   border-radius: 20px;
   margin-top: 18px;
@@ -35,13 +35,13 @@ export const Title = styled.p`
   font-size: 20px;
   line-height: 27px;
   letter-spacing: 0.04em;
-  color: #000000;
+  color: ${props => props.theme.colors.titleColor};
 `;
 
 export const Avatar = styled.div`
   width: 182px;
   height: 182px;
-  background: #54adff;
+  background-color: #54adff;
   border-radius: 40px;
   margin-top: 20px;
 `;
@@ -105,7 +105,7 @@ export const LogOutText = styled.p`
   font-size: 16px;
   line-height: 22px;
   letter-spacing: 0.04em;
-  color: #888888;
+  color: ${props => props.theme.colors.inputText};
 `;
 
 export const InputContainer = styled.div`

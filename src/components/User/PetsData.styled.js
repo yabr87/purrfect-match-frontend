@@ -4,7 +4,7 @@ export const PetContainer = styled.div`
   width: 100%;
   height: auto;
   margin-left: auto;
-  background: #ffffff;
+  background-color: ${props => props.theme.colors.backgroundModal};
   box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
   border-radius: 20px;
   padding-left: 20px;
@@ -87,6 +87,8 @@ export const PetInfoItem = styled.p`
   font-size: 14px;
   line-height: 1.57;
   letter-spacing: 0.04em;
+
+  color: ${props => props.theme.colors.titleColor};
 `;
 
 export const PetInfoTitle = styled.span`

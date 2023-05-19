@@ -4,7 +4,7 @@ export const Card = styled.div`
   position: relative;
   width: 288px;
   height: 456px;
-  background: #ffffff;
+  background: ${props => props.theme.colors.backgroundModal};
   box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
   border-radius: 0px 0px 40px 40px;
   transition: transform 250ms ease;
@@ -45,7 +45,7 @@ export const ImageDetails = styled.div`
   justify-content: center;
   align-items: center;
   gap: 12px;
-  color: white;
+  color: ${props => props.theme.colors.backgroundModal};
   padding: 10px;
 `;
 
@@ -69,7 +69,7 @@ export const ImageDetailsItem = styled.p`
   display: flex;
   align-items: center;
 
-  color: #111111;
+  color: ${props => props.theme.colors.titleColor};
 `;
 
 export const ImageDetailsText = styled.span`
@@ -123,7 +123,7 @@ export const PhotoDescription = styled.p`
   font-weight: 700;
   font-size: 24px;
   line-height: 33px;
-  color: #111111;
+  color: ${props => props.theme.colors.titleColor};
 `;
 export const BelowItemContainer = styled.div`
   padding: 20px;

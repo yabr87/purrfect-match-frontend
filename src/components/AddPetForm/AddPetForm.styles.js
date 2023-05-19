@@ -56,8 +56,8 @@ export const StyledField = styled(Field)`
     font-family: ${props => props.theme.fonts.main};
   }
 
-  color: ${props => props.theme.colors.inputColor};
-  background: ${props => props.theme.colors.backgroundColor};
+  color: ${props => props.theme.colors.inputText};
+  background: ${props => props.theme.colors.backgroundModal};
   border-radius: ${props => props.theme.radius.normal};
   border: ${props =>
     props.errors ? '1px solid #F43F5E' : '1px solid #54adff'};

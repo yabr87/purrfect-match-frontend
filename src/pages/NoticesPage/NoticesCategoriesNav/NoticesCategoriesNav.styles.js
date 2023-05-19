@@ -33,10 +33,10 @@ export const StyledNavLink = styled(NavLink)`
   font-size: 14px;
   line-height: 19px;
   letter-spacing: 0.04em;
-  color: #54adff;
+  color: ${props => props.theme.colors.link};
 
   &.active {
-    color: #fef9f9;
-    background: #54adff;
+    color: ${props => props.theme.colors.backgroundColor};
+    background: ${props => props.theme.colors.link};
   }
 `;
