@@ -84,8 +84,8 @@ const PetsData = () => {
             <Icon id="plus-small" s="#FEF9F9" />
           </Button>
         </PetHeader>
-        {pets.results.length ? (
-          pets.results.map(item => petCard(item))
+        {pets.length ? (
+          pets.map(item => petCard(item))
         ) : (
           <NoPetMessage>You have no own added pets yet 😔</NoPetMessage>
         )}

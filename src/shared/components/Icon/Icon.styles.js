@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 export const Svg = styled.svg`
+  stroke-width: 2;
+
   stroke: ${props => props.s};
   fill: ${props => props.f};
 
