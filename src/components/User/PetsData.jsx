@@ -9,6 +9,7 @@ import {
   PetInfoWrap,
   PetInfoItem,
   PetInfoTitle,
+  NoPetMessage,
   DelPetBtn,
 } from './';
 import Button from 'shared/components/Button';
@@ -67,7 +68,7 @@ const PetsData = () => {
         {pets.length ? (
           pets.map(item => petCard(item))
         ) : (
-          <p>You have no own added pets yet 😔</p>
+          <NoPetMessage>You have no own added pets yet 😔</NoPetMessage>
         )}
       </PetWrap>
     </>

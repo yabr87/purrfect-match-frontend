@@ -59,6 +59,10 @@ export const PetHeader = styled.div`
   }
 `;
 
+export const NoPetMessage = styled.p`
+  text-align: center;
+`;
+
 export const PetInfoWrap = styled.div`
   position: relative;
   display: flex;

@@ -18,6 +18,7 @@ export const DelPetBtn = PetStyled.DelPetBtn;
 export const Avatar = Styled.Avatar;
 export const AvatarContainer = Styled.AvatarContainer;
 export const PetAvatar = PetStyled.PetAvatar;
+export const NoPetMessage = PetStyled.NoPetMessage;
 export const EditAvatarBtn = Styled.EditAvatarBtn;
 export const LogOutBtn = Styled.LogOutBtn;
 export const BtnText = Styled.BtnText;
