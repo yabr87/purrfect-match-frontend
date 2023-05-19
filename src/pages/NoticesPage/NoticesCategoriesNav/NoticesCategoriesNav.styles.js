@@ -23,20 +23,20 @@ export const StyledNavLink = styled(NavLink)`
   margin: 0;
   padding: 9px 16px;
   height: 35px;
-  background: #cce4fb;
-  border-radius: 40px;
+  background: ${props => props.theme.colors.lightBlue};
+  border-radius: ${props => props.theme.radius.normal};
   white-space: nowrap;
   transition: color 250ms ease, background 0.2s ease;
 
-  font-family: 'Manrope';
-  font-weight: 500;
-  font-size: 14px;
+  font-family: ${props => props.theme.fonts.main};
+  font-weight: ${props => props.theme.fontWeiths.semi};
+  font-size: ${props => props.theme.fontSizes.s};
   line-height: 19px;
   letter-spacing: 0.04em;
-  color: #54adff;
+  color: ${props => props.theme.colors.link};
 
   &.active {
-    color: #fef9f9;
-    background: #54adff;
+    color: ${props => props.theme.colors.backgroundColor};
+    background: ${props => props.theme.colors.link};
   }
 `;

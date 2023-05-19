@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Input, ItemContainer, EditInputBtn } from './';
+import { UserInput, ItemContainer, EditInputBtn, UserLabel } from './';
 import Icon from 'shared/components/Icon/Icon';
 import { useSelector } from 'react-redux';
 import { updateUserInfo } from 'utils/Api';
+import { convertToISODate } from 'utils/convertToISODate';
 
 const UserDataItem = ({ name, type, pattern, value }) => {
   const [data, setData] = useState(value);
@@ -19,14 +20,17 @@ const UserDataItem = ({ name, type, pattern, value }) => {
   };
 
   const handleInputSubmit = async () => {
-    const req = { [name]: data };
+    const req =
+      name === 'birthday'
+        ? { [name]: convertToISODate(data) }
+        : { [name]: data };
     await updateUserInfo(token, req);
   };
 
   return (
     <ItemContainer>
-      <label>{name}:</label>
-      <Input
+      <UserLabel>{name}:</UserLabel>
+      <UserInput
         type={type}
         value={data}
         onChange={e => setData(e.target.value)}

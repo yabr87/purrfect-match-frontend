@@ -17,7 +17,6 @@ const UserPage = () => {
 
   useEffect(() => {
     const state = location.state;
-    // console.log(state);
     if (state) {
       console.log(state);
       const { isModalOpen } = location.state;

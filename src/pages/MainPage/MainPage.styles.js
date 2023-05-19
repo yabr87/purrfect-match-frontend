@@ -10,11 +10,11 @@ export const Title = styled.h1`
   margin-top: 60px;
   width: 280px;
   height: 88px;
-  font-family: 'Manrope';
-  font-weight: 700;
+  font-family: ${props => props.theme.fonts.main};
+  font-weight: ${props => props.theme.fontWeiths.bold};
   font-size: 32px;
   line-height: 1.38;
-  color: #000000;
+  color: ${props => props.theme.colors.titleColor};
 
   @media screen and (min-width: 768px) {
     margin-top: 80px;

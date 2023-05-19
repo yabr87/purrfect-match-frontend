@@ -1,5 +1,6 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import {
   Title,
   PetContainer,
@@ -9,24 +10,32 @@ import {
   PetInfoWrap,
   PetInfoItem,
   PetInfoTitle,
+  NoPetMessage,
   DelPetBtn,
 } from './';
 import Button from 'shared/components/Button';
 import Icon from 'shared/components/Icon/Icon';
+import { reverseISODate } from 'utils/reverseISODate';
 import { deleteMyPet, fetchMyPets } from 'redux/pets/myPetsOperations';
 import { selectMyPets } from 'redux/pets/myPetsSelectors';
 
+import ModalApproveAction from 'components/ModalApproveAction';
+import Delete from 'components/ModalApproveAction/Delete';
+
 const PetsData = () => {
+  const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false);
+
   const { results: pets = [] } = useSelector(selectMyPets);
   console.log(pets);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(fetchMyPets());
   }, [dispatch]);
 
   const handleClick = () => {
-    console.log('add new pet');
+    navigate('/add-pet', { replace: true });
   };
 
   const handleDeletePet = id => {
@@ -35,16 +44,17 @@ const PetsData = () => {
 
   const petCard = item => (
     <PetContainer key={item._id}>
-      <PetAvatar />
+      <PetAvatar src={item.photoUrl} />
       <PetInfoWrap>
-        <DelPetBtn onClick={() => handleDeletePet(item._id)}>
+        <DelPetBtn onClick={() => setIsModalDeleteOpen(true)}>
           <Icon id="trash" s="#54ADFF" />
         </DelPetBtn>
         <PetInfoItem>
           <PetInfoTitle>Name:</PetInfoTitle> {item.name}
         </PetInfoItem>
         <PetInfoItem>
-          <PetInfoTitle>Date of Birth:</PetInfoTitle> {item.birthday}
+          <PetInfoTitle>Date of Birth:</PetInfoTitle>{' '}
+          {reverseISODate(item.birthday)}
         </PetInfoItem>
         <PetInfoItem>
           <PetInfoTitle>Breed:</PetInfoTitle> {item.breed}
@@ -53,6 +63,14 @@ const PetsData = () => {
           <PetInfoTitle>Comments:</PetInfoTitle> {item.comments}
         </PetInfoItem>
       </PetInfoWrap>
+      {isModalDeleteOpen && (
+        <ModalApproveAction close={() => setIsModalDeleteOpen(false)}>
+          <Delete
+            approve={() => handleDeletePet(item._id)}
+            close={() => setIsModalDeleteOpen(false)}
+          />
+        </ModalApproveAction>
+      )}
     </PetContainer>
   );
 
@@ -69,7 +87,7 @@ const PetsData = () => {
         {pets.length ? (
           pets.map(item => petCard(item))
         ) : (
-          <p>You have no own added pets yet(</p>
+          <NoPetMessage>You have no own added pets yet 😔</NoPetMessage>
         )}
       </PetWrap>
     </>
