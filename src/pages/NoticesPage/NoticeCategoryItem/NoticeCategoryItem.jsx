@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { useParams } from 'react-router-dom';
 
 import React, { useState } from 'react';
 import useAuth from 'shared/hooks/useAuth';
@@ -45,13 +46,11 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
   //     return notices;
   //   });
   // };
-
+  const { categoryName } = useParams();
   const setIsFavorite = async id => {
-    // получаю обновленный ноутис по признаку фаворит
     const updatedNotice = await getNoticeById(id);
 
     if (updatedNotice.favorite) {
-      // если  ноутис фаворит, обновляю ноутисы
       setNotices(prevNotices => {
         const notices = [...prevNotices];
         const noticeToUpdate = notices.find(notice => notice._id === id);
@@ -63,10 +62,10 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
         return notices;
       });
     } else {
-      // если ноутис не фаворит, удаляю из рендера
-      setNotices(prevNotices =>
-        prevNotices.filter(notice => notice._id !== id)
-      );
+      categoryName === 'favorite' &&
+        setNotices(prevNotices =>
+          prevNotices.filter(notice => notice._id !== id)
+        );
     }
   };
 
