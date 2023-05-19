@@ -7,7 +7,7 @@ export const AppHeader = styled.header`
   width: 100%;
   z-index: 1000;
   overflow: ${({ isMobileNavOpen }) => isMobileNavOpen && 'clip'};
-  background-color: ${props => props.theme.colors.background};
+  background-color: ${props => props.theme.colors.backgroundColor};
 `;
 
 export const HeaderContainer = styled.div`
@@ -58,7 +58,7 @@ export const MobileContainer = styled.div`
   height: 100vh;
   width: 100%;
   z-index: 999;
-  background-color: ${props => props.theme.colors.background};
+  background-color: ${props => props.theme.colors.backgroundColor};
   overflow: scroll;
 
   @media ${props => props.theme.media.tab} {

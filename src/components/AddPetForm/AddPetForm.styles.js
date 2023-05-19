@@ -9,7 +9,7 @@ export const FormTitle = styled.p`
   font-size: ${props => props.theme.fontSizes.m};
   line-height: 1.35;
 
-  color: ${props => props.theme.colors.black};
+  color: ${props => props.theme.colors.titleColor};
 
   @media ${props => props.theme.media.tab} {
     font-size: ${props => props.theme.fontSizes.xl};
@@ -56,8 +56,8 @@ export const StyledField = styled(Field)`
     font-family: ${props => props.theme.fonts.main};
   }
 
-  color: ${props => props.theme.colors.grey};
-  background: #fff;
+  color: ${props => props.theme.colors.inputColor};
+  background: ${props => props.theme.colors.backgroundColor};
   border-radius: ${props => props.theme.radius.normal};
   border: ${props =>
     props.errors ? '1px solid #F43F5E' : '1px solid #54adff'};
