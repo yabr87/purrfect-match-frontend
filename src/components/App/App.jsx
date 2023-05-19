@@ -1,7 +1,8 @@
 import React, { lazy } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
-import { lightTheme, darkTheme } from 'utils/theme';
+import { lightTheme, darkTheme } from 'utils/theme2';
+
 import { I18nextProvider } from 'react-i18next';
 import i18n from '../../utils/languages/i18n';
 
