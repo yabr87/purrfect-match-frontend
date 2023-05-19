@@ -17,9 +17,11 @@ const AddToFavorite = ({ notice, setIsFavorite }) => {
         return;
       }
 
+      const updatedIsFavorite = !isFavorite;
       const updateToFavorite = {
-        favorite: !isFavorite,
+        favorite: updatedIsFavorite,
       };
+
       await updateFavoriteNotice(notice._id, updateToFavorite);
       setIsFavorite(notice._id);
     } catch (error) {

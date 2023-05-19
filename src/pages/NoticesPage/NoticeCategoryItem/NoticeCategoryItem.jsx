@@ -47,25 +47,22 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
   //   });
   // };
   const { categoryName } = useParams();
+
+  console.log('params', categoryName);
   const setIsFavorite = async id => {
     const updatedNotice = await getNoticeById(id);
 
-    if (updatedNotice.favorite) {
-      setNotices(prevNotices => {
-        const notices = [...prevNotices];
-        const noticeToUpdate = notices.find(notice => notice._id === id);
+    setNotices(prevNotices => {
+      const notices = [...prevNotices];
+      notices.find(notice => notice._id === id).favorite =
+        updatedNotice.favorite;
+      return notices;
+    });
 
-        if (noticeToUpdate) {
-          noticeToUpdate.favorite = updatedNotice.favorite;
-        }
-
-        return notices;
-      });
-    } else {
-      categoryName === 'favorite' &&
-        setNotices(prevNotices =>
-          prevNotices.filter(notice => notice._id !== id)
-        );
+    if (!updatedNotice.favorite && categoryName === 'favorite') {
+      setNotices(prevNotices =>
+        prevNotices.filter(notice => notice._id !== id)
+      );
     }
   };
 
