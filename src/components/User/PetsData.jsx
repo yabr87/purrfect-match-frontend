@@ -29,15 +29,15 @@ const PetsData = () => {
     console.log('add new pet');
   };
 
-  const handleDeletePet = () => {
-    dispatch(deleteMyPet());
+  const handleDeletePet = id => {
+    dispatch(deleteMyPet(id));
   };
 
   const petCard = item => (
     <PetContainer key={item._id}>
       <PetAvatar />
       <PetInfoWrap>
-        <DelPetBtn onClick={handleDeletePet}>
+        <DelPetBtn onClick={() => handleDeletePet(item._id)}>
           <Icon id="trash" s="#54ADFF" />
         </DelPetBtn>
         <PetInfoItem>
