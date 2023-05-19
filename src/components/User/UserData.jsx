@@ -15,7 +15,7 @@ import {
 } from './';
 import Icon from 'shared/components/Icon/Icon';
 import { getCurrent } from 'utils/Api';
-
+import { reverseISODate } from 'utils/reverseISODate';
 import ModalApproveAction from 'components/ModalApproveAction';
 import Logout from 'components/ModalApproveAction/Logout';
 
@@ -62,7 +62,7 @@ const UserData = () => {
             <InputItem
               name="birthday"
               type="text"
-              value={user.birthday || ''}
+              value={reverseISODate(user.birthday) || ''}
             />
             <InputItem name="phone" type="text" value={user.phone} />
             <InputItem name="city" type="text" value={user.city || ''} />
