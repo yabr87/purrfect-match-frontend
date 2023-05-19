@@ -100,8 +100,8 @@ export const TextField = styled(Field)`
   line-height: 150%;
   letter-spacing: 0.04em;
 
-  background: ${props => props.theme.colors.backgroundColor};
-  color: ${props => props.theme.colors.inputColor};
+  background: ${props => props.theme.colors.backgroundModal};
+  color: ${props => props.theme.colors.inputText};
   border: ${props =>
     props.errors ? '1px solid #F43F5E' : '1px solid #54adff'};
   border-radius: 20px;

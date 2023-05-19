@@ -29,7 +29,7 @@ export const Btn = styled.button`
   :not([disabled]):hover,
   :not([disabled]):focus-visible {
     cursor: pointer;
-    color: ${({ theme }) => theme.colors.background};
+    color: ${({ theme }) => theme.colors.backgroundColor};
     background: ${setHoverBackground};
   }
 
@@ -51,7 +51,7 @@ function setWidth({ w }) {
 function setColor({ shape, theme }) {
   switch (shape) {
     case 'solid':
-      return `${theme.colors.background}`;
+      return `${theme.colors.backgroundColor}`;
     case 'yellow':
       return `${theme.colors.yellow}`;
     default:
