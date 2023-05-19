@@ -14,6 +14,7 @@ import {
 } from './';
 import Button from 'shared/components/Button';
 import Icon from 'shared/components/Icon/Icon';
+import { reverseISODate } from 'utils/reverseISODate';
 import { deleteMyPet, fetchMyPets } from 'redux/pets/myPetsOperations';
 
 const PetsData = () => {
@@ -34,7 +35,7 @@ const PetsData = () => {
 
   const petCard = item => {
     <PetContainer>
-      <PetAvatar />
+      <PetAvatar src={item.photoUrl} />
       <PetInfoWrap>
         <DelPetBtn onClick={handleDeletePet}>
           <Icon id="trash" s="#54ADFF" />
@@ -43,7 +44,8 @@ const PetsData = () => {
           <PetInfoTitle>Name:</PetInfoTitle> {item.name}
         </PetInfoItem>
         <PetInfoItem>
-          <PetInfoTitle>Date of Birth:</PetInfoTitle> {item.birthday}
+          <PetInfoTitle>Date of Birth:</PetInfoTitle>{' '}
+          {reverseISODate(item.birthday)}
         </PetInfoItem>
         <PetInfoItem>
           <PetInfoTitle>Breed:</PetInfoTitle> {item.breed}

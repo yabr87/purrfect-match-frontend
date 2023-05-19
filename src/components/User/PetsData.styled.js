@@ -29,7 +29,7 @@ export const PetWrap = styled.div`
   }
 `;
 
-export const PetAvatar = styled.div`
+export const PetAvatar = styled.img`
   align-self: center;
   width: 240px;
   height: 240px;
