@@ -32,6 +32,8 @@ const NewsPage = () => {
     const fetchNews = async params => {
       try {
         const { data } = await getAllNews(params);
+        console.log('data:', data);
+
         setNews(data.results);
         setTotalPages(data.totalPages);
       } catch (error) {

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   FriendsList,
   Friend,
@@ -21,6 +22,7 @@ import {
 import friendImgPlug from '../../../images/other/ourFriends-plug-min.jpeg';
 
 const OurFriendsList = ({ friends }) => {
+  const { t } = useTranslation();
   const [expandedFriendId, setExpandedFriendId] = useState(null);
 
   const renderTodayWorkday = workDays => {
@@ -34,7 +36,7 @@ const OurFriendsList = ({ friends }) => {
         </div>
       );
     } else {
-      return <div key={today}>Closed</div>;
+      return <div key={today}>{t('Closed')}</div>;
     }
   };
 
@@ -47,7 +49,15 @@ const OurFriendsList = ({ friends }) => {
   };
 
   const renderSchedule = workDays => {
-    const daysOfWeek = ['MN', 'TU', 'WE', 'TH', 'FR', 'SA', 'SU'];
+    const daysOfWeek = [
+      t('MN'),
+      t('TU'),
+      t('WE'),
+      t('TH'),
+      t('FR'),
+      t('SA'),
+      t('SU'),
+    ];
 
     return daysOfWeek.map((day, index) => {
       const workDay = workDays[index];
@@ -65,7 +75,7 @@ const OurFriendsList = ({ friends }) => {
         return (
           <ScheduleRow key={day}>
             <ScheduleDay>{day}</ScheduleDay>
-            <ScheduleTime>Closed</ScheduleTime>
+            <ScheduleTime>{t('Closed')}</ScheduleTime>
           </ScheduleRow>
         );
       }
@@ -102,12 +112,12 @@ const OurFriendsList = ({ friends }) => {
                 onClick={() => toggleExpandFriend(_id)}
                 hasSchedule={workDays && workDays.length > 0}
               >
-                <InfoItemTitle>Time:</InfoItemTitle>
+                <InfoItemTitle>{t('Time')}:</InfoItemTitle>
                 <InfoItemText>
                   {workDays === null || workDays === undefined ? (
-                    'day and night'
+                    `${t('day_and_night')}`
                   ) : isExpanded && !workDays ? (
-                    <div>on the website</div>
+                    <div>{t('on_the_website')}</div>
                   ) : isExpanded ? (
                     <>
                       <ScheduleField>{renderSchedule(workDays)}</ScheduleField>
@@ -119,19 +129,19 @@ const OurFriendsList = ({ friends }) => {
                 </InfoItemText>
               </InfoItemTime>
               <InfoItem>
-                <InfoItemTitle>Adress:</InfoItemTitle>
+                <InfoItemTitle>{t('Adress')}:</InfoItemTitle>
                 <InfoItemText>
                   <InfoItemAddress
                     href={addressUrl}
                     target="_blank"
                     rel="noreferrer noopener nofollow"
                   >
-                    {address ? address : 'on the website'}
+                    {address ? address : `${t('on_the_website')}`}
                   </InfoItemAddress>
                 </InfoItemText>
               </InfoItem>
               <InfoItem>
-                <InfoItemTitle>Email: </InfoItemTitle>
+                <InfoItemTitle>{t('Email')}:</InfoItemTitle>
                 <InfoItemText>
                   {email ? (
                     <InfoItemEmail
@@ -142,12 +152,12 @@ const OurFriendsList = ({ friends }) => {
                       {email}
                     </InfoItemEmail>
                   ) : (
-                    'on the website'
+                    `${t('on_the_website')}`
                   )}
                 </InfoItemText>
               </InfoItem>
               <InfoItem>
-                <InfoItemTitle>Phone:</InfoItemTitle>
+                <InfoItemTitle>{t('Phone')}:</InfoItemTitle>
                 <InfoItemText>
                   {phone ? (
                     <InfoItemPhone
@@ -158,7 +168,7 @@ const OurFriendsList = ({ friends }) => {
                       {phone}
                     </InfoItemPhone>
                   ) : (
-                    'on the website'
+                    `${t('on_the_website')}`
                   )}
                 </InfoItemText>
               </InfoItem>

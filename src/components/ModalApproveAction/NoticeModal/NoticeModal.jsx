@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import { format } from 'date-fns';
+import React, { useState, useEffect } from 'react';
 import useAuth from 'shared/hooks/useAuth';
+import { useMedia } from 'shared/hooks/useMedia';
 
 import Button from 'shared/components/Button';
 import {
@@ -20,21 +22,15 @@ import {
   ImageCategory,
 } from './NoticeModal.styles';
 
-import { useMedia } from 'shared/hooks/useMedia';
-
 import Icon from 'shared/components/Icon';
 
-import { updateFavoriteNotice } from '../../../utils/ApiNotices';
-import { calculateAge } from 'utils/calculateAge';
-// import { formatUserTel } from 'utils/formatUserTel';
-
 import { getNoticeById } from 'utils/ApiNotices';
-import { useEffect } from 'react';
+import { updateFavoriteNotice } from '../../../utils/ApiNotices';
 
-const NoticeModal = ({ notice, close }) => {
+const NoticeModal = ({ notice, close, setIsFavorite }) => {
   const { isLoggedIn } = useAuth();
   const [favorite, setFavorite] = useState(!!notice.favorite);
-  const [ownerContacts, setOwnerContacts] = useState({});
+  const [ownerContacts, setOwnerContacts] = useState({ email: '', phone: '' });
   const screenSize = useMedia(
     ['(min-width: 1280px)', '(min-width: 768px)', '(min-width: 480px)'],
     ['desktop', 'tablet', 'mobile'],
@@ -45,22 +41,17 @@ const NoticeModal = ({ notice, close }) => {
   useEffect(() => {
     getNoticeById(notice._id)
       .then(res => {
-        // console.log(res.owner);
-        setOwnerContacts(res.owner);
+        if (res.owner) {
+          setOwnerContacts(res.owner);
+        }
       })
       .catch(e => console.log(e));
   }, [notice._id]);
-
-  console.log(ownerContacts);
 
   const approveAddFavorite = async notice => {
     try {
       if (!isLoggedIn) {
         alert('Please sign in to add to favorites');
-        return;
-      }
-      if (!notice || !notice._id) {
-        console.error('Notice is undefined or does not have an _id property');
         return;
       }
 
@@ -70,9 +61,14 @@ const NoticeModal = ({ notice, close }) => {
       await updateFavoriteNotice(notice._id, updateToFavorite);
       notice.favorite = !favorite;
       setFavorite(!favorite);
+      setIsFavorite(notice._id);
     } catch (error) {
       alert('Failed to update notice. Please try again later.');
     }
+  };
+
+  const formatBirthdayDate = date => {
+    return format(Date.parse(date), 'dd.MM.yyyy');
   };
 
   return (
@@ -93,7 +89,9 @@ const NoticeModal = ({ notice, close }) => {
                 </PetDataItem>
                 <PetDataItem>
                   <NameCategory>Birthday:</NameCategory>
-                  <ValueCategory>{calculateAge(notice.birthday)}</ValueCategory>
+                  <ValueCategory>
+                    {formatBirthdayDate(notice.birthday)}
+                  </ValueCategory>
                 </PetDataItem>
                 <PetDataItem>
                   <NameCategory>Breed:</NameCategory>
@@ -111,7 +109,7 @@ const NoticeModal = ({ notice, close }) => {
                   <NameCategory>Email:</NameCategory>
                   <ValueCategory>
                     <ContactLinkItem href="mailto:">
-                      {ownerContacts.email}
+                      {ownerContacts.email ? ownerContacts.email : 'no email'}
                     </ContactLinkItem>
                   </ValueCategory>
                 </PetDataItem>
@@ -122,7 +120,6 @@ const NoticeModal = ({ notice, close }) => {
                       {ownerContacts.phone
                         ? ownerContacts.phone
                         : 'no phone number'}
-                      {/* {UserTel(user.phone)} */}
                     </ContactLinkItem>
                   </ValueCategory>
                 </PetDataItem>
