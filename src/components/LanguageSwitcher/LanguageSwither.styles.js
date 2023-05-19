@@ -34,5 +34,6 @@ export const Select = styled.select`
       padding: 8px 0;
       font-size: ${props => props.theme.fontSizes.m};
       line-height: 1.35;
-    }}
+    }
+  }
 `;
