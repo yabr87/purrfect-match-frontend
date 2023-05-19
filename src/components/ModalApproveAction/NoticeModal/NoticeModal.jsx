@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import { format } from 'date-fns';
+import React, { useState, useEffect } from 'react';
 import useAuth from 'shared/hooks/useAuth';
+import { useMedia } from 'shared/hooks/useMedia';
 
 import Button from 'shared/components/Button';
 import {
@@ -20,18 +22,12 @@ import {
   ImageCategory,
 } from './NoticeModal.styles';
 
-import { useMedia } from 'shared/hooks/useMedia';
-
 import Icon from 'shared/components/Icon';
 
-import { updateFavoriteNotice } from '../../../utils/ApiNotices';
-import { calculateAge } from 'utils/calculateAge';
-// import { formatUserTel } from 'utils/formatUserTel';
-
 import { getNoticeById } from 'utils/ApiNotices';
-import { useEffect } from 'react';
+import { updateFavoriteNotice } from '../../../utils/ApiNotices';
 
-const NoticeModal = ({ notice, close }) => {
+const NoticeModal = ({ notice, close, setIsFavorite }) => {
   const { isLoggedIn } = useAuth();
   const [favorite, setFavorite] = useState(!!notice.favorite);
   const [ownerContacts, setOwnerContacts] = useState({ email: '', phone: '' });
@@ -48,22 +44,14 @@ const NoticeModal = ({ notice, close }) => {
         if (res.owner) {
           setOwnerContacts(res.owner);
         }
-        // console.log(res.owner);
-        // setOwnerContacts(res.owner);
       })
       .catch(e => console.log(e));
   }, [notice._id]);
-
-  console.log(ownerContacts);
 
   const approveAddFavorite = async notice => {
     try {
       if (!isLoggedIn) {
         alert('Please sign in to add to favorites');
-        return;
-      }
-      if (!notice || !notice._id) {
-        console.error('Notice is undefined or does not have an _id property');
         return;
       }
 
@@ -73,9 +61,14 @@ const NoticeModal = ({ notice, close }) => {
       await updateFavoriteNotice(notice._id, updateToFavorite);
       notice.favorite = !favorite;
       setFavorite(!favorite);
+      setIsFavorite(notice._id);
     } catch (error) {
       alert('Failed to update notice. Please try again later.');
     }
+  };
+
+  const formatBirthdayDate = date => {
+    return format(Date.parse(date), 'dd.MM.yyyy');
   };
 
   return (
@@ -96,7 +89,9 @@ const NoticeModal = ({ notice, close }) => {
                 </PetDataItem>
                 <PetDataItem>
                   <NameCategory>Birthday:</NameCategory>
-                  <ValueCategory>{calculateAge(notice.birthday)}</ValueCategory>
+                  <ValueCategory>
+                    {formatBirthdayDate(notice.birthday)}
+                  </ValueCategory>
                 </PetDataItem>
                 <PetDataItem>
                   <NameCategory>Breed:</NameCategory>

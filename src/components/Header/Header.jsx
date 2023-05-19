@@ -9,6 +9,7 @@ import UserNav from './UserNav';
 import Icon from 'shared/components/Icon/Icon';
 import ModalApproveAction from 'components/ModalApproveAction';
 import Logout from 'components/ModalApproveAction/Logout';
+import LanguageSwitcher from 'components/LanguageSwitcher/LanguageSwitcher';
 import {
   AppHeader,
   HeaderContainer,
@@ -58,6 +59,7 @@ const Header = () => {
           {isDesktop && (
             <>
               {nav}
+              {<LanguageSwitcher />}
               {userBar}
             </>
           )}

@@ -1,8 +1,7 @@
 import { useState } from 'react';
 
 import { ToggleContainer } from './Switcher.styles';
-import { ReactComponent as MoonIcon } from './moon.svg';
-import { ReactComponent as SunIcon } from './sun.svg';
+import Icon from 'shared/components/Icon/Icon';
 
 const Switcher = ({ onClick }) => {
   const [isCheked, setIsCheked] = useState(false);
@@ -16,8 +15,8 @@ const Switcher = ({ onClick }) => {
       }}
       lightTheme={!isCheked}
     >
-      <SunIcon />
-      <MoonIcon />
+      <Icon id="sun" />
+      <Icon id="moon" />
     </ToggleContainer>
   );
 };

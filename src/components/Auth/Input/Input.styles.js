@@ -9,7 +9,7 @@ export const InputPassword = styled(Field)`
   border-color: ${props => props.error};
   border-radius: ${props => props.theme.radius.normal};
   background: ${props => props.theme.colors.backgroundColor};
-  color: inherit;
+  color: ${props => props.theme.colors.inputColor};
 
   ::placeholder {
     font-weight: ${props => props.theme.fontWeiths.normal};
