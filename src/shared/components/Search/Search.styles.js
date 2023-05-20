@@ -6,7 +6,7 @@ export const SearchForm = styled(Form)`
   height: 44px;
   position: relative;
   margin: 24px auto 0;
-  @media screen and (min-width: 768px) {
+  @media ${props => props.theme.media.tab} {
     margin-top: 40px;
   }
 `;
@@ -15,24 +15,24 @@ export const SearchInput = styled(Field)`
   padding: 14px 71px 14px 20px;
   border: none;
   width: 100%;
-  font-family: 'Inter';
+  font-family: ${({ theme }) => theme.fonts.placeholders};
   font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
+  font-weight: ${({ theme }) => theme.fontWeiths.normal};
+  font-size: ${({ theme }) => theme.fontSizes.search};
   line-height: 1.214;
   letter-spacing: 0.04em;
-  color: #888888;
-  background: #ffffff;
-  box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
+  color: ${({ theme }) => theme.colors.inputText};
+  background-color: ${({ theme }) => theme.colors.inputBackground};
+  box-shadow: ${({ theme }) => theme.shadows.default};
   border-radius: 20px;
   margin: 0 auto;
   display: block;
-  outline: none;
+  outline: ${({ theme }) => theme.colors.inputOutline};
 
-  @media screen and (min-width: 768px) {
+  @media ${props => props.theme.media.tab} {
     padding: 10px 71px 10px 20px;
-    font-size: 20px;
-    font-weight: 500;
+    font-size: ${({ theme }) => theme.fontSizes.m};
+    ${({ theme }) => theme.fontWeiths.semi};
     line-height: 1.2;
     max-width: 608px;
   }

@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useSearchParams, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+
 import Loader from 'shared/components/Loader';
 import useAuth from 'shared/hooks/useAuth';
 
@@ -22,11 +24,10 @@ function NoticesPage() {
   const navigate = useNavigate();
 
   const { isLoggedIn } = useAuth();
+  const { t } = useTranslation();
 
   const handleAddPet = () => {
-    isLoggedIn
-      ? navigate('/add-pet')
-      : alert('Please register or sign in to be able to add pet');
+    isLoggedIn ? navigate('/add-pet') : alert(t('alert_register_signin'));
   };
 
   const [totalPages, setTotalPages] = useState(null);
@@ -35,12 +36,35 @@ function NoticesPage() {
     return page ? Number(page) : 1;
   });
   const [notices, setNotices] = useState([]);
-  const [fetching, setFetching] = useState(true);
-
+  const [fetching, setFetching] = useState(false);
   const { categoryName } = useParams();
-  const title = searchParams.get('title');
+  const [category, setCategory] = useState(categoryName);
 
+  const [title, setTitle] = useState(() => {
+    const titleSearch = searchParams.get('title');
+    return titleSearch ? titleSearch : null;
+  });
+
+  if (categoryName !== category) {
+    const params = { page: 1 };
+    if (['sell', 'lost-found', 'for-free'].includes(categoryName)) {
+      params.category = categoryName;
+    }
+    if (categoryName === 'favorite') {
+      params.favorite = true;
+    }
+    if (categoryName === 'own') {
+      params.own = true;
+    }
+    if (title) {
+      params.title = title;
+    }
+    setSearchParams(params);
+    setCurrentPage(1);
+    setCategory(categoryName);
+  }
   useEffect(() => {
+    setFetching(true);
     const params = { page: currentPage };
     if (['sell', 'lost-found', 'for-free'].includes(categoryName)) {
       params.category = categoryName;
@@ -54,7 +78,6 @@ function NoticesPage() {
     if (title) {
       params.title = title;
     }
-
     getNotices(params)
       .then(({ data }) => {
         setTotalPages(data.totalPages);
@@ -67,9 +90,7 @@ function NoticesPage() {
   return (
     <Container>
       <NoticesSearch
-        setItems={setNotices}
-        setTotalPages={setTotalPages}
-        setFetching={setFetching}
+        setTitle={setTitle}
         setCurrentPage={setCurrentPage}
         setSearchParams={setSearchParams}
       />
@@ -94,17 +115,28 @@ function NoticesPage() {
               onClick={handleAddPet}
               disabled={!isLoggedIn}
             >
-              Add pet
+              {t('Add_pet')}
             </CircleButton>
           ) : (
             <Button style={{ width: '129px' }} onClick={handleAddPet}>
-              Add pet
+              {t('Add_pet')}
               <Icon id="plus-small" />
             </Button>
           )}
         </div>
       </div>
-      {fetching && <Loader />}
+      {fetching && (
+        <div
+          style={{
+            position: 'absolute',
+            left: '50%',
+            transform: 'translate(-50%, -65%)',
+            zIndex: 1000,
+          }}
+        >
+          <Loader />
+        </div>
+      )}
       <NoticesCategoriesList
         totalPages={totalPages}
         currentPage={currentPage}

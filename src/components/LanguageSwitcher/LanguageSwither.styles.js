@@ -6,14 +6,13 @@ export const Select = styled.select`
   display: block;
   border: none;
   background: transparent;
-  margin-left: 10px;
 
   font-weight: ${props => props.theme.fontWeiths.semi};
-  font-size: 32px;
+  font-size: 16px;
   line-height: 1.37;
   letter-spacing: 0.04em;
 
-  color: ${props => props.theme.colors.black};
+  color: ${props => props.theme.colors.textColor};
   outline: none;
   transition: color 250ms ease;
 
@@ -24,7 +23,7 @@ export const Select = styled.select`
   }
 
   @media ${props => props.theme.media.tab} {
-    font-size: ${props => props.theme.fontSizes.title};
+    font-size: ${props => props.theme.fontSizes.s};
 
     &:hover,
     &:focus {
@@ -36,4 +35,5 @@ export const Select = styled.select`
       font-size: ${props => props.theme.fontSizes.m};
       line-height: 1.35;
     }
+  }
 `;

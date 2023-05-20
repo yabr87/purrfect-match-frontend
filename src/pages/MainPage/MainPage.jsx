@@ -1,14 +1,16 @@
 import Container from 'shared/components/Container';
-import { Title, Pictures, PicturesContainer } from './MainPage.styles';
+import { useTranslation } from 'react-i18next';
+import { Title, Pictures, SectionWrapper } from './MainPage.styles';
 
 const MainPage = () => {
+  const { t } = useTranslation();
   return (
-    <Container>
-      <Title>Take good care of your small pets</Title>
-      <PicturesContainer>
-        <Pictures />
-      </PicturesContainer>
-    </Container>
+    <SectionWrapper>
+      <Container>
+        <Title>{t('mainPage_title')}</Title>
+      </Container>
+      <Pictures />
+    </SectionWrapper>
   );
 };
 

@@ -1,8 +1,12 @@
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 
 import { formatNewsDate } from 'utils/formatNewsDate';
 
 import { Item, Img, Title, Text, Bottom, Link } from './NewsItem.styles';
+
+const defaultUrl =
+  'https://st.depositphotos.com/1032463/1373/i/950/depositphotos_13732950-stock-photo-background-of-old-vintage-newspapers.jpg';
 
 const NewsItem = ({
   imgUrl = 'via.placeholder.com',
@@ -12,15 +16,21 @@ const NewsItem = ({
   url,
 }) => {
   const newsDate = formatNewsDate(date);
+  const { t } = useTranslation();
+
+  const handleLoadError = e => {
+    e.currentTarget.src = defaultUrl;
+  };
+
   return (
     <Item>
-      <Img src={imgUrl} alt="Article theme" />
+      <Img src={imgUrl} onError={handleLoadError} alt="Article theme" />
       <Title>{title}</Title>
       <Text>{text}</Text>
       <Bottom>
         <p>{newsDate}</p>
         <Link href={url} target="_blank" rel="noreferrer">
-          Read more
+          {t('Read_more')}
         </Link>
       </Bottom>
     </Item>

@@ -14,8 +14,8 @@ export const ModalOverlay = styled.div`
 `;
 
 export const ModalView = styled.div`
-  border-radius: 20px;
-  background-color: #fff;
+  border-radius: ${props => props.theme.radius.normal};
+  background-color: ${props => props.theme.colors.backgroundModal};
   position: absolute;
   top: 50%;
   left: 50%;

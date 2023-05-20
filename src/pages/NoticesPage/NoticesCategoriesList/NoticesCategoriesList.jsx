@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import NoticeCategoryItem from '../NoticeCategoryItem/NoticeCategoryItem';
 
@@ -16,6 +17,7 @@ const NoticesCategoriesList = ({
   setNotices,
 }) => {
   const [noticesAfterDel, setNoticesAfterDel] = useState(notices);
+  const { t } = useTranslation();
 
   useEffect(() => {
     setNoticesAfterDel(notices);
@@ -38,7 +40,7 @@ const NoticesCategoriesList = ({
             />
           ))
         ) : (
-          <div>There is no result</div>
+          <div>{t('No_result')}</div>
         )}
       </CollectionContainer>
       {totalPages > 1 && (

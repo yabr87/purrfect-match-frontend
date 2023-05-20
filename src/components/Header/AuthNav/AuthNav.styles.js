@@ -5,7 +5,7 @@ export const AuthContainer = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 12px;
-  padding: 40px 0;
+  padding-bottom: 40px;
 
   @media ${props => props.theme.media.tab} {
     flex-direction: row;

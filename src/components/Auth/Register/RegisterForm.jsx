@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+
 import { ErrorMessage, Formik } from 'formik';
 import { useDispatch } from 'react-redux';
 
@@ -20,6 +22,9 @@ import Button from 'shared/components/Button/Button';
 import Title from 'shared/components/Title/Title';
 import Icon from 'shared/components/Icon/Icon';
 
+import useAuth from 'shared/hooks/useAuth';
+import { toast } from 'react-toastify';
+import { clearError } from 'redux/auth/authSlice';
 import { signup } from 'redux/auth/authOperations';
 
 const validateShecma = Yup.object().shape({
@@ -39,13 +44,24 @@ const validateShecma = Yup.object().shape({
 
 const RegisterForm = () => {
   const navigate = useNavigate();
-
+  const { isLoggedIn, isError } = useAuth();
   const dispatch = useDispatch();
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate('/user', { state: { isModalOpen: true } });
+      // navigate('/notices/sell');
+    }
+    if (isError) {
+      toast.error(`${isError}`, { position: toast.POSITION.TOP_RIGHT });
+      dispatch(clearError());
+    }
+  }, [isLoggedIn, navigate, isError, dispatch]);
+
   return (
     <Formik
       initialValues={{ email: '', password: '', confirmedPassword: '' }}
       onSubmit={(values, actions) => {
-        navigate('/user', { state: { isModalOpen: true } });
+        // navigate('/user', { state: { isModalOpen: true } });
         dispatch(
           signup({
             email: values.email,

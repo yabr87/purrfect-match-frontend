@@ -4,56 +4,189 @@ export const instance = axios.create({
   baseURL: process.env.REACT_APP_API_URL,
 });
 
-//добавив тут
 export const setToken = token => {
   instance.defaults.headers.authorization = token ? `Bearer ${token}` : '';
 };
 
-// const setToken = token => {};
+const ERROR_401_MESSAGE = 'You are not authorized. Log in first.';
+const ERROR_500_MESSAGE = 'Internal server error.';
 
 export const signup = async data => {
-  const response = await instance.post('/api/users/register', data);
-  //добавив тут
-  setToken(response.data.token);
-  return response;
+  try {
+    const response = await instance.post('/api/users/register', data);
+    setToken(response.data.token);
+    return response;
+  } catch (error) {
+    const {
+      message: errorMessage,
+      response: { status, data: { message: responseMessage }, keyValue } = {},
+    } = error;
+    switch (status) {
+      case 400:
+        throw new Error(
+          responseMessage ||
+            (keyValue?.email && 'Please try another email') ||
+            'New user registration has failed'
+        );
+      case 500:
+        throw new Error(ERROR_500_MESSAGE);
+      default:
+        throw new Error(
+          responseMessage || errorMessage || 'New user registration has failed'
+        );
+    }
+  }
 };
 
 export const login = async data => {
-  const response = await instance.post('/api/users/login', data);
-  //добавив тут
-  setToken(response.data.token);
-  return response;
+  try {
+    const response = await instance.post('/api/users/login', data);
+    setToken(response.data.token);
+    return response;
+  } catch (error) {
+    const {
+      message: errorMessage,
+      response: { status, data: { message: responseMessage } } = {},
+    } = error;
+    switch (status) {
+      case 400:
+        throw new Error('Unsuccessful login attempt. Wrong login or password.');
+      case 500:
+        throw new Error(`Unsuccessful login attempt. ${ERROR_500_MESSAGE}`);
+      default:
+        throw new Error(
+          responseMessage || errorMessage || 'Unsuccessful login attempt.'
+        );
+    }
+  }
 };
 
 export const refresh = async token => {
-  setToken(token);
-  const response = await instance.post('/api/users/refresh');
-  setToken(response.data.token);
-  return response;
+  try {
+    setToken(token);
+    const response = await instance.post('/api/users/refresh');
+    setToken(response.data.token);
+    return response;
+  } catch (error) {
+    const {
+      message: errorMessage,
+      response: { status, data: { message: responseMessage } } = {},
+    } = error;
+    switch (status) {
+      case 400:
+        throw new Error(
+          'Unsuccessful refresh attempt. Wrong login or password.'
+        );
+      case 401:
+        throw new Error(ERROR_401_MESSAGE);
+      case 500:
+        throw new Error(`Unsuccessful refresh attempt. ${ERROR_500_MESSAGE}`);
+      default:
+        throw new Error(
+          responseMessage || errorMessage || 'Unsuccessful refresh attempt.'
+        );
+    }
+  }
 };
 
 export const logout = async () => {
-  const data = await instance.post('/api/users/logout');
-  setToken();
-  return data;
+  try {
+    const data = await instance.post('/api/users/logout');
+    setToken(null);
+    return data;
+  } catch (error) {
+    const {
+      message: errorMessage,
+      response: { status, data: { message: responseMessage } } = {},
+    } = error;
+    switch (status) {
+      case 401:
+        return;
+      case 500:
+        throw new Error(ERROR_500_MESSAGE);
+      default:
+        throw new Error(
+          responseMessage || errorMessage || 'Failed to log out.'
+        );
+    }
+  }
 };
 
 export const getCurrent = async token => {
-  setToken(token);
-  const response = await instance.get('/api/users/current');
-  return response;
+  try {
+    setToken(token);
+    const response = await instance.get('/api/users/current');
+    return response;
+  } catch (error) {
+    const {
+      message: errorMessage,
+      response: {
+        status,
+        data: { message: responseMessage },
+      },
+    } = error;
+    switch (status) {
+      case 401:
+        throw new Error(ERROR_401_MESSAGE);
+      case 500:
+        throw new Error(ERROR_500_MESSAGE);
+      default:
+        throw new Error(
+          responseMessage || errorMessage || 'Failed to get current notices'
+        );
+    }
+  }
 };
 
 export const addAvatar = async (token, data) => {
-  setToken(token);
-  const response = await instance.patchForm('api/users/current/avatar', data);
-  return response;
+  try {
+    setToken(token);
+    const response = await instance.patchForm('api/users/current/avatar', data);
+    return response;
+  } catch (error) {
+    const {
+      message: errorMessage,
+      response: { status, data: { message: responseMessage } } = {},
+    } = error;
+    switch (status) {
+      case 400:
+        throw new Error('Unsuccessful to add avatar.');
+      case 401:
+        throw new Error(ERROR_401_MESSAGE);
+      case 500:
+        throw new Error(`Unsuccessful to add avatar. ${ERROR_500_MESSAGE}`);
+      default:
+        throw new Error(
+          responseMessage || errorMessage || 'Unsuccessful to add avatar.'
+        );
+    }
+  }
 };
 
 export const updateUserInfo = async (token, data) => {
-  setToken(token);
-  const response = await instance.patch('api/users/current', data);
-  return response;
+  try {
+    setToken(token);
+    const response = await instance.patch('api/users/current', data);
+    return response;
+  } catch (error) {
+    const {
+      message: errorMessage,
+      response: {
+        status,
+        data: { message: responseMessage },
+      },
+    } = error;
+    switch (status) {
+      case 401:
+        throw new Error(ERROR_401_MESSAGE);
+      case 500:
+        throw new Error(ERROR_500_MESSAGE);
+      default:
+        throw new Error(
+          responseMessage || errorMessage || 'Failed to update user info'
+        );
+    }
+  }
 };
 
 export default instance;

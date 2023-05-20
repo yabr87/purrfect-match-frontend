@@ -1,45 +1,27 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
-// import { useSearchParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+
 import Search from 'shared/components/Search/Search';
 import Title from 'shared/components/Title';
-// import { Cover } from './NoticesSearch.styles';
-import { getNotices } from 'utils/ApiNotices';
 
-const NoticesSearch = ({
-  setItems,
-  setTotalPages,
-  setFetching,
-  setCurrentPage,
-  setSearchParams,
-}) => {
-  const { categoryName } = useParams();
+const NoticesSearch = ({ setCurrentPage, setSearchParams, setTitle }) => {
+  const { t } = useTranslation();
 
   const onSubmit = values => {
     const params = { page: 1, title: values.search };
-    if (['sell', 'lost-found', 'for-free'].includes(categoryName)) {
-      params.category = categoryName;
-    }
-    if (categoryName === 'favorite') {
-      params.favorite = true;
-    }
-    if (categoryName === 'own') {
-      params.own = true;
-    }
     setCurrentPage(1);
+    setTitle(values.search);
     setSearchParams(params);
-    getNotices(params)
-      .then(({ data }) => {
-        setItems(data.results);
-        setTotalPages(data.totalPages);
-      })
-      .catch(e => console.log(e))
-      .finally(setFetching(false));
   };
+
   return (
     <>
-      <Title>Find your favorite pet</Title>
-      <Search onFormSubmit={onSubmit} />
+      <Title>{t('Find_your_favorite_pet')}</Title>
+      <Search
+        onFormSubmit={onSubmit}
+        setCurrentPage={setCurrentPage}
+        setQuery={setTitle}
+      />
     </>
   );
 };
