@@ -31,6 +31,7 @@ import NoticeModal from 'components/ModalApproveAction/NoticeModal';
 import Delete from 'components/ModalApproveAction/Delete';
 import LearnMore from './components/LearnMore';
 import AddToFavorite from './components/AddToFavorite';
+import { toast } from 'react-toastify';
 
 const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
   const { isLoggedIn, user } = useAuth();
@@ -64,12 +65,17 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
     }
   };
 
-  const handleDelete = async id => {
+  const handleDelete = async notice => {
     try {
-      await deleteNotice(id);
-      deleteAndRefresh(id);
+      await deleteNotice(notice._id);
+      deleteAndRefresh(notice._id);
+      toast.success(`${notice.title}: remowe`, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
     } catch (error) {
-      alert('Failed to delete notice. Please try again later.');
+      toast.warn('Failed to delete notice. Please try again later.', {
+        position: toast.POSITION.TOP_RIGHT,
+      });
     }
   };
 
@@ -132,7 +138,7 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
       {isModalDeleteOpen && (
         <ModalApproveAction close={() => setIsModalDeleteOpen(false)}>
           <Delete
-            approve={() => handleDelete(notice._id)}
+            approve={() => handleDelete(notice)}
             close={() => setIsModalDeleteOpen(false)}
           />
         </ModalApproveAction>
