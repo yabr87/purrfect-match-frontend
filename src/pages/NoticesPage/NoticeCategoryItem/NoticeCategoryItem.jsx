@@ -25,6 +25,7 @@ import {
 import Icon from 'shared/components/Icon/Icon';
 import CircleButton from 'shared/components/CircleButton';
 
+import EditModal from 'components/ModalApproveAction/EditModal';
 // import ModalNoticeTest from '../NoticeModalTest/NoticeModalTest';
 // _____________Modal Componenets________________
 import ModalApproveAction from 'components/ModalApproveAction';
@@ -38,17 +39,10 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
   const { isLoggedIn, user } = useAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false);
+  const [isModalEditOpen, setIsModalEditOpen] = useState(false);
 
   const { t } = useTranslation();
-  // const dispatch = useDispatch();
 
-  // const setIsFavorite = favorite => {
-  //   setNotices(prevNotices => {
-  //     const notices = [...prevNotices];
-  //     notices.find(({ _id }) => notice._id === _id).favorite = favorite;
-  //     return notices;
-  //   });
-  // };
   const { categoryName } = useParams();
   const setIsFavorite = async id => {
     const updatedNotice = await getNoticeById(id);
@@ -78,6 +72,15 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
       toast.warn('Failed to delete notice. Please try again later.', {
         position: toast.POSITION.TOP_RIGHT,
       });
+    }
+  };
+
+    const handleEdit = async id => {
+    try {
+      console.log('Pet is edited')
+      // await editNotice(id) 
+    } catch (error) {
+      alert('Failed to delete notice. Please try again later.');
     }
   };
 
@@ -130,6 +133,7 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
         </ModalApproveAction>
       )}
       {isLoggedIn && user && notice.own && (
+        <>
         <CircleButton
           id="trash"
           z="999"
@@ -138,12 +142,38 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
           r="12px"
           onClick={() => setIsModalDeleteOpen(true)}
         ></CircleButton>
+        <CircleButton
+            id="edit"
+            pos="absolute"
+            t="124px"
+            r="12px"
+            onClick={() => setIsModalEditOpen(true)}
+          ></CircleButton>
+        </>
       )}
       {isModalDeleteOpen && (
         <ModalApproveAction close={() => setIsModalDeleteOpen(false)}>
           <Delete
             approve={() => handleDelete(notice)}
             close={() => setIsModalDeleteOpen(false)}
+          />
+        </ModalApproveAction>
+      )}
+      {isModalEditOpen && (
+        <ModalApproveAction close={() => setIsModalEditOpen(false)}>
+          <EditModal
+            notice={notice}
+            approve={() => handleEdit(notice._id)}
+            close={() => setIsModalEditOpen(false)}
+          />
+        </ModalApproveAction>
+      )}
+      {isModalEditOpen && (
+        <ModalApproveAction close={() => setIsModalEditOpen(false)}>
+          <EditModal
+            notice={notice}
+            approve={() => handleEdit(notice._id)}
+            close={() => setIsModalEditOpen(false)}
           />
         </ModalApproveAction>
       )}
