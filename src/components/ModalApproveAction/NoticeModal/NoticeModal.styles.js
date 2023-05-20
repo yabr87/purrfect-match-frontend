@@ -4,7 +4,7 @@ export const ContainerView = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  padding: 44px 0 16px 0;
+  padding: 44px 20px 16px 20px;
   width: 100%;
   @media ${props => props.theme.media.mobile} {
     min-width: 280px;
