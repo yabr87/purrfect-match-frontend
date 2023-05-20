@@ -56,6 +56,7 @@ const NewsPage = () => {
 
   const onSubmit = values => {
     const params = { page: 1, search: values.search };
+    setSearch(values.search);
     setCurrentPage(1);
     setSearchParams(params);
   };
