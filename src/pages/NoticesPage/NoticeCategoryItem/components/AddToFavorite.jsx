@@ -10,8 +10,6 @@ const AddToFavorite = ({ notice, setIsFavorite }) => {
   const { isLoggedIn } = useAuth();
   const { t } = useTranslation();
 
-  const [isHovered, setIsHovered] = useState(false);
-
   const handleUpdate = async () => {
     try {
       if (!isLoggedIn) {
@@ -40,15 +38,7 @@ const AddToFavorite = ({ notice, setIsFavorite }) => {
       t="12px"
       r="12px"
       onClick={handleUpdate}
-      f={
-        isHovered
-          ? '#CCE4FB'
-          : isLoggedIn && notice.favorite
-          ? '#54adff'
-          : '#CCE4FB'
-      }
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      f={isLoggedIn && notice.favorite ? '#54adff' : 'transparent'}
     ></CircleButton>
   );
 };
