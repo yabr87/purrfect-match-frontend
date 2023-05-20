@@ -25,6 +25,7 @@ import {
 import Button from 'shared/components/Button';
 import Icon from 'shared/components/Icon';
 import ImageUploader from 'shared/components/ImageUploader';
+import validationSchemaEdit from './validationSchemaEdit';
 
 const EditModal = ({ notice, close, approve }) => {
   // const navigate = useNavigate();
@@ -66,7 +67,7 @@ const EditModal = ({ notice, close, approve }) => {
     <EditContainer>
       <PetCardData>
         <Wrap>
-          <Formik onSubmit={handleSubmit} initialValues={initialValues}>
+          <Formik onSubmit={handleSubmit} initialValues={initialValues} validationSchema={validationSchemaEdit}>
             {({
               isSubmitting,
               handleChange,
