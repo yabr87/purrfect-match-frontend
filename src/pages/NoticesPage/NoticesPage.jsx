@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useSearchParams, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+
 import Loader from 'shared/components/Loader';
 import useAuth from 'shared/hooks/useAuth';
 
@@ -22,11 +24,10 @@ function NoticesPage() {
   const navigate = useNavigate();
 
   const { isLoggedIn } = useAuth();
+  const { t } = useTranslation();
 
   const handleAddPet = () => {
-    isLoggedIn
-      ? navigate('/add-pet')
-      : alert('Please register or sign in to be able to add pet');
+    isLoggedIn ? navigate('/add-pet') : alert(t('alert_register_signin'));
   };
 
   const [totalPages, setTotalPages] = useState(null);
@@ -114,11 +115,11 @@ function NoticesPage() {
               onClick={handleAddPet}
               disabled={!isLoggedIn}
             >
-              Add pet
+              {t('Add_pet')}
             </CircleButton>
           ) : (
             <Button style={{ width: '129px' }} onClick={handleAddPet}>
-              Add pet
+              {t('Add_pet')}
               <Icon id="plus-small" />
             </Button>
           )}
