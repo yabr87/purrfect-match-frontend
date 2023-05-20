@@ -33,7 +33,7 @@ import { UserLabel } from './UserDataItem.styled';
 const initialState = {
   name: '',
   email: '',
-  birthday: '',
+  birthday: new Date(),
   phone: '',
   city: '',
   photo: null,
@@ -41,7 +41,6 @@ const initialState = {
 
 const UserData = () => {
   const [user, setUser] = useState(initialState);
-  const [startDate, setStartDate] = useState(new Date());
   const [disable, setDisable] = useState(true);
   const [isModalLogoutOpen, setIsModalLogoutOpen] = useState(false);
   const [isConfirm, setIsConfirm] = useState(false);
@@ -51,7 +50,7 @@ const UserData = () => {
   useEffect(() => {
     const getUser = async token => {
       const res = await getCurrent(token);
-      setUser(res.data);
+      setUser({ ...res.data, birthday: reverseISODate(res.data.birthday) });
     };
     getUser(token);
   }, [token]);
@@ -71,7 +70,7 @@ const UserData = () => {
   };
 
   const handleInputSubmit = async () => {
-    const req = { birthday: convertToISODate(startDate) };
+    const req = { birthday: convertToISODate(user.birthday) };
     await updateUserInfo(token, req);
     setDisable(true);
   };
@@ -142,9 +141,9 @@ const UserData = () => {
                 as={DatePicker}
                 name="birthday"
                 placeholderText="DD.MM.YYYY"
-                onChange={date => setStartDate(date)}
-                selected={startDate}
-                value={reverseISODate(startDate)}
+                onChange={date => setUser({ ...user, birthday: date })}
+                selected={user.birthday}
+                value={user.birthday}
                 dateFormat="dd.MM.yyyy"
                 maxDate={maxDate}
                 disabled={disable}
