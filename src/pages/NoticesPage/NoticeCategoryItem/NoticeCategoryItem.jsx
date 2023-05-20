@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
 
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import useAuth from 'shared/hooks/useAuth';
 
 import { deleteNotice } from '../../../utils/ApiNotices';
@@ -31,13 +32,14 @@ import NoticeModal from 'components/ModalApproveAction/NoticeModal';
 import Delete from 'components/ModalApproveAction/Delete';
 import LearnMore from './components/LearnMore';
 import AddToFavorite from './components/AddToFavorite';
-import EditModal from 'components/ModalApproveAction/EditModal';
+import { toast } from 'react-toastify';
 
 const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
   const { isLoggedIn, user } = useAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false);
-  const [isModalEditOpen, setIsModalEditOpen] = useState(false);
+
+  const { t } = useTranslation();
   // const dispatch = useDispatch();
 
   // const setIsFavorite = favorite => {
@@ -65,21 +67,17 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
     }
   };
 
-  const handleDelete = async id => {
+  const handleDelete = async notice => {
     try {
-      await deleteNotice(id);
-      deleteAndRefresh(id);
+      await deleteNotice(notice._id);
+      deleteAndRefresh(notice._id);
+      toast.success(`${notice.title}: remowe`, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
     } catch (error) {
-      alert('Failed to delete notice. Please try again later.');
-    }
-  };
-
-  const handleEdit = async id => {
-    try {
-      console.log('Pet is edited')
-      // await editNotice(id) 
-    } catch (error) {
-      alert('Failed to delete notice. Please try again later.');
+      toast.warn('Failed to delete notice. Please try again later.', {
+        position: toast.POSITION.TOP_RIGHT,
+      });
     }
   };
 
@@ -89,7 +87,9 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
       <CardImageContainer>
         <CardImage src={notice.photoUrl} alt={notice.title} />
         <ImageCategory>
-          {notice.category.replace('for-free', 'for free').replace(/-/g, '/')}
+          {notice.category
+            .replace('for-free', `${t('for_free')}`)
+            .replace(/-/g, '/')}
         </ImageCategory>
 
         <ImageDetails>
@@ -151,7 +151,7 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
       {isModalDeleteOpen && (
         <ModalApproveAction close={() => setIsModalDeleteOpen(false)}>
           <Delete
-            approve={() => handleDelete(notice._id)}
+            approve={() => handleDelete(notice)}
             close={() => setIsModalDeleteOpen(false)}
           />
         </ModalApproveAction>

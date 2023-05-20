@@ -5,6 +5,7 @@ import {
   Avatar,
   Photo,
   AvatarContainer,
+  AvatarInput,
   Title,
   EditAvatarBtn,
   LogOutBtn,
@@ -13,42 +14,57 @@ import {
   InputItem,
   InputContainer,
   Wrap,
+  EditInputBtn,
 } from './';
 import Icon from 'shared/components/Icon/Icon';
 import { addAvatar, getCurrent } from 'utils/Api';
-import { reverseISODate } from 'utils/reverseISODate';
+import { updateUserInfo } from 'utils/Api';
 import ModalApproveAction from 'components/ModalApproveAction';
 import Logout from 'components/ModalApproveAction/Logout';
+import { reverseISODate } from 'utils/reverseISODate';
 
 const initialState = {
   name: '',
   email: '',
-  birthday: '',
+  birthday: new Date(),
   phone: '',
   city: '',
-  avatarUrl: null,
+  photo: null,
 };
 
-const UserData = handleChange => {
+const UserData = () => {
   const [user, setUser] = useState(initialState);
+  const [disable, setDisable] = useState(true);
   const [isModalLogoutOpen, setIsModalLogoutOpen] = useState(false);
+  const [isConfirm, setIsConfirm] = useState(false);
   const token = useSelector(store => store.auth.token);
 
   useEffect(() => {
     const getUser = async token => {
       const res = await getCurrent(token);
-      setUser(res.data);
+      setUser({ ...res.data, birthday: reverseISODate(res.data.birthday) });
     };
     getUser(token);
   }, [token]);
 
   const handlePhotoChange = e => {
-    setUser({ ...user, avatarUrl: e.target.files[0] });
+    setUser({ ...user, photo: e.target.files[0] });
+    setIsConfirm(true);
   };
 
   const handleUploadPhoto = async () => {
-    console.log(user.photo);
-    await addAvatar(token, { avatar: user.avatarUrl });
+    await addAvatar(token, { avatar: user.photo });
+    setIsConfirm(false);
+  };
+
+  const handleInputEdit = () => {
+    setDisable(false);
+  };
+
+  const handleInputSubmit = async () => {
+    const req = { birthday: user.birthday };
+    await updateUserInfo(token, req);
+    setDisable(true);
   };
 
   const handleLogOut = () => {
@@ -62,33 +78,73 @@ const UserData = handleChange => {
         <UserWrapper>
           <AvatarContainer>
             <Avatar>
-              <input
+              <AvatarInput
+                id="avatar"
                 type="file"
                 onChange={handlePhotoChange}
                 accept="image/png, image/jpeg"
                 multiple={false}
               />
-              {user.avatarUrl ? (
-                <Photo src={user.avatarUrl} alt="Selected file" />
+              {user.photo ? (
+                <Photo
+                  src={URL.createObjectURL(user.photo)}
+                  alt="Selected file"
+                />
               ) : (
-                <Icon id="add-photo-pet" w="48" h="48" s="#54ADFF" />
+                <Photo src={user.avatarUrl} alt="default avatar" />
               )}
-              <input />
             </Avatar>
-            <EditAvatarBtn onClick={handleUploadPhoto}>
-              <Icon id="camera" s="#54ADFF" />
-              <BtnText>Edit photo</BtnText>
-            </EditAvatarBtn>
+            {!isConfirm ? (
+              <EditAvatarBtn>
+                <Icon id="camera" s="#54ADFF" />
+                <label style={{ cursor: 'pointer' }} htmlFor="avatar">
+                  Edit photo
+                </label>
+              </EditAvatarBtn>
+            ) : (
+              <EditAvatarBtn onClick={handleUploadPhoto}>
+                <Icon id="complite" s="#54ADFF" />
+                <BtnText>Confirm</BtnText>
+              </EditAvatarBtn>
+            )}
           </AvatarContainer>
           <InputContainer>
-            <InputItem name="name" type="text" value={user.name || 'User'} />
-            <InputItem name="email" type="text" value={user.email} />
             <InputItem
-              name="birthday"
+              name="name"
               type="text"
-              value={reverseISODate(user.birthday) || ''}
+              value={user.name || 'User'}
+              placeholder="Name"
             />
-            <InputItem name="phone" type="text" value={user.phone} />
+            <InputItem
+              name="email"
+              type="text"
+              value={user.email}
+              placeholder="Email"
+            />
+              <InputItem
+                name="birthday"
+                placeholderText="DD.MM.YYYY"
+                onChange={date => setUser({ ...user, birthday: date })}
+                selected={user.birthday}
+                value={user.birthday}
+                dateFormat="dd.MM.yyyy"
+                disabled={disable}
+              />
+              {disable ? (
+                <EditInputBtn onClick={handleInputEdit}>
+                  <Icon id="edit" f="#54ADFF" s="none" />
+                </EditInputBtn>
+              ) : (
+                <EditInputBtn onClick={handleInputSubmit}>
+                  <Icon id="complite" s="#00C3AD" />
+                </EditInputBtn>
+              )}
+            <InputItem
+              name="phone"
+              type="text"
+              value={user.phone}
+              placeholder="+380XXXXXXXXX"
+            />
             <InputItem name="city" type="text" value={user.city || ''} />
             <LogOutBtn onClick={handleLogOut}>
               <Icon id="logout" s="#54ADFF" />

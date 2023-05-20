@@ -6,6 +6,10 @@ export const ContainerView = styled.div`
   flex-direction: column;
   padding: 60px 16px;
   text-align: center;
+  width: 100%;
+  @media ${props => props.theme.media.phone} {
+    min-width: 280px;
+  }
   @media ${props => props.theme.media.tab} {
     width: 608px;
   }
@@ -72,7 +76,13 @@ export const TextAccent = styled.span`
 `;
 
 export const ButtonWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
   @media ${props => props.theme.media.tab} {
     display: flex;
+    flex-direction: row;
   }
 `;

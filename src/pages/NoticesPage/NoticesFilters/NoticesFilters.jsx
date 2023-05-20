@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import Button from 'shared/components/Button';
 import Icon from 'shared/components/Icon';
@@ -25,6 +26,8 @@ function NoticesFilters({ fetchData }) {
   // const [age, setAge] = useState(null);
   // const [gender, setGender] = useState(null);
 
+  const { t } = useTranslation();
+
   const handleFilterClick = () => {
     setIsFilterOpen(!isFilterOpen);
   };
@@ -48,13 +51,13 @@ function NoticesFilters({ fetchData }) {
   };
 
   // const handleGenderChange = event => {
-    // const value = event.target.value;
-    // setGender(prevState =>
-    //   prevState.includes(value)
-    //     ? prevState.filter(item => item !== value)
-    //     : [...prevState, value]
-    // );
-    // fetchData();
+  // const value = event.target.value;
+  // setGender(prevState =>
+  //   prevState.includes(value)
+  //     ? prevState.filter(item => item !== value)
+  //     : [...prevState, value]
+  // );
+  // fetchData();
   // };
 
   return (
@@ -77,78 +80,98 @@ function NoticesFilters({ fetchData }) {
         ></CircleButton>
       ) : (
         <Button style={{ width: '152px' }} onClick={handleFilterClick}>
-          Filter
+          {t('Filter')}
           <Icon id="filters" />
         </Button>
       )}
       {isFilterOpen && (
         <FilterOptions>
-          <FiltersTitle>Filters</FiltersTitle>
-          <div style={{position: 'relative'}}>
-          <ContainerItem>
-            <FiltersItems onClick={handleAgeClick}>
-              <Icon id={!isAgeOpen ? "up" : "down"}/>
-              <Item>By age</Item>
-            </FiltersItems>
-            {isAgeOpen && (
-              <FilterChose>
-                <Checkbox value="young" label="3-12m" onChange={handleAgeChange}></Checkbox>
-                <Checkbox value="adult" label="1 year" onChange={handleAgeChange}></Checkbox>
-                <Checkbox value="old" label="2 year" onChange={handleAgeChange}></Checkbox>
-                {/*<label>*/}
-                {/*  <input*/}
-                {/*    type="checkbox"*/}
-                {/*    value="young"*/}
-                {/*    onChange={handleAgeChange}*/}
-                {/*  />*/}
-                {/*  3-12m*/}
-                {/*</label>*/}
-              {/*  <label>*/}
-              {/*  <input*/}
-              {/*    type="checkbox"*/}
-              {/*    value="adult"*/}
-              {/*    onChange={handleAgeChange}*/}
-              {/*  />*/}
-              {/*  1 year*/}
-              {/*</label>*/}
-              {/*  <label>*/}
-              {/*    <input*/}
-              {/*      type="checkbox"*/}
-              {/*      value="old"*/}
-              {/*      onChange={handleAgeChange}*/}
-              {/*    />*/}
-              {/*    2 year*/}
-              {/*  </label>*/}
-              </FilterChose>
-            )}
-          </ContainerItem>
-          <ContainerItem>
-            <FiltersItems onClick={handleGenderClick}>
-              <Icon id={!isGenderOpen ? "up" : "down"}/>
-              <Item>By gender</Item>
-            </FiltersItems>
-            {isGenderOpen && (
-              <FilterChose>
-                <Checkbox value="male" label="male" onChange={handleAgeChange}></Checkbox>
-                <Checkbox value="female" label="female" onChange={handleAgeChange}></Checkbox>
-                {/*<label>*/}
-                {/*  <input*/}
-                {/*    type="checkbox"*/}
-                {/*    value="male"*/}
-                {/*    onChange={handleGenderChange}*/}
-                {/*  />*/}
-                {/*  male*/}
-                {/*</label>*/}
-                {/*<label>*/}
-                {/*  <input*/}
-                {/*    type="checkbox"*/}
-                {/*    value="female"*/}
-                {/*    onChange={handleGenderChange}*/}
-                {/*  />*/}
-                {/*  female*/}
-                {/*</label>*/}
-              </FilterChose>
-            )}
+          <FiltersTitle>{t('Filters')}</FiltersTitle>
+          <div style={{ position: 'relative' }}>
+            <ContainerItem>
+              <FiltersItems onClick={handleAgeClick}>
+                <Icon id={!isAgeOpen ? 'up' : 'down'} />
+                <Item>{t('By_age')}</Item>
+              </FiltersItems>
+              {isAgeOpen && (
+                <FilterChose>
+                  <Checkbox
+                    value="young"
+                    label={`3-12${t('m')}`}
+                    onChange={handleAgeChange}
+                  ></Checkbox>
+                  <Checkbox
+                    value="adult"
+                    label={`1 ${t('year')}`}
+                    onChange={handleAgeChange}
+                  ></Checkbox>
+                  <Checkbox
+                    value="old"
+                    label={`2 ${t('years')}`}
+                    onChange={handleAgeChange}
+                  ></Checkbox>
+                  {/*<label>*/}
+                  {/*  <input*/}
+                  {/*    type="checkbox"*/}
+                  {/*    value="young"*/}
+                  {/*    onChange={handleAgeChange}*/}
+                  {/*  />*/}
+                  {/*  3-12m*/}
+                  {/*</label>*/}
+                  {/*  <label>*/}
+                  {/*  <input*/}
+                  {/*    type="checkbox"*/}
+                  {/*    value="adult"*/}
+                  {/*    onChange={handleAgeChange}*/}
+                  {/*  />*/}
+                  {/*  1 year*/}
+                  {/*</label>*/}
+                  {/*  <label>*/}
+                  {/*    <input*/}
+                  {/*      type="checkbox"*/}
+                  {/*      value="old"*/}
+                  {/*      onChange={handleAgeChange}*/}
+                  {/*    />*/}
+                  {/*    2 year*/}
+                  {/*  </label>*/}
+                </FilterChose>
+              )}
+            </ContainerItem>
+            <ContainerItem>
+              <FiltersItems onClick={handleGenderClick}>
+                <Icon id={!isGenderOpen ? 'up' : 'down'} />
+                <Item>{t('By_gender')}</Item>
+              </FiltersItems>
+              {isGenderOpen && (
+                <FilterChose>
+                  <Checkbox
+                    value="male"
+                    label={t('male')}
+                    onChange={handleAgeChange}
+                  ></Checkbox>
+                  <Checkbox
+                    value="female"
+                    label={t('female')}
+                    onChange={handleAgeChange}
+                  ></Checkbox>
+                  {/*<label>*/}
+                  {/*  <input*/}
+                  {/*    type="checkbox"*/}
+                  {/*    value="male"*/}
+                  {/*    onChange={handleGenderChange}*/}
+                  {/*  />*/}
+                  {/*  male*/}
+                  {/*</label>*/}
+                  {/*<label>*/}
+                  {/*  <input*/}
+                  {/*    type="checkbox"*/}
+                  {/*    value="female"*/}
+                  {/*    onChange={handleGenderChange}*/}
+                  {/*  />*/}
+                  {/*  female*/}
+                  {/*</label>*/}
+                </FilterChose>
+              )}
             </ContainerItem>
           </div>
         </FilterOptions>

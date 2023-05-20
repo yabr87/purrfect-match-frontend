@@ -4,6 +4,9 @@ export const lightTheme = {
     backgroundColor: '#FEF9F9',
     backgroundModal: '#ffffff',
     inputText: '#888888',
+    inputBackground: '#ffffff',
+    inputOutline: 'none',
+    pagginationOutline: 'none',
     textColor: '#121212',
     link: '#54ADFF',
     grey: '#888888',
@@ -14,6 +17,7 @@ export const lightTheme = {
     lightBlue: '#CCE4FB',
     gradient: 'linear-gradient(290.46deg, #419EF1 0%, #9BD0FF 107.89%)',
     buttonText: '#FEF9F9',
+    notificationColor: 'colored',
   },
   shadows: {
     default: '3px 8px 14px rgba(136, 198, 253, 0.19)',
@@ -25,6 +29,7 @@ export const lightTheme = {
   },
   fontSizes: {
     xs: '12px',
+    search: '14px',
     s: '16px',
     m: '20px',
     l: '24px',
@@ -49,7 +54,7 @@ export const lightTheme = {
     desktop: '1280px',
   },
   media: {
-    phone: 'screen and (min-width: 480)',
+    phone: 'screen and (min-width: 480px)',
     tab: 'screen and (min-width: 768px)',
     desk: 'screen and (min-width: 1280px)',
   },
@@ -60,11 +65,14 @@ export const darkTheme = {
     accent: '#FF8356',
     backgroundColor: '#121212',
     backgroundModal: '#181C25',
-    inputText: '#CCCCCC',
+    inputText: 'rgb(254, 220, 153)',
+    inputBackground: 'transparent',
+    inputOutline: '1px solid rgb(254, 220, 153)',
+    pagginationOutline: '1px solid #54ADFF',
     textColor: '#FFFFFF',
     link: '#54ADFF',
     grey: '#CCCCCC',
-    titleColor: '#FFFFFF',
+    titleColor: '#FFC107',
     yellow: '#FEDC99',
     green: '#00C3AD',
     red: '#FF576D',
@@ -72,6 +80,7 @@ export const darkTheme = {
     gradient:
       'linear-gradient(290.46deg, rgb(5 101 186) 0%, rgb(65, 158, 241) 107.89%)',
     buttonText: '#FEF9F9',
+    notificationColor: 'dark',
   },
   shadows: {
     default: '3px 8px 14px rgba(136, 198, 253, 0.19)',
@@ -83,6 +92,7 @@ export const darkTheme = {
   },
   fontSizes: {
     xs: '12px',
+    search: '14px',
     s: '16px',
     m: '20px',
     l: '24px',
@@ -107,7 +117,7 @@ export const darkTheme = {
     desktop: '1280px',
   },
   media: {
-    phone: 'screen and (min-width: 480)',
+    phone: 'screen and (min-width: 480px)',
     tab: 'screen and (min-width: 768px)',
     desk: 'screen and (min-width: 1280px)',
   },

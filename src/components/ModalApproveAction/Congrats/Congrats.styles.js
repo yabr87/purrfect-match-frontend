@@ -5,6 +5,7 @@ export const ContainerView = styled.div`
   align-items: center;
   flex-direction: column;
   padding: 68px 16px 60px 16px;
+  width: 100%;
   @media ${props => props.theme.media.tab} {
     padding: 60px 16px;
     width: 608px;
@@ -37,6 +38,7 @@ export const Text = styled.p`
   font-size: ${props => props.theme.fontSizes.s};
   line-height: 22px;
   letter-spacing: 0.04em;
+  text-align: center;
   margin-bottom: 40px;
   color: ${props => props.theme.colors.textColor};
   @media screen and (min-width: 768px) {
