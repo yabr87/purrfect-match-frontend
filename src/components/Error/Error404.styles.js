@@ -7,19 +7,16 @@ export const ErrorContainer = styled.div`
   flex-direction: column;
   align-items: center;
 
-  @media screen and (min-width: 768px) {
+  @media ${props => props.theme.media.tab} {
     margin-top: 60px;
-  }
-
-  @media screen and (min-width: 1280px) {
-  }
+  } 
 `;
 
 export const Title = styled.div`
   font-style: normal;
   line-height: 1.38;
   text-align: center;
-  color: #000000;
+  color: ${props => props.theme.colors.textColor};
 
   h1,
   h2 {
@@ -27,7 +24,7 @@ export const Title = styled.div`
     font-weight: 700;
     font-size: 24px;
   }
-  @media screen and (min-width: 768px) {
+  @media ${props => props.theme.media.tab} {
     h1,
     h2 {
       display: inline;
@@ -45,11 +42,11 @@ export const Image = styled.img`
   width: 280px;
   margin-top: 80px;
 
-  @media screen and (min-width: 768px) {
+  @media ${props => props.theme.media.tab} {
     width: 704px;
   }
 
-  @media screen and (min-width: 1280px) {
+  @media ${props => props.theme.media.desk} {
     width: 822px;
   }
 `;
@@ -68,23 +65,23 @@ export const Link = styled(NavLink)`
   font-size: 16px;
   line-height: 1.38;
 
-  border: 2px solid #54adff;
+  border: 2px solid ${props => props.theme.colors.link};
   border-radius: 40px;
 
-  color: #fef9f9;
-  background-color: #54adff;
+  color: ${props => props.theme.colors.buttonText};
+  background-color: ${props => props.theme.colors.link};
   transition: color 250ms ease, background-color 250ms ease;
 
   &:hover,
   &:focus {
-    background-color: #fef9f9;
-    color: #54adff;
+    background-color: ${props => props.theme.colors.buttonText};
+    color: ${props => props.theme.colors.link};
   }
-  @media screen and (min-width: 768px) {
+  @media ${props => props.theme.media.tab} {
     margin-top: 70px;
   }
 
-  @media screen and (min-width: 1280px) {
+  @media ${props => props.theme.media.desk} {
     margin-top: 18px;
   }
 `;
