@@ -7,8 +7,9 @@ export const ContainerView = styled.div`
   padding: 60px 16px;
   text-align: center;
   width: 100%;
+  min-width: 280px;
   @media ${props => props.theme.media.phone} {
-    min-width: 280px;
+    width: 100%;
   }
   @media ${props => props.theme.media.tab} {
     width: 608px;
