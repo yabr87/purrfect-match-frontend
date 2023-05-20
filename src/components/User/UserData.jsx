@@ -70,7 +70,7 @@ const UserData = () => {
   };
 
   const handleInputSubmit = async () => {
-    const req = { birthday: convertToISODate(user.birthday) };
+    const req = { birthday: user.birthday };
     await updateUserInfo(token, req);
     setDisable(true);
   };
@@ -129,16 +129,7 @@ const UserData = () => {
               value={user.email}
               placeholder="Email"
             />
-            {/* <InputItem
-              name="birthday"
-              type="text"
-              placeholder="DD.MM.YYYY"
-              value={reverseISODate(user.birthday) || ''}
-            /> */}
-            <ItemContainer>
-              <UserLabel>birthday:</UserLabel>
-              <UserInput
-                as={DatePicker}
+              <InputItem
                 name="birthday"
                 placeholderText="DD.MM.YYYY"
                 onChange={date => setUser({ ...user, birthday: date })}
@@ -157,7 +148,6 @@ const UserData = () => {
                   <Icon id="complite" s="#00C3AD" />
                 </EditInputBtn>
               )}
-            </ItemContainer>
             <InputItem
               name="phone"
               type="text"

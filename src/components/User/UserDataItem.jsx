@@ -30,7 +30,7 @@ const UserDataItem = ({ name, type, pattern, value, placeholder }) => {
 
   return (
     <ItemContainer>
-      <UserLabel>{name}:</UserLabel>
+      <UserLabel>{name.charAt(0).toUpperCase() + name.slice(1)}:</UserLabel>
       <UserInput
         type={type}
         value={data}
@@ -58,8 +58,6 @@ export default UserDataItem;
 
 UserDataItem.propTypes = {
   name: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
-  value: PropTypes.string,
   pattern: PropTypes.string,
   placeholder: PropTypes.string,
 };
