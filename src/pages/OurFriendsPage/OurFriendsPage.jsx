@@ -33,9 +33,7 @@ const OurFriendsPage = () => {
   return (
     <Container>
       <FriendsContainer>
-        <Title as="h2" color="#000000">
-          {t('Our_friends')}
-        </Title>
+        <Title>{t('Our_friends')}</Title>
         {loading && <Loader />}
         <OurFriendsList friends={friends} />
       </FriendsContainer>
