@@ -24,6 +24,7 @@ import Icon from 'shared/components/Icon';
 // import ImageUploader from 'shared/components/ImageUploader';
 import validationSchemaEdit from './validationSchemaEdit';
 import { PetImage } from '../NoticeModal/NoticeModal.styles';
+import { editNotice } from 'utils/ApiNotices';
 
 
 
@@ -32,7 +33,6 @@ const EditModal = ({ notice, close, approve }) => {
   const navigate = useNavigate();
 
   const initialValues = {
-    _id: notice._id,
     category: notice.category,
     title: notice.title,
     name: notice.name,
@@ -65,13 +65,8 @@ const EditModal = ({ notice, close, approve }) => {
     return { ...acc, [key]: changedFields[key] };
   }, {});
     
-    newPet._id = values._id;
-
-
     try {
-      console.log(newPet);
-      //    await editMyPet(newPet); тут должен быть PATCH запрос
-
+      await editNotice(notice._id, newPet);
       resetForm();
       navigate('/notices')
     } catch (error) {
