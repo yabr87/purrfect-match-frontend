@@ -20,7 +20,7 @@ import {
 } from './';
 import Icon from 'shared/components/Icon/Icon';
 import { addAvatar, getCurrent } from 'utils/Api';
-import { reverseISODate } from 'utils/reverseISODate';
+// import { reverseISODate } from 'utils/reverseISODate';
 import { convertToISODate } from 'utils/convertToISODate';
 import DatePicker from 'react-datepicker';
 import { addDays } from 'date-fns';
@@ -29,6 +29,7 @@ import { updateUserInfo } from 'utils/Api';
 import ModalApproveAction from 'components/ModalApproveAction';
 import Logout from 'components/ModalApproveAction/Logout';
 import { UserLabel } from './UserDataItem.styled';
+import parseISO from 'date-fns/parseISO';
 
 const initialState = {
   name: '',
@@ -50,7 +51,7 @@ const UserData = () => {
   useEffect(() => {
     const getUser = async token => {
       const res = await getCurrent(token);
-      setUser({ ...res.data, birthday: reverseISODate(res.data.birthday) });
+      setUser({ ...res.data, birthday: parseISO(res.data.birthday) });
     };
     getUser(token);
   }, [token]);
