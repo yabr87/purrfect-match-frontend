@@ -67,7 +67,6 @@ function NoticesPage() {
     setFetching(true);
     const params = {
       page: currentPage,
-      sex: sex,
     };
     if (['sell', 'lost-found', 'for-free'].includes(categoryName)) {
       params.category = categoryName;
@@ -80,6 +79,10 @@ function NoticesPage() {
     }
     if (title) {
       params.title = title;
+    }
+
+    if (sex) {
+      params.sex = sex;
     }
     getNotices(params)
       .then(({ data }) => {
