@@ -11,25 +11,17 @@ import {
   LogOutBtn,
   BtnText,
   LogOutText,
-  UserInput,
   InputItem,
-  ItemContainer,
   InputContainer,
   Wrap,
   EditInputBtn,
 } from './';
 import Icon from 'shared/components/Icon/Icon';
 import { addAvatar, getCurrent } from 'utils/Api';
-// import { reverseISODate } from 'utils/reverseISODate';
-import { convertToISODate } from 'utils/convertToISODate';
-import DatePicker from 'react-datepicker';
-import { addDays } from 'date-fns';
-import 'react-datepicker/dist/react-datepicker.css';
 import { updateUserInfo } from 'utils/Api';
 import ModalApproveAction from 'components/ModalApproveAction';
 import Logout from 'components/ModalApproveAction/Logout';
-import { UserLabel } from './UserDataItem.styled';
-import parseISO from 'date-fns/parseISO';
+import { reverseISODate } from 'utils/reverseISODate';
 
 const initialState = {
   name: '',
@@ -46,12 +38,11 @@ const UserData = () => {
   const [isModalLogoutOpen, setIsModalLogoutOpen] = useState(false);
   const [isConfirm, setIsConfirm] = useState(false);
   const token = useSelector(store => store.auth.token);
-  const maxDate = addDays(new Date(), 0);
 
   useEffect(() => {
     const getUser = async token => {
       const res = await getCurrent(token);
-      setUser({ ...res.data, birthday: parseISO(res.data.birthday) });
+      setUser({ ...res.data, birthday: reverseISODate(res.data.birthday) });
     };
     getUser(token);
   }, [token]);
@@ -137,7 +128,6 @@ const UserData = () => {
                 selected={user.birthday}
                 value={user.birthday}
                 dateFormat="dd.MM.yyyy"
-                maxDate={maxDate}
                 disabled={disable}
               />
               {disable ? (
