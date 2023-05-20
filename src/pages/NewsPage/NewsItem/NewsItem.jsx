@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 
 import { formatNewsDate } from 'utils/formatNewsDate';
 
@@ -15,6 +16,7 @@ const NewsItem = ({
   url,
 }) => {
   const newsDate = formatNewsDate(date);
+  const { t } = useTranslation();
 
   const handleLoadError = e => {
     e.currentTarget.src = defaultUrl;
@@ -28,7 +30,7 @@ const NewsItem = ({
       <Bottom>
         <p>{newsDate}</p>
         <Link href={url} target="_blank" rel="noreferrer">
-          Read more
+          {t('Read_more')}
         </Link>
       </Bottom>
     </Item>

@@ -20,6 +20,10 @@ i18n.use(initReactI18next).init({
         FR: 'FR',
         SA: 'SA',
         SU: 'SU',
+
+        News: 'News',
+        No_result: 'There is no result',
+        Read_more: 'Read more',
       },
     },
     ukr: {
@@ -39,6 +43,10 @@ i18n.use(initReactI18next).init({
         FR: 'ПТ',
         SA: 'СБ',
         SU: 'НД',
+
+        News: 'Новини',
+        No_result: 'Немає результатів',
+        Read_more: 'Читати більше',
       },
     },
   },
