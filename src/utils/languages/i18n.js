@@ -5,6 +5,8 @@ i18n.use(initReactI18next).init({
   resources: {
     en: {
       translation: {
+        mainPage_title:'Take good care of your small pets',
+
         Our_friends: 'Our friends',
         Closed: 'Closed',
         Time: 'Time',
@@ -28,6 +30,8 @@ i18n.use(initReactI18next).init({
     },
     ukr: {
       translation: {
+        mainPage_title:'Подбайте про своїх домашніх улюбленців',
+
         Our_friends: 'Наші друзі',
         Closed: 'Зачинено',
         Time: 'Часи роботи',
