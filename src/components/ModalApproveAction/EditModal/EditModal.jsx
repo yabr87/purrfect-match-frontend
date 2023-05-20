@@ -21,32 +21,17 @@ import {
   EditText,
   EditWrapper,
 } from './EditModal.styles';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Button from 'shared/components/Button';
 import Icon from 'shared/components/Icon';
-import ImageUploader from 'shared/components/ImageUploader';
+// import ImageUploader from 'shared/components/ImageUploader';
 import validationSchemaEdit from './validationSchemaEdit';
 
+
+
 const EditModal = ({ notice, close, approve }) => {
-  // const navigate = useNavigate();
 
-  const handleSubmit = async (values, { resetForm }) => {
-    const newPet = Object.keys(values).reduce((acc, key) => {
-      if (key === 'category' && values[key] === 'my-pet') {
-        return acc;
-      }
-      return values[key] ? { ...acc, [key]: values[key] } : acc;
-    }, {});
-
-    try {
-      console.log(newPet);
-      //    await editMyPet(newPet); тут должен быть PATCH запрос
-
-      resetForm();
-    } catch (error) {
-      console.error('Failed to edit pet', error);
-    }
-  };
+  const navigate = useNavigate();
 
   const initialValues = {
     _id: notice._id,
@@ -62,6 +47,40 @@ const EditModal = ({ notice, close, approve }) => {
     price: notice.price,
     points: 0,
   };
+
+  const changedFields = {};
+
+  const handleSubmit = async (values, { resetForm }) => {
+    Object.keys(values).forEach((key) => {
+    const initialValue = initialValues[key];
+    const currentValue = values[key];
+
+    if (initialValue !== currentValue) {
+      changedFields[key] = currentValue;
+    }
+  });
+
+  const newPet = Object.keys(changedFields).reduce((acc, key) => {
+    if (key === 'category' && changedFields[key] === 'my-pet') {
+      return acc;
+    }
+    return { ...acc, [key]: changedFields[key] };
+  }, {});
+    
+    newPet._id = values._id;
+
+
+    try {
+      console.log(newPet);
+      //    await editMyPet(newPet); тут должен быть PATCH запрос
+
+      resetForm();
+      navigate('/notices')
+    } catch (error) {
+      console.error('Failed to edit pet', error);
+    }
+  };
+
 
   return (
     <EditContainer>
@@ -112,16 +131,6 @@ const EditModal = ({ notice, close, approve }) => {
                           />
                           <Error name="points" component="p" />
                         </EditLabel>
-                        <FormButton
-                          type="button"
-                          shape="solid"
-                          w="248"
-                          h="48"
-                            onClick={close}
-                            disabled={values.points===0}
-                        >
-                          Pay
-                        </FormButton>
                       </div>
                     </div>
                     <div>
@@ -227,7 +236,7 @@ const EditModal = ({ notice, close, approve }) => {
                     disabled={isSubmitting}
                     onClick={approve}
                   >
-                    Edit
+                    Update
                     <Icon id="paw" f="currentColor" s="none" />
                   </Button>
                 </ButtonsBox>

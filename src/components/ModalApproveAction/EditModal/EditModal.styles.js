@@ -34,9 +34,61 @@ export const EditLabel = styled.label`
   line-height: 1.3;
   
   color: ${props => props.theme.colors.titleColor};
+
+  input[type='range'] {
+  -webkit-appearance: none; /* Убирает стандартные стили для WebKit браузеров */
+  -moz-appearance: none; /* Убирает стандартные стили для Firefox */
+  width: 100%;
+  height: 10px;
+  background-color: ${props => props.theme.colors.backgroundModal};
+  border-radius: 5px;
+  outline: none;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none; 
+  width: 20px;
+  height: 20px;
+  background-color: #ffffff;
+  border: 2px solid #e0e0e0;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+input[type='range']::-moz-range-thumb {
+  -moz-appearance: none; 
+  width: 20px;
+  height: 20px;
+  background-color: #ffffff;
+  border: 2px solid #e0e0e0;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+input[type='range']:hover {
+  opacity: 1;
+}
+
+input[type='range']::-webkit-slider-thumb:hover {
+  background-color: ${props => props.theme.colors.link};
+}
+
+input[type='range']::-moz-range-thumb:hover {
+  background-color: ${props => props.theme.colors.link};
+}
+
+  @media screen and (min-width: 768px) {
+    font-size: ${props => props.theme.fontSizes.m};
+  }
   @media ${props => props.theme.media.tab} {
     font-size: 14px;
   }
+
+
 `;
 
 export const EditField = styled(Field)`
