@@ -1,0 +1,11 @@
+У файл в якому є текст, який можна перекласти, імортуємо 
+import { useTranslation } from 'react-i18next';
+
+Позначаємо змінну в компоненті
+const { t } = useTranslation();
+
+Використання
+Наприклад є текст:
+<ScheduleTime>Closed</ScheduleTime>
+Замінюємо на:
+<ScheduleTime>{t('Closed')}</ScheduleTime>
