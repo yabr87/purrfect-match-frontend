@@ -112,9 +112,9 @@ function NoticesPage() {
           <NoticesFilters setSex={setSex} setSearchParams={setSearchParams} />
           {isUpToWidth480 ? (
             <CircleButton
+              z="9"
+              pos="fixed"
               style={{
-                zIndex: '9',
-                position: 'fixed',
                 bottom: '50px',
                 right: '24px',
               }}
