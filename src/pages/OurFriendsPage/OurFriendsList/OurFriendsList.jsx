@@ -115,7 +115,7 @@ const OurFriendsList = ({ friends }) => {
                 <InfoItemTitle>{t('Time')}:</InfoItemTitle>
                 <InfoItemText>
                   {workDays === null || workDays === undefined ? (
-                    `${t('day_and_night')}`
+                    t('day_and_night')
                   ) : isExpanded && !workDays ? (
                     <div>{t('on_the_website')}</div>
                   ) : isExpanded ? (
@@ -136,7 +136,7 @@ const OurFriendsList = ({ friends }) => {
                     target="_blank"
                     rel="noreferrer noopener nofollow"
                   >
-                    {address ? address : `${t('on_the_website')}`}
+                    {address ? address : t('on_the_website')}
                   </InfoItemAddress>
                 </InfoItemText>
               </InfoItem>
@@ -152,7 +152,7 @@ const OurFriendsList = ({ friends }) => {
                       {email}
                     </InfoItemEmail>
                   ) : (
-                    `${t('on_the_website')}`
+                    t('on_the_website')
                   )}
                 </InfoItemText>
               </InfoItem>
@@ -168,7 +168,7 @@ const OurFriendsList = ({ friends }) => {
                       {phone}
                     </InfoItemPhone>
                   ) : (
-                    `${t('on_the_website')}`
+                    t('on_the_website')
                   )}
                 </InfoItemText>
               </InfoItem>

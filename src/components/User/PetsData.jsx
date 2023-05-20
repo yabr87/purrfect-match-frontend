@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import {
   Title,
   PetContainer,
@@ -30,6 +31,7 @@ const PetsData = () => {
   console.log(pets);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   useEffect(() => {
     dispatch(fetchMyPets());
@@ -42,7 +44,7 @@ const PetsData = () => {
   const handleDeletePet = item => {
     dispatch(deleteMyPet(item._id));
     setIsModalDeleteOpen(false);
-    toast.success(`${item.name}: remove`, {
+    toast.success(`${item.name}: {t('remove')}`, {
       position: toast.POSITION.TOP_RIGHT,
     });
   };
@@ -55,17 +57,17 @@ const PetsData = () => {
           <Icon id="trash" s="#54ADFF" />
         </DelPetBtn>
         <PetInfoItem>
-          <PetInfoTitle>Name:</PetInfoTitle> {item.name}
+          <PetInfoTitle>{t('Name')}:</PetInfoTitle> {item.name}
         </PetInfoItem>
         <PetInfoItem>
-          <PetInfoTitle>Date of Birth:</PetInfoTitle>{' '}
+          <PetInfoTitle>{t('Date_of_Birth')}:</PetInfoTitle>{' '}
           {reverseISODate(item.birthday)}
         </PetInfoItem>
         <PetInfoItem>
-          <PetInfoTitle>Breed:</PetInfoTitle> {item.breed}
+          <PetInfoTitle>{t('Breed')}:</PetInfoTitle> {item.breed}
         </PetInfoItem>
         <PetInfoItem>
-          <PetInfoTitle>Comments:</PetInfoTitle> {item.comments}
+          <PetInfoTitle>{t('Comments')}:</PetInfoTitle> {item.comments}
         </PetInfoItem>
       </PetInfoWrap>
       {isModalDeleteOpen && (
@@ -83,16 +85,16 @@ const PetsData = () => {
     <>
       <PetWrap>
         <PetHeader>
-          <Title>My pets:</Title>
+          <Title>{t('My_pets')}:</Title>
           <Button onClick={handleClick} type="button" shape="solid" g="8">
-            <p>Add pet</p>
+            <p>{t('Add_pet')}</p>
             <Icon id="plus-small" s="#FEF9F9" />
           </Button>
         </PetHeader>
         {pets.length ? (
           pets.map(item => petCard(item))
         ) : (
-          <NoPetMessage>You have no own added pets yet 😔</NoPetMessage>
+          <NoPetMessage>{t('No_pats_yet')} 😔</NoPetMessage>
         )}
       </PetWrap>
     </>

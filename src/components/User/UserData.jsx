@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import {
   UserWrapper,
   Avatar,
@@ -38,6 +39,7 @@ const UserData = () => {
   const [isModalLogoutOpen, setIsModalLogoutOpen] = useState(false);
   const [isConfirm, setIsConfirm] = useState(false);
   const token = useSelector(store => store.auth.token);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const getUser = async token => {
@@ -74,7 +76,7 @@ const UserData = () => {
   return (
     <>
       <Wrap>
-        <Title>My information:</Title>
+        <Title>{t('My_information')}:</Title>
         <UserWrapper>
           <AvatarContainer>
             <Avatar>
@@ -98,57 +100,57 @@ const UserData = () => {
               <EditAvatarBtn>
                 <Icon id="camera" s="#54ADFF" />
                 <label style={{ cursor: 'pointer' }} htmlFor="avatar">
-                  Edit photo
+                  {t('Edit_photo')}
                 </label>
               </EditAvatarBtn>
             ) : (
               <EditAvatarBtn onClick={handleUploadPhoto}>
                 <Icon id="complite" s="#54ADFF" />
-                <BtnText>Confirm</BtnText>
+                <BtnText>{t('Confirm')}</BtnText>
               </EditAvatarBtn>
             )}
           </AvatarContainer>
           <InputContainer>
             <InputItem
-              name="name"
+              name={t('Name')}
               type="text"
               value={user.name || 'User'}
-              placeholder="Name"
+              placeholder={t('Name')}
             />
             <InputItem
-              name="email"
+              name={t('Email')}
               type="text"
               value={user.email}
-              placeholder="Email"
+              placeholder={t('Email')}
             />
-              <InputItem
-                name="birthday"
-                placeholderText="DD.MM.YYYY"
-                onChange={date => setUser({ ...user, birthday: date })}
-                selected={user.birthday}
-                value={user.birthday}
-                dateFormat="dd.MM.yyyy"
-                disabled={disable}
-              />
-              {disable ? (
-                <EditInputBtn onClick={handleInputEdit}>
-                  <Icon id="edit" f="#54ADFF" s="none" />
-                </EditInputBtn>
-              ) : (
-                <EditInputBtn onClick={handleInputSubmit}>
-                  <Icon id="complite" s="#00C3AD" />
-                </EditInputBtn>
-              )}
             <InputItem
-              name="phone"
+              name={t('Birthday')}
+              placeholderText="DD.MM.YYYY"
+              onChange={date => setUser({ ...user, birthday: date })}
+              selected={user.birthday}
+              value={user.birthday}
+              dateFormat="dd.MM.yyyy"
+              disabled={disable}
+            />
+            {disable ? (
+              <EditInputBtn onClick={handleInputEdit}>
+                <Icon id="edit" f="#54ADFF" s="none" />
+              </EditInputBtn>
+            ) : (
+              <EditInputBtn onClick={handleInputSubmit}>
+                <Icon id="complite" s="#00C3AD" />
+              </EditInputBtn>
+            )}
+            <InputItem
+              name={t('Phone')}
               type="text"
               value={user.phone}
               placeholder="+380XXXXXXXXX"
             />
-            <InputItem name="city" type="text" value={user.city || ''} />
+            <InputItem name={t('Сity')} type="text" value={user.city || ''} />
             <LogOutBtn onClick={handleLogOut}>
               <Icon id="logout" s="#54ADFF" />
-              <LogOutText>Log Out</LogOutText>
+              <LogOutText>{t('Log_Out')}</LogOutText>
             </LogOutBtn>
           </InputContainer>
           {isModalLogoutOpen && (
