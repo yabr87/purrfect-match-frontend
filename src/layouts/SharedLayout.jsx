@@ -14,7 +14,14 @@ export const SharedLayout = () => {
         <Suspense fallback={<Loader />}>
           <Outlet />
         </Suspense>
-        <ToastContainer autoClose={3000} theme="colored" />
+        <ToastContainer
+          position="top-right"
+          autoClose={3000}
+          newestOnTop
+          theme={props => props.theme.colors.notificationColorTheme}
+          bodyClassName="toast-body"
+          toastClassName="toast-wrapper"
+        />
       </main>
     </>
   );

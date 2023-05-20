@@ -44,9 +44,8 @@ const PetsData = () => {
   const handleDeletePet = item => {
     dispatch(deleteMyPet(item._id));
     setIsModalDeleteOpen(false);
-    toast.success(`${item.name}: {t('remove')}`, {
-      position: toast.POSITION.TOP_RIGHT,
-    });
+
+    toast.success(`${item.name}: {t('remove')}`);
   };
 
   const petCard = item => (

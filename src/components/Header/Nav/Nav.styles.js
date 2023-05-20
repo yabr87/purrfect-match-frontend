@@ -16,7 +16,6 @@ export const NavContainer = styled.nav`
 
   @media ${props => props.theme.media.desk} {
     flex-direction: row;
-    margin-left: 159px;
     gap: 40px;
     padding: 0;
   }
@@ -24,7 +23,7 @@ export const NavContainer = styled.nav`
 
 export const NavItem = styled(NavLink)`
   display: block;
-
+  width: fit-content;
   font-weight: ${props => props.theme.fontWeiths.semi};
   font-size: 32px;
   line-height: 1.37;

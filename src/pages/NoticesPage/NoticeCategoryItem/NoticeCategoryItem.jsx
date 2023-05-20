@@ -65,13 +65,9 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
     try {
       await deleteNotice(notice._id);
       deleteAndRefresh(notice._id);
-      toast.success(`${notice.title}: remowe`, {
-        position: toast.POSITION.TOP_RIGHT,
-      });
+      toast.success(`${notice.title}: remove`);
     } catch (error) {
-      toast.warn('Failed to delete notice. Please try again later.', {
-        position: toast.POSITION.TOP_RIGHT,
-      });
+      toast.warn('Failed to delete notice. Please try again later.');
     }
   };
 

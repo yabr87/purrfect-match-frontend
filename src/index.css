@@ -89,3 +89,13 @@ a {
   text-decoration: none;
   color: inherit;
 }
+
+.toast-wrapper {
+  background-color: rgba(255, 193, 7, 0.9);
+  border-radius: 40px;
+}
+
+.toast-body {
+  font-size: 18px;
+  color: rgba(255, 255, 255, 1);
+}
