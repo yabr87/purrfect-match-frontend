@@ -9,7 +9,6 @@ import i18n from '../../utils/languages/i18n';
 import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { refresh } from 'redux/auth/authOperations';
-import Switcher from 'components/ThemeSwitcher';
 
 import RestrictedRoute from 'routes/RestrictedRoute';
 import PrivateRoute from 'routes/PrivateRoute';
@@ -27,22 +26,32 @@ const NewsPage = lazy(() => import('pages/NewsPage'));
 const OurFriendsPage = lazy(() => import('pages/OurFriendsPage'));
 
 const App = () => {
-  const [currentTheme, setCurrentTheme] = useState(lightTheme);
   const dispatch = useDispatch();
   const runOnce = useRef(true);
+  const [theme, setTheme] = useState(
+    localStorage.getItem('theme') === 'true' ? darkTheme : lightTheme
+  );
+
   useEffect(() => {
     if (runOnce.current) {
       runOnce.current = false;
       dispatch(refresh());
     }
   }, [dispatch]);
-  const onClick = () => {
-    setCurrentTheme(currentTheme === lightTheme ? darkTheme : lightTheme);
-  };
+  useEffect(() => {
+    const themeListener = event => {
+      event.currentTarget.localStorage.theme === 'true'
+        ? setTheme(darkTheme)
+        : setTheme(lightTheme);
+    };
+    window.addEventListener('storage', themeListener);
+    return () => {
+      window.removeEventListener('storage', themeListener);
+    };
+  }, []);
 
   return (
-    <ThemeProvider theme={currentTheme}>
-      <Switcher onClick={onClick} />
+    <ThemeProvider theme={theme}>
       <I18nextProvider i18n={i18n}>
         <Routes>
           <Route path="/" element={<SharedLayout />}>

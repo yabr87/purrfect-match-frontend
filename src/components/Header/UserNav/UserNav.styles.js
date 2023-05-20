@@ -22,8 +22,6 @@ export const UserName = styled.p`
 `;
 
 export const UserContainer = styled.div`
-  padding-top: 40px;
-  padding-bottom: 84px;
   margin-left: auto;
 
   @media ${props => props.theme.media.tab} {

@@ -6,13 +6,13 @@ export const ToggleContainer = styled.button`
   align-items: center;
   background: ${({ lightTheme }) =>
     lightTheme
-      ? 'linear-gradient(#79D7ED,#FFC107)'
-      : 'linear-gradient(#FFC107, #1E215D)'};
+      ? 'linear-gradient(#FFC107, #1E215D)'
+      : 'linear-gradient(#79D7ED,#FFC107)'};
   border-radius: 40px;
   height: 40px;
-  border: 2px solid ${({ lightTheme }) => (lightTheme ? '#fff' : '#6B8096')};
+  border: 2px solid ${({ lightTheme }) => (lightTheme ? '#6B8096' : '#fff')};
   font-size: 0.5rem;
-  padding: 2px;
+  padding: 5px;
   overflow: hidden;
   cursor: pointer;
 
@@ -21,15 +21,6 @@ export const ToggleContainer = styled.button`
     height: 100%;
     transition: all 0.3s linear;
     stroke: none;
-
-    &:first-child {
-      transform: ${({ lightTheme }) =>
-        lightTheme ? 'translateY(0)' : 'translateY(100px)'};
-    }
-
-    &:nth-child(2) {
-      transform: ${({ lightTheme }) =>
-        lightTheme ? 'translateY(-100px)' : 'translateY(0)'};
-    }
+    transition: all 0.3s linear;
   }
 `;
