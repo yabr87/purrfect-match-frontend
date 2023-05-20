@@ -16,7 +16,6 @@ import {
   EditWrapper,
   ImageCategoryEdit,
 } from './EditModal.styles';
-import { useNavigate } from 'react-router-dom';
 import Button from 'shared/components/Button';
 import Icon from 'shared/components/Icon';
 // import ImageUploader from 'shared/components/ImageUploader';
@@ -28,7 +27,6 @@ import { toast } from 'react-toastify';
 
 const EditModal = ({ notice, close, approve }) => {
   const [isFormDirty, setIsFormDirty] = useState(false);
-  const navigate = useNavigate();
 
   const initialValues = {
     category: notice.category,
