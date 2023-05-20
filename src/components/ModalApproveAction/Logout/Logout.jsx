@@ -5,7 +5,7 @@ import Button from 'shared/components/Button';
 import { Title, ContainerView, ButtonWrap } from './Logout.styles';
 
 import Icon from 'shared/components/Icon';
-import { toast } from 'react-toastify';
+
 import { logout } from 'redux/auth/authOperations';
 
 const Logout = ({ close, idUser }) => {
@@ -13,9 +13,6 @@ const Logout = ({ close, idUser }) => {
 
   const onLogout = idUser => {
     dispatch(logout(idUser));
-    toast.success('Log out successfull', {
-      position: toast.POSITION.TOP_RIGHT,
-    });
     close();
   };
   const screenSize = useMedia(

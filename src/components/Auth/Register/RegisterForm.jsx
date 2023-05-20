@@ -52,7 +52,7 @@ const RegisterForm = () => {
       // navigate('/notices/sell');
     }
     if (isError) {
-      toast.error(`${isError}`, { position: toast.POSITION.TOP_RIGHT });
+      toast.error(`${isError}`);
       dispatch(clearError());
     }
   }, [isLoggedIn, navigate, isError, dispatch]);
