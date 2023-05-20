@@ -59,12 +59,10 @@ const Header = () => {
           <Logo />
           {isDesktop && (
             <>
-              <div style={{ display: 'flex', gap: '40px' }}>
+              <div style={{ display: 'flex', marginLeft: 'auto', gap: '40px'}}>
                 {nav}
-                <div style={{ display: 'flex', gap: '40px' }}>
                   <Switcher />
                   <LanguageSwitcher />
-                </div>
               </div>
               {userBar}
             </>
@@ -97,13 +95,7 @@ const Header = () => {
                 </OpenLinksButton>
                 {isMobileNavOpen && (
                   <MobileContainer>
-                    <div
-                      style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '40px',
-                      }}
-                    >
+                    <div style={{display: 'flex', alignItems: 'center', gap: '40px', marginTop: '40px'}}>
                       <Switcher />
                       <LanguageSwitcher />
                     </div>
