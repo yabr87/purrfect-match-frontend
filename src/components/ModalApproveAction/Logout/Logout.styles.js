@@ -6,23 +6,24 @@ export const ContainerView = styled.div`
   flex-direction: column;
   padding: 60px 16px;
   min-width: 280px;
-  @media screen and (min-width: 768px) {
+  @media ${props => props.theme.media.tab} {
     width: 608px;
     padding: 108px 16px;
   }
 `;
 
 export const Title = styled.h2`
-  font-family: 'Manrope';
+  font-family: ${props => props.theme.fonts.main};
   font-style: normal;
-  font-weight: 500;
-  font-size: 24px;
+  font-weight: ${props => props.theme.fontWeiths.semi};
+  font-size: ${props => props.theme.fontSizes.l};
   line-height: 33px;
   margin-bottom: 40px;
-  @media screen and (min-width: 768px) {
-    font-family: 'Manrope';
+  color: ${props => props.theme.colors.textColor};
+  @media ${props => props.theme.media.tab} {
+    font-family: ${props => props.theme.fonts.main};
     font-style: normal;
-    font-weight: 500;
+    font-weight: ${props => props.theme.fontWeiths.semi};
     font-size: 36px;
     line-height: 49px;
     letter-spacing: 0.04em;
@@ -32,7 +33,7 @@ export const Title = styled.h2`
 `;
 
 export const ButtonWrap = styled.div`
-  @media screen and (min-width: 768px) {
+  @media ${props => props.theme.media.tab} {
     display: flex;
   }
 `;
