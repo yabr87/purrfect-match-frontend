@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
 import {
   UserWrapper,
   Avatar,
@@ -52,8 +53,14 @@ const UserData = () => {
   };
 
   const handleUploadPhoto = async () => {
-    await addAvatar(token, { avatar: user.photo });
-    setIsConfirm(false);
+    try {
+      await addAvatar(token, { avatar: user.photo });
+      setIsConfirm(false);
+    } catch (error) {
+      toast.error('Try another image!', {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    }
   };
 
   const handleLogOut = () => {
@@ -99,15 +106,15 @@ const UserData = () => {
           </AvatarContainer>
           <InputContainer>
             <InputItem
-              name={t('Name')}
+              name={t('name')}
               type="text"
               value={user.name || 'User'}
               pattern="[A-Za-z]{1,32}"
               placeholder={t('Name')}
             />
             <InputItem
-              name={t('Email')}
-              type="text"
+              name={t('email')}
+              type="email"
               value={user.email}
               pattern="/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/"
               placeholder={t('Email')}
@@ -120,8 +127,8 @@ const UserData = () => {
               pattern="(0?[1-9]|[12][0-9]|3[01]).(0?[1-9]|1[012]).((19|20)\d\d)"
             />
             <InputItem
-              name={t('Phone')}
-              type="text"
+              name={t('phone')}
+              type="phone"
               value={user.phone}
               pattern="[\+]\d{3}\s[\(]\d{2}[\)]\s\d{3}[\-]\d{2}[\-]\d{2}"
               minlength="13"
@@ -129,7 +136,7 @@ const UserData = () => {
               placeholder="+380XXXXXXXXX"
             />
             <InputItem
-              name={t('Сity')}
+              name={t('city')}
               type="text"
               pattern="/([A-Za-z]+(?: [A-Za-z]+)*)/"
               value={user.city || ''}

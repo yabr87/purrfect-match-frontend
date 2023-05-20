@@ -28,7 +28,6 @@ const PetsData = () => {
   const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false);
 
   const { results: pets = [] } = useSelector(selectMyPets);
-  console.log(pets);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { t } = useTranslation();
