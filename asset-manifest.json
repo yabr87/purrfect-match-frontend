@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/purrfect-match-frontend/static/css/main.c69bfdc0.css",
-    "main.js": "/purrfect-match-frontend/static/js/main.26864703.js",
+    "main.css": "/purrfect-match-frontend/static/css/main.f000242a.css",
+    "main.js": "/purrfect-match-frontend/static/js/main.d7c93b81.js",
     "static/js/392.86197837.chunk.js": "/purrfect-match-frontend/static/js/392.86197837.chunk.js",
-    "static/js/847.8433a8cd.chunk.js": "/purrfect-match-frontend/static/js/847.8433a8cd.chunk.js",
-    "static/js/317.252b5331.chunk.js": "/purrfect-match-frontend/static/js/317.252b5331.chunk.js",
+    "static/js/847.d8456448.chunk.js": "/purrfect-match-frontend/static/js/847.d8456448.chunk.js",
+    "static/js/317.6922bd2e.chunk.js": "/purrfect-match-frontend/static/js/317.6922bd2e.chunk.js",
     "static/js/648.971fd46b.chunk.js": "/purrfect-match-frontend/static/js/648.971fd46b.chunk.js",
-    "static/js/900.e0a5fda5.chunk.js": "/purrfect-match-frontend/static/js/900.e0a5fda5.chunk.js",
-    "static/js/977.c5faddd5.chunk.js": "/purrfect-match-frontend/static/js/977.c5faddd5.chunk.js",
-    "static/js/54.a2308e5f.chunk.js": "/purrfect-match-frontend/static/js/54.a2308e5f.chunk.js",
+    "static/js/900.12a871a5.chunk.js": "/purrfect-match-frontend/static/js/900.12a871a5.chunk.js",
+    "static/js/977.f8e0e077.chunk.js": "/purrfect-match-frontend/static/js/977.f8e0e077.chunk.js",
+    "static/js/54.1c653d68.chunk.js": "/purrfect-match-frontend/static/js/54.1c653d68.chunk.js",
     "static/js/487.d86e7b6a.chunk.js": "/purrfect-match-frontend/static/js/487.d86e7b6a.chunk.js",
     "static/js/601.3e201d94.chunk.js": "/purrfect-match-frontend/static/js/601.3e201d94.chunk.js",
     "static/js/568.cd8eb221.chunk.js": "/purrfect-match-frontend/static/js/568.cd8eb221.chunk.js",
@@ -34,15 +34,15 @@
     "static/media/bg-desktop@2x-min.png": "/purrfect-match-frontend/static/media/bg-desktop@2x-min.1954466d442f313190b4.png",
     "static/media/bg-tablet-min.png": "/purrfect-match-frontend/static/media/bg-tablet-min.1f23f50a8de903ac9b8e.png",
     "index.html": "/purrfect-match-frontend/index.html",
-    "main.c69bfdc0.css.map": "/purrfect-match-frontend/static/css/main.c69bfdc0.css.map",
-    "main.26864703.js.map": "/purrfect-match-frontend/static/js/main.26864703.js.map",
+    "main.f000242a.css.map": "/purrfect-match-frontend/static/css/main.f000242a.css.map",
+    "main.d7c93b81.js.map": "/purrfect-match-frontend/static/js/main.d7c93b81.js.map",
     "392.86197837.chunk.js.map": "/purrfect-match-frontend/static/js/392.86197837.chunk.js.map",
-    "847.8433a8cd.chunk.js.map": "/purrfect-match-frontend/static/js/847.8433a8cd.chunk.js.map",
-    "317.252b5331.chunk.js.map": "/purrfect-match-frontend/static/js/317.252b5331.chunk.js.map",
+    "847.d8456448.chunk.js.map": "/purrfect-match-frontend/static/js/847.d8456448.chunk.js.map",
+    "317.6922bd2e.chunk.js.map": "/purrfect-match-frontend/static/js/317.6922bd2e.chunk.js.map",
     "648.971fd46b.chunk.js.map": "/purrfect-match-frontend/static/js/648.971fd46b.chunk.js.map",
-    "900.e0a5fda5.chunk.js.map": "/purrfect-match-frontend/static/js/900.e0a5fda5.chunk.js.map",
-    "977.c5faddd5.chunk.js.map": "/purrfect-match-frontend/static/js/977.c5faddd5.chunk.js.map",
-    "54.a2308e5f.chunk.js.map": "/purrfect-match-frontend/static/js/54.a2308e5f.chunk.js.map",
+    "900.12a871a5.chunk.js.map": "/purrfect-match-frontend/static/js/900.12a871a5.chunk.js.map",
+    "977.f8e0e077.chunk.js.map": "/purrfect-match-frontend/static/js/977.f8e0e077.chunk.js.map",
+    "54.1c653d68.chunk.js.map": "/purrfect-match-frontend/static/js/54.1c653d68.chunk.js.map",
     "487.d86e7b6a.chunk.js.map": "/purrfect-match-frontend/static/js/487.d86e7b6a.chunk.js.map",
     "601.3e201d94.chunk.js.map": "/purrfect-match-frontend/static/js/601.3e201d94.chunk.js.map",
     "568.cd8eb221.chunk.js.map": "/purrfect-match-frontend/static/js/568.cd8eb221.chunk.js.map",
@@ -53,7 +53,7 @@
     "44.da7a7a96.chunk.js.map": "/purrfect-match-frontend/static/js/44.da7a7a96.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.c69bfdc0.css",
-    "static/js/main.26864703.js"
+    "static/css/main.f000242a.css",
+    "static/js/main.d7c93b81.js"
   ]
 }
