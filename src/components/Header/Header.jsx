@@ -20,6 +20,7 @@ import {
   OpenLinksButton,
 } from './Header.styles';
 import { UserLink } from './UserNav/UserNav.styles';
+import Switcher from 'components/ThemeSwitcher';
 
 const Header = () => {
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
@@ -58,12 +59,23 @@ const Header = () => {
           <Logo />
           {isDesktop && (
             <>
-              {nav}
-              {<LanguageSwitcher />}
+              <div style={{ display: 'flex', gap: '40px' }}>
+                {nav}
+                <div style={{ display: 'flex', gap: '40px' }}>
+                  <Switcher />
+                  <LanguageSwitcher />
+                </div>
+              </div>
               {userBar}
             </>
           )}
           <HeaderIcons>
+            {isTablet && !isMobileNavOpen && (
+              <>
+                <Switcher />
+                <LanguageSwitcher />
+              </>
+            )}
             {!isMobileNavOpen && isLoggedIn && (
               <HeaderLogout onClick={handleLogout}>
                 <Icon id="logout" />
@@ -85,6 +97,16 @@ const Header = () => {
                 </OpenLinksButton>
                 {isMobileNavOpen && (
                   <MobileContainer>
+                    <div
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '40px',
+                      }}
+                    >
+                      <Switcher />
+                      <LanguageSwitcher />
+                    </div>
                     {!isTablet && <MobileAuth>{userBar}</MobileAuth>}
                     {nav}
                   </MobileContainer>
