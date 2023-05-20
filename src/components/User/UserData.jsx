@@ -128,17 +128,7 @@ const UserData = () => {
               selected={user.birthday}
               value={user.birthday}
               dateFormat="dd.MM.yyyy"
-              disabled={disable}
             />
-            {disable ? (
-              <EditInputBtn onClick={handleInputEdit}>
-                <Icon id="edit" f="#54ADFF" s="none" />
-              </EditInputBtn>
-            ) : (
-              <EditInputBtn onClick={handleInputSubmit}>
-                <Icon id="complite" s="#00C3AD" />
-              </EditInputBtn>
-            )}
             <InputItem
               name={t('Phone')}
               type="text"
@@ -149,7 +139,7 @@ const UserData = () => {
               placeholder="+380XXXXXXXXX"
             />
             <InputItem
-              name={t('Сity')} 
+              name={t('Сity')}
               type="text"
               pattern="/([A-Za-z]+(?: [A-Za-z]+)*)/"
               value={user.city || ''}
