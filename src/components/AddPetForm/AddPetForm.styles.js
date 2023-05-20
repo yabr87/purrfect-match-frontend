@@ -1,5 +1,4 @@
 import { ErrorMessage, Field } from 'formik';
-import Button from 'shared/components/Button';
 import styled from 'styled-components';
 
 export const FormTitle = styled.p`
