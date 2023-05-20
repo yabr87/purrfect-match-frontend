@@ -18,7 +18,7 @@ export const Title = styled.h2`
   font-size: ${props => props.theme.fontSizes.l};
   line-height: 33px;
   margin-bottom: 52px;
-  color: ${props => props.theme.colors.yellow};
+  color: ${props => props.theme.colors.textColor};
   @media ${props => props.theme.media.tab} {
     margin-bottom: 40px;
     font-family: ${props => props.theme.fonts.main};
@@ -37,7 +37,7 @@ export const Text = styled.p`
   ${props => props.theme.fontSizes.s};
   line-height: 22px;
   letter-spacing: 0.04em;
-  color: ${props => props.theme.colors.yellow};
+  color: ${props => props.theme.colors.textColor};
 
   margin-bottom: 40px;
 

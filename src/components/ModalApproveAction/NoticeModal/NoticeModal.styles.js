@@ -42,7 +42,7 @@ export const Title = styled.h2`
   font-size: ${props => props.theme.fontSizes.l};
   line-height: 33px;
   margin-bottom: 22px;
-  color: ${props => props.theme.colors.yellow};
+  color: ${props => props.theme.colors.textColor};
   @media ${props => props.theme.media.tab} {
     font-family: ${props => props.theme.fonts.main};
     font-style: normal;
@@ -50,7 +50,7 @@ export const Title = styled.h2`
     font-size: ${props => props.theme.fontSizes.xl};
     line-height: 38px;
     letter-spacing: -0.01em;
-    color: ${props => props.theme.colors.yellow};
+    color: ${props => props.theme.colors.textColor};
   }
 `;
 
@@ -88,7 +88,7 @@ export const ImageCategory = styled.p`
   padding: 11px 17px;
   align-items: center;
   text-align: center;
-  color: ${props => props.theme.colors.yellow};
+  color: ${props => props.theme.colors.textColor};
   background: ${props => props.theme.colors.lightBlue};
   border-radius: ${props =>
     ` 0px ${props.theme.radius.small} ${props.theme.radius.small}  0px `};
@@ -119,7 +119,7 @@ export const NameCategory = styled.th`
   font-weight: ${props => props.theme.fontWeiths.semiBold};
   font-size: 14px;
   line-height: 19.12px;
-  color: ${props => props.theme.colors.yellow};
+  color: ${props => props.theme.colors.textColor};
   width: 80px;
 `;
 
@@ -129,15 +129,15 @@ export const ValueCategory = styled.th`
   font-weight: ${props => props.theme.fontWeiths.semi};
   font-size: ${props => props.theme.fontSizes.xs};
   line-height: 16.39px;
-  color: ${props => props.theme.colors.yellow};
+  color: ${props => props.theme.colors.textColor};
 `;
 
 export const PetComents = styled.p`
   margin-bottom: 12px;
-  color: ${props => props.theme.colors.yellow};
+  color: ${props => props.theme.colors.textColor};
   @media ${props => props.theme.media.tab} {
     margin-bottom: 70px;
-    color: ${props => props.theme.colors.yellow};
+    color: ${props => props.theme.colors.textColor};
   }
 `;
 
@@ -173,7 +173,7 @@ export const ContactLinkItem = styled.a`
   font-weight: ${props => props.theme.fontWeiths.semi};
   font-size: ${props => props.theme.fontSizes.xs};
   line-height: 16.39px;
-  color: ${props => props.theme.colors.yellow};
+  color: ${props => props.theme.colors.textColor};
   text-decoration-line: 'none';
   text-align: start;
   &:hover,

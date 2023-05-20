@@ -19,7 +19,7 @@ export const Title = styled.h2`
   font-size: ${props => props.theme.fontSizes.l};
   line-height: 33px;
   margin-bottom: 40px;
-  color: ${props => props.theme.colors.yellow};
+  color: ${props => props.theme.colors.textColor};
   @media ${props => props.theme.media.tab} {
     font-family: ${props => props.theme.fonts.main};
     font-style: normal;
