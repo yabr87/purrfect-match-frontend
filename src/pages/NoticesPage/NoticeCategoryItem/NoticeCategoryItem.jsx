@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
 
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import useAuth from 'shared/hooks/useAuth';
 
 import { deleteNotice } from '../../../utils/ApiNotices';
@@ -37,6 +38,7 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false);
 
+  const { t } = useTranslation();
   // const dispatch = useDispatch();
 
   // const setIsFavorite = favorite => {
@@ -69,7 +71,7 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
       await deleteNotice(id);
       deleteAndRefresh(id);
     } catch (error) {
-      alert('Failed to delete notice. Please try again later.');
+      alert(t('alert_failed_delete'));
     }
   };
 
@@ -79,7 +81,9 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
       <CardImageContainer>
         <CardImage src={notice.photoUrl} alt={notice.title} />
         <ImageCategory>
-          {notice.category.replace('for-free', 'for free').replace(/-/g, '/')}
+          {notice.category
+            .replace('for-free', `${t('for_free')}`)
+            .replace(/-/g, '/')}
         </ImageCategory>
 
         <ImageDetails>

@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import Button from 'shared/components/Button';
 import Icon from 'shared/components/Icon/Icon';
+import { useTranslation } from 'react-i18next';
 
 const LearnMore = ({ onButtonClick }) => {
   const [isHoveredOrFocused, setIsHoveredOrFocused] = useState(false);
+  const { t } = useTranslation();
+
   return (
     <Button
       style={{
@@ -17,7 +20,7 @@ const LearnMore = ({ onButtonClick }) => {
       onBlur={() => setIsHoveredOrFocused(false)}
       onClick={onButtonClick}
     >
-      Learn More
+      {t('Learn_more')}
       {isHoveredOrFocused && <Icon id="paw" f="#FEF9F9" w="24" h="24" />}
     </Button>
   );
