@@ -17,6 +17,7 @@ export const PetContainer = styled.div`
     flex-direction: row;
   }
   @media screen and (min-width: 1280px) {
+    margin-top: 0;
     width: auto;
     margin-left: 32px;
   }
@@ -26,6 +27,7 @@ export const PetWrap = styled.div`
   @media screen and (min-width: 1280px) {
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
   }
 `;
 
@@ -52,11 +54,13 @@ export const PetAvatar = styled.img`
 export const PetHeader = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin-top: 46px;
   margin-bottom: 31px;
 
   @media screen and (min-width: 1280px) {
-    margin: 0;
+    margin-top: 0;
+    margin-bottom: 24px;
   }
 `;
 
@@ -93,12 +97,19 @@ export const PetInfoItem = styled.p`
   font-size: 14px;
   line-height: 1.57;
   letter-spacing: 0.04em;
-
   color: ${props => props.theme.colors.titleColor};
+
+  @media screen and (min-width: 1280px) {
+    font-size: 16px;
+  }
 `;
 
 export const PetInfoTitle = styled.span`
   font-weight: 700;
+
+  @media screen and (min-width: 768px) {
+    font-weight: 600px;
+  }
 `;
 
 export const DelPetBtn = styled.button`

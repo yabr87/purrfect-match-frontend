@@ -14,6 +14,7 @@ export const UserWrapper = styled.div`
   flex-direction: column;
 
   @media screen and (min-width: 768px) {
+    margin-top: 24px;
     flex-direction: row-reverse;
     max-width: 704px;
   }
@@ -36,9 +37,13 @@ export const Title = styled.p`
   font-style: normal;
   font-weight: 500;
   font-size: 20px;
-  line-height: 27px;
+  line-height: 1.35;
   letter-spacing: 0.04em;
   color: ${props => props.theme.colors.titleColor};
+
+  @media screen and (min-width: 768px) {
+    font-size: 28px;
+  }
 `;
 
 export const Avatar = styled.div`
