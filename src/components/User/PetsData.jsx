@@ -21,6 +21,7 @@ import { selectMyPets } from 'redux/pets/myPetsSelectors';
 
 import ModalApproveAction from 'components/ModalApproveAction';
 import Delete from 'components/ModalApproveAction/Delete';
+import { toast } from 'react-toastify';
 
 const PetsData = () => {
   const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false);
@@ -38,8 +39,12 @@ const PetsData = () => {
     navigate('/add-pet', { replace: true });
   };
 
-  const handleDeletePet = id => {
-    dispatch(deleteMyPet(id));
+  const handleDeletePet = item => {
+    dispatch(deleteMyPet(item._id));
+    setIsModalDeleteOpen(false);
+    toast.success(`${item.name}: remowe`, {
+      position: toast.POSITION.TOP_RIGHT,
+    });
   };
 
   const petCard = item => (
@@ -66,7 +71,7 @@ const PetsData = () => {
       {isModalDeleteOpen && (
         <ModalApproveAction close={() => setIsModalDeleteOpen(false)}>
           <Delete
-            approve={() => handleDeletePet(item._id)}
+            approve={() => handleDeletePet(item)}
             close={() => setIsModalDeleteOpen(false)}
           />
         </ModalApproveAction>
