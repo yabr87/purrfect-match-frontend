@@ -29,7 +29,7 @@ function NoticesPage() {
   const handleAddPet = () => {
     isLoggedIn ? navigate('/add-pet') : alert(t('alert_register_signin'));
   };
-
+  const [sex, setSex] = useState('');
   const [totalPages, setTotalPages] = useState(null);
   const [currentPage, setCurrentPage] = useState(() => {
     const page = searchParams.get('page');
@@ -81,11 +81,18 @@ function NoticesPage() {
     getNotices(params)
       .then(({ data }) => {
         setTotalPages(data.totalPages);
-        setNotices(data.results);
+        if (sex) {
+          const filteredResults = data.results.filter(
+            notice => notice.sex === sex
+          );
+          setNotices(filteredResults);
+        } else {
+          setNotices(data.results);
+        }
       })
       .catch(e => console.log(e))
       .finally(setFetching(false));
-  }, [categoryName, currentPage, title]);
+  }, [categoryName, currentPage, title, sex]);
 
   return (
     <Container>
@@ -103,7 +110,7 @@ function NoticesPage() {
       >
         <NoticesCategoriesNav />
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          <NoticesFilters />
+          <NoticesFilters setSex={setSex} />
           {isUpToWidth480 ? (
             <CircleButton
               style={{

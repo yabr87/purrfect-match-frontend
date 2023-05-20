@@ -17,14 +17,14 @@ import {
 } from './NoticesFilters.styles';
 import Checkbox from '../../../shared/components/Checkbox';
 
-function NoticesFilters({ fetchData }) {
+function NoticesFilters({ setSex }) {
   const isUpToWidth480 = useMedia(['(max-width: 480px)'], [true], false);
 
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [isAgeOpen, setIsAgeOpen] = useState(false);
   const [isGenderOpen, setIsGenderOpen] = useState(false);
   // const [age, setAge] = useState(null);
-  // const [gender, setGender] = useState(null);
+  const [gender, setGender] = useState([]);
 
   const { t } = useTranslation();
 
@@ -50,15 +50,18 @@ function NoticesFilters({ fetchData }) {
     // fetchData();
   };
 
-  // const handleGenderChange = event => {
-  // const value = event.target.value;
-  // setGender(prevState =>
-  //   prevState.includes(value)
-  //     ? prevState.filter(item => item !== value)
-  //     : [...prevState, value]
-  // );
-  // fetchData();
-  // };
+  const handleGenderChange = event => {
+    const value = event.target.value;
+    const isChecked = event.target.checked;
+
+    setGender(prevState =>
+      isChecked
+        ? [...prevState, value]
+        : prevState.filter(item => item !== value)
+    );
+
+    setSex(isChecked ? value : null);
+  };
 
   return (
     <FilterContainer
@@ -110,30 +113,6 @@ function NoticesFilters({ fetchData }) {
                     label={`2 ${t('years')}`}
                     onChange={handleAgeChange}
                   ></Checkbox>
-                  {/*<label>*/}
-                  {/*  <input*/}
-                  {/*    type="checkbox"*/}
-                  {/*    value="young"*/}
-                  {/*    onChange={handleAgeChange}*/}
-                  {/*  />*/}
-                  {/*  3-12m*/}
-                  {/*</label>*/}
-                  {/*  <label>*/}
-                  {/*  <input*/}
-                  {/*    type="checkbox"*/}
-                  {/*    value="adult"*/}
-                  {/*    onChange={handleAgeChange}*/}
-                  {/*  />*/}
-                  {/*  1 year*/}
-                  {/*</label>*/}
-                  {/*  <label>*/}
-                  {/*    <input*/}
-                  {/*      type="checkbox"*/}
-                  {/*      value="old"*/}
-                  {/*      onChange={handleAgeChange}*/}
-                  {/*    />*/}
-                  {/*    2 year*/}
-                  {/*  </label>*/}
                 </FilterChose>
               )}
             </ContainerItem>
@@ -147,29 +126,13 @@ function NoticesFilters({ fetchData }) {
                   <Checkbox
                     value="male"
                     label={t('male')}
-                    onChange={handleAgeChange}
+                    onChange={handleGenderChange}
                   ></Checkbox>
                   <Checkbox
                     value="female"
                     label={t('female')}
-                    onChange={handleAgeChange}
+                    onChange={handleGenderChange}
                   ></Checkbox>
-                  {/*<label>*/}
-                  {/*  <input*/}
-                  {/*    type="checkbox"*/}
-                  {/*    value="male"*/}
-                  {/*    onChange={handleGenderChange}*/}
-                  {/*  />*/}
-                  {/*  male*/}
-                  {/*</label>*/}
-                  {/*<label>*/}
-                  {/*  <input*/}
-                  {/*    type="checkbox"*/}
-                  {/*    value="female"*/}
-                  {/*    onChange={handleGenderChange}*/}
-                  {/*  />*/}
-                  {/*  female*/}
-                  {/*</label>*/}
                 </FilterChose>
               )}
             </ContainerItem>
