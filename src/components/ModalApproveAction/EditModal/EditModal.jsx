@@ -25,6 +25,7 @@ import Icon from 'shared/components/Icon';
 import validationSchemaEdit from './validationSchemaEdit';
 import { PetImage } from '../NoticeModal/NoticeModal.styles';
 import { editNotice } from 'utils/ApiNotices';
+import { convertToISODate } from 'utils/convertToISODate';
 
 
 
@@ -43,7 +44,7 @@ const EditModal = ({ notice, close, approve }) => {
     sex: notice.sex,
     location: notice.location,
     price: notice.price,
-    points: 0,
+    promo: 0,
   };
 
   const changedFields = {};
@@ -65,7 +66,10 @@ const EditModal = ({ notice, close, approve }) => {
     return { ...acc, [key]: changedFields[key] };
   }, {});
     
+    newPet.birthday = convertToISODate(newPet.birthday);
+
     try {
+      console.log(newPet);
       await editNotice(notice._id, newPet);
       resetForm();
       navigate('/notices')
@@ -101,9 +105,9 @@ const EditModal = ({ notice, close, approve }) => {
                           .replace('for-free', 'for free')
                           .replace(/-/g, '/')}
                       </ImageCategoryEdit></div>
-                        <EditLabel htmlFor="points">
-                          {values.points ? (
-                            <p>Raise your ad only for {values.points}$!</p>
+                        <EditLabel htmlFor="promo">
+                          {values.promo ? (
+                            <p>Raise your ad only for {values.promo}$!</p>
                         ) : (
                             <>
                             <p>Add payment to raise your ad!</p>
@@ -112,17 +116,17 @@ const EditModal = ({ notice, close, approve }) => {
                           )}
                           <EditField
                             type="range"
-                            id="points"
-                            name="points"
+                            id="promo"
+                            name="promo"
                             min="0"
                             max="30"
                             placeholder="Raise your ad"
                             onChange={handleChange}
                             onBlur={handleBlur}
-                            value={values.points}
-                            errors={touched.points && errors.points}
+                            value={values.promo}
+                            errors={touched.promo && errors.promo}
                           />
-                          <Error name="points" component="p" />
+                          <Error name="promo" component="p" />
                         </EditLabel>
                     </AdaptiveBoxOne>
                     <AdaptiveBoxTwo>
