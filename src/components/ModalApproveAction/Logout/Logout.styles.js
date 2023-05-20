@@ -2,10 +2,12 @@ import styled from 'styled-components';
 
 export const ContainerView = styled.div`
   display: flex;
-  align-items: center;
   flex-direction: column;
   padding: 60px 16px;
-  min-width: 280px;
+  width: 100%;
+  @media ${props => props.theme.media.phone} {
+    min-width: 280px;
+  }
   @media ${props => props.theme.media.tab} {
     width: 608px;
     padding: 108px 16px;
@@ -18,6 +20,7 @@ export const Title = styled.h2`
   font-weight: ${props => props.theme.fontWeiths.semi};
   font-size: ${props => props.theme.fontSizes.l};
   line-height: 33px;
+  text-align: center;
   margin-bottom: 40px;
   color: ${props => props.theme.colors.textColor};
   @media ${props => props.theme.media.tab} {
@@ -33,7 +36,12 @@ export const Title = styled.h2`
 `;
 
 export const ButtonWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+    width: 100%;
   @media ${props => props.theme.media.tab} {
     display: flex;
-  }
+    flex-direction: row;
 `;

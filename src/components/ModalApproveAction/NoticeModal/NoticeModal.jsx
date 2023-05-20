@@ -36,7 +36,11 @@ const NoticeModal = ({ notice, close, setIsFavorite }) => {
     ['desktop', 'tablet', 'mobile'],
     'xs'
   );
+
+  // const isSmallMobile = screenSize === 'xs';
   const isMobile = screenSize === 'mobile';
+  // const isTablet = screenSize === 'tablet';
+  // const isDesktop = screenSize === 'desktop';
 
   useEffect(() => {
     getNoticeById(notice._id)
@@ -148,17 +152,9 @@ const NoticeModal = ({ notice, close, setIsFavorite }) => {
                 s="white"
               />
             </Button>
-            <Button
-              type="button"
-              onClick={close}
-              w="256"
-              h="40"
-              style={{
-                marginBottom: '8px',
-              }}
-            >
+            <ContactLink type="button" href="tel:+380961111111">
               Contact
-            </Button>
+            </ContactLink>
           </ButtonWrap>
         </>
       ) : (
@@ -171,9 +167,6 @@ const NoticeModal = ({ notice, close, setIsFavorite }) => {
               h="40"
               shape="solid"
               g="8"
-              style={{
-                marginRight: '12px',
-              }}
             >
               Add to
               <Icon
