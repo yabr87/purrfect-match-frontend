@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+
 import { ErrorMessage, Formik } from 'formik';
 import { useDispatch } from 'react-redux';
 
@@ -20,6 +22,8 @@ import Button from 'shared/components/Button/Button';
 import Title from 'shared/components/Title/Title';
 import Icon from 'shared/components/Icon/Icon';
 
+import useAuth from 'shared/hooks/useAuth';
+
 import { signup } from 'redux/auth/authOperations';
 
 const validateShecma = Yup.object().shape({
@@ -39,13 +43,20 @@ const validateShecma = Yup.object().shape({
 
 const RegisterForm = () => {
   const navigate = useNavigate();
-
+  const { isLoggedIn } = useAuth();
   const dispatch = useDispatch();
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate('/user', { state: { isModalOpen: true } });
+      // navigate('/notices/sell');
+    }
+  }, [isLoggedIn, navigate]);
+
   return (
     <Formik
       initialValues={{ email: '', password: '', confirmedPassword: '' }}
       onSubmit={(values, actions) => {
-        navigate('/user', { state: { isModalOpen: true } });
+        // navigate('/user', { state: { isModalOpen: true } });
         dispatch(
           signup({
             email: values.email,
