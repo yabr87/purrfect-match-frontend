@@ -23,6 +23,7 @@ function NoticesFilters({ setSex }) {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [isAgeOpen, setIsAgeOpen] = useState(false);
   const [isGenderOpen, setIsGenderOpen] = useState(false);
+  // const [age, setAge] = useState(null);
 
   const { t } = useTranslation();
 
