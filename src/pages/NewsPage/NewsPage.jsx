@@ -21,7 +21,7 @@ const NewsPage = () => {
   const [currentPage, setCurrentPage] = useState(() => {
     return page ? Number(page) : 1;
   });
-  const [fetching, setFetching] = useState(true);
+  const [fetching, setFetching] = useState(false);
   const [totalPages, setTotalPages] = useState(null);
   const [error, setError] = useState(false);
 

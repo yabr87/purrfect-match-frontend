@@ -46,7 +46,7 @@ const Search = ({ onFormSubmit, setCurrentPage, setQuery }) => {
       validationSchema={validation}
     >
       {props => (
-        <SearchForm>
+        <SearchForm autoComplete="off">
           <SearchInput
             name="search"
             type="text"
