@@ -6,6 +6,35 @@ const { t } = useTranslation();
 
 Використання
 Наприклад є текст:
+
 <ScheduleTime>Closed</ScheduleTime>
 Замінюємо на:
-<ScheduleTime>{t('Closed')}</ScheduleTime>
+<ScheduleTime>{t('Schedule_Closed')}</ScheduleTime>
+//Schedule_Closed - називати можна як хочещ, але краще по контексту
+
+або
+
+{phone ? (
+<InfoItem>{phone}</InfoItem>) : (t('on_the_website'))}
+
+і тд.
+
+у файлі i18n.js
+
+resources: {
+    en: {
+      translation: {
+        //тут вводимо значення для англ версії 
+            ключ:значення,
+            Schedule_Closed: "Closed",
+            on_the_website: "on the website",
+      }}
+
+    ukr: {
+        translation: {
+            //тут вводимо значення для української версії 
+            ключ:значення,
+            Schedule_Closed: "Зачинено",
+            on_the_website: "на сайті",
+        }}
+      }
