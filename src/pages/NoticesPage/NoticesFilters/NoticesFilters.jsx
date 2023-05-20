@@ -23,8 +23,6 @@ function NoticesFilters({ setSex }) {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [isAgeOpen, setIsAgeOpen] = useState(false);
   const [isGenderOpen, setIsGenderOpen] = useState(false);
-  // const [age, setAge] = useState(null);
-  const [gender, setGender] = useState([]);
 
   const { t } = useTranslation();
 
@@ -54,12 +52,6 @@ function NoticesFilters({ setSex }) {
     const value = event.target.value;
     const isChecked = event.target.checked;
 
-    setGender(prevState =>
-      isChecked
-        ? [...prevState, value]
-        : prevState.filter(item => item !== value)
-    );
-    console.log(gender);
     setSex(isChecked ? value : null);
   };
 
