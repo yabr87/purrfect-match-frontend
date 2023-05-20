@@ -71,7 +71,7 @@ export const darkTheme = {
     textColor: '#FFFFFF',
     link: '#54ADFF',
     grey: '#CCCCCC',
-    titleColor: '#FFFFFF',
+    titleColor: '#FFC107',
     yellow: '#FEDC99',
     green: '#00C3AD',
     red: '#FF576D',
