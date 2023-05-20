@@ -21,7 +21,6 @@ export const signup = async data => {
       message: errorMessage,
       response: { status, data: { message: responseMessage }, keyValue } = {},
     } = error;
-    console.log('error', error);
     switch (status) {
       case 400:
         throw new Error(
