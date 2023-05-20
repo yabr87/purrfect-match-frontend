@@ -1,31 +1,29 @@
-import {
-  PetCardData,
-  PetImage,
-  Wrap,
-  ImageCategory,
-} from '../NoticeModal/NoticeModal.styles';
-
 import { Form, Formik } from 'formik';
 import Loader from 'shared/components/Loader';
 import {
-  ButtonsBox,
   Error,
-  FormButton,
-  FormTitle,
+  FormButton
 } from 'components/AddPetForm/AddPetForm.styles';
 import { reverseISODate } from 'utils/reverseISODate';
 import {
+  AdaptiveBoxOne,
+  AdaptiveBoxTwo,
+  EditBox,
   EditContainer,
+  EditContent,
   EditField,
   EditLabel,
   EditText,
+  EditTitle,
   EditWrapper,
+  ImageCategoryEdit,
 } from './EditModal.styles';
 import { useNavigate } from 'react-router-dom';
 import Button from 'shared/components/Button';
 import Icon from 'shared/components/Icon';
 // import ImageUploader from 'shared/components/ImageUploader';
 import validationSchemaEdit from './validationSchemaEdit';
+import { PetImage } from '../NoticeModal/NoticeModal.styles';
 
 
 
@@ -84,33 +82,31 @@ const EditModal = ({ notice, close, approve }) => {
 
   return (
     <EditContainer>
-      <PetCardData>
-        <Wrap>
-          <Formik onSubmit={handleSubmit} initialValues={initialValues} validationSchema={validationSchemaEdit}>
+      <EditContent>
+                  <Formik onSubmit={handleSubmit} initialValues={initialValues} validationSchema={validationSchemaEdit(notice.category)}>
             {({
               isSubmitting,
               handleChange,
               handleBlur,
               values,
               errors,
-              isValid,
               touched,
-              initialErrors,
-              setFieldValue,
             }) => (
               <Form>
                 {isSubmitting ? (
                   <Loader />
                 ) : (
-                  <EditWrapper>
-                      <div>
+                    <EditWrapper>
+                      <AdaptiveBoxOne>
+                      <EditTitle>Edit your pet</EditTitle>
+                      <div style={{position: 'relative'}}>
                       <PetImage src={notice.photoUrl} alt={notice.title} />
-                      <ImageCategory>
+                      <ImageCategoryEdit>
                         {notice.category
                           .replace('for-free', 'for free')
                           .replace(/-/g, '/')}
-                      </ImageCategory>
-                      <div>
+                      </ImageCategoryEdit></div>
+                        <div>
                         <EditLabel htmlFor="points">
                           {values.points ? (
                             <p>Raise your ad only for {values.points}$!</p>
@@ -132,9 +128,8 @@ const EditModal = ({ notice, close, approve }) => {
                           <Error name="points" component="p" />
                         </EditLabel>
                       </div>
-                    </div>
-                    <div>
-                      <FormTitle>Edit your advertisment</FormTitle>
+                    </AdaptiveBoxOne>
+                    <AdaptiveBoxTwo>
                       <EditLabel htmlFor="title">
                         Title of ad:
                         <EditField
@@ -221,10 +216,10 @@ const EditModal = ({ notice, close, approve }) => {
                         />
                         <Error name="comments" component="p" />
                       </EditLabel>
-                    </div>
+                    </AdaptiveBoxTwo>
                   </EditWrapper>
                 )}
-                <ButtonsBox>
+                <EditBox>
                   <FormButton type="button" w="248" h="48" onClick={close}>
                     Cancel
                   </FormButton>
@@ -239,14 +234,14 @@ const EditModal = ({ notice, close, approve }) => {
                     Update
                     <Icon id="paw" f="currentColor" s="none" />
                   </Button>
-                </ButtonsBox>
+                </EditBox>
               </Form>
             )}
           </Formik>
-        </Wrap>
-      </PetCardData>
+      </EditContent>
     </EditContainer>
   );
 };
 
 export default EditModal;
+
