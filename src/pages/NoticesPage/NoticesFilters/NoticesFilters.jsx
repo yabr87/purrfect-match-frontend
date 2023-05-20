@@ -59,7 +59,7 @@ function NoticesFilters({ setSex }) {
         ? [...prevState, value]
         : prevState.filter(item => item !== value)
     );
-
+    console.log(gender);
     setSex(isChecked ? value : null);
   };
 
