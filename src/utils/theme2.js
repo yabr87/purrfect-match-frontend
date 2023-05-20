@@ -17,7 +17,7 @@ export const lightTheme = {
     lightBlue: '#CCE4FB',
     gradient: 'linear-gradient(290.46deg, #419EF1 0%, #9BD0FF 107.89%)',
     buttonText: '#FEF9F9',
-    notificationColor: 'colored',
+    notificationColorTheme: 'ligth',
   },
   shadows: {
     default: '3px 8px 14px rgba(136, 198, 253, 0.19)',
@@ -80,7 +80,7 @@ export const darkTheme = {
     gradient:
       'linear-gradient(290.46deg, rgb(5 101 186) 0%, rgb(65, 158, 241) 107.89%)',
     buttonText: '#FEF9F9',
-    notificationColor: 'dark',
+    notificationColorTheme: 'dark',
   },
   shadows: {
     default: '3px 8px 14px rgba(136, 198, 253, 0.19)',

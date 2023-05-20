@@ -52,14 +52,11 @@ const AddPetForm = () => {
       } else {
         await addMyPet(newPet);
       }
-      // console.log('Pet added successfully');
-      toast.success(`Pet added successfully`, {
-        position: toast.POSITION.TOP_RIGHT,
-      });
+      toast.success(`Pet added successfully`);
       resetForm();
       navigate(`/notices/${selectedCategory}`);
     } catch (error) {
-      console.error('Failed to add pet', error);
+      toast.error(`Failed to add pet':${error}`);
     }
   };
 
