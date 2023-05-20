@@ -107,7 +107,7 @@ function NoticesPage() {
           {isUpToWidth480 ? (
             <CircleButton
               style={{
-                zIndex: '1999',
+                zIndex: '989',
                 position: 'fixed',
                 bottom: '50px',
                 right: '24px',

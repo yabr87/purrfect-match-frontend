@@ -5,6 +5,7 @@ import Icon from 'shared/components/Icon';
 
 import {
   ModalView,
+  ModalContainer,
   ModalOverlay,
   CloseIcon,
 } from './ModalApproveAction.styles';
@@ -30,12 +31,14 @@ const ModalApproveAction = ({ close, children, approve }) => {
 
   return createPortal(
     <ModalOverlay onClick={closeModal}>
-      <ModalView>
-        <CloseIcon onClick={close}>
-          <Icon id="cross" s="#54ADFF" />
-        </CloseIcon>
-        {children}
-      </ModalView>
+      <ModalContainer>
+        <ModalView>
+          <CloseIcon onClick={close}>
+            <Icon id="cross" s="#54ADFF" />
+          </CloseIcon>
+          {children}
+        </ModalView>
+      </ModalContainer>
     </ModalOverlay>,
     modalRoot
   );

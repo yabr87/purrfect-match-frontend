@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 
 export const UserWrapper = styled.div`
+  position: relative;
   width: 100%;
+  max-width: 440px;
   height: auto;
   margin-left: auto;
   background-color: ${props => props.theme.colors.backgroundModal};
@@ -13,6 +15,7 @@ export const UserWrapper = styled.div`
 
   @media screen and (min-width: 768px) {
     flex-direction: row-reverse;
+    max-width: 704px;
   }
 
   @media screen and (min-width: 1280px) {

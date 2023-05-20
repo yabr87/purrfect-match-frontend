@@ -7,7 +7,7 @@ export const Forms = styled(Form)`
   align-items: center;
   background-color: ${props => props.theme.colors.backgroundModal};
   border-radius: 37px;
-  color: ${props => props.theme.colors.textColor};
+  color: ${props => props.theme.colors.yellow};
   padding: 40px 12px;
   @media (min-width: 481px) {
     padding: 60px 75px;
@@ -19,11 +19,12 @@ export const Input = styled(Field)`
   border: 1px solid;
   border-radius: ${props => props.theme.radius.normal};
   background-color: ${props => props.theme.colors.backgroundModal};
+  color: inherit;
 
   ::placeholder {
     font-weight: ${props => props.theme.fontWeiths.normal};
     font-size: ${props => props.theme.fontSizes.s};
-    color: ${props => props.theme.colors.grey};
+    color: inherit;
   }
   :focus {
     outline: none;

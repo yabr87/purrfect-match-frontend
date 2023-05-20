@@ -17,6 +17,22 @@ i18n.use(initReactI18next).init({
         Log_IN: 'Log IN',
         Registration: 'Registration',
 
+        My_information: 'My information',
+        Edit_photo: 'Edit photo',
+        Confirm: 'Confirm',
+        Log_Out: 'Log Out',
+        Birthday: 'birthday',
+        City: 'city',
+
+        remove: 'remove',
+        Name: 'Name',
+        Date_of_Birth: 'Date of Birth',
+        Breed: 'Breed',
+        Comments: 'Comments',
+        My_pets: 'My pets',
+        Add_pet: 'Add pet',
+        No_pats_yet: 'You have no own added pets yet',
+
         Closed: 'Closed',
         Time: 'Time',
         Adress: 'Adress',
@@ -35,7 +51,6 @@ i18n.use(initReactI18next).init({
         No_result: 'There is no result',
         Read_more: 'Read more',
 
-        Add_pet: 'Add pet',
         alert_register_signin:
           'Please register or sign in to be able to add pet',
         Find_your_favorite_pet: 'Find your favorite pet',
@@ -70,6 +85,22 @@ i18n.use(initReactI18next).init({
         Log_IN: 'Увійти',
         Registration: 'Зареєструватися',
 
+        My_information: 'Моя інформація',
+        Edit_photo: 'Редагувати фото',
+        Confirm: 'Підтвердити',
+        Log_Out: 'Вийти',
+        Birthday: 'День народження',
+        City: 'Місто',
+
+        remove: 'видалити',
+        Name: 'Імʼя',
+        Date_of_Birth: 'Дата народження',
+        Breed: 'Порода',
+        Comments: 'Коментарі',
+        My_pets: 'Мої тварини',
+        Add_pet: 'Додати',
+        No_pats_yet: 'Ви ще не додали жодну тваринку',
+
         Closed: 'Зачинено',
         Time: 'Часи роботи',
         Adress: 'Адреса',
@@ -88,7 +119,6 @@ i18n.use(initReactI18next).init({
         No_result: 'Немає результатів',
         Read_more: 'Читати більше',
 
-        Add_pet: 'Додати',
         alert_register_signin:
           'Будь ласка, авторизуйтеся, щоб додати тваринку!',
         Find_your_favorite_pet: 'Знайди собі улюбленця',
