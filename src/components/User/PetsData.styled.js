@@ -17,6 +17,7 @@ export const PetContainer = styled.div`
     flex-direction: row;
   }
   @media screen and (min-width: 1280px) {
+    width: auto;
     margin-left: 32px;
   }
 `;
@@ -25,7 +26,6 @@ export const PetWrap = styled.div`
   @media screen and (min-width: 1280px) {
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
   }
 `;
 
@@ -79,6 +79,11 @@ export const PetInfoWrap = styled.div`
     flex-grow: 1;
     width: auto;
   }
+  @media screen and (min-width: 1280px) {
+    width: 500px;
+    padding: 0;
+    margin-right: 0;
+  }
 `;
 
 export const PetInfoItem = styled.p`
@@ -107,5 +112,8 @@ export const DelPetBtn = styled.button`
 
   @media screen and (min-width: 768px) {
     right: -20px;
+  }
+  @media screen and (min-width: 1280px) {
+    right: 0;
   }
 `;

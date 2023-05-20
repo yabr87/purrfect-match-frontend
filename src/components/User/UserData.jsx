@@ -110,24 +110,14 @@ const UserData = () => {
               type="text"
               value={user.email}
               pattern="/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/"
-            />
-            <InputItem
-              name="birthday"
-              placeholderText="DD.MM.YYYY"
-              onChange={date => setUser({ ...user, birthday: date })}
-              selected={user.birthday}
-              value={user.birthday}
-              dateFormat="dd.MM.yyyy"
-              pattern="(0?[1-9]|[12][0-9]|3[01]).(0?[1-9]|1[012]).((19|20)\d\d)"
               placeholder={t('Email')}
             />
             <InputItem
-              name={t('Birthday')}
-              placeholderText="DD.MM.YYYY"
-              onChange={date => setUser({ ...user, birthday: date })}
-              selected={user.birthday}
+              name={t('birthday')}
+              placeholder="DD.MM.YYYY"
               value={user.birthday}
               dateFormat="dd.MM.yyyy"
+              pattern="(0?[1-9]|[12][0-9]|3[01]).(0?[1-9]|1[012]).((19|20)\d\d)"
             />
             <InputItem
               name={t('Phone')}
@@ -143,6 +133,7 @@ const UserData = () => {
               type="text"
               pattern="/([A-Za-z]+(?: [A-Za-z]+)*)/"
               value={user.city || ''}
+              placeholder={t('Kyiv')}
             />
             <LogOutBtn onClick={handleLogOut}>
               <Icon id="logout" s="#54ADFF" />
