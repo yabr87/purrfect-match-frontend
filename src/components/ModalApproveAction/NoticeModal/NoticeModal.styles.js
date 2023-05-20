@@ -5,10 +5,9 @@ export const ContainerView = styled.div`
   align-items: center;
   flex-direction: column;
   padding: 44px 20px 16px 20px;
-  min-width: 280px;
+  width: 100%;
   @media ${props => props.theme.media.tab} {
     width: 681px;
-
     padding: 32px 32px 32px 32px;
   }
 `;
@@ -16,6 +15,7 @@ export const ContainerView = styled.div`
 export const PetCardData = styled.div`
   display: flex;
   flex-direction: column;
+  width: 100%;
   @media ${props => props.theme.media.tab} {
     width: 100%;
   }
@@ -28,10 +28,12 @@ export const Wrap = styled.div`
   align-items: center;
   margin-bottom: 12px;
   width: 100%;
+  gap: 8px;
   @media ${props => props.theme.media.tab} {
     display: flex;
     flex-direction: row;
     margin-bottom: 28px;
+    gap: 8px;
   }
 `;
 
@@ -55,6 +57,8 @@ export const Title = styled.h2`
 `;
 
 export const ButtonWrap = styled.div`
+  width: 100%;
+  justify-content: center;
   @media ${props => props.theme.media.tab} {
     display: flex;
     width: 100%;
@@ -64,14 +68,18 @@ export const ButtonWrap = styled.div`
 
 export const PetImage = styled.img`
   object-fit: cover;
-  width: 240px;
+  width: 100%;
+
   height: 240px;
   border-radius: ${props =>
     ` 0px 0px ${props.theme.radius.normal} ${props.theme.radius.normal} `};
 
   margin-bottom: 12px;
+  @media ${props => props.theme.media.phone} {
+    max-width: 240px;
+  }
   @media ${props => props.theme.media.tab} {
-    width: 262px;
+    max-width: 262px;
     height: 298px;
     margin-bottom: 0;
     margin-right: 24px;
@@ -145,8 +153,7 @@ export const ContactLink = styled.a`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 129px;
-  height: 40px
+  height: 40px;
   padding: 10px;
 
   font-family: ${props => props.theme.fonts.main};
@@ -154,17 +161,24 @@ export const ContactLink = styled.a`
   font-size: ${props => props.theme.fontSizes.s};
   line-height: 1.38;
   color: ${props => props.theme.colors.link};
- 
 
-border: 2px solid ${props => props.theme.colors.link};
-border-radius: ${props => props.theme.radius.normal};
-
-cursor: pointer;
+  border: 2px solid ${props => props.theme.colors.link};
+  border-radius: ${props => props.theme.radius.normal};
+  margin-top: 8px;
+  width: 100%;
+  max-width: 256px;
+  cursor: pointer;
 
   &:hover,
   &:focus {
     color: ${props => props.theme.colors.backgroundModal};
     background: ${props => props.theme.colors.link};
+  }
+
+  @media ${props => props.theme.media.tab} {
+    margin-top: 0;
+    margin-left: 12px;
+    max-width: 129px;
   }
 `;
 
