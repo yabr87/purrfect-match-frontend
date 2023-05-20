@@ -37,10 +37,10 @@ const NoticeModal = ({ notice, close, setIsFavorite }) => {
     'xs'
   );
 
-  // const isSmallMobile = screenSize === 'xs';
+  const isSmallMobile = screenSize === 'xs';
   const isMobile = screenSize === 'mobile';
-  // const isTablet = screenSize === 'tablet';
-  // const isDesktop = screenSize === 'desktop';
+  const isTablet = screenSize === 'tablet';
+  const isDesktop = screenSize === 'desktop';
 
   useEffect(() => {
     getNoticeById(notice._id)
@@ -133,54 +133,98 @@ const NoticeModal = ({ notice, close, setIsFavorite }) => {
         </Wrap>
         <PetComents>Comments: {notice.comments}</PetComents>
       </PetCardData>
-
-      {isMobile ? (
-        <>
-          <ButtonWrap>
-            <Button
-              type="button"
-              onClick={() => approveAddFavorite(notice)}
-              w="256"
-              h="40"
-              shape="solid"
-              g="8"
-            >
-              Add to
-              <Icon
-                id="heart"
-                f={favorite ? '#ffffff' : 'transparent'}
-                s="white"
-              />
-            </Button>
-            <ContactLink type="button" href="tel:+380961111111">
-              Contact
-            </ContactLink>
-          </ButtonWrap>
-        </>
-      ) : (
-        <>
-          <ButtonWrap>
-            <Button
-              type="button"
-              onClick={() => approveAddFavorite(notice)}
-              w="129"
-              h="40"
-              shape="solid"
-              g="8"
-            >
-              Add to
-              <Icon
-                id="heart"
-                f={favorite ? '#ffffff' : 'transparent'}
-                s="white"
-              />
-            </Button>
-            <ContactLink href="tel:+380961111111">Contact</ContactLink>
-          </ButtonWrap>
-        </>
+      {isSmallMobile && (
+        <ButtonWrap>
+          <Button
+            type="button"
+            onClick={() => approveAddFavorite(notice)}
+            h="40"
+            shape="solid"
+            g="8"
+            style={{
+              width: '100%',
+            }}
+          >
+            Add to
+            <Icon
+              id="heart"
+              f={favorite ? '#ffffff' : 'transparent'}
+              s="white"
+            />
+          </Button>
+          <ContactLink type="button" href="tel:+380961111111">
+            Contact
+          </ContactLink>
+        </ButtonWrap>
+      )}
+      {isMobile && (
+        <ButtonWrap>
+          <Button
+            type="button"
+            onClick={() => approveAddFavorite(notice)}
+            // w="256"
+            h="40"
+            shape="solid"
+            g="8"
+            style={{
+              width: '100%',
+            }}
+          >
+            Add to
+            <Icon
+              id="heart"
+              f={favorite ? '#ffffff' : 'transparent'}
+              s="white"
+            />
+          </Button>
+          <ContactLink type="button" href="tel:+380961111111">
+            Contact
+          </ContactLink>
+        </ButtonWrap>
+      )}
+      {isTablet && (
+        <ButtonWrap>
+          <Button
+            type="button"
+            onClick={() => approveAddFavorite(notice)}
+            w="129"
+            h="40"
+            shape="solid"
+            g="8"
+          >
+            Add to
+            <Icon
+              id="heart"
+              f={favorite ? '#ffffff' : 'transparent'}
+              s="white"
+            />
+          </Button>
+          <ContactLink href="tel:+380961111111">Contact</ContactLink>
+        </ButtonWrap>
+      )}
+      {isDesktop && (
+        <ButtonWrap>
+          <Button
+            type="button"
+            onClick={() => approveAddFavorite(notice)}
+            w="129"
+            h="40"
+            shape="solid"
+            g="8"
+          >
+            Add to
+            <Icon
+              id="heart"
+              f={favorite ? '#ffffff' : 'transparent'}
+              s="white"
+            />
+          </Button>
+          <ContactLink href="tel:+380961111111">Contact</ContactLink>
+        </ButtonWrap>
       )}
     </ContainerView>
   );
 };
 
 export default NoticeModal;
+
