@@ -147,65 +147,6 @@ const Logout = ({ close, idUser }) => {
           </ButtonWrap>
         </>
       )}
-      {/* {isMobile ? (
-        <>
-          <ButtonWrap>
-            <Button
-              type="button"
-              onClick={close}
-              w="256"
-              h="40"
-              style={{
-                marginBottom: '8px',
-              }}
-            >
-              Cancel
-            </Button>
-            <Button
-              type="button"
-              onClick={() => onLogout(idUser)}
-              // w="256"
-              h="40"
-              shape="solid"
-              g="8"
-              style={{
-                width: '100%',
-                // maxWidth: '256px',
-              }}
-            >
-              Yes
-              <Icon id="logout" s="#FEF9F9" />
-            </Button>
-          </ButtonWrap>
-        </>
-      ) : (
-        <>
-          <ButtonWrap>
-            <Button
-              type="button"
-              onClick={close}
-              w="129"
-              h="40"
-              // style={{
-              //   marginRight: '17px',
-              // }}
-            >
-              Cancel
-            </Button>
-            <Button
-              type="button"
-              onClick={() => onLogout(idUser)}
-              w="129"
-              h="40"
-              shape="solid"
-              g="8"
-            >
-              Yes
-              <Icon id="logout" s="#FEF9F9" />
-            </Button>
-          </ButtonWrap>
-        </>
-      )} */}
     </ContainerView>
   );
 };

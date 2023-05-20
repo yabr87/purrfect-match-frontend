@@ -47,7 +47,7 @@ export const CircleBtn = styled.button`
 `;
 
 function setSize({ id }) {
-  switch (id === 'heart' || id === 'trash') {
+  switch (id === 'heart' || id === 'trash'|| id === 'edit') {
     case true:
       return `40px`;
     default:
@@ -56,7 +56,7 @@ function setSize({ id }) {
 }
 
 function setBackground({ id, theme }) {
-  switch (id === 'heart' || id === 'trash') {
+  switch (id === 'heart' || id === 'trash'|| id === 'edit') {
     case true:
       return `${theme.colors.lightBlue}`;
     default:

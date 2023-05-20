@@ -6,9 +6,12 @@ export const ContainerView = styled.div`
   flex-direction: column;
   padding: 44px 20px 16px 20px;
   width: 100%;
+  @media ${props => props.theme.media.mobile} {
+    min-width: 280px;
+  }
   @media ${props => props.theme.media.tab} {
     width: 681px;
-    padding: 32px 32px 32px 32px;
+    padding: 32px;
   }
 `;
 
@@ -16,9 +19,6 @@ export const PetCardData = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  @media ${props => props.theme.media.tab} {
-    width: 100%;
-  }
 `;
 
 export const Wrap = styled.div`
@@ -26,7 +26,6 @@ export const Wrap = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 12px;
   width: 100%;
   gap: 8px;
   @media ${props => props.theme.media.tab} {
@@ -46,13 +45,9 @@ export const Title = styled.h2`
   margin-bottom: 22px;
   color: ${props => props.theme.colors.textColor};
   @media ${props => props.theme.media.tab} {
-    font-family: ${props => props.theme.fonts.main};
-    font-style: normal;
-    font-weight: ${props => props.theme.fontWeiths.bold};
     font-size: ${props => props.theme.fontSizes.xl};
     line-height: 38px;
     letter-spacing: -0.01em;
-    color: ${props => props.theme.colors.textColor};
   }
 `;
 
@@ -61,7 +56,6 @@ export const ButtonWrap = styled.div`
   justify-content: center;
   @media ${props => props.theme.media.tab} {
     display: flex;
-    width: 100%;
     justify-content: end;
   }
 `;
@@ -69,14 +63,15 @@ export const ButtonWrap = styled.div`
 export const PetImage = styled.img`
   object-fit: cover;
   width: 100%;
-
   height: 240px;
+
   border-radius: ${props =>
     ` 0px 0px ${props.theme.radius.normal} ${props.theme.radius.normal} `};
 
   margin-bottom: 12px;
-  @media ${props => props.theme.media.phone} {
+  @media ${props => props.theme.media.mobile} {
     max-width: 240px;
+    max-height: 240px;
   }
   @media ${props => props.theme.media.tab} {
     max-width: 262px;
@@ -111,6 +106,7 @@ export const PetDataListWrap = styled.div`
 
 export const PetDataList = styled.table`
   width: 100%;
+  margin-bottom: 12px;
 `;
 
 export const PetDataItem = styled.tr`
@@ -145,7 +141,6 @@ export const PetComents = styled.p`
   color: ${props => props.theme.colors.textColor};
   @media ${props => props.theme.media.tab} {
     margin-bottom: 70px;
-    color: ${props => props.theme.colors.textColor};
   }
 `;
 
