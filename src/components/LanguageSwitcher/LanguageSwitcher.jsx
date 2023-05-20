@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { LanguageSelectorContainer, Select } from './LanguageSwither.styles';
 
@@ -10,6 +10,13 @@ function LanguageSwitcher() {
     i18n.changeLanguage(selectedLanguage);
     localStorage.setItem('language', selectedLanguage);
   };
+
+  useEffect(() => {
+    const savedLanguage = localStorage.getItem('language');
+    if (savedLanguage) {
+      i18n.changeLanguage(savedLanguage);
+    }
+  }, [i18n]);
 
   const selectedLanguage = localStorage.getItem('language') || 'en';
 
