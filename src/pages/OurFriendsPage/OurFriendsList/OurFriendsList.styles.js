@@ -4,12 +4,6 @@ export const FriendsContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  @media screen and (min-width: 768px) {
-  }
-
-  @media screen and (min-width: 1280px) {
-  }
 `;
 
 export const FriendsList = styled.ul`
@@ -18,13 +12,13 @@ export const FriendsList = styled.ul`
   grid-template-columns: repeat(1, 1fr);
   grid-gap: 20px;
 
-  @media screen and (min-width: 768px) {
+  @media ${props => props.theme.media.tab} {
     margin-top: 40px;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 24px 32px;
   }
 
-  @media screen and (min-width: 1280px) {
+  @media ${props => props.theme.media.desk} {
     margin-top: 60px;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 32px;
@@ -35,24 +29,31 @@ export const Friend = styled.li`
   font-family: 'Manrope';
   font-style: normal;
 
-  background: #ffffff;
-  box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
-  border-radius: 40px;
-  width: 280px;
   min-height: 239px;
   height: fit;
+  width: 280px;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 16px 12px;
   border: none;
+  border-radius: 40px;
+  background: ${props => props.theme.colors.backgroundModal};
+  box-shadow: ${props => props.theme.shadows.default};
+  transition: color 250ms ease;
 
-  @media screen and (min-width: 768px) {
+  &:hover,
+  &:focus {
+    color: ${props => props.theme.shadows.hover};
+  }
+
+  @media ${props => props.theme.media.tab} {
     width: 336px;
     min-height: 275px;
   }
 
-  @media screen and (min-width: 1280px) {
+  @media ${props => props.theme.media.desk} {
     width: 395px;
     min-height: 287px;
   }
@@ -64,18 +65,12 @@ export const FriendTitle = styled.a`
   display: block;
   align-items: center;
   text-align: center;
-  color: #54adff;
+  color: ${props => props.theme.colors.link};
 
   transition: transform 250ms ease;
   :hover,
   :focus {
     transform: scale(1.05);
-  }
-
-  @media screen and (min-width: 768px) {
-  }
-
-  @media screen and (min-width: 1280px) {
   }
 `;
 
@@ -85,10 +80,8 @@ export const FriendBlock = styled.div`
   gap: 12px;
   margin-top: 12px;
   width: 100%;
-  @media screen and (min-width: 768px) {
-  }
 
-  @media screen and (min-width: 1280px) {
+  @media ${props => props.theme.media.desk} {
     gap: 16px;
   }
 `;
@@ -96,12 +89,13 @@ export const FriendBlock = styled.div`
 export const FriendImg = styled.img`
   width: 100px;
   height: 68px;
-  @media screen and (min-width: 768px) {
+  border-radius: 5px;
+  @media ${props => props.theme.media.tab} {
     width: 124px;
     height: 88px;
   }
 
-  @media screen and (min-width: 1280px) {
+  @media ${props => props.theme.media.desk} {
     width: 146px;
     height: 104px;
   }
@@ -112,11 +106,11 @@ export const FriendInfo = styled.div`
   flex-direction: column;
   gap: 12px;
 
-  @media screen and (min-width: 768px) {
+  @media ${props => props.theme.media.tab} {
     gap: 16px;
   }
 
-  @media screen and (min-width: 1280px) {
+  @media ${props => props.theme.media.desk} {
     gap: 12px;
   }
 `;
@@ -125,23 +119,19 @@ export const InfoItem = styled.div`
   font-weight: 500;
   font-size: 12px;
   line-height: calc(16 / 12);
-  @media screen and (min-width: 768px) {
-  }
-
-  @media screen and (min-width: 1280px) {
-  }
+  color: ${props => props.theme.colors.titleColor};
 `;
 export const InfoItemTitle = styled.div`
   font-weight: 600;
   font-size: 12px;
   line-height: calc(16 / 12);
 
-  @media screen and (min-width: 768px) {
+  @media ${props => props.theme.media.tab} {
     font-size: 14px;
     line-height: calc(19 / 14);
   }
 
-  @media screen and (min-width: 1280px) {
+  @media ${props => props.theme.media.desk} {
     font-size: 16px;
     line-height: calc(22 / 16);
   }
@@ -150,18 +140,19 @@ export const InfoItemText = styled.div`
   font-weight: 400;
   font-size: 12px;
   line-height: calc(16 / 12);
+  color: ${props => props.theme.colors.titleColor};
 
   transition: color 250ms ease;
   &:hover {
-    color: #54adff;
+    color: ${props => props.theme.colors.link};
   }
 
-  @media screen and (min-width: 768px) {
+  @media ${props => props.theme.media.tab} {
     font-weight: 400;
     font-size: 14px;
     line-height: calc(19 / 14);
   }
-  @media screen and (min-width: 1280px) {
+  @media ${props => props.theme.media.desk} {
     font-size: 16px;
     line-height: calc(22 / 16);
   }
@@ -171,16 +162,14 @@ export const InfoItemTime = styled.div`
   font-weight: 500;
   font-size: 12px;
   line-height: calc(16 / 12);
+
+  color: ${props => props.theme.colors.titleColor};
   transition: color 250ms ease;
+
   cursor: ${props => (props.hasSchedule ? 'pointer' : 'default')};
   &:hover,
   &:focus {
-    color: #54adff;
-  }
-  @media screen and (min-width: 768px) {
-  }
-
-  @media screen and (min-width: 1280px) {
+    color: ${props => props.theme.colors.link};
   }
 `;
 export const ScheduleField = styled.div`
@@ -196,10 +185,10 @@ export const ScheduleField = styled.div`
   font-size: 10px;
   line-height: calc(14 / 10);
 
-  color: #111111;
-  background: #ffffff;
-  border: 1px solid #54adff;
-  box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
+  color: ${props => props.theme.colors.titleColor};
+  background: ${props => props.theme.colors.backgroundModal};
+  border: 1px solid ${props => props.theme.colors.link};
+  box-shadow: ${props => props.theme.shadows.default};
   border-radius: 8px;
   padding: 8px;
   z-index: 2;
@@ -208,9 +197,6 @@ export const ScheduleField = styled.div`
     font-size: 12px;
     line-height: calc(16 / 12);
     padding: 12px;
-  }
-
-  @media screen and (min-width: 1280px) {
   }
 `;
 
@@ -228,25 +214,10 @@ export const ScheduleTime = styled.div``;
 
 export const InfoItemAddress = styled.a`
   display: block;
-  @media screen and (min-width: 768px) {
-  }
-
-  @media screen and (min-width: 1280px) {
-  }
 `;
 export const InfoItemEmail = styled.a`
   display: block;
-  @media screen and (min-width: 768px) {
-  }
-
-  @media screen and (min-width: 1280px) {
-  }
 `;
 export const InfoItemPhone = styled.a`
   display: block;
-  @media screen and (min-width: 768px) {
-  }
-
-  @media screen and (min-width: 1280px) {
-  }
 `;
