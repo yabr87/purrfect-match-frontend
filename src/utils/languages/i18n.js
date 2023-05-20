@@ -5,6 +5,8 @@ i18n.use(initReactI18next).init({
   resources: {
     en: {
       translation: {
+        mainPage_title: 'Take good care of your small pets',
+
         Our_friends: 'Our friends',
         Closed: 'Closed',
         Time: 'Time',
@@ -20,10 +22,40 @@ i18n.use(initReactI18next).init({
         FR: 'FR',
         SA: 'SA',
         SU: 'SU',
+
+        News: 'News',
+        No_result: 'There is no result',
+        Read_more: 'Read more',
+
+        Add_pet: 'Add pet',
+        alert_register_signin:
+          'Please register or sign in to be able to add pet',
+        Find_your_favorite_pet: 'Find your favorite pet',
+        Filter: 'Filter',
+        Filters: 'Filters',
+        By_age: 'By age',
+        By_gender: 'By gender',
+        m: 'm',
+        year: 'year',
+        years: 'years',
+        male: 'male',
+        female: 'female',
+        sell: 'sell',
+        lost_found: 'lost/found',
+        in_good_hands: 'in good hands',
+        favorites_ads: 'favorites ads',
+        my_ads: 'my ads',
+        alert_failed_delete: 'Failed to delete notice. Please try again later.',
+        Learn_more: 'Learn more',
+        alert_signin_fav: 'Please sign in to add to favorites',
+        alert_failed_update: 'Failed to update notice. Please try again later.',
+        for_free:'for free',
       },
     },
     ukr: {
       translation: {
+        mainPage_title: 'Подбайте про своїх домашніх улюбленців',
+
         Our_friends: 'Наші друзі',
         Closed: 'Зачинено',
         Time: 'Часи роботи',
@@ -39,6 +71,36 @@ i18n.use(initReactI18next).init({
         FR: 'ПТ',
         SA: 'СБ',
         SU: 'НД',
+
+        News: 'Новини',
+        No_result: 'Немає результатів',
+        Read_more: 'Читати більше',
+
+        Add_pet: 'Додати',
+        alert_register_signin:
+          'Будь ласка, авторизуйтеся, щоб додати тваринку!',
+        Find_your_favorite_pet: 'Знайди собі улюбленця',
+        Filter: 'Фільтр',
+        Filters: 'Фільтри',
+        By_age: 'За віком',
+        By_gender: 'За статтю',
+        m: 'м',
+        year: 'рік',
+        years: 'роки',
+        male: 'Чоловіча',
+        female: 'Жіноча',
+        sell: 'Продається',
+        lost_found: 'Загублені/Знайдені',
+        in_good_hands: 'В хороші руки',
+        favorites_ads: 'Улюблені',
+        my_ads: 'Мої оголошення',
+        alert_failed_delete:
+          'Не вдалося видалити оголошення. Будь ласка, спробуйте ще раз згодом.',
+        Learn_more: 'Дивитися більше',
+        alert_signin_fav: 'Будь ласка, авторизуйтеся, щоб додати до улюблених!',
+        alert_failed_update:
+          'Не вдалося оновити оголошення. Будь ласка, спробуйте ще раз згодом.',
+          for_free:'безкоштовно',
       },
     },
   },

@@ -20,6 +20,7 @@ export const lightTheme = {
     gradient: 'linear-gradient(290.46deg, #419EF1 0%, #9BD0FF 107.89%)',
 
     inputColor: '#888888',
+    inputBackground: '#ffffff',
     backgroundModal: '#ffffff',
     backgroundColor: '#fff',
     color: '#121212',
@@ -94,6 +95,7 @@ export const darkTheme = {
     gradient: 'linear-gradient(290.46deg, #419EF1 0%, #9BD0FF 107.89%)',
 
     inputColor: '#ffffff',
+    inputBackground: 'transparent',
     backgroundModal: '#121212',
     backgroundColor: '#121212',
     color: '#fff',
@@ -132,7 +134,7 @@ export const darkTheme = {
     desktop: '1280px',
   },
   media: {
-    phone: 'screen and (min-width: 480)',
+    phone: 'screen and (min-width: 480px)',
     tab: 'screen and (min-width: 768px)',
     desk: 'screen and (min-width: 1280px)',
   },

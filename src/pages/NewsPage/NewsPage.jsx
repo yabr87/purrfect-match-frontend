@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import Loader from 'shared/components/Loader';
 import Container from 'shared/components/Container';
 import Title from 'shared/components/Title';
@@ -20,9 +21,11 @@ const NewsPage = () => {
   const [currentPage, setCurrentPage] = useState(() => {
     return page ? Number(page) : 1;
   });
-  const [fetching, setFetching] = useState(true);
+  const [fetching, setFetching] = useState(false);
   const [totalPages, setTotalPages] = useState(null);
   const [error, setError] = useState(false);
+
+  const { t } = useTranslation();
 
   useEffect(() => {
     const params = {};
@@ -59,7 +62,7 @@ const NewsPage = () => {
 
   return (
     <Container>
-      <Title>News</Title>
+      <Title>{t('News')}</Title>
       <Search
         onFormSubmit={onSubmit}
         setCurrentPage={setCurrentPage}
@@ -81,7 +84,7 @@ const NewsPage = () => {
       {Boolean(news.length) ? (
         <NewsList items={news} />
       ) : (
-        !fetching && <div>There is no result</div>
+        !fetching && <div>{t('No_result')}</div>
       )}
       {totalPages > 1 && (
         <Pagination
