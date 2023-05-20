@@ -78,7 +78,7 @@ const EditModal = ({ notice, close, approve }) => {
       await editNotice(notice._id, newPet);
       toast.success(`Pet edited successfully`);
       resetForm();
-      navigate(`/notices/${notice.category}`);
+      close();
     } catch (error) {
       toast.error(`Failed to edit pet':${error}`);
     }
