@@ -1,28 +1,33 @@
 import {
-  ContainerView,
   PetCardData,
   PetImage,
   Wrap,
   ImageCategory,
 } from '../NoticeModal/NoticeModal.styles';
 
-import { Field, Form, Formik } from 'formik';
+import { Form, Formik } from 'formik';
 import Loader from 'shared/components/Loader';
 import {
   ButtonsBox,
   Error,
   FormButton,
-  FormLabel,
   FormTitle,
 } from 'components/AddPetForm/AddPetForm.styles';
 import { reverseISODate } from 'utils/reverseISODate';
-import { EditWrapper } from './EditModal.styles';
-import { useNavigate } from 'react-router-dom';
+import {
+  EditContainer,
+  EditField,
+  EditLabel,
+  EditText,
+  EditWrapper,
+} from './EditModal.styles';
+// import { useNavigate } from 'react-router-dom';
 import Button from 'shared/components/Button';
 import Icon from 'shared/components/Icon';
+import ImageUploader from 'shared/components/ImageUploader';
 
-const EditModal = ({ notice, close }) => {
-  const navigate = useNavigate();
+const EditModal = ({ notice, close, approve }) => {
+  // const navigate = useNavigate();
 
   const handleSubmit = async (values, { resetForm }) => {
     const newPet = Object.keys(values).reduce((acc, key) => {
@@ -43,6 +48,7 @@ const EditModal = ({ notice, close }) => {
   };
 
   const initialValues = {
+    _id: notice._id,
     category: notice.category,
     title: notice.title,
     name: notice.name,
@@ -53,10 +59,11 @@ const EditModal = ({ notice, close }) => {
     sex: notice.sex,
     location: notice.location,
     price: notice.price,
+    points: 0,
   };
 
   return (
-    <ContainerView>
+    <EditContainer>
       <PetCardData>
         <Wrap>
           <Formik onSubmit={handleSubmit} initialValues={initialValues}>
@@ -76,19 +83,51 @@ const EditModal = ({ notice, close }) => {
                   <Loader />
                 ) : (
                   <EditWrapper>
-                    <div>
+                      <div>
                       <PetImage src={notice.photoUrl} alt={notice.title} />
                       <ImageCategory>
                         {notice.category
                           .replace('for-free', 'for free')
                           .replace(/-/g, '/')}
                       </ImageCategory>
+                      <div>
+                        <EditLabel htmlFor="points">
+                          {values.points ? (
+                            <p>Raise your ad only for {values.points}$!</p>
+                          ) : (
+                            <p>Choose your payment plan to raise you ad!</p>
+                          )}
+                          <EditField
+                            type="range"
+                            id="points"
+                            name="points"
+                            min="0"
+                            max="30"
+                            placeholder="Raise your ad"
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            value={values.points}
+                            errors={touched.points && errors.points}
+                          />
+                          <Error name="points" component="p" />
+                        </EditLabel>
+                        <FormButton
+                          type="button"
+                          shape="solid"
+                          w="248"
+                          h="48"
+                            onClick={close}
+                            disabled={values.points===0}
+                        >
+                          Pay
+                        </FormButton>
+                      </div>
                     </div>
                     <div>
                       <FormTitle>Edit your advertisment</FormTitle>
-                      <FormLabel htmlFor="title">
+                      <EditLabel htmlFor="title">
                         Title of ad:
-                        <Field
+                        <EditField
                           name="title"
                           placeholder="Type title of publication"
                           onChange={handleChange}
@@ -97,10 +136,10 @@ const EditModal = ({ notice, close }) => {
                           errors={touched.title && errors.title}
                         />
                         <Error name="title" component="p" />
-                      </FormLabel>
-                      <FormLabel htmlFor="name">
+                      </EditLabel>
+                      <EditLabel htmlFor="name">
                         Name of pet:
-                        <Field
+                        <EditField
                           name="name"
                           placeholder="Type name of pet"
                           onChange={handleChange}
@@ -109,10 +148,10 @@ const EditModal = ({ notice, close }) => {
                           errors={touched.name && errors.name}
                         />
                         <Error name="name" component="p" />
-                      </FormLabel>
-                      <FormLabel htmlFor="birthday">
+                      </EditLabel>
+                      <EditLabel htmlFor="birthday">
                         Date of birth:
-                        <Field
+                        <EditField
                           name="birthday"
                           onChange={handleChange}
                           onBlur={handleBlur}
@@ -120,10 +159,10 @@ const EditModal = ({ notice, close }) => {
                           errors={touched.birthday && errors.birthday}
                         />
                         <Error name="birthday" component="p" />
-                      </FormLabel>
-                      <FormLabel htmlFor="breed">
-                        Name of pet:
-                        <Field
+                      </EditLabel>
+                      <EditLabel htmlFor="breed">
+                        Breed:
+                        <EditField
                           name="breed"
                           placeholder="Type name of pet"
                           onChange={handleChange}
@@ -132,10 +171,10 @@ const EditModal = ({ notice, close }) => {
                           errors={touched.breed && errors.breed}
                         />
                         <Error name="breed" component="p" />
-                      </FormLabel>
-                      <FormLabel htmlFor="location">
+                      </EditLabel>
+                      <EditLabel htmlFor="location">
                         Location:
-                        <Field
+                        <EditField
                           name="location"
                           placeholder="Type name of pet"
                           onChange={handleChange}
@@ -145,9 +184,9 @@ const EditModal = ({ notice, close }) => {
                         />
                         <Error name="location" component="p" />
                         {notice.category === 'sell' && (
-                          <FormLabel htmlFor="price">
+                          <EditLabel htmlFor="price">
                             Type your new price:
-                            <Field
+                            <EditField
                               name="price"
                               placeholder="Type your new price"
                               onChange={handleChange}
@@ -156,12 +195,12 @@ const EditModal = ({ notice, close }) => {
                               errors={touched.price && errors.price}
                             />
                             <Error name="price" component="p" />
-                          </FormLabel>
+                          </EditLabel>
                         )}
-                      </FormLabel>
-                      <FormLabel htmlFor="comments">
+                      </EditLabel>
+                      <EditLabel htmlFor="comments">
                         Comments:
-                        <Field
+                        <EditText
                           as="textarea"
                           name="comments"
                           placeholder="Type name of pet"
@@ -171,22 +210,23 @@ const EditModal = ({ notice, close }) => {
                           errors={touched.comments && errors.comments}
                         />
                         <Error name="comments" component="p" />
-                      </FormLabel>
+                      </EditLabel>
                     </div>
                   </EditWrapper>
                 )}
-              <ButtonsBox>
-                <FormButton type="button" w="248" h="48" onClick={close}>
-                  Cancel
-                </FormButton>
-                 <Button
+                <ButtonsBox>
+                  <FormButton type="button" w="248" h="48" onClick={close}>
+                    Cancel
+                  </FormButton>
+                  <Button
                     type="submit"
                     w="248"
                     h="48"
                     shape="solid"
                     disabled={isSubmitting}
+                    onClick={approve}
                   >
-                    Done
+                    Edit
                     <Icon id="paw" f="currentColor" s="none" />
                   </Button>
                 </ButtonsBox>
@@ -195,7 +235,7 @@ const EditModal = ({ notice, close }) => {
           </Formik>
         </Wrap>
       </PetCardData>
-    </ContainerView>
+    </EditContainer>
   );
 };
 

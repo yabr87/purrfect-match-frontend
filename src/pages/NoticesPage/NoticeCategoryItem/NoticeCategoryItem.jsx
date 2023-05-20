@@ -74,6 +74,15 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
     }
   };
 
+  const handleEdit = async id => {
+    try {
+      console.log('Pet is edited')
+      // await editNotice(id) 
+    } catch (error) {
+      alert('Failed to delete notice. Please try again later.');
+    }
+  };
+
   return (
     <Card>
       <AddToFavorite notice={notice} setIsFavorite={setIsFavorite} />
@@ -151,6 +160,7 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
         <ModalApproveAction close={() => setIsModalEditOpen(false)}>
           <EditModal
             notice={notice}
+            approve={() => handleEdit(notice._id)}
             close={() => setIsModalEditOpen(false)}
           />
         </ModalApproveAction>
