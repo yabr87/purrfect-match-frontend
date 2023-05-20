@@ -1,23 +1,25 @@
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 import { NavContainer, NavItem } from './Nav.styles';
 
 const Nav = ({ handleLinkClick }) => {
+  const { t } = useTranslation();
   return (
     <>
       <NavContainer>
         <li>
           <NavItem to="/news" onClick={handleLinkClick}>
-            News
+            {t('News')}
           </NavItem>
         </li>
         <li>
           <NavItem to="/notices" onClick={handleLinkClick}>
-            Find pet
+            {t('Find_pet')}
           </NavItem>
         </li>
         <li>
           <NavItem to="/friends" onClick={handleLinkClick}>
-            Our Friends
+            {t('Our_friends')}
           </NavItem>
         </li>
       </NavContainer>
