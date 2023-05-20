@@ -48,9 +48,8 @@ const EditModal = ({ notice, close, approve }) => {
   };
 
   const changedFields = {};
-
-  const handleSubmit = async (values, { resetForm }) => {
-    Object.keys(values).forEach((key) => {
+const handleSubmit = async (values, { resetForm }) => {
+  Object.keys(values).forEach((key) => {
     const initialValue = initialValues[key];
     const currentValue = values[key];
 
@@ -63,21 +62,25 @@ const EditModal = ({ notice, close, approve }) => {
     if (key === 'category' && changedFields[key] === 'my-pet') {
       return acc;
     }
-    return { ...acc, [key]: changedFields[key] };
-  }, {});
-    
-    newPet.birthday = convertToISODate(newPet.birthday);
 
-    try {
-      console.log(newPet);
-      await editNotice(notice._id, newPet);
-      resetForm();
-      navigate('/notices')
-    } catch (error) {
-      console.error('Failed to edit pet', error);
+    if (key === 'birthday') {
+      acc[key] = convertToISODate(changedFields[key]);
+    } else {
+      acc[key] = changedFields[key];
     }
-  };
 
+    return acc;
+  }, {});
+
+  try {
+    console.log(newPet);
+    await editNotice(notice._id, newPet);
+    resetForm();
+    navigate('/notices');
+  } catch (error) {
+    console.error('Failed to edit pet', error);
+  }
+};
 
   return (
     <EditContainer>
