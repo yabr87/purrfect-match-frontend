@@ -7,7 +7,7 @@ export const Forms = styled(Form)`
   align-items: center;
   background-color: ${props => props.theme.colors.backgroundModal};
   border-radius: 37px;
-  color: ${props => props.theme.colors.color};
+  color: ${props => props.theme.colors.textColor};
   padding: 40px 12px;
   @media (min-width: 481px) {
     padding: 60px 75px;
