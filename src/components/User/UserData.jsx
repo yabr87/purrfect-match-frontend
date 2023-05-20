@@ -11,15 +11,24 @@ import {
   LogOutBtn,
   BtnText,
   LogOutText,
+  UserInput,
   InputItem,
+  ItemContainer,
   InputContainer,
   Wrap,
+  EditInputBtn,
 } from './';
 import Icon from 'shared/components/Icon/Icon';
 import { addAvatar, getCurrent } from 'utils/Api';
 import { reverseISODate } from 'utils/reverseISODate';
+import { convertToISODate } from 'utils/convertToISODate';
+import DatePicker from 'react-datepicker';
+import { addDays } from 'date-fns';
+import 'react-datepicker/dist/react-datepicker.css';
+import { updateUserInfo } from 'utils/Api';
 import ModalApproveAction from 'components/ModalApproveAction';
 import Logout from 'components/ModalApproveAction/Logout';
+import { UserLabel } from './UserDataItem.styled';
 
 const initialState = {
   name: '',
@@ -32,9 +41,12 @@ const initialState = {
 
 const UserData = () => {
   const [user, setUser] = useState(initialState);
+  const [startDate, setStartDate] = useState(new Date());
+  const [disable, setDisable] = useState(true);
   const [isModalLogoutOpen, setIsModalLogoutOpen] = useState(false);
   const [isConfirm, setIsConfirm] = useState(false);
   const token = useSelector(store => store.auth.token);
+  const maxDate = addDays(new Date(), 0);
 
   useEffect(() => {
     const getUser = async token => {
@@ -52,6 +64,16 @@ const UserData = () => {
   const handleUploadPhoto = async () => {
     await addAvatar(token, { avatar: user.photo });
     setIsConfirm(false);
+  };
+
+  const handleInputEdit = () => {
+    setDisable(false);
+  };
+
+  const handleInputSubmit = async () => {
+    const req = { birthday: convertToISODate(startDate) };
+    await updateUserInfo(token, req);
+    setDisable(true);
   };
 
   const handleLogOut = () => {
@@ -108,12 +130,35 @@ const UserData = () => {
               value={user.email}
               placeholder="Email"
             />
-            <InputItem
+            {/* <InputItem
               name="birthday"
               type="text"
               placeholder="DD.MM.YYYY"
               value={reverseISODate(user.birthday) || ''}
-            />
+            /> */}
+            <ItemContainer>
+              <UserLabel>birthday:</UserLabel>
+              <UserInput
+                as={DatePicker}
+                name="birthday"
+                placeholderText="DD.MM.YYYY"
+                onChange={date => setStartDate(date)}
+                selected={startDate}
+                value={reverseISODate(startDate)}
+                dateFormat="dd.MM.yyyy"
+                maxDate={maxDate}
+                disabled={disable}
+              />
+              {disable ? (
+                <EditInputBtn onClick={handleInputEdit}>
+                  <Icon id="edit" f="#54ADFF" s="none" />
+                </EditInputBtn>
+              ) : (
+                <EditInputBtn onClick={handleInputSubmit}>
+                  <Icon id="complite" s="#00C3AD" />
+                </EditInputBtn>
+              )}
+            </ItemContainer>
             <InputItem
               name="phone"
               type="text"

@@ -5,16 +5,11 @@ import Icon from 'shared/components/Icon/Icon';
 import { useSelector } from 'react-redux';
 import { updateUserInfo } from 'utils/Api';
 import { convertToISODate } from 'utils/convertToISODate';
-import DatePicker from 'react-datepicker';
-import { addDays } from 'date-fns';
-import 'react-datepicker/dist/react-datepicker.css';
 
 const UserDataItem = ({ name, type, pattern, value, placeholder }) => {
   const [data, setData] = useState(value);
   const [disable, setDisable] = useState(true);
-  const [startDate, setStartDate] = useState(new Date());
   const token = useSelector(store => store.auth.token);
-  const maxDate = addDays(new Date(), 0);
 
   useEffect(() => {
     setData(value);
@@ -33,18 +28,7 @@ const UserDataItem = ({ name, type, pattern, value, placeholder }) => {
     setDisable(true);
   };
 
-  return name === 'birthday' ? (
-    <ItemContainer
-      as={DatePicker}
-      name="birthday"
-      placeholderText="DD.MM.YYYY"
-      onChange={date => setStartDate(date)}
-      selected={startDate}
-      value={data}
-      dateFormat="dd.MM.yyyy"
-      maxDate={maxDate}
-    />
-  ) : (
+  return (
     <ItemContainer>
       <UserLabel>{name}:</UserLabel>
       <UserInput
