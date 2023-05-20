@@ -75,10 +75,10 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
     }
   };
 
-    const handleEdit = async id => {
+  const handleEdit = async id => {
     try {
-      console.log('Pet is edited')
-      // await editNotice(id) 
+      console.log('Pet is edited');
+      // await editNotice(id)
     } catch (error) {
       alert('Failed to delete notice. Please try again later.');
     }
@@ -134,16 +134,17 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
       )}
       {isLoggedIn && user && notice.own && (
         <>
-        <CircleButton
-          id="trash"
-          z="999"
-          pos="absolute"
-          t="68px"
-          r="12px"
-          onClick={() => setIsModalDeleteOpen(true)}
-        ></CircleButton>
-        <CircleButton
+          <CircleButton
+            id="trash"
+            z="999"
+            pos="absolute"
+            t="68px"
+            r="12px"
+            onClick={() => setIsModalDeleteOpen(true)}
+          ></CircleButton>
+          <CircleButton
             id="edit"
+            z="999"
             pos="absolute"
             t="124px"
             r="12px"
