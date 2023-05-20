@@ -17,7 +17,7 @@ import {
 } from './NoticesFilters.styles';
 import Checkbox from '../../../shared/components/Checkbox';
 
-function NoticesFilters({ setSex }) {
+function NoticesFilters({ setSex, setSearchParams }) {
   const isUpToWidth480 = useMedia(['(max-width: 480px)'], [true], false);
 
   const [isFilterOpen, setIsFilterOpen] = useState(false);
@@ -54,6 +54,8 @@ function NoticesFilters({ setSex }) {
     const isChecked = event.target.checked;
 
     setSex(isChecked ? value : null);
+    const params = { page: 1, sex: value };
+    setSearchParams(params);
   };
 
   return (

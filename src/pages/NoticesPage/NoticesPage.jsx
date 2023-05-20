@@ -109,7 +109,7 @@ function NoticesPage() {
       >
         <NoticesCategoriesNav />
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          <NoticesFilters setSex={setSex} />
+          <NoticesFilters setSex={setSex} setSearchParams={setSearchParams} />
           {isUpToWidth480 ? (
             <CircleButton
               style={{
