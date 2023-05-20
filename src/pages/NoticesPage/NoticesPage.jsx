@@ -65,7 +65,10 @@ function NoticesPage() {
   }
   useEffect(() => {
     setFetching(true);
-    const params = { page: currentPage };
+    const params = {
+      page: currentPage,
+      sex: sex,
+    };
     if (['sell', 'lost-found', 'for-free'].includes(categoryName)) {
       params.category = categoryName;
     }
@@ -81,14 +84,7 @@ function NoticesPage() {
     getNotices(params)
       .then(({ data }) => {
         setTotalPages(data.totalPages);
-        if (sex) {
-          const filteredResults = data.results.filter(
-            notice => notice.sex === sex
-          );
-          setNotices(filteredResults);
-        } else {
-          setNotices(data.results);
-        }
+        setNotices(data.results);
       })
       .catch(e => console.log(e))
       .finally(setFetching(false));
