@@ -8,11 +8,14 @@ function LanguageSwitcher() {
   const changeLanguage = event => {
     const selectedLanguage = event.target.value;
     i18n.changeLanguage(selectedLanguage);
+    localStorage.setItem('language', selectedLanguage);
   };
+
+  const selectedLanguage = localStorage.getItem('language') || 'en';
 
   return (
     <LanguageSelectorContainer>
-      <Select onChange={changeLanguage}>
+      <Select onChange={changeLanguage} value={selectedLanguage}>
         <option value="en">Eng</option>
         <option value="ukr">Укр</option>
       </Select>
