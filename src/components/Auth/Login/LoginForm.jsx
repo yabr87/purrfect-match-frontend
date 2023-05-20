@@ -24,7 +24,7 @@ import { login } from 'redux/auth/authOperations';
 import { useNavigate } from 'react-router-dom';
 import useAuth from 'shared/hooks/useAuth';
 import { toast } from 'react-toastify';
-// import  'react-toastify/dist/ReactToastify.css' ;
+import { clearError } from 'redux/auth/authSlice';
 
 const validateShecma = Yup.object().shape({
   email: Yup.string().email('Invalid email address').required('Required'),
@@ -46,7 +46,12 @@ const LoginForm = () => {
     if (isLoggedIn) {
       navigate('/notices/sell');
     }
-  }, [isLoggedIn, navigate]);
+    if (isError) {
+      toast.error(`${isError}`, { position: toast.POSITION.TOP_RIGHT });
+      dispatch(clearError());
+    }
+  }, [isLoggedIn, navigate, isError, dispatch]);
+
   return (
     <Formik
       initialValues={{ email: '', password: '' }}

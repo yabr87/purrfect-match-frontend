@@ -14,7 +14,7 @@ export const SharedLayout = () => {
         <Suspense fallback={<Loader />}>
           <Outlet />
         </Suspense>
-        <ToastContainer />
+        <ToastContainer autoClose={3000} theme="colored" />
       </main>
     </>
   );
