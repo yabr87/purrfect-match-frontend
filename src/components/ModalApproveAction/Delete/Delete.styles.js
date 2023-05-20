@@ -68,7 +68,7 @@ export const TextAccent = styled.span`
   line-height: 22px;
   text-align: center;
   letter-spacing: -0.01em;
-  color: ${props => props.theme.colors.yellow};
+  color: ${props => props.theme.colors.textColor};
 `;
 
 export const ButtonWrap = styled.div`
