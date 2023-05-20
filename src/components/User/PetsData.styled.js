@@ -98,7 +98,13 @@ export const PetInfoTitle = styled.span`
 export const DelPetBtn = styled.button`
   padding: 0;
   position: absolute;
+  top: 0px;
   right: 0px;
   border: none;
   background-color: transparent;
+  cursor: pointer;
+
+  @media screen and (min-width: 768px) {
+    right: -20px;
+  }
 `;

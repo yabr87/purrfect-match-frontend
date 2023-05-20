@@ -14,11 +14,9 @@ import {
   InputItem,
   InputContainer,
   Wrap,
-  EditInputBtn,
 } from './';
 import Icon from 'shared/components/Icon/Icon';
 import { addAvatar, getCurrent } from 'utils/Api';
-import { updateUserInfo } from 'utils/Api';
 import ModalApproveAction from 'components/ModalApproveAction';
 import Logout from 'components/ModalApproveAction/Logout';
 import { reverseISODate } from 'utils/reverseISODate';
@@ -34,7 +32,6 @@ const initialState = {
 
 const UserData = () => {
   const [user, setUser] = useState(initialState);
-  const [disable, setDisable] = useState(true);
   const [isModalLogoutOpen, setIsModalLogoutOpen] = useState(false);
   const [isConfirm, setIsConfirm] = useState(false);
   const token = useSelector(store => store.auth.token);
@@ -55,16 +52,6 @@ const UserData = () => {
   const handleUploadPhoto = async () => {
     await addAvatar(token, { avatar: user.photo });
     setIsConfirm(false);
-  };
-
-  const handleInputEdit = () => {
-    setDisable(false);
-  };
-
-  const handleInputSubmit = async () => {
-    const req = { birthday: user.birthday };
-    await updateUserInfo(token, req);
-    setDisable(true);
   };
 
   const handleLogOut = () => {
@@ -114,38 +101,39 @@ const UserData = () => {
               type="text"
               value={user.name || 'User'}
               placeholder="Name"
+              pattern="[A-Za-z]{1,32}"
             />
             <InputItem
               name="email"
               type="text"
               value={user.email}
               placeholder="Email"
+              pattern="/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/"
             />
-              <InputItem
-                name="birthday"
-                placeholderText="DD.MM.YYYY"
-                onChange={date => setUser({ ...user, birthday: date })}
-                selected={user.birthday}
-                value={user.birthday}
-                dateFormat="dd.MM.yyyy"
-                disabled={disable}
-              />
-              {disable ? (
-                <EditInputBtn onClick={handleInputEdit}>
-                  <Icon id="edit" f="#54ADFF" s="none" />
-                </EditInputBtn>
-              ) : (
-                <EditInputBtn onClick={handleInputSubmit}>
-                  <Icon id="complite" s="#00C3AD" />
-                </EditInputBtn>
-              )}
+            <InputItem
+              name="birthday"
+              placeholderText="DD.MM.YYYY"
+              onChange={date => setUser({ ...user, birthday: date })}
+              selected={user.birthday}
+              value={user.birthday}
+              dateFormat="dd.MM.yyyy"
+              pattern="(0?[1-9]|[12][0-9]|3[01]).(0?[1-9]|1[012]).((19|20)\d\d)"
+            />
             <InputItem
               name="phone"
               type="text"
               value={user.phone}
+              pattern="[\+]\d{3}\s[\(]\d{2}[\)]\s\d{3}[\-]\d{2}[\-]\d{2}"
+              minlength="13"
+              maxlength="13"
               placeholder="+380XXXXXXXXX"
             />
-            <InputItem name="city" type="text" value={user.city || ''} />
+            <InputItem
+              name="city"
+              type="text"
+              pattern="/([A-Za-z]+(?: [A-Za-z]+)*)/"
+              value={user.city || ''}
+            />
             <LogOutBtn onClick={handleLogOut}>
               <Icon id="logout" s="#54ADFF" />
               <LogOutText>Log Out</LogOutText>
