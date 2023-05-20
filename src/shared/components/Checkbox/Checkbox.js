@@ -10,8 +10,9 @@ const Checkbox = ({ isChecked = false, value, label, onChange }) => {
 
   const [isCheckedState, setIsCheckedState] = useState(isChecked);
   const onClick = () => {
-    setIsCheckedState(!isCheckedState);
-    onChange({isChecked, value});
+    const newValue = !isCheckedState;
+    setIsCheckedState(newValue);
+    onChange({isChecked: newValue, value, label});
   }
   return (
     <CheckBoxContainer onClick={onClick}>

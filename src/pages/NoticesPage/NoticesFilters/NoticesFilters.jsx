@@ -8,13 +8,9 @@ import CircleButton from 'shared/components/CircleButton';
 import {
   FilterContainer,
   FilterOptions,
-  FiltersTitle,
-  FiltersItems,
-  ContainerItem,
-  FilterChose,
-  Item,
+  FiltersTitle
 } from './NoticesFilters.styles';
-import Checkbox from '../../../shared/components/Checkbox';
+import Filter from '../../../shared/components/Filter/Filter';
 
 function NoticesFilters({ fetchData }) {
   const isUpToWidth480 = useMedia(['(max-width: 480px)'], [true], false);
@@ -38,6 +34,7 @@ function NoticesFilters({ fetchData }) {
   };
 
   const handleAgeChange = event => {
+    console.log('handleAgeChange:', event);
     // const value = event.target.value;
     // setAge(prevState =>
     //   prevState.includes(value)
@@ -47,7 +44,7 @@ function NoticesFilters({ fetchData }) {
     // fetchData();
   };
 
-  // const handleGenderChange = event => {
+   const handleGenderChange = event => {
     // const value = event.target.value;
     // setGender(prevState =>
     //   prevState.includes(value)
@@ -55,7 +52,18 @@ function NoticesFilters({ fetchData }) {
     //     : [...prevState, value]
     // );
     // fetchData();
-  // };
+  };
+
+  const ageFilterItems = [
+    {label: '3-12m', value: 'young'},
+    {label: '1 year', value: 'adult'},
+    {label: '2 years', value: 'old'}
+  ]
+
+  const genderFilterItems = [
+    {label: 'Male', value: 'male'},
+    {label: 'Female', value: 'female'}
+  ]
 
   return (
     <FilterContainer
@@ -66,7 +74,6 @@ function NoticesFilters({ fetchData }) {
       {isUpToWidth480 ? (
         <CircleButton
           id="filters"
-          pos="absolute"
           t="0"
           r="0"
           style={{
@@ -76,7 +83,12 @@ function NoticesFilters({ fetchData }) {
           onClick={handleFilterClick}
         ></CircleButton>
       ) : (
-        <Button style={{ width: '152px' }} onClick={handleFilterClick}>
+        isFilterOpen ?
+        <Button type="button" w="152" shape="solid" onClick={handleFilterClick}>
+          Filter <Icon id="filters" />
+        </Button>
+        :
+        <Button w="152" onClick={handleFilterClick}>
           Filter
           <Icon id="filters" />
         </Button>
@@ -85,71 +97,8 @@ function NoticesFilters({ fetchData }) {
         <FilterOptions>
           <FiltersTitle>Filters</FiltersTitle>
           <div style={{position: 'relative'}}>
-          <ContainerItem>
-            <FiltersItems onClick={handleAgeClick}>
-              <Icon id={!isAgeOpen ? "up" : "down"}/>
-              <Item>By age</Item>
-            </FiltersItems>
-            {isAgeOpen && (
-              <FilterChose>
-                <Checkbox value="young" label="3-12m" onChange={handleAgeChange}></Checkbox>
-                <Checkbox value="adult" label="1 year" onChange={handleAgeChange}></Checkbox>
-                <Checkbox value="old" label="2 year" onChange={handleAgeChange}></Checkbox>
-                {/*<label>*/}
-                {/*  <input*/}
-                {/*    type="checkbox"*/}
-                {/*    value="young"*/}
-                {/*    onChange={handleAgeChange}*/}
-                {/*  />*/}
-                {/*  3-12m*/}
-                {/*</label>*/}
-              {/*  <label>*/}
-              {/*  <input*/}
-              {/*    type="checkbox"*/}
-              {/*    value="adult"*/}
-              {/*    onChange={handleAgeChange}*/}
-              {/*  />*/}
-              {/*  1 year*/}
-              {/*</label>*/}
-              {/*  <label>*/}
-              {/*    <input*/}
-              {/*      type="checkbox"*/}
-              {/*      value="old"*/}
-              {/*      onChange={handleAgeChange}*/}
-              {/*    />*/}
-              {/*    2 year*/}
-              {/*  </label>*/}
-              </FilterChose>
-            )}
-          </ContainerItem>
-          <ContainerItem>
-            <FiltersItems onClick={handleGenderClick}>
-              <Icon id={!isGenderOpen ? "up" : "down"}/>
-              <Item>By gender</Item>
-            </FiltersItems>
-            {isGenderOpen && (
-              <FilterChose>
-                <Checkbox value="male" label="male" onChange={handleAgeChange}></Checkbox>
-                <Checkbox value="female" label="female" onChange={handleAgeChange}></Checkbox>
-                {/*<label>*/}
-                {/*  <input*/}
-                {/*    type="checkbox"*/}
-                {/*    value="male"*/}
-                {/*    onChange={handleGenderChange}*/}
-                {/*  />*/}
-                {/*  male*/}
-                {/*</label>*/}
-                {/*<label>*/}
-                {/*  <input*/}
-                {/*    type="checkbox"*/}
-                {/*    value="female"*/}
-                {/*    onChange={handleGenderChange}*/}
-                {/*  />*/}
-                {/*  female*/}
-                {/*</label>*/}
-              </FilterChose>
-            )}
-            </ContainerItem>
+            <Filter filters={ageFilterItems} name="age" title="age" onChange={handleAgeChange}></Filter>
+            <Filter filters={genderFilterItems} name="gender" title="gender" onChange={handleGenderChange}></Filter>
           </div>
         </FilterOptions>
       )}
