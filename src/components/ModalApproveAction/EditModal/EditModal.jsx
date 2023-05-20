@@ -99,19 +99,21 @@ const EditModal = ({ notice, close, approve }) => {
                     <EditWrapper>
                       <AdaptiveBoxOne>
                       <EditTitle>Edit your pet</EditTitle>
-                      <div style={{position: 'relative'}}>
-                      <PetImage src={notice.photoUrl} alt={notice.title} />
+                      <div style={{position: 'relative', width: '100%', }}>
+                      <PetImage src={notice.photoUrl} alt={notice.title} style={ {margin: 0}}  />
                       <ImageCategoryEdit>
                         {notice.category
                           .replace('for-free', 'for free')
                           .replace(/-/g, '/')}
                       </ImageCategoryEdit></div>
-                        <div>
                         <EditLabel htmlFor="points">
                           {values.points ? (
                             <p>Raise your ad only for {values.points}$!</p>
-                          ) : (
-                            <p>Choose your payment plan to raise you ad!</p>
+                        ) : (
+                            <>
+                            <p>Add payment to raise your ad!</p>
+                              <p>Just scroll your value:</p>
+                            </>
                           )}
                           <EditField
                             type="range"
@@ -127,7 +129,6 @@ const EditModal = ({ notice, close, approve }) => {
                           />
                           <Error name="points" component="p" />
                         </EditLabel>
-                      </div>
                     </AdaptiveBoxOne>
                     <AdaptiveBoxTwo>
                       <EditLabel htmlFor="title">

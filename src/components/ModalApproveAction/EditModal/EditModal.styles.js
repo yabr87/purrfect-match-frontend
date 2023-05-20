@@ -11,13 +11,8 @@ export const EditContainer = styled.div`
 
   @media ${props => props.theme.media.tab} {
     width: 704px;
-    height: 602px;
+    height: fit-content;
     padding: 20px 32px;
-  }
-
-  @media ${props => props.theme.media.desk} {
-    width: 822px;
-    height: 602px;
   }
 `;
 
@@ -26,7 +21,7 @@ export const EditContent = styled.div`
   width: 100%;
   overflow-y: auto;
   @media ${props => props.theme.media.tab} {
-    overflow: clip;
+    height: fit-content;
   }
 `;
 
@@ -47,14 +42,18 @@ export const EditWrapper = styled.div`
   @media ${props => props.theme.media.tab} {
     display: flex;
     margin-bottom: 32px;
+
+    @media ${props => props.theme.media.tab} {
+    gap: 24px;
+  }
   }
 `;
 
 export const EditLabel = styled.label`
   display: flex;
   flex-direction: column;
-  font-weight: ${props => props.theme.fontWeiths.semi};
-  font-size: 12px;
+  font-weight: ${props => props.theme.fontWeiths.semiBold};
+  font-size: 14px;
   line-height: 1.3;
 
   color: ${props => props.theme.colors.titleColor};
@@ -105,11 +104,8 @@ export const EditLabel = styled.label`
     background-color: ${props => props.theme.colors.link};
   }
 
-  @media screen and (min-width: 768px) {
-    font-size: ${props => props.theme.fontSizes.m};
-  }
   @media ${props => props.theme.media.tab} {
-    font-size: 14px;
+    font-size: 16px;
   }
 `;
 
@@ -129,7 +125,7 @@ export const EditField = styled(Field)`
 
   color: ${props => props.theme.colors.inputText};
   background: ${props => props.theme.colors.backgroundModal};
-  border-radius: ${props => props.theme.radius.normal};
+  border-radius: ${props => props.theme.radius.small};
   border: ${props =>
     props.errors ? '1px solid #F43F5E' : '1px solid #54adff'};
   outline: none;
@@ -153,12 +149,14 @@ export const EditText = styled(Field)`
   font-size: 14px;
   line-height: 150%;
   letter-spacing: 0.04em;
+  font-family: ${props => props.theme.fonts.main};
 
   background: ${props => props.theme.colors.backgroundModal};
   color: ${props => props.theme.colors.inputText};
   border: ${props =>
     props.errors ? '1px solid #F43F5E' : '1px solid #54adff'};
-  border-radius: 20px;
+  
+  border-radius: ${props => props.theme.radius.small};
 
   ::placeholder {
     font-family: ${props => props.theme.fonts.main};
@@ -183,7 +181,7 @@ export const EditBox = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column-reverse;
-  margin-top: 20px;
+  margin-top: 12px;
   gap: 8px;
 
   @media ${props => props.theme.media.tab} {
@@ -214,14 +212,22 @@ export const ImageCategoryEdit = styled.p`
 export const AdaptiveBoxOne = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 12px;
 
+
+  @media ${props => props.theme.media.tab} {
+    
+  gap: 20px;
+  }
 `;
 
 export const AdaptiveBoxTwo = styled.div`
   display: flex;
   flex-direction: column;
+  margin-top: 12px;
+  gap: 12px;
 
   @media ${props => props.theme.media.tab} {
-    flex-grow: 1;
+    flex-grow: 1; 
   }
 `;
