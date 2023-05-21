@@ -1,5 +1,6 @@
 import { format } from 'date-fns';
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import useAuth from 'shared/hooks/useAuth';
 import { useMedia } from 'shared/hooks/useMedia';
 
@@ -36,6 +37,7 @@ const NoticeModal = ({ notice, close, setIsFavorite }) => {
     ['desktop', 'tablet', 'mobile'],
     'xs'
   );
+  const { t } = useTranslation();
 
   const isSmallMobile = screenSize === 'xs';
   const isMobile = screenSize === 'mobile';
@@ -55,7 +57,7 @@ const NoticeModal = ({ notice, close, setIsFavorite }) => {
   const approveAddFavorite = async notice => {
     try {
       if (!isLoggedIn) {
-        alert('Please sign in to add to favorites');
+        alert(t('alert_signin_fav'));
         return;
       }
 
@@ -67,7 +69,7 @@ const NoticeModal = ({ notice, close, setIsFavorite }) => {
       setFavorite(!favorite);
       setIsFavorite(notice._id);
     } catch (error) {
-      alert('Failed to update notice. Please try again later.');
+      alert(t('alert_failed_update'));
     }
   };
 
@@ -79,7 +81,7 @@ const NoticeModal = ({ notice, close, setIsFavorite }) => {
     if (categoryName === 'sell')
       return (
         <PetDataItem>
-          <NameCategory>Price:</NameCategory>
+          <NameCategory>{t('Price')}:</NameCategory>
           <ValueCategory>{notice.price}$</ValueCategory>
         </PetDataItem>
       );
@@ -98,30 +100,30 @@ const NoticeModal = ({ notice, close, setIsFavorite }) => {
             <PetDataList>
               <tbody>
                 <PetDataItem>
-                  <NameCategory>Name:</NameCategory>
+                  <NameCategory>{t('Name')}:</NameCategory>
                   <ValueCategory>{notice.name}</ValueCategory>
                 </PetDataItem>
                 <PetDataItem>
-                  <NameCategory>Birthday:</NameCategory>
+                  <NameCategory>{t('Birthday')}:</NameCategory>
                   <ValueCategory>
                     {formatBirthdayDate(notice.birthday)}
                   </ValueCategory>
                 </PetDataItem>
                 <PetDataItem>
-                  <NameCategory>Breed:</NameCategory>
+                  <NameCategory>{t('Breed')}:</NameCategory>
                   <ValueCategory>{notice.breed}</ValueCategory>
                 </PetDataItem>
                 <PetDataItem>
-                  <NameCategory>Place:</NameCategory>
+                  <NameCategory>{t('Place')}:</NameCategory>
                   <ValueCategory>{notice.location}</ValueCategory>
                 </PetDataItem>
                 <PetDataItem>
-                  <NameCategory>The sex:</NameCategory>
+                  <NameCategory>{t('The_sex')}:</NameCategory>
                   <ValueCategory>{notice.sex}</ValueCategory>
                 </PetDataItem>
                 {addPrice(notice.category)}
                 <PetDataItem>
-                  <NameCategory>Email:</NameCategory>
+                  <NameCategory>{t('Email')}:</NameCategory>
                   <ValueCategory>
                     <ContactLinkItem href="mailto:">
                       {ownerContacts.email ? ownerContacts.email : 'no email'}
@@ -129,7 +131,7 @@ const NoticeModal = ({ notice, close, setIsFavorite }) => {
                   </ValueCategory>
                 </PetDataItem>
                 <PetDataItem>
-                  <NameCategory>Phone:</NameCategory>
+                  <NameCategory>{t('Phone')}:</NameCategory>
                   <ValueCategory>
                     <ContactLinkItem href="tel:">
                       {ownerContacts.phone
@@ -142,7 +144,9 @@ const NoticeModal = ({ notice, close, setIsFavorite }) => {
             </PetDataList>
           </PetDataListWrap>
         </Wrap>
-        <PetComents>Comments: {notice.comments}</PetComents>
+        <PetComents>
+          {t('Comments')}: {notice.comments}
+        </PetComents>
       </PetCardData>
       {isSmallMobile && (
         <ButtonWrap>
@@ -156,7 +160,7 @@ const NoticeModal = ({ notice, close, setIsFavorite }) => {
               width: '100%',
             }}
           >
-            Add to
+            {t('Add_to')}
             <Icon
               id="heart"
               f={favorite ? '#ffffff' : 'transparent'}
@@ -164,7 +168,7 @@ const NoticeModal = ({ notice, close, setIsFavorite }) => {
             />
           </Button>
           <ContactLink type="button" href="tel:+380961111111">
-            Contact
+            {t('Contact')}
           </ContactLink>
         </ButtonWrap>
       )}
@@ -181,7 +185,7 @@ const NoticeModal = ({ notice, close, setIsFavorite }) => {
               width: '100%',
             }}
           >
-            Add to
+            {t('Add_to')}
             <Icon
               id="heart"
               f={favorite ? '#ffffff' : 'transparent'}
@@ -189,7 +193,7 @@ const NoticeModal = ({ notice, close, setIsFavorite }) => {
             />
           </Button>
           <ContactLink type="button" href="tel:+380961111111">
-            Contact
+            {t('Contact')}
           </ContactLink>
         </ButtonWrap>
       )}
@@ -203,14 +207,14 @@ const NoticeModal = ({ notice, close, setIsFavorite }) => {
             shape="solid"
             g="8"
           >
-            Add to
+            {t('Add_to')}
             <Icon
               id="heart"
               f={favorite ? '#ffffff' : 'transparent'}
               s="white"
             />
           </Button>
-          <ContactLink href="tel:+380961111111">Contact</ContactLink>
+          <ContactLink href="tel:+380961111111">{t('Contact')}</ContactLink>
         </ButtonWrap>
       )}
       {isDesktop && (
@@ -223,14 +227,14 @@ const NoticeModal = ({ notice, close, setIsFavorite }) => {
             shape="solid"
             g="8"
           >
-            Add to
+            {t('Add_to')}
             <Icon
               id="heart"
               f={favorite ? '#ffffff' : 'transparent'}
               s="white"
             />
           </Button>
-          <ContactLink href="tel:+380961111111">Contact</ContactLink>
+          <ContactLink href="tel:+380961111111">{t('Contact')}</ContactLink>
         </ButtonWrap>
       )}
     </ContainerView>

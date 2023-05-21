@@ -36,7 +36,7 @@ i18n.use(initReactI18next).init({
         Edit_photo: 'Edit photo',
         Confirm: 'Confirm',
         Log_Out: 'Log Out',
-        Birthday: 'birthday',
+        Birthday: 'Birthday',
         Сity: 'city',
 
         remove: 'remove',
@@ -87,6 +87,11 @@ i18n.use(initReactI18next).init({
         alert_signin_fav: 'Please sign in to add to favorites',
         alert_failed_update: 'Failed to update notice. Please try again later.',
         for_free: 'for free',
+        Price:'Price',
+        Place:'Place',
+        The_sex:'The sex',
+        Add_to:'Add to',
+        Contact:'Contact',
 
         Already_leaving: 'Already_leaving',
         Cancel: 'Cancel',
@@ -199,6 +204,11 @@ i18n.use(initReactI18next).init({
         alert_failed_update:
           'Не вдалося оновити оголошення. Будь ласка, спробуйте ще раз згодом.',
         for_free: 'безкоштовно',
+        Price:'Ціна',
+        Place:'Місце',
+        The_sex:'Стать',
+        Add_to:'Додати',
+        Contact:'Звʼязатися',
 
         Already_leaving: 'Вже йдете',
         alert_LogOut_success: 'Вихід успішний',
