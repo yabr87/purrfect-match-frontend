@@ -5,7 +5,7 @@ export const PetContainer = styled.div`
   height: auto;
   margin-left: auto;
   background-color: ${props => props.theme.colors.backgroundModal};
-  box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
+  box-shadow: ${props => props.theme.shadows.default};
   border-radius: 20px;
   padding-left: 20px;
   padding-right: 20px;
@@ -90,7 +90,7 @@ export const PetInfoWrap = styled.div`
 `;
 
 export const PetInfoItem = styled.p`
-  font-family: 'Manrope';
+  font-family: ${props => props.theme.fonts.main};
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
