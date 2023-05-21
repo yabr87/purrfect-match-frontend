@@ -20,6 +20,7 @@ import {
   BelowItemContainer,
   ImageDetailsText,
   ImageDetailsTextLong,
+  ImagePrice,
 } from './NoticeCategoryItem.styles';
 
 import Icon from 'shared/components/Icon/Icon';
@@ -97,7 +98,7 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
         <ImageCategory>
           {notice.category.replace('for-free', 'for free').replace(/-/g, '/')}
         </ImageCategory>
-
+          {notice.category === 'sell' && <ImagePrice>{notice.price}$</ImagePrice>}
         <ImageDetails>
           <ImageDetailsItem>
             <Icon id="location" h="18" w="18" s="#54ADFF" />

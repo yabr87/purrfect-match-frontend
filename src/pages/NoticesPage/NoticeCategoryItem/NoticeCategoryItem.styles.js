@@ -122,6 +122,24 @@ export const ImageCategory = styled.p`
     ` 0px ${props.theme.radius.small} ${props.theme.radius.small}  0px `};
 `;
 
+export const ImagePrice = styled.p`
+  position: absolute;
+  width: fit-content;
+  height: 32px;
+  left: 0;
+  top: 60px;
+  display: flex;
+  padding: 11px 17px;
+  align-items: center;
+  text-align: center;
+  background: ${props => props.theme.colors.link};
+  color: ${props => props.theme.colors.textColor};
+  border-radius: ${props =>
+    ` 0px ${props.theme.radius.small} ${props.theme.radius.small}  0px `};
+`;
+
+
+
 export const PhotoDescription = styled.p`
   height: 66px;
   font-family: ${props => props.theme.fonts.main};
