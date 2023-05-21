@@ -130,15 +130,15 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
       )}
       {isLoggedIn && user && notice.own && (
         <>
-          <CircleButton
-            id="trash"
-            z="999"
-            pos="absolute"
-            t="68px"
-            r="12px"
-            onClick={() => setIsModalDeleteOpen(true)}
-          ></CircleButton>
-          <CircleButton
+        <CircleButton
+          id="trash"
+          z="9"
+          pos="absolute"
+          t="68px"
+          r="12px"
+          onClick={() => setIsModalDeleteOpen(true)}
+        ></CircleButton>
+        <CircleButton
             id="edit"
             z="999"
             pos="absolute"

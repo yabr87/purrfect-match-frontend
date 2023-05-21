@@ -5,11 +5,11 @@ export const PetContainer = styled.div`
   height: auto;
   margin-left: auto;
   background-color: ${props => props.theme.colors.backgroundModal};
-  box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
+  box-shadow: ${props => props.theme.shadows.default};
   border-radius: 20px;
   padding-left: 20px;
   padding-right: 20px;
-  margin-top: 18px;
+  margin-top: 20px;
   display: flex;
   flex-direction: column;
 
@@ -17,6 +17,8 @@ export const PetContainer = styled.div`
     flex-direction: row;
   }
   @media screen and (min-width: 1280px) {
+    margin-top: 24;
+    width: auto;
     margin-left: 32px;
   }
 `;
@@ -52,11 +54,12 @@ export const PetAvatar = styled.img`
 export const PetHeader = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-top: 46px;
-  margin-bottom: 31px;
+  align-items: center;
+  margin-top: 40px;
 
   @media screen and (min-width: 1280px) {
-    margin: 0;
+    margin-top: 0;
+    margin-bottom: 0;
   }
 `;
 
@@ -79,21 +82,33 @@ export const PetInfoWrap = styled.div`
     flex-grow: 1;
     width: auto;
   }
+  @media screen and (min-width: 1280px) {
+    width: 500px;
+    padding: 0;
+    margin-right: 0;
+  }
 `;
 
 export const PetInfoItem = styled.p`
-  font-family: 'Manrope';
+  font-family: ${props => props.theme.fonts.main};
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 1.57;
   letter-spacing: 0.04em;
-
   color: ${props => props.theme.colors.titleColor};
+
+  @media screen and (min-width: 1280px) {
+    font-size: 16px;
+  }
 `;
 
 export const PetInfoTitle = styled.span`
   font-weight: 700;
+
+  @media screen and (min-width: 768px) {
+    font-weight: 600px;
+  }
 `;
 
 export const DelPetBtn = styled.button`
@@ -107,5 +122,8 @@ export const DelPetBtn = styled.button`
 
   @media screen and (min-width: 768px) {
     right: -20px;
+  }
+  @media screen and (min-width: 1280px) {
+    right: 0;
   }
 `;

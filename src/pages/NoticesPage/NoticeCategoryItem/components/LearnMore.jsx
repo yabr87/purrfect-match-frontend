@@ -21,7 +21,9 @@ const LearnMore = ({ onButtonClick }) => {
       onClick={onButtonClick}
     >
       {t('Learn_more')}
-      {isHoveredOrFocused && <Icon id="paw" f="#FEF9F9" w="24" h="24" />}
+      {isHoveredOrFocused && (
+        <Icon id="paw" f="currentColor" w="24" h="24" s="none" />
+      )}
     </Button>
   );
 };
