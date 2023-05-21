@@ -48,7 +48,6 @@ export const login = async data => {
       message: errorMessage,
       response: { status, data: { message: responseMessage } } = {},
     } = error;
-    console.log('err', error);
     switch (status) {
       case 400:
         throw new Error('Unsuccessful login attempt. Wrong login or password.');
