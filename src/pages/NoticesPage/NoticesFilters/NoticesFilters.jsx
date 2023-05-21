@@ -13,12 +13,12 @@ import {
 } from './NoticesFilters.styles';
 import Filter from '../../../shared/components/Filter/Filter';
 
-function NoticesFilters({ setSex, setSearchParams }) {
+const NoticesFilters = React.memo(({ setSex, setSearchParams }) => {
   const isUpToWidth480 = useMedia(['(max-width: 480px)'], [true], false);
 
   const [isFilterOpen, setIsFilterOpen] = useState(false);
-  const [isAgeOpen, setIsAgeOpen] = useState(false);
-  const [isGenderOpen, setIsGenderOpen] = useState(false);
+  // const [isAgeOpen, setIsAgeOpen] = useState(false);
+  // const [isGenderOpen, setIsGenderOpen] = useState(false);
   // const [age, setAge] = useState(null);
 
   const { t } = useTranslation();
@@ -27,13 +27,13 @@ function NoticesFilters({ setSex, setSearchParams }) {
     setIsFilterOpen(!isFilterOpen);
   };
 
-  const handleAgeClick = () => {
-    setIsAgeOpen(!isAgeOpen);
-  };
+  // const handleAgeClick = () => {
+  //   setIsAgeOpen(!isAgeOpen);
+  // };
 
-  const handleGenderClick = () => {
-    setIsGenderOpen(!isGenderOpen);
-  };
+  // const handleGenderClick = () => {
+  //   setIsGenderOpen(!isGenderOpen);
+  // };
 
   const handleAgeChange = event => {
     console.log('handleAgeChange:', event);
@@ -69,10 +69,10 @@ function NoticesFilters({ setSex, setSearchParams }) {
     //setIsMaleChecked(gender === 'male' && isChecked);
     //setIsFemaleChecked(gender === 'female' && isChecked);
 
-    //setSearchParams({ page: 1, sex: gender});
-    //setSex(gender);
-    //setIsMaleChecked(gender === 'male');
-    //setIsFemaleChecked(gender === 'female');
+    setSearchParams({ page: 1, sex: gender });
+    setSex(gender);
+    setIsMaleChecked(gender === 'male');
+    setIsFemaleChecked(gender === 'female');
     console.log('AAA', { page: 1, sex: gender });
   };
 
@@ -104,27 +104,29 @@ function NoticesFilters({ setSex, setSearchParams }) {
           <Icon id="filters" />
         </Button>
       )}
-      {
-        isFilterOpen && (
-           <FilterOptions>
-              <FiltersTitle>{t('Filters')}</FiltersTitle>
-              <div style={{ position: 'relative' }}>
-                  <Filter filters={genderFilterItems}
-                          title="sex"
-                          name="sex"
-                          isSingleSelection={true}
-                          onChange={handleGenderChange}></Filter>
-                  <Filter filters={ageFilterItems}
-                          title="age"
-                          name="age"
-                          isSingleSelection={false}
-                          onChange={handleAgeChange}></Filter>
-              </div>
-            </FilterOptions>
-        )
-      }
+      {isFilterOpen && (
+        <FilterOptions>
+          <FiltersTitle>{t('Filters')}</FiltersTitle>
+          <div style={{ position: 'relative' }}>
+            <Filter
+              filters={genderFilterItems}
+              title="sex"
+              name="sex"
+              isSingleSelection={true}
+              onChange={handleGenderChange}
+            ></Filter>
+            <Filter
+              filters={ageFilterItems}
+              title="age"
+              name="age"
+              isSingleSelection={false}
+              onChange={handleAgeChange}
+            ></Filter>
+          </div>
+        </FilterOptions>
+      )}
     </FilterContainer>
   );
-}
+});
 
 export default NoticesFilters;
