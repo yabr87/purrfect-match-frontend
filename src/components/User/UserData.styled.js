@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 
 export const UserWrapper = styled.div`
+  position: relative;
   width: 100%;
+  max-width: 440px;
   height: auto;
   margin-left: auto;
   background-color: ${props => props.theme.colors.backgroundModal};
@@ -12,7 +14,9 @@ export const UserWrapper = styled.div`
   flex-direction: column;
 
   @media screen and (min-width: 768px) {
+    margin-top: 24px;
     flex-direction: row-reverse;
+    max-width: 704px;
   }
 
   @media screen and (min-width: 1280px) {
@@ -33,9 +37,13 @@ export const Title = styled.p`
   font-style: normal;
   font-weight: 500;
   font-size: 20px;
-  line-height: 27px;
+  line-height: 1.35;
   letter-spacing: 0.04em;
   color: ${props => props.theme.colors.titleColor};
+
+  @media screen and (min-width: 768px) {
+    font-size: 28px;
+  }
 `;
 
 export const Avatar = styled.div`
@@ -46,10 +54,20 @@ export const Avatar = styled.div`
   margin-top: 20px;
 `;
 
+export const AvatarInput = styled.input`
+  display: none;
+`;
+
+export const AvatarLabel = styled.label`
+  cursor: pointer;
+  color: ${props => props.theme.colors.titleColor};
+`;
+
 export const Photo = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: 40px;
 `;
 
 export const AvatarContainer = styled.div`
@@ -71,6 +89,7 @@ export const EditAvatarBtn = styled.button`
   background-color: transparent;
   margin-top: 15px;
   align-items: center;
+  cursor: pointer;
 `;
 
 export const LogOutBtn = styled.button`

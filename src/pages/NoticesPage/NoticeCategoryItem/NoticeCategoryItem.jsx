@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
 
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import useAuth from 'shared/hooks/useAuth';
 
 import { deleteNotice } from '../../../utils/ApiNotices';
@@ -24,6 +25,7 @@ import {
 import Icon from 'shared/components/Icon/Icon';
 import CircleButton from 'shared/components/CircleButton';
 
+import EditModal from 'components/ModalApproveAction/EditModal';
 // import ModalNoticeTest from '../NoticeModalTest/NoticeModalTest';
 // _____________Modal Componenets________________
 import ModalApproveAction from 'components/ModalApproveAction';
@@ -31,21 +33,16 @@ import NoticeModal from 'components/ModalApproveAction/NoticeModal';
 import Delete from 'components/ModalApproveAction/Delete';
 import LearnMore from './components/LearnMore';
 import AddToFavorite from './components/AddToFavorite';
+import { toast } from 'react-toastify';
 
 const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
   const { isLoggedIn, user } = useAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false);
+  const [isModalEditOpen, setIsModalEditOpen] = useState(false);
 
-  // const dispatch = useDispatch();
+  const { t } = useTranslation();
 
-  // const setIsFavorite = favorite => {
-  //   setNotices(prevNotices => {
-  //     const notices = [...prevNotices];
-  //     notices.find(({ _id }) => notice._id === _id).favorite = favorite;
-  //     return notices;
-  //   });
-  // };
   const { categoryName } = useParams();
   const setIsFavorite = async id => {
     const updatedNotice = await getNoticeById(id);
@@ -64,10 +61,20 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
     }
   };
 
-  const handleDelete = async id => {
+  const handleDelete = async notice => {
     try {
-      await deleteNotice(id);
-      deleteAndRefresh(id);
+      await deleteNotice(notice._id);
+      deleteAndRefresh(notice._id);
+      toast.success(`${notice.title}: remove`);
+    } catch (error) {
+      toast.warn('Failed to delete notice. Please try again later.');
+    }
+  };
+
+    const handleEdit = async id => {
+    try {
+      console.log('Pet is edited')
+      // await editNotice(id) 
     } catch (error) {
       alert('Failed to delete notice. Please try again later.');
     }
@@ -79,7 +86,9 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
       <CardImageContainer>
         <CardImage src={notice.photoUrl} alt={notice.title} />
         <ImageCategory>
-          {notice.category.replace('for-free', 'for free').replace(/-/g, '/')}
+          {notice.category
+            .replace('for-free', `${t('for_free')}`)
+            .replace(/-/g, '/')}
         </ImageCategory>
 
         <ImageDetails>
@@ -120,20 +129,47 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
         </ModalApproveAction>
       )}
       {isLoggedIn && user && notice.own && (
+        <>
         <CircleButton
           id="trash"
-          z="999"
+          z="9"
           pos="absolute"
           t="68px"
           r="12px"
           onClick={() => setIsModalDeleteOpen(true)}
         ></CircleButton>
+        <CircleButton
+            id="edit"
+            pos="absolute"
+            t="124px"
+            r="12px"
+            onClick={() => setIsModalEditOpen(true)}
+          ></CircleButton>
+        </>
       )}
       {isModalDeleteOpen && (
         <ModalApproveAction close={() => setIsModalDeleteOpen(false)}>
           <Delete
-            approve={() => handleDelete(notice._id)}
+            approve={() => handleDelete(notice)}
             close={() => setIsModalDeleteOpen(false)}
+          />
+        </ModalApproveAction>
+      )}
+      {isModalEditOpen && (
+        <ModalApproveAction close={() => setIsModalEditOpen(false)}>
+          <EditModal
+            notice={notice}
+            approve={() => handleEdit(notice._id)}
+            close={() => setIsModalEditOpen(false)}
+          />
+        </ModalApproveAction>
+      )}
+      {isModalEditOpen && (
+        <ModalApproveAction close={() => setIsModalEditOpen(false)}>
+          <EditModal
+            notice={notice}
+            approve={() => handleEdit(notice._id)}
+            close={() => setIsModalEditOpen(false)}
           />
         </ModalApproveAction>
       )}

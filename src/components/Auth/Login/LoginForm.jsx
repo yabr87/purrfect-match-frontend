@@ -23,6 +23,8 @@ import { login } from 'redux/auth/authOperations';
 
 import { useNavigate } from 'react-router-dom';
 import useAuth from 'shared/hooks/useAuth';
+import { toast } from 'react-toastify';
+import { clearError } from 'redux/auth/authSlice';
 
 const validateShecma = Yup.object().shape({
   email: Yup.string().email('Invalid email address').required('Required'),
@@ -37,14 +39,19 @@ const validateShecma = Yup.object().shape({
 });
 const LoginForm = () => {
   const navigate = useNavigate();
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn, isError } = useAuth();
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (isLoggedIn) {
       navigate('/notices/sell');
     }
-  }, [isLoggedIn, navigate]);
+    if (isError) {
+      toast.error(`${isError}`);
+      dispatch(clearError());
+    }
+  }, [isLoggedIn, navigate, isError, dispatch]);
+
   return (
     <Formik
       initialValues={{ email: '', password: '' }}

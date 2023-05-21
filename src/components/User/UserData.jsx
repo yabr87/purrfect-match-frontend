@@ -1,10 +1,14 @@
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
 import {
   UserWrapper,
   Avatar,
   Photo,
   AvatarContainer,
+  AvatarInput,
+  AvatarLabel,
   Title,
   EditAvatarBtn,
   LogOutBtn,
@@ -16,39 +20,48 @@ import {
 } from './';
 import Icon from 'shared/components/Icon/Icon';
 import { addAvatar, getCurrent } from 'utils/Api';
-import { reverseISODate } from 'utils/reverseISODate';
 import ModalApproveAction from 'components/ModalApproveAction';
 import Logout from 'components/ModalApproveAction/Logout';
+import { reverseISODate } from 'utils/reverseISODate';
 
 const initialState = {
   name: '',
   email: '',
-  birthday: '',
+  birthday: new Date(),
   phone: '',
   city: '',
-  avatarUrl: null,
+  photo: null,
 };
 
-const UserData = handleChange => {
+const UserData = () => {
   const [user, setUser] = useState(initialState);
   const [isModalLogoutOpen, setIsModalLogoutOpen] = useState(false);
+  const [isConfirm, setIsConfirm] = useState(false);
   const token = useSelector(store => store.auth.token);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const getUser = async token => {
       const res = await getCurrent(token);
-      setUser(res.data);
+      setUser({ ...res.data, birthday: reverseISODate(res.data.birthday) });
     };
     getUser(token);
   }, [token]);
 
   const handlePhotoChange = e => {
-    setUser({ ...user, avatarUrl: e.target.files[0] });
+    setUser({ ...user, photo: e.target.files[0] });
+    setIsConfirm(true);
   };
 
   const handleUploadPhoto = async () => {
-    console.log(user.photo);
-    await addAvatar(token, { avatar: user.avatarUrl });
+    try {
+      await addAvatar(token, { avatar: user.photo });
+      setIsConfirm(false);
+    } catch (error) {
+      toast.error('Try another image!', {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    }
   };
 
   const handleLogOut = () => {
@@ -58,41 +71,79 @@ const UserData = handleChange => {
   return (
     <>
       <Wrap>
-        <Title>My information:</Title>
+        <Title>{t('My_information')}:</Title>
         <UserWrapper>
           <AvatarContainer>
             <Avatar>
-              <input
+              <AvatarInput
+                id="avatar"
                 type="file"
                 onChange={handlePhotoChange}
                 accept="image/png, image/jpeg"
                 multiple={false}
               />
-              {user.avatarUrl ? (
-                <Photo src={user.avatarUrl} alt="Selected file" />
+              {user.photo ? (
+                <Photo
+                  src={URL.createObjectURL(user.photo)}
+                  alt="Selected file"
+                />
               ) : (
-                <Icon id="add-photo-pet" w="48" h="48" s="#54ADFF" />
+                <Photo src={user.avatarUrl} alt="default avatar" />
               )}
-              <input />
             </Avatar>
-            <EditAvatarBtn onClick={handleUploadPhoto}>
-              <Icon id="camera" s="#54ADFF" />
-              <BtnText>Edit photo</BtnText>
-            </EditAvatarBtn>
+            {!isConfirm ? (
+              <EditAvatarBtn>
+                <Icon id="camera" s="#54ADFF" />
+                <AvatarLabel htmlFor="avatar">{t('Edit_photo')}</AvatarLabel>
+              </EditAvatarBtn>
+            ) : (
+              <EditAvatarBtn onClick={handleUploadPhoto}>
+                <Icon id="complite" s="#54ADFF" />
+                <BtnText>{t('Confirm')}</BtnText>
+              </EditAvatarBtn>
+            )}
           </AvatarContainer>
           <InputContainer>
-            <InputItem name="name" type="text" value={user.name || 'User'} />
-            <InputItem name="email" type="text" value={user.email} />
             <InputItem
-              name="birthday"
+              name={t('name')}
               type="text"
-              value={reverseISODate(user.birthday) || ''}
+              value={user.name || 'User'}
+              pattern="[A-Za-z]{1,32}"
+              placeholder={t('Name')}
             />
-            <InputItem name="phone" type="text" value={user.phone} />
-            <InputItem name="city" type="text" value={user.city || ''} />
+            <InputItem
+              name={t('email')}
+              type="email"
+              value={user.email}
+              pattern="/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/"
+              placeholder={t('Email')}
+            />
+            <InputItem
+              name={t('birthday')}
+              placeholder="DD.MM.YYYY"
+              value={user.birthday}
+              dateFormat="dd.MM.yyyy"
+              pattern="(0?[1-9]|[12][0-9]|3[01]).(0?[1-9]|1[012]).((19|20)\d\d)"
+            />
+            <InputItem
+              name={t('phone')}
+              type="phone"
+              value={user.phone}
+              pattern="[\+]\d{3}\s[\(]\d{2}[\)]\s\d{3}[\-]\d{2}[\-]\d{2}"
+              minlength="13"
+              maxlength="13"
+              placeholder="+380XXXXXXXXX"
+            />
+            <InputItem
+              name={t('city')}
+              type="text"
+              pattern="/([A-Za-z]+(?: [A-Za-z]+)*)/"
+              value={user.city || ''}
+              placeholder={t('Kyiv')}
+            />
             <LogOutBtn onClick={handleLogOut}>
               <Icon id="logout" s="#54ADFF" />
-              <LogOutText>Log Out</LogOutText>
+              <LogOutText>{t('Log_Out')}</LogOutText>
             </LogOutBtn>
           </InputContainer>
           {isModalLogoutOpen && (

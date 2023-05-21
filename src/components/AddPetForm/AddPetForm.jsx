@@ -14,6 +14,7 @@ import validationSchema from './validationSchema';
 import { addNotice } from 'utils/ApiNotices';
 import { addMyPet } from 'utils/ApiMyPets';
 import Loader from 'shared/components/Loader';
+import { toast } from 'react-toastify';
 
 const initialState = {
   category: 'sell',
@@ -26,6 +27,7 @@ const initialState = {
   sex: '',
   location: '',
   price: '',
+  promo: 0
 };
 
 const AddPetForm = () => {
@@ -51,11 +53,11 @@ const AddPetForm = () => {
       } else {
         await addMyPet(newPet);
       }
-      console.log('Pet added successfully');
+      toast.success(`Pet added successfully`);
       resetForm();
       navigate(`/notices/${selectedCategory}`);
     } catch (error) {
-      console.error('Failed to add pet', error);
+      toast.error(`Failed to add pet':${error}`);
     }
   };
 
@@ -88,7 +90,7 @@ const AddPetForm = () => {
         errors,
         isValid,
         touched,
-        initialErrors
+        initialErrors,
       }) => (
         <Form>
           {isSubmitting ? (
@@ -170,7 +172,10 @@ const AddPetForm = () => {
                     onClick={handleNext}
                     disabled={
                       currentStep === 2 &&
-                      (!values.name || !values.birthday || !values.breed || Object.keys(errors).length > 0)
+                      (!values.name ||
+                        !values.birthday ||
+                        !values.breed ||
+                        Object.keys(errors).length > 0)
                     }
                   >
                     Next

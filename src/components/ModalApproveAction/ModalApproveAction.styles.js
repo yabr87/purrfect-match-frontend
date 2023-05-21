@@ -13,13 +13,23 @@ export const ModalOverlay = styled.div`
   z-index: 1001;
 `;
 
+export const ModalContainer = styled.div`
+  // width: 100%;
+  // padding-left: 20px;
+  // padding-right: 20px;
+`;
+
 export const ModalView = styled.div`
   border-radius: 20px;
-  background-color: #fff;
+  background-color: ${props => props.theme.colors.backgroundModal};
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+
+  @media ${props => props.theme.media.tab} {
+    border-radius: ${props => props.theme.radius.normal};
+  }
 `;
 
 export const CloseIcon = styled.button`
