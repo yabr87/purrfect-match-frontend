@@ -37,6 +37,7 @@ const NoticesFilters = React.memo(({ setSex, setAge, setSearchParams }) => {
 
   const handleAgeChange = event => {
     const ageValues = event.values;
+    setSearchParams({ page: 1, age: ageValues });
     setAge(ageValues);
   };
 
