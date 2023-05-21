@@ -8,6 +8,7 @@ const initialState = {
   token: null,
   isRefreshing: false,
   error: null,
+  isRegister: false,
 };
 
 const handlePending = store => {
@@ -33,6 +34,9 @@ const authSlice = createSlice({
   reducers: {
     clearError: state => {
       state.error = null;
+    },
+    statusIsRegister: (state, { payload }) => {
+      state.isRegister = payload;
     },
   },
   extraReducers: builder => {
@@ -62,4 +66,4 @@ const authSlice = createSlice({
 });
 
 export default authSlice;
-export const { clearError } = authSlice.actions;
+export const { clearError, statusIsRegister } = authSlice.actions;

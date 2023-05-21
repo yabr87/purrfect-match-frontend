@@ -5,6 +5,7 @@ import {
   selectIsAuth,
   selectUser,
   selectIsRefreshing,
+  getStatusRegister,
 } from '../../redux/auth/authSelectors';
 
 const useAuth = () => {
@@ -12,11 +13,16 @@ const useAuth = () => {
   const isLoggedIn = useSelector(selectIsAuth);
   const isRefreshing = useSelector(selectIsRefreshing);
   const isError = useSelector(selectAuthError);
+
+  const isRegisteredIn = useSelector(getStatusRegister);
+
   return {
     isLoggedIn,
     isRefreshing,
     user,
     isError,
+
+    isRegisteredIn,
   };
 };
 
