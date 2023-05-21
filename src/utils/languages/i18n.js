@@ -148,6 +148,11 @@ i18n.use(initReactI18next).init({
         Drag_the_scroll_to_raise_your_ad: 'Drag the scroll to raise your ad',
         Type_of_price: 'Type of price',
         Type_your_location: 'Type your location',
+
+        //404
+        Ooops: 'Ooops',
+        This_page_not_found: 'This page not found',
+        To_main_page: 'To main page',
       },
     },
     ukr: {
@@ -295,6 +300,11 @@ i18n.use(initReactI18next).init({
           'Перетягніть прокрутку, щоб підвищити оголошення',
         Type_of_price: 'Вкажіть ціну',
         Type_your_location: 'Вкажіть локацію',
+
+        //404
+        Ooops: 'Ууупс',
+        This_page_not_found: 'Ця сторінка не знайдена',
+        To_main_page: 'На головну',
       },
     },
   },

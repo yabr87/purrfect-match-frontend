@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import Container from '../../shared/components/Container';
 import { ErrorContainer, Title, Image, Link } from './Error404.styles';
 import Icon from '../../shared/components/Icon/Icon';
@@ -11,6 +12,7 @@ import imageDesktop2x from '../../images/error/404-desktop@2x-min.png';
 const Error404 = () => {
   const screenWidth = window.innerWidth;
   const pixelRatio = window.devicePixelRatio;
+  const { t } = useTranslation();
 
   let imageSrc;
 
@@ -26,12 +28,12 @@ const Error404 = () => {
     <Container>
       <ErrorContainer>
         <Title>
-          <h1>Ooops! </h1>
-          <h2>This page not found :(</h2>
+          <h1>{t('Ooops')}! </h1>
+          <h2>{t('This_page_not_found')} :(</h2>
         </Title>
         <Image src={imageSrc} alt="404 Error" />
         <Link to="/">
-          To main page
+          {t('To_main_page')}
           <Icon id="paw" f="currentColor" s="none" />
         </Link>
       </ErrorContainer>
