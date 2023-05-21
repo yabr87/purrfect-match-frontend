@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import * as Yup from 'yup';
 
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import {
   Forms,
@@ -46,6 +47,7 @@ const RegisterForm = () => {
   const navigate = useNavigate();
   const { isLoggedIn, isError } = useAuth();
   const dispatch = useDispatch();
+  const { t } = useTranslation();
   useEffect(() => {
     if (isLoggedIn) {
       navigate('/user', { state: { isModalOpen: true } });
@@ -86,14 +88,14 @@ const RegisterForm = () => {
             deskLine="1.36"
             color="inherit"
           >
-            Register
+            {t('Registration_title')}
           </Title>
           <InputContainer>
             <Lable>
               <InputEmail
                 type="text"
                 name="email"
-                placeholder="Email"
+                placeholder={t('Email')}
                 error={errors.email && touched.email ? '#f43f5e' : '#54adff'}
               />
               {errors.email && touched.email && (
@@ -109,7 +111,7 @@ const RegisterForm = () => {
               error={errors.password}
               touched={touched.password}
               name={'password'}
-              placeholder={'Password'}
+              placeholder={t('Password')}
               value={values.password}
             />
             <Input
@@ -117,15 +119,15 @@ const RegisterForm = () => {
               touched={touched.confirmedPassword}
               value={values.confirmedPassword}
               name={'confirmedPassword'}
-              placeholder={'Confirm password'}
+              placeholder={t('Confirm_password')}
             />
           </InputContainer>
           <Button shape={'solid'} w={'100%'} h={'48'}>
-            Register
+            {t('Register')}
           </Button>
           <Text>
-            Already have an account?
-            <StyledLink to={'/login'}> Login</StyledLink>
+            {t('Already_have_an_account')}?
+            <StyledLink to={'/login'}> {t('Log_IN')}</StyledLink>
           </Text>
         </Forms>
       )}

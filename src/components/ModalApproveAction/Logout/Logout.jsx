@@ -1,5 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { useMedia } from 'shared/hooks/useMedia';
+import { useTranslation } from 'react-i18next';
 
 import Button from 'shared/components/Button';
 import { Title, ContainerView, ButtonWrap } from './Logout.styles';
@@ -10,6 +11,7 @@ import { logout } from 'redux/auth/authOperations';
 
 const Logout = ({ close, idUser }) => {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   const onLogout = idUser => {
     dispatch(logout(idUser));
@@ -28,7 +30,7 @@ const Logout = ({ close, idUser }) => {
 
   return (
     <ContainerView>
-      <Title as="h2">Already leaving?</Title>
+      <Title as="h2">{t('Already_leaving')}?</Title>
       {isSmallMobile && (
         <>
           <ButtonWrap>
@@ -41,7 +43,7 @@ const Logout = ({ close, idUser }) => {
                 width: '100%',
               }}
             >
-              Cancel
+              {t('Cancel')}
             </Button>
             <Button
               type="button"
@@ -54,7 +56,7 @@ const Logout = ({ close, idUser }) => {
                 maxWidth: '256px',
               }}
             >
-              Yes
+              {t('Yes')}
               <Icon id="logout" s="#FEF9F9" />
             </Button>
           </ButtonWrap>
@@ -72,7 +74,7 @@ const Logout = ({ close, idUser }) => {
                 marginBottom: '8px',
               }}
             >
-              Cancel
+              {t('Cancel')}
             </Button>
             <Button
               type="button"
@@ -82,7 +84,7 @@ const Logout = ({ close, idUser }) => {
               shape="solid"
               g="8"
             >
-              Yes
+              {t('Yes')}
               <Icon id="logout" s="#FEF9F9" />
             </Button>
           </ButtonWrap>
@@ -100,7 +102,7 @@ const Logout = ({ close, idUser }) => {
                 marginRight: '17px',
               }}
             >
-              Cancel
+              {t('Cancel')}
             </Button>
             <Button
               type="button"
@@ -110,7 +112,7 @@ const Logout = ({ close, idUser }) => {
               shape="solid"
               g="8"
             >
-              Yes
+              {t('Yes')}
               <Icon id="logout" s="#FEF9F9" />
             </Button>
           </ButtonWrap>
@@ -128,7 +130,7 @@ const Logout = ({ close, idUser }) => {
                 marginRight: '17px',
               }}
             >
-              Cancel
+              {t('Cancel')}
             </Button>
             <Button
               type="button"
@@ -138,7 +140,7 @@ const Logout = ({ close, idUser }) => {
               shape="solid"
               g="8"
             >
-              Yes
+              {t('Yes')}
               <Icon id="logout" s="#FEF9F9" />
             </Button>
           </ButtonWrap>

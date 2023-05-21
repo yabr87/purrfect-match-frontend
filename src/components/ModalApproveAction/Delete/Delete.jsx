@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { useMedia } from 'shared/hooks/useMedia';
 import Button from 'shared/components/Button';
 import {
@@ -17,6 +18,7 @@ const Delete = ({ close, approve }) => {
     ['desktop', 'tablet', 'mobile'],
     'xs'
   );
+  const { t } = useTranslation();
 
   const isSmallMobile = screenSize === 'xs';
   const isMobile = screenSize === 'mobile';
@@ -25,12 +27,12 @@ const Delete = ({ close, approve }) => {
 
   return (
     <ContainerView>
-      <Title>Delete adverstiment?!</Title>
+      <Title>{t('Delete_adverstiment')}?</Title>
       <TextWrap>
         <Text>
-          Are you sure you want to delete{' '}
+          {t('Are_you_sure_to_delete')}{' '}
           <TextAccent>“Cute dog looking for a home”</TextAccent>? <br />
-          You can`t undo this action.
+          {t('You_cant_undo_this_action')}.
         </Text>
       </TextWrap>
       {isSmallMobile && (
@@ -45,7 +47,7 @@ const Delete = ({ close, approve }) => {
                 width: '100%',
               }}
             >
-              Cancel
+              {t('Cancel')}
             </Button>
             <Button
               type="button"
@@ -58,7 +60,7 @@ const Delete = ({ close, approve }) => {
                 maxWidth: '256px',
               }}
             >
-              Yes
+              {t('Yes')}
               <Icon id="trash" s="#FEF9F9" />
             </Button>
           </ButtonWrap>
@@ -76,7 +78,7 @@ const Delete = ({ close, approve }) => {
                 marginBottom: '8px',
               }}
             >
-              Cancel
+              {t('Cancel')}
             </Button>
             <Button
               type="button"
@@ -86,7 +88,7 @@ const Delete = ({ close, approve }) => {
               shape="solid"
               g="8"
             >
-              Yes
+              {t('Yes')}
               <Icon id="trash" s="#FEF9F9" />
             </Button>
           </ButtonWrap>
@@ -104,7 +106,7 @@ const Delete = ({ close, approve }) => {
                 marginRight: '17px',
               }}
             >
-              Cancel
+              {t('Cancel')}
             </Button>
             <Button
               type="button"
@@ -114,7 +116,7 @@ const Delete = ({ close, approve }) => {
               shape="solid"
               g="8"
             >
-              Yes
+              {t('Yes')}
               <Icon id="trash" s="#FEF9F9" />
             </Button>
           </ButtonWrap>
@@ -132,7 +134,7 @@ const Delete = ({ close, approve }) => {
                 marginRight: '17px',
               }}
             >
-              Cancel
+              {t('Cancel')}
             </Button>
             <Button
               type="button"
@@ -142,7 +144,7 @@ const Delete = ({ close, approve }) => {
               shape="solid"
               g="8"
             >
-              Yes
+              {t('Yes')}
               <Icon id="trash" s="#FEF9F9" />
             </Button>
           </ButtonWrap>
