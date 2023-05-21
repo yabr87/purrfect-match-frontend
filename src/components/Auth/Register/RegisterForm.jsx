@@ -24,7 +24,7 @@ import Icon from 'shared/components/Icon/Icon';
 
 import useAuth from 'shared/hooks/useAuth';
 import { toast } from 'react-toastify';
-import { clearError } from 'redux/auth/authSlice';
+import { clearError, statusIsRegister } from 'redux/auth/authSlice';
 import { signup } from 'redux/auth/authOperations';
 
 const validateShecma = Yup.object().shape({
@@ -68,7 +68,7 @@ const RegisterForm = () => {
             password: values.password,
           })
         );
-
+        dispatch(statusIsRegister(true));
         actions.resetForm();
       }}
       validationSchema={validateShecma}
