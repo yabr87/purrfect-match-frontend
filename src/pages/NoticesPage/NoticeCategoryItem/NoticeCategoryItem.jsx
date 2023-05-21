@@ -87,7 +87,7 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
         <CardImage src={notice.photoUrl} alt={notice.title} />
         <ImageCategory>
           {notice.category
-            .replace('for-free', `${t('for_free')}`)
+            .replace('for-free', 'for free')
             .replace(/-/g, '/')}
         </ImageCategory>
 
