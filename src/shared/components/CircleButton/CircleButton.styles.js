@@ -47,7 +47,7 @@ export const CircleBtn = styled.button`
 `;
 
 function setSize({ id }) {
-  switch (id === 'heart' || id === 'trash'|| id === 'edit') {
+  switch (id === 'heart' || id === 'trash' || id === 'edit') {
     case true:
       return `40px`;
     default:
@@ -56,7 +56,7 @@ function setSize({ id }) {
 }
 
 function setBackground({ id, theme }) {
-  switch (id === 'heart' || id === 'trash'|| id === 'edit') {
+  switch (id === 'heart' || id === 'trash' || id === 'edit') {
     case true:
       return `${theme.colors.lightBlue}`;
     default:
@@ -65,7 +65,7 @@ function setBackground({ id, theme }) {
 }
 
 function setColor({ id, theme }) {
-  switch (id === 'heart' || id === 'trash') {
+  switch (id === 'heart' || id === 'trash' || id === 'edit') {
     case true:
       return `${theme.colors.link}`;
     default:
@@ -74,7 +74,7 @@ function setColor({ id, theme }) {
 }
 
 function setBoxShadow({ id, theme }) {
-  switch (id === 'heart' || id === 'trash') {
+  switch (id === 'heart' || id === 'trash' || id === 'edit') {
     case true:
       return `none`;
     default:
@@ -83,7 +83,7 @@ function setBoxShadow({ id, theme }) {
 }
 
 function setHoverColor({ id, theme }) {
-  switch (id === 'heart' || id === 'trash') {
+  switch (id === 'heart' || id === 'trash' || id === 'edit') {
     case true:
       return `${theme.colors.lightBlue}`;
     default:
@@ -92,7 +92,7 @@ function setHoverColor({ id, theme }) {
 }
 
 function setHoverBackground({ id, theme }) {
-  switch (id === 'heart' || id === 'trash') {
+  switch (id === 'heart' || id === 'trash' || id === 'edit') {
     case true:
       return `${theme.colors.link}`;
     default:

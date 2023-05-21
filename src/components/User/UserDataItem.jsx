@@ -5,6 +5,7 @@ import Icon from 'shared/components/Icon/Icon';
 import { useSelector } from 'react-redux';
 import { updateUserInfo } from 'utils/Api';
 import { convertToISODate } from 'utils/convertToISODate';
+import { toast } from 'react-toastify';
 
 const UserDataItem = ({ name, type, pattern, value, placeholder }) => {
   const [data, setData] = useState(value);
@@ -20,12 +21,18 @@ const UserDataItem = ({ name, type, pattern, value, placeholder }) => {
   };
 
   const handleInputSubmit = async () => {
-    const req =
-      name === 'birthday'
-        ? { [name]: convertToISODate(data) }
-        : { [name]: data };
-    await updateUserInfo(token, req);
-    setDisable(true);
+    try {
+      const req =
+        name === 'birthday'
+          ? { [name]: convertToISODate(data) }
+          : { [name]: data };
+      await updateUserInfo(token, req);
+      setDisable(true);
+    } catch (error) {
+      toast.error('Not correct value !', {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    }
   };
 
   return (

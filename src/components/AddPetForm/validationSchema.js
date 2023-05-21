@@ -19,7 +19,7 @@ const validationSchema = ( currentStep, selectedCategory) => {
           'Title may contain only letters, apostrophes, dashes, and spaces. For example: Adorable Puppies for Adoption'
         )
         .required('Title is required')
-        .min(2, ' Title be at least 2 characters')
+        .min(4, ' Title be at least 4 characters')
         .max(20, 'Title must not exceed 20 characters'),
       name: Yup.string()
         .required('Name is required')

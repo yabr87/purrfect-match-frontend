@@ -65,20 +65,16 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
     try {
       await deleteNotice(notice._id);
       deleteAndRefresh(notice._id);
-      toast.success(`${notice.title}: remowe`, {
-        position: toast.POSITION.TOP_RIGHT,
-      });
+      toast.success(`${notice.title}: remove`);
     } catch (error) {
-      toast.warn('Failed to delete notice. Please try again later.', {
-        position: toast.POSITION.TOP_RIGHT,
-      });
+      toast.warn('Failed to delete notice. Please try again later.');
     }
   };
 
-    const handleEdit = async id => {
+  const handleEdit = async id => {
     try {
-      console.log('Pet is edited')
-      // await editNotice(id) 
+      console.log('Pet is edited');
+      // await editNotice(id)
     } catch (error) {
       alert('Failed to delete notice. Please try again later.');
     }
@@ -136,7 +132,7 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
         <>
         <CircleButton
           id="trash"
-          z="999"
+          z="9"
           pos="absolute"
           t="68px"
           r="12px"
@@ -144,6 +140,7 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
         ></CircleButton>
         <CircleButton
             id="edit"
+            z="9"
             pos="absolute"
             t="124px"
             r="12px"

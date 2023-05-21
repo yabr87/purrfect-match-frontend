@@ -209,7 +209,7 @@ export const ImageCategoryEdit = styled.p`
 
 `;
 
-export const AdaptiveBoxOne = styled.div`
+export const EditboxLeft = styled.div`
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -221,7 +221,7 @@ export const AdaptiveBoxOne = styled.div`
   }
 `;
 
-export const AdaptiveBoxTwo = styled.div`
+export const EditboxRight = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 12px;
