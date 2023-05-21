@@ -22,6 +22,8 @@ i18n.use(initReactI18next).init({
 
         mainPage_title: 'Take good care of your small pets',
 
+        disconnect_title: 'No Internet Connection',
+
         News: 'News',
         Find_pet: 'Find pet',
         Our_friends: 'Our friends',
@@ -121,6 +123,8 @@ i18n.use(initReactI18next).init({
         Already_have_an_account: 'Вже маєте акаунт',
 
         mainPage_title: 'Подбайте про своїх домашніх улюбленців',
+
+        disconnect_title: 'Слава ЗСУ',
 
         News: 'Новини',
         Find_pet: 'Знайти тваринку',
