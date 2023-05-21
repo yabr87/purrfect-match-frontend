@@ -11,6 +11,8 @@ i18n.use(initReactI18next).init({
       translation: {
         mainPage_title: 'Take good care of your small pets',
 
+        disconnect_title: 'No Internet Connection',
+
         News: 'News',
         Find_pet: 'Find pet',
         Our_friends: 'Our friends',
@@ -78,6 +80,8 @@ i18n.use(initReactI18next).init({
     ukr: {
       translation: {
         mainPage_title: 'Подбайте про своїх домашніх улюбленців',
+
+        disconnect_title: 'Слава ЗСУ',
 
         News: 'Новини',
         Find_pet: 'Знайти тваринку',
