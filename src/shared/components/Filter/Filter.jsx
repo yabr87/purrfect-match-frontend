@@ -22,24 +22,22 @@ const Filter = ({
 
   useEffect(() => {
     const selectedFiltersFull = {
-      name: name,
+      name,
       values: selectedFilters,
     };
     onChange(selectedFiltersFull);
   }, [selectedFilters, name, onChange]);
 
   const handleChange = ({ target }) => {
-    if (target.checked) {
-      if (isSingleSelection) {
-        setSelectedFilters(prevState => [target.value]);
+    setSelectedFilters(prevState => {
+      if (target.checked) {
+        return isSingleSelection
+          ? [target.value]
+          : [...prevState, target.value];
       } else {
-        setSelectedFilters(prevState => [...prevState, target.value]);
+        return prevState.filter(item => item !== target.value);
       }
-    } else {
-      setSelectedFilters(prevState =>
-        prevState.filter(item => item !== target.value)
-      );
-    }
+    });
   };
 
   const isChecked = value => {
