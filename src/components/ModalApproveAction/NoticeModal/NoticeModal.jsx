@@ -75,6 +75,16 @@ const NoticeModal = ({ notice, close, setIsFavorite }) => {
     return format(Date.parse(date), 'dd.MM.yyyy');
   };
 
+  const addPrice = categoryName => {
+    if (categoryName === 'sell')
+      return (
+        <PetDataItem>
+          <NameCategory>Price:</NameCategory>
+          <ValueCategory>{notice.price}$</ValueCategory>
+        </PetDataItem>
+      );
+  };
+
   return (
     <ContainerView>
       <PetCardData>
@@ -109,6 +119,7 @@ const NoticeModal = ({ notice, close, setIsFavorite }) => {
                   <NameCategory>The sex:</NameCategory>
                   <ValueCategory>{notice.sex}</ValueCategory>
                 </PetDataItem>
+                {addPrice(notice.category)}
                 <PetDataItem>
                   <NameCategory>Email:</NameCategory>
                   <ValueCategory>
@@ -227,4 +238,3 @@ const NoticeModal = ({ notice, close, setIsFavorite }) => {
 };
 
 export default NoticeModal;
-

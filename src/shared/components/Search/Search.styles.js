@@ -27,7 +27,7 @@ export const SearchInput = styled(Field)`
   border-radius: 20px;
   margin: 0 auto;
   display: block;
-  outline: ${({ theme }) => theme.colors.inputOutline};
+  border: ${({ theme }) => theme.colors.inputOutline};
 
   @media ${props => props.theme.media.tab} {
     padding: 10px 71px 10px 20px;

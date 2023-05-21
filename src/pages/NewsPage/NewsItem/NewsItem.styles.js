@@ -4,7 +4,7 @@ export const Item = styled.li`
   position: relative;
   max-width: 336px;
   border-radius: 20px;
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.titleColor};
   background: ${({ theme }) => theme.colors.backgroundModal};
   box-shadow: ${({ theme }) => theme.shadows.default};
 

@@ -13,7 +13,7 @@ const CircleButton = ({
   return (
     <CircleBtn onClick={onClick} type={type} id={id} {...props}>
       {children}
-      <Icon id={id} f={props.f} />
+      <Icon id={id} f={props.f} s={props.s} />
     </CircleBtn>
   );
 };

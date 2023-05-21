@@ -120,12 +120,7 @@ const Pagination = ({
     <Box>
       <Flex>
         <ButtonPage type="button" id="prev" onClick={arrowHandleDecr}>
-          <Icon
-            id="arrow-left"
-            s="#54adff"
-            f="#54adff"
-            style={{ strokeWidth: 2 }}
-          ></Icon>
+          {<Icon id="arrow-left" style={{ strokeWidth: 2 }} />}
         </ButtonPage>
 
         {pages.map(page => (
@@ -143,10 +138,8 @@ const Pagination = ({
           <ButtonPage id="next" onClick={arrowHandleIncr} type="button">
             <Icon
               id="arrow-left"
-              s="#54adff"
-              f="#54adff"
               style={{ transform: 'rotate(180deg)', strokeWidth: 2 }}
-            ></Icon>
+            />
           </ButtonPage>
         }
       </Flex>
