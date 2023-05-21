@@ -27,6 +27,7 @@ const initialState = {
   sex: '',
   location: '',
   price: '',
+  promo: 0
 };
 
 const AddPetForm = () => {

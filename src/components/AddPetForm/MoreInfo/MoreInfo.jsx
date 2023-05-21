@@ -112,6 +112,25 @@ const MoreInfo = ({
           />
           <Error name="comments" component="p" />
         </FormLabel>
+        {option !== 'my-pet' && (
+          <div>
+            <FormLabel htmlFor="promo">
+              {values.promo ? (<p>Raise your ad only for {values.promo}$!</p>) : (<p>Choose your payment plan to raise you ad!</p>)}
+              <StyledField
+                type="range"
+                id="promo"
+                name="promo"
+                min="0"
+                max="30"
+                placeholder="Raise your ad"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.promo}
+                errors={touched.promo && errors.promo}
+                />
+              <Error name="promo" component="p" />
+            </FormLabel>
+          </div>)}
       </AdaptiveBoxTwo>
     </MoreInfoWrapper>
   );
