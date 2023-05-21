@@ -6,6 +6,7 @@ const initialState = {
   user: {},
   isLogin: false,
   token: null,
+  refreshToken: null,
   isRefreshing: false,
   error: null,
   isRegister: false,
@@ -24,8 +25,11 @@ const handleRejected = (store, { payload }) => {
 const handleLogin = (store, { payload }) => {
   store.isRefreshing = false;
   store.user = payload.user;
-  store.token = payload.token;
+  store.token = payload.accessToken;
+  store.refreshToken = payload.refreshToken;
   store.isLogin = true;
+  window.localStorage.setItem('accessToken', payload.accessToken);
+  window.localStorage.setItem('refreshToken', payload.refreshToken);
 };
 
 const authSlice = createSlice({
@@ -49,7 +53,12 @@ const authSlice = createSlice({
       .addCase(login.rejected, handleRejected)
       .addCase(refresh.pending, handlePending)
       .addCase(refresh.fulfilled, handleLogin)
-      .addCase(refresh.rejected, handleRejected)
+      .addCase(refresh.rejected, (store, { payload }) => {
+        store.isRefreshing = false;
+        store.error = payload;
+        store.token = '';
+        store.refreshToken = '';
+      })
       .addCase(logout.pending, handlePending)
       .addCase(logout.fulfilled, () => initialState)
       .addCase(logout.rejected, (store, { payload }) => ({
@@ -59,6 +68,7 @@ const authSlice = createSlice({
       .addCase(current.pending, handlePending)
       .addCase(current.fulfilled, (store, { payload }) => {
         store.isRefreshing = false;
+        store.isLogin = true;
         store.user = payload;
       })
       .addCase(current.rejected, handleRejected);
