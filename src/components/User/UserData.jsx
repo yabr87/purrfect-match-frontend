@@ -58,7 +58,7 @@ const UserData = () => {
       await addAvatar(token, { avatar: user.photo });
       setIsConfirm(false);
     } catch (error) {
-      toast.error('Try another image!', {
+      toast.error(`${t('alert_Try_another_image')}!`, {
         position: toast.POSITION.TOP_RIGHT,
       });
     }
@@ -105,28 +105,28 @@ const UserData = () => {
           </AvatarContainer>
           <InputContainer>
             <InputItem
-              name={t('name')}
+              name={t('Name')}
               type="text"
               value={user.name || 'User'}
               pattern="[A-Za-z]{1,32}"
               placeholder={t('Name')}
             />
             <InputItem
-              name={t('email')}
+              name={t('Email')}
               type="email"
               value={user.email}
               pattern="/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/"
               placeholder={t('Email')}
             />
             <InputItem
-              name={t('birthday')}
+              name={t('Birthday')}
               placeholder="DD.MM.YYYY"
               value={user.birthday}
               dateFormat="dd.MM.yyyy"
               pattern="(0?[1-9]|[12][0-9]|3[01]).(0?[1-9]|1[012]).((19|20)\d\d)"
             />
             <InputItem
-              name={t('phone')}
+              name={t('Phone')}
               type="phone"
               value={user.phone}
               pattern="[\+]\d{3}\s[\(]\d{2}[\)]\s\d{3}[\-]\d{2}[\-]\d{2}"
@@ -135,11 +135,11 @@ const UserData = () => {
               placeholder="+380XXXXXXXXX"
             />
             <InputItem
-              name={t('city')}
+              name={t('City')}
               type="text"
               pattern="/([A-Za-z]+(?: [A-Za-z]+)*)/"
               value={user.city || ''}
-              placeholder={t('Kyiv')}
+              placeholder={t('City')}
             />
             <LogOutBtn onClick={handleLogOut}>
               <Icon id="logout" s="#54ADFF" />

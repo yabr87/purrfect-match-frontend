@@ -37,7 +37,7 @@ i18n.use(initReactI18next).init({
         Confirm: 'Confirm',
         Log_Out: 'Log Out',
         Birthday: 'Birthday',
-        Сity: 'city',
+        Сity: 'City',
 
         remove: 'remove',
         Name: 'Name',
@@ -158,6 +158,7 @@ i18n.use(initReactI18next).init({
         Search: 'Search',
 
         alert_Not_correct_value: 'Not correct value',
+        alert_Try_another_image:'Try another image',
       },
     },
     ukr: {
@@ -191,7 +192,7 @@ i18n.use(initReactI18next).init({
         Confirm: 'Підтвердити',
         Log_Out: 'Вийти',
         Birthday: 'День народження',
-        Сity: 'місто',
+        City: 'Місто',
 
         remove: 'видалити',
         Name: 'Імʼя',
@@ -315,6 +316,7 @@ i18n.use(initReactI18next).init({
         Search: 'Шукати',
 
         alert_Not_correct_value: 'Неправильне значення',
+        alert_Try_another_image:'Спробуйте інше зображення',
       },
     },
   },
