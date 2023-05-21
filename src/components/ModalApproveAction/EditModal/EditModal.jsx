@@ -4,8 +4,8 @@ import Loader from 'shared/components/Loader';
 import { Error, FormButton } from 'components/AddPetForm/AddPetForm.styles';
 import { reverseISODate } from 'utils/reverseISODate';
 import {
-  AdaptiveBoxOne,
-  AdaptiveBoxTwo,
+  EditboxLeft,
+  EditboxRight,
   EditBox,
   EditContainer,
   EditContent,
