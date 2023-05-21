@@ -5,6 +5,7 @@ import { Error, FormLabel, StyledField } from '../AddPetForm.styles';
 import {
   AdaptiveBoxOne,
   AdaptiveBoxTwo,
+  IconDollar,
   ImageLabel,
   MoreInfoRadio,
   MoreInfoWrapper,
@@ -86,7 +87,7 @@ const MoreInfo = ({
           </>
         )}
         {option === 'sell' && (
-          <FormLabel htmlFor="price">
+          <FormLabel htmlFor="price" style={{ position: 'relative' }}>
             Price
             <StyledField
               name="price"
@@ -96,6 +97,7 @@ const MoreInfo = ({
               value={values.price}
               errors={touched.price && errors.price}
             />
+            <IconDollar id="dollar" s="none" f="#888888" w="20" h="20" />
             <Error name="price" component="p" />
           </FormLabel>
         )}

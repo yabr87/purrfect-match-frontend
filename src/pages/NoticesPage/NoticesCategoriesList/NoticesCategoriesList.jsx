@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import NoticeCategoryItem from '../NoticeCategoryItem/NoticeCategoryItem';
 
 import { CollectionContainer } from './NoticesCategoriesList.styles.js';
-import Pagination from 'shared/hooks/pagination';
+import Pagination from 'shared/components/Pagination';
 
 const NoticesCategoriesList = ({
   totalPages,
