@@ -55,11 +55,11 @@ const AddPetForm = () => {
       } else {
         await addMyPet(newPet);
       }
-      toast.success(`Pet added successfully`);
+      toast.success(t('alert_Pet_added_successfully'));
       resetForm();
       navigate(`/notices/${selectedCategory}`);
     } catch (error) {
-      toast.error(`Failed to add pet':${error}`);
+      toast.error(`${t('alert_Failed_to_add_pet')}:${error}`);
     }
   };
 

@@ -158,7 +158,9 @@ i18n.use(initReactI18next).init({
         Search: 'Search',
 
         alert_Not_correct_value: 'Not correct value',
-        alert_Try_another_image:'Try another image',
+        alert_Try_another_image: 'Try another image',
+        alert_Pet_added_successfully: 'Pet added successfully',
+        alert_Failed_to_add_pet: 'Failed to add pet',
       },
     },
     ukr: {
@@ -316,7 +318,9 @@ i18n.use(initReactI18next).init({
         Search: 'Шукати',
 
         alert_Not_correct_value: 'Неправильне значення',
-        alert_Try_another_image:'Спробуйте інше зображення',
+        alert_Try_another_image: 'Спробуйте інше зображення',
+        alert_Pet_added_successfully: 'Тваринка додана успішно',
+        alert_Failed_to_add_pet: 'Не вдалося додати тваринку',
       },
     },
   },
