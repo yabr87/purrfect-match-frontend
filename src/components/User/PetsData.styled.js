@@ -96,7 +96,7 @@ export const PetInfoItem = styled.p`
   font-size: 14px;
   line-height: 1.57;
   letter-spacing: 0.04em;
-  color: ${props => props.theme.colors.titleColor};
+  color: ${props => props.theme.colors.textColor};
 
   @media screen and (min-width: 1280px) {
     font-size: 16px;

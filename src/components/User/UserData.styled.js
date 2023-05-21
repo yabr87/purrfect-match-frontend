@@ -39,7 +39,7 @@ export const Title = styled.p`
   font-size: 20px;
   line-height: 1.35;
   letter-spacing: 0.04em;
-  color: ${props => props.theme.colors.titleColor};
+  color: ${props => props.theme.colors.textColor};
 
   @media screen and (min-width: 768px) {
     font-size: 28px;
@@ -60,7 +60,7 @@ export const AvatarInput = styled.input`
 
 export const AvatarLabel = styled.label`
   cursor: pointer;
-  color: ${props => props.theme.colors.titleColor};
+  color: ${props => props.theme.colors.textColor};
 `;
 
 export const Photo = styled.img`
