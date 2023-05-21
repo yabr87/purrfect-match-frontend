@@ -13,7 +13,7 @@ import {
 } from './NoticesFilters.styles';
 import Filter from '../../../shared/components/Filter/Filter';
 
-const NoticesFilters = React.memo(({ setSex, setSearchParams }) => {
+const NoticesFilters = React.memo(({ setSex, setAge, setSearchParams }) => {
   const isUpToWidth480 = useMedia(['(max-width: 480px)'], [true], false);
 
   const [isFilterOpen, setIsFilterOpen] = useState(false);
@@ -36,20 +36,15 @@ const NoticesFilters = React.memo(({ setSex, setSearchParams }) => {
   // };
 
   const handleAgeChange = event => {
-    //console.log('handleAgeChange:', event);
-    // const value = event.target.value;
-    // setAge(prevState =>
-    //   prevState.includes(value)
-    //     ? prevState.filter(item => item !== value)
-    //     : [...prevState, value]
-    // );
-    // fetchData();
+    const ageValues = event.values;
+    setSearchParams({ page: 1, age: ageValues });
+    setAge(ageValues);
   };
 
   const ageFilterItems = [
-    { label: `3-12${t('m')}`, value: 'young' },
-    { label: `1 ${t('year')}`, value: 'adult' },
-    { label: `2 ${t('years')}`, value: 'old' },
+    { label: `1${t('year')}`, value: '1' },
+    { label: `2 ${t('year')}`, value: '2' },
+    { label: `3 ${t('years')}`, value: '3' },
   ];
 
   const genderFilterItems = [
@@ -57,22 +52,10 @@ const NoticesFilters = React.memo(({ setSex, setSearchParams }) => {
     { label: `${t('female')}`, value: 'female' },
   ];
 
-  const [isMaleChecked, setIsMaleChecked] = useState(false);
-  const [isFemaleChecked, setIsFemaleChecked] = useState(false);
-
   const handleGenderChange = event => {
     const gender = event.values.length > 0 ? event.values[0] : null;
-    //const isChecked = event.target.checked;
-    //const gender = event.target.value;
-    //setSearchParams({ page: 1, sex: isChecked ? gender : null });
-    //setSex(isChecked ? gender : null);
-    //setIsMaleChecked(gender === 'male' && isChecked);
-    //setIsFemaleChecked(gender === 'female' && isChecked);
-
     setSearchParams({ page: 1, sex: gender });
     setSex(gender);
-    setIsMaleChecked(gender === 'male');
-    setIsFemaleChecked(gender === 'female');
   };
 
   return (

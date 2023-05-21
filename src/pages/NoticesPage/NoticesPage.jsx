@@ -30,6 +30,7 @@ function NoticesPage() {
   const handleAddPet = () => {
     isLoggedIn ? navigate('/add-pet') : alert(t('alert_register_signin'));
   };
+  const [age, setAge] = useState([]);
   const [sex, setSex] = useState('');
   const [totalPages, setTotalPages] = useState(null);
   const [currentPage, setCurrentPage] = useState(() => {
@@ -42,10 +43,10 @@ function NoticesPage() {
   const [category, setCategory] = useState(categoryName);
 
   const selectedFilters = [
-    {label: '3-12m', value: 'young'},
-    {label: '1 year', value: 'adult'},
-    {label: '2 years', value: 'old'},
-  ]
+    { label: '3-12m', value: 'young' },
+    { label: '1 year', value: 'adult' },
+    { label: '2 years', value: 'old' },
+  ];
 
   const [title, setTitle] = useState(() => {
     const titleSearch = searchParams.get('title');
@@ -91,6 +92,11 @@ function NoticesPage() {
     if (sex) {
       params.sex = sex;
     }
+
+    if (age.length > 0) {
+      params.age = age.join(',');
+    }
+
     getNotices(params)
       .then(({ data }) => {
         setTotalPages(data.totalPages);
@@ -98,7 +104,7 @@ function NoticesPage() {
       })
       .catch(e => console.log(e))
       .finally(setFetching(false));
-  }, [categoryName, currentPage, title, sex]);
+  }, [categoryName, currentPage, title, sex, age]);
 
   return (
     <Container>
@@ -116,7 +122,11 @@ function NoticesPage() {
       >
         <NoticesCategoriesNav />
         <div style={{ display: 'flex', position: 'relative', gap: '12px' }}>
-          <NoticesFilters setSex={setSex} setSearchParams={setSearchParams} />
+          <NoticesFilters
+            setSex={setSex}
+            setAge={setAge}
+            setSearchParams={setSearchParams}
+          />
           {isUpToWidth480 ? (
             <CircleButton
               z="9"
@@ -138,10 +148,16 @@ function NoticesPage() {
           )}
         </div>
       </div>
-      <div style={{ marginTop: '15px', display: 'flex', justifyContent: 'flex-end' }}>
+      <div
+        style={{
+          marginTop: '15px',
+          display: 'flex',
+          justifyContent: 'flex-end',
+        }}
+      >
         <SelectedFilters filters={selectedFilters}></SelectedFilters>
       </div>
-      
+
       {fetching && (
         <div
           style={{
