@@ -8,6 +8,35 @@ export const setToken = token => {
   instance.defaults.headers.authorization = token ? `Bearer ${token}` : '';
 };
 
+instance.interceptors.request.use(config => {
+  const accessToken = localStorage.getItem('accessToken');
+  config.headers.authorization = accessToken ? `Bearer ${accessToken}` : '';
+  return config;
+});
+
+instance.interceptors.response.use(
+  response => response,
+  async error => {
+    if (error.response.status === 401) {
+      const refreshToken = localStorage.getItem('refreshToken');
+      try {
+        const { data } = await instance.post('api/users/refresh', {
+          refreshToken,
+        });
+        localStorage.setItem('accessToken', data.accessToken ?? '');
+        localStorage.setItem('refreshToken', data.refreshToken ?? '');
+        return instance(error.config);
+      } catch (error) {
+        console.log(error);
+        localStorage.setItem('accessToken', '');
+        localStorage.setItem('refreshToken', '');
+        return Promise.reject(error);
+      }
+    }
+    return Promise.reject(error);
+  }
+);
+
 const ERROR_401_MESSAGE = 'You are not authorized. Log in first.';
 const ERROR_500_MESSAGE = 'Internal server error.';
 
