@@ -124,7 +124,9 @@ export const NameCategory = styled.th`
   font-size: 14px;
   line-height: 19.12px;
   color: ${props => props.theme.colors.textColor};
+  // width: fit-content;
   width: 80px;
+  tex-overflow: ellipsis '[..]';
 `;
 
 export const ValueCategory = styled.th`

@@ -77,16 +77,6 @@ const NoticeModal = ({ notice, close, setIsFavorite }) => {
     return format(Date.parse(date), 'dd.MM.yyyy');
   };
 
-  const addPrice = categoryName => {
-    if (categoryName === 'sell')
-      return (
-        <PetDataItem>
-          <NameCategory>{t('Price')}:</NameCategory>
-          <ValueCategory>{notice.price}$</ValueCategory>
-        </PetDataItem>
-      );
-  };
-
   return (
     <ContainerView>
       <PetCardData>
@@ -121,7 +111,12 @@ const NoticeModal = ({ notice, close, setIsFavorite }) => {
                   <NameCategory>{t('The_sex')}:</NameCategory>
                   <ValueCategory>{notice.sex}</ValueCategory>
                 </PetDataItem>
-                {addPrice(notice.category)}
+                {notice.category === 'sell' && (
+                  <PetDataItem>
+                    <NameCategory>{t('Price')}:</NameCategory>
+                    <ValueCategory>{notice.price}$</ValueCategory>
+                  </PetDataItem>
+                )}
                 <PetDataItem>
                   <NameCategory>{t('Email')}:</NameCategory>
                   <ValueCategory>
@@ -177,7 +172,6 @@ const NoticeModal = ({ notice, close, setIsFavorite }) => {
           <Button
             type="button"
             onClick={() => approveAddFavorite(notice)}
-            // w="256"
             h="40"
             shape="solid"
             g="8"

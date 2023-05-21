@@ -12,7 +12,7 @@ import {
 
 import Icon from 'shared/components/Icon';
 
-const Delete = ({ close, approve }) => {
+const Delete = ({ notice, close, approve }) => {
   const screenSize = useMedia(
     ['(min-width: 1280px)', '(min-width: 768px)', '(min-width: 480px)'],
     ['desktop', 'tablet', 'mobile'],
@@ -31,7 +31,7 @@ const Delete = ({ close, approve }) => {
       <TextWrap>
         <Text>
           {t('Are_you_sure_to_delete')}{' '}
-          <TextAccent>“Cute dog looking for a home”</TextAccent>? <br />
+          <TextAccent>“{notice.title}”</TextAccent>? <br />
           {t('You_cant_undo_this_action')}.
         </Text>
       </TextWrap>
