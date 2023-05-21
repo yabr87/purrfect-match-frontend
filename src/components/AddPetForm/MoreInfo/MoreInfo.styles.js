@@ -1,4 +1,5 @@
 import { Field } from 'formik';
+import Icon from 'shared/components/Icon';
 import styled from 'styled-components';
 
 export const MoreInfoWrapper = styled.div`
@@ -155,3 +156,14 @@ function setFemaleIconStroke({ sex, theme }) {
       return `${theme.colors.inputColor}`;
   }
 }
+export const IconDollar = styled(Icon)`
+position: absolute;
+right: 10px;
+bottom: 10px;
+
+ @media ${props => props.theme.media.tab} {
+    
+right: 13px;
+bottom: 13px;
+  }
+`
