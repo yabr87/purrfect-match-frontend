@@ -83,7 +83,7 @@ export const PetImage = styled.img`
 
 export const ImageCategory = styled.p`
   position: absolute;
-  width: 126px;
+  width: fit-content;
   height: 32px;
   left: 0;
   top: 16px;
