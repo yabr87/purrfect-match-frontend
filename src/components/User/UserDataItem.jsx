@@ -24,10 +24,15 @@ const UserDataItem = ({ name, type, pattern, value, placeholder }) => {
 
   const handleInputSubmit = async () => {
     try {
+        if (data === value) {
+      setDisable(true); 
+      return;
+  }
       const req =
         name === 'birthday'
           ? { [name]: convertToISODate(data) }
           : { [name]: data };
+      
       await updateUserInfo(token, req);
       setDisable(true);
     } catch (error) {

@@ -80,8 +80,9 @@ export const FormLabel = styled.label`
 `;
 
 export const Error = styled(ErrorMessage)`
-  margin-left: 16px;
-  margin-top: 4px;
+  position: absolute;
+  bottom: -18px;
+  left: 16px;
   font-size: 14px;
   color: ${props => props.theme.colors.red};
 
