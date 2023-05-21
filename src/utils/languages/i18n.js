@@ -86,7 +86,7 @@ i18n.use(initReactI18next).init({
         Learn_more: 'Learn more',
         alert_signin_fav: 'Please sign in to add to favorites',
         alert_failed_update: 'Failed to update notice. Please try again later.',
-        alert_pet_removed:'removed',
+        alert_pet_removed: 'removed',
         for_free: 'for free',
         Price: 'Price',
         Place: 'Place',
@@ -97,7 +97,7 @@ i18n.use(initReactI18next).init({
         Already_leaving: 'Already_leaving',
         Cancel: 'Cancel',
         Yes: 'Yes',
-        alert_LogOut_success: 'Log out successfull',
+        alert_LogOut_success: 'Log out successfully',
 
         Delete_adverstiment: 'Delete adverstiment',
         Are_you_sure_to_delete: 'Are you sure you want to delete',
@@ -155,7 +155,9 @@ i18n.use(initReactI18next).init({
         This_page_not_found: 'This page not found',
         To_main_page: 'To main page',
 
-        Search:'Search',
+        Search: 'Search',
+
+        alert_Not_correct_value: 'Not correct value',
       },
     },
     ukr: {
@@ -240,8 +242,8 @@ i18n.use(initReactI18next).init({
         alert_signin_fav: 'Будь ласка, авторизуйтеся, щоб додати до улюблених!',
         alert_failed_update:
           'Не вдалося оновити оголошення. Будь ласка, спробуйте ще раз згодом.',
-          alert_pet_removed:'видалено',
-          for_free: 'безкоштовно',
+        alert_pet_removed: 'видалено',
+        for_free: 'безкоштовно',
         Price: 'Ціна',
         Place: 'Місце',
         The_sex: 'Стать',
@@ -310,7 +312,9 @@ i18n.use(initReactI18next).init({
         This_page_not_found: 'Ця сторінка не знайдена',
         To_main_page: 'На головну',
 
-        Search:'Шукати',
+        Search: 'Шукати',
+
+        alert_Not_correct_value: 'Неправильне значення',
       },
     },
   },
