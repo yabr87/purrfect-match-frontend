@@ -19,6 +19,9 @@ instance.interceptors.response.use(
   async error => {
     if (error.response.status === 401) {
       const refreshToken = localStorage.getItem('refreshToken');
+      if (!refreshToken) {
+        return Promise.reject(error);
+      }
       try {
         const { data } = await instance.post('api/users/refresh', {
           refreshToken,
@@ -27,11 +30,12 @@ instance.interceptors.response.use(
         localStorage.setItem('refreshToken', data.refreshToken ?? '');
         return instance(error.config);
       } catch (error) {
-        console.log(error);
-        localStorage.setItem('accessToken', '');
-        localStorage.setItem('refreshToken', '');
         return Promise.reject(error);
       }
+    }
+    if (error.response.status === 403) {
+      localStorage.setItem('accessToken', '');
+      localStorage.setItem('refreshToken', '');
     }
     return Promise.reject(error);
   }
