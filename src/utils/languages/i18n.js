@@ -326,8 +326,8 @@ i18n.use(initReactI18next).init({
         alert_Failed_to_edit_pet: 'Не вдалося редагувати тваринку',
 
         Choose_option: 'Виберіть опцію',
-        Personal_details: 'Персональні деталі',
-        More_info: 'Більше інформації',
+        Personal_details: 'Деталі',
+        More_info: 'Більше інфо',
 
         is_your_pet: 'ваша тваринка',
         is_sell: 'продається',
