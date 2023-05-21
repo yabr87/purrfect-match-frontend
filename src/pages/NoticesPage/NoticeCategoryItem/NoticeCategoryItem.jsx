@@ -71,10 +71,10 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
     }
   };
 
-    const handleEdit = async id => {
+  const handleEdit = async id => {
     try {
-      console.log('Pet is edited')
-      // await editNotice(id) 
+      console.log('Pet is edited');
+      // await editNotice(id)
     } catch (error) {
       alert('Failed to delete notice. Please try again later.');
     }
@@ -140,6 +140,7 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
         ></CircleButton>
         <CircleButton
             id="edit"
+            z="9"
             pos="absolute"
             t="124px"
             r="12px"

@@ -33,6 +33,16 @@ export const addNotice = async newNoticeParams => {
   }
 };
 
+export const editNotice = async (id, updatedFields) => {
+  try {
+    const { data } = await noticesInstance.patch(`/api/notices/${id}`, updatedFields);
+    return data;
+  } catch (error) {
+    console.error('Failed to edit notice', error);
+    throw error;
+  }
+};
+
 export const deleteNotice = async id => {
   try {
     const { data } = await noticesInstance.delete(`/api/notices/${id}`);
