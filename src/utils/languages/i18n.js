@@ -153,6 +153,8 @@ i18n.use(initReactI18next).init({
         Ooops: 'Ooops',
         This_page_not_found: 'This page not found',
         To_main_page: 'To main page',
+
+        Search:'Search',
       },
     },
     ukr: {
@@ -305,6 +307,8 @@ i18n.use(initReactI18next).init({
         Ooops: 'Ууупс',
         This_page_not_found: 'Ця сторінка не знайдена',
         To_main_page: 'На головну',
+
+        Search:'Шукати',
       },
     },
   },
