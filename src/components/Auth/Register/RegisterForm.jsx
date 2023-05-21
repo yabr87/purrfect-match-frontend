@@ -5,7 +5,6 @@ import { useDispatch } from 'react-redux';
 
 import * as Yup from 'yup';
 
-import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import {
@@ -25,7 +24,7 @@ import Icon from 'shared/components/Icon/Icon';
 
 import useAuth from 'shared/hooks/useAuth';
 import { toast } from 'react-toastify';
-import { clearError, statusIsRegister } from 'redux/auth/authSlice';
+import { clearError } from 'redux/auth/authSlice';
 import { signup } from 'redux/auth/authOperations';
 
 const validateShecma = Yup.object().shape({
@@ -44,33 +43,26 @@ const validateShecma = Yup.object().shape({
 });
 
 const RegisterForm = () => {
-  const navigate = useNavigate();
-  const { isLoggedIn, isError } = useAuth();
+  const { isError } = useAuth();
   const dispatch = useDispatch();
   const { t } = useTranslation();
   useEffect(() => {
-    if (isLoggedIn) {
-      navigate('/user', { state: { isModalOpen: true } });
-      // navigate('/notices/sell');
-    }
     if (isError) {
       toast.error(`${isError}`);
       dispatch(clearError());
     }
-  }, [isLoggedIn, navigate, isError, dispatch]);
+  }, [isError, dispatch]);
 
   return (
     <Formik
       initialValues={{ email: '', password: '', confirmedPassword: '' }}
       onSubmit={(values, actions) => {
-        // navigate('/user', { state: { isModalOpen: true } });
         dispatch(
           signup({
             email: values.email,
             password: values.password,
           })
         );
-        dispatch(statusIsRegister(true));
         actions.resetForm();
       }}
       validationSchema={validateShecma}
