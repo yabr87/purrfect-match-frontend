@@ -86,6 +86,7 @@ i18n.use(initReactI18next).init({
         Learn_more: 'Learn more',
         alert_signin_fav: 'Please sign in to add to favorites',
         alert_failed_update: 'Failed to update notice. Please try again later.',
+        alert_pet_removed:'removed',
         for_free: 'for free',
         Price: 'Price',
         Place: 'Place',
@@ -239,7 +240,8 @@ i18n.use(initReactI18next).init({
         alert_signin_fav: 'Будь ласка, авторизуйтеся, щоб додати до улюблених!',
         alert_failed_update:
           'Не вдалося оновити оголошення. Будь ласка, спробуйте ще раз згодом.',
-        for_free: 'безкоштовно',
+          alert_pet_removed:'видалено',
+          for_free: 'безкоштовно',
         Price: 'Ціна',
         Place: 'Місце',
         The_sex: 'Стать',
