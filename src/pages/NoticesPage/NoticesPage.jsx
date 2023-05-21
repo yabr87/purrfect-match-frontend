@@ -29,7 +29,7 @@ function NoticesPage() {
   const handleAddPet = () => {
     isLoggedIn ? navigate('/add-pet') : alert(t('alert_register_signin'));
   };
-
+  const [sex, setSex] = useState('');
   const [totalPages, setTotalPages] = useState(null);
   const [currentPage, setCurrentPage] = useState(() => {
     const page = searchParams.get('page');
@@ -65,7 +65,9 @@ function NoticesPage() {
   }
   useEffect(() => {
     setFetching(true);
-    const params = { page: currentPage };
+    const params = {
+      page: currentPage,
+    };
     if (['sell', 'lost-found', 'for-free'].includes(categoryName)) {
       params.category = categoryName;
     }
@@ -78,6 +80,10 @@ function NoticesPage() {
     if (title) {
       params.title = title;
     }
+
+    if (sex) {
+      params.sex = sex;
+    }
     getNotices(params)
       .then(({ data }) => {
         setTotalPages(data.totalPages);
@@ -85,7 +91,7 @@ function NoticesPage() {
       })
       .catch(e => console.log(e))
       .finally(setFetching(false));
-  }, [categoryName, currentPage, title]);
+  }, [categoryName, currentPage, title, sex]);
 
   return (
     <Container>
@@ -103,12 +109,12 @@ function NoticesPage() {
       >
         <NoticesCategoriesNav />
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          <NoticesFilters />
+          <NoticesFilters setSex={setSex} setSearchParams={setSearchParams} />
           {isUpToWidth480 ? (
             <CircleButton
+              z="9"
+              pos="fixed"
               style={{
-                zIndex: '989',
-                position: 'fixed',
                 bottom: '50px',
                 right: '24px',
               }}

@@ -17,14 +17,13 @@ import {
 } from './NoticesFilters.styles';
 import Checkbox from '../../../shared/components/Checkbox';
 
-function NoticesFilters({ fetchData }) {
+function NoticesFilters({ setSex, setSearchParams }) {
   const isUpToWidth480 = useMedia(['(max-width: 480px)'], [true], false);
 
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [isAgeOpen, setIsAgeOpen] = useState(false);
   const [isGenderOpen, setIsGenderOpen] = useState(false);
   // const [age, setAge] = useState(null);
-  // const [gender, setGender] = useState(null);
 
   const { t } = useTranslation();
 
@@ -50,14 +49,25 @@ function NoticesFilters({ fetchData }) {
     // fetchData();
   };
 
+  const [isMaleChecked, setIsMaleChecked] = useState(false);
+  const [isFemaleChecked, setIsFemaleChecked] = useState(false);
+
+  const handleGenderChange = event => {
+    const isChecked = event.target.checked;
+    const gender = event.target.value;
+    setSearchParams({ page: 1, sex: isChecked ? gender : null });
+    setSex(isChecked ? gender : null);
+    setIsMaleChecked(gender === 'male' && isChecked);
+    setIsFemaleChecked(gender === 'female' && isChecked);
+  };
+
   // const handleGenderChange = event => {
-  // const value = event.target.value;
-  // setGender(prevState =>
-  //   prevState.includes(value)
-  //     ? prevState.filter(item => item !== value)
-  //     : [...prevState, value]
-  // );
-  // fetchData();
+  //   const value = event.target.value;
+  //   const isChecked = event.target.checked;
+
+  //   setSex(isChecked ? value : null);
+  //   const params = { page: 1, sex: value };
+  //   setSearchParams(params);
   // };
 
   return (
@@ -110,30 +120,6 @@ function NoticesFilters({ fetchData }) {
                     label={`2 ${t('years')}`}
                     onChange={handleAgeChange}
                   ></Checkbox>
-                  {/*<label>*/}
-                  {/*  <input*/}
-                  {/*    type="checkbox"*/}
-                  {/*    value="young"*/}
-                  {/*    onChange={handleAgeChange}*/}
-                  {/*  />*/}
-                  {/*  3-12m*/}
-                  {/*</label>*/}
-                  {/*  <label>*/}
-                  {/*  <input*/}
-                  {/*    type="checkbox"*/}
-                  {/*    value="adult"*/}
-                  {/*    onChange={handleAgeChange}*/}
-                  {/*  />*/}
-                  {/*  1 year*/}
-                  {/*</label>*/}
-                  {/*  <label>*/}
-                  {/*    <input*/}
-                  {/*      type="checkbox"*/}
-                  {/*      value="old"*/}
-                  {/*      onChange={handleAgeChange}*/}
-                  {/*    />*/}
-                  {/*    2 year*/}
-                  {/*  </label>*/}
                 </FilterChose>
               )}
             </ContainerItem>
@@ -147,29 +133,15 @@ function NoticesFilters({ fetchData }) {
                   <Checkbox
                     value="male"
                     label={t('male')}
-                    onChange={handleAgeChange}
+                    isChecked={isMaleChecked}
+                    onChange={handleGenderChange}
                   ></Checkbox>
                   <Checkbox
                     value="female"
                     label={t('female')}
-                    onChange={handleAgeChange}
+                    isChecked={isFemaleChecked}
+                    onChange={handleGenderChange}
                   ></Checkbox>
-                  {/*<label>*/}
-                  {/*  <input*/}
-                  {/*    type="checkbox"*/}
-                  {/*    value="male"*/}
-                  {/*    onChange={handleGenderChange}*/}
-                  {/*  />*/}
-                  {/*  male*/}
-                  {/*</label>*/}
-                  {/*<label>*/}
-                  {/*  <input*/}
-                  {/*    type="checkbox"*/}
-                  {/*    value="female"*/}
-                  {/*    onChange={handleGenderChange}*/}
-                  {/*  />*/}
-                  {/*  female*/}
-                  {/*</label>*/}
                 </FilterChose>
               )}
             </ContainerItem>
