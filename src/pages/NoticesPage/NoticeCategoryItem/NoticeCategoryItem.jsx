@@ -140,7 +140,7 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
         ></CircleButton>
         <CircleButton
             id="edit"
-            z="999"
+            z="9"
             pos="absolute"
             t="124px"
             r="12px"
