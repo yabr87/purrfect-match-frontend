@@ -4,7 +4,7 @@ import { FilterChose, ContainerItem, FiltersItems, Item } from './Filter.styles'
 import PropTypes from 'prop-types';
 import Icon from '../Icon';
 
-const Filter = ({ filters = [], name, title, onChange, ...props }) => {
+const Filter = ({ filters = [], name, title, isSingleSelection = false, onChange, ...props }) => {
   const [selectedFilters, setSelectedFilters] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -16,12 +16,20 @@ const Filter = ({ filters = [], name, title, onChange, ...props }) => {
     onChange(selectedFiltersFull);
   }, [selectedFilters, name, onChange]);
 
-  const handleChange = ({isChecked, label, value}) => {
-    if (isChecked) {
-      setSelectedFilters(prevState => [...prevState, value]);
+  const handleChange = ({target}) => {
+    if (target.checked) {
+      if (isSingleSelection) {
+        setSelectedFilters(prevState => [ target.value ]);
+      } else {
+        setSelectedFilters(prevState => [...prevState, target.value]);
+      }
     } else {
-      setSelectedFilters(prevState => prevState.filter(item => item !== value));
+      setSelectedFilters(prevState => prevState.filter(item => item !== target.value));
     }
+  }
+
+  const isChecked = (value) => {
+    return !!selectedFilters.find(item => item === value);
   }
 
   const collapseHandler = () => {
@@ -37,7 +45,11 @@ const Filter = ({ filters = [], name, title, onChange, ...props }) => {
     {isOpen && (
       <FilterChose>
         {filters.map(({label, value}) => (
-          <Checkbox key={'filter_' + value} value={value} label={label} onChange={handleChange}></Checkbox>
+          <Checkbox key={'filter_' + value}
+                    value={value}
+                    label={label}
+                    isChecked={isChecked.bind(this, value)}
+                    onChange={handleChange}></Checkbox>
           ))}
       </FilterChose>
     )}
@@ -51,6 +63,7 @@ Filter.propTypes = {
     value: PropTypes.string.isRequired,
   })).isRequired,
   name: PropTypes.string,
+  isSingleSelection: PropTypes.bool,
   title: PropTypes.string,
   onChange: PropTypes.func
 };

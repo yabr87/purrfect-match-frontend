@@ -61,12 +61,19 @@ function NoticesFilters({ setSex, setSearchParams }) {
   const [isFemaleChecked, setIsFemaleChecked] = useState(false);
 
   const handleGenderChange = event => {
-    const isChecked = event.target.checked;
-    const gender = event.target.value;
-    setSearchParams({ page: 1, sex: isChecked ? gender : null });
-    setSex(isChecked ? gender : null);
-    setIsMaleChecked(gender === 'male' && isChecked);
-    setIsFemaleChecked(gender === 'female' && isChecked);
+    const gender = event.values.length > 0 ? event.values[0] : null;
+    //const isChecked = event.target.checked;
+    //const gender = event.target.value;
+    //setSearchParams({ page: 1, sex: isChecked ? gender : null });
+    //setSex(isChecked ? gender : null);
+    //setIsMaleChecked(gender === 'male' && isChecked);
+    //setIsFemaleChecked(gender === 'female' && isChecked);
+
+    //setSearchParams({ page: 1, sex: gender});
+    //setSex(gender);
+    //setIsMaleChecked(gender === 'male');
+    //setIsFemaleChecked(gender === 'female');
+    console.log('AAA', { page: 1, sex: gender });
   };
 
   return (
@@ -97,60 +104,25 @@ function NoticesFilters({ setSex, setSearchParams }) {
           <Icon id="filters" />
         </Button>
       )}
-      {isFilterOpen && (
-        <FilterOptions>
-          <FiltersTitle>{t('Filters')}</FiltersTitle>
-          <div style={{ position: 'relative' }}>
-            <ContainerItem>
-              <FiltersItems onClick={handleAgeClick}>
-                <Icon id={!isAgeOpen ? 'up' : 'down'} />
-                <Item>{t('By_age')}</Item>
-              </FiltersItems>
-              {isAgeOpen && (
-                <FilterChose>
-                  <Checkbox
-                    value="young"
-                    label={`3-12${t('m')}`}
-                    onChange={handleAgeChange}
-                  ></Checkbox>
-                  <Checkbox
-                    value="adult"
-                    label={`1 ${t('year')}`}
-                    onChange={handleAgeChange}
-                  ></Checkbox>
-                  <Checkbox
-                    value="old"
-                    label={`2 ${t('years')}`}
-                    onChange={handleAgeChange}
-                  ></Checkbox>
-                </FilterChose>
-              )}
-            </ContainerItem>
-            <ContainerItem>
-              <FiltersItems onClick={handleGenderClick}>
-                <Icon id={!isGenderOpen ? 'up' : 'down'} />
-                <Item>{t('By_gender')}</Item>
-              </FiltersItems>
-              {isGenderOpen && (
-                <FilterChose>
-                  <Checkbox
-                    value="male"
-                    label={t('male')}
-                    isChecked={isMaleChecked}
-                    onChange={handleGenderChange}
-                  ></Checkbox>
-                  <Checkbox
-                    value="female"
-                    label={t('female')}
-                    isChecked={isFemaleChecked}
-                    onChange={handleGenderChange}
-                  ></Checkbox>
-                </FilterChose>
-              )}
-            </ContainerItem>
-          </div>
-        </FilterOptions>
-      )}
+      {
+        isFilterOpen && (
+           <FilterOptions>
+              <FiltersTitle>{t('Filters')}</FiltersTitle>
+              <div style={{ position: 'relative' }}>
+                  <Filter filters={genderFilterItems}
+                          title="sex"
+                          name="sex"
+                          isSingleSelection={true}
+                          onChange={handleGenderChange}></Filter>
+                  <Filter filters={ageFilterItems}
+                          title="age"
+                          name="age"
+                          isSingleSelection={false}
+                          onChange={handleAgeChange}></Filter>
+              </div>
+            </FilterOptions>
+        )
+      }
     </FilterContainer>
   );
 }
