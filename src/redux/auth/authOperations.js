@@ -55,7 +55,6 @@ export const logout = createAsyncThunk(
       toast.success('Log out successfully');
       return result.data;
     } catch ({ message }) {
-      toast.error(`${message}`);
       return rejectWithValue(message);
     }
   }
