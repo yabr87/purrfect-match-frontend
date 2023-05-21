@@ -1,6 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import * as api from '../../utils/Api';
-import { toast } from 'react-toastify';
 
 export const signup = createAsyncThunk(
   'auth/signup',
@@ -52,7 +51,6 @@ export const logout = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const result = await api.logout();
-      toast.success('Log out successfully');
       return result.data;
     } catch ({ message }) {
       return rejectWithValue(message);
