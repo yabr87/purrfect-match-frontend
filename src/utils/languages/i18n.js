@@ -190,7 +190,7 @@ i18n.use(initReactI18next).init({
 
         Already_leaving: 'Вже йдете',
         alert_LogOut_success: 'Вихід успішний',
-        Cancel: 'Відміна',
+        Cancel: 'Відмінити',
         Yes: 'Так',
 
         Edit_your_pet: 'Редагуйте тваринку',
