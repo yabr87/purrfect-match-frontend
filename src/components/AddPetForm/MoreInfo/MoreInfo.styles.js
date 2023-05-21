@@ -48,7 +48,7 @@ export const RadioBox = styled.div`
   gap: 16px;
   margin-top: 8px;
 
-  label > svg {
+  label:first-child > svg {
     stroke: ${setFemaleIconStroke};
   }
 
@@ -82,10 +82,6 @@ export const MoreInfoRadio = styled.label`
     overflow: hidden;
     white-space: nowrap;
     pointer-events: none;
-  }
-
-  svg {
-    stroke-width: 2px;
   }
 `;
 
