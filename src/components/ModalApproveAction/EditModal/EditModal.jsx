@@ -6,8 +6,8 @@ import {
 } from 'components/AddPetForm/AddPetForm.styles';
 import { reverseISODate } from 'utils/reverseISODate';
 import {
-  AdaptiveBoxOne,
-  AdaptiveBoxTwo,
+  EditboxLeft,
+  EditboxRight,
   EditBox,
   EditContainer,
   EditContent,
@@ -97,7 +97,7 @@ const EditModal = ({ notice, close, approve }) => {
                   <Loader />
                 ) : (
                     <EditWrapper>
-                      <AdaptiveBoxOne>
+                      <EditboxLeft>
                       <EditTitle>Edit your pet</EditTitle>
                       <div style={{position: 'relative', width: '100%', }}>
                       <PetImage src={notice.photoUrl} alt={notice.title} style={ {margin: 0}}  />
@@ -129,8 +129,8 @@ const EditModal = ({ notice, close, approve }) => {
                           />
                           <Error name="points" component="p" />
                         </EditLabel>
-                    </AdaptiveBoxOne>
-                    <AdaptiveBoxTwo>
+                    </EditboxLeft>
+                    <EditboxRight>
                       <EditLabel htmlFor="title">
                         Title of ad:
                         <EditField
@@ -217,7 +217,7 @@ const EditModal = ({ notice, close, approve }) => {
                         />
                         <Error name="comments" component="p" />
                       </EditLabel>
-                    </AdaptiveBoxTwo>
+                    </EditboxRight>
                   </EditWrapper>
                 )}
                 <EditBox>

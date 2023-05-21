@@ -43,7 +43,7 @@ const validationSchemaEdit = (category) => {
       price: Yup.number()
         .typeError('Price must be a number')
             .required(),
-      points: Yup.number()
+      promo: Yup.number()
             .optional()
       .min(0)
       .max(30)
