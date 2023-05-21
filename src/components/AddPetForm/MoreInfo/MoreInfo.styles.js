@@ -120,6 +120,7 @@ export const TextField = styled(Field)`
 
 export const AdaptiveBoxOne = styled.div`
   display: flex;
+  flex-direction: column;
   gap: 16px;
 
   @media ${props => props.theme.media.tab} {
@@ -129,6 +130,7 @@ export const AdaptiveBoxOne = styled.div`
 
 export const AdaptiveBoxTwo = styled.div`
   display: flex;
+  flex-direction: column;
   gap: 20px;
 
   @media ${props => props.theme.media.tab} {
