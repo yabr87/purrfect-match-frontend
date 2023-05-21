@@ -23,6 +23,8 @@ import { addAvatar, getCurrent } from 'utils/Api';
 import ModalApproveAction from 'components/ModalApproveAction';
 import Logout from 'components/ModalApproveAction/Logout';
 import { reverseISODate } from 'utils/reverseISODate';
+import { UserLabel } from './UserDataItem.styled';
+import { Balance, BalanceIcon } from './UserData.styled';
 
 const initialState = {
   name: '',
@@ -141,6 +143,9 @@ const UserData = () => {
               value={user.city || ''}
               placeholder={t('City')}
             />
+            <UserLabel style={{display: 'flex'}}>Balance:
+            <Balance>{user.balance || '0'}<BalanceIcon id='dollar' s='none' f='#111' /></Balance>
+              </UserLabel>
             <LogOutBtn onClick={handleLogOut}>
               <Icon id="logout" s="#54ADFF" />
               <LogOutText>{t('Log_Out')}</LogOutText>

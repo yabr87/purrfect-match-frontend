@@ -11,7 +11,6 @@ import Congrats from 'components/ModalApproveAction/Congrats';
 
 const UserPage = () => {
   const { isRegisteredIn } = useAuth();
-  console.log(isRegisteredIn);
 
   const [isOpen, setIsModalOpen] = useState(false);
 
