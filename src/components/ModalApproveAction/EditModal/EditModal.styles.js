@@ -195,7 +195,7 @@ export const EditBox = styled.div`
 
 export const ImageCategoryEdit = styled.p`
   position: absolute;
-  width: 126px;
+  width: fit-content;
   height: 32px;
   left: 0;
   top: 12px;
