@@ -1,5 +1,4 @@
 import { useRef, useState } from 'react';
-import { useTheme } from 'styled-components';
 
 import { ToggleContainer } from './ThemeSwitcher.styles';
 import Icon from 'shared/components/Icon/Icon';
@@ -10,10 +9,6 @@ const ThemeSwitcher = () => {
     localStorage.getItem('theme') === 'true' ? true : false
   );
   const isFirstRender = useRef(!isCheked);
-  const theme = useTheme();
-  useEffect(() => {
-    document.body.style.backgroundColor = theme.colors.backgroundColor;
-  }, [theme.colors.backgroundColor]);
   useEffect(() => {
     if (isFirstRender.current) {
       isFirstRender.current = false;

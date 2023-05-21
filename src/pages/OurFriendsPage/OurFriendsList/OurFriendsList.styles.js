@@ -119,7 +119,7 @@ export const InfoItem = styled.div`
   font-weight: 500;
   font-size: 12px;
   line-height: calc(16 / 12);
-  color: ${props => props.theme.colors.titleColor};
+  color: ${props => props.theme.colors.textColor};
 `;
 export const InfoItemTitle = styled.div`
   font-weight: 600;
@@ -140,7 +140,7 @@ export const InfoItemText = styled.div`
   font-weight: 400;
   font-size: 12px;
   line-height: calc(16 / 12);
-  color: ${props => props.theme.colors.titleColor};
+  color: ${props => props.theme.colors.textColor};
 
   transition: color 250ms ease;
   &:hover {
@@ -163,7 +163,7 @@ export const InfoItemTime = styled.div`
   font-size: 12px;
   line-height: calc(16 / 12);
 
-  color: ${props => props.theme.colors.titleColor};
+  color: ${props => props.theme.colors.textColor};
   transition: color 250ms ease;
 
   cursor: ${props => (props.hasSchedule ? 'pointer' : 'default')};
@@ -185,7 +185,7 @@ export const ScheduleField = styled.div`
   font-size: 10px;
   line-height: calc(14 / 10);
 
-  color: ${props => props.theme.colors.titleColor};
+  color: ${props => props.theme.colors.textColor};
   background: ${props => props.theme.colors.backgroundModal};
   border: 1px solid ${props => props.theme.colors.link};
   box-shadow: ${props => props.theme.shadows.default};

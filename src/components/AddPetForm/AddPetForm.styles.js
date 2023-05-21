@@ -8,7 +8,7 @@ export const FormTitle = styled.p`
   font-size: ${props => props.theme.fontSizes.m};
   line-height: 1.35;
 
-  color: ${props => props.theme.colors.titleColor};
+  color: ${props => props.theme.colors.textColor};
 
   @media ${props => props.theme.media.tab} {
     font-size: ${props => props.theme.fontSizes.xl};
@@ -26,7 +26,7 @@ export const FormLabel = styled.label`
   font-size: 14px;
   line-height: 1.3;
 
-  color: ${props => props.theme.colors.titleColor};
+  color: ${props => props.theme.colors.textColor};
 
   @media screen and (min-width: 768px) {
     font-size: ${props => props.theme.fontSizes.m};

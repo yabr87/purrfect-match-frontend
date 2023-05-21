@@ -1,7 +1,8 @@
 import React, { lazy } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
-import { lightTheme, darkTheme } from 'utils/theme2';
+import { lightTheme, darkTheme } from 'utils/theme';
+import { GlobalStyle } from './App.styles';
 
 import { I18nextProvider } from 'react-i18next';
 import i18n from '../../utils/languages/i18n';
@@ -52,6 +53,7 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
+      <GlobalStyle />
       <I18nextProvider i18n={i18n}>
         <Routes>
           <Route path="/" element={<SharedLayout />}>

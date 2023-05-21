@@ -6,7 +6,7 @@ export const UserInput = styled.input`
   border: 1px solid ${props => props.theme.colors.link};
   border-radius: 20px;
   padding: 4px 12px;
-  color: ${props => props.theme.colors.titleColor};
+  color: ${props => props.theme.colors.textColor};
   background-color: ${props => props.theme.colors.backgroundModal};
 
   @media screen and (min-width: 768px) {
@@ -27,7 +27,7 @@ export const EditInputBtn = styled.button`
 `;
 
 export const UserLabel = styled.label`
-  color: ${props => props.theme.colors.titleColor};
+  color: ${props => props.theme.colors.textColor};
 
   font-weight: ${props => props.theme.fontWeiths.semiBold};
 `;

@@ -29,7 +29,7 @@ export const NavItem = styled(NavLink)`
   line-height: 1.37;
   letter-spacing: 0.04em;
 
-  color: ${props => props.theme.colors.titleColor};
+  color: ${props => props.theme.colors.textColor};
   outline: none;
   transition: color 250ms ease;
 

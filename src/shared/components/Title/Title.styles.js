@@ -6,7 +6,7 @@ export const MainTitle = styled.h1`
   font-weight: ${props => props.weight || props.theme.fontWeiths.bold}; /*700*/
   font-size: ${props => props.size || props.theme.fontSizes.l}; /*24*/
   line-height: ${props => props.line || '1.375'};
-  color: ${props => props.color || props.theme.colors.titleColor};
+  color: ${props => props.color || props.theme.colors.textColor};
   letter-spacing: ${props => props.letterSpacing || 0};
 
   @media ${props => props.theme.media.tab} {
