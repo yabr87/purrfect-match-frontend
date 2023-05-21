@@ -15,13 +15,13 @@ export const Title = styled.h1`
   line-height: 1.38;
   color: ${props => props.theme.colors.titleColor};
 
-  @media screen and (min-width: 768px) {
+  @media ${props => props.theme.media.tab} {
     margin-top: 40px;
     width: 588px;
     font-size: 68px;
     line-height: 1.47;
   }
-  @media screen and (min-width: 1280px) {
+  @media ${props => props.theme.media.desk} {
     margin-top: 110px;
     width: 501px;
     font-weight: 800;
@@ -50,25 +50,25 @@ export const Pictures = styled.img`
     content: url(${mobPet2});
   }
 
-  @media screen and (min-width: 768px) {
+  @media ${props => props.theme.media.tab} {
     height: 986px;
     max-width: 986px;
     content: url(${tabPet1});
 
-    @media screen and (min-width: 768px) and (min-device-pixel-ratio: 2),
+    @media ${props => props.theme.media.tab} and (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
       content: url(${tabPet2});
     }
   }
 
-  @media screen and (min-width: 1280px) {
+  @media ${props => props.theme.media.desk} {
     position: absolute;
     right: 0;
     top: 0;
     content: url(${deskPet1});
 
-    @media screen and (min-width: 1280px) and (min-device-pixel-ratio: 2),
+    @media ${props => props.theme.media.desk} and (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
       content: url(${deskPet2});
