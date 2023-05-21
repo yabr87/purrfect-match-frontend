@@ -20,6 +20,10 @@ i18n.use(initReactI18next).init({
         Confirm_password: 'Confirm password',
         Already_have_an_account: 'Already have an account',
 
+        Congrats: 'Congrats',
+        registration_is_successful: 'Your registration is successful',
+        Go_to_profile: 'Go to profile',
+
         mainPage_title: 'Take good care of your small pets',
 
         disconnect_title: 'No Internet Connection',
@@ -126,6 +130,10 @@ i18n.use(initReactI18next).init({
         Confirm_password: 'Підтвердіть пароль',
         Already_have_an_account: 'Вже маєте акаунт',
 
+        Congrats: 'Вітаємо',
+        registration_is_successful: 'Ви успішно зареєструвалися',
+        Go_to_profile: 'Перейти в профіль',
+
         mainPage_title: 'Подбайте про своїх домашніх улюбленців',
 
         disconnect_title: 'Слава ЗСУ',
@@ -200,7 +208,6 @@ i18n.use(initReactI18next).init({
         Delete_adverstiment: 'Видалити оголошення',
         Are_you_sure_to_delete: 'Ви впевнені, що хочете видалити',
         You_cant_undo_this_action: 'Ви не зможете відмінити цю дію',
-
 
         Edit_your_pet: 'Редагуйте тваринку',
         Raise_your_ad_only_for: 'Підвищіть ваше оголошення всього за',
