@@ -107,7 +107,7 @@ const EditModal = ({ notice, close, approve }) => {
                 <Loader />
               ) : (
                 <EditWrapper>
-                  <AdaptiveBoxOne>
+                  <EditboxLeft>
                     <EditTitle>Edit your pet</EditTitle>
                     <div style={{ position: 'relative', width: '100%' }}>
                       <PetImage
@@ -144,8 +144,8 @@ const EditModal = ({ notice, close, approve }) => {
                       />
                       <Error name="promo" component="p" />
                     </EditLabel>
-                  </AdaptiveBoxOne>
-                  <AdaptiveBoxTwo>
+                  </EditboxLeft>
+                  <EditboxRight>
                     <EditLabel htmlFor="title">
                       Title of ad:
                       <EditField
@@ -232,7 +232,7 @@ const EditModal = ({ notice, close, approve }) => {
                       />
                       <Error name="comments" component="p" />
                     </EditLabel>
-                  </AdaptiveBoxTwo>
+                  </EditboxRight>
                 </EditWrapper>
               )}
               <EditBox>
