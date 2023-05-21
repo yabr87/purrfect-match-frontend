@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/purrfect-match-frontend/static/css/main.86e4e5a6.css",
-    "main.js": "/purrfect-match-frontend/static/js/main.074f199a.js",
+    "main.js": "/purrfect-match-frontend/static/js/main.176c366a.js",
     "static/js/392.5a4fd521.chunk.js": "/purrfect-match-frontend/static/js/392.5a4fd521.chunk.js",
     "static/js/376.8d4acd3b.chunk.js": "/purrfect-match-frontend/static/js/376.8d4acd3b.chunk.js",
     "static/js/793.8f2a5673.chunk.js": "/purrfect-match-frontend/static/js/793.8f2a5673.chunk.js",
     "static/js/648.971fd46b.chunk.js": "/purrfect-match-frontend/static/js/648.971fd46b.chunk.js",
-    "static/js/900.005ea79e.chunk.js": "/purrfect-match-frontend/static/js/900.005ea79e.chunk.js",
-    "static/js/977.0e9c18d0.chunk.js": "/purrfect-match-frontend/static/js/977.0e9c18d0.chunk.js",
-    "static/js/850.71da2abb.chunk.js": "/purrfect-match-frontend/static/js/850.71da2abb.chunk.js",
+    "static/js/900.e0269f7e.chunk.js": "/purrfect-match-frontend/static/js/900.e0269f7e.chunk.js",
+    "static/js/977.2ea81561.chunk.js": "/purrfect-match-frontend/static/js/977.2ea81561.chunk.js",
+    "static/js/850.e930e1f4.chunk.js": "/purrfect-match-frontend/static/js/850.e930e1f4.chunk.js",
     "static/js/487.9af50afe.chunk.js": "/purrfect-match-frontend/static/js/487.9af50afe.chunk.js",
     "static/js/601.48eea2ce.chunk.js": "/purrfect-match-frontend/static/js/601.48eea2ce.chunk.js",
     "static/js/568.cd8eb221.chunk.js": "/purrfect-match-frontend/static/js/568.cd8eb221.chunk.js",
@@ -35,14 +35,14 @@
     "static/media/bg-tablet-min.png": "/purrfect-match-frontend/static/media/bg-tablet-min.1f23f50a8de903ac9b8e.png",
     "index.html": "/purrfect-match-frontend/index.html",
     "main.86e4e5a6.css.map": "/purrfect-match-frontend/static/css/main.86e4e5a6.css.map",
-    "main.074f199a.js.map": "/purrfect-match-frontend/static/js/main.074f199a.js.map",
+    "main.176c366a.js.map": "/purrfect-match-frontend/static/js/main.176c366a.js.map",
     "392.5a4fd521.chunk.js.map": "/purrfect-match-frontend/static/js/392.5a4fd521.chunk.js.map",
     "376.8d4acd3b.chunk.js.map": "/purrfect-match-frontend/static/js/376.8d4acd3b.chunk.js.map",
     "793.8f2a5673.chunk.js.map": "/purrfect-match-frontend/static/js/793.8f2a5673.chunk.js.map",
     "648.971fd46b.chunk.js.map": "/purrfect-match-frontend/static/js/648.971fd46b.chunk.js.map",
-    "900.005ea79e.chunk.js.map": "/purrfect-match-frontend/static/js/900.005ea79e.chunk.js.map",
-    "977.0e9c18d0.chunk.js.map": "/purrfect-match-frontend/static/js/977.0e9c18d0.chunk.js.map",
-    "850.71da2abb.chunk.js.map": "/purrfect-match-frontend/static/js/850.71da2abb.chunk.js.map",
+    "900.e0269f7e.chunk.js.map": "/purrfect-match-frontend/static/js/900.e0269f7e.chunk.js.map",
+    "977.2ea81561.chunk.js.map": "/purrfect-match-frontend/static/js/977.2ea81561.chunk.js.map",
+    "850.e930e1f4.chunk.js.map": "/purrfect-match-frontend/static/js/850.e930e1f4.chunk.js.map",
     "487.9af50afe.chunk.js.map": "/purrfect-match-frontend/static/js/487.9af50afe.chunk.js.map",
     "601.48eea2ce.chunk.js.map": "/purrfect-match-frontend/static/js/601.48eea2ce.chunk.js.map",
     "568.cd8eb221.chunk.js.map": "/purrfect-match-frontend/static/js/568.cd8eb221.chunk.js.map",
@@ -54,6 +54,6 @@
   },
   "entrypoints": [
     "static/css/main.86e4e5a6.css",
-    "static/js/main.074f199a.js"
+    "static/js/main.176c366a.js"
   ]
 }
