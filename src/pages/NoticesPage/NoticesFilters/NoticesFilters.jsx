@@ -36,7 +36,7 @@ const NoticesFilters = React.memo(({ setSex, setSearchParams }) => {
   // };
 
   const handleAgeChange = event => {
-    console.log('handleAgeChange:', event);
+    //console.log('handleAgeChange:', event);
     // const value = event.target.value;
     // setAge(prevState =>
     //   prevState.includes(value)
@@ -47,14 +47,14 @@ const NoticesFilters = React.memo(({ setSex, setSearchParams }) => {
   };
 
   const ageFilterItems = [
-    { label: '3-12m', value: 'young' },
-    { label: '1 year', value: 'adult' },
-    { label: '2 years', value: 'old' },
+    { label: `3-12${t('m')}`, value: 'young' },
+    { label: `1 ${t('year')}`, value: 'adult' },
+    { label: `2 ${t('years')}`, value: 'old' },
   ];
 
   const genderFilterItems = [
-    { label: 'Male', value: 'male' },
-    { label: 'Female', value: 'female' },
+    { label: `${t('male')}`, value: 'male' },
+    { label: `${t('female')}`, value: 'female' },
   ];
 
   const [isMaleChecked, setIsMaleChecked] = useState(false);
@@ -73,7 +73,6 @@ const NoticesFilters = React.memo(({ setSex, setSearchParams }) => {
     setSex(gender);
     setIsMaleChecked(gender === 'male');
     setIsFemaleChecked(gender === 'female');
-    console.log('AAA', { page: 1, sex: gender });
   };
 
   return (
@@ -110,14 +109,14 @@ const NoticesFilters = React.memo(({ setSex, setSearchParams }) => {
           <div style={{ position: 'relative' }}>
             <Filter
               filters={genderFilterItems}
-              title="sex"
+              title={t('By_gender')}
               name="sex"
               isSingleSelection={true}
               onChange={handleGenderChange}
             ></Filter>
             <Filter
               filters={ageFilterItems}
-              title="age"
+              title={t('By_age')}
               name="age"
               isSingleSelection={false}
               onChange={handleAgeChange}

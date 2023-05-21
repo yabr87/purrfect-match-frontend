@@ -54,7 +54,7 @@ const Filter = ({
     <ContainerItem>
       <FiltersItems onClick={collapseHandler}>
         <Icon id={!isOpen ? 'down' : 'up'} />
-        <Item>By {title}</Item>
+        <Item>{title}</Item>
       </FiltersItems>
       {isOpen && (
         <FilterChose>
