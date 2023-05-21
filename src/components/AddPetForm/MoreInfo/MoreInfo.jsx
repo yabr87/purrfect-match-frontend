@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { Field } from 'formik';
+import { useTranslation } from 'react-i18next';
 import ImageUploader from 'shared/components/ImageUploader';
 import { Error, FormLabel, StyledField } from '../AddPetForm.styles';
 import {
@@ -22,17 +23,18 @@ const MoreInfo = ({
   touched,
   errors,
 }) => {
+  const { t } = useTranslation();
   return (
     <MoreInfoWrapper option={option}>
       <AdaptiveBoxOne>
         {option !== 'my-pet' && (
           <>
             <div role="group" aria-labelledby="choose-pet-option">
-              <FormLabel>The Sex</FormLabel>
+              <FormLabel>{t('The_Sex')}</FormLabel>
               <RadioBox sex={values.sex}>
                 <MoreInfoRadio checked={values.sex === 'female'}>
                   <Icon id="female" w="10" h="18" />
-                  Female
+                  {t('female')}
                   <Field
                     type="radio"
                     name="sex"
@@ -44,7 +46,7 @@ const MoreInfo = ({
                 </MoreInfoRadio>
                 <MoreInfoRadio checked={values.sex === 'male'}>
                   <Icon id="male" w="10" h="18" />
-                  Male
+                  {t('male')}
                   <Field
                     type="radio"
                     name="sex"
@@ -60,7 +62,7 @@ const MoreInfo = ({
           </>
         )}
         <ImageLabel option={option}>
-          <p>Add photo</p>
+          <p>{t('Add_photo')}</p>
           <ImageUploader
             onChange={handleChange}
             name="photo"
@@ -73,10 +75,10 @@ const MoreInfo = ({
         {option !== 'my-pet' && (
           <>
             <FormLabel htmlFor="location">
-              Location
+              {t('Location')}
               <StyledField
                 name="location"
-                placeholder="Type your location"
+                placeholder={t('Type_your_location')}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.location}
@@ -88,10 +90,10 @@ const MoreInfo = ({
         )}
         {option === 'sell' && (
           <FormLabel htmlFor="price" style={{ position: 'relative' }}>
-            Price
+            {t('Price')}
             <StyledField
               name="price"
-              placeholder="Type of price"
+              placeholder={t('Type_of_price')}
               onChange={handleChange}
               onBlur={handleBlur}
               value={values.price}
@@ -102,11 +104,11 @@ const MoreInfo = ({
           </FormLabel>
         )}
         <FormLabel htmlFor="comments">
-          Comments
+          {t('Comments')}
           <TextField
             as="textarea"
             name="comments"
-            placeholder="Type breed"
+            placeholder={t('Type_a_comment')}
             onChange={handleChange}
             onBlur={handleBlur}
             value={values.comments}
@@ -118,9 +120,11 @@ const MoreInfo = ({
           <div>
             <FormLabel htmlFor="promo">
               {values.promo ? (
-                <p>Raise your ad only for {values.promo}$!</p>
+                <p>
+                  {t('Raise_your_ad_only_for')} {values.promo}$!
+                </p>
               ) : (
-                <p>Drag the scroll to raise you ad!</p>
+                <p>{t('Drag_the_scroll_to_raise_your_ad')}!</p>
               )}
               <StyledField
                 type="range"
@@ -128,7 +132,7 @@ const MoreInfo = ({
                 name="promo"
                 min="0"
                 max="30"
-                placeholder="Raise your ad"
+                placeholder={t('Raise_your_ad')}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.promo}

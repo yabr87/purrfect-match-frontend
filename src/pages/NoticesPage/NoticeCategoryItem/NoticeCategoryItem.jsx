@@ -65,9 +65,9 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
     try {
       await deleteNotice(notice._id);
       deleteAndRefresh(notice._id);
-      toast.success(`${notice.title}: remove`);
+      toast.success(`${notice.title}: ${t('alert_pet_removed')}`);
     } catch (error) {
-      toast.warn('Failed to delete notice. Please try again later.');
+      toast.warn(t('alert_failed_delete'));
     }
   };
 
@@ -76,7 +76,7 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
       console.log('Pet is edited');
       // await editNotice(id)
     } catch (error) {
-      alert('Failed to delete notice. Please try again later.');
+      alert(t('alert_failed_update'));
     }
   };
 
@@ -86,9 +86,7 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
       <CardImageContainer>
         <CardImage src={notice.photoUrl} alt={notice.title} />
         <ImageCategory>
-          {notice.category
-            .replace('for-free', `${t('for_free')}`)
-            .replace(/-/g, '/')}
+          {notice.category.replace('for-free', 'for free').replace(/-/g, '/')}
         </ImageCategory>
 
         <ImageDetails>

@@ -6,11 +6,13 @@ import { useSelector } from 'react-redux';
 import { updateUserInfo } from 'utils/Api';
 import { convertToISODate } from 'utils/convertToISODate';
 import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 
 const UserDataItem = ({ name, type, pattern, value, placeholder }) => {
   const [data, setData] = useState(value);
   const [disable, setDisable] = useState(true);
   const token = useSelector(store => store.auth.token);
+  const { t } = useTranslation();
 
   useEffect(() => {
     setData(value);
@@ -29,7 +31,7 @@ const UserDataItem = ({ name, type, pattern, value, placeholder }) => {
       await updateUserInfo(token, req);
       setDisable(true);
     } catch (error) {
-      toast.error('Not correct value !', {
+      toast.error(`${t('alert_Not_correct_value')}!`, {
         position: toast.POSITION.TOP_RIGHT,
       });
     }
