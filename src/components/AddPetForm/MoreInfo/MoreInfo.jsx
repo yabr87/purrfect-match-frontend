@@ -115,7 +115,11 @@ const MoreInfo = ({
         {option !== 'my-pet' && (
           <div>
             <FormLabel htmlFor="promo">
-              {values.promo ? (<p>Raise your ad only for {values.promo}$!</p>) : (<p>Choose your payment plan to raise you ad!</p>)}
+              {values.promo ? (
+                <p>Raise your ad only for {values.promo}$!</p>
+              ) : (
+                <p>Choose your payment plan to raise you ad!</p>
+              )}
               <StyledField
                 type="range"
                 id="promo"
@@ -127,10 +131,11 @@ const MoreInfo = ({
                 onBlur={handleBlur}
                 value={values.promo}
                 errors={touched.promo && errors.promo}
-                />
+              />
               <Error name="promo" component="p" />
             </FormLabel>
-          </div>)}
+          </div>
+        )}
       </AdaptiveBoxTwo>
     </MoreInfoWrapper>
   );

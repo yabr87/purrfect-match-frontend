@@ -32,7 +32,6 @@ export const FormLabel = styled.label`
     font-size: ${props => props.theme.fontSizes.m};
   }
 
-  
   input[type='range'] {
     -webkit-appearance: none; /* Убирает стандартные стили для WebKit браузеров */
     -moz-appearance: none; /* Убирает стандартные стили для Firefox */
@@ -148,17 +147,17 @@ export const FormButton = styled.button`
   cursor: pointer;
 
   font-size: ${props => props.theme.fontSizes.s};
-  line-height: 1,37;
+  line-height: 1.37;
   font-weight: ${props => props.theme.fontWeiths.bold};
   letter-spacing: 0.04em;
 
   color: ${props => props.theme.colors.link};
-  background-color: ${props => props.theme.colors.backgroundModal};
+  background: ${props => props.theme.colors.backgroundModal};
   transition: color 250ms ease, background 250ms ease;
 
   &:hover,
   &:focus {
-    background-color: ${props => props.theme.colors.link};
+    background: ${props => props.theme.colors.gradient};
     color: ${props => props.theme.colors.buttonText};
     outline: none;
   }

@@ -91,6 +91,6 @@ function setHoverShadow({ shape, theme }) {
     case 'solid':
       return `non`;
     default:
-      return `inset 0px 0px 10px 2px ${theme.colors.link}`;
+      return `inset 0px 0px 0px 0px ${theme.colors.link}`;
   }
 }
