@@ -5,7 +5,7 @@ import Container from 'shared/components/Container';
 import Title from 'shared/components/Title';
 import Search from 'shared/components/Search';
 import NewsList from './NewsList';
-import Pagination from 'shared/hooks/pagination';
+import Pagination from 'shared/components/Pagination';
 
 import { getAllNews } from 'utils/ApiNews';
 import { useSearchParams } from 'react-router-dom';

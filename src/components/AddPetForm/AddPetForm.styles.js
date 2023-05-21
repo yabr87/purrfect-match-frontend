@@ -148,7 +148,7 @@ export const FormButton = styled.button`
   cursor: pointer;
 
   font-size: ${props => props.theme.fontSizes.s};
-  line-height: 1,37;
+  line-height: 1.37;
   font-weight: ${props => props.theme.fontWeiths.bold};
   letter-spacing: 0.04em;
 
