@@ -17,6 +17,7 @@ import Icon from 'shared/components/Icon/Icon';
 import { useMedia } from 'shared/hooks/useMedia';
 
 import { getNotices } from 'utils/ApiNotices';
+import SelectedFilters from '../../shared/components/SelectedFilters/SelectedFilters';
 
 function NoticesPage() {
   const isUpToWidth480 = useMedia(['(max-width: 480px)'], [true], false);
@@ -39,6 +40,12 @@ function NoticesPage() {
   const [fetching, setFetching] = useState(false);
   const { categoryName } = useParams();
   const [category, setCategory] = useState(categoryName);
+
+  const selectedFilters = [
+    {label: '3-12m', value: 'young'},
+    {label: '1 year', value: 'adult'},
+    {label: '2 years', value: 'old'},
+  ]
 
   const [title, setTitle] = useState(() => {
     const titleSearch = searchParams.get('title');
@@ -108,7 +115,7 @@ function NoticesPage() {
         }}
       >
         <NoticesCategoriesNav />
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+        <div style={{ display: 'flex', position: 'relative', gap: '12px' }}>
           <NoticesFilters setSex={setSex} setSearchParams={setSearchParams} />
           {isUpToWidth480 ? (
             <CircleButton
@@ -131,6 +138,10 @@ function NoticesPage() {
           )}
         </div>
       </div>
+      <div style={{ marginTop: '15px', display: 'flex', justifyContent: 'flex-end' }}>
+        <SelectedFilters filters={selectedFilters}></SelectedFilters>
+      </div>
+      
       {fetching && (
         <div
           style={{

@@ -132,7 +132,7 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
         <>
           <CircleButton
             id="trash"
-            z="9"
+            z="8"
             pos="absolute"
             t="68px"
             r="12px"

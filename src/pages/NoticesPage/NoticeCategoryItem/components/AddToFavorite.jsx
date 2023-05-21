@@ -33,7 +33,7 @@ const AddToFavorite = ({ notice, setIsFavorite }) => {
   return (
     <CircleButton
       id="heart"
-      z="9"
+      z="8"
       pos="absolute"
       t="12px"
       r="12px"
