@@ -17,6 +17,7 @@ export const PetInfoTitle = PetStyled.PetInfoTitle;
 export const DelPetBtn = PetStyled.DelPetBtn;
 export const Avatar = Styled.Avatar;
 export const AvatarInput = Styled.AvatarInput;
+export const AvatarLabel = Styled.AvatarLabel;
 export const Photo = Styled.Photo;
 export const AvatarContainer = Styled.AvatarContainer;
 export const PetAvatar = PetStyled.PetAvatar;
