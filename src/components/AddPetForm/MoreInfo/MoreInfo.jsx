@@ -118,7 +118,7 @@ const MoreInfo = ({
               {values.promo ? (
                 <p>Raise your ad only for {values.promo}$!</p>
               ) : (
-                <p>Drag the scroll to raise you ad</p>
+                <p>Drag the scroll to raise you ad!</p>
               )}
               <StyledField
                 type="range"
