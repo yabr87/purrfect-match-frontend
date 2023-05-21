@@ -49,14 +49,26 @@ function NoticesFilters({ setSex, setSearchParams }) {
     // fetchData();
   };
 
-  const handleGenderChange = event => {
-    const value = event.target.value;
-    const isChecked = event.target.checked;
+  const [isMaleChecked, setIsMaleChecked] = useState(false);
+  const [isFemaleChecked, setIsFemaleChecked] = useState(false);
 
-    setSex(isChecked ? value : null);
-    const params = { page: 1, sex: value };
-    setSearchParams(params);
+  const handleGenderChange = event => {
+    const isChecked = event.target.checked;
+    const gender = event.target.value;
+    setSearchParams({ page: 1, sex: isChecked ? gender : null });
+    setSex(isChecked ? gender : null);
+    setIsMaleChecked(gender === 'male' && isChecked);
+    setIsFemaleChecked(gender === 'female' && isChecked);
   };
+
+  // const handleGenderChange = event => {
+  //   const value = event.target.value;
+  //   const isChecked = event.target.checked;
+
+  //   setSex(isChecked ? value : null);
+  //   const params = { page: 1, sex: value };
+  //   setSearchParams(params);
+  // };
 
   return (
     <FilterContainer
@@ -121,11 +133,13 @@ function NoticesFilters({ setSex, setSearchParams }) {
                   <Checkbox
                     value="male"
                     label={t('male')}
+                    isChecked={isMaleChecked}
                     onChange={handleGenderChange}
                   ></Checkbox>
                   <Checkbox
                     value="female"
                     label={t('female')}
+                    isChecked={isFemaleChecked}
                     onChange={handleGenderChange}
                   ></Checkbox>
                 </FilterChose>

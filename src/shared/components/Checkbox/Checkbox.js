@@ -1,5 +1,5 @@
 import Icon from '../Icon';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   CheckBoxContainer,
   CheckBoxItem,
@@ -12,6 +12,10 @@ const Checkbox = ({ isChecked = false, value, label, onChange }) => {
   //   setIsCheckedState(!isCheckedState);
   //   onChange({isChecked, value});
   // }
+
+  useEffect(() => {
+    setIsCheckedState(isChecked);
+  }, [isChecked]);
 
   const onClick = () => {
     const newCheckedState = !isCheckedState;
