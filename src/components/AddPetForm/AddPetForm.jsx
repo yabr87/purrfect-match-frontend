@@ -82,7 +82,7 @@ const AddPetForm = () => {
     <Formik
       initialValues={initialState}
       onSubmit={handleSubmit}
-      validationSchema={validationSchema(currentStep, selectedCategory)}
+      validationSchema={validationSchema(currentStep, selectedCategory, t)}
     >
       {({
         isSubmitting,
