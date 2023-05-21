@@ -128,11 +128,11 @@ function NoticesPage() {
               onClick={handleAddPet}
               disabled={!isLoggedIn}
             >
-              {t('Add_pet')}
+              {t('Add_only_pet')}
             </CircleButton>
           ) : (
             <Button style={{ width: '129px' }} onClick={handleAddPet}>
-              {t('Add_pet')}
+              {t('Add_only_pet')}
               <Icon id="plus-small" />
             </Button>
           )}

@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { Field } from 'formik';
 import { RadioContainer, RadioLabel } from './ChooseOptionStep.styles';
+import { useTranslation } from 'react-i18next';
 
 const ChooseOptionStep = ({
   handleBlur,
@@ -8,6 +9,7 @@ const ChooseOptionStep = ({
   handleChange,
   onSelectCategory,
 }) => {
+  const { t } = useTranslation();
   const handleCategoryChange = category => {
     handleChange({ target: { name: 'category', value: category } });
     onSelectCategory(category);
@@ -24,7 +26,7 @@ const ChooseOptionStep = ({
           onBlur={handleBlur}
           checked={values.category === 'my-pet'}
         />
-        your pet
+        {t('is_your_pet')}
       </RadioLabel>
       <RadioLabel checked={values.category === 'sell'}>
         <Field
@@ -35,7 +37,7 @@ const ChooseOptionStep = ({
           onBlur={handleBlur}
           checked={values.category === 'sell'}
         />
-        sell
+        {t('is_sell')}
       </RadioLabel>
       <RadioLabel checked={values.category === 'lost-found'}>
         <Field
@@ -46,7 +48,7 @@ const ChooseOptionStep = ({
           onBlur={handleBlur}
           checked={values.category === 'lost-found'}
         />
-        lost/found
+        {t('is_lost_found')}
       </RadioLabel>
       <RadioLabel checked={values.category === 'for-free'}>
         <Field
@@ -57,7 +59,7 @@ const ChooseOptionStep = ({
           onBlur={handleBlur}
           checked={values.category === 'for-free'}
         />
-        in good hands
+        {t('is_in_good_hands')}
       </RadioLabel>
     </RadioContainer>
   );
