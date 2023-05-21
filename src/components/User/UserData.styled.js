@@ -58,6 +58,11 @@ export const AvatarInput = styled.input`
   display: none;
 `;
 
+export const AvatarLabel = styled.label`
+  cursor: pointer;
+  color: ${props => props.theme.colors.titleColor};
+`;
+
 export const Photo = styled.img`
   width: 100%;
   height: 100%;

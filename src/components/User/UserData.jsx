@@ -8,6 +8,7 @@ import {
   Photo,
   AvatarContainer,
   AvatarInput,
+  AvatarLabel,
   Title,
   EditAvatarBtn,
   LogOutBtn,
@@ -93,9 +94,7 @@ const UserData = () => {
             {!isConfirm ? (
               <EditAvatarBtn>
                 <Icon id="camera" s="#54ADFF" />
-                <label style={{ cursor: 'pointer' }} htmlFor="avatar">
-                  {t('Edit_photo')}
-                </label>
+                <AvatarLabel htmlFor="avatar">{t('Edit_photo')}</AvatarLabel>
               </EditAvatarBtn>
             ) : (
               <EditAvatarBtn onClick={handleUploadPhoto}>

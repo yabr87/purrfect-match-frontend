@@ -9,7 +9,7 @@ export const PetContainer = styled.div`
   border-radius: 20px;
   padding-left: 20px;
   padding-right: 20px;
-  margin-top: 18px;
+  margin-top: 20px;
   display: flex;
   flex-direction: column;
 
@@ -17,7 +17,7 @@ export const PetContainer = styled.div`
     flex-direction: row;
   }
   @media screen and (min-width: 1280px) {
-    margin-top: 0;
+    margin-top: 24;
     width: auto;
     margin-left: 32px;
   }
@@ -55,12 +55,11 @@ export const PetHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 46px;
-  margin-bottom: 31px;
+  margin-top: 40px;
 
   @media screen and (min-width: 1280px) {
     margin-top: 0;
-    margin-bottom: 24px;
+    margin-bottom: 0;
   }
 `;
 
