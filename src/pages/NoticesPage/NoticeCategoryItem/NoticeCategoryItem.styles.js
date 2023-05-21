@@ -77,17 +77,19 @@ export const ImageDetailsItem = styled.p`
 export const ImageDetailsText = styled.span`
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 40px;
+  max-width: 80px;
+  text-transform: capitalize;
 `;
 
 export const ImageDetailsTextLong = styled(ImageDetailsText)`
   transition: all 250ms ease;
+  text-transform: capitalize;
 
   &:hover,
   &:focus {
     position: absolute;
     z-index: 1;
-    top: 17px;
+
     left: 0;
     display: flex;
     justify-content: center;
@@ -96,7 +98,7 @@ export const ImageDetailsTextLong = styled(ImageDetailsText)`
     min-width: 100px;
     overflow: visible;
     max-width: 100%;
-    background: ${props => props.theme.colors.backgroundModal};
+    background: ${props => props.theme.colors.lightBlue};
     border-radius: ${props => props.theme.radius.small};
     font-family: ${props => props.theme.fonts.main};
     font-weight: ${props => props.theme.fontWeiths.semiBold};
