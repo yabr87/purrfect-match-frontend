@@ -99,7 +99,7 @@ const MoreInfo = ({
               value={values.price}
               errors={touched.price && errors.price}
             />
-            <IconDollar id="dollar" s="none" f="#888888" w="20" h="20" />
+            <IconDollar id="dollar" s="none" f="currentColor" w="20" h="20" />
             <Error name="price" component="p" />
           </FormLabel>
         )}
