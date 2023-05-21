@@ -89,6 +89,10 @@ i18n.use(initReactI18next).init({
         Yes: 'Yes',
         alert_LogOut_success: 'Log out successfull',
 
+        Delete_adverstiment: 'Delete adverstiment',
+        Are_you_sure_to_delete: 'Are you sure you want to delete',
+        You_cant_undo_this_action: 'You can`t undo this action',
+
         Edit_your_pet: 'Edit your pet',
         Raise_your_ad_only_for: 'Raise your ad only for',
         Add_payment_to_raise: 'Add payment to raise your ad',
@@ -192,6 +196,11 @@ i18n.use(initReactI18next).init({
         alert_LogOut_success: 'Вихід успішний',
         Cancel: 'Відмінити',
         Yes: 'Так',
+
+        Delete_adverstiment: 'Видалити оголошення',
+        Are_you_sure_to_delete: 'Ви впевнені, що хочете видалити',
+        You_cant_undo_this_action: 'Ви не зможете відмінити цю дію',
+
 
         Edit_your_pet: 'Редагуйте тваринку',
         Raise_your_ad_only_for: 'Підвищіть ваше оголошення всього за',
