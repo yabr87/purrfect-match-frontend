@@ -10,6 +10,7 @@ import {
   FilterContainer,
   FilterOptions,
   FiltersTitle,
+  FilterContainerForAllGrup
 } from './NoticesFilters.styles';
 import Filter from '../../../shared/components/Filter/Filter';
 
@@ -47,11 +48,7 @@ const NoticesFilters = React.memo(({ setSex, setAge, setSearchParams }) => {
   ];
 
   return (
-    <FilterContainer
-      style={{
-        position: 'relative',
-      }}
-    >
+    <FilterContainer>
       {isUpToWidth480 ? (
         <CircleButton
           id="filters"
@@ -77,7 +74,7 @@ const NoticesFilters = React.memo(({ setSex, setAge, setSearchParams }) => {
       {isFilterOpen && (
         <FilterOptions>
           <FiltersTitle>{t('Filters')}</FiltersTitle>
-          <div style={{ position: 'relative' }}>
+          <FilterContainerForAllGrup >
             <Filter
               filters={genderFilterItems}
               title={t('By_gender')}
@@ -92,7 +89,7 @@ const NoticesFilters = React.memo(({ setSex, setAge, setSearchParams }) => {
               isSingleSelection={false}
               onChange={handleAgeChange}
             ></Filter>
-          </div>
+          </FilterContainerForAllGrup>
         </FilterOptions>
       )}
     </FilterContainer>

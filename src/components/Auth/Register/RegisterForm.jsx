@@ -66,6 +66,7 @@ const RegisterForm = () => {
             password: values.password,
           })
         );
+
         actions.resetForm();
       }}
       validationSchema={validateShecma(t)}

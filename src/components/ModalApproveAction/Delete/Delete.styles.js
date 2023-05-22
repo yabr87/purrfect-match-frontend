@@ -3,16 +3,14 @@ import styled from 'styled-components';
 export const ContainerView = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-direction: column;
   padding: 60px 16px;
   text-align: center;
-  width: 100%;
-  min-width: 280px;
-  @media ${props => props.theme.media.phone} {
-    width: 100%;
-  }
+
   @media ${props => props.theme.media.tab} {
-    width: 608px;
+    width: 100%;
+    padding: 108px 16px;
   }
 `;
 
@@ -62,7 +60,6 @@ export const Text = styled.p`
 export const TextWrap = styled.div`
   display: flex;
   text-align: center;
-  max-width: 393px;
 `;
 
 export const TextAccent = styled.span`

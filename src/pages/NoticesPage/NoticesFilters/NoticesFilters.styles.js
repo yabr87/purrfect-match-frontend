@@ -29,3 +29,7 @@ export const FiltersTitle = styled.h3`
   color: ${props => props.theme.colors.link};
   margin-bottom: 8px;
 `;
+
+export const FilterContainerForAllGrup = styled.div`
+position: relative;
+`;

@@ -163,6 +163,7 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
       {isModalDeleteOpen && (
         <ModalApproveAction close={() => setIsModalDeleteOpen(false)}>
           <Delete
+            notice={notice}
             approve={() => handleDelete(notice)}
             close={() => setIsModalDeleteOpen(false)}
           />
