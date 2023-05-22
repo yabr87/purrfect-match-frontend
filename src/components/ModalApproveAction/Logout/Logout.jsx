@@ -30,7 +30,7 @@ const Logout = ({ close, idUser }) => {
 
   return (
     <ContainerView>
-      <Title as="h2">{t('Already_leaving')}?</Title>
+      <Title>{t('Already leaving')}?</Title>
       {isSmallMobile && (
         <>
           <ButtonWrap>
@@ -41,6 +41,7 @@ const Logout = ({ close, idUser }) => {
               style={{
                 marginBottom: '8px',
                 width: '100%',
+                maxWidth: '256px',
               }}
             >
               {t('Cancel')}

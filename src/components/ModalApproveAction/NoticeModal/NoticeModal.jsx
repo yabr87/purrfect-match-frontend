@@ -21,6 +21,7 @@ import {
   ContactLink,
   ContactLinkItem,
   ImageCategory,
+  ImageContainer,
 } from './NoticeModal.styles';
 
 import Icon from 'shared/components/Icon';
@@ -81,10 +82,15 @@ const NoticeModal = ({ notice, close, setIsFavorite }) => {
     <ContainerView>
       <PetCardData>
         <Wrap>
-          <PetImage src={notice.photoUrl} alt={notice.title} />
-          <ImageCategory>
-            {notice.category.replace('for-free', 'for free').replace(/-/g, '/')}
-          </ImageCategory>
+          <ImageContainer>
+            <PetImage src={notice.photoUrl} alt={notice.title} />
+            <ImageCategory>
+              {notice.category
+                .replace('for-free', 'for free')
+                .replace(/-/g, '/')}
+            </ImageCategory>
+          </ImageContainer>
+
           <PetDataListWrap>
             <Title>{notice.title}</Title>
             <PetDataList>
@@ -152,7 +158,9 @@ const NoticeModal = ({ notice, close, setIsFavorite }) => {
             shape="solid"
             g="8"
             style={{
+              marginBottom: '8px',
               width: '100%',
+              maxWidth: '256px',
             }}
           >
             {t('Add_to')}
@@ -176,7 +184,9 @@ const NoticeModal = ({ notice, close, setIsFavorite }) => {
             shape="solid"
             g="8"
             style={{
+              marginBottom: '8px',
               width: '100%',
+              maxWidth: '256px',
             }}
           >
             {t('Add_to')}

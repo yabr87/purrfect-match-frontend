@@ -15,20 +15,32 @@ export const ModalOverlay = styled.div`
 `;
 
 export const ModalContainer = styled.div`
+  position: relative;
   width: calc(100% - 40px);
+  border-radius: 20px;
+  background-color: ${props => props.theme.colors.backgroundModal};
+  @media ${props => props.theme.media.phone} {
+    max-width: 440px;
+  }
+  @media ${props => props.theme.media.tab} {
+    width: calc(100% - 86px);
+    max-width: 681px;
+    border-radius: ${props => props.theme.radius.normal};
+  }
 `;
 
 export const ModalView = styled.div`
-  border-radius: 20px;
-  background-color: ${props => props.theme.colors.backgroundModal};
+  // width: calc(100% - 40px);
+  // border-radius: 20px;
+  // background-color: ${props => props.theme.colors.backgroundModal};
+  // @media ${props => props.theme.media.phone} {
+  //   max-width: 440px;
+  // }
 
-  @media ${props => props.theme.media.tab} {
-    border-radius: ${props => props.theme.radius.normal};
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
+  // @media ${props => props.theme.media.tab} {
+  //   border-radius: ${props => props.theme.radius.normal};
+  //   max-width: 681px;
+  // }
 `;
 
 export const CloseIcon = styled.button`

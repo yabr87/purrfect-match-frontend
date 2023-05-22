@@ -45,6 +45,7 @@ const Delete = ({ notice, close, approve }) => {
               style={{
                 marginBottom: '8px',
                 width: '100%',
+                maxWidth: '256px',
               }}
             >
               {t('Cancel')}

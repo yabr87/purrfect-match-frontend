@@ -6,7 +6,6 @@ export const ContainerView = styled.div`
   flex-direction: column;
   padding: 68px 16px 60px 16px;
   width: 100%;
-  min-width: 280px;
   @media ${props => props.theme.media.phone} {
     width: 100%;
   }

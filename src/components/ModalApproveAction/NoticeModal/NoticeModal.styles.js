@@ -5,34 +5,55 @@ export const ContainerView = styled.div`
   align-items: center;
   flex-direction: column;
   padding: 44px 20px 16px 20px;
-  width: 100%;
-  @media ${props => props.theme.media.mobile} {
-    min-width: 280px;
-  }
+
   @media ${props => props.theme.media.tab} {
-    width: 681px;
     padding: 32px;
+    align-items: normal;
   }
 `;
 
 export const PetCardData = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
 `;
 
 export const Wrap = styled.div`
-  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
-  gap: 8px;
+  // justify-content: space-between;
+  // background-color: red;
   @media ${props => props.theme.media.tab} {
     display: flex;
     flex-direction: row;
+    align-items: stretch;
     margin-bottom: 28px;
-    gap: 8px;
+  }
+`;
+
+export const ImageContainer = styled.div`
+  position: relative;
+  width: 100%;
+  background-color: red;
+`;
+
+export const PetImage = styled.img`
+  object-fit: cover;
+  width: 240px;
+  height: 240px;
+  border-radius: ${props =>
+    ` 0px 0px ${props.theme.radius.normal} ${props.theme.radius.normal} `};
+
+  margin-bottom: 12px;
+  @media ${props => props.theme.media.mobile} {
+    // max-width: 240px;
+    // max-height: 240px;
+  }
+  @media ${props => props.theme.media.tab} {
+    width: 262px;
+    height: 298px;
+    margin-bottom: 0;
+    // margin-right: 24px;
   }
 `;
 
@@ -48,36 +69,6 @@ export const Title = styled.h2`
     font-size: ${props => props.theme.fontSizes.xl};
     line-height: 38px;
     letter-spacing: -0.01em;
-  }
-`;
-
-export const ButtonWrap = styled.div`
-  width: 100%;
-  justify-content: center;
-  @media ${props => props.theme.media.tab} {
-    display: flex;
-    justify-content: end;
-  }
-`;
-
-export const PetImage = styled.img`
-  object-fit: cover;
-  width: 100%;
-  height: 240px;
-
-  border-radius: ${props =>
-    ` 0px 0px ${props.theme.radius.normal} ${props.theme.radius.normal} `};
-
-  margin-bottom: 12px;
-  @media ${props => props.theme.media.mobile} {
-    max-width: 240px;
-    max-height: 240px;
-  }
-  @media ${props => props.theme.media.tab} {
-    max-width: 262px;
-    height: 298px;
-    margin-bottom: 0;
-    margin-right: 24px;
   }
 `;
 
@@ -99,14 +90,18 @@ export const ImageCategory = styled.p`
 
 export const PetDataListWrap = styled.div`
   width: 100%;
-  @media ${props => props.theme.media.tab} {
-    max-width: 321px;
-  }
+  background-color: yellow;
 `;
 
 export const PetDataList = styled.table`
   width: 100%;
   margin-bottom: 12px;
+  background-color: blue;
+
+  @media ${props => props.theme.media.tab} {
+    width: 100%;
+    height: 80%;
+  }
 `;
 
 export const PetDataItem = styled.tr`
@@ -127,6 +122,9 @@ export const NameCategory = styled.th`
   // width: fit-content;
   width: 80px;
   tex-overflow: ellipsis '[..]';
+  @media ${props => props.theme.media.tab} {
+    max-width: 121px;
+  }
 `;
 
 export const ValueCategory = styled.th`
@@ -146,6 +144,19 @@ export const PetComents = styled.p`
   }
 `;
 
+export const ButtonWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  @media ${props => props.theme.media.tab} {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+  }
+`;
+
 export const ContactLink = styled.a`
   display: flex;
   align-items: center;
@@ -161,9 +172,8 @@ export const ContactLink = styled.a`
 
   border: 2px solid ${props => props.theme.colors.link};
   border-radius: ${props => props.theme.radius.normal};
-  margin-top: 8px;
   width: 100%;
-  max-width: 256px;
+
   cursor: pointer;
 
   &:hover,
@@ -172,8 +182,11 @@ export const ContactLink = styled.a`
     background: ${props => props.theme.colors.link};
   }
 
+  @media ${props => props.theme.media.mobile} {
+    max-width: 256px;
+  }
+
   @media ${props => props.theme.media.tab} {
-    margin-top: 0;
     margin-left: 12px;
     max-width: 129px;
   }
