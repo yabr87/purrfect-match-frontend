@@ -1,6 +1,12 @@
 import { Field, Form } from 'formik';
 import styled from 'styled-components';
 
+export const NoSearchResult = styled.div`
+  color: ${({ theme }) => theme.colors.textColor};
+  margin: 20px auto;
+  text-align: center;
+`;
+
 export const SearchForm = styled(Form)`
   max-width: 608px;
   height: 44px;

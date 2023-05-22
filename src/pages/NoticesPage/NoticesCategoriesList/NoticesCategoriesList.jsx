@@ -6,6 +6,8 @@ import { useTranslation } from 'react-i18next';
 import NoticeCategoryItem from '../NoticeCategoryItem/NoticeCategoryItem';
 
 import { CollectionContainer } from './NoticesCategoriesList.styles.js';
+import { NoSearchResult } from 'shared/components/Search/Search.styles';
+
 import Pagination from 'shared/components/Pagination';
 
 const NoticesCategoriesList = ({
@@ -40,7 +42,7 @@ const NoticesCategoriesList = ({
             />
           ))
         ) : (
-          <div>{t('No_result')}</div>
+          <NoSearchResult>{t('No_result')}</NoSearchResult>
         )}
       </CollectionContainer>
       {totalPages > 1 && (
