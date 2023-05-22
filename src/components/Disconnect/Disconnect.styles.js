@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import imgDisconnected from '../../../public/disconnected.jpg';
+// import imgDisconnected from '../../../public/disconnected.jpg';
 
 export const Disconnected = styled.div`
   margin-top: 80px;
@@ -38,7 +38,6 @@ export const Image = styled.img`
   border-radius: 40px;
   border: 2px solid;
   border-color: ${props => props.theme.colors.accent};
-  content: url(${imgDisconnected});
 
   @media ${props => props.theme.media.tab} {
     width: 704px;
