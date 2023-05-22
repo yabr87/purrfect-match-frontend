@@ -13,10 +13,10 @@ export const PetContainer = styled.div`
   display: flex;
   flex-direction: column;
 
-  @media screen and (min-width: 768px) {
+  @media ${props => props.theme.media.tab} {
     flex-direction: row;
   }
-  @media screen and (min-width: 1280px) {
+  @media ${props => props.theme.media.desk} {
     margin-top: 24;
     width: auto;
     margin-left: 32px;
@@ -24,7 +24,7 @@ export const PetContainer = styled.div`
 `;
 
 export const PetWrap = styled.div`
-  @media screen and (min-width: 1280px) {
+  @media ${props => props.theme.media.desk} {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
