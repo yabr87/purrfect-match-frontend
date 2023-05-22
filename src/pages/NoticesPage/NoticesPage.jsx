@@ -164,7 +164,12 @@ function NoticesPage() {
           justifyContent: 'flex-end',
         }}
       >
-        <SelectedFilters filters={selectedFilters}></SelectedFilters>
+        <SelectedFilters
+          filters={selectedFilters}
+          onChange={() => {
+            alert('Are you sure?');
+          }}
+        />
       </div>
 
       {fetching && (
