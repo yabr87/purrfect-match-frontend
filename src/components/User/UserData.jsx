@@ -137,13 +137,13 @@ const UserData = () => {
               placeholder="+380XXXXXXXXX"
             />
             <InputItem
-              name='сity'
+              name='city'
               type="text"
               pattern="/([A-Za-z]+(?: [A-Za-z]+)*)/"
               value={user.city || ''}
               placeholder={t('City')}
             />
-            <UserLabel style={{display: 'flex'}}>Balance:
+            <UserLabel style={{display: 'flex'}}>{t('Balance')}:
             <Balance>{user.balance || '0'}<BalanceIcon id='dollar' s='none' f="currentColor" /></Balance>
               </UserLabel>
             <LogOutBtn onClick={handleLogOut}>
