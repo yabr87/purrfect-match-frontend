@@ -44,11 +44,20 @@ function NoticesPage() {
   const { categoryName } = useParams();
   const [category, setCategory] = useState(categoryName);
 
-  const selectedFilters = [
-    { label: '0-12m', value: 'young' },
-    { label: '1 year', value: 'adult' },
-    { label: ' from 2 years', value: 'old' },
-  ];
+  const getAgeLabel = value => {
+    switch (value) {
+      case '0':
+        return `0-12 ${t('months')}`;
+      case '1':
+        return `1 ${t('year')}`;
+      case '2':
+        return `from 2 ${t('years')}`;
+      default:
+        return '';
+    }
+  };
+
+  const selectedFilters = age.map(a => ({ label: getAgeLabel(a), value: a }));
 
   const [title, setTitle] = useState(() => {
     const titleSearch = searchParams.get('title');
@@ -168,8 +177,9 @@ function NoticesPage() {
       >
         <SelectedFilters
           filters={selectedFilters}
+          setAge={setAge}
           onChange={() => {
-            toast.warning(t('alert_You_removed_one_filters'));
+            toast.warning(t('You removed one of the filters'));
           }}
         />
       </div>
