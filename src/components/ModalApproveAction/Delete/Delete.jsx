@@ -12,7 +12,9 @@ import {
 
 import Icon from 'shared/components/Icon';
 
-const Delete = ({ notice, close, approve }) => {
+const Delete = ({ item, notice, close, approve }) => {
+  console.log('item', item);
+  console.log('notice', notice);
   const screenSize = useMedia(
     ['(min-width: 1280px)', '(min-width: 768px)', '(min-width: 480px)'],
     ['desktop', 'tablet', 'mobile'],
@@ -25,15 +27,32 @@ const Delete = ({ notice, close, approve }) => {
   const isTablet = screenSize === 'tablet';
   const isDesktop = screenSize === 'desktop';
 
+  const petName = (item, notice) => {
+    if (item) {
+      return (
+        <Text>
+          {t('Are_you_sure_to_delete')} <TextAccent>“{item.name}”</TextAccent>
+          ? <br />
+          {t('You_cant_undo_this_action')}.
+        </Text>
+      );
+    }
+
+    if (notice) {
+      return (
+        <Text>
+          {t('Are_you_sure_to_delete')}{' '}
+          <TextAccent>“{notice.title}”</TextAccent>? <br />
+          {t('You_cant_undo_this_action')}.
+        </Text>
+      );
+    }
+  };
+
   return (
     <ContainerView>
       <Title>{t('Delete adverstiment')}?</Title>
-      <TextWrap>
-        <Text>
-          {t('Are_you_sure_to_delete')} <TextAccent>“{}”</TextAccent>? <br />
-          {t('You_cant_undo_this_action')}.
-        </Text>
-      </TextWrap>
+      <TextWrap>{petName(item, notice)}</TextWrap>
       {isSmallMobile && (
         <>
           <ButtonWrap>

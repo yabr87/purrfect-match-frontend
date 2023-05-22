@@ -71,6 +71,7 @@ const PetsData = () => {
       {isModalDeleteOpen && (
         <ModalApproveAction close={() => setIsModalDeleteOpen(false)}>
           <Delete
+            item={item}
             approve={() => handleDeletePet(item)}
             close={() => setIsModalDeleteOpen(false)}
           />
