@@ -5,7 +5,8 @@ export const Card = styled.div`
   width: 288px;
   height: 456px;
   background: ${props => props.theme.colors.backgroundModal};
-  box-shadow: ${props => props.theme.shadows.default};
+  box-shadow: ${props =>
+    props.promo ? props.theme.shadows.promo : props.theme.shadows.default};
   border-radius: ${props => props.theme.radius.normal};
   transition: transform 250ms ease;
 
@@ -115,11 +116,19 @@ export const ImageCategory = styled.p`
   display: flex;
   padding: 11px 17px;
   align-items: center;
+  justify-content: space-between;
   text-align: center;
   background: ${props => props.theme.colors.lightBlue};
   color: ${props => props.theme.colors.textColor};
   border-radius: ${props =>
     ` 0px ${props.theme.radius.small} ${props.theme.radius.small}  0px `};
+
+  svg {
+    fill: ${props => props.theme.colors.promo};
+    border: 1px solid ${props => props.theme.colors.promo};
+    border-radius: ${props => props.theme.radius.round};
+    padding: 2px;
+  }
 `;
 
 export const PhotoDescription = styled.p`
