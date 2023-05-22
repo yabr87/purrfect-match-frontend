@@ -177,6 +177,7 @@ function NoticesPage() {
       >
         <SelectedFilters
           filters={selectedFilters}
+          setAge={setAge}
           onChange={() => {
             toast.warning(t('You removed one of the filters'));
           }}
