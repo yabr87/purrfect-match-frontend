@@ -62,7 +62,7 @@ const PetsData = () => {
     <PetContainer key={item._id}>
       <PetAvatar src={item.photoUrl} />
       <PetInfoWrap>
-        <DelPetBtn onClick={handleModalOpen}>
+        <DelPetBtn onClick={() => handleModalOpen(item)}>
           <Icon id="trash" s="#54ADFF" />
         </DelPetBtn>
         <PetInfoItem>
@@ -82,7 +82,7 @@ const PetsData = () => {
       {isModalDeleteOpen && (
         <ModalApproveAction close={() => setIsModalDeleteOpen(false)}>
           <Delete
-            item={item}
+            itemName={item.name}
             approve={() => handleDeletePet(item)}
             close={handleModalClose}
           />

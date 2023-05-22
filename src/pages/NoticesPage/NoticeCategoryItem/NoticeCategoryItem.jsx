@@ -62,10 +62,10 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
   };
 
   const handleDelete = async notice => {
+    document.body.style.overflow = '';
     try {
       await deleteNotice(notice._id);
       deleteAndRefresh(notice._id);
-      document.body.style.overflow = '';
       toast.success(`${notice.title}: ${t('alert_pet_removed')}`);
     } catch (error) {
       toast.warn(t('alert_failed_delete'));
@@ -74,6 +74,7 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
 
   const handleEditClose = async editedNotice => {
     setIsModalEditOpen(false);
+    document.body.style.overflow = '';
     try {
       const updatedNotice = await getNoticeById(editedNotice._id);
       setNotices(prevNotices => {
@@ -107,6 +108,16 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
 
   const handleModalDeleteClose = () => {
     setIsModalDeleteOpen(false);
+    document.body.style.overflow = '';
+  };
+
+  const handleModalEditOpen = () => {
+    setIsModalEditOpen(true);
+    document.body.style.overflow = 'hidden';
+  };
+
+  const handleModalEditClose = () => {
+    setIsModalEditOpen(false);
     document.body.style.overflow = '';
   };
 
@@ -177,7 +188,7 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
             pos="absolute"
             t="124px"
             r="12px"
-            onClick={() => setIsModalEditOpen(true)}
+            onClick={handleModalEditOpen}
           />
         </>
       )}
@@ -191,10 +202,10 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
         </ModalApproveAction>
       )}
       {isModalEditOpen && (
-        <ModalApproveAction close={() => setIsModalEditOpen(false)}>
+        <ModalApproveAction close={handleModalEditClose}>
           <EditModal
             notice={notice}
-            close={() => setIsModalEditOpen(false)}
+            close={handleModalEditClose}
             handleEditClose={handleEditClose}
           />
         </ModalApproveAction>
