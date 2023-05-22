@@ -23,7 +23,7 @@ export const lightTheme = {
   shadows: {
     default: '3px 8px 14px rgba(136, 198, 253, 0.19)',
     hover: '7px 13px 14px rgba(116, 177, 232, 0.24)',
-    promo: ' 3px 8px 18px rgba(193, 84, 193, 0.8)',
+    promo: '3px 8px 19px rgba(193, 84, 193, 0.8)',
   },
   fonts: {
     main: 'Manrope, san-serif',
@@ -83,12 +83,12 @@ export const darkTheme = {
       'linear-gradient(290.46deg, rgb(5 101 186) 0%, rgb(65, 158, 241) 107.89%)',
     buttonText: '#FEF9F9',
     notificationColorTheme: 'dark',
-    promo: '#bb3385',
+    promo: '#54ADFF',
   },
   shadows: {
     default: '3px 8px 14px rgba(136, 198, 253, 0.19)',
     hover: '7px 13px 14px rgba(116, 177, 232, 0.24)',
-    promo: ' 3px 8px 18px rgba(187, 51, 133, 0.8)',
+    promo: '3px 8px 19px rgba(244, 196, 48, 0.8)',
   },
   fonts: {
     main: 'Manrope, san-serif',

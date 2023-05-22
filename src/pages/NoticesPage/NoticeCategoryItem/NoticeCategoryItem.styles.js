@@ -7,13 +7,16 @@ export const Card = styled.div`
   background: ${props => props.theme.colors.backgroundModal};
   box-shadow: ${props =>
     props.promo ? props.theme.shadows.promo : props.theme.shadows.default};
-  border-radius: ${props => props.theme.radius.normal};
-  transition: transform 250ms ease;
+  border-radius: 0 0 ${props => props.theme.radius.normal}
+    ${props => props.theme.radius.normal};
+  scale: 1;
+  transition: scale 250ms ease;
 
   @media ${props => props.theme.media.tab} {
     &:hover,
     &:focus {
-      transform: perspective(800px) rotateX(5deg) rotateY(0deg) rotateZ(0deg);
+      scale: 1.01;
+      transition: scale 250ms ease;
     }
   }
 
@@ -126,9 +129,6 @@ export const ImageCategory = styled.p`
 
   svg {
     fill: ${props => props.theme.colors.promo};
-    border: 1px solid ${props => props.theme.colors.promo};
-    border-radius: ${props => props.theme.radius.round};
-    padding: 2px;
   }
 `;
 
