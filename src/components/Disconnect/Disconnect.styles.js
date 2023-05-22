@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import imgDisconnected from '../../images/disconnected.png';
+import imgDisconnected from '../../../public/disconnected.jpg';
 
 export const Disconnected = styled.div`
   margin-top: 80px;
