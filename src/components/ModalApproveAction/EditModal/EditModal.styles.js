@@ -10,7 +10,6 @@ export const EditContainer = styled.div`
   height: 95vh;
 
   @media ${props => props.theme.media.tab} {
-    width: 704px;
     height: fit-content;
     padding: 20px 32px;
   }
@@ -30,12 +29,13 @@ export const EditTitle = styled.p`
   font-size: ${props => props.theme.fontSizes.l};
   line-height: 1.35;
 
-  color: ${props => props.theme.colors.titleColor};
+  color: ${props => props.theme.colors.textColor};
 
   @media ${props => props.theme.media.tab} {
     font-size: ${props => props.theme.fontSizes.xl};
     line-height: 1.36;
-    margin: 0;}
+    margin: 0;
+  }
 `;
 
 export const EditWrapper = styled.div`
@@ -44,8 +44,8 @@ export const EditWrapper = styled.div`
     margin-bottom: 32px;
 
     @media ${props => props.theme.media.tab} {
-    gap: 24px;
-  }
+      gap: 24px;
+    }
   }
 `;
 
@@ -56,7 +56,7 @@ export const EditLabel = styled.label`
   font-size: 14px;
   line-height: 1.3;
 
-  color: ${props => props.theme.colors.titleColor};
+  color: ${props => props.theme.colors.textColor};
 
   input[type='range'] {
     -webkit-appearance: none; /* Убирает стандартные стили для WebKit браузеров */
@@ -64,7 +64,7 @@ export const EditLabel = styled.label`
     width: 100%;
     height: 10px;
     background-color: ${props => props.theme.colors.backgroundModal};
-    border-radius: 5px;
+    border-radius: 40px;
     outline: none;
     opacity: 0.7;
     transition: opacity 0.2s;
@@ -155,7 +155,7 @@ export const EditText = styled(Field)`
   color: ${props => props.theme.colors.inputText};
   border: ${props =>
     props.errors ? '1px solid #F43F5E' : '1px solid #54adff'};
-  
+
   border-radius: ${props => props.theme.radius.small};
 
   ::placeholder {
@@ -194,7 +194,7 @@ export const EditBox = styled.div`
 
 export const ImageCategoryEdit = styled.p`
   position: absolute;
-  width: 126px;
+  width: fit-content;
   height: 32px;
   left: 0;
   top: 12px;
@@ -206,7 +206,6 @@ export const ImageCategoryEdit = styled.p`
   background: ${props => props.theme.colors.lightBlue};
   border-radius: ${props =>
     ` 0px ${props.theme.radius.small} ${props.theme.radius.small}  0px `};
-
 `;
 
 export const EditboxLeft = styled.div`
@@ -214,10 +213,9 @@ export const EditboxLeft = styled.div`
   flex-direction: column;
   gap: 12px;
 
-
   @media ${props => props.theme.media.tab} {
-    
-  gap: 20px;
+    gap: 20px;
+    width: 240px;
   }
 `;
 
@@ -228,6 +226,6 @@ export const EditboxRight = styled.div`
   gap: 12px;
 
   @media ${props => props.theme.media.tab} {
-    flex-grow: 1; 
+    flex-grow: 1;
   }
 `;

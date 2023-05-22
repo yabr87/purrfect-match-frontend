@@ -9,11 +9,13 @@ import Icon from 'shared/components/Icon';
 import { Formik, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useSearchParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const Search = ({ onFormSubmit, setCurrentPage, setQuery }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const title = searchParams.get('title');
   const search = searchParams.get('search');
+  const { t } = useTranslation();
 
   const clearSearchParam = () => {
     setQuery(null);
@@ -50,7 +52,7 @@ const Search = ({ onFormSubmit, setCurrentPage, setQuery }) => {
           <SearchInput
             name="search"
             type="text"
-            placeholder="Search"
+            placeholder={t('Search')}
             onBlur={() => props.setErrors(null)}
           />
           <FormError name="search" />

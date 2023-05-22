@@ -1,6 +1,12 @@
 import { Field, Form } from 'formik';
 import styled from 'styled-components';
 
+export const NoSearchResult = styled.div`
+  color: ${({ theme }) => theme.colors.textColor};
+  margin: 20px auto;
+  text-align: center;
+`;
+
 export const SearchForm = styled(Form)`
   max-width: 608px;
   height: 44px;
@@ -27,7 +33,7 @@ export const SearchInput = styled(Field)`
   border-radius: 20px;
   margin: 0 auto;
   display: block;
-  outline: ${({ theme }) => theme.colors.inputOutline};
+  border: ${({ theme }) => theme.colors.inputOutline};
 
   @media ${props => props.theme.media.tab} {
     padding: 10px 71px 10px 20px;

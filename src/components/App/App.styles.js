@@ -5,3 +5,10 @@
 //   background-color: ${props => props.theme.colors.lightBlue};
 //   border-color: ${props => props.theme.colors.accent};
 // `;
+import { createGlobalStyle } from 'styled-components';
+
+export const GlobalStyle = createGlobalStyle`
+body {
+    background-color: ${props => props.theme.colors.backgroundColor};
+    }
+`;

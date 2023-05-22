@@ -65,30 +65,40 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
     try {
       await deleteNotice(notice._id);
       deleteAndRefresh(notice._id);
-      toast.success(`${notice.title}: remove`);
+      toast.success(`${notice.title}: ${t('alert_pet_removed')}`);
     } catch (error) {
-      toast.warn('Failed to delete notice. Please try again later.');
+      toast.warn(t('alert_failed_delete'));
     }
   };
 
-  const handleEdit = async id => {
+  const handleEditClose = async editedNotice => {
+    setIsModalEditOpen(false);
     try {
-      console.log('Pet is edited');
-      // await editNotice(id)
+      const updatedNotice = await getNoticeById(editedNotice._id);
+      setNotices(prevNotices => {
+        const updatedNotices = prevNotices.map(item => {
+          if (item._id === updatedNotice._id) {
+            return updatedNotice;
+          }
+          return item;
+        });
+        return updatedNotices;
+      });
     } catch (error) {
-      alert('Failed to delete notice. Please try again later.');
+      console.error('Failed to fetch updated notice:', error);
     }
   };
+
+  const promo = Date.parse(notice.promoDate) > Date.now();
 
   return (
-    <Card>
+    <Card promo={promo}>
       <AddToFavorite notice={notice} setIsFavorite={setIsFavorite} />
       <CardImageContainer>
         <CardImage src={notice.photoUrl} alt={notice.title} />
         <ImageCategory>
-          {notice.category
-            .replace('for-free', `${t('for_free')}`)
-            .replace(/-/g, '/')}
+          {notice.category.replace('for-free', 'for free').replace(/-/g, '/')}
+          {promo && <Icon id="star" s="none" />}
         </ImageCategory>
 
         <ImageDetails>
@@ -130,27 +140,30 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
       )}
       {isLoggedIn && user && notice.own && (
         <>
-        <CircleButton
-          id="trash"
-          z="9"
-          pos="absolute"
-          t="68px"
-          r="12px"
-          onClick={() => setIsModalDeleteOpen(true)}
-        ></CircleButton>
-        <CircleButton
+          <CircleButton
+            id="trash"
+            z="8"
+            pos="absolute"
+            t="68px"
+            r="12px"
+            onClick={() => setIsModalDeleteOpen(true)}
+          />
+          <CircleButton
             id="edit"
-            z="9"
+            s="none"
+            f="currentColor"
+            z="8"
             pos="absolute"
             t="124px"
             r="12px"
             onClick={() => setIsModalEditOpen(true)}
-          ></CircleButton>
+          />
         </>
       )}
       {isModalDeleteOpen && (
         <ModalApproveAction close={() => setIsModalDeleteOpen(false)}>
           <Delete
+            notice={notice}
             approve={() => handleDelete(notice)}
             close={() => setIsModalDeleteOpen(false)}
           />
@@ -160,17 +173,8 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
         <ModalApproveAction close={() => setIsModalEditOpen(false)}>
           <EditModal
             notice={notice}
-            approve={() => handleEdit(notice._id)}
             close={() => setIsModalEditOpen(false)}
-          />
-        </ModalApproveAction>
-      )}
-      {isModalEditOpen && (
-        <ModalApproveAction close={() => setIsModalEditOpen(false)}>
-          <EditModal
-            notice={notice}
-            approve={() => handleEdit(notice._id)}
-            close={() => setIsModalEditOpen(false)}
+            handleEditClose={handleEditClose}
           />
         </ModalApproveAction>
       )}

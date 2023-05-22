@@ -44,7 +44,7 @@ const PetsData = () => {
     dispatch(deleteMyPet(item._id));
     setIsModalDeleteOpen(false);
 
-    toast.success(`${item.name}: {t('remove')}`);
+    toast.success(`${item.name}: ${t('alert_pet_removed')}`);
   };
 
   const petCard = item => (
@@ -71,6 +71,7 @@ const PetsData = () => {
       {isModalDeleteOpen && (
         <ModalApproveAction close={() => setIsModalDeleteOpen(false)}>
           <Delete
+            item={item}
             approve={() => handleDeletePet(item)}
             close={() => setIsModalDeleteOpen(false)}
           />
@@ -80,7 +81,6 @@ const PetsData = () => {
   );
 
   return (
-    <>
       <PetWrap>
         <PetHeader>
           <Title>{t('My_pets')}:</Title>
@@ -95,7 +95,6 @@ const PetsData = () => {
           <NoPetMessage>{t('No_pats_yet')} 😔</NoPetMessage>
         )}
       </PetWrap>
-    </>
   );
 };
 

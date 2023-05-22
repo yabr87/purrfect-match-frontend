@@ -1,34 +1,29 @@
-// import styled from 'styled-components';
-// використання теми в вашому компоненті: в файлі стилізації component.styled.js -
-// export const Container = styled.div`
-//   width: 300px;
-//   background-color: ${props => props.theme.colors.lightBlue};
-//   border-color: ${props => props.theme.colors.accent};
-// `;
-
 export const lightTheme = {
   colors: {
     accent: '#FF8356',
-    background: '#FEF9F9',
+    backgroundColor: '#FEF9F9',
+    backgroundModal: '#ffffff',
+    inputText: '#888888',
+    inputBackground: '#ffffff',
+    inputOutline: 'none',
+    pagginationOutline: 'none',
+    textColor: '#111111',
     link: '#54ADFF',
     grey: '#888888',
-    black: '#111111',
+    titleColor: '#111111',
     yellow: '#FFC107',
     green: '#00C3AD',
     red: '#F43F5E',
     lightBlue: '#CCE4FB',
     gradient: 'linear-gradient(290.46deg, #419EF1 0%, #9BD0FF 107.89%)',
-
-    inputColor: '#888888',
-    inputBackground: '#ffffff',
-    backgroundModal: '#ffffff',
-    backgroundColor: '#fff',
-    color: '#121212',
-    linkT: '#888888',
+    buttonText: '#FEF9F9',
+    notificationColorTheme: 'ligth',
+    promo: '#c154c1',
   },
   shadows: {
     default: '3px 8px 14px rgba(136, 198, 253, 0.19)',
     hover: '7px 13px 14px rgba(116, 177, 232, 0.24)',
+    promo: ' 3px 8px 18px rgba(193, 84, 193, 0.8)',
   },
   fonts: {
     main: 'Manrope, san-serif',
@@ -36,6 +31,7 @@ export const lightTheme = {
   },
   fontSizes: {
     xs: '12px',
+    search: '14px',
     s: '16px',
     m: '20px',
     l: '24px',
@@ -64,45 +60,35 @@ export const lightTheme = {
     tab: 'screen and (min-width: 768px)',
     desk: 'screen and (min-width: 1280px)',
   },
-  // add: `text-align:"start";
-  //       font-weight: 500;
-  //       font-size: "20px";
-  //       line-height: 1.35;
-  //       text-align: "center";
-
-  //       @media screen and (min-width: 768px){
-  //         font-weight: 500;
-  //         font-size: "28px";
-  //         line-height: 1.35;
-  //       }
-  //       @media screen and (min-width: 1280px){
-  //         font-weight: 500;
-  //         font-size: "28px";
-  //         line-height: 1.35;
-  //       }`,
 };
+
 export const darkTheme = {
   colors: {
     accent: '#FF8356',
-    background: '#FEF9F9',
-    link: '#54ADFF',
-    grey: '#888888',
-    black: '#111111',
-    yellow: '#FFC107',
-    green: '#00C3AD',
-    red: '#F43F5E',
-    lightBlue: '#CCE4FB',
-    gradient: 'linear-gradient(290.46deg, #419EF1 0%, #9BD0FF 107.89%)',
-
-    inputColor: '#ffffff',
-    inputBackground: 'transparent',
-    backgroundModal: '#121212',
     backgroundColor: '#121212',
-    color: '#fff',
+    backgroundModal: '#181C25',
+    inputText: 'rgb(254, 220, 153)',
+    inputBackground: 'transparent',
+    inputOutline: '1px solid rgb(254, 220, 153)',
+    pagginationOutline: '1px solid #54ADFF',
+    textColor: '#FFC107',
+    link: '#54ADFF',
+    grey: '#CCCCCC',
+    titleColor: '#FFC107',
+    yellow: '#FEDC99',
+    green: '#00C3AD',
+    red: '#FF576D',
+    lightBlue: '#0A141F',
+    gradient:
+      'linear-gradient(290.46deg, rgb(5 101 186) 0%, rgb(65, 158, 241) 107.89%)',
+    buttonText: '#FEF9F9',
+    notificationColorTheme: 'dark',
+    promo: '#bb3385',
   },
   shadows: {
     default: '3px 8px 14px rgba(136, 198, 253, 0.19)',
     hover: '7px 13px 14px rgba(116, 177, 232, 0.24)',
+    promo: ' 3px 8px 18px rgba(187, 51, 133, 0.8)',
   },
   fonts: {
     main: 'Manrope, san-serif',
@@ -110,6 +96,7 @@ export const darkTheme = {
   },
   fontSizes: {
     xs: '12px',
+    search: '14px',
     s: '16px',
     m: '20px',
     l: '24px',

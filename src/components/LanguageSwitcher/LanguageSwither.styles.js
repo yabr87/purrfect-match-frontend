@@ -5,6 +5,8 @@ export const LanguageSelectorContainer = styled.div``;
 export const Select = styled.select`
   display: block;
   border: none;
+  outline: none;
+  cursor: pointer;
   background: transparent;
 
   font-weight: ${props => props.theme.fontWeiths.semi};
@@ -12,7 +14,7 @@ export const Select = styled.select`
   line-height: 1.37;
   letter-spacing: 0.04em;
 
-  color: ${props => props.theme.colors.titleColor};
+  color: ${props => props.theme.colors.textColor};
   outline: none;
   transition: color 250ms ease;
 

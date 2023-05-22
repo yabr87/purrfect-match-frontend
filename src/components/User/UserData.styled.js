@@ -1,3 +1,4 @@
+import Icon from 'shared/components/Icon';
 import styled from 'styled-components';
 
 export const UserWrapper = styled.div`
@@ -12,11 +13,13 @@ export const UserWrapper = styled.div`
   margin-top: 18px;
   display: flex;
   flex-direction: column;
+  padding: 20px 8px;
 
   @media ${props => props.theme.media.tab} {
     margin-top: 24px;
     flex-direction: row-reverse;
     max-width: 704px;
+    padding: 20px;
   }
 
   @media ${props => props.theme.media.desk} {
@@ -39,7 +42,7 @@ export const Title = styled.p`
   font-size: ${props => props.theme.fontSizes.m};
   line-height: 1.35;
   letter-spacing: 0.04em;
-  color: ${props => props.theme.colors.titleColor};
+  color: ${props => props.theme.colors.textColor};
 
   @media ${props => props.theme.media.tab} {
     font-size: ${props => props.theme.fontSizes.xl};
@@ -60,7 +63,7 @@ export const AvatarInput = styled.input`
 
 export const AvatarLabel = styled.label`
   cursor: pointer;
-  color: ${props => props.theme.colors.titleColor};
+  color: ${props => props.theme.colors.textColor};
 `;
 
 export const Photo = styled.img`
@@ -99,7 +102,6 @@ export const LogOutBtn = styled.button`
   border: none;
   background-color: transparent;
   margin-top: 21px;
-  margin-bottom: 25px;
   cursor: pointer;
 
   @media ${props => props.theme.media.tab} {
@@ -132,7 +134,6 @@ export const InputContainer = styled.div`
   flex-direction: column;
   gap: 12px;
   margin-top: 21px;
-  padding: 0 8px;
   width: 100%;
 
   @media ${props => props.theme.media.tab} {
@@ -144,4 +145,35 @@ export const InputContainer = styled.div`
 export const ItemContainer = styled.div`
   display: flex;
   justify-content: space-between;
+`;
+
+export const Balance = styled.p`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-left: auto;
+  width: 100%;
+  border: 1px solid ${props => props.theme.colors.link};
+  border-radius: 20px;
+  max-width: 190px;
+  padding: 6px 12px;
+
+  color: ${props => props.theme.colors.textColor};
+  font-size: 12px;
+  font-weight: ${props => props.theme.fontWeiths.normal};
+
+  @media ${props => props.theme.media.tab} {
+    font-size: ${props => props.theme.fontSizes.s};
+    width: 255px;
+  }
+`;
+
+export const BalanceIcon = styled(Icon)`
+  width: 13px;
+  height: 13px;
+
+  @media ${props => props.theme.media.tab} {
+    width: 18px;
+    height: 18px;
+  }
 `;

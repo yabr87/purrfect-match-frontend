@@ -16,7 +16,10 @@ import Container from 'shared/components/Container';
 import Icon from 'shared/components/Icon/Icon';
 import { useMedia } from 'shared/hooks/useMedia';
 
+import { toast } from 'react-toastify';
+
 import { getNotices } from 'utils/ApiNotices';
+import SelectedFilters from '../../shared/components/SelectedFilters/SelectedFilters';
 
 function NoticesPage() {
   const isUpToWidth480 = useMedia(['(max-width: 480px)'], [true], false);
@@ -29,6 +32,7 @@ function NoticesPage() {
   const handleAddPet = () => {
     isLoggedIn ? navigate('/add-pet') : alert(t('alert_register_signin'));
   };
+  const [age, setAge] = useState([]);
   const [sex, setSex] = useState('');
   const [totalPages, setTotalPages] = useState(null);
   const [currentPage, setCurrentPage] = useState(() => {
@@ -39,6 +43,12 @@ function NoticesPage() {
   const [fetching, setFetching] = useState(false);
   const { categoryName } = useParams();
   const [category, setCategory] = useState(categoryName);
+
+  const selectedFilters = [
+    { label: '0-12m', value: 'young' },
+    { label: '1 year', value: 'adult' },
+    { label: ' from 2 years', value: 'old' },
+  ];
 
   const [title, setTitle] = useState(() => {
     const titleSearch = searchParams.get('title');
@@ -59,7 +69,15 @@ function NoticesPage() {
     if (title) {
       params.title = title;
     }
-    setSearchParams(params);
+
+    if (sex) {
+      params.sex = sex;
+    }
+
+    if (age.length > 0) {
+      params.age = age.join(',');
+    }
+
     setCurrentPage(1);
     setCategory(categoryName);
   }
@@ -84,6 +102,12 @@ function NoticesPage() {
     if (sex) {
       params.sex = sex;
     }
+
+    if (age.length > 0) {
+      params.age = age.join(',');
+    }
+    setSearchParams(params);
+
     getNotices(params)
       .then(({ data }) => {
         setTotalPages(data.totalPages);
@@ -91,7 +115,7 @@ function NoticesPage() {
       })
       .catch(e => console.log(e))
       .finally(setFetching(false));
-  }, [categoryName, currentPage, title, sex]);
+  }, [categoryName, currentPage, title, sex, age, setSearchParams]);
 
   return (
     <Container>
@@ -108,8 +132,12 @@ function NoticesPage() {
         }}
       >
         <NoticesCategoriesNav />
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          <NoticesFilters setSex={setSex} setSearchParams={setSearchParams} />
+        <div style={{ display: 'flex', position: 'relative', gap: '12px' }}>
+          <NoticesFilters
+            setSex={setSex}
+            setAge={setAge}
+            setSearchParams={setSearchParams}
+          />
           {isUpToWidth480 ? (
             <CircleButton
               z="9"
@@ -121,16 +149,31 @@ function NoticesPage() {
               onClick={handleAddPet}
               disabled={!isLoggedIn}
             >
-              {t('Add_pet')}
+              {t('Add_only_pet')}
             </CircleButton>
           ) : (
             <Button style={{ width: '129px' }} onClick={handleAddPet}>
-              {t('Add_pet')}
+              {t('Add_only_pet')}
               <Icon id="plus-small" />
             </Button>
           )}
         </div>
       </div>
+      <div
+        style={{
+          marginTop: '15px',
+          display: 'flex',
+          justifyContent: 'flex-end',
+        }}
+      >
+        <SelectedFilters
+          filters={selectedFilters}
+          onChange={() => {
+            toast.warning(t('alert_You_removed_one_filters'));
+          }}
+        />
+      </div>
+
       {fetching && (
         <div
           style={{

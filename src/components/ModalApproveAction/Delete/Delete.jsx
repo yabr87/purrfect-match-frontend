@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { useMedia } from 'shared/hooks/useMedia';
 import Button from 'shared/components/Button';
 import {
@@ -11,28 +12,47 @@ import {
 
 import Icon from 'shared/components/Icon';
 
-const Delete = ({ close, approve }) => {
+const Delete = ({ item, notice, close, approve }) => {
+  console.log('item', item);
+  console.log('notice', notice);
   const screenSize = useMedia(
     ['(min-width: 1280px)', '(min-width: 768px)', '(min-width: 480px)'],
     ['desktop', 'tablet', 'mobile'],
     'xs'
   );
+  const { t } = useTranslation();
 
   const isSmallMobile = screenSize === 'xs';
   const isMobile = screenSize === 'mobile';
   const isTablet = screenSize === 'tablet';
   const isDesktop = screenSize === 'desktop';
 
+  const petName = (item, notice) => {
+    if (item) {
+      return (
+        <Text>
+          {t('Are_you_sure_to_delete')} <TextAccent>“{item.name}”</TextAccent>
+          ? <br />
+          {t('You_cant_undo_this_action')}.
+        </Text>
+      );
+    }
+
+    if (notice) {
+      return (
+        <Text>
+          {t('Are_you_sure_to_delete')}{' '}
+          <TextAccent>“{notice.title}”</TextAccent>? <br />
+          {t('You_cant_undo_this_action')}.
+        </Text>
+      );
+    }
+  };
+
   return (
     <ContainerView>
-      <Title>Delete adverstiment?!</Title>
-      <TextWrap>
-        <Text>
-          Are you sure you want to delete{' '}
-          <TextAccent>“Cute dog looking for a home”</TextAccent>? <br />
-          You can`t undo this action.
-        </Text>
-      </TextWrap>
+      <Title>{t('Delete adverstiment')}?</Title>
+      <TextWrap>{petName(item, notice)}</TextWrap>
       {isSmallMobile && (
         <>
           <ButtonWrap>
@@ -43,9 +63,10 @@ const Delete = ({ close, approve }) => {
               style={{
                 marginBottom: '8px',
                 width: '100%',
+                maxWidth: '256px',
               }}
             >
-              Cancel
+              {t('Cancel')}
             </Button>
             <Button
               type="button"
@@ -58,7 +79,7 @@ const Delete = ({ close, approve }) => {
                 maxWidth: '256px',
               }}
             >
-              Yes
+              {t('Yes')}
               <Icon id="trash" s="#FEF9F9" />
             </Button>
           </ButtonWrap>
@@ -76,7 +97,7 @@ const Delete = ({ close, approve }) => {
                 marginBottom: '8px',
               }}
             >
-              Cancel
+              {t('Cancel')}
             </Button>
             <Button
               type="button"
@@ -86,7 +107,7 @@ const Delete = ({ close, approve }) => {
               shape="solid"
               g="8"
             >
-              Yes
+              {t('Yes')}
               <Icon id="trash" s="#FEF9F9" />
             </Button>
           </ButtonWrap>
@@ -104,7 +125,7 @@ const Delete = ({ close, approve }) => {
                 marginRight: '17px',
               }}
             >
-              Cancel
+              {t('Cancel')}
             </Button>
             <Button
               type="button"
@@ -114,7 +135,7 @@ const Delete = ({ close, approve }) => {
               shape="solid"
               g="8"
             >
-              Yes
+              {t('Yes')}
               <Icon id="trash" s="#FEF9F9" />
             </Button>
           </ButtonWrap>
@@ -132,7 +153,7 @@ const Delete = ({ close, approve }) => {
                 marginRight: '17px',
               }}
             >
-              Cancel
+              {t('Cancel')}
             </Button>
             <Button
               type="button"
@@ -142,7 +163,7 @@ const Delete = ({ close, approve }) => {
               shape="solid"
               g="8"
             >
-              Yes
+              {t('Yes')}
               <Icon id="trash" s="#FEF9F9" />
             </Button>
           </ButtonWrap>

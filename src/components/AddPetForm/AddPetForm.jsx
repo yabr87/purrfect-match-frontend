@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Formik, Form } from 'formik';
+import { useTranslation } from 'react-i18next';
 import FormWrapper from './FormWrapper';
 import ChooseOptionStep from './ChooseOptionStep';
 import PersonalDetails from './PersonalDetails';
@@ -15,6 +16,7 @@ import { addNotice } from 'utils/ApiNotices';
 import { addMyPet } from 'utils/ApiMyPets';
 import Loader from 'shared/components/Loader';
 import { toast } from 'react-toastify';
+import useAuth from 'shared/hooks/useAuth';
 
 const initialState = {
   category: 'sell',
@@ -27,15 +29,17 @@ const initialState = {
   sex: '',
   location: '',
   price: '',
-  promo: 0
+  promo: 0,
 };
 
 const AddPetForm = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const [selectedCategory, setSelectedCategory] = useState(
     initialState.category
   );
+  const {user} = useAuth();
 
   const handleSubmit = async (values, { resetForm }) => {
     const newPet = Object.keys(values).reduce((acc, key) => {
@@ -47,17 +51,22 @@ const AddPetForm = () => {
 
     newPet.birthday = newPet.birthday.toISOString();
 
+    if (user.balance < newPet.promo) {
+      toast.error(t('alert_insufficient_funds'));
+      return;
+    }
+
     try {
       if (selectedCategory !== 'my-pet') {
         await addNotice(newPet);
       } else {
         await addMyPet(newPet);
       }
-      toast.success(`Pet added successfully`);
+      toast.success(t('alert_Pet_added_successfully'));
       resetForm();
       navigate(`/notices/${selectedCategory}`);
     } catch (error) {
-      toast.error(`Failed to add pet':${error}`);
+      toast.error(`${t('alert_Failed_to_add_pet')}:${error}`);
     }
   };
 
@@ -80,7 +89,7 @@ const AddPetForm = () => {
     <Formik
       initialValues={initialState}
       onSubmit={handleSubmit}
-      validationSchema={validationSchema(currentStep, selectedCategory)}
+      validationSchema={validationSchema(currentStep, selectedCategory, t)}
     >
       {({
         isSubmitting,
@@ -101,12 +110,12 @@ const AddPetForm = () => {
               category={selectedCategory}
               text={
                 selectedCategory === 'lost-found'
-                  ? 'Add lost pet'
+                  ? t('Add_lost_pet')
                   : selectedCategory === 'sell'
-                  ? 'Add pet for sale'
+                  ? t('Add_pet_for_sale')
                   : selectedCategory === 'my-pet'
-                  ? 'Add my pet'
-                  : 'Add pet'
+                  ? t('Add_my_pet')
+                  : t('Add_pet')
               }
             >
               {currentStep === 1 && (
@@ -149,7 +158,7 @@ const AddPetForm = () => {
                     onClick={handleCancel}
                   >
                     <Icon id="arrow-left" />
-                    Cancel
+                    {t('Cancel')}
                   </FormButton>
                 )}
                 {currentStep !== 1 && (
@@ -160,7 +169,7 @@ const AddPetForm = () => {
                     onClick={handleGoBack}
                   >
                     <Icon id="arrow-left" />
-                    Back
+                    {t('Back')}
                   </FormButton>
                 )}
                 {currentStep !== 3 && (
@@ -178,7 +187,7 @@ const AddPetForm = () => {
                         Object.keys(errors).length > 0)
                     }
                   >
-                    Next
+                    {t('Next')}
                     <Icon id="paw" f="currentColor" s="none" />
                   </Button>
                 )}
@@ -191,7 +200,7 @@ const AddPetForm = () => {
                     shape="solid"
                     disabled={isSubmitting}
                   >
-                    Done
+                    {t('Done')}
                     <Icon id="paw" f="currentColor" s="none" />
                   </Button>
                 )}

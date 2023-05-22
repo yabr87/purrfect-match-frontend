@@ -10,76 +10,48 @@ import {
   FilterContainer,
   FilterOptions,
   FiltersTitle,
-  FiltersItems,
-  ContainerItem,
-  FilterChose,
-  Item,
+  FilterContainerForAllGrup
 } from './NoticesFilters.styles';
-import Checkbox from '../../../shared/components/Checkbox';
+import Filter from '../../../shared/components/Filter/Filter';
 
-function NoticesFilters({ setSex, setSearchParams }) {
+const NoticesFilters = React.memo(({ setSex, setAge, setSearchParams }) => {
   const isUpToWidth480 = useMedia(['(max-width: 480px)'], [true], false);
 
   const [isFilterOpen, setIsFilterOpen] = useState(false);
-  const [isAgeOpen, setIsAgeOpen] = useState(false);
-  const [isGenderOpen, setIsGenderOpen] = useState(false);
-  // const [age, setAge] = useState(null);
-
   const { t } = useTranslation();
 
   const handleFilterClick = () => {
     setIsFilterOpen(!isFilterOpen);
   };
 
-  const handleAgeClick = () => {
-    setIsAgeOpen(!isAgeOpen);
-  };
-
-  const handleGenderClick = () => {
-    setIsGenderOpen(!isGenderOpen);
-  };
-
   const handleAgeChange = event => {
-    // const value = event.target.value;
-    // setAge(prevState =>
-    //   prevState.includes(value)
-    //     ? prevState.filter(item => item !== value)
-    //     : [...prevState, value]
-    // );
-    // fetchData();
+    const ageValues = event.values;
+    setAge(ageValues);
+    // setSearchParams({ page: 1, age: ageValues });
   };
-
-  const [isMaleChecked, setIsMaleChecked] = useState(false);
-  const [isFemaleChecked, setIsFemaleChecked] = useState(false);
 
   const handleGenderChange = event => {
-    const isChecked = event.target.checked;
-    const gender = event.target.value;
-    setSearchParams({ page: 1, sex: isChecked ? gender : null });
-    setSex(isChecked ? gender : null);
-    setIsMaleChecked(gender === 'male' && isChecked);
-    setIsFemaleChecked(gender === 'female' && isChecked);
+    const gender = event.values.length > 0 ? event.values[0] : null;
+    setSex(gender);
+    // setSearchParams({ page: 1, sex: gender });
   };
 
-  // const handleGenderChange = event => {
-  //   const value = event.target.value;
-  //   const isChecked = event.target.checked;
+  const ageFilterItems = [
+    { label: `0-12 ${t('months')}`, value: '0' },
+    { label: `1 ${t('year')}`, value: '1' },
+    { label: `from 2 ${t('years')}`, value: '2' },
+  ];
 
-  //   setSex(isChecked ? value : null);
-  //   const params = { page: 1, sex: value };
-  //   setSearchParams(params);
-  // };
+  const genderFilterItems = [
+    { label: `${t('male')}`, value: 'male' },
+    { label: `${t('female')}`, value: 'female' },
+  ];
 
   return (
-    <FilterContainer
-      style={{
-        position: 'relative',
-      }}
-    >
+    <FilterContainer>
       {isUpToWidth480 ? (
         <CircleButton
           id="filters"
-          pos="absolute"
           t="0"
           r="0"
           style={{
@@ -88,8 +60,13 @@ function NoticesFilters({ setSex, setSearchParams }) {
           }}
           onClick={handleFilterClick}
         ></CircleButton>
+      ) : isFilterOpen ? (
+        <Button type="button" w="152" shape="solid" onClick={handleFilterClick}>
+          {t('Filter')}
+          <Icon id="filters" />
+        </Button>
       ) : (
-        <Button style={{ width: '152px' }} onClick={handleFilterClick}>
+        <Button w="152" onClick={handleFilterClick}>
           {t('Filter')}
           <Icon id="filters" />
         </Button>
@@ -97,59 +74,26 @@ function NoticesFilters({ setSex, setSearchParams }) {
       {isFilterOpen && (
         <FilterOptions>
           <FiltersTitle>{t('Filters')}</FiltersTitle>
-          <div style={{ position: 'relative' }}>
-            <ContainerItem>
-              <FiltersItems onClick={handleAgeClick}>
-                <Icon id={!isAgeOpen ? 'up' : 'down'} />
-                <Item>{t('By_age')}</Item>
-              </FiltersItems>
-              {isAgeOpen && (
-                <FilterChose>
-                  <Checkbox
-                    value="young"
-                    label={`3-12${t('m')}`}
-                    onChange={handleAgeChange}
-                  ></Checkbox>
-                  <Checkbox
-                    value="adult"
-                    label={`1 ${t('year')}`}
-                    onChange={handleAgeChange}
-                  ></Checkbox>
-                  <Checkbox
-                    value="old"
-                    label={`2 ${t('years')}`}
-                    onChange={handleAgeChange}
-                  ></Checkbox>
-                </FilterChose>
-              )}
-            </ContainerItem>
-            <ContainerItem>
-              <FiltersItems onClick={handleGenderClick}>
-                <Icon id={!isGenderOpen ? 'up' : 'down'} />
-                <Item>{t('By_gender')}</Item>
-              </FiltersItems>
-              {isGenderOpen && (
-                <FilterChose>
-                  <Checkbox
-                    value="male"
-                    label={t('male')}
-                    isChecked={isMaleChecked}
-                    onChange={handleGenderChange}
-                  ></Checkbox>
-                  <Checkbox
-                    value="female"
-                    label={t('female')}
-                    isChecked={isFemaleChecked}
-                    onChange={handleGenderChange}
-                  ></Checkbox>
-                </FilterChose>
-              )}
-            </ContainerItem>
-          </div>
+          <FilterContainerForAllGrup >
+            <Filter
+              filters={genderFilterItems}
+              title={t('By_gender')}
+              name="sex"
+              isSingleSelection={true}
+              onChange={handleGenderChange}
+            ></Filter>
+            <Filter
+              filters={ageFilterItems}
+              title={t('By_age')}
+              name="age"
+              isSingleSelection={false}
+              onChange={handleAgeChange}
+            ></Filter>
+          </FilterContainerForAllGrup>
         </FilterOptions>
       )}
     </FilterContainer>
   );
-}
+});
 
 export default NoticesFilters;

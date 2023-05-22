@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Item = styled.li`
   position: relative;
-  max-width: 336px;
+  max-width: 480px;
   border-radius: 20px;
   color: ${({ theme }) => theme.colors.textColor};
   background: ${({ theme }) => theme.colors.backgroundModal};

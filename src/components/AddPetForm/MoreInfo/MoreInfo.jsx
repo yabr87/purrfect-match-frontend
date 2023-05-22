@@ -1,10 +1,12 @@
 import PropTypes from 'prop-types';
 import { Field } from 'formik';
+import { useTranslation } from 'react-i18next';
 import ImageUploader from 'shared/components/ImageUploader';
 import { Error, FormLabel, StyledField } from '../AddPetForm.styles';
 import {
   AdaptiveBoxOne,
   AdaptiveBoxTwo,
+  IconDollar,
   ImageLabel,
   MoreInfoRadio,
   MoreInfoWrapper,
@@ -21,17 +23,18 @@ const MoreInfo = ({
   touched,
   errors,
 }) => {
+  const { t } = useTranslation();
   return (
     <MoreInfoWrapper option={option}>
       <AdaptiveBoxOne>
         {option !== 'my-pet' && (
           <>
             <div role="group" aria-labelledby="choose-pet-option">
-              <FormLabel>The Sex</FormLabel>
-              <RadioBox sex={values.sex}>
+              <FormLabel>{t('The_Sex')}</FormLabel>
+              <RadioBox sex={values.sex} style={{position: 'relative'}}>
                 <MoreInfoRadio checked={values.sex === 'female'}>
                   <Icon id="female" w="10" h="18" />
-                  Female
+                  {t('female')}
                   <Field
                     type="radio"
                     name="sex"
@@ -43,7 +46,7 @@ const MoreInfo = ({
                 </MoreInfoRadio>
                 <MoreInfoRadio checked={values.sex === 'male'}>
                   <Icon id="male" w="10" h="18" />
-                  Male
+                  {t('male')}
                   <Field
                     type="radio"
                     name="sex"
@@ -53,13 +56,13 @@ const MoreInfo = ({
                     checked={values.sex === 'male'}
                   />
                 </MoreInfoRadio>
-              </RadioBox>
               <Error name="sex" component="p" />
+              </RadioBox>
             </div>
           </>
         )}
         <ImageLabel option={option}>
-          <p>Add photo</p>
+          <p>{t('Add_photo')}</p>
           <ImageUploader
             onChange={handleChange}
             name="photo"
@@ -72,10 +75,10 @@ const MoreInfo = ({
         {option !== 'my-pet' && (
           <>
             <FormLabel htmlFor="location">
-              Location
+              {t('Location')}
               <StyledField
                 name="location"
-                placeholder="Type your location"
+                placeholder={t('Type_your_location')}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.location}
@@ -87,24 +90,25 @@ const MoreInfo = ({
         )}
         {option === 'sell' && (
           <FormLabel htmlFor="price">
-            Price
+            {t('Price')}
             <StyledField
               name="price"
-              placeholder="Type of price"
+              placeholder={t('Type_of_price')}
               onChange={handleChange}
               onBlur={handleBlur}
               value={values.price}
               errors={touched.price && errors.price}
             />
+            <IconDollar id="dollar" s="none" f="currentColor" w="20" h="20" />
             <Error name="price" component="p" />
           </FormLabel>
         )}
         <FormLabel htmlFor="comments">
-          Comments
+          {t('Comments')}
           <TextField
             as="textarea"
             name="comments"
-            placeholder="Type breed"
+            placeholder={t('Type_a_comment')}
             onChange={handleChange}
             onBlur={handleBlur}
             value={values.comments}
@@ -115,22 +119,29 @@ const MoreInfo = ({
         {option !== 'my-pet' && (
           <div>
             <FormLabel htmlFor="promo">
-              {values.promo ? (<p>Raise your ad only for {values.promo}$!</p>) : (<p>Choose your payment plan to raise you ad!</p>)}
+              {values.promo ? (
+                <p>
+                  {t('Raise_your_ad_only_for')} {values.promo}$!
+                </p>
+              ) : (
+                <p>{t('You_can_add_payment')}!</p>
+              )}
               <StyledField
                 type="range"
                 id="promo"
                 name="promo"
                 min="0"
                 max="30"
-                placeholder="Raise your ad"
+                placeholder={t('Raise_your_ad')}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.promo}
                 errors={touched.promo && errors.promo}
-                />
+              />
               <Error name="promo" component="p" />
             </FormLabel>
-          </div>)}
+          </div>
+        )}
       </AdaptiveBoxTwo>
     </MoreInfoWrapper>
   );

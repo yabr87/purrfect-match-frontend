@@ -11,25 +11,36 @@ export const ModalOverlay = styled.div`
   align-items: center;
   background-color: rgba(87, 86, 86, 0.6);
   z-index: 1001;
+  overflow-y: auto;
 `;
 
 export const ModalContainer = styled.div`
-  // width: 100%;
-  // padding-left: 20px;
-  // padding-right: 20px;
+  position: relative;
+  width: calc(100% - 40px);
+  border-radius: 20px;
+  background-color: ${props => props.theme.colors.backgroundModal};
+  @media ${props => props.theme.media.phone} {
+    max-width: 440px;
+  }
+  @media ${props => props.theme.media.tab} {
+    width: calc(100% - 86px);
+    max-width: 681px;
+    border-radius: ${props => props.theme.radius.normal};
+  }
 `;
 
 export const ModalView = styled.div`
-  border-radius: 20px;
-  background-color: ${props => props.theme.colors.backgroundModal};
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  // width: calc(100% - 40px);
+  // border-radius: 20px;
+  // background-color: ${props => props.theme.colors.backgroundModal};
+  // @media ${props => props.theme.media.phone} {
+  //   max-width: 440px;
+  // }
 
-  @media ${props => props.theme.media.tab} {
-    border-radius: ${props => props.theme.radius.normal};
-  }
+  // @media ${props => props.theme.media.tab} {
+  //   border-radius: ${props => props.theme.radius.normal};
+  //   max-width: 681px;
+  // }
 `;
 
 export const CloseIcon = styled.button`

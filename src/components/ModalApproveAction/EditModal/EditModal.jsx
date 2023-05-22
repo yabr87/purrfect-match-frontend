@@ -1,5 +1,6 @@
 import { Form, Formik } from 'formik';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import Loader from 'shared/components/Loader';
 import { Error, FormButton } from 'components/AddPetForm/AddPetForm.styles';
 import { reverseISODate } from 'utils/reverseISODate';
@@ -24,9 +25,13 @@ import { PetImage } from '../NoticeModal/NoticeModal.styles';
 import { editNotice } from 'utils/ApiNotices';
 import { convertToISODate } from 'utils/convertToISODate';
 import { toast } from 'react-toastify';
+import useAuth from 'shared/hooks/useAuth';
 
-const EditModal = ({ notice, close, approve }) => {
+const EditModal = ({ notice, close, approve, handleEditClose }) => {
   const [isFormDirty, setIsFormDirty] = useState(false);
+  const { t } = useTranslation();
+
+  const { user } = useAuth();
 
   const initialValues = {
     category: notice.category,
@@ -72,15 +77,24 @@ const EditModal = ({ notice, close, approve }) => {
       return acc;
     }, {});
 
+    if (user.balance < newPet.promo) {
+      toast.error(t('alert_insufficient_funds'));
+      return;
+    }
+
     try {
       await editNotice(notice._id, newPet);
-      toast.success(`Pet edited successfully`);
-      resetForm();
+      toast.success(t('alert_Pet_edited_successfully'));
+      handleEditClose(notice);
       close();
     } catch (error) {
-      toast.error(`Failed to edit pet':${error}`);
-    }
-  };
+      if (error.response && error.response.data && error.response.data.message === 'Not enough funds') {
+        return toast.error('Not enough funds. Please check your balance.');        
+      } else {
+        toast.error(`{t('alert_Failed_to_edit_pet')}:${error}`);
+      }
+    };
+  }
 
   const handleFormChange = () => {
     setIsFormDirty(true);
@@ -108,7 +122,7 @@ const EditModal = ({ notice, close, approve }) => {
               ) : (
                 <EditWrapper>
                   <EditboxLeft>
-                    <EditTitle>Edit your pet</EditTitle>
+                    <EditTitle>{t('Edit_your_pet')}</EditTitle>
                     <div style={{ position: 'relative', width: '100%' }}>
                       <PetImage
                         src={notice.photoUrl}
@@ -123,11 +137,12 @@ const EditModal = ({ notice, close, approve }) => {
                     </div>
                     <EditLabel htmlFor="promo">
                       {values.promo ? (
-                        <p>Raise your ad only for {values.promo}$!</p>
+                        <p>
+                          {t('Raise_your_ad_only_for')} {values.promo}$!
+                        </p>
                       ) : (
                         <>
-                          <p>Add payment to raise your ad!</p>
-                          <p>Just scroll your value:</p>
+                          <p>{t('You_can_add_payment')}!</p>
                         </>
                       )}
                       <EditField
@@ -136,7 +151,7 @@ const EditModal = ({ notice, close, approve }) => {
                         name="promo"
                         min="0"
                         max="30"
-                        placeholder="Raise your ad"
+                        placeholder={t('Raise_your_ad')}
                         onChange={handleChange}
                         onBlur={handleBlur}
                         value={values.promo}
@@ -147,10 +162,10 @@ const EditModal = ({ notice, close, approve }) => {
                   </EditboxLeft>
                   <EditboxRight>
                     <EditLabel htmlFor="title">
-                      Title of ad:
+                      {t('Title_of_ad')}:
                       <EditField
                         name="title"
-                        placeholder="Type title of publication"
+                        placeholder={t('Type_title')}
                         onChange={handleChange}
                         onBlur={handleBlur}
                         value={values.title}
@@ -159,10 +174,10 @@ const EditModal = ({ notice, close, approve }) => {
                       <Error name="title" component="p" />
                     </EditLabel>
                     <EditLabel htmlFor="name">
-                      Name of pet:
+                      {t('Name_of_pet')}:
                       <EditField
                         name="name"
-                        placeholder="Type name of pet"
+                        placeholder={t('Type_name_of_pet')}
                         onChange={handleChange}
                         onBlur={handleBlur}
                         value={values.name}
@@ -171,7 +186,7 @@ const EditModal = ({ notice, close, approve }) => {
                       <Error name="name" component="p" />
                     </EditLabel>
                     <EditLabel htmlFor="birthday">
-                      Date of birth:
+                      {t('Date_of_Birth')}:
                       <EditField
                         name="birthday"
                         onChange={handleChange}
@@ -182,10 +197,10 @@ const EditModal = ({ notice, close, approve }) => {
                       <Error name="birthday" component="p" />
                     </EditLabel>
                     <EditLabel htmlFor="breed">
-                      Breed:
+                      {t('Breed')}:
                       <EditField
                         name="breed"
-                        placeholder="Type name of pet"
+                        placeholder={t('Type_the_breed')}
                         onChange={handleChange}
                         onBlur={handleBlur}
                         value={values.breed}
@@ -194,10 +209,10 @@ const EditModal = ({ notice, close, approve }) => {
                       <Error name="breed" component="p" />
                     </EditLabel>
                     <EditLabel htmlFor="location">
-                      Location:
+                      {t('Location')}:
                       <EditField
                         name="location"
-                        placeholder="Type name of pet"
+                        placeholder={t('Type_location')}
                         onChange={handleChange}
                         onBlur={handleBlur}
                         value={values.location}
@@ -206,10 +221,10 @@ const EditModal = ({ notice, close, approve }) => {
                       <Error name="location" component="p" />
                       {notice.category === 'sell' && (
                         <EditLabel htmlFor="price">
-                          Type your new price:
+                          {t('Type_your_new_price')}:
                           <EditField
                             name="price"
-                            placeholder="Type your new price"
+                            placeholder={t('Type_your_new_price')}
                             onChange={handleChange}
                             onBlur={handleBlur}
                             value={values.price}
@@ -220,11 +235,11 @@ const EditModal = ({ notice, close, approve }) => {
                       )}
                     </EditLabel>
                     <EditLabel htmlFor="comments">
-                      Comments:
+                      {t('Comments')}:
                       <EditText
                         as="textarea"
                         name="comments"
-                        placeholder="Type name of pet"
+                        placeholder={t('Type_a_comment')}
                         onChange={handleChange}
                         onBlur={handleBlur}
                         value={values.comments}
@@ -237,7 +252,7 @@ const EditModal = ({ notice, close, approve }) => {
               )}
               <EditBox>
                 <FormButton type="button" w="248" h="48" onClick={close}>
-                  Cancel
+                  {t('Cancel')}
                 </FormButton>
                 <Button
                   type="submit"
@@ -247,7 +262,7 @@ const EditModal = ({ notice, close, approve }) => {
                   disabled={isSubmitting || !isFormDirty}
                   onClick={approve}
                 >
-                  Update
+                  {t('Update')}
                   <Icon id="paw" f="currentColor" s="none" />
                 </Button>
               </EditBox>

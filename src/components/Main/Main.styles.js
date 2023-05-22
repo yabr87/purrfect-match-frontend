@@ -13,7 +13,7 @@ export const Title = styled.h1`
   font-weight: ${props => props.theme.fontWeiths.bold};
   font-size: 32px;
   line-height: 1.38;
-  color: ${props => props.theme.colors.titleColor};
+  color: ${props => props.theme.colors.textColor};
 
   @media ${props => props.theme.media.tab} {
     margin-top: 40px;

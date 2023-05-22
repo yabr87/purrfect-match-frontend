@@ -8,7 +8,7 @@ export const FormTitle = styled.p`
   font-size: ${props => props.theme.fontSizes.m};
   line-height: 1.35;
 
-  color: ${props => props.theme.colors.titleColor};
+  color: ${props => props.theme.colors.textColor};
 
   @media ${props => props.theme.media.tab} {
     font-size: ${props => props.theme.fontSizes.xl};
@@ -20,26 +20,26 @@ export const FormTitle = styled.p`
 `;
 
 export const FormLabel = styled.label`
+  position: relative;
   display: flex;
   flex-direction: column;
   font-weight: ${props => props.theme.fontWeiths.semi};
   font-size: 14px;
   line-height: 1.3;
 
-  color: ${props => props.theme.colors.titleColor};
+  color: ${props => props.theme.colors.textColor};
 
   @media screen and (min-width: 768px) {
     font-size: ${props => props.theme.fontSizes.m};
   }
 
-  
   input[type='range'] {
     -webkit-appearance: none; /* Убирает стандартные стили для WebKit браузеров */
     -moz-appearance: none; /* Убирает стандартные стили для Firefox */
     width: 100%;
     height: 10px;
     background-color: ${props => props.theme.colors.backgroundModal};
-    border-radius: 5px;
+    border-radius: 40px;
     outline: none;
     opacity: 0.7;
     transition: opacity 0.2s;
@@ -81,8 +81,9 @@ export const FormLabel = styled.label`
 `;
 
 export const Error = styled(ErrorMessage)`
-  margin-left: 16px;
-  margin-top: 4px;
+  position: absolute;
+  bottom: -16px;
+  left: 16px;
   font-size: 14px;
   color: ${props => props.theme.colors.red};
 
@@ -148,17 +149,17 @@ export const FormButton = styled.button`
   cursor: pointer;
 
   font-size: ${props => props.theme.fontSizes.s};
-  line-height: 1,37;
+  line-height: 1.37;
   font-weight: ${props => props.theme.fontWeiths.bold};
   letter-spacing: 0.04em;
 
   color: ${props => props.theme.colors.link};
-  background-color: ${props => props.theme.colors.backgroundModal};
+  background: ${props => props.theme.colors.backgroundModal};
   transition: color 250ms ease, background 250ms ease;
 
   &:hover,
   &:focus {
-    background-color: ${props => props.theme.colors.link};
+    background: ${props => props.theme.colors.gradient};
     color: ${props => props.theme.colors.buttonText};
     outline: none;
   }

@@ -1,4 +1,5 @@
 import { Title, Text, ContainerView } from './Congrats.styles';
+import { useTranslation } from 'react-i18next';
 
 import Icon from 'shared/components/Icon';
 import Button from 'shared/components/Button';
@@ -11,13 +12,14 @@ const Congrats = ({ close }) => {
     ['desktop', 'tablet', 'mobile'],
     'xs'
   );
+  const { t } = useTranslation();
 
   const isSmallMobile = screenSize === 'xs';
 
   return (
     <ContainerView>
-      <Title>Congrats!</Title>
-      <Text>You're registration is success</Text>
+      <Title>{t('Congrats')}!</Title>
+      <Text>{t('registration_is_successful')}</Text>
       {isSmallMobile ? (
         <Button
           onClick={close}
@@ -25,16 +27,16 @@ const Congrats = ({ close }) => {
           shape="solid"
           g="8"
           style={{
-            marginBottom: '8px',
+            maxWidth: '256px',
             width: '100%',
           }}
         >
-          Go to profile
+          {t('Go_to_profile')}
           <Icon id="paw" f="white" />
         </Button>
       ) : (
         <Button onClick={close} w="256" h="40" shape="solid" g="8">
-          Go to profile
+          {t('Go_to_profile')}
           <Icon id="paw" f="white" />
         </Button>
       )}
