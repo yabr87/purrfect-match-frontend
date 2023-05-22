@@ -12,7 +12,7 @@ export const Item = styled.li`
   transition: scale 250ms ease;
 
   &:hover {
-    scale: 1.03;
+    scale: 1.01;
     transition: scale 250ms ease;
   }
 
