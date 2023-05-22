@@ -43,9 +43,9 @@ function NoticesPage() {
   const [category, setCategory] = useState(categoryName);
 
   const selectedFilters = [
-    { label: '3-12m', value: 'young' },
+    { label: '0-12m', value: 'young' },
     { label: '1 year', value: 'adult' },
-    { label: '2 years', value: 'old' },
+    { label: ' from 2 years', value: 'old' },
   ];
 
   const [title, setTitle] = useState(() => {
