@@ -20,6 +20,7 @@ export const FormTitle = styled.p`
 `;
 
 export const FormLabel = styled.label`
+  position: relative;
   display: flex;
   flex-direction: column;
   font-weight: ${props => props.theme.fontWeiths.semi};
@@ -81,7 +82,7 @@ export const FormLabel = styled.label`
 
 export const Error = styled(ErrorMessage)`
   position: absolute;
-  bottom: -18px;
+  bottom: -16px;
   left: 16px;
   font-size: 14px;
   color: ${props => props.theme.colors.red};
