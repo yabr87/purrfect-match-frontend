@@ -24,15 +24,15 @@ const UserDataItem = ({ name, type, pattern, value, placeholder }) => {
 
   const handleInputSubmit = async () => {
     try {
-        if (data === value) {
-      setDisable(true); 
-      return;
-  }
+      if (data === value) {
+        setDisable(true);
+        return;
+      }
       const req =
         name === 'birthday'
           ? { [name]: convertToISODate(data) }
           : { [name]: data };
-      
+
       await updateUserInfo(token, req);
       setDisable(true);
     } catch (error) {
@@ -44,7 +44,7 @@ const UserDataItem = ({ name, type, pattern, value, placeholder }) => {
 
   return (
     <ItemContainer>
-      <UserLabel>{name.charAt(0).toUpperCase() + name.slice(1)}:</UserLabel>
+      <UserLabel>{t(name.charAt(0).toUpperCase() + name.slice(1))}:</UserLabel>
       <UserInput
         type={type}
         value={data}

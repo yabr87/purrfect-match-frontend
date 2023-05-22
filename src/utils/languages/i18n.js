@@ -47,7 +47,8 @@ i18n.use(initReactI18next).init({
         Confirm: 'Confirm',
         Log_Out: 'Log Out',
         Birthday: 'Birthday',
-        Сity: 'City',
+        City: 'City',
+        Balance:'Balance',
 
         remove: 'remove',
         Name: 'Name',
@@ -240,6 +241,7 @@ i18n.use(initReactI18next).init({
         Log_Out: 'Вийти',
         Birthday: 'День народження',
         City: 'Місто',
+        Balance:'Баланс',
 
         remove: 'видалити',
         Name: 'Імʼя',
