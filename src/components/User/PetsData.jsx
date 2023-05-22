@@ -25,8 +25,6 @@ import Delete from 'components/ModalApproveAction/Delete';
 import { toast } from 'react-toastify';
 
 const PetsData = () => {
-  const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false);
-
   const { results: pets = [] } = useSelector(selectMyPets);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -40,61 +38,63 @@ const PetsData = () => {
     navigate('/add-pet', { replace: true });
   };
 
-  const handleDeletePet = item => {
-    dispatch(deleteMyPet(item._id));
-    setIsModalDeleteOpen(false);
+  const PetCard = ({ item }) => {
+    const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false);
+    const handleDeletePet = item => {
+      dispatch(deleteMyPet(item._id));
+      setIsModalDeleteOpen(false);
 
-    toast.success(`${item.name}: ${t('alert_pet_removed')}`);
+      toast.success(`${item.name}: ${t('alert_pet_removed')}`);
+    };
+    return (
+      <PetContainer>
+        <PetAvatar src={item.photoUrl} />
+        <PetInfoWrap>
+          <DelPetBtn onClick={() => setIsModalDeleteOpen(true)}>
+            <Icon id="trash" s="#54ADFF" />
+          </DelPetBtn>
+          <PetInfoItem>
+            <PetInfoTitle>{t('Name')}:</PetInfoTitle> {item.name}
+          </PetInfoItem>
+          <PetInfoItem>
+            <PetInfoTitle>{t('Date_of_Birth')}:</PetInfoTitle>{' '}
+            {reverseISODate(item.birthday)}
+          </PetInfoItem>
+          <PetInfoItem>
+            <PetInfoTitle>{t('Breed')}:</PetInfoTitle> {item.breed}
+          </PetInfoItem>
+          <PetInfoItem>
+            <PetInfoTitle>{t('Comments')}:</PetInfoTitle> {item.comments}
+          </PetInfoItem>
+        </PetInfoWrap>
+        {isModalDeleteOpen && (
+          <ModalApproveAction close={() => setIsModalDeleteOpen(false)}>
+            <Delete
+              item={item}
+              approve={() => handleDeletePet(item)}
+              close={() => setIsModalDeleteOpen(false)}
+            />
+          </ModalApproveAction>
+        )}
+      </PetContainer>
+    );
   };
 
-  const petCard = item => (
-    <PetContainer key={item._id}>
-      <PetAvatar src={item.photoUrl} />
-      <PetInfoWrap>
-        <DelPetBtn onClick={() => setIsModalDeleteOpen(true)}>
-          <Icon id="trash" s="#54ADFF" />
-        </DelPetBtn>
-        <PetInfoItem>
-          <PetInfoTitle>{t('Name')}:</PetInfoTitle> {item.name}
-        </PetInfoItem>
-        <PetInfoItem>
-          <PetInfoTitle>{t('Date_of_Birth')}:</PetInfoTitle>{' '}
-          {reverseISODate(item.birthday)}
-        </PetInfoItem>
-        <PetInfoItem>
-          <PetInfoTitle>{t('Breed')}:</PetInfoTitle> {item.breed}
-        </PetInfoItem>
-        <PetInfoItem>
-          <PetInfoTitle>{t('Comments')}:</PetInfoTitle> {item.comments}
-        </PetInfoItem>
-      </PetInfoWrap>
-      {isModalDeleteOpen && (
-        <ModalApproveAction close={() => setIsModalDeleteOpen(false)}>
-          <Delete
-            item={item}
-            approve={() => handleDeletePet(item)}
-            close={() => setIsModalDeleteOpen(false)}
-          />
-        </ModalApproveAction>
-      )}
-    </PetContainer>
-  );
-
   return (
-      <PetWrap>
-        <PetHeader>
-          <Title>{t('My_pets')}:</Title>
-          <Button onClick={handleClick} type="button" shape="solid" g="8">
-            <p>{t('Add_pet')}</p>
-            <Icon id="plus-small" s="#FEF9F9" />
-          </Button>
-        </PetHeader>
-        {pets.length ? (
-          pets.map(item => petCard(item))
-        ) : (
-          <NoPetMessage>{t('No_pats_yet')} 😔</NoPetMessage>
-        )}
-      </PetWrap>
+    <PetWrap>
+      <PetHeader>
+        <Title>{t('My_pets')}:</Title>
+        <Button onClick={handleClick} type="button" shape="solid" g="8">
+          <p>{t('Add_pet')}</p>
+          <Icon id="plus-small" s="#FEF9F9" />
+        </Button>
+      </PetHeader>
+      {pets.length ? (
+        pets.map(item => <PetCard key={item._id} item={item} />)
+      ) : (
+        <NoPetMessage>{t('No_pats_yet')} 😔</NoPetMessage>
+      )}
+    </PetWrap>
   );
 };
 
