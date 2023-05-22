@@ -65,6 +65,7 @@ export const PetHeader = styled.div`
 
 export const NoPetMessage = styled.p`
   text-align: center;
+  color: ${({ theme }) => theme.colors.textColor};
 `;
 
 export const PetInfoWrap = styled.div`
