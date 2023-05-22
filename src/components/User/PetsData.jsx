@@ -43,26 +43,15 @@ const PetsData = () => {
   const handleDeletePet = item => {
     dispatch(deleteMyPet(item._id));
     setIsModalDeleteOpen(false);
-    document.body.style.overflow = '';
 
     toast.success(`${item.name}: ${t('alert_pet_removed')}`);
-  };
-
-  const handleModalOpen = () => {
-    setIsModalDeleteOpen(true);
-    document.body.style.overflow = 'hidden';
-  };
-
-  const handleModalClose = () => {
-    setIsModalDeleteOpen(false);
-    document.body.style.overflow = '';
   };
 
   const petCard = item => (
     <PetContainer key={item._id}>
       <PetAvatar src={item.photoUrl} />
       <PetInfoWrap>
-        <DelPetBtn onClick={() => handleModalOpen(item)}>
+        <DelPetBtn onClick={() => setIsModalDeleteOpen(true)}>
           <Icon id="trash" s="#54ADFF" />
         </DelPetBtn>
         <PetInfoItem>
@@ -82,9 +71,9 @@ const PetsData = () => {
       {isModalDeleteOpen && (
         <ModalApproveAction close={() => setIsModalDeleteOpen(false)}>
           <Delete
-            itemName={item.name}
+            item={item}
             approve={() => handleDeletePet(item)}
-            close={handleModalClose}
+            close={() => setIsModalDeleteOpen(false)}
           />
         </ModalApproveAction>
       )}
