@@ -48,7 +48,7 @@ i18n.use(initReactI18next).init({
         Log_Out: 'Log Out',
         Birthday: 'Birthday',
         City: 'City',
-        Balance:'Balance',
+        Balance: 'Balance',
 
         remove: 'remove',
         Name: 'Name',
@@ -76,8 +76,6 @@ i18n.use(initReactI18next).init({
         No_result: 'There is no result',
         Read_more: 'Read more',
 
-        alert_register_signin:
-          'Please register or sign in to be able to add pet',
         Find_your_favorite_pet: 'Find your favorite pet',
         Filter: 'Filter',
         Filters: 'Filters',
@@ -93,11 +91,7 @@ i18n.use(initReactI18next).init({
         in_good_hands: 'in good hands',
         favorites_ads: 'favorite ads',
         my_ads: 'my ads',
-        alert_failed_delete: 'Failed to delete notice. Please try again later.',
         Learn_more: 'Learn more',
-        alert_signin_fav: 'Please sign in to add to favorites',
-        alert_insufficient_funds: 'Insufficient funds on your balance',
-        alert_failed_update: 'Failed to update notice. Please try again later.',
         alert_pet_removed: 'removed',
         for_free: 'for free',
         Price: 'Price',
@@ -200,6 +194,13 @@ i18n.use(initReactI18next).init({
         alert_Try_another_image: 'Try another image',
         alert_Pet_added_successfully: 'Pet added successfully',
         alert_Failed_to_add_pet: 'Failed to add pet',
+        alert_You_removed_one_filters: 'You removed one of the filters',
+        alert_failed_delete: 'Failed to delete notice. Please try again later.',
+        alert_signin_fav: 'Please sign in to add to favorites',
+        alert_insufficient_funds: 'Insufficient funds on your balance',
+        alert_failed_update: 'Failed to update notice. Please try again later.',
+        alert_register_signin:
+        'Please register or sign in to be able to add pet',
       },
     },
     ukr: {
@@ -242,7 +243,7 @@ i18n.use(initReactI18next).init({
         Log_Out: 'Вийти',
         Birthday: 'День народження',
         City: 'Місто',
-        Balance:'Баланс',
+        Balance: 'Баланс',
 
         remove: 'видалити',
         Name: 'Імʼя',
@@ -354,8 +355,7 @@ i18n.use(initReactI18next).init({
         Please_fill_all_the_fields: 'Будь ласка, заповніть всі поля',
         The_Sex: 'Стать',
         Add_photo: 'Додати фото',
-        You_can_add_payment:
-          'Підніміть оголошення за доплату',
+        You_can_add_payment: 'Підніміть оголошення за доплату',
         Type_of_price: 'Вкажіть ціну',
         Type_your_location: 'Вкажіть локацію',
 
@@ -399,6 +399,7 @@ i18n.use(initReactI18next).init({
         alert_Try_another_image: 'Спробуйте інше зображення',
         alert_Pet_added_successfully: 'Тваринка додана успішно',
         alert_Failed_to_add_pet: 'Не вдалося додати тваринку',
+        alert_You_removed_one_filters: 'Ви видалили один з фільтрів',
       },
     },
   },
