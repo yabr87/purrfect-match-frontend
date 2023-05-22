@@ -16,6 +16,7 @@ import {
   Error,
   Lable,
   AbsoluteDiv,
+  Wrapper,
 } from '../Form.styles';
 import Input from '../Input/Input';
 import Button from 'shared/components/Button/Button';
@@ -26,6 +27,7 @@ import useAuth from 'shared/hooks/useAuth';
 import { toast } from 'react-toastify';
 import { clearError } from 'redux/auth/authSlice';
 import { signup } from 'redux/auth/authOperations';
+import GoogleAuth from '../GoogleAuth';
 
 const validateShecma = t =>
   Yup.object().shape({
@@ -57,77 +59,80 @@ const RegisterForm = () => {
   }, [isError, dispatch]);
 
   return (
-    <Formik
-      initialValues={{ email: '', password: '', confirmedPassword: '' }}
-      onSubmit={(values, actions) => {
-        dispatch(
-          signup({
-            email: values.email,
-            password: values.password,
-          })
-        );
+    <Wrapper>
+      <Formik
+        initialValues={{ email: '', password: '', confirmedPassword: '' }}
+        onSubmit={(values, actions) => {
+          dispatch(
+            signup({
+              email: values.email,
+              password: values.password,
+            })
+          );
 
-        actions.resetForm();
-      }}
-      validationSchema={validateShecma(t)}
-    >
-      {({ errors, touched, values }) => (
-        <Forms>
-          <Title
-            as="p"
-            weight="500"
-            tabSize="36"
-            tabLine="1.36"
-            tabweight="500"
-            deskWeight="500"
-            deskSize="36"
-            deskLine="1.36"
-            color="inherit"
-          >
-            {t('Registration_title')}
-          </Title>
-          <InputContainer>
-            <Lable>
-              <InputEmail
-                type="text"
-                name="email"
-                placeholder={t('Email')}
-                error={errors.email && touched.email ? '#f43f5e' : '#54adff'}
+          actions.resetForm();
+        }}
+        validationSchema={validateShecma(t)}
+      >
+        {({ errors, touched, values }) => (
+          <Forms>
+            <Title
+              as="p"
+              weight="500"
+              tabSize="36"
+              tabLine="1.36"
+              tabweight="500"
+              deskWeight="500"
+              deskSize="36"
+              deskLine="1.36"
+              color="inherit"
+            >
+              {t('Registration_title')}
+            </Title>
+            <InputContainer>
+              <Lable>
+                <InputEmail
+                  type="text"
+                  name="email"
+                  placeholder={t('Email')}
+                  error={errors.email && touched.email ? '#f43f5e' : '#54adff'}
+                />
+                {errors.email && touched.email && (
+                  <>
+                    <AbsoluteDiv>
+                      <Icon id={'cross'} s={'red'} />
+                    </AbsoluteDiv>
+                    <ErrorMessage component={Error} name="email" />
+                  </>
+                )}
+              </Lable>
+              <Input
+                error={errors.password}
+                touched={touched.password}
+                name={'password'}
+                placeholder={t('Password')}
+                value={values.password}
               />
-              {errors.email && touched.email && (
-                <>
-                  <AbsoluteDiv>
-                    <Icon id={'cross'} s={'red'} />
-                  </AbsoluteDiv>
-                  <ErrorMessage component={Error} name="email" />
-                </>
-              )}
-            </Lable>
-            <Input
-              error={errors.password}
-              touched={touched.password}
-              name={'password'}
-              placeholder={t('Password')}
-              value={values.password}
-            />
-            <Input
-              error={errors.confirmedPassword}
-              touched={touched.confirmedPassword}
-              value={values.confirmedPassword}
-              name={'confirmedPassword'}
-              placeholder={t('Confirm_password')}
-            />
-          </InputContainer>
-          <Button shape={'solid'} w={'100%'} h={'48'}>
-            {t('Register')}
-          </Button>
-          <Text>
-            {t('Already_have_an_account')}?
-            <StyledLink to={'/login'}> {t('Log_IN')}</StyledLink>
-          </Text>
-        </Forms>
-      )}
-    </Formik>
+              <Input
+                error={errors.confirmedPassword}
+                touched={touched.confirmedPassword}
+                value={values.confirmedPassword}
+                name={'confirmedPassword'}
+                placeholder={t('Confirm_password')}
+              />
+            </InputContainer>
+            <Button shape={'solid'} w={'100%'} h={'48'}>
+              {t('Register')}
+            </Button>
+            <Text>
+              {t('Already_have_an_account')}?
+              <StyledLink to={'/login'}> {t('Log_IN')}</StyledLink>
+            </Text>
+          </Forms>
+        )}
+      </Formik>
+      <GoogleAuth />
+    </Wrapper>
   );
 };
 

@@ -8,52 +8,52 @@ export const UserWrapper = styled.div`
   height: auto;
   margin-left: auto;
   background-color: ${props => props.theme.colors.backgroundModal};
-  box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
+  box-shadow: ${props => props.theme.shadows.default};
   border-radius: 20px;
   margin-top: 18px;
   display: flex;
   flex-direction: column;
   padding: 20px 8px;
 
-  @media screen and (min-width: 768px) {
+  @media ${props => props.theme.media.tab} {
     margin-top: 24px;
     flex-direction: row-reverse;
     max-width: 704px;
     padding: 20px;
   }
 
-  @media screen and (min-width: 1280px) {
+  @media ${props => props.theme.media.desk} {
     width: 395px;
     flex-direction: column;
   }
 `;
 
 export const Wrap = styled.div`
-  @media screen and (min-width: 1280px) {
+  @media ${props => props.theme.media.desk} {
     display: flex;
     flex-direction: column;
   }
 `;
 
 export const Title = styled.p`
-  font-family: 'Manrope';
+  font-family: ${props => props.theme.fonts.main};
   font-style: normal;
-  font-weight: 500;
-  font-size: 20px;
+  font-weight: ${props => props.theme.fontWeiths.semi};
+  font-size: ${props => props.theme.fontSizes.m};
   line-height: 1.35;
   letter-spacing: 0.04em;
   color: ${props => props.theme.colors.textColor};
 
-  @media screen and (min-width: 768px) {
-    font-size: 28px;
+  @media ${props => props.theme.media.tab} {
+    font-size: ${props => props.theme.fontSizes.xl};
   }
 `;
 
 export const Avatar = styled.div`
   width: 182px;
   height: 182px;
-  background-color: #54adff;
-  border-radius: 40px;
+  background-color: ${props => props.theme.colors.link};
+  border-radius: ${props => props.theme.radius.normal};
   margin-top: 20px;
 `;
 
@@ -70,7 +70,7 @@ export const Photo = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 40px;
+  border-radius: ${props => props.theme.radius.normal};
 `;
 
 export const AvatarContainer = styled.div`
@@ -112,18 +112,18 @@ export const LogOutBtn = styled.button`
 `;
 
 export const BtnText = styled.p`
-  font-family: 'Manrope';
+  font-family: ${props => props.theme.fonts.main};
   font-style: normal;
-  font-weight: 400;
-  font-size: 12px;
+  font-weight: ${props => props.theme.fontWeiths.normal};
+  font-size: ${props => props.theme.fontSizes.xs};
   line-height: 22px;
 `;
 
 export const LogOutText = styled.p`
-  font-family: 'Manrope';
+  font-family: ${props => props.theme.fonts.main};
   font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
+  font-weight: ${props => props.theme.fontWeiths.semi};
+  font-size: ${props => props.theme.fontSizes.s};
   line-height: 22px;
   letter-spacing: 0.04em;
   color: ${props => props.theme.colors.inputText};

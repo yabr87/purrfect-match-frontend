@@ -61,6 +61,7 @@ export const PetHeader = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 24px;
+
 `;
 
 export const NoPetMessage = styled.p`
@@ -90,20 +91,19 @@ export const PetInfoWrap = styled.div`
 
 export const PetInfoItem = styled.p`
   font-family: ${props => props.theme.fonts.main};
-  font-style: normal;
-  font-weight: 400;
+  font-weight: ${props => props.theme.fontWeiths.normal};
   font-size: 14px;
   line-height: 1.57;
   letter-spacing: 0.04em;
   color: ${props => props.theme.colors.textColor};
 
-  @media screen and (min-width: 1280px) {
+  @media ${props => props.theme.media.desk} {
     font-size: 16px;
   }
 `;
 
 export const PetInfoTitle = styled.span`
-  font-weight: 700;
+  font-weight: ${props => props.theme.fontWeiths.bold};
 
   @media ${props => props.theme.media.tab} {
     font-weight: 600px;
