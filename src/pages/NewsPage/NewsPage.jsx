@@ -10,6 +10,8 @@ import Pagination from 'shared/components/Pagination';
 import { getAllNews } from 'utils/ApiNews';
 import { useSearchParams } from 'react-router-dom';
 
+import { NoSearchResult } from 'shared/components/Search/Search.styles';
+
 const NewsPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get('search');
@@ -85,7 +87,7 @@ const NewsPage = () => {
       {Boolean(news.length) ? (
         <NewsList items={news} />
       ) : (
-        !fetching && <div>{t('No_result')}</div>
+        !fetching && <NoSearchResult>{t('No_result')}</NoSearchResult>
       )}
       {totalPages > 1 && (
         <Pagination
