@@ -144,7 +144,7 @@ const UserData = () => {
               placeholder={t('City')}
             />
             <UserLabel style={{display: 'flex'}}>Balance:
-            <Balance>{user.balance || '0'}<BalanceIcon id='dollar' s='none' f='#111' /></Balance>
+            <Balance>{user.balance || '0'}<BalanceIcon id='dollar' s='none' f="currentColor" /></Balance>
               </UserLabel>
             <LogOutBtn onClick={handleLogOut}>
               <Icon id="logout" s="#54ADFF" />
