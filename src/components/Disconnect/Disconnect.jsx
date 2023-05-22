@@ -10,7 +10,7 @@ const Disconnect = () => {
         <Title>
           <h2>{t('disconnect_title')}</h2>
         </Title>
-        <Image />
+        <Image src={process.env.PUBLIC_URL + '/disconnected.jpg'} />
       </Disconnected>
     </Container>
   );
