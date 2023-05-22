@@ -4,7 +4,7 @@ import { Btn } from './Button.styles';
 const Button = ({ children, onClick, type = 'submit', ...props }) => {
   return (
     <Btn onClick={onClick} type={type} {...props}>
-      {children}
+      <span>{children}</span>
     </Btn>
   );
 };
