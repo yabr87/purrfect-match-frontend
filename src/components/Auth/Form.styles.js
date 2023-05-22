@@ -5,13 +5,8 @@ export const Forms = styled(Form)`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: ${props => props.theme.colors.backgroundModal};
-  border-radius: 37px;
   color: ${props => props.theme.colors.textColor};
-  padding: 40px 12px;
-  @media (min-width: 481px) {
-    padding: 60px 75px;
-  }
+  width: 100%;
 `;
 export const Input = styled(Field)`
   width: 100%;
@@ -75,4 +70,17 @@ export const ToggleBtn = styled.button`
   border: none;
   cursor: pointer;
   outline: none;
+`;
+export const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: ${props => props.theme.colors.backgroundModal};
+  border-radius: 37px;
+  color: ${props => props.theme.colors.textColor};
+  gap: 20px;
+  padding: 40px 12px;
+  @media (min-width: 481px) {
+    padding: 60px 75px;
+  }
 `;
