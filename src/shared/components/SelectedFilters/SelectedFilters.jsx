@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Icon from '../Icon';
 import {
   SelectedFiltersList,
@@ -7,6 +7,11 @@ import {
 
 const SelectedFilters = ({ filters = [], onChange, ...props }) => {
   const [selectedFilters, setSelectedFilters] = useState(filters);
+  useState(filters);
+  useEffect(() => {
+    setSelectedFilters(filters);
+  }, [filters]);
+
   const handleRemove = value => {
     const res = selectedFilters.filter(el => el.value !== value);
     setSelectedFilters(res);
