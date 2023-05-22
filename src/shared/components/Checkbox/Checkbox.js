@@ -6,7 +6,7 @@ import {
   CheckBoxValue,
 } from './Checkbox.styles';
 
-const Checkbox = ({ isChecked = false, value, label, onChange }) => {
+const Checkbox = ({ isChecked = false, value, label, name = '', onChange }) => {
   const [isCheckedState, setIsCheckedState] = useState(isChecked);
   // const onClick = () => {
   //   setIsCheckedState(!isCheckedState);
@@ -21,8 +21,10 @@ const Checkbox = ({ isChecked = false, value, label, onChange }) => {
     const newCheckedState = !isCheckedState;
     setIsCheckedState(!isCheckedState);
     const event = {
+      name,
       target: {
         value,
+        label,
         checked: newCheckedState,
       },
     };

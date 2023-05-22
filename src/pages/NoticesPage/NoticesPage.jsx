@@ -42,10 +42,30 @@ function NoticesPage() {
   const { categoryName } = useParams();
   const [category, setCategory] = useState(categoryName);
 
-  const selectedFilters = [
+  let selectedFilters = [
     { label: '3-12m', value: 'young' },
     { label: '1 year', value: 'adult' },
     { label: '2 years', value: 'old' },
+  ];
+
+  let filters = [
+    {
+      name: 'age',
+      title: 'By age',
+      options: [
+        { label: `1${t('year')}`, value: '1' },
+        { label: `2 ${t('year')}`, value: '2' },
+        { label: `3 ${t('years')}`, value: '3' }
+      ]
+    },
+    {
+      name: 'gender',
+      title: 'By gender',
+      options: [
+        { label: `${t('male')}`, value: 'male' },
+        { label: `${t('female')}`, value: 'female' }
+      ]
+    }
   ];
 
   const [title, setTitle] = useState(() => {
@@ -106,6 +126,10 @@ function NoticesPage() {
       .finally(setFetching(false));
   }, [categoryName, currentPage, title, sex, age]);
 
+  const deleteSelectedFilter = (filterToDelete) => {
+    selectedFilters = selectedFilters.filter(filter => filter.value !== filterToDelete.value)
+  }
+
   return (
     <Container>
       <NoticesSearch
@@ -125,6 +149,7 @@ function NoticesPage() {
           <NoticesFilters
             setSex={setSex}
             setAge={setAge}
+            filters={filters}
             setSearchParams={setSearchParams}
           />
           {isUpToWidth480 ? (
@@ -155,7 +180,7 @@ function NoticesPage() {
           justifyContent: 'flex-end',
         }}
       >
-        <SelectedFilters filters={selectedFilters}></SelectedFilters>
+        <SelectedFilters filters={selectedFilters} onChange={deleteSelectedFilter}></SelectedFilters>
       </div>
 
       {fetching && (

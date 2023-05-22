@@ -12,8 +12,9 @@ import {
   FiltersTitle,
 } from './NoticesFilters.styles';
 import Filter from '../../../shared/components/Filter/Filter';
+import MultiFilter from '../../../shared/components/Filter/MultiFilter';
 
-const NoticesFilters = React.memo(({ setSex, setAge, setSearchParams }) => {
+const NoticesFilters = React.memo(({ setSex, setAge, filters, setSearchParams }) => {
   const isUpToWidth480 = useMedia(['(max-width: 480px)'], [true], false);
 
   const [isFilterOpen, setIsFilterOpen] = useState(false);
@@ -41,7 +42,7 @@ const NoticesFilters = React.memo(({ setSex, setAge, setSearchParams }) => {
     setAge(ageValues);
   };
 
-  const ageFilterItems = [
+/*  const ageFilterItems = [
     { label: `1${t('year')}`, value: '1' },
     { label: `2 ${t('year')}`, value: '2' },
     { label: `3 ${t('years')}`, value: '3' },
@@ -50,6 +51,28 @@ const NoticesFilters = React.memo(({ setSex, setAge, setSearchParams }) => {
   const genderFilterItems = [
     { label: `${t('male')}`, value: 'male' },
     { label: `${t('female')}`, value: 'female' },
+  ];*/
+
+  let filterssss = [
+    {
+      name: 'age',
+      title: 'By age',
+      isSingleSelection: false,
+      options: [
+        { label: `1${t('year')}`, value: '1' },
+        { label: `2 ${t('year')}`, value: '2' },
+        { label: `3 ${t('years')}`, value: '3' }
+      ]
+    },
+    {
+      name: 'gender',
+      title: 'By gender',
+      isSingleSelection: true,
+      options: [
+        { label: `${t('male')}`, value: 'male' },
+        { label: `${t('female')}`, value: 'female' }
+      ]
+    }
   ];
 
   const handleGenderChange = event => {
@@ -90,20 +113,11 @@ const NoticesFilters = React.memo(({ setSex, setAge, setSearchParams }) => {
         <FilterOptions>
           <FiltersTitle>{t('Filters')}</FiltersTitle>
           <div style={{ position: 'relative' }}>
-            <Filter
-              filters={genderFilterItems}
-              title={t('By_gender')}
+            <MultiFilter
+              filters={filterssss}
               name="sex"
-              isSingleSelection={true}
               onChange={handleGenderChange}
-            ></Filter>
-            <Filter
-              filters={ageFilterItems}
-              title={t('By_age')}
-              name="age"
-              isSingleSelection={false}
-              onChange={handleAgeChange}
-            ></Filter>
+            ></MultiFilter>
           </div>
         </FilterOptions>
       )}
