@@ -31,7 +31,7 @@ const MoreInfo = ({
           <>
             <div role="group" aria-labelledby="choose-pet-option">
               <FormLabel>{t('The_Sex')}</FormLabel>
-              <RadioBox sex={values.sex}>
+              <RadioBox sex={values.sex} style={{position: 'relative'}}>
                 <MoreInfoRadio checked={values.sex === 'female'}>
                   <Icon id="female" w="10" h="18" />
                   {t('female')}
@@ -56,8 +56,8 @@ const MoreInfo = ({
                     checked={values.sex === 'male'}
                   />
                 </MoreInfoRadio>
-              </RadioBox>
               <Error name="sex" component="p" />
+              </RadioBox>
             </div>
           </>
         )}
@@ -89,7 +89,7 @@ const MoreInfo = ({
           </>
         )}
         {option === 'sell' && (
-          <FormLabel htmlFor="price" style={{ position: 'relative' }}>
+          <FormLabel htmlFor="price">
             {t('Price')}
             <StyledField
               name="price"
