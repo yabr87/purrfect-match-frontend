@@ -85,7 +85,7 @@ export const update = createAsyncThunk(
     try {
       const { auth } = getState();
       const result = await api.updateUserInfo(auth.token, data);
-      return result.data;
+      return result;
     } catch ({ message }) {
       return rejectWithValue(message);
     }

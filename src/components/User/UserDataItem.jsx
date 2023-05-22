@@ -7,10 +7,13 @@ import { current, update } from 'redux/auth/authOperations';
 import { convertToISODate } from 'utils/convertToISODate';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
+import { reverseISODate } from 'utils/reverseISODate';
 
 const UserDataItem = ({ name, type, pattern, value, placeholder }) => {
   const userData = useSelector(store => store.auth.user[name]);
-  const [data, setData] = useState(userData);
+  const [data, setData] = useState(() => {
+    return name === 'birthday' ? reverseISODate(userData) : userData;
+  });
   const [disable, setDisable] = useState(true);
   const token = useSelector(store => store.auth.token);
   const { t } = useTranslation();
@@ -18,7 +21,7 @@ const UserDataItem = ({ name, type, pattern, value, placeholder }) => {
 
   useEffect(() => {
     dispatch(current(token));
-  }, [dispatch, token, userData]);
+  }, [dispatch, token]);
 
   const handleInputEdit = () => {
     setDisable(false);
@@ -34,7 +37,6 @@ const UserDataItem = ({ name, type, pattern, value, placeholder }) => {
         name === 'birthday'
           ? { [name]: convertToISODate(data) }
           : { [name]: data };
-
       dispatch(update(token, req));
       toast.success(`${t(`${name} is_updated_succesfully!`)}`);
       setDisable(true);
