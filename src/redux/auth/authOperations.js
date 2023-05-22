@@ -81,11 +81,11 @@ export const current = createAsyncThunk(
 
 export const update = createAsyncThunk(
   'auth/update',
-  async (_, { rejectWithValue, getState }) => {
+  async (data, { rejectWithValue, getState }) => {
     try {
       const { auth } = getState();
-      const { data } = await api.updateUserInfo(auth.token);
-      return data;
+      const result = await api.updateUserInfo(auth.token, data);
+      return result.data;
     } catch ({ message }) {
       return rejectWithValue(message);
     }
