@@ -27,7 +27,7 @@ const Congrats = ({ close }) => {
           shape="solid"
           g="8"
           style={{
-            marginBottom: '8px',
+            maxWidth: '256px',
             width: '100%',
           }}
         >

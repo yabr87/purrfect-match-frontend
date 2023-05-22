@@ -14,8 +14,6 @@ import Congrats from 'components/ModalApproveAction/Congrats';
 const UserPage = () => {
   const { isRegisteredIn } = useAuth();
   const dispatch = useDispatch();
-  console.log(isRegisteredIn);
-
   const [isOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {

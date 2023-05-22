@@ -21,6 +21,9 @@ import {
   ContactLink,
   ContactLinkItem,
   ImageCategory,
+  ImageContainer,
+  ImageWrap,
+  PetDataListBody,
 } from './NoticeModal.styles';
 
 import Icon from 'shared/components/Icon';
@@ -77,28 +80,25 @@ const NoticeModal = ({ notice, close, setIsFavorite }) => {
     return format(Date.parse(date), 'dd.MM.yyyy');
   };
 
-  const addPrice = categoryName => {
-    if (categoryName === 'sell')
-      return (
-        <PetDataItem>
-          <NameCategory>{t('Price')}:</NameCategory>
-          <ValueCategory>{notice.price}$</ValueCategory>
-        </PetDataItem>
-      );
-  };
-
   return (
     <ContainerView>
       <PetCardData>
         <Wrap>
-          <PetImage src={notice.photoUrl} alt={notice.title} />
-          <ImageCategory>
-            {notice.category.replace('for-free', 'for free').replace(/-/g, '/')}
-          </ImageCategory>
+          <ImageContainer>
+            <ImageWrap>
+              <PetImage src={notice.photoUrl} alt={notice.title} />
+              <ImageCategory>
+                {notice.category
+                  .replace('for-free', 'for free')
+                  .replace(/-/g, '/')}
+              </ImageCategory>
+            </ImageWrap>
+          </ImageContainer>
+
           <PetDataListWrap>
             <Title>{notice.title}</Title>
             <PetDataList>
-              <tbody>
+              <PetDataListBody>
                 <PetDataItem>
                   <NameCategory>{t('Name')}:</NameCategory>
                   <ValueCategory>{notice.name}</ValueCategory>
@@ -121,7 +121,12 @@ const NoticeModal = ({ notice, close, setIsFavorite }) => {
                   <NameCategory>{t('The_sex')}:</NameCategory>
                   <ValueCategory>{notice.sex}</ValueCategory>
                 </PetDataItem>
-                {addPrice(notice.category)}
+                {notice.category === 'sell' && (
+                  <PetDataItem>
+                    <NameCategory>{t('Price')}:</NameCategory>
+                    <ValueCategory>{notice.price}$</ValueCategory>
+                  </PetDataItem>
+                )}
                 <PetDataItem>
                   <NameCategory>{t('Email')}:</NameCategory>
                   <ValueCategory>
@@ -140,7 +145,7 @@ const NoticeModal = ({ notice, close, setIsFavorite }) => {
                     </ContactLinkItem>
                   </ValueCategory>
                 </PetDataItem>
-              </tbody>
+              </PetDataListBody>
             </PetDataList>
           </PetDataListWrap>
         </Wrap>
@@ -157,7 +162,9 @@ const NoticeModal = ({ notice, close, setIsFavorite }) => {
             shape="solid"
             g="8"
             style={{
+              marginBottom: '8px',
               width: '100%',
+              maxWidth: '256px',
             }}
           >
             {t('Add_to')}
@@ -177,12 +184,13 @@ const NoticeModal = ({ notice, close, setIsFavorite }) => {
           <Button
             type="button"
             onClick={() => approveAddFavorite(notice)}
-            // w="256"
             h="40"
             shape="solid"
             g="8"
             style={{
+              marginBottom: '8px',
               width: '100%',
+              maxWidth: '256px',
             }}
           >
             {t('Add_to')}
