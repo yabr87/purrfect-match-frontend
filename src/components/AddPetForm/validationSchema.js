@@ -45,7 +45,7 @@ const validationSchema = (currentStep, selectedCategory, t) => {
     schema = schema.shape({
       photo: Yup.string().required(`${t('finish_upload_photo')}`),
       comments: Yup.string()
-        .required(`${t('Comments_is_required')}`)
+        .required(`${t('Comments_are_required')}`)
         .min(8, `${t('Comments_at_least_8')}`)
         .max(120, `${t('Comments_not_exceed_120')}`),
       sex: Yup.string().required(`${t('Sex_is_required')}`).oneOf(['male', 'female']),

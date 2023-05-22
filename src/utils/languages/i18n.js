@@ -180,7 +180,7 @@ i18n.use(initReactI18next).init({
         Breed_at_least_2: 'Breed must be at least 2 characters',
         Breed_not_exceed_16: 'Breed must not exceed 16 characters',
         finish_upload_photo: 'To finish form, please upload foto',
-        Comments_is_required: 'Comments is required',
+        Comments_are_required: 'Comments are required',
         Comments_at_least_8: 'Comments must be at least 8 characters',
         Comments_not_exceed_120: 'Comments must not exceed 120 characters',
         Sex_is_required: 'Sex is required',
@@ -378,7 +378,7 @@ i18n.use(initReactI18next).init({
         Breed_not_exceed_16: 'Порода не повинна перевищувати 16 символів',
         finish_upload_photo:
           'Для завершення форми, будь ласка, завантажте фото',
-        Comments_is_required: 'Коментарі - обовʼязкове поле',
+        Comments_are_required: 'Коментарі - обовʼязкове поле',
         Comments_at_least_8: 'Коментарі повинні містити не менше 8 символів',
         Comments_not_exceed_120:
           'Коментарі не повинні перевищувати 120 символів',
