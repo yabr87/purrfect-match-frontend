@@ -16,8 +16,8 @@ const SelectedFilters = ({ filters = [], onChange, setAge, ...props }) => {
     const newAge = filters
       .filter(el => el.value !== value)
       .map(filter => filter.value);
-    setAge(newAge); // оновити стан age
-    onChange(newAge); // додати цей рядок, якщо ви хочете викликати зовнішню функцію onChange
+    setAge(newAge);
+    onChange(newAge);
   };
 
   return (
