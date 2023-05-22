@@ -158,19 +158,19 @@ i18n.use(initReactI18next).init({
 
         //addPetForm_validation
         only_letters_apostrophes_dashes_spaces:
-          'Title may contain only letters, apostrophes, dashes, and spaces. For example: Adorable Puppies for Adoption',
+          'Title may contain only letters, apostrophes, dashes, and spaces',
         Title_is_required: 'Title is required',
         Title_at_least_4: 'Title must be at least 4 characters',
         Title_not_exceed_20: 'Title must not exceed 20 characters',
         Name_is_required: 'Name is required',
         Name_letters_hyphens_apostrophe_dash_spaces:
-          'Name may contain only letters, apostrophe, dash, and spaces. For example: Bobby, Buddy',
+          'Name may contain only letters, apostrophe, dash, and spaces',
         Name_at_least_2: 'Name must be at least 2 characters',
         Name_not_exceed_16: 'Name must not exceed 16 characters',
         Birthday_is_required: 'Birthday is required',
         Breed_is_required: 'Breed is required',
         Breed_letters_hyphens_apostrophes_commas_periods_spaces:
-          'Please enter your pet`s breed using only letters, hyphens, apostrophes, commas, periods, and spaces. (For example: Golden Retriever, Siamese, Bulldog)',
+          'Breed may contain only letters, apostrophes and spaces',
         Breed_at_least_2: 'Breed must be at least 2 characters',
         Breed_not_exceed_16: 'Breed must not exceed 16 characters',
         finish_upload_photo: 'To finish form, please upload foto',
@@ -361,19 +361,19 @@ i18n.use(initReactI18next).init({
 
         //addPetForm_validation
         only_letters_apostrophes_dashes_spaces:
-          'Заголовок може містити лише літери, апострофи, тире та пробіли. Наприклад: Чарівні цуценята для усиновлення',
+          'Заголовок може містити лише літери, апострофи та пробіли.',
         Title_is_required: 'Заголовок - обовʼязкове поле',
         Title_at_least_4: 'Заголовок повинен містити не менше 4 символів',
         Title_not_exceed_20: 'Заголовок не повинен перевищувати 20 символів',
         Name_is_required: 'Імʼя - обовʼязкове поле',
         Name_letters_hyphens_apostrophe_dash_spaces:
-          'Імʼя може містити тільки літери, апостроф, тире і пробіли. Наприклад: Боббі, Бадді',
+          'Імʼя може містити тільки літери, апостроф, тире і пробіли.',
         Name_at_least_2: 'Імʼя повинно містити не менше 2 символів',
         Name_not_exceed_16: 'Імʼя не повинно перевищувати 16 символів',
         Birthday_is_required: 'Дата народження - обовʼязкове поле',
         Breed_is_required: 'Порода - обовʼязкове поле',
         Breed_letters_hyphens_apostrophes_commas_periods_spaces:
-          'Будь ласка, введіть породу вашої тваринки, використовуючи тільки букви, дефіси, апострофи, коми, періоди і пробіли. (Наприклад: Золотистий ретривер, Сіамський, бульдог)',
+          'Порода може містити тільки літери, апостроф, тире і пробіли.',
         Breed_at_least_2: 'Порода повинно містити не менше 2 символів',
         Breed_not_exceed_16: 'Порода не повинна перевищувати 16 символів',
         finish_upload_photo:
