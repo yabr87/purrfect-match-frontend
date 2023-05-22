@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const AuthContainer = styled.ul`
@@ -50,7 +50,7 @@ export const AuthItem = styled.li`
   }
 `;
 
-export const AuthLink = styled(NavLink)`
+export const AuthLink = styled(Link)`
   display: flex;
   align-items: center;
   justify-content: center;

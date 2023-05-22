@@ -59,12 +59,13 @@ const AddPetForm = () => {
     try {
       if (selectedCategory !== 'my-pet') {
         await addNotice(newPet);
+        navigate(`/notices/${selectedCategory}`);
       } else {
         await addMyPet(newPet);
+        navigate(`/user`);
       }
       toast.success(t('alert_Pet_added_successfully'));
       resetForm();
-      navigate(`/notices/${selectedCategory}`);
     } catch (error) {
       toast.error(`${t('alert_Failed_to_add_pet')}:${error}`);
     }

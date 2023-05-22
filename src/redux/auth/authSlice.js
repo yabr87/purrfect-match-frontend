@@ -36,11 +36,15 @@ const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    clearError: state => {
-      state.error = null;
+    clearError: store => {
+      store.error = null;
     },
-    statusIsRegister: (state, { payload }) => {
-      state.isRegister = payload;
+    statusIsRegister: (store, { payload }) => {
+      store.isRegister = payload;
+    },
+    setTokens: (store, { payload }) => {
+      store.token = payload.accessToken;
+      store.refreshToken = payload.refreshToken;
     },
   },
   extraReducers: builder => {
@@ -79,4 +83,4 @@ const authSlice = createSlice({
 });
 
 export default authSlice;
-export const { clearError, statusIsRegister } = authSlice.actions;
+export const { clearError, statusIsRegister, setTokens } = authSlice.actions;

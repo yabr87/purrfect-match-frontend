@@ -48,7 +48,7 @@ i18n.use(initReactI18next).init({
         Log_Out: 'Log Out',
         Birthday: 'Birthday',
         City: 'City',
-        Balance:'Balance',
+        Balance: 'Balance',
 
         remove: 'remove',
         Name: 'Name',
@@ -76,8 +76,6 @@ i18n.use(initReactI18next).init({
         No_result: 'There is no result',
         Read_more: 'Read more',
 
-        alert_register_signin:
-          'Please register or sign in to be able to add pet',
         Find_your_favorite_pet: 'Find your favorite pet',
         Filter: 'Filter',
         Filters: 'Filters',
@@ -93,11 +91,7 @@ i18n.use(initReactI18next).init({
         in_good_hands: 'in good hands',
         favorites_ads: 'favorite ads',
         my_ads: 'my ads',
-        alert_failed_delete: 'Failed to delete notice. Please try again later.',
         Learn_more: 'Learn more',
-        alert_signin_fav: 'Please sign in to add to favorites',
-        alert_insufficient_funds: 'Insufficient funds on your balance',
-        alert_failed_update: 'Failed to update notice. Please try again later.',
         alert_pet_removed: 'removed',
         for_free: 'for free',
         Price: 'Price',
@@ -158,29 +152,29 @@ i18n.use(initReactI18next).init({
         Please_fill_all_the_fields: 'Please fill all the fields',
         The_Sex: 'The Sex',
         Add_photo: 'Add photo',
-        Drag_the_scroll_to_raise_your_ad: 'Drag the scroll to raise your ad',
+        You_can_add_payment: 'You can add payment here',
         Type_of_price: 'Type of price',
         Type_your_location: 'Type your location',
 
         //addPetForm_validation
         only_letters_apostrophes_dashes_spaces:
-          'Title may contain only letters, apostrophes, dashes, and spaces. For example: Adorable Puppies for Adoption',
+          'Title may contain only letters, apostrophes, dashes, and spaces',
         Title_is_required: 'Title is required',
         Title_at_least_4: 'Title must be at least 4 characters',
         Title_not_exceed_20: 'Title must not exceed 20 characters',
         Name_is_required: 'Name is required',
         Name_letters_hyphens_apostrophe_dash_spaces:
-          'Name may contain only letters, apostrophe, dash, and spaces. For example: Bobby, Buddy',
+          'Name may contain only letters, apostrophe, dash, and spaces',
         Name_at_least_2: 'Name must be at least 2 characters',
         Name_not_exceed_16: 'Name must not exceed 16 characters',
         Birthday_is_required: 'Birthday is required',
         Breed_is_required: 'Breed is required',
         Breed_letters_hyphens_apostrophes_commas_periods_spaces:
-          'Please enter your pet`s breed using only letters, hyphens, apostrophes, commas, periods, and spaces. (For example: Golden Retriever, Siamese, Bulldog)',
+          'Breed may contain only letters, apostrophes and spaces',
         Breed_at_least_2: 'Breed must be at least 2 characters',
         Breed_not_exceed_16: 'Breed must not exceed 16 characters',
         finish_upload_photo: 'To finish form, please upload foto',
-        Comments_is_required: 'Comments is required',
+        Comments_are_required: 'Comments are required',
         Comments_at_least_8: 'Comments must be at least 8 characters',
         Comments_not_exceed_120: 'Comments must not exceed 120 characters',
         Sex_is_required: 'Sex is required',
@@ -200,6 +194,13 @@ i18n.use(initReactI18next).init({
         alert_Try_another_image: 'Try another image',
         alert_Pet_added_successfully: 'Pet added successfully',
         alert_Failed_to_add_pet: 'Failed to add pet',
+        alert_You_removed_one_filters: 'You removed one of the filters',
+        alert_failed_delete: 'Failed to delete notice. Please try again later.',
+        alert_signin_fav: 'Please sign in to add to favorites',
+        alert_insufficient_funds: 'Insufficient funds on your balance',
+        alert_failed_update: 'Failed to update notice. Please try again later.',
+        alert_register_signin:
+        'Please register or sign in to be able to add pet',
       },
     },
     ukr: {
@@ -242,7 +243,7 @@ i18n.use(initReactI18next).init({
         Log_Out: 'Вийти',
         Birthday: 'День народження',
         City: 'Місто',
-        Balance:'Баланс',
+        Balance: 'Баланс',
 
         remove: 'видалити',
         Name: 'Імʼя',
@@ -354,31 +355,30 @@ i18n.use(initReactI18next).init({
         Please_fill_all_the_fields: 'Будь ласка, заповніть всі поля',
         The_Sex: 'Стать',
         Add_photo: 'Додати фото',
-        Drag_the_scroll_to_raise_your_ad:
-          'Перетягніть прокрутку, щоб підвищити оголошення',
+        You_can_add_payment: 'Підніміть оголошення за доплату',
         Type_of_price: 'Вкажіть ціну',
         Type_your_location: 'Вкажіть локацію',
 
         //addPetForm_validation
         only_letters_apostrophes_dashes_spaces:
-          'Заголовок може містити лише літери, апострофи, тире та пробіли. Наприклад: Чарівні цуценята для усиновлення',
+          'Заголовок може містити лише літери, апострофи та пробіли.',
         Title_is_required: 'Заголовок - обовʼязкове поле',
         Title_at_least_4: 'Заголовок повинен містити не менше 4 символів',
         Title_not_exceed_20: 'Заголовок не повинен перевищувати 20 символів',
         Name_is_required: 'Імʼя - обовʼязкове поле',
         Name_letters_hyphens_apostrophe_dash_spaces:
-          'Імʼя може містити тільки літери, апостроф, тире і пробіли. Наприклад: Боббі, Бадді',
+          'Імʼя може містити тільки літери, апостроф, тире і пробіли.',
         Name_at_least_2: 'Імʼя повинно містити не менше 2 символів',
         Name_not_exceed_16: 'Імʼя не повинно перевищувати 16 символів',
         Birthday_is_required: 'Дата народження - обовʼязкове поле',
         Breed_is_required: 'Порода - обовʼязкове поле',
         Breed_letters_hyphens_apostrophes_commas_periods_spaces:
-          'Будь ласка, введіть породу вашої тваринки, використовуючи тільки букви, дефіси, апострофи, коми, періоди і пробіли. (Наприклад: Золотистий ретривер, Сіамський, бульдог)',
+          'Порода може містити тільки літери, апостроф, тире і пробіли.',
         Breed_at_least_2: 'Порода повинно містити не менше 2 символів',
         Breed_not_exceed_16: 'Порода не повинна перевищувати 16 символів',
         finish_upload_photo:
           'Для завершення форми, будь ласка, завантажте фото',
-        Comments_is_required: 'Коментарі - обовʼязкове поле',
+        Comments_are_required: 'Коментарі - обовʼязкове поле',
         Comments_at_least_8: 'Коментарі повинні містити не менше 8 символів',
         Comments_not_exceed_120:
           'Коментарі не повинні перевищувати 120 символів',
@@ -399,6 +399,7 @@ i18n.use(initReactI18next).init({
         alert_Try_another_image: 'Спробуйте інше зображення',
         alert_Pet_added_successfully: 'Тваринка додана успішно',
         alert_Failed_to_add_pet: 'Не вдалося додати тваринку',
+        alert_You_removed_one_filters: 'Ви видалили один з фільтрів',
       },
     },
   },

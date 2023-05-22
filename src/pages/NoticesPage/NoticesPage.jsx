@@ -16,6 +16,8 @@ import Container from 'shared/components/Container';
 import Icon from 'shared/components/Icon/Icon';
 import { useMedia } from 'shared/hooks/useMedia';
 
+import { toast } from 'react-toastify';
+
 import { getNotices } from 'utils/ApiNotices';
 import SelectedFilters from '../../shared/components/SelectedFilters/SelectedFilters';
 
@@ -28,7 +30,8 @@ function NoticesPage() {
   const { t } = useTranslation();
 
   const handleAddPet = () => {
-    isLoggedIn ? navigate('/add-pet') : alert(t('alert_register_signin'));
+    isLoggedIn ? navigate('/add-pet') : toast.error(t('alert_register_signin'));
+      
   };
   const [age, setAge] = useState([]);
   const [sex, setSex] = useState('');
@@ -42,11 +45,20 @@ function NoticesPage() {
   const { categoryName } = useParams();
   const [category, setCategory] = useState(categoryName);
 
-  const selectedFilters = [
-    { label: '0-12m', value: 'young' },
-    { label: '1 year', value: 'adult' },
-    { label: ' from 2 years', value: 'old' },
-  ];
+  const getAgeLabel = value => {
+    switch (value) {
+      case '0':
+        return `0-12 ${t('months')}`;
+      case '1':
+        return `1 ${t('year')}`;
+      case '2':
+        return `from 2 ${t('years')}`;
+      default:
+        return '';
+    }
+  };
+
+  const selectedFilters = age.map(a => ({ label: getAgeLabel(a), value: a }));
 
   const [title, setTitle] = useState(() => {
     const titleSearch = searchParams.get('title');
@@ -166,8 +178,9 @@ function NoticesPage() {
       >
         <SelectedFilters
           filters={selectedFilters}
+          setAge={setAge}
           onChange={() => {
-            alert('Are you sure?');
+            toast.warning(t('You removed one of the filters'));
           }}
         />
       </div>

@@ -124,7 +124,7 @@ const MoreInfo = ({
                   {t('Raise_your_ad_only_for')} {values.promo}$!
                 </p>
               ) : (
-                <p>{t('Drag_the_scroll_to_raise_your_ad')}!</p>
+                <p>{t('You_can_add_payment')}!</p>
               )}
               <StyledField
                 type="range"

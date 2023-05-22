@@ -142,8 +142,7 @@ const EditModal = ({ notice, close, approve, handleEditClose }) => {
                         </p>
                       ) : (
                         <>
-                          <p>{t('Add_payment_to_raise')}!</p>
-                          <p>{t('Just_scroll_your_value')}:</p>
+                          <p>{t('You_can_add_payment')}!</p>
                         </>
                       )}
                       <EditField

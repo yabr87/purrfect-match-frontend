@@ -28,7 +28,6 @@ export const EditInputBtn = styled.button`
     right: 12px;
     padding: 4px;
    }
-
 `;
 
 export const UserLabel = styled.label`

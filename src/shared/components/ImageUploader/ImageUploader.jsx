@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 import { useFormikContext } from 'formik';
 import {
   FileInput,
@@ -20,7 +21,7 @@ const ImageUploader = () => {
     } else {
       setFile('');
       setFieldValue('photo', '');
-      alert('Please select a file smaller than 3 MB.'); //можно заменить модальным окном
+      toast.error('Please select a file smaller than 3 MB.');
     }
   };
 

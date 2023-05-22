@@ -14,6 +14,7 @@ import {
   Error,
   Lable,
   AbsoluteDiv,
+  Wrapper,
 } from '../Form.styles';
 import Input from '../Input/Input';
 import Button from 'shared/components/Button/Button';
@@ -26,6 +27,7 @@ import { useNavigate } from 'react-router-dom';
 import useAuth from 'shared/hooks/useAuth';
 import { toast } from 'react-toastify';
 import { clearError } from 'redux/auth/authSlice';
+import GoogleAuth from '../GoogleAuth';
 
 const validateShecma = t =>
   Yup.object().shape({
@@ -58,68 +60,71 @@ const LoginForm = () => {
   }, [isLoggedIn, navigate, isError, dispatch]);
 
   return (
-    <Formik
-      initialValues={{ email: '', password: '' }}
-      onSubmit={(values, actions) => {
-        dispatch(
-          login({
-            email: values.email,
-            password: values.password,
-          })
-        );
-        actions.resetForm();
-      }}
-      validationSchema={validateShecma(t)}
-    >
-      {({ errors, touched, values }) => (
-        <Forms>
-          <Title
-            as="p"
-            weight="500"
-            tabSize="36"
-            tabLine="1.36"
-            tabweight="500"
-            deskWeight="500"
-            deskSize="36"
-            deskLine="1.36"
-          >
-            {t('Login_title')}
-          </Title>
-          <InputContainer>
-            <Lable>
-              <InputEmail
-                type="text"
-                name="email"
-                placeholder={t('Email')}
-                error={errors.email && touched.email ? '#f43f5e' : '#54adff'}
+    <Wrapper>
+      <Formik
+        initialValues={{ email: '', password: '' }}
+        onSubmit={(values, actions) => {
+          dispatch(
+            login({
+              email: values.email,
+              password: values.password,
+            })
+          );
+          actions.resetForm();
+        }}
+        validationSchema={validateShecma(t)}
+      >
+        {({ errors, touched, values }) => (
+          <Forms>
+            <Title
+              as="p"
+              weight="500"
+              tabSize="36"
+              tabLine="1.36"
+              tabweight="500"
+              deskWeight="500"
+              deskSize="36"
+              deskLine="1.36"
+            >
+              {t('Login_title')}
+            </Title>
+            <InputContainer>
+              <Lable>
+                <InputEmail
+                  type="text"
+                  name="email"
+                  placeholder={t('Email')}
+                  error={errors.email && touched.email ? '#f43f5e' : '#54adff'}
+                />
+                {errors.email && touched.email && (
+                  <>
+                    <AbsoluteDiv>
+                      <Icon id={'cross'} s={'red'} />
+                    </AbsoluteDiv>
+                    <ErrorMessage component={Error} name="email" />
+                  </>
+                )}
+              </Lable>
+              <Input
+                error={errors.password}
+                touched={touched.password}
+                name={'password'}
+                placeholder={t('Password')}
+                value={values.password}
               />
-              {errors.email && touched.email && (
-                <>
-                  <AbsoluteDiv>
-                    <Icon id={'cross'} s={'red'} />
-                  </AbsoluteDiv>
-                  <ErrorMessage component={Error} name="email" />
-                </>
-              )}
-            </Lable>
-            <Input
-              error={errors.password}
-              touched={touched.password}
-              name={'password'}
-              placeholder={t('Password')}
-              value={values.password}
-            />
-          </InputContainer>
-          <Button shape={'solid'} w={'100%'} h={'48'}>
-            {t('Log_IN')}
-          </Button>
-          <Text>
-            {t('Dont_have_an_account')}?
-            <StyledLink to={'/register'}> {t('Register')}</StyledLink>
-          </Text>
-        </Forms>
-      )}
-    </Formik>
+            </InputContainer>
+            <Button shape={'solid'} w={'100%'} h={'48'}>
+              {t('Log_IN')}
+            </Button>
+            <Text>
+              {t('Dont_have_an_account')}?
+              <StyledLink to={'/register'}> {t('Register')}</StyledLink>
+            </Text>
+          </Forms>
+        )}
+      </Formik>
+      <GoogleAuth />
+    </Wrapper>
   );
 };
 
