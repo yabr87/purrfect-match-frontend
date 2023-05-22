@@ -167,7 +167,7 @@ function NoticesPage() {
         <SelectedFilters
           filters={selectedFilters}
           onChange={updatedFilters => {
-            console.log(updatedFilters);
+            alert('Are you sure?');
           }}
         />
       </div>
