@@ -166,7 +166,7 @@ function NoticesPage() {
       >
         <SelectedFilters
           filters={selectedFilters}
-          onChange={updatedFilters => {
+          onChange={() => {
             alert('Are you sure?');
           }}
         />
