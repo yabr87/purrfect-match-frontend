@@ -43,15 +43,26 @@ const PetsData = () => {
   const handleDeletePet = item => {
     dispatch(deleteMyPet(item._id));
     setIsModalDeleteOpen(false);
+    document.body.style.overflow = '';
 
     toast.success(`${item.name}: ${t('alert_pet_removed')}`);
+  };
+
+  const handleModalOpen = () => {
+    setIsModalDeleteOpen(true);
+    document.body.style.overflow = 'hidden';
+  };
+
+  const handleModalClose = () => {
+    setIsModalDeleteOpen(false);
+    document.body.style.overflow = '';
   };
 
   const petCard = item => (
     <PetContainer key={item._id}>
       <PetAvatar src={item.photoUrl} />
       <PetInfoWrap>
-        <DelPetBtn onClick={() => setIsModalDeleteOpen(true)}>
+        <DelPetBtn onClick={handleModalOpen}>
           <Icon id="trash" s="#54ADFF" />
         </DelPetBtn>
         <PetInfoItem>
@@ -73,7 +84,7 @@ const PetsData = () => {
           <Delete
             item={item}
             approve={() => handleDeletePet(item)}
-            close={() => setIsModalDeleteOpen(false)}
+            close={handleModalClose}
           />
         </ModalApproveAction>
       )}
@@ -81,20 +92,20 @@ const PetsData = () => {
   );
 
   return (
-      <PetWrap>
-        <PetHeader>
-          <Title>{t('My_pets')}:</Title>
-          <Button onClick={handleClick} type="button" shape="solid" g="8">
-            <p>{t('Add_pet')}</p>
-            <Icon id="plus-small" s="#FEF9F9" />
-          </Button>
-        </PetHeader>
-        {pets.length ? (
-          pets.map(item => petCard(item))
-        ) : (
-          <NoPetMessage>{t('No_pats_yet')} 😔</NoPetMessage>
-        )}
-      </PetWrap>
+    <PetWrap>
+      <PetHeader>
+        <Title>{t('My_pets')}:</Title>
+        <Button onClick={handleClick} type="button" shape="solid" g="8">
+          <p>{t('Add_pet')}</p>
+          <Icon id="plus-small" s="#FEF9F9" />
+        </Button>
+      </PetHeader>
+      {pets.length ? (
+        pets.map(item => petCard(item))
+      ) : (
+        <NoPetMessage>{t('No_pats_yet')} 😔</NoPetMessage>
+      )}
+    </PetWrap>
   );
 };
 

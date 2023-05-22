@@ -19,9 +19,15 @@ const UserPage = () => {
   useEffect(() => {
     if (isRegisteredIn) {
       setIsModalOpen(isRegisteredIn);
+      document.body.style.overflow = 'hidden';
       dispatch(statusIsRegister(false));
     }
   }, [isRegisteredIn, dispatch]);
+
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+    document.body.style.overflow = '';
+  };
 
   return (
     <Container>
@@ -30,8 +36,8 @@ const UserPage = () => {
         <PetsInfo />
       </User>
       {isOpen && (
-        <ModalApproveAction close={() => setIsModalOpen(false)}>
-          <Congrats close={() => setIsModalOpen(false)} />
+        <ModalApproveAction close={handleModalClose}>
+          <Congrats close={handleModalClose} />
         </ModalApproveAction>
       )}
     </Container>

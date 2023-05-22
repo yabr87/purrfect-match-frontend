@@ -40,6 +40,12 @@ const Header = () => {
 
   const handleLogout = () => {
     setIsModalLogoutOpen(true);
+    document.body.style.overflow = 'hidden';
+  };
+
+  const handleModalLogoutClose = () => {
+    setIsModalLogoutOpen(false);
+    document.body.style.overflow = '';
   };
 
   const userBar = isLoggedIn ? (
@@ -59,10 +65,10 @@ const Header = () => {
           <Logo />
           {isDesktop && (
             <>
-              <div style={{ display: 'flex', marginLeft: 'auto', gap: '40px'}}>
+              <div style={{ display: 'flex', marginLeft: 'auto', gap: '40px' }}>
                 {nav}
-                  <Switcher />
-                  <LanguageSwitcher />
+                <Switcher />
+                <LanguageSwitcher />
               </div>
               {userBar}
             </>
@@ -95,7 +101,14 @@ const Header = () => {
                 </OpenLinksButton>
                 {isMobileNavOpen && (
                   <MobileContainer>
-                    <div style={{display: 'flex', alignItems: 'center', gap: '40px', marginTop: '40px'}}>
+                    <div
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '40px',
+                        marginTop: '40px',
+                      }}
+                    >
                       <Switcher />
                       <LanguageSwitcher />
                     </div>
@@ -107,8 +120,8 @@ const Header = () => {
             )}
           </HeaderIcons>
           {isModalLogoutOpen && (
-            <ModalApproveAction close={() => setIsModalLogoutOpen(false)}>
-              <Logout close={() => setIsModalLogoutOpen(false)} />
+            <ModalApproveAction close={handleModalLogoutClose}>
+              <Logout close={handleModalLogoutClose} />
             </ModalApproveAction>
           )}
         </HeaderContainer>

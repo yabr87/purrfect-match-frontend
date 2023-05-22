@@ -65,6 +65,7 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
     try {
       await deleteNotice(notice._id);
       deleteAndRefresh(notice._id);
+      document.body.style.overflow = '';
       toast.success(`${notice.title}: ${t('alert_pet_removed')}`);
     } catch (error) {
       toast.warn(t('alert_failed_delete'));
@@ -87,6 +88,26 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
     } catch (error) {
       console.error('Failed to fetch updated notice:', error);
     }
+  };
+
+  const handleModalOpen = () => {
+    setIsModalOpen(true);
+    document.body.style.overflow = 'hidden';
+  };
+
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+    document.body.style.overflow = '';
+  };
+
+  const handleModalDeleteOpen = () => {
+    setIsModalDeleteOpen(true);
+    document.body.style.overflow = 'hidden';
+  };
+
+  const handleModalDeleteClose = () => {
+    setIsModalDeleteOpen(false);
+    document.body.style.overflow = '';
   };
 
   const promo = Date.parse(notice.promoDate) > Date.now();
@@ -126,14 +147,14 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
       </CardImageContainer>
       <BelowItemContainer>
         <PhotoDescription>{notice.title}</PhotoDescription>
-        <LearnMore onButtonClick={() => setIsModalOpen(true)} />
+        <LearnMore onButtonClick={handleModalOpen} />
       </BelowItemContainer>
       {/* {isModalOpen && <ModalNoticeTest close={() => setIsModalOpen(false)} />} */}
       {isModalOpen && (
-        <ModalApproveAction close={() => setIsModalOpen(false)}>
+        <ModalApproveAction close={handleModalClose}>
           <NoticeModal
             notice={notice}
-            close={() => setIsModalOpen(false)}
+            close={handleModalClose}
             setIsFavorite={setIsFavorite}
           />
         </ModalApproveAction>
@@ -146,7 +167,7 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
             pos="absolute"
             t="68px"
             r="12px"
-            onClick={() => setIsModalDeleteOpen(true)}
+            onClick={handleModalDeleteOpen}
           />
           <CircleButton
             id="edit"
@@ -161,11 +182,11 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
         </>
       )}
       {isModalDeleteOpen && (
-        <ModalApproveAction close={() => setIsModalDeleteOpen(false)}>
+        <ModalApproveAction close={handleModalDeleteClose}>
           <Delete
             notice={notice}
             approve={() => handleDelete(notice)}
-            close={() => setIsModalDeleteOpen(false)}
+            close={handleModalDeleteClose}
           />
         </ModalApproveAction>
       )}
