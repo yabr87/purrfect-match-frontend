@@ -78,3 +78,24 @@ export const current = createAsyncThunk(
     },
   }
 );
+
+export const update = createAsyncThunk(
+  'auth/update',
+  async (_, { rejectWithValue, getState }) => {
+    try {
+      const { auth } = getState();
+      const { data } = await api.updateUserInfo(auth.token);
+      return data;
+    } catch ({ message }) {
+      return rejectWithValue(message);
+    }
+  },
+  {
+    condition: (_, { getState }) => {
+      const { auth } = getState();
+      if (!auth.token) {
+        return false;
+      }
+    },
+  }
+);

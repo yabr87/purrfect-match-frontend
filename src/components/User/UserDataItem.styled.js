@@ -24,10 +24,10 @@ export const EditInputBtn = styled.button`
   cursor: pointer;
   padding: 2px;
 
-   @media ${props => props.theme.media.tab} {
+  @media ${props => props.theme.media.tab} {
     right: 12px;
     padding: 4px;
-   }
+  }
 `;
 
 export const UserLabel = styled.label`

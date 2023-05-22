@@ -2,21 +2,23 @@ import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { UserInput, ItemContainer, EditInputBtn, UserLabel } from './';
 import Icon from 'shared/components/Icon/Icon';
-import { useSelector } from 'react-redux';
-import { updateUserInfo } from 'utils/Api';
+import { useSelector, useDispatch } from 'react-redux';
+import { current, update } from 'redux/auth/authOperations';
 import { convertToISODate } from 'utils/convertToISODate';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 
 const UserDataItem = ({ name, type, pattern, value, placeholder }) => {
-  const [data, setData] = useState(value);
+  const userData = useSelector(store => store.auth.user[name]);
+  const [data, setData] = useState(userData);
   const [disable, setDisable] = useState(true);
   const token = useSelector(store => store.auth.token);
   const { t } = useTranslation();
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    setData(value);
-  }, [value]);
+    dispatch(current(token));
+  }, [dispatch, token, userData]);
 
   const handleInputEdit = () => {
     setDisable(false);
@@ -30,13 +32,14 @@ const UserDataItem = ({ name, type, pattern, value, placeholder }) => {
       }
       const req =
         name === 'birthday'
-          ? { [name]: convertToISODate(data) }
-          : { [name]: data };
+          ? { [name]: convertToISODate(userData) }
+          : { [name]: userData };
 
-      await updateUserInfo(token, req);
+      dispatch(update(token, req));
+      toast.success(`${t(`${name} is_updated_succesfully!`)}`);
       setDisable(true);
     } catch (error) {
-      toast.error(`${t('alert_Not_correct_value')}!`, {
+      toast.error(`${t('alert_Not_correct_value!')}!`, {
         position: toast.POSITION.TOP_RIGHT,
       });
     }
