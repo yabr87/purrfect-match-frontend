@@ -5,6 +5,8 @@ export const LanguageSelectorContainer = styled.div``;
 export const Select = styled.select`
   display: block;
   border: none;
+  outline: none;
+  cursor: pointer;
   background: transparent;
 
   font-weight: ${props => props.theme.fontWeiths.semi};

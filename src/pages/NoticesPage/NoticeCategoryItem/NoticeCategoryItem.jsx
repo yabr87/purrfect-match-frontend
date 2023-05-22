@@ -71,22 +71,34 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
     }
   };
 
-  const handleEdit = async id => {
+  const handleEditClose = async editedNotice => {
+    setIsModalEditOpen(false);
     try {
-      console.log('Pet is edited');
-      // await editNotice(id)
+      const updatedNotice = await getNoticeById(editedNotice._id);
+      setNotices(prevNotices => {
+        const updatedNotices = prevNotices.map(item => {
+          if (item._id === updatedNotice._id) {
+            return updatedNotice;
+          }
+          return item;
+        });
+        return updatedNotices;
+      });
     } catch (error) {
-      alert(t('alert_failed_update'));
+      console.error('Failed to fetch updated notice:', error);
     }
   };
 
+  const promo = Date.parse(notice.promoDate) > Date.now();
+
   return (
-    <Card>
+    <Card promo={promo}>
       <AddToFavorite notice={notice} setIsFavorite={setIsFavorite} />
       <CardImageContainer>
         <CardImage src={notice.photoUrl} alt={notice.title} />
         <ImageCategory>
           {notice.category.replace('for-free', 'for free').replace(/-/g, '/')}
+          {promo && <Icon id="star" s="none" />}
         </ImageCategory>
 
         <ImageDetails>
@@ -140,7 +152,7 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
             id="edit"
             s="none"
             f="currentColor"
-            z="9"
+            z="8"
             pos="absolute"
             t="124px"
             r="12px"
@@ -160,17 +172,8 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
         <ModalApproveAction close={() => setIsModalEditOpen(false)}>
           <EditModal
             notice={notice}
-            approve={() => handleEdit(notice._id)}
             close={() => setIsModalEditOpen(false)}
-          />
-        </ModalApproveAction>
-      )}
-      {isModalEditOpen && (
-        <ModalApproveAction close={() => setIsModalEditOpen(false)}>
-          <EditModal
-            notice={notice}
-            approve={() => handleEdit(notice._id)}
-            close={() => setIsModalEditOpen(false)}
+            handleEditClose={handleEditClose}
           />
         </ModalApproveAction>
       )}

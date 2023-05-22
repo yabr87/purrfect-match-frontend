@@ -5,7 +5,6 @@ import { useDispatch } from 'react-redux';
 
 import * as Yup from 'yup';
 
-import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import {
@@ -25,55 +24,51 @@ import Icon from 'shared/components/Icon/Icon';
 
 import useAuth from 'shared/hooks/useAuth';
 import { toast } from 'react-toastify';
-import { clearError, statusIsRegister } from 'redux/auth/authSlice';
+import { clearError } from 'redux/auth/authSlice';
 import { signup } from 'redux/auth/authOperations';
 
-const validateShecma = Yup.object().shape({
-  email: Yup.string().email('Invalid email address').required('Required'),
-  password: Yup.string()
-    .min(6, 'Password must be at least 6 characters')
-    .max(16, 'Password must be less than 16 characters')
-    .matches(
-      /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{6,16}$/,
-      'Password must contain at least 1 uppercase letter, 1 lowercase letter and 1 number'
-    )
-    .required('Required'),
-  confirmedPassword: Yup.string()
-    .oneOf([Yup.ref('password'), null], 'Passwords must match')
-    .required('Required'),
-});
+const validateShecma = t =>
+  Yup.object().shape({
+    email: Yup.string()
+      .email(`${t('Invalid_email_address')}`)
+      .required(`${t('Required')}`),
+    password: Yup.string()
+      .min(6, `${t('at_least_6_characters')}`)
+      .max(16, `${t('less_than_16_characters')}`)
+      .matches(
+        /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{6,16}$/,
+        `${t('one_uppercase_one_lowercase_one_number')}`
+      )
+      .required(`${t('Required')}`),
+    confirmedPassword: Yup.string()
+      .oneOf([Yup.ref('password'), null], `${t('Passwords_must_match')}`)
+      .required(`${t('Required')}`),
+  });
 
 const RegisterForm = () => {
-  const navigate = useNavigate();
-  const { isLoggedIn, isError } = useAuth();
+  const { isError } = useAuth();
   const dispatch = useDispatch();
   const { t } = useTranslation();
   useEffect(() => {
-    if (isLoggedIn) {
-      navigate('/user', { state: { isModalOpen: true } });
-      // navigate('/notices/sell');
-    }
     if (isError) {
       toast.error(`${isError}`);
       dispatch(clearError());
     }
-  }, [isLoggedIn, navigate, isError, dispatch]);
+  }, [isError, dispatch]);
 
   return (
     <Formik
       initialValues={{ email: '', password: '', confirmedPassword: '' }}
       onSubmit={(values, actions) => {
-        // navigate('/user', { state: { isModalOpen: true } });
         dispatch(
           signup({
             email: values.email,
             password: values.password,
           })
         );
-        dispatch(statusIsRegister(true));
         actions.resetForm();
       }}
-      validationSchema={validateShecma}
+      validationSchema={validateShecma(t)}
     >
       {({ errors, touched, values }) => (
         <Forms>

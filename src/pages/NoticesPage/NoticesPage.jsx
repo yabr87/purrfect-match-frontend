@@ -87,7 +87,15 @@ function NoticesPage() {
     if (title) {
       params.title = title;
     }
-    setSearchParams(params);
+
+    if (sex) {
+      params.sex = sex;
+    }
+
+    if (age.length > 0) {
+      params.age = age.join(',');
+    }
+
     setCurrentPage(1);
     setCategory(categoryName);
   }
@@ -116,6 +124,7 @@ function NoticesPage() {
     if (age.length > 0) {
       params.age = age.join(',');
     }
+    setSearchParams(params);
 
     getNotices(params)
       .then(({ data }) => {
@@ -124,7 +133,7 @@ function NoticesPage() {
       })
       .catch(e => console.log(e))
       .finally(setFetching(false));
-  }, [categoryName, currentPage, title, sex, age]);
+  }, [categoryName, currentPage, title, sex, age, setSearchParams]);
 
   const deleteSelectedFilter = (filterToDelete) => {
     selectedFilters = selectedFilters.filter(filter => filter.value !== filterToDelete.value)

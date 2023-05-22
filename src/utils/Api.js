@@ -14,24 +14,36 @@ instance.interceptors.request.use(config => {
   return config;
 });
 
+let refreshRequest = null;
+
 instance.interceptors.response.use(
   response => response,
   async error => {
     if (error.response.status === 401) {
+      if (refreshRequest) {
+        await refreshRequest;
+        return instance(error.config);
+      }
       const refreshToken = localStorage.getItem('refreshToken');
+      if (!refreshToken) {
+        return Promise.reject(error);
+      }
       try {
-        const { data } = await instance.post('api/users/refresh', {
+        refreshRequest = instance.post('api/users/refresh', {
           refreshToken,
         });
+        const { data } = await refreshRequest;
+        refreshRequest = null;
         localStorage.setItem('accessToken', data.accessToken ?? '');
         localStorage.setItem('refreshToken', data.refreshToken ?? '');
         return instance(error.config);
       } catch (error) {
-        console.log(error);
-        localStorage.setItem('accessToken', '');
-        localStorage.setItem('refreshToken', '');
         return Promise.reject(error);
       }
+    }
+    if (error.response.status === 403) {
+      localStorage.setItem('accessToken', '');
+      localStorage.setItem('refreshToken', '');
     }
     return Promise.reject(error);
   }

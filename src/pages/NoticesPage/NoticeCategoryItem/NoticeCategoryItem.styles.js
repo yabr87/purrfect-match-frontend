@@ -5,7 +5,8 @@ export const Card = styled.div`
   width: 288px;
   height: 456px;
   background: ${props => props.theme.colors.backgroundModal};
-  box-shadow: ${props => props.theme.shadows.default};
+  box-shadow: ${props =>
+    props.promo ? props.theme.shadows.promo : props.theme.shadows.default};
   border-radius: ${props => props.theme.radius.normal};
   transition: transform 250ms ease;
 
@@ -107,8 +108,10 @@ export const ImageDetailsTextLong = styled(ImageDetailsText)`
 `;
 
 export const ImageCategory = styled.p`
+  display: flex;
+  gap: 10px;
   position: absolute;
-  width: 126px;
+  width: fit-content;
   height: 32px;
   left: 0;
   top: 16px;
@@ -120,6 +123,13 @@ export const ImageCategory = styled.p`
   color: ${props => props.theme.colors.textColor};
   border-radius: ${props =>
     ` 0px ${props.theme.radius.small} ${props.theme.radius.small}  0px `};
+
+  svg {
+    fill: ${props => props.theme.colors.promo};
+    border: 1px solid ${props => props.theme.colors.promo};
+    border-radius: ${props => props.theme.radius.round};
+    padding: 2px;
+  }
 `;
 
 export const PhotoDescription = styled.p`

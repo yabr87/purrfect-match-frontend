@@ -18,34 +18,28 @@ const NoticesFilters = React.memo(({ setSex, setAge, filters, setSearchParams })
   const isUpToWidth480 = useMedia(['(max-width: 480px)'], [true], false);
 
   const [isFilterOpen, setIsFilterOpen] = useState(false);
-  // const [isAgeOpen, setIsAgeOpen] = useState(false);
-  // const [isGenderOpen, setIsGenderOpen] = useState(false);
-  // const [age, setAge] = useState(null);
-
   const { t } = useTranslation();
 
   const handleFilterClick = () => {
     setIsFilterOpen(!isFilterOpen);
   };
 
-  // const handleAgeClick = () => {
-  //   setIsAgeOpen(!isAgeOpen);
-  // };
-
-  // const handleGenderClick = () => {
-  //   setIsGenderOpen(!isGenderOpen);
-  // };
-
   const handleAgeChange = event => {
     const ageValues = event.values;
-    setSearchParams({ page: 1, age: ageValues });
     setAge(ageValues);
+    // setSearchParams({ page: 1, age: ageValues });
   };
 
-/*  const ageFilterItems = [
-    { label: `1${t('year')}`, value: '1' },
-    { label: `2 ${t('year')}`, value: '2' },
-    { label: `3 ${t('years')}`, value: '3' },
+  const handleGenderChange = event => {
+    const gender = event.values.length > 0 ? event.values[0] : null;
+    setSex(gender);
+    // setSearchParams({ page: 1, sex: gender });
+  };
+
+  const ageFilterItems = [
+    { label: `0-12 ${t('months')}`, value: '0' },
+    { label: `1 ${t('year')}`, value: '1' },
+    { label: `from 2 ${t('years')}`, value: '2' },
   ];
 
   const genderFilterItems = [
@@ -74,12 +68,6 @@ const NoticesFilters = React.memo(({ setSex, setAge, filters, setSearchParams })
       ]
     }
   ];
-
-  const handleGenderChange = event => {
-    const gender = event.values.length > 0 ? event.values[0] : null;
-    setSearchParams({ page: 1, sex: gender });
-    setSex(gender);
-  };
 
   return (
     <FilterContainer
