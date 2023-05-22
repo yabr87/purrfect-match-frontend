@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const User = styled.div`
-  @media screen and (min-width: 1280px) {
+  @media ${props => props.theme.media.desk} {
     display: flex;
   }
 `;

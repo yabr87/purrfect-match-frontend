@@ -9,7 +9,7 @@ export const UserInput = styled.input`
   color: ${props => props.theme.colors.titleColor};
   background-color: ${props => props.theme.colors.backgroundModal};
 
-  @media screen and (min-width: 768px) {
+  @media ${props => props.theme.media.tab} {
     width: 255px;
   }
 `;
@@ -21,7 +21,7 @@ export const EditInputBtn = styled.button`
   border: none;
   cursor: pointer;
 
-  @media screen and (min-width: 768px) {
+  @media ${props => props.theme.media.tab} {
     right: 10px;
   }
 `;
