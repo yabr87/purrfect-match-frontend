@@ -30,7 +30,8 @@ function NoticesPage() {
   const { t } = useTranslation();
 
   const handleAddPet = () => {
-    isLoggedIn ? navigate('/add-pet') : alert(t('alert_register_signin'));
+    isLoggedIn ? navigate('/add-pet') : toast.error(t('alert_register_signin'));
+      
   };
   const [age, setAge] = useState([]);
   const [sex, setSex] = useState('');
