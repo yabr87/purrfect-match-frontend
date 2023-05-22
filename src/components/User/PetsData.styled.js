@@ -36,17 +36,17 @@ export const PetAvatar = styled.img`
   align-self: center;
   width: 240px;
   height: 240px;
-  background: #54adff;
+  background: ${props => props.theme.colors.link};
   border-radius: 20px;
   margin: 20px 0;
 
-  @media screen and (min-width: 768px) {
+  @media ${props => props.theme.media.tab} {
     width: 128px;
     height: 128px;
     margin-right: 20px;
     margin-bottom: 108px;
   }
-  @media screen and (min-width: 1280px) {
+  @media ${props => props.theme.media.desk} {
     margin-bottom: 31px;
   }
 `;
@@ -57,7 +57,7 @@ export const PetHeader = styled.div`
   align-items: center;
   margin-top: 40px;
 
-  @media screen and (min-width: 1280px) {
+  @media ${props => props.theme.media.desk} {
     margin-top: 0;
     margin-bottom: 0;
   }
@@ -76,13 +76,13 @@ export const PetInfoWrap = styled.div`
   align-items: flex-start;
   margin-bottom: 40px;
 
-  @media screen and (min-width: 768px) {
+  @media ${props => props.theme.media.tab} {
     margin-top: 20px;
     margin-right: 20px;
     flex-grow: 1;
     width: auto;
   }
-  @media screen and (min-width: 1280px) {
+  @media ${props => props.theme.media.desk} {
     width: 500px;
     padding: 0;
     margin-right: 0;
@@ -91,23 +91,22 @@ export const PetInfoWrap = styled.div`
 
 export const PetInfoItem = styled.p`
   font-family: ${props => props.theme.fonts.main};
-  font-style: normal;
-  font-weight: 400;
+  font-weight: ${props => props.theme.fontWeiths.normal};
   font-size: 14px;
   line-height: 1.57;
   letter-spacing: 0.04em;
   color: ${props => props.theme.colors.titleColor};
 
-  @media screen and (min-width: 1280px) {
+  @media ${props => props.theme.media.desk} {
     font-size: 16px;
   }
 `;
 
 export const PetInfoTitle = styled.span`
-  font-weight: 700;
+  font-weight: ${props => props.theme.fontWeiths.bold};
 
-  @media screen and (min-width: 768px) {
-    font-weight: 600px;
+  @media ${props => props.theme.media.tab} {
+    font-weight: ${props => props.theme.fontWeiths.semiBold};
   }
 `;
 
@@ -120,10 +119,10 @@ export const DelPetBtn = styled.button`
   background-color: transparent;
   cursor: pointer;
 
-  @media screen and (min-width: 768px) {
+  @media ${props => props.theme.media.tab} {
     right: -20px;
   }
-  @media screen and (min-width: 1280px) {
+  @media ${props => props.theme.media.desk} {
     right: 0;
   }
 `;
