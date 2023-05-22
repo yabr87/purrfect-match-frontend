@@ -142,7 +142,7 @@ const EditModal = ({ notice, close, approve, handleEditClose }) => {
                         </p>
                       ) : (
                         <>
-                          <p>{t('You can add payment here')}!</p>
+                          <p>{t('You_can_add_payment')}!</p>
                         </>
                       )}
                       <EditField

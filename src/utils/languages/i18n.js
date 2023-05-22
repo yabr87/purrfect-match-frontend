@@ -158,7 +158,7 @@ i18n.use(initReactI18next).init({
         Please_fill_all_the_fields: 'Please fill all the fields',
         The_Sex: 'The Sex',
         Add_photo: 'Add photo',
-        Drag_the_scroll_to_raise_your_ad: 'Drag the scroll to raise your ad',
+        You_can_add_payment: 'You can add payment here',
         Type_of_price: 'Type of price',
         Type_your_location: 'Type your location',
 
@@ -354,8 +354,8 @@ i18n.use(initReactI18next).init({
         Please_fill_all_the_fields: 'Будь ласка, заповніть всі поля',
         The_Sex: 'Стать',
         Add_photo: 'Додати фото',
-        Drag_the_scroll_to_raise_your_ad:
-          'Перетягніть прокрутку, щоб підвищити оголошення',
+        You_can_add_payment:
+          'Підніміть оголошення за доплату',
         Type_of_price: 'Вкажіть ціну',
         Type_your_location: 'Вкажіть локацію',
 
