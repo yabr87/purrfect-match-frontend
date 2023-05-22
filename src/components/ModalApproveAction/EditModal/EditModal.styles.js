@@ -216,6 +216,7 @@ export const EditboxLeft = styled.div`
 
   @media ${props => props.theme.media.tab} {
     gap: 20px;
+    width: 240px;
   }
 `;
 
