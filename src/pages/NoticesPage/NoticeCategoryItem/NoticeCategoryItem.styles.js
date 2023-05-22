@@ -108,6 +108,8 @@ export const ImageDetailsTextLong = styled(ImageDetailsText)`
 `;
 
 export const ImageCategory = styled.p`
+  display: flex;
+  gap: 10px;
   position: absolute;
   width: fit-content;
   height: 32px;
@@ -116,7 +118,6 @@ export const ImageCategory = styled.p`
   display: flex;
   padding: 11px 17px;
   align-items: center;
-  justify-content: space-between;
   text-align: center;
   background: ${props => props.theme.colors.lightBlue};
   color: ${props => props.theme.colors.textColor};
