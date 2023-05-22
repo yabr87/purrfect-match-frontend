@@ -10,6 +10,7 @@ import {
   FilterContainer,
   FilterOptions,
   FiltersTitle,
+  FilterContainerForAllGrup
 } from './NoticesFilters.styles';
 import Filter from '../../../shared/components/Filter/Filter';
 
@@ -17,34 +18,28 @@ const NoticesFilters = React.memo(({ setSex, setAge, setSearchParams }) => {
   const isUpToWidth480 = useMedia(['(max-width: 480px)'], [true], false);
 
   const [isFilterOpen, setIsFilterOpen] = useState(false);
-  // const [isAgeOpen, setIsAgeOpen] = useState(false);
-  // const [isGenderOpen, setIsGenderOpen] = useState(false);
-  // const [age, setAge] = useState(null);
-
   const { t } = useTranslation();
 
   const handleFilterClick = () => {
     setIsFilterOpen(!isFilterOpen);
   };
 
-  // const handleAgeClick = () => {
-  //   setIsAgeOpen(!isAgeOpen);
-  // };
-
-  // const handleGenderClick = () => {
-  //   setIsGenderOpen(!isGenderOpen);
-  // };
-
   const handleAgeChange = event => {
     const ageValues = event.values;
-    setSearchParams({ page: 1, age: ageValues });
     setAge(ageValues);
+    // setSearchParams({ page: 1, age: ageValues });
+  };
+
+  const handleGenderChange = event => {
+    const gender = event.values.length > 0 ? event.values[0] : null;
+    setSex(gender);
+    // setSearchParams({ page: 1, sex: gender });
   };
 
   const ageFilterItems = [
-    { label: `1${t('year')}`, value: '1' },
-    { label: `2 ${t('year')}`, value: '2' },
-    { label: `3 ${t('years')}`, value: '3' },
+    { label: `0-12 ${t('months')}`, value: '0' },
+    { label: `1 ${t('year')}`, value: '1' },
+    { label: `from 2 ${t('years')}`, value: '2' },
   ];
 
   const genderFilterItems = [
@@ -52,18 +47,8 @@ const NoticesFilters = React.memo(({ setSex, setAge, setSearchParams }) => {
     { label: `${t('female')}`, value: 'female' },
   ];
 
-  const handleGenderChange = event => {
-    const gender = event.values.length > 0 ? event.values[0] : null;
-    setSearchParams({ page: 1, sex: gender });
-    setSex(gender);
-  };
-
   return (
-    <FilterContainer
-      style={{
-        position: 'relative',
-      }}
-    >
+    <FilterContainer>
       {isUpToWidth480 ? (
         <CircleButton
           id="filters"
@@ -89,7 +74,7 @@ const NoticesFilters = React.memo(({ setSex, setAge, setSearchParams }) => {
       {isFilterOpen && (
         <FilterOptions>
           <FiltersTitle>{t('Filters')}</FiltersTitle>
-          <div style={{ position: 'relative' }}>
+          <FilterContainerForAllGrup >
             <Filter
               filters={genderFilterItems}
               title={t('By_gender')}
@@ -104,7 +89,7 @@ const NoticesFilters = React.memo(({ setSex, setAge, setSearchParams }) => {
               isSingleSelection={false}
               onChange={handleAgeChange}
             ></Filter>
-          </div>
+          </FilterContainerForAllGrup>
         </FilterOptions>
       )}
     </FilterContainer>

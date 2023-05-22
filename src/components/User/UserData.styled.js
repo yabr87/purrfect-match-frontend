@@ -1,3 +1,4 @@
+import Icon from 'shared/components/Icon';
 import styled from 'styled-components';
 
 export const UserWrapper = styled.div`
@@ -12,11 +13,13 @@ export const UserWrapper = styled.div`
   margin-top: 18px;
   display: flex;
   flex-direction: column;
+  padding: 20px 8px;
 
   @media screen and (min-width: 768px) {
     margin-top: 24px;
     flex-direction: row-reverse;
     max-width: 704px;
+    padding: 20px;
   }
 
   @media screen and (min-width: 1280px) {
@@ -75,7 +78,7 @@ export const AvatarContainer = styled.div`
   flex-direction: column;
   align-items: center;
 
-  @media screen and (min-width: 768px) {
+  @media ${props => props.theme.media.tab} {
     margin-left: 71px;
     margin-right: 76px;
     margin-bottom: 28px;
@@ -99,10 +102,9 @@ export const LogOutBtn = styled.button`
   border: none;
   background-color: transparent;
   margin-top: 21px;
-  margin-bottom: 25px;
   cursor: pointer;
 
-  @media screen and (min-width: 768px) {
+  @media ${props => props.theme.media.tab} {
     position: absolute;
     left: 0px;
     bottom: -60px;
@@ -132,10 +134,9 @@ export const InputContainer = styled.div`
   flex-direction: column;
   gap: 12px;
   margin-top: 21px;
-  padding: 0 8px;
   width: 100%;
 
-  @media screen and (min-width: 768px) {
+  @media ${props => props.theme.media.tab} {
     position: relative;
     gap: 8px;
     margin-bottom: 56px;
@@ -144,4 +145,35 @@ export const InputContainer = styled.div`
 export const ItemContainer = styled.div`
   display: flex;
   justify-content: space-between;
+`;
+
+export const Balance = styled.p`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-left: auto;
+  width: 100%;
+  border: 1px solid ${props => props.theme.colors.link};
+  border-radius: 20px;
+  max-width: 190px;
+  padding: 6px 12px;
+
+  color: ${props => props.theme.colors.textColor};
+  font-size: 12px;
+  font-weight: ${props => props.theme.fontWeiths.normal};
+
+  @media ${props => props.theme.media.tab} {
+    font-size: ${props => props.theme.fontSizes.s};
+    width: 255px;
+  }
+`;
+
+export const BalanceIcon = styled(Icon)`
+  width: 13px;
+  height: 13px;
+
+  @media ${props => props.theme.media.tab} {
+    width: 18px;
+    height: 18px;
+  }
 `;

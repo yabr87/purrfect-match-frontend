@@ -81,7 +81,6 @@ const PetsData = () => {
   );
 
   return (
-    <>
       <PetWrap>
         <PetHeader>
           <Title>{t('My_pets')}:</Title>
@@ -96,7 +95,6 @@ const PetsData = () => {
           <NoPetMessage>{t('No_pats_yet')} 😔</NoPetMessage>
         )}
       </PetWrap>
-    </>
   );
 };
 

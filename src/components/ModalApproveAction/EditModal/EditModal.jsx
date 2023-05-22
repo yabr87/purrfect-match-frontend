@@ -26,7 +26,7 @@ import { editNotice } from 'utils/ApiNotices';
 import { convertToISODate } from 'utils/convertToISODate';
 import { toast } from 'react-toastify';
 
-const EditModal = ({ notice, close, approve }) => {
+const EditModal = ({ notice, close, approve, handleEditClose }) => {
   const [isFormDirty, setIsFormDirty] = useState(false);
   const { t } = useTranslation();
 
@@ -77,7 +77,7 @@ const EditModal = ({ notice, close, approve }) => {
     try {
       await editNotice(notice._id, newPet);
       toast.success(t('alert_Pet_edited_successfully'));
-      resetForm();
+      handleEditClose(notice);
       close();
     } catch (error) {
       toast.error(`{t('alert_Failed_to_edit_pet')}:${error}`);

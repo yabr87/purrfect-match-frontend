@@ -43,9 +43,9 @@ function NoticesPage() {
   const [category, setCategory] = useState(categoryName);
 
   const selectedFilters = [
-    { label: '3-12m', value: 'young' },
+    { label: '0-12m', value: 'young' },
     { label: '1 year', value: 'adult' },
-    { label: '2 years', value: 'old' },
+    { label: ' from 2 years', value: 'old' },
   ];
 
   const [title, setTitle] = useState(() => {
@@ -67,7 +67,15 @@ function NoticesPage() {
     if (title) {
       params.title = title;
     }
-    setSearchParams(params);
+
+    if (sex) {
+      params.sex = sex;
+    }
+
+    if (age.length > 0) {
+      params.age = age.join(',');
+    }
+
     setCurrentPage(1);
     setCategory(categoryName);
   }
@@ -96,6 +104,7 @@ function NoticesPage() {
     if (age.length > 0) {
       params.age = age.join(',');
     }
+    setSearchParams(params);
 
     getNotices(params)
       .then(({ data }) => {
@@ -104,7 +113,7 @@ function NoticesPage() {
       })
       .catch(e => console.log(e))
       .finally(setFetching(false));
-  }, [categoryName, currentPage, title, sex, age]);
+  }, [categoryName, currentPage, title, sex, age, setSearchParams]);
 
   return (
     <Container>

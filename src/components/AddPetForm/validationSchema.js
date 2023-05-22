@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
 
-const validationSchema = ( currentStep, selectedCategory) => {
+const validationSchema = (currentStep, selectedCategory, t) => {
   let schema = Yup.object();
 
   if (currentStep === 1) {
@@ -16,46 +16,45 @@ const validationSchema = ( currentStep, selectedCategory) => {
       title: Yup.string()
         .matches(
           /^[a-zA-Zа-яА-ЯІіЇїЄєҐґ]+(([' -][a-zA-Zа-яА-ЯІіЇїЄєҐґ ])?[a-zA-Zа-яА-ЯІіЇїЄєҐґ]*)*$/,
-          'Title may contain only letters, apostrophes, dashes, and spaces. For example: Adorable Puppies for Adoption'
+          `${t('only_letters_apostrophes_dashes_spaces')}`
         )
-        .required('Title is required')
-        .min(4, ' Title be at least 4 characters')
-        .max(20, 'Title must not exceed 20 characters'),
+        .required(`${t('Title_is_required')}`)
+        .min(4, `${t('Title_at_least_4')}`)
+        .max(20, `${t('Title_not_exceed_20')}`),
       name: Yup.string()
-        .required('Name is required')
+        .required(`${t('Name_is_required')}`)
         .matches(
           /^[a-zA-Zа-яА-ЯІіЇїЄєҐґ]+(([' -][a-zA-Zа-яА-ЯІіЇїЄєҐґ ])?[a-zA-Zа-яА-ЯІіЇїЄєҐґ]*)*$/,
-          'Name may contain only letters, apostrophe, dash, and spaces. For example: Bobby, Buddy'
+          `${t('Name_letters_hyphens_apostrophe_dash_spaces')}`
         )
-        .min(2, 'Name must be at least 2 characters')
-        .max(16, 'Name must not exceed 16 characters'),
-      birthday: Yup.string()
-        .required('Birthday is required'),
+        .min(2, `${t('Name_at_least_2')}`)
+        .max(16, `${t('Name_not_exceed_16')}`),
+      birthday: Yup.string().required(`${t('Birthday_is_required')}`),
       breed: Yup.string()
-        .required('Breed is required')
+        .required(`${t('Breed_is_required')}`)
         .matches(
           /^[a-zA-Zа-яА-ЯІіЇїЄєҐґ]+(([',. -][a-zA-Zа-яА-ЯІіЇїЄєҐґ ])?[a-zA-Zа-яА-ЯІіЇїЄєҐґ]*)*$/,
-          "Please enter your pet's breed using only letters, hyphens, apostrophes, commas, periods, and spaces. (For example: Golden Retriever, Siamese, Bulldog)"
+          `${t('Breed_letters_hyphens_apostrophes_commas_periods_spaces')}`
         )
-        .min(2, 'Breed must be at least 2 characters')
-        .max(16, 'Breed must not exceed 16 characters'),
+        .min(2, `${t('Breed_at_least_2')}`)
+        .max(16, `${t('Breed_not_exceed_16')}`),
     });
   }
 
   if (currentStep === 3) {
     schema = schema.shape({
-      photo: Yup.string().required('To finish form, please upload foto'),
+      photo: Yup.string().required(`${t('finish_upload_photo')}`),
       comments: Yup.string()
-        .required('Comments is required')
-        .min(8, 'Comments must be at least 8 characters')
-        .max(120, 'Comments must not exceed 120 characters'),
-      sex: Yup.string().required('Sex is required').oneOf(['male', 'female']),
+        .required(`${t('Comments_is_required')}`)
+        .min(8, `${t('Comments_at_least_8')}`)
+        .max(120, `${t('Comments_not_exceed_120')}`),
+      sex: Yup.string().required(`${t('Sex_is_required')}`).oneOf(['male', 'female']),
       location: Yup.string()
-        .required('Location is required')
-        .matches(/^[\p{L}\s,']+$/u, 'Invalid city format'),
+        .required(`${t('Location_is_required')}`)
+        .matches(/^[\p{L}\s,']+$/u, `${t('Invalid_city_format')}`),
       price: Yup.number()
-        .typeError('Price must be a number')
-        .required('Price is required'),
+        .typeError(`${t('Price_must_be_number')}`)
+        .required(`${t('Price_is_required')}`),
     });
   }
 

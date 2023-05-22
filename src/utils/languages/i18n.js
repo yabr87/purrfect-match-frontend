@@ -9,6 +9,7 @@ i18n.use(initReactI18next).init({
   resources: {
     en: {
       translation: {
+        //login-registration
         Login_title: 'Login',
         Email: 'Email',
         Password: 'Password',
@@ -19,6 +20,15 @@ i18n.use(initReactI18next).init({
         Registration_title: 'Registration',
         Confirm_password: 'Confirm password',
         Already_have_an_account: 'Already have an account',
+
+        //login-registration_validation
+        Required: 'Required',
+        Invalid_email_address: 'Invalid email address',
+        at_least_6_characters: 'Password must be at least 6 characters',
+        less_than_16_characters: 'Password must be less than 16 characters',
+        one_uppercase_one_lowercase_one_number:
+          'Password must contain at least 1 uppercase letter, 1 lowercase letter and 1 number',
+        Passwords_must_match: 'Passwords must match',
 
         Congrats: 'Congrats',
         registration_is_successful: 'Your registration is successful',
@@ -37,7 +47,8 @@ i18n.use(initReactI18next).init({
         Confirm: 'Confirm',
         Log_Out: 'Log Out',
         Birthday: 'Birthday',
-        Сity: 'City',
+        City: 'City',
+        Balance:'Balance',
 
         remove: 'remove',
         Name: 'Name',
@@ -150,6 +161,33 @@ i18n.use(initReactI18next).init({
         Type_of_price: 'Type of price',
         Type_your_location: 'Type your location',
 
+        //addPetForm_validation
+        only_letters_apostrophes_dashes_spaces:
+          'Title may contain only letters, apostrophes, dashes, and spaces. For example: Adorable Puppies for Adoption',
+        Title_is_required: 'Title is required',
+        Title_at_least_4: 'Title must be at least 4 characters',
+        Title_not_exceed_20: 'Title must not exceed 20 characters',
+        Name_is_required: 'Name is required',
+        Name_letters_hyphens_apostrophe_dash_spaces:
+          'Name may contain only letters, apostrophe, dash, and spaces. For example: Bobby, Buddy',
+        Name_at_least_2: 'Name must be at least 2 characters',
+        Name_not_exceed_16: 'Name must not exceed 16 characters',
+        Birthday_is_required: 'Birthday is required',
+        Breed_is_required: 'Breed is required',
+        Breed_letters_hyphens_apostrophes_commas_periods_spaces:
+          'Please enter your pet`s breed using only letters, hyphens, apostrophes, commas, periods, and spaces. (For example: Golden Retriever, Siamese, Bulldog)',
+        Breed_at_least_2: 'Breed must be at least 2 characters',
+        Breed_not_exceed_16: 'Breed must not exceed 16 characters',
+        finish_upload_photo: 'To finish form, please upload foto',
+        Comments_is_required: 'Comments is required',
+        Comments_at_least_8: 'Comments must be at least 8 characters',
+        Comments_not_exceed_120: 'Comments must not exceed 120 characters',
+        Sex_is_required: 'Sex is required',
+        Location_is_required: 'Location is required',
+        Invalid_city_format: 'Invalid city format',
+        Price_must_be_number: 'Price must be a number',
+        Price_is_required: 'Price is required',
+
         //404
         Ooops: 'Ooops',
         This_page_not_found: 'This page not found',
@@ -171,11 +209,19 @@ i18n.use(initReactI18next).init({
         Dont_have_an_account: 'Ще не маєте акаунта',
         Register: 'Зареєструватися',
         Registration_title: 'Реєстрація',
-
         Log_IN: 'Увійти',
         Registration: 'Зареєструватися',
         Confirm_password: 'Підтвердіть пароль',
         Already_have_an_account: 'Вже маєте акаунт',
+
+        //login-registration_validation
+        Required: 'Обовʼязкове поле',
+        Invalid_email_address: 'Невірна елетронна адреса',
+        at_least_6_characters: 'Пароль повинен містити принаймні 6 символів',
+        less_than_16_characters: 'Пароль повинен мати менше 16 символів',
+        one_uppercase_one_lowercase_one_number:
+          'Пароль повинен складатися принаймні з 1 великої літери, 1 малої літери та 1 цифри',
+        Passwords_must_match: 'Паролі повинні збігатися',
 
         Congrats: 'Вітаємо',
         registration_is_successful: 'Ви успішно зареєструвалися',
@@ -195,6 +241,7 @@ i18n.use(initReactI18next).init({
         Log_Out: 'Вийти',
         Birthday: 'День народження',
         City: 'Місто',
+        Balance:'Баланс',
 
         remove: 'видалити',
         Name: 'Імʼя',
@@ -202,7 +249,7 @@ i18n.use(initReactI18next).init({
         Breed: 'Порода',
         Comments: 'Коментарі',
         My_pets: 'Мої тварини',
-        Add_pet: 'Додати тваринку',
+        Add_pet: 'Додати',
         No_pats_yet: 'Ви ще не додали жодну тваринку',
 
         Closed: 'Зачинено',
@@ -309,6 +356,35 @@ i18n.use(initReactI18next).init({
           'Перетягніть прокрутку, щоб підвищити оголошення',
         Type_of_price: 'Вкажіть ціну',
         Type_your_location: 'Вкажіть локацію',
+
+        //addPetForm_validation
+        only_letters_apostrophes_dashes_spaces:
+          'Заголовок може містити лише літери, апострофи, тире та пробіли. Наприклад: Чарівні цуценята для усиновлення',
+        Title_is_required: 'Заголовок - обовʼязкове поле',
+        Title_at_least_4: 'Заголовок повинен містити не менше 4 символів',
+        Title_not_exceed_20: 'Заголовок не повинен перевищувати 20 символів',
+        Name_is_required: 'Імʼя - обовʼязкове поле',
+        Name_letters_hyphens_apostrophe_dash_spaces:
+          'Імʼя може містити тільки літери, апостроф, тире і пробіли. Наприклад: Боббі, Бадді',
+        Name_at_least_2: 'Імʼя повинно містити не менше 2 символів',
+        Name_not_exceed_16: 'Імʼя не повинно перевищувати 16 символів',
+        Birthday_is_required: 'Дата народження - обовʼязкове поле',
+        Breed_is_required: 'Порода - обовʼязкове поле',
+        Breed_letters_hyphens_apostrophes_commas_periods_spaces:
+          'Будь ласка, введіть породу вашої тваринки, використовуючи тільки букви, дефіси, апострофи, коми, періоди і пробіли. (Наприклад: Золотистий ретривер, Сіамський, бульдог)',
+        Breed_at_least_2: 'Порода повинно містити не менше 2 символів',
+        Breed_not_exceed_16: 'Порода не повинна перевищувати 16 символів',
+        finish_upload_photo:
+          'Для завершення форми, будь ласка, завантажте фото',
+        Comments_is_required: 'Коментарі - обовʼязкове поле',
+        Comments_at_least_8: 'Коментарі повинні містити не менше 8 символів',
+        Comments_not_exceed_120:
+          'Коментарі не повинні перевищувати 120 символів',
+        Sex_is_required: 'Стать - обовʼязкове поле',
+        Location_is_required: 'Локація - обовʼязкове поле',
+        Invalid_city_format: 'Некоректний формат міста',
+        Price_must_be_number: 'Ціна повинна бути числом',
+        Price_is_required: 'Ціна - обовʼязкове поле',
 
         //404
         Ooops: 'Ууупс',
