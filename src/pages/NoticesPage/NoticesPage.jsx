@@ -16,6 +16,8 @@ import Container from 'shared/components/Container';
 import Icon from 'shared/components/Icon/Icon';
 import { useMedia } from 'shared/hooks/useMedia';
 
+import { toast } from 'react-toastify';
+
 import { getNotices } from 'utils/ApiNotices';
 import SelectedFilters from '../../shared/components/SelectedFilters/SelectedFilters';
 
@@ -167,7 +169,7 @@ function NoticesPage() {
         <SelectedFilters
           filters={selectedFilters}
           onChange={() => {
-            alert('Are you sure?');
+            toast.warning(t('You removed one of the filters'));
           }}
         />
       </div>
