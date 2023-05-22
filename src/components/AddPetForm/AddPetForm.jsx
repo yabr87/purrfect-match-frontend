@@ -16,6 +16,7 @@ import { addNotice } from 'utils/ApiNotices';
 import { addMyPet } from 'utils/ApiMyPets';
 import Loader from 'shared/components/Loader';
 import { toast } from 'react-toastify';
+import useAuth from 'shared/hooks/useAuth';
 
 const initialState = {
   category: 'sell',
@@ -38,6 +39,7 @@ const AddPetForm = () => {
   const [selectedCategory, setSelectedCategory] = useState(
     initialState.category
   );
+  const {user} = useAuth();
 
   const handleSubmit = async (values, { resetForm }) => {
     const newPet = Object.keys(values).reduce((acc, key) => {
@@ -48,6 +50,11 @@ const AddPetForm = () => {
     }, {});
 
     newPet.birthday = newPet.birthday.toISOString();
+
+    if (user.balance < newPet.promo) {
+      toast.error(t('alert_insufficient_funds'));
+      return;
+    }
 
     try {
       if (selectedCategory !== 'my-pet') {

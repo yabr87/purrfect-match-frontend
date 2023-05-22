@@ -96,6 +96,7 @@ i18n.use(initReactI18next).init({
         alert_failed_delete: 'Failed to delete notice. Please try again later.',
         Learn_more: 'Learn more',
         alert_signin_fav: 'Please sign in to add to favorites',
+        alert_insufficient_funds: 'Insufficient funds on your balance',
         alert_failed_update: 'Failed to update notice. Please try again later.',
         alert_pet_removed: 'removed',
         for_free: 'for free',
@@ -326,6 +327,7 @@ i18n.use(initReactI18next).init({
         Raise_your_ad: 'Підвищіть ваше оголошення',
         alert_Pet_edited_successfully: 'Тваринка відредагована успішно',
         alert_Failed_to_edit_pet: 'Не вдалося редагувати тваринку',
+        alert_insufficient_funds: 'Недостатньо коштів на рахунку',
 
         Choose_option: 'Виберіть опцію',
         Personal_details: 'Деталі',
