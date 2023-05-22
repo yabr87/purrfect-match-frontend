@@ -20,21 +20,28 @@ export const PetCardData = styled.div`
 export const Wrap = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
-  // justify-content: space-between;
-  // background-color: red;
   @media ${props => props.theme.media.tab} {
-    display: flex;
     flex-direction: row;
-    align-items: stretch;
     margin-bottom: 28px;
   }
 `;
 
 export const ImageContainer = styled.div`
-  position: relative;
   width: 100%;
-  background-color: red;
+
+  @media ${props => props.theme.media.mobile} {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  @media ${props => props.theme.media.tab} {
+    max-width: 286px;
+    display: block;
+  }
+`;
+
+export const ImageWrap = styled.div`
+  position: relative;
 `;
 
 export const PetImage = styled.img`
@@ -45,15 +52,11 @@ export const PetImage = styled.img`
     ` 0px 0px ${props.theme.radius.normal} ${props.theme.radius.normal} `};
 
   margin-bottom: 12px;
-  @media ${props => props.theme.media.mobile} {
-    // max-width: 240px;
-    // max-height: 240px;
-  }
+
   @media ${props => props.theme.media.tab} {
     width: 262px;
     height: 298px;
     margin-bottom: 0;
-    // margin-right: 24px;
   }
 `;
 
@@ -90,13 +93,11 @@ export const ImageCategory = styled.p`
 
 export const PetDataListWrap = styled.div`
   width: 100%;
-  background-color: yellow;
 `;
 
 export const PetDataList = styled.table`
   width: 100%;
   margin-bottom: 12px;
-  background-color: blue;
 
   @media ${props => props.theme.media.tab} {
     width: 100%;
@@ -104,8 +105,13 @@ export const PetDataList = styled.table`
   }
 `;
 
+export const PetDataListBody = styled.tbody`
+  // width: 100%;
+  // height: 80%;
+`;
+
 export const PetDataItem = styled.tr`
-  margin-bottom: 8px;
+  height: 27px;
   &:last-child {
     margin-bottom: 0;
   }
@@ -137,9 +143,16 @@ export const ValueCategory = styled.th`
 `;
 
 export const PetComents = styled.p`
+  font-family: ${props => props.theme.fonts.main};
+  font-style: normal;
+  font-weight: ${props => props.theme.fontWeiths.semi};
+  font-size: 14px;
+  line-height: 19.12px;
   margin-bottom: 12px;
   color: ${props => props.theme.colors.textColor};
   @media ${props => props.theme.media.tab} {
+    font-size: 16px;
+    line-height: 24px;
     margin-bottom: 70px;
   }
 `;
@@ -206,5 +219,3 @@ export const ContactLinkItem = styled.a`
     text-decoration-line: underline;
   }
 `;
-
-// color: ${props => props.theme.colors.textColor};
