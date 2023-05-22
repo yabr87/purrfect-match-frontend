@@ -169,7 +169,7 @@ function NoticesPage() {
         <SelectedFilters
           filters={selectedFilters}
           onChange={() => {
-            toast.warning(t('You removed one of the filters'));
+            toast.warning(t('alert_You_removed_one_filters'));
           }}
         />
       </div>
