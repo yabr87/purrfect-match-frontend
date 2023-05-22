@@ -5,14 +5,16 @@ export const ContainerView = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
+
   padding: 60px 16px;
   width: 100%;
 
   @media ${props => props.theme.media.mobile} {
     width: 100%;
   }
-  @media ${props => props.theme.media.tablet} {
+  @media ${props => props.theme.media.tab} {
     width: 100%;
+
     padding: 108px 16px;
   }
 `;

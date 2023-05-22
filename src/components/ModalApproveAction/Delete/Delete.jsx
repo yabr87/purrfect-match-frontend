@@ -27,11 +27,10 @@ const Delete = ({ notice, close, approve }) => {
 
   return (
     <ContainerView>
-      <Title>{t('Delete_adverstiment')}?</Title>
+      <Title>{t('Delete adverstiment')}?</Title>
       <TextWrap>
         <Text>
-          {t('Are_you_sure_to_delete')}{' '}
-          <TextAccent>“{notice.title}”</TextAccent>? <br />
+          {t('Are_you_sure_to_delete')} <TextAccent>“{}”</TextAccent>? <br />
           {t('You_cant_undo_this_action')}.
         </Text>
       </TextWrap>

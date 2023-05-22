@@ -9,8 +9,8 @@ export const ContainerView = styled.div`
   text-align: center;
 
   @media ${props => props.theme.media.tab} {
-    max-width: 608px;
     width: 100%;
+    padding: 108px 16px;
   }
 `;
 
