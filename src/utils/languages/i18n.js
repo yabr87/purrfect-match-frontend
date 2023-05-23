@@ -212,6 +212,11 @@ i18n
             'Failed to update notice. Please try again later.',
           alert_register_signin:
             'Please register or sign in to be able to add pet',
+          already_paid_days: 'You have',          
+          left: 'paid days left.',
+          promo_currency: '1$ = 1 day',
+          is_updated_succesfully: 'is succesfully updated',
+
         },
       },
       uk: {
@@ -341,6 +346,7 @@ i18n
           alert_Pet_edited_successfully: 'Тваринка відредагована успішно',
           alert_Failed_to_edit_pet: 'Не вдалося редагувати тваринку',
           alert_insufficient_funds: 'Недостатньо коштів на рахунку',
+          is_updated_succesfully: 'успішно змінено',
 
           Choose_option: 'Виберіть опцію',
           Personal_details: 'Деталі',
@@ -414,6 +420,9 @@ i18n
           alert_Pet_added_successfully: 'Тваринка додана успішно',
           alert_Failed_to_add_pet: 'Не вдалося додати тваринку',
           alert_You_removed_one_filters: 'Ви видалили один з фільтрів',
+          already_paid_days: 'Залишилось',
+          left: 'оплачених днів.',
+          promo_currency: '1$ це 1 день'
         },
       },
     },
