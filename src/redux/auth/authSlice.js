@@ -90,15 +90,13 @@ const authSlice = createSlice({
       .addCase(update.pending, handlePending)
       .addCase(update.fulfilled, (store, { payload }) => {
         store.isRefreshing = false;
-        store.isLogin = true;
-        store.user = payload.data;
+        store.user = payload;
       })
       .addCase(update.rejected, handleRejected)
       .addCase(updateAvatar.pending, handlePending)
       .addCase(updateAvatar.fulfilled, (store, { payload }) => {
         store.isRefreshing = false;
-        store.isLogin = true;
-        store.user = payload.data;
+        store.user.avatarUrl = payload.avatarUrl;
       })
       .addCase(updateAvatar.rejected, handleRejected);
   },

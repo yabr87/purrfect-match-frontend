@@ -35,8 +35,8 @@ const initialState = {
 };
 
 const UserData = () => {
-  const userData = useSelector(store => store.auth.user);
-  const [user, setUser] = useState(userData || initialState);
+  const user = useSelector(store => store.auth.user) || initialState;
+  const [userAvatar, setUserAvatar] = useState(null);
   const [isModalLogoutOpen, setIsModalLogoutOpen] = useState(false);
   const [isConfirm, setIsConfirm] = useState(false);
   const token = useSelector(store => store.auth.token);
@@ -56,14 +56,13 @@ const UserData = () => {
     //   setFieldValue('photo', '');
     //   toast.error('Please select a file smaller than 3 MB.');
     // }
-
-    setUser({ ...user, photo: e.target.files[0] });
+    setUserAvatar(e.target.files[0]);
     setIsConfirm(true);
   };
 
   const handleUploadPhoto = async () => {
     try {
-      dispatch(updateAvatar({ avatar: user.photo }));
+      dispatch(updateAvatar({ avatar: userAvatar }));
       setIsConfirm(false);
       toast.success(`${t('Photo_updated_successfully')}!`, {
         position: toast.POSITION.TOP_RIGHT,
@@ -99,7 +98,7 @@ const UserData = () => {
                   alt="Selected file"
                 />
               ) : (
-                <Photo src={userData.avatarUrl} alt="default avatar" />
+                <Photo src={user.avatarUrl} alt="default avatar" />
               )}
             </Avatar>
             {!isConfirm ? (

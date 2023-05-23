@@ -85,7 +85,7 @@ export const update = createAsyncThunk(
     try {
       const { auth } = getState();
       const result = await api.updateUserInfo(auth.token, data);
-      return result;
+      return result.data;
     } catch ({ message }) {
       return rejectWithValue(message);
     }
@@ -106,7 +106,7 @@ export const updateAvatar = createAsyncThunk(
     try {
       const { auth } = getState();
       const result = await api.addAvatar(auth.token, data);
-      return result;
+      return result.data;
     } catch ({ message }) {
       return rejectWithValue(message);
     }

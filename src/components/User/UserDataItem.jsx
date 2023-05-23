@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { UserInput, ItemContainer, EditInputBtn, UserLabel } from './';
 import Icon from 'shared/components/Icon/Icon';
 import { useSelector, useDispatch } from 'react-redux';
-import { current, update } from 'redux/auth/authOperations';
+import { update } from 'redux/auth/authOperations';
 import { convertToISODate } from 'utils/convertToISODate';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
@@ -15,13 +15,8 @@ const UserDataItem = ({ name, type, pattern, value, placeholder }) => {
     return name === 'birthday' ? reverseISODate(userData) : userData;
   });
   const [disable, setDisable] = useState(true);
-  const token = useSelector(store => store.auth.token);
   const { t } = useTranslation();
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(current(token));
-  }, [dispatch, token]);
 
   const handleInputEdit = () => {
     setDisable(false);
