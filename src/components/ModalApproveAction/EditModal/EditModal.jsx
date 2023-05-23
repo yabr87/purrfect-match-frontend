@@ -1,5 +1,6 @@
 import { Form, Formik } from 'formik';
 import { useTranslation } from 'react-i18next';
+import { differenceInDays } from 'date-fns';
 import Loader from 'shared/components/Loader';
 import { Error, FormButton } from 'components/AddPetForm/AddPetForm.styles';
 import { reverseISODate } from 'utils/reverseISODate';
@@ -15,6 +16,7 @@ import {
   EditTitle,
   EditWrapper,
   ImageCategoryEdit,
+  PaidMessage,
 } from './EditModal.styles';
 import Button from 'shared/components/Button';
 import Icon from 'shared/components/Icon';
@@ -25,6 +27,8 @@ import { editNotice } from 'utils/ApiNotices';
 import { convertToISODate } from 'utils/convertToISODate';
 import { toast } from 'react-toastify';
 import useAuth from 'shared/hooks/useAuth';
+import { ImageContainer } from '../NoticeModal/NoticeModal.styles';
+import { ImageWrap } from '../NoticeModal/NoticeModal.styles';
 
 const EditModal = ({ notice, close, approve, handleEditClose }) => {
   const { t } = useTranslation();
@@ -44,6 +48,10 @@ const EditModal = ({ notice, close, approve, handleEditClose }) => {
     price: JSON.stringify(notice.price),
     promo: 0,
   };
+
+    const startDate = new Date();
+    const endDate = new Date(notice.promoDate); 
+  const diffInDays = differenceInDays(endDate, startDate);
 
   const handleSubmit = async (values, { resetForm }) => {
     const changedFields = {};
@@ -121,18 +129,17 @@ const EditModal = ({ notice, close, approve, handleEditClose }) => {
                 <EditWrapper>
                   <EditboxLeft>
                     <EditTitle>{t('Edit_your_pet')}</EditTitle>
-                    <div style={{ position: 'relative', width: '100%' }}>
-                      <PetImage
-                        src={notice.photoUrl}
-                        alt={notice.title}
-                        style={{ margin: 0 }}
-                      />
-                      <ImageCategoryEdit>
+                      <ImageContainer>
+              <ImageWrap>
+                <PetImage src={notice.photoUrl} alt={notice.title} />
+                <ImageCategoryEdit>
                         {notice.category
                           .replace('for-free', 'for free')
                           .replace(/-/g, '/')}
                       </ImageCategoryEdit>
-                    </div>
+              </ImageWrap>
+            </ImageContainer>
+                      {diffInDays > 0 && <PaidMessage>{t('already_paid_days')} {diffInDays} {t('left')}</PaidMessage>}
                     <EditLabel htmlFor="promo">
                       {values.promo ? (
                         <p>
@@ -142,7 +149,8 @@ const EditModal = ({ notice, close, approve, handleEditClose }) => {
                         <>
                           <p>{t('You_can_add_payment')}!</p>
                         </>
-                      )}
+                        )}
+                        <p>{t('promo_currency')}</p>
                       <EditField
                         type="range"
                         id="promo"

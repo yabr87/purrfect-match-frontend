@@ -8,13 +8,7 @@ export const ContainerView = styled.div`
 
   padding: 60px 16px;
   width: 100%;
-
-  @media ${props => props.theme.media.mobile} {
-    width: 100%;
-  }
   @media ${props => props.theme.media.tab} {
-    width: 100%;
-
     padding: 108px 16px;
   }
 `;

@@ -40,11 +40,13 @@ const UserDataItem = ({ name, type, pattern, value, placeholder }) => {
           : { [name]: data };
 
       dispatch(update(req));
-      toast.success(`${t(`${name} is_updated_succesfully!`)}`);
+      toast.success(`${name} ${t('is_updated_succesfully')}`, {
+        position: toast.POSITION.TOP_LEFT,
+      });
       setDisable(true);
     } catch (error) {
       toast.error(`${t('alert_Not_correct_value!')}!`, {
-        position: toast.POSITION.TOP_RIGHT,
+        position: toast.POSITION.TOP_LEFT,
       });
     }
   };

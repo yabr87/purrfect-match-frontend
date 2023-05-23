@@ -64,12 +64,12 @@ const UserData = () => {
     try {
       dispatch(updateAvatar({ avatar: userAvatar }));
       setIsConfirm(false);
-      toast.success(`${t('Photo_updated_successfully')}!`, {
-        position: toast.POSITION.TOP_RIGHT,
+      toast.success(`Avatar ${t('is_updated_succesfully')}`, {
+        position: toast.POSITION.TOP_LEFT,
       });
     } catch (error) {
       toast.error(`${t('alert_Try_another_image')}!`, {
-        position: toast.POSITION.TOP_RIGHT,
+        position: toast.POSITION.TOP_LEFT,
       });
     }
   };

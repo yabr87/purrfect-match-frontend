@@ -147,6 +147,8 @@ function NoticesPage() {
         <NoticesCategoriesNav />
         <div style={{ display: 'flex', position: 'relative', gap: '12px' }}>
           <NoticesFilters
+            sex={sex}
+            age={age}
             setSex={setSex}
             setAge={setAge}
             setSearchParams={setSearchParams}

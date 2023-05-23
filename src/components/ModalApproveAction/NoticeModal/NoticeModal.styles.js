@@ -7,29 +7,26 @@ export const ContainerModal = styled.div`
   padding: 44px 20px 16px;
   width: 100%;
   height: 95vh;
+  @media ${props => props.theme.media.tab} {
+    height: fit-content;
+    padding: 32px 32px 24px;
+  }
 `;
 
 export const ContainerView = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  padding: 44px 20px 16px 20px;
   height: 100%;
   width: 100%;
   overflow-y: auto;
 
   @media ${props => props.theme.media.tab} {
-    padding: 32px;
     align-items: normal;
   }
 `;
 
-export const PetCardData = styled.div`
-  // display: flex;
-  // flex-direction: column;
-  // height: 100%;
-  // width: 100%;
-`;
+export const PetCardData = styled.div``;
 
 export const Wrap = styled.div`
   display: flex;
@@ -119,18 +116,14 @@ export const PetDataList = styled.table`
   }
 `;
 
-export const PetDataListBody = styled.tbody`
-  // width: 100%;
-  // height: 80%;
-`;
-
 export const PetDataItem = styled.tr`
-  max-width: 80px;
-  max-height: 27px;
-  text-overflow: ellipsis;
-  height: 27px;
+  width: 100%;
+
   &:last-child {
     margin-bottom: 0;
+  }
+  @media ${props => props.theme.media.tab} {
+    max-width: 121px;
   }
 `;
 
@@ -142,11 +135,13 @@ export const NameCategory = styled.th`
   font-size: 14px;
   line-height: 19.12px;
   color: ${props => props.theme.colors.textColor};
-  max-width: 80px;
-  max-height: 27px;
-  text-overflow: ellipsis;
+  height: 27px;
+  // display: block;
+  // overflow: hidden;
+  // text-overflow: ellipsis;
+  // white-space: nowrap;
   @media ${props => props.theme.media.tab} {
-    max-width: 121px;
+    // max-width: 121px;
   }
 `;
 
