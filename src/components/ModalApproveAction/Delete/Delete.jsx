@@ -13,8 +13,6 @@ import {
 import Icon from 'shared/components/Icon';
 
 const Delete = ({ item, notice, close, approve }) => {
-  console.log('item', item);
-  console.log('notice', notice);
   const screenSize = useMedia(
     ['(min-width: 1280px)', '(min-width: 768px)', '(min-width: 480px)'],
     ['desktop', 'tablet', 'mobile'],

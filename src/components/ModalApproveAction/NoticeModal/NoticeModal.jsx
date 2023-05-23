@@ -31,6 +31,7 @@ import Icon from 'shared/components/Icon';
 
 import { getNoticeById } from 'utils/ApiNotices';
 import { updateFavoriteNotice } from '../../../utils/ApiNotices';
+import { toast } from 'react-toastify';
 
 const NoticeModal = ({ notice, close, setIsFavorite }) => {
   const { isLoggedIn } = useAuth();
@@ -55,13 +56,13 @@ const NoticeModal = ({ notice, close, setIsFavorite }) => {
           setOwnerContacts(res.owner);
         }
       })
-      .catch(e => console.log(e));
+      .catch(e => toast.error('Failed to get notice', e));
   }, [notice._id]);
 
   const approveAddFavorite = async notice => {
     try {
       if (!isLoggedIn) {
-        alert(t('alert_signin_fav'));
+        toast.info(t('alert_signin_fav'));
         return;
       }
 
@@ -73,7 +74,7 @@ const NoticeModal = ({ notice, close, setIsFavorite }) => {
       setFavorite(!favorite);
       setIsFavorite(notice._id);
     } catch (error) {
-      alert(t('alert_failed_update'));
+      toast.error(t('alert_failed_update'));
     }
   };
 

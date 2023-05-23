@@ -9,6 +9,7 @@ import OurFriendsList from 'pages/OurFriendsPage/OurFriendsList';
 import { getAllFriends } from 'utils/ApiOurFriends';
 
 import { FriendsContainer } from './OurFriendsPage.styles';
+import { toast } from 'react-toastify';
 
 const OurFriendsPage = () => {
   const { t } = useTranslation();
@@ -22,7 +23,7 @@ const OurFriendsPage = () => {
         const result = await getAllFriends();
         setFriends(result.data.results);
       } catch (error) {
-        console.error('Failed to get friends', error);
+        toast.error('Failed to get friends', error);
       } finally {
         setLoading(false);
       }

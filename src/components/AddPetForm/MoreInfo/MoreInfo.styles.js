@@ -34,6 +34,10 @@ export const ImageLabel = styled.label`
     font-size: ${props => props.theme.fontSizes.m};
     line-height: 1.3;
   }
+
+  p {
+    color: ${props => props.theme.colors.textColor};
+  }
 `;
 
 export const RadioLabel = styled.p`
@@ -153,13 +157,12 @@ function setFemaleIconStroke({ sex, theme }) {
   }
 }
 export const IconDollar = styled(Icon)`
-position: absolute;
-right: 10px;
-bottom: 10px;
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
 
- @media ${props => props.theme.media.tab} {
-    
-right: 13px;
-bottom: 13px;
+  @media ${props => props.theme.media.tab} {
+    right: 13px;
+    bottom: 13px;
   }
-`
+`;

@@ -47,7 +47,6 @@ const NewsPage = () => {
         setTotalPages(data.totalPages);
       } catch (error) {
         setError(error);
-        console.log(error);
       } finally {
         setFetching(false);
       }
