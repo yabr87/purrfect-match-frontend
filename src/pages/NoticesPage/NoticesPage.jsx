@@ -32,7 +32,10 @@ function NoticesPage() {
   const handleAddPet = () => {
     isLoggedIn ? navigate('/add-pet') : toast.error(t('alert_register_signin'));
   };
+
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [age, setAge] = useState([]);
+
   const [sex, setSex] = useState('');
   const [totalPages, setTotalPages] = useState(null);
   const [currentPage, setCurrentPage] = useState(() => {
@@ -43,7 +46,10 @@ function NoticesPage() {
   const [fetching, setFetching] = useState(false);
   const { categoryName } = useParams();
   const [category, setCategory] = useState(categoryName);
-  // const [retrieved, setRetrieved] = useState([])
+
+  const handleFilterOpenChange = isOpen => {
+    setIsFilterOpen(isOpen);
+  };
 
   const getAgeLabel = value => {
     switch (value) {
@@ -121,14 +127,24 @@ function NoticesPage() {
     }
     setSearchParams(params);
 
-    getNotices(params)
-      .then(({ data }) => {
-        setTotalPages(data.totalPages);
-        setNotices(data.results);
-      })
-      .catch(e => toast.error('Failed to get notice:', e))
-      .finally(setFetching(false));
-  }, [categoryName, currentPage, title, sex, age, setSearchParams]);
+    if (!isFilterOpen) {
+      getNotices(params)
+        .then(({ data }) => {
+          setTotalPages(data.totalPages);
+          setNotices(data.results);
+        })
+        .catch(e => toast.error('Failed to get notice:', e))
+        .finally(setFetching(false));
+    }
+  }, [
+    categoryName,
+    currentPage,
+    title,
+    sex,
+    age,
+    isFilterOpen,
+    setSearchParams,
+  ]);
 
   return (
     <Container>
@@ -151,7 +167,7 @@ function NoticesPage() {
             age={age}
             setSex={setSex}
             setAge={setAge}
-            setSearchParams={setSearchParams}
+            onFilterOpenChange={handleFilterOpenChange}
           />
           {isUpToWidth480 ? (
             <CircleButton
@@ -181,17 +197,16 @@ function NoticesPage() {
           justifyContent: 'flex-end',
         }}
       >
-        <SelectedFilters
-          filters={selectedFilters}
-          setSex={setSex}
-          setAge={setAge}
-          onChange={updatedFilters => {
-            console.log('Updated Filters:', updatedFilters);
-          }}
-          // onChange={updatedFilters => {
-          //   setRetrieved(updatedFilters);
-          // }}
-        />
+        {!isFilterOpen && (
+          <SelectedFilters
+            filters={selectedFilters}
+            setSex={setSex}
+            setAge={setAge}
+            onChange={updatedFilters => {
+              console.log('Updated Filters:', updatedFilters);
+            }}
+          />
+        )}
       </div>
 
       {fetching && (

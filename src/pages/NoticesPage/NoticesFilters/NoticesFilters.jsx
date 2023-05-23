@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import Button from 'shared/components/Button';
@@ -15,7 +15,7 @@ import {
 import Filter from '../../../shared/components/Filter/Filter';
 
 const NoticesFilters = React.memo(
-  ({ sex, age, setSex, setAge, setSearchParams }) => {
+  ({ onFilterOpenChange, sex, age, setSex, setAge }) => {
     const isUpToWidth480 = useMedia(['(max-width: 480px)'], [true], false);
 
     // const [currentAgeValues, setCurrentAgeValues] = useState(age);
@@ -25,11 +25,6 @@ const NoticesFilters = React.memo(
     const { t } = useTranslation();
 
     const handleFilterClick = () => {
-      // if (!isFilterOpen) {
-      //   setAge(currentAgeValues);
-      //   setSex(currentGender);
-      // }
-
       setIsFilterOpen(!isFilterOpen);
     };
 
@@ -55,6 +50,10 @@ const NoticesFilters = React.memo(
       { label: `${t('male')}`, value: 'male' },
       { label: `${t('female')}`, value: 'female' },
     ];
+
+    useEffect(() => {
+      onFilterOpenChange && onFilterOpenChange(isFilterOpen);
+    }, [isFilterOpen, onFilterOpenChange]);
 
     return (
       <FilterContainer>
