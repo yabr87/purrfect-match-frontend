@@ -65,6 +65,7 @@ export const Pictures = styled.img`
   @media ${props => props.theme.media.desk} {
     position: absolute;
     right: 0;
+    left: 363px;
     top: 0;
     content: url(${deskPet1});
 
