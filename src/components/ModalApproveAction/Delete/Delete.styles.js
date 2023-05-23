@@ -10,7 +10,6 @@ export const ContainerView = styled.div`
 
   @media ${props => props.theme.media.tab} {
     width: 100%;
-    padding: 108px 16px;
   }
 `;
 
@@ -20,7 +19,7 @@ export const Title = styled.h2`
   font-weight: ${props => props.theme.fontWeiths.semi};
   font-size: ${props => props.theme.fontSizes.l};
   line-height: 33px;
-  margin-bottom: 52px;
+  margin-bottom: 24px;
   color: ${props => props.theme.colors.textColor};
   @media ${props => props.theme.media.tab} {
     margin-bottom: 40px;
