@@ -19,6 +19,7 @@ export const lightTheme = {
     buttonText: '#FEF9F9',
     notificationColorTheme: 'ligth',
     promo: '#c154c1',
+    navActive: '#FFC107',
   },
   logo: {
     text: '#303030',
@@ -88,6 +89,7 @@ export const darkTheme = {
     buttonText: '#FEF9F9',
     notificationColorTheme: 'dark',
     promo: '#54ADFF',
+    navActive: '#FF8356',
   },
   logo: {
     text: '#FEF9F9',
