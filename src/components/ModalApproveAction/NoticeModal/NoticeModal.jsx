@@ -23,7 +23,6 @@ import {
   ImageCategory,
   ImageContainer,
   ImageWrap,
-  PetDataListBody,
   ContainerModal,
 } from './NoticeModal.styles';
 
@@ -101,7 +100,7 @@ const NoticeModal = ({ notice, close, setIsFavorite }) => {
             <PetDataListWrap>
               <Title>{notice.title}</Title>
               <PetDataList>
-                <PetDataListBody>
+                <tbody>
                   <PetDataItem>
                     <NameCategory>{t('Name')}:</NameCategory>
                     <ValueCategory>{notice.name}</ValueCategory>
@@ -148,7 +147,7 @@ const NoticeModal = ({ notice, close, setIsFavorite }) => {
                       </ContactLinkItem>
                     </ValueCategory>
                   </PetDataItem>
-                </PetDataListBody>
+                </tbody>
               </PetDataList>
             </PetDataListWrap>
           </Wrap>
