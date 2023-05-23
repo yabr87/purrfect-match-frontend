@@ -89,10 +89,10 @@ export const darkTheme = {
     buttonText: '#FEF9F9',
     notificationColorTheme: 'dark',
     promo: '#54ADFF',
-    navActive: '#FF8356',
+    navActive: '#54ADFF',
   },
   logo: {
-    text: '#FEF9F9',
+    text: '#54ADFF',
     paw: '#ffc107',
   },
   shadows: {
