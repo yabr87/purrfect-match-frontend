@@ -11,6 +11,7 @@ import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { current } from 'redux/auth/authOperations';
 import { setTokens } from 'redux/auth/authSlice';
+import useIsReloading from 'shared/hooks/useIsReloading';
 
 import RestrictedRoute from 'routes/RestrictedRoute';
 import PrivateRoute from 'routes/PrivateRoute';
@@ -60,6 +61,12 @@ const App = () => {
       window.removeEventListener('storage', themeListener);
     };
   }, []);
+
+  const isReloading = useIsReloading();
+
+  if (isReloading) {
+    return null;
+  }
 
   return (
     <ThemeProvider theme={theme}>
