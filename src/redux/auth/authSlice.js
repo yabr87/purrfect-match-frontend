@@ -98,7 +98,7 @@ const authSlice = createSlice({
       .addCase(updateAvatar.fulfilled, (store, { payload }) => {
         store.isRefreshing = false;
         store.isLogin = true;
-        store.user = payload;
+        store.user = payload.data;
       })
       .addCase(updateAvatar.rejected, handleRejected);
   },

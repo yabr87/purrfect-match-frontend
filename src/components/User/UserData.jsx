@@ -50,7 +50,16 @@ const UserData = () => {
   }, [dispatch, token]);
 
   const handlePhotoChange = e => {
-    setUser({ ...user, photo: URL.createObjectURL(e.target.files[0]) });
+    // if (selectedFile && selectedFile.size <= 3 * 1024 * 1024) {
+    //   setFile(selectedFile);
+    //   setFieldValue('photo', selectedFile);
+    // } else {
+    //   setFile('');
+    //   setFieldValue('photo', '');
+    //   toast.error('Please select a file smaller than 3 MB.');
+    // }
+
+    setUser({ ...user, photo: e.target.files[0] });
     setIsConfirm(true);
   };
 
@@ -86,11 +95,7 @@ const UserData = () => {
                 accept="image/png, image/jpeg"
                 multiple={false}
               />
-              {user.photo ? (
-                <Photo src={user.photo} alt="Selected file" />
-              ) : (
-                <Photo src={user.avatarUrl} alt="default avatar" />
-              )}
+              <Photo src={user.photo} alt="Selected file" />
             </Avatar>
             {!isConfirm ? (
               <EditAvatarBtn>
