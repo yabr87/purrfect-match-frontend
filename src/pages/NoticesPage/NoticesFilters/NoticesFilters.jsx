@@ -10,7 +10,7 @@ import {
   FilterContainer,
   FilterOptions,
   FiltersTitle,
-  FilterContainerForAllGrup
+  FilterContainerForAllGrup,
 } from './NoticesFilters.styles';
 import Filter from '../../../shared/components/Filter/Filter';
 
@@ -22,18 +22,20 @@ const NoticesFilters = React.memo(({ setSex, setAge, setSearchParams }) => {
 
   const handleFilterClick = () => {
     setIsFilterOpen(!isFilterOpen);
+    // setAge(currentAgeValues);
+    // setSex(currentGender);
   };
 
   const handleAgeChange = event => {
     const ageValues = event.values;
+    // setCurrentAgeValues(ageValues);
     setAge(ageValues);
-    // setSearchParams({ page: 1, age: ageValues });
   };
 
   const handleGenderChange = event => {
     const gender = event.values.length > 0 ? event.values[0] : null;
+    // setCurrentGender(gender);
     setSex(gender);
-    // setSearchParams({ page: 1, sex: gender });
   };
 
   const ageFilterItems = [
@@ -74,7 +76,7 @@ const NoticesFilters = React.memo(({ setSex, setAge, setSearchParams }) => {
       {isFilterOpen && (
         <FilterOptions>
           <FiltersTitle>{t('Filters')}</FiltersTitle>
-          <FilterContainerForAllGrup >
+          <FilterContainerForAllGrup>
             <Filter
               filters={genderFilterItems}
               title={t('By_gender')}
