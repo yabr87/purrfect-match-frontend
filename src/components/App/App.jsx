@@ -45,8 +45,11 @@ const App = () => {
       setSearchParams(searchParams);
       dispatch(setTokens({ accessToken, refreshToken }));
     }
-    dispatch(current());
   }, [dispatch, searchParams, setSearchParams]);
+
+  useEffect(() => {
+    dispatch(current());
+  }, [dispatch]);
 
   useEffect(() => {
     const themeListener = event => {
