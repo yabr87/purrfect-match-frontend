@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { UserInput, ItemContainer, EditInputBtn, UserLabel } from './';
 import Icon from 'shared/components/Icon/Icon';
@@ -13,12 +13,19 @@ const UserDataItem = ({ name, type, pattern, value, placeholder }) => {
   const userData = useSelector(store => store.auth.user[name]) ?? '';
 
   const [data, setData] = useState(() => {
-    return name === 'birthday' ? reverseISODate(userData) : userData;
+    if (name === 'birthday') {
+      if (userData) {
+        return reverseISODate(userData);
+      }
+      return userData;
+    }
+    return userData;
+    // return name === 'birthday' ? reverseISODate(userData) : userData;
   });
 
-  useEffect(() => {
-    setData(name === 'birthday' ? reverseISODate(userData) : userData);
-  }, [userData, name]);
+  // useEffect(() => {
+  //   setData(name === 'birthday' ? reverseISODate(userData) : userData);
+  // }, [userData, name]);
 
   const [disable, setDisable] = useState(true);
   const { t } = useTranslation();
