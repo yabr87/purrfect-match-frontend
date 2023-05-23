@@ -164,7 +164,7 @@ export const Balance = styled.p`
 
   @media ${props => props.theme.media.tab} {
     font-size: ${props => props.theme.fontSizes.s};
-    width: 255px;
+    max-width: 255px;
   }
 `;
 

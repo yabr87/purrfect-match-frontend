@@ -78,3 +78,45 @@ export const current = createAsyncThunk(
     },
   }
 );
+
+export const update = createAsyncThunk(
+  'auth/update',
+  async (data, { rejectWithValue, getState }) => {
+    try {
+      const { auth } = getState();
+      const result = await api.updateUserInfo(auth.token, data);
+      return result.data;
+    } catch ({ message }) {
+      return rejectWithValue(message);
+    }
+  },
+  {
+    condition: (_, { getState }) => {
+      const { auth } = getState();
+      if (!auth.token) {
+        return false;
+      }
+    },
+  }
+);
+
+export const updateAvatar = createAsyncThunk(
+  'auth/updateAvatar',
+  async (data, { rejectWithValue, getState }) => {
+    try {
+      const { auth } = getState();
+      const result = await api.addAvatar(auth.token, data);
+      return result.data;
+    } catch ({ message }) {
+      return rejectWithValue(message);
+    }
+  },
+  {
+    condition: (_, { getState }) => {
+      const { auth } = getState();
+      if (!auth.token) {
+        return false;
+      }
+    },
+  }
+);
