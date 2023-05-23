@@ -10,7 +10,7 @@ import i18n from '../../utils/languages/i18n';
 import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { current } from 'redux/auth/authOperations';
-import { setTokens } from 'redux/auth/authSlice';
+import { setTokens, statusIsRegister } from 'redux/auth/authSlice';
 import useIsReloading from 'shared/hooks/useIsReloading';
 
 import RestrictedRoute from 'routes/RestrictedRoute';
@@ -39,10 +39,15 @@ const App = () => {
   useEffect(() => {
     const accessToken = searchParams.get('accessToken');
     const refreshToken = searchParams.get('refreshToken');
+    const newUser = searchParams.get('newUser');
     if (accessToken && refreshToken) {
       dispatch(setTokens({ accessToken, refreshToken }));
       searchParams.delete('accessToken');
       searchParams.delete('refreshToken');
+      if (newUser) {
+        dispatch(statusIsRegister(true));
+        searchParams.delete('newUser');
+      }
       setSearchParams(searchParams);
     }
   }, [dispatch, searchParams, setSearchParams]);
