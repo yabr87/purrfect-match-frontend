@@ -6,7 +6,7 @@ import {
   IconButton,
 } from './Search.styles';
 import Icon from 'shared/components/Icon';
-import { Formik, ErrorMessage } from 'formik';
+import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -30,17 +30,6 @@ const Search = ({ onFormSubmit, setCurrentPage, setQuery }) => {
     search: Yup.string().trim('Type something').required('Type something'),
   });
 
-  const FormError = ({ name }) => {
-    return (
-      <ErrorMessage
-        name={name}
-        render={message => (
-          <p style={{ color: 'tomato', marginLeft: '20px' }}>{message}</p>
-        )}
-      />
-    );
-  };
-
   return (
     <Formik
       initialValues={{ search: title || search || '' }}
@@ -49,13 +38,8 @@ const Search = ({ onFormSubmit, setCurrentPage, setQuery }) => {
     >
       {props => (
         <SearchForm autoComplete="off">
-          <SearchInput
-            name="search"
-            type="text"
-            placeholder={t('Search')}
-            onBlur={() => props.setErrors(null)}
-          />
-          <FormError name="search" />
+          <SearchInput name="search" type="text" placeholder={t('Search')} />
+
           <IconBlock>
             <IconButton type="submit">
               <Icon id="search" f="#54ADFF" s="none" />
