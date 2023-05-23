@@ -130,9 +130,9 @@ export const NameCategory = styled.th`
   line-height: 19.12px;
   color: ${props => props.theme.colors.textColor};
   overflow: hidden;
-  // display: block;
   text-overflow: ellipsis;
   white-space: nowrap;
+  width: 80px;
   max-width: 81px;
   @media ${props => props.theme.media.tab} {
     min-width: 121px;
