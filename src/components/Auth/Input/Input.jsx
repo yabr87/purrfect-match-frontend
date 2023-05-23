@@ -49,23 +49,24 @@ const Input = ({ error, touched, name, placeholder, value }) => {
         autoComplete="off"
       />
       <AbsoluteDiv>
-        {!error && isValide ? (
-          <Icon id={'complite'} s={'#00C3AD'} />
-        ) : (
-          <ToggleBtn type="button" onClick={togglePassword}>
-            {passwordType === 'password' ? (
-              <Icon
-                id={'eye-closed'}
-                s={error && touched ? '#f43f5e' : '#54adff'}
-              />
-            ) : (
-              <Icon
-                id={'eye-open'}
-                s={error && touched ? '#f43f5e' : '#54adff'}
-              />
-            )}
-          </ToggleBtn>
-        )}
+        <ToggleBtn type="button" onClick={togglePassword}>
+          {passwordType === 'password' ? (
+            <Icon
+              id={'eye-closed'}
+              s={
+                error && touched ? '#f43f5e' : isValide ? '#00C3AD' : '#54adff'
+              }
+            />
+          ) : (
+            <Icon
+              id={'eye-open'}
+              s={
+                error && touched ? '#f43f5e' : isValide ? '#00C3AD' : '#54adff'
+              }
+            />
+          )}
+        </ToggleBtn>
+        {!error && isValide && <Icon id={'complite'} s={'#00C3AD'} />}
       </AbsoluteDiv>
       <ErrorMessage component={Error} name={name} />
     </Lable>

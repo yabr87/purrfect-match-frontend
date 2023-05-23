@@ -33,9 +33,12 @@ export const Lable = styled.label`
 `;
 export const AbsoluteDiv = styled.div`
   position: absolute;
-  right: 17px;
+  right: 26px;
   top: 17px;
   transform: translate(35%, -35%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 export const ToggleBtn = styled.button`
   background: transparent;

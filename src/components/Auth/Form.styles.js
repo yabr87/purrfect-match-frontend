@@ -28,9 +28,7 @@ export const Input = styled(Field)`
 export const InputEmail = styled(Input)`
   border-color: ${props => props.error};
 `;
-export const InputPassword = styled(Input)`
-  border-color: ${props => props.error};
-`;
+
 export const InputContainer = styled.div`
   display: flex;
   margin-top: 40px;
@@ -64,12 +62,6 @@ export const AbsoluteDiv = styled.div`
   right: 17px;
   top: 17px;
   transform: translate(35%, -35%);
-`;
-export const ToggleBtn = styled.button`
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  outline: none;
 `;
 export const Wrapper = styled.div`
   display: flex;
