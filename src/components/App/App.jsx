@@ -15,6 +15,7 @@ import useIsReloading from 'shared/hooks/useIsReloading';
 
 import RestrictedRoute from 'routes/RestrictedRoute';
 import PrivateRoute from 'routes/PrivateRoute';
+import NoticesRoute from 'routes/NoticesRoute';
 import SharedLayout from 'layouts/SharedLayout';
 
 const MainPage = lazy(() => import('pages/MainPage'));
@@ -75,7 +76,15 @@ const App = () => {
         <Routes>
           <Route path="/" element={<SharedLayout />}>
             <Route index element={<MainPage />} />
-            <Route path="/notices/:categoryName" element={<NoticesPage />} />
+            <Route
+              path="/notices/:categoryName"
+              element={
+                <NoticesRoute
+                  redirectTo="/notices/sell"
+                  component={<NoticesPage />}
+                />
+              }
+            />
             <Route
               path="/add-pet"
               element={
