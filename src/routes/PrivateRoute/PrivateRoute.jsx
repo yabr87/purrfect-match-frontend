@@ -1,12 +1,17 @@
-// import PropTypes from 'prop-types';
 import PropTypes from 'prop-types';
-import  useAuth  from 'shared/hooks/useAuth';
+import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
+import { selectAuth } from 'redux/auth/authSelectors';
+import Loader from 'shared/components/Loader';
 
 export const PrivateRoute = ({ component: Component, redirectTo }) => {
-  const { isLoggedIn } = useAuth();
+  const { isLogin, token } = useSelector(selectAuth);
 
-  return !isLoggedIn ? <Navigate to={redirectTo} /> : Component;
+  if (!isLogin && token) {
+    return <Loader />;
+  }
+
+  return !isLogin ? <Navigate to={redirectTo} /> : Component;
 };
 
 PrivateRoute.propTypes = {

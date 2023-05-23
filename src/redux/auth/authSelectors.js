@@ -4,4 +4,4 @@ export const selectUser = ({ auth }) => auth.user;
 export const selectIsRefreshing = ({ auth }) => auth.isRefreshing;
 
 export const getStatusRegister = ({ auth }) => auth.isRegister;
-
+export const selectAuth = ({ auth }) => auth;

@@ -1,4 +1,11 @@
 import axios from 'axios';
+import { forceLogout, setTokens } from 'redux/auth/authSlice';
+import { selectAuth } from 'redux/auth/authSelectors';
+
+let store = null;
+export const setStore = aStore => {
+  store = aStore;
+};
 
 export const instance = axios.create({
   baseURL: process.env.REACT_APP_API_URL,
@@ -9,8 +16,8 @@ export const setToken = token => {
 };
 
 instance.interceptors.request.use(config => {
-  const accessToken = localStorage.getItem('accessToken');
-  config.headers.authorization = accessToken ? `Bearer ${accessToken}` : '';
+  const { token } = selectAuth(store.getState());
+  config.headers.authorization = token ? `Bearer ${token}` : '';
   return config;
 });
 
@@ -24,7 +31,7 @@ instance.interceptors.response.use(
         await refreshRequest;
         return instance(error.config);
       }
-      const refreshToken = localStorage.getItem('refreshToken');
+      const { refreshToken } = selectAuth(store.getState());
       if (!refreshToken) {
         return Promise.reject(error);
       }
@@ -34,16 +41,19 @@ instance.interceptors.response.use(
         });
         const { data } = await refreshRequest;
         refreshRequest = null;
-        localStorage.setItem('accessToken', data.accessToken ?? '');
-        localStorage.setItem('refreshToken', data.refreshToken ?? '');
+        store.dispatch(
+          setTokens({
+            accessToken: data.accessToken,
+            refreshToken: data.refreshToken,
+          })
+        );
         return instance(error.config);
       } catch (error) {
         return Promise.reject(error);
       }
     }
     if (error.response.status === 403) {
-      localStorage.setItem('accessToken', '');
-      localStorage.setItem('refreshToken', '');
+      store.dispatch(forceLogout(error.response.data.message));
     }
     return Promise.reject(error);
   }

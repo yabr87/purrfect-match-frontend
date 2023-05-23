@@ -14,11 +14,12 @@ import storage from 'redux-persist/lib/storage';
 
 import petsSlice from './pets/myPetsSlice';
 import authSlice from './auth/authSlice';
+import { setStore } from 'utils/Api';
 
 const persistConfig = {
   key: 'auth',
   storage,
-  whitelist: ['token'],
+  whitelist: ['token', 'refreshToken'],
 };
 
 const persistAuthReduser = persistReducer(persistConfig, authSlice.reducer);
@@ -37,3 +38,5 @@ export const store = configureStore({
 });
 
 export const persistor = persistStore(store);
+
+setStore(store);
