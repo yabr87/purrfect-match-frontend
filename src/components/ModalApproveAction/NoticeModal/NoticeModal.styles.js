@@ -111,6 +111,9 @@ export const PetDataListBody = styled.tbody`
 `;
 
 export const PetDataItem = styled.tr`
+  max-width: 80px;
+  max-height: 27px;
+  text-overflow: ellipsis;
   height: 27px;
   &:last-child {
     margin-bottom: 0;
@@ -125,9 +128,9 @@ export const NameCategory = styled.th`
   font-size: 14px;
   line-height: 19.12px;
   color: ${props => props.theme.colors.textColor};
-  // width: fit-content;
-  width: 80px;
-  tex-overflow: ellipsis '[..]';
+  max-width: 80px;
+  max-height: 27px;
+  text-overflow: ellipsis;
   @media ${props => props.theme.media.tab} {
     max-width: 121px;
   }
@@ -143,17 +146,19 @@ export const ValueCategory = styled.th`
 `;
 
 export const PetComents = styled.p`
+  color: ${props => props.theme.colors.textColor};
   font-family: ${props => props.theme.fonts.main};
   font-style: normal;
   font-weight: ${props => props.theme.fontWeiths.semi};
   font-size: 14px;
   line-height: 19.12px;
   margin-bottom: 12px;
-  color: ${props => props.theme.colors.textColor};
+  max-width: 256px;
   @media ${props => props.theme.media.tab} {
     font-size: 16px;
     line-height: 24px;
     margin-bottom: 70px;
+    max-width: 100%;
   }
 `;
 
@@ -190,8 +195,9 @@ export const ContactLink = styled.a`
   cursor: pointer;
 
   &:hover,
-  &:focus {
-    color: ${props => props.theme.colors.backgroundModal};
+  &:focus,
+  &:active {
+    color: ${props => props.theme.colors.buttonText};
     background: ${props => props.theme.colors.link};
   }
 

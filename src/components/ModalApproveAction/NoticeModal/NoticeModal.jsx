@@ -174,9 +174,7 @@ const NoticeModal = ({ notice, close, setIsFavorite }) => {
               s="white"
             />
           </Button>
-          <ContactLink type="button" href="tel:+380961111111">
-            {t('Contact')}
-          </ContactLink>
+          <ContactLink href="tel:+380961111111">{t('Contact')}</ContactLink>
         </ButtonWrap>
       )}
       {isMobile && (
@@ -200,9 +198,7 @@ const NoticeModal = ({ notice, close, setIsFavorite }) => {
               s="white"
             />
           </Button>
-          <ContactLink type="button" href="tel:+380961111111">
-            {t('Contact')}
-          </ContactLink>
+          <ContactLink href="tel:+380961111111">{t('Contact')}</ContactLink>
         </ButtonWrap>
       )}
       {isTablet && (
