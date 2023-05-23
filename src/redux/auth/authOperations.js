@@ -99,3 +99,24 @@ export const update = createAsyncThunk(
     },
   }
 );
+
+export const updateAvatar = createAsyncThunk(
+  'auth/updateAvatar',
+  async (data, { rejectWithValue, getState }) => {
+    try {
+      const { auth } = getState();
+      const result = await api.addAvatar(auth.token, data);
+      return result;
+    } catch ({ message }) {
+      return rejectWithValue(message);
+    }
+  },
+  {
+    condition: (_, { getState }) => {
+      const { auth } = getState();
+      if (!auth.token) {
+        return false;
+      }
+    },
+  }
+);

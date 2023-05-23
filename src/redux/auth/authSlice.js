@@ -7,6 +7,7 @@ import {
   logout,
   current,
   update,
+  updateAvatar,
 } from './authOperations';
 
 const initialState = {
@@ -92,7 +93,14 @@ const authSlice = createSlice({
         store.isLogin = true;
         store.user = payload;
       })
-      .addCase(update.rejected, handleRejected);
+      .addCase(update.rejected, handleRejected)
+      .addCase(updateAvatar.pending, handlePending)
+      .addCase(updateAvatar.fulfilled, (store, { payload }) => {
+        store.isRefreshing = false;
+        store.isLogin = true;
+        store.user = payload;
+      })
+      .addCase(updateAvatar.rejected, handleRejected);
   },
 });
 
