@@ -41,7 +41,7 @@ const EditModal = ({ notice, close, approve, handleEditClose }) => {
     comments: notice.comments,
     sex: notice.sex,
     location: notice.location,
-    price: notice.price,
+    price: JSON.stringify(notice.price),
     promo: 0,
   };
 
