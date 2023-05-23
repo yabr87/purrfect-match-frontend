@@ -92,9 +92,9 @@ const UserData = () => {
                 accept="image/png, image/jpeg"
                 multiple={false}
               />
-              {user.photo ? (
+              {userAvatar ? (
                 <Photo
-                  src={URL.createObjectURL(user.photo)}
+                  src={URL.createObjectURL(userAvatar)}
                   alt="Selected file"
                 />
               ) : (
@@ -131,7 +131,7 @@ const UserData = () => {
             <InputItem
               name="birthday"
               placeholder="DD.MM.YYYY"
-              value={user.birthday}
+              value={user.birthday || ''}
               dateFormat="dd.MM.yyyy"
               pattern="(0?[1-9]|[12][0-9]|3[01]).(0?[1-9]|1[012]).((19|20)\d\d)"
             />
