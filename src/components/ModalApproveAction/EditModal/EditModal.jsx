@@ -25,10 +25,13 @@ import { PetImage } from '../NoticeModal/NoticeModal.styles';
 import { editNotice } from 'utils/ApiNotices';
 import { convertToISODate } from 'utils/convertToISODate';
 import { toast } from 'react-toastify';
+import useAuth from 'shared/hooks/useAuth';
 
 const EditModal = ({ notice, close, approve, handleEditClose }) => {
   const [isFormDirty, setIsFormDirty] = useState(false);
   const { t } = useTranslation();
+
+  const { user } = useAuth();
 
   const initialValues = {
     category: notice.category,
@@ -74,15 +77,24 @@ const EditModal = ({ notice, close, approve, handleEditClose }) => {
       return acc;
     }, {});
 
+    if (user.balance < newPet.promo) {
+      toast.error(t('alert_insufficient_funds'));
+      return;
+    }
+
     try {
       await editNotice(notice._id, newPet);
       toast.success(t('alert_Pet_edited_successfully'));
       handleEditClose(notice);
       close();
     } catch (error) {
-      toast.error(`{t('alert_Failed_to_edit_pet')}:${error}`);
-    }
-  };
+      if (error.response && error.response.data && error.response.data.message === 'Not enough funds') {
+        return toast.error('Not enough funds. Please check your balance.');        
+      } else {
+        toast.error(`{t('alert_Failed_to_edit_pet')}:${error}`);
+      }
+    };
+  }
 
   const handleFormChange = () => {
     setIsFormDirty(true);
@@ -125,11 +137,12 @@ const EditModal = ({ notice, close, approve, handleEditClose }) => {
                     </div>
                     <EditLabel htmlFor="promo">
                       {values.promo ? (
-                        <p>{t('Raise_your_ad_only_for')} {values.promo}$!</p>
+                        <p>
+                          {t('Raise_your_ad_only_for')} {values.promo}$!
+                        </p>
                       ) : (
                         <>
-                          <p>{t('Add_payment_to_raise')}!</p>
-                          <p>{t('Just_scroll_your_value')}:</p>
+                          <p>{t('You_can_add_payment')}!</p>
                         </>
                       )}
                       <EditField
@@ -149,7 +162,7 @@ const EditModal = ({ notice, close, approve, handleEditClose }) => {
                   </EditboxLeft>
                   <EditboxRight>
                     <EditLabel htmlFor="title">
-                    {t('Title_of_ad')}:
+                      {t('Title_of_ad')}:
                       <EditField
                         name="title"
                         placeholder={t('Type_title')}
@@ -161,7 +174,7 @@ const EditModal = ({ notice, close, approve, handleEditClose }) => {
                       <Error name="title" component="p" />
                     </EditLabel>
                     <EditLabel htmlFor="name">
-                    {t('Name_of_pet')}:
+                      {t('Name_of_pet')}:
                       <EditField
                         name="name"
                         placeholder={t('Type_name_of_pet')}
@@ -173,7 +186,7 @@ const EditModal = ({ notice, close, approve, handleEditClose }) => {
                       <Error name="name" component="p" />
                     </EditLabel>
                     <EditLabel htmlFor="birthday">
-                    {t('Date_of_Birth')}:
+                      {t('Date_of_Birth')}:
                       <EditField
                         name="birthday"
                         onChange={handleChange}
@@ -184,7 +197,7 @@ const EditModal = ({ notice, close, approve, handleEditClose }) => {
                       <Error name="birthday" component="p" />
                     </EditLabel>
                     <EditLabel htmlFor="breed">
-                    {t('Breed')}:
+                      {t('Breed')}:
                       <EditField
                         name="breed"
                         placeholder={t('Type_the_breed')}
@@ -196,7 +209,7 @@ const EditModal = ({ notice, close, approve, handleEditClose }) => {
                       <Error name="breed" component="p" />
                     </EditLabel>
                     <EditLabel htmlFor="location">
-                    {t('Location')}:
+                      {t('Location')}:
                       <EditField
                         name="location"
                         placeholder={t('Type_location')}
@@ -222,7 +235,7 @@ const EditModal = ({ notice, close, approve, handleEditClose }) => {
                       )}
                     </EditLabel>
                     <EditLabel htmlFor="comments">
-                    {t('Comments')}:
+                      {t('Comments')}:
                       <EditText
                         as="textarea"
                         name="comments"

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 import useAuth from 'shared/hooks/useAuth';
 import { updateFavoriteNotice } from 'utils/ApiNotices';
@@ -26,7 +27,7 @@ const AddToFavorite = ({ notice, setIsFavorite }) => {
       setFavorite(!favorite);
       setIsFavorite(notice._id);
     } catch (error) {
-      alert(t('alert_failed_update'));
+      toast.error(t('alert_failed_update'));
     }
   };
 

@@ -24,8 +24,10 @@ const ModalApproveAction = ({ close, children, approve }) => {
 
   useEffect(() => {
     document.addEventListener('keydown', closeModal);
+    document.body.style.overflow = 'hidden';
     return () => {
       window.removeEventListener('keydown', closeModal);
+      document.body.style.overflow = '';
     };
   }, [closeModal]);
 

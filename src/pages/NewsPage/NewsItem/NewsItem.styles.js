@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Item = styled.li`
   position: relative;
-  max-width: 336px;
+  max-width: 480px;
   border-radius: 20px;
   color: ${({ theme }) => theme.colors.textColor};
   background: ${({ theme }) => theme.colors.backgroundModal};
@@ -12,7 +12,7 @@ export const Item = styled.li`
   transition: scale 250ms ease;
 
   &:hover {
-    scale: 1.03;
+    scale: 1.01;
     transition: scale 250ms ease;
   }
 

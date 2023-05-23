@@ -20,6 +20,7 @@ export const FormTitle = styled.p`
 `;
 
 export const FormLabel = styled.label`
+  position: relative;
   display: flex;
   flex-direction: column;
   font-weight: ${props => props.theme.fontWeiths.semi};
@@ -38,7 +39,7 @@ export const FormLabel = styled.label`
     width: 100%;
     height: 10px;
     background-color: ${props => props.theme.colors.backgroundModal};
-    border-radius: 5px;
+    border-radius: 40px;
     outline: none;
     opacity: 0.7;
     transition: opacity 0.2s;
@@ -80,8 +81,9 @@ export const FormLabel = styled.label`
 `;
 
 export const Error = styled(ErrorMessage)`
-  margin-left: 16px;
-  margin-top: 4px;
+  position: absolute;
+  bottom: -16px;
+  left: 16px;
   font-size: 14px;
   color: ${props => props.theme.colors.red};
 

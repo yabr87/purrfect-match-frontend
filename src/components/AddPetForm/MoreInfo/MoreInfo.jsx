@@ -31,7 +31,7 @@ const MoreInfo = ({
           <>
             <div role="group" aria-labelledby="choose-pet-option">
               <FormLabel>{t('The_Sex')}</FormLabel>
-              <RadioBox sex={values.sex}>
+              <RadioBox sex={values.sex} style={{position: 'relative'}}>
                 <MoreInfoRadio checked={values.sex === 'female'}>
                   <Icon id="female" w="10" h="18" />
                   {t('female')}
@@ -56,8 +56,8 @@ const MoreInfo = ({
                     checked={values.sex === 'male'}
                   />
                 </MoreInfoRadio>
-              </RadioBox>
               <Error name="sex" component="p" />
+              </RadioBox>
             </div>
           </>
         )}
@@ -89,7 +89,7 @@ const MoreInfo = ({
           </>
         )}
         {option === 'sell' && (
-          <FormLabel htmlFor="price" style={{ position: 'relative' }}>
+          <FormLabel htmlFor="price">
             {t('Price')}
             <StyledField
               name="price"
@@ -99,7 +99,7 @@ const MoreInfo = ({
               value={values.price}
               errors={touched.price && errors.price}
             />
-            <IconDollar id="dollar" s="none" f="#888888" w="20" h="20" />
+            <IconDollar id="dollar" s="none" f="currentColor" w="20" h="20" />
             <Error name="price" component="p" />
           </FormLabel>
         )}
@@ -124,7 +124,7 @@ const MoreInfo = ({
                   {t('Raise_your_ad_only_for')} {values.promo}$!
                 </p>
               ) : (
-                <p>{t('Drag_the_scroll_to_raise_your_ad')}!</p>
+                <p>{t('You_can_add_payment')}!</p>
               )}
               <StyledField
                 type="range"

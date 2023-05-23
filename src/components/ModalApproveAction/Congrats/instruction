@@ -1,54 +1,49 @@
-Інструкція по рендеру CongratsModal:
+// Інструкція по рендеру CongratsModal:
 
-1. в RegisterForm імпортуємо
+// 1. в RegisterForm імпортуємо
 
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
-const RegisterForm = () => {
-    return (
-        <Formik
-        onSubmit={(values, actions) => {
-         navigate('/notices/sell', { state: { isModalOpen: true } });
-      }}>
-        
-        </Formik>
-    )
-}
+// const RegisterForm = () => {
+//     return (
+//         <Formik
+//         onSubmit={(values, actions) => {
+//          navigate('/notices/sell', { state: { isModalOpen: true } });
+//       }}>
 
+//         </Formik>
+//     )
+// }
 
-2. в UserPage імпортуємо
+// 2. в UserPage імпортуємо
 
-import { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+// import { useState, useEffect } from 'react';
+// import { useLocation } from 'react-router-dom';
 
-import ModalApproveAction from 'components/ModalApproveAction';
-import Congrats from 'components/ModalApproveAction/Congrats';
+// import ModalApproveAction from 'components/ModalApproveAction';
+// import Congrats from 'components/ModalApproveAction/Congrats';
 
+// const UserPage = () => {
+//   const [isOpen, setIsModalOpen] = useState(false);
+//   const location = useLocation();
 
-const UserPage = () => {
-  const [isOpen, setIsModalOpen] = useState(false);
-  const location = useLocation();
-  
-  useEffect(() => {
-    const state = location.state;
+//   useEffect(() => {
+//     const state = location.state;
 
-    if (state) {
-      console.log(state);
-      const { isModalOpen } = location.state;
-      setIsModalOpen(isModalOpen);
-    }
-  }, [location.state]);
+//     if (state) {
+//       console.log(state);
+//       const { isModalOpen } = location.state;
+//       setIsModalOpen(isModalOpen);
+//     }
+//   }, [location.state]);
 
-return (
-    <>
-    {isOpen && (
-        <ModalApproveAction close={() => setIsModalOpen(false)}>
-          <Congrats close={() => setIsModalOpen(false)} />
-        </ModalApproveAction>
-      )}
-    </>
-)
-}
-
-
-
+// return (
+//     <>
+//     {isOpen && (
+//         <ModalApproveAction close={() => setIsModalOpen(false)}>
+//           <Congrats close={() => setIsModalOpen(false)} />
+//         </ModalApproveAction>
+//       )}
+//     </>
+// )
+// }

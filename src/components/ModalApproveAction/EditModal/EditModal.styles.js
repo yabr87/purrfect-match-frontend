@@ -10,7 +10,6 @@ export const EditContainer = styled.div`
   height: 95vh;
 
   @media ${props => props.theme.media.tab} {
-    width: 704px;
     height: fit-content;
     padding: 20px 32px;
   }
@@ -65,7 +64,7 @@ export const EditLabel = styled.label`
     width: 100%;
     height: 10px;
     background-color: ${props => props.theme.colors.backgroundModal};
-    border-radius: 5px;
+    border-radius: 40px;
     outline: none;
     opacity: 0.7;
     transition: opacity 0.2s;
@@ -216,6 +215,7 @@ export const EditboxLeft = styled.div`
 
   @media ${props => props.theme.media.tab} {
     gap: 20px;
+    width: 240px;
   }
 `;
 

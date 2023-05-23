@@ -36,17 +36,24 @@ const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    clearError: state => {
-      state.error = null;
+    clearError: store => {
+      store.error = null;
     },
-    statusIsRegister: (state, { payload }) => {
-      state.isRegister = payload;
+    statusIsRegister: (store, { payload }) => {
+      store.isRegister = payload;
+    },
+    setTokens: (store, { payload }) => {
+      store.token = payload.accessToken;
+      store.refreshToken = payload.refreshToken;
     },
   },
   extraReducers: builder => {
     builder
       .addCase(signup.pending, handlePending)
-      .addCase(signup.fulfilled, handleLogin)
+      .addCase(signup.fulfilled, (store, { payload }) => {
+        handleLogin(store, { payload });
+        store.isRegister = true;
+      })
       .addCase(signup.rejected, handleRejected)
       .addCase(login.pending, handlePending)
       .addCase(login.fulfilled, handleLogin)
@@ -76,4 +83,4 @@ const authSlice = createSlice({
 });
 
 export default authSlice;
-export const { clearError, statusIsRegister } = authSlice.actions;
+export const { clearError, statusIsRegister, setTokens } = authSlice.actions;

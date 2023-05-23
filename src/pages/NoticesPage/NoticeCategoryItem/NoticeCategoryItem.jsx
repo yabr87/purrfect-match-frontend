@@ -89,13 +89,16 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
     }
   };
 
+  const promo = Date.parse(notice.promoDate) > Date.now();
+
   return (
-    <Card>
+    <Card promo={promo}>
       <AddToFavorite notice={notice} setIsFavorite={setIsFavorite} />
       <CardImageContainer>
         <CardImage src={notice.photoUrl} alt={notice.title} />
         <ImageCategory>
           {notice.category.replace('for-free', 'for free').replace(/-/g, '/')}
+          {promo && <Icon id="star" s="none" />}
         </ImageCategory>
 
         <ImageDetails>
@@ -160,6 +163,7 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
       {isModalDeleteOpen && (
         <ModalApproveAction close={() => setIsModalDeleteOpen(false)}>
           <Delete
+            notice={notice}
             approve={() => handleDelete(notice)}
             close={() => setIsModalDeleteOpen(false)}
           />

@@ -39,7 +39,7 @@ export const NavItem = styled(NavLink)`
     font-weight: 700;
   }
 
-  &:active {
+  &.active {
     color: ${props => props.theme.colors.yellow};
   }
 

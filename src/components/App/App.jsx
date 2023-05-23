@@ -1,5 +1,5 @@
 import React, { lazy } from 'react';
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes, useSearchParams } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme } from 'utils/theme';
 import { GlobalStyle } from './App.styles';
@@ -10,6 +10,7 @@ import i18n from '../../utils/languages/i18n';
 import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { current } from 'redux/auth/authOperations';
+import { setTokens } from 'redux/auth/authSlice';
 
 import RestrictedRoute from 'routes/RestrictedRoute';
 import PrivateRoute from 'routes/PrivateRoute';
@@ -27,13 +28,26 @@ const OurFriendsPage = lazy(() => import('pages/OurFriendsPage'));
 
 const App = () => {
   const dispatch = useDispatch();
+  const [searchParams, setSearchParams] = useSearchParams({});
+
   const [theme, setTheme] = useState(
     localStorage.getItem('theme') === 'true' ? darkTheme : lightTheme
   );
 
   useEffect(() => {
+    const accessToken = searchParams.get('accessToken');
+    const refreshToken = searchParams.get('refreshToken');
+    if (accessToken && refreshToken) {
+      window.localStorage.setItem('accessToken', accessToken);
+      window.localStorage.setItem('refreshToken', refreshToken);
+      searchParams.delete('accessToken');
+      searchParams.delete('refreshToken');
+      setSearchParams(searchParams);
+      dispatch(setTokens({ accessToken, refreshToken }));
+    }
     dispatch(current());
-  }, [dispatch]);
+  }, [dispatch, searchParams, setSearchParams]);
+
   useEffect(() => {
     const themeListener = event => {
       event.currentTarget.localStorage.theme === 'true'

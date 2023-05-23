@@ -16,6 +16,8 @@ import Container from 'shared/components/Container';
 import Icon from 'shared/components/Icon/Icon';
 import { useMedia } from 'shared/hooks/useMedia';
 
+import { toast } from 'react-toastify';
+
 import { getNotices } from 'utils/ApiNotices';
 import SelectedFilters from '../../shared/components/SelectedFilters/SelectedFilters';
 
@@ -28,7 +30,8 @@ function NoticesPage() {
   const { t } = useTranslation();
 
   const handleAddPet = () => {
-    isLoggedIn ? navigate('/add-pet') : alert(t('alert_register_signin'));
+    isLoggedIn ? navigate('/add-pet') : toast.error(t('alert_register_signin'));
+      
   };
   const [age, setAge] = useState([]);
   const [sex, setSex] = useState('');
@@ -42,11 +45,20 @@ function NoticesPage() {
   const { categoryName } = useParams();
   const [category, setCategory] = useState(categoryName);
 
-  const selectedFilters = [
-    { label: '3-12m', value: 'young' },
-    { label: '1 year', value: 'adult' },
-    { label: '2 years', value: 'old' },
-  ];
+  const getAgeLabel = value => {
+    switch (value) {
+      case '0':
+        return `0-12 ${t('months')}`;
+      case '1':
+        return `1 ${t('year')}`;
+      case '2':
+        return `from 2 ${t('years')}`;
+      default:
+        return '';
+    }
+  };
+
+  const selectedFilters = age.map(a => ({ label: getAgeLabel(a), value: a }));
 
   const [title, setTitle] = useState(() => {
     const titleSearch = searchParams.get('title');
@@ -67,7 +79,15 @@ function NoticesPage() {
     if (title) {
       params.title = title;
     }
-    setSearchParams(params);
+
+    if (sex) {
+      params.sex = sex;
+    }
+
+    if (age.length > 0) {
+      params.age = age.join(',');
+    }
+
     setCurrentPage(1);
     setCategory(categoryName);
   }
@@ -96,6 +116,7 @@ function NoticesPage() {
     if (age.length > 0) {
       params.age = age.join(',');
     }
+    setSearchParams(params);
 
     getNotices(params)
       .then(({ data }) => {
@@ -104,7 +125,7 @@ function NoticesPage() {
       })
       .catch(e => console.log(e))
       .finally(setFetching(false));
-  }, [categoryName, currentPage, title, sex, age]);
+  }, [categoryName, currentPage, title, sex, age, setSearchParams]);
 
   return (
     <Container>
@@ -155,7 +176,13 @@ function NoticesPage() {
           justifyContent: 'flex-end',
         }}
       >
-        <SelectedFilters filters={selectedFilters}></SelectedFilters>
+        <SelectedFilters
+          filters={selectedFilters}
+          setAge={setAge}
+          onChange={() => {
+            toast.warning(t('You removed one of the filters'));
+          }}
+        />
       </div>
 
       {fetching && (

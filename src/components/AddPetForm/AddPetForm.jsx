@@ -16,6 +16,7 @@ import { addNotice } from 'utils/ApiNotices';
 import { addMyPet } from 'utils/ApiMyPets';
 import Loader from 'shared/components/Loader';
 import { toast } from 'react-toastify';
+import useAuth from 'shared/hooks/useAuth';
 
 const initialState = {
   category: 'sell',
@@ -38,6 +39,7 @@ const AddPetForm = () => {
   const [selectedCategory, setSelectedCategory] = useState(
     initialState.category
   );
+  const {user} = useAuth();
 
   const handleSubmit = async (values, { resetForm }) => {
     const newPet = Object.keys(values).reduce((acc, key) => {
@@ -49,15 +51,21 @@ const AddPetForm = () => {
 
     newPet.birthday = newPet.birthday.toISOString();
 
+    if (user.balance < newPet.promo) {
+      toast.error(t('alert_insufficient_funds'));
+      return;
+    }
+
     try {
       if (selectedCategory !== 'my-pet') {
         await addNotice(newPet);
+        navigate(`/notices/${selectedCategory}`);
       } else {
         await addMyPet(newPet);
+        navigate(`/user`);
       }
       toast.success(t('alert_Pet_added_successfully'));
       resetForm();
-      navigate(`/notices/${selectedCategory}`);
     } catch (error) {
       toast.error(`${t('alert_Failed_to_add_pet')}:${error}`);
     }
@@ -82,7 +90,7 @@ const AddPetForm = () => {
     <Formik
       initialValues={initialState}
       onSubmit={handleSubmit}
-      validationSchema={validationSchema(currentStep, selectedCategory)}
+      validationSchema={validationSchema(currentStep, selectedCategory, t)}
     >
       {({
         isSubmitting,
