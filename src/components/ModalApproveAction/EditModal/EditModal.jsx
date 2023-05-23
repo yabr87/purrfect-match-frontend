@@ -1,5 +1,4 @@
 import { Form, Formik } from 'formik';
-import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import Loader from 'shared/components/Loader';
 import { Error, FormButton } from 'components/AddPetForm/AddPetForm.styles';
@@ -28,7 +27,6 @@ import { toast } from 'react-toastify';
 import useAuth from 'shared/hooks/useAuth';
 
 const EditModal = ({ notice, close, approve, handleEditClose }) => {
-  const [isFormDirty, setIsFormDirty] = useState(false);
   const { t } = useTranslation();
 
   const { user } = useAuth();
@@ -88,16 +86,16 @@ const EditModal = ({ notice, close, approve, handleEditClose }) => {
       handleEditClose(notice);
       close();
     } catch (error) {
-      if (error.response && error.response.data && error.response.data.message === 'Not enough funds') {
-        return toast.error('Not enough funds. Please check your balance.');        
+      if (
+        error.response &&
+        error.response.data &&
+        error.response.data.message === 'Not enough funds'
+      ) {
+        return toast.error('Not enough funds. Please check your balance.');
       } else {
         toast.error(`{t('alert_Failed_to_edit_pet')}:${error}`);
       }
-    };
-  }
-
-  const handleFormChange = () => {
-    setIsFormDirty(true);
+    }
   };
 
   return (
@@ -116,7 +114,7 @@ const EditModal = ({ notice, close, approve, handleEditClose }) => {
             errors,
             touched,
           }) => (
-            <Form onChange={handleFormChange}>
+            <Form>
               {isSubmitting ? (
                 <Loader />
               ) : (
@@ -259,7 +257,11 @@ const EditModal = ({ notice, close, approve, handleEditClose }) => {
                   w="248"
                   h="48"
                   shape="solid"
-                  disabled={isSubmitting || !isFormDirty}
+                  disabled={
+                    isSubmitting ||
+                    JSON.stringify(initialValues) === JSON.stringify(values) ||
+                    Number(values.price) === Number(notice.price)
+                  }
                   onClick={approve}
                 >
                   {t('Update')}
