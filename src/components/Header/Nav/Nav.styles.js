@@ -35,12 +35,12 @@ export const NavItem = styled(NavLink)`
 
   &:hover,
   &:focus {
-    color: ${props => props.theme.colors.yellow};
+    color: ${props => props.theme.colors.navActive};
     font-weight: 700;
   }
 
   &.active {
-    color: ${props => props.theme.colors.yellow};
+    color: ${props => props.theme.colors.navActive};
   }
 
   @media ${props => props.theme.media.tab} {
