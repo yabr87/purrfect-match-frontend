@@ -259,8 +259,7 @@ const EditModal = ({ notice, close, approve, handleEditClose }) => {
                   shape="solid"
                   disabled={
                     isSubmitting ||
-                    JSON.stringify(initialValues) === JSON.stringify(values) ||
-                    Number(values.price) === Number(notice.price)
+                    JSON.stringify(initialValues) === JSON.stringify(values)
                   }
                   onClick={approve}
                 >
