@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "https://yabr87.github.io/purrfect-match-frontend/static/css/main.4bd7e0f0.css",
-    "main.js": "https://yabr87.github.io/purrfect-match-frontend/static/js/main.9f11133a.js",
+    "main.js": "https://yabr87.github.io/purrfect-match-frontend/static/js/main.e2812e40.js",
     "static/js/83.237c7a0d.chunk.js": "https://yabr87.github.io/purrfect-match-frontend/static/js/83.237c7a0d.chunk.js",
-    "static/js/790.da76f687.chunk.js": "https://yabr87.github.io/purrfect-match-frontend/static/js/790.da76f687.chunk.js",
-    "static/js/930.0abd2afa.chunk.js": "https://yabr87.github.io/purrfect-match-frontend/static/js/930.0abd2afa.chunk.js",
+    "static/js/790.e338d8d5.chunk.js": "https://yabr87.github.io/purrfect-match-frontend/static/js/790.e338d8d5.chunk.js",
+    "static/js/930.187bc413.chunk.js": "https://yabr87.github.io/purrfect-match-frontend/static/js/930.187bc413.chunk.js",
     "static/js/648.2040f13d.chunk.js": "https://yabr87.github.io/purrfect-match-frontend/static/js/648.2040f13d.chunk.js",
-    "static/js/900.750ab32e.chunk.js": "https://yabr87.github.io/purrfect-match-frontend/static/js/900.750ab32e.chunk.js",
-    "static/js/977.9c775500.chunk.js": "https://yabr87.github.io/purrfect-match-frontend/static/js/977.9c775500.chunk.js",
-    "static/js/850.de2e38e0.chunk.js": "https://yabr87.github.io/purrfect-match-frontend/static/js/850.de2e38e0.chunk.js",
+    "static/js/900.0c811ee5.chunk.js": "https://yabr87.github.io/purrfect-match-frontend/static/js/900.0c811ee5.chunk.js",
+    "static/js/977.a82a2c8a.chunk.js": "https://yabr87.github.io/purrfect-match-frontend/static/js/977.a82a2c8a.chunk.js",
+    "static/js/850.186febb3.chunk.js": "https://yabr87.github.io/purrfect-match-frontend/static/js/850.186febb3.chunk.js",
     "static/js/487.6fa6910d.chunk.js": "https://yabr87.github.io/purrfect-match-frontend/static/js/487.6fa6910d.chunk.js",
     "static/js/601.fceef192.chunk.js": "https://yabr87.github.io/purrfect-match-frontend/static/js/601.fceef192.chunk.js",
     "static/js/568.cd8eb221.chunk.js": "https://yabr87.github.io/purrfect-match-frontend/static/js/568.cd8eb221.chunk.js",
@@ -35,14 +35,14 @@
     "static/media/bg-tablet-min.png": "https://yabr87.github.io/purrfect-match-frontend/static/media/bg-tablet-min.1f23f50a8de903ac9b8e.png",
     "index.html": "https://yabr87.github.io/purrfect-match-frontend/index.html",
     "main.4bd7e0f0.css.map": "https://yabr87.github.io/purrfect-match-frontend/static/css/main.4bd7e0f0.css.map",
-    "main.9f11133a.js.map": "https://yabr87.github.io/purrfect-match-frontend/static/js/main.9f11133a.js.map",
+    "main.e2812e40.js.map": "https://yabr87.github.io/purrfect-match-frontend/static/js/main.e2812e40.js.map",
     "83.237c7a0d.chunk.js.map": "https://yabr87.github.io/purrfect-match-frontend/static/js/83.237c7a0d.chunk.js.map",
-    "790.da76f687.chunk.js.map": "https://yabr87.github.io/purrfect-match-frontend/static/js/790.da76f687.chunk.js.map",
-    "930.0abd2afa.chunk.js.map": "https://yabr87.github.io/purrfect-match-frontend/static/js/930.0abd2afa.chunk.js.map",
+    "790.e338d8d5.chunk.js.map": "https://yabr87.github.io/purrfect-match-frontend/static/js/790.e338d8d5.chunk.js.map",
+    "930.187bc413.chunk.js.map": "https://yabr87.github.io/purrfect-match-frontend/static/js/930.187bc413.chunk.js.map",
     "648.2040f13d.chunk.js.map": "https://yabr87.github.io/purrfect-match-frontend/static/js/648.2040f13d.chunk.js.map",
-    "900.750ab32e.chunk.js.map": "https://yabr87.github.io/purrfect-match-frontend/static/js/900.750ab32e.chunk.js.map",
-    "977.9c775500.chunk.js.map": "https://yabr87.github.io/purrfect-match-frontend/static/js/977.9c775500.chunk.js.map",
-    "850.de2e38e0.chunk.js.map": "https://yabr87.github.io/purrfect-match-frontend/static/js/850.de2e38e0.chunk.js.map",
+    "900.0c811ee5.chunk.js.map": "https://yabr87.github.io/purrfect-match-frontend/static/js/900.0c811ee5.chunk.js.map",
+    "977.a82a2c8a.chunk.js.map": "https://yabr87.github.io/purrfect-match-frontend/static/js/977.a82a2c8a.chunk.js.map",
+    "850.186febb3.chunk.js.map": "https://yabr87.github.io/purrfect-match-frontend/static/js/850.186febb3.chunk.js.map",
     "487.6fa6910d.chunk.js.map": "https://yabr87.github.io/purrfect-match-frontend/static/js/487.6fa6910d.chunk.js.map",
     "601.fceef192.chunk.js.map": "https://yabr87.github.io/purrfect-match-frontend/static/js/601.fceef192.chunk.js.map",
     "568.cd8eb221.chunk.js.map": "https://yabr87.github.io/purrfect-match-frontend/static/js/568.cd8eb221.chunk.js.map",
@@ -54,6 +54,6 @@
   },
   "entrypoints": [
     "static/css/main.4bd7e0f0.css",
-    "static/js/main.9f11133a.js"
+    "static/js/main.e2812e40.js"
   ]
 }
