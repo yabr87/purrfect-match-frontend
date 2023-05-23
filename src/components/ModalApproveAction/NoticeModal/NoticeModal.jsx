@@ -24,6 +24,7 @@ import {
   ImageContainer,
   ImageWrap,
   PetDataListBody,
+  ContainerModal,
 } from './NoticeModal.styles';
 
 import Icon from 'shared/components/Icon';
@@ -81,171 +82,169 @@ const NoticeModal = ({ notice, close, setIsFavorite }) => {
   };
 
   return (
-    <ContainerView>
-      <PetCardData>
-        <Wrap>
-          <ImageContainer>
-            <ImageWrap>
-              <PetImage src={notice.photoUrl} alt={notice.title} />
-              <ImageCategory>
-                {notice.category
-                  .replace('for-free', 'for free')
-                  .replace(/-/g, '/')}
-              </ImageCategory>
-            </ImageWrap>
-          </ImageContainer>
+    <ContainerModal>
+      <ContainerView>
+        <PetCardData>
+          <Wrap>
+            <ImageContainer>
+              <ImageWrap>
+                <PetImage src={notice.photoUrl} alt={notice.title} />
+                <ImageCategory>
+                  {notice.category
+                    .replace('for-free', 'for free')
+                    .replace(/-/g, '/')}
+                </ImageCategory>
+              </ImageWrap>
+            </ImageContainer>
 
-          <PetDataListWrap>
-            <Title>{notice.title}</Title>
-            <PetDataList>
-              <PetDataListBody>
-                <PetDataItem>
-                  <NameCategory>{t('Name')}:</NameCategory>
-                  <ValueCategory>{notice.name}</ValueCategory>
-                </PetDataItem>
-                <PetDataItem>
-                  <NameCategory>{t('Birthday')}:</NameCategory>
-                  <ValueCategory>
-                    {formatBirthdayDate(notice.birthday)}
-                  </ValueCategory>
-                </PetDataItem>
-                <PetDataItem>
-                  <NameCategory>{t('Breed')}:</NameCategory>
-                  <ValueCategory>{notice.breed}</ValueCategory>
-                </PetDataItem>
-                <PetDataItem>
-                  <NameCategory>{t('Place')}:</NameCategory>
-                  <ValueCategory>{notice.location}</ValueCategory>
-                </PetDataItem>
-                <PetDataItem>
-                  <NameCategory>{t('The_sex')}:</NameCategory>
-                  <ValueCategory>{notice.sex}</ValueCategory>
-                </PetDataItem>
-                {notice.category === 'sell' && (
+            <PetDataListWrap>
+              <Title>{notice.title}</Title>
+              <PetDataList>
+                <PetDataListBody>
                   <PetDataItem>
-                    <NameCategory>{t('Price')}:</NameCategory>
-                    <ValueCategory>{notice.price}$</ValueCategory>
+                    <NameCategory>{t('Name')}:</NameCategory>
+                    <ValueCategory>{notice.name}</ValueCategory>
                   </PetDataItem>
-                )}
-                <PetDataItem>
-                  <NameCategory>{t('Email')}:</NameCategory>
-                  <ValueCategory>
-                    <ContactLinkItem href="mailto:">
-                      {ownerContacts.email ? ownerContacts.email : 'no email'}
-                    </ContactLinkItem>
-                  </ValueCategory>
-                </PetDataItem>
-                <PetDataItem>
-                  <NameCategory>{t('Phone')}:</NameCategory>
-                  <ValueCategory>
-                    <ContactLinkItem href="tel:">
-                      {ownerContacts.phone
-                        ? ownerContacts.phone
-                        : 'no phone number'}
-                    </ContactLinkItem>
-                  </ValueCategory>
-                </PetDataItem>
-              </PetDataListBody>
-            </PetDataList>
-          </PetDataListWrap>
-        </Wrap>
-        <PetComents>
-          {t('Comments')}: {notice.comments}
-        </PetComents>
-      </PetCardData>
-      {isSmallMobile && (
-        <ButtonWrap>
-          <Button
-            type="button"
-            onClick={() => approveAddFavorite(notice)}
-            h="40"
-            shape="solid"
-            g="8"
-            style={{
-              marginBottom: '8px',
-              width: '100%',
-              maxWidth: '256px',
-            }}
-          >
-            {t('Add_to')}
-            <Icon
-              id="heart"
-              f={favorite ? '#ffffff' : 'transparent'}
-              s="white"
-            />
-          </Button>
-          <ContactLink type="button" href="tel:+380961111111">
-            {t('Contact')}
-          </ContactLink>
-        </ButtonWrap>
-      )}
-      {isMobile && (
-        <ButtonWrap>
-          <Button
-            type="button"
-            onClick={() => approveAddFavorite(notice)}
-            h="40"
-            shape="solid"
-            g="8"
-            style={{
-              marginBottom: '8px',
-              width: '100%',
-              maxWidth: '256px',
-            }}
-          >
-            {t('Add_to')}
-            <Icon
-              id="heart"
-              f={favorite ? '#ffffff' : 'transparent'}
-              s="white"
-            />
-          </Button>
-          <ContactLink type="button" href="tel:+380961111111">
-            {t('Contact')}
-          </ContactLink>
-        </ButtonWrap>
-      )}
-      {isTablet && (
-        <ButtonWrap>
-          <Button
-            type="button"
-            onClick={() => approveAddFavorite(notice)}
-            w="129"
-            h="40"
-            shape="solid"
-            g="8"
-          >
-            {t('Add_to')}
-            <Icon
-              id="heart"
-              f={favorite ? '#ffffff' : 'transparent'}
-              s="white"
-            />
-          </Button>
-          <ContactLink href="tel:+380961111111">{t('Contact')}</ContactLink>
-        </ButtonWrap>
-      )}
-      {isDesktop && (
-        <ButtonWrap>
-          <Button
-            type="button"
-            onClick={() => approveAddFavorite(notice)}
-            w="129"
-            h="40"
-            shape="solid"
-            g="8"
-          >
-            {t('Add_to')}
-            <Icon
-              id="heart"
-              f={favorite ? '#ffffff' : 'transparent'}
-              s="white"
-            />
-          </Button>
-          <ContactLink href="tel:+380961111111">{t('Contact')}</ContactLink>
-        </ButtonWrap>
-      )}
-    </ContainerView>
+                  <PetDataItem>
+                    <NameCategory>{t('Birthday')}:</NameCategory>
+                    <ValueCategory>
+                      {formatBirthdayDate(notice.birthday)}
+                    </ValueCategory>
+                  </PetDataItem>
+                  <PetDataItem>
+                    <NameCategory>{t('Breed')}:</NameCategory>
+                    <ValueCategory>{notice.breed}</ValueCategory>
+                  </PetDataItem>
+                  <PetDataItem>
+                    <NameCategory>{t('Place')}:</NameCategory>
+                    <ValueCategory>{notice.location}</ValueCategory>
+                  </PetDataItem>
+                  <PetDataItem>
+                    <NameCategory>{t('The_sex')}:</NameCategory>
+                    <ValueCategory>{notice.sex}</ValueCategory>
+                  </PetDataItem>
+                  {notice.category === 'sell' && (
+                    <PetDataItem>
+                      <NameCategory>{t('Price')}:</NameCategory>
+                      <ValueCategory>{notice.price}$</ValueCategory>
+                    </PetDataItem>
+                  )}
+                  <PetDataItem>
+                    <NameCategory>{t('Email')}:</NameCategory>
+                    <ValueCategory>
+                      <ContactLinkItem href="mailto:">
+                        {ownerContacts.email ? ownerContacts.email : 'no email'}
+                      </ContactLinkItem>
+                    </ValueCategory>
+                  </PetDataItem>
+                  <PetDataItem>
+                    <NameCategory>{t('Phone')}:</NameCategory>
+                    <ValueCategory>
+                      <ContactLinkItem href="tel:">
+                        {ownerContacts.phone
+                          ? ownerContacts.phone
+                          : 'no phone number'}
+                      </ContactLinkItem>
+                    </ValueCategory>
+                  </PetDataItem>
+                </PetDataListBody>
+              </PetDataList>
+            </PetDataListWrap>
+          </Wrap>
+          <PetComents>
+            {t('Comments')}: {notice.comments}
+          </PetComents>
+        </PetCardData>
+        {isSmallMobile && (
+          <ButtonWrap>
+            <Button
+              type="button"
+              onClick={() => approveAddFavorite(notice)}
+              h="40"
+              shape="solid"
+              g="8"
+              style={{
+                marginBottom: '8px',
+                width: '100%',
+                maxWidth: '256px',
+              }}
+            >
+              {t('Add_to')}
+              <Icon
+                id="heart"
+                f={favorite ? '#ffffff' : 'transparent'}
+                s="white"
+              />
+            </Button>
+            <ContactLink href="tel:+380961111111">{t('Contact')}</ContactLink>
+          </ButtonWrap>
+        )}
+        {isMobile && (
+          <ButtonWrap>
+            <Button
+              type="button"
+              onClick={() => approveAddFavorite(notice)}
+              h="40"
+              shape="solid"
+              g="8"
+              style={{
+                marginBottom: '8px',
+                width: '100%',
+                maxWidth: '256px',
+              }}
+            >
+              {t('Add_to')}
+              <Icon
+                id="heart"
+                f={favorite ? '#ffffff' : 'transparent'}
+                s="white"
+              />
+            </Button>
+            <ContactLink href="tel:+380961111111">{t('Contact')}</ContactLink>
+          </ButtonWrap>
+        )}
+        {isTablet && (
+          <ButtonWrap>
+            <Button
+              type="button"
+              onClick={() => approveAddFavorite(notice)}
+              w="129"
+              h="40"
+              shape="solid"
+              g="8"
+            >
+              {t('Add_to')}
+              <Icon
+                id="heart"
+                f={favorite ? '#ffffff' : 'transparent'}
+                s="white"
+              />
+            </Button>
+            <ContactLink href="tel:+380961111111">{t('Contact')}</ContactLink>
+          </ButtonWrap>
+        )}
+        {isDesktop && (
+          <ButtonWrap>
+            <Button
+              type="button"
+              onClick={() => approveAddFavorite(notice)}
+              w="129"
+              h="40"
+              shape="solid"
+              g="8"
+            >
+              {t('Add_to')}
+              <Icon
+                id="heart"
+                f={favorite ? '#ffffff' : 'transparent'}
+                s="white"
+              />
+            </Button>
+            <ContactLink href="tel:+380961111111">{t('Contact')}</ContactLink>
+          </ButtonWrap>
+        )}
+      </ContainerView>
+    </ContainerModal>
   );
 };
 
