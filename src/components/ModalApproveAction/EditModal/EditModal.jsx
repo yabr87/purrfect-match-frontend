@@ -249,8 +249,8 @@ const EditModal = ({ notice, close, approve, handleEditClose }) => {
                 </EditWrapper>
               )}
               <EditBox>
-                <FormButton type="button" w="248" h="48" onClick={close}>
-                  {t('Cancel')}
+                <FormButton type="button" onClick={close}>
+                  <span>{t('Cancel')}</span>
                 </FormButton>
                 <Button
                   type="submit"

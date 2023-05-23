@@ -39,7 +39,7 @@ const AddPetForm = () => {
   const [selectedCategory, setSelectedCategory] = useState(
     initialState.category
   );
-  const {user} = useAuth();
+  const { user } = useAuth();
 
   const handleSubmit = async (values, { resetForm }) => {
     const newPet = Object.keys(values).reduce((acc, key) => {
@@ -158,8 +158,10 @@ const AddPetForm = () => {
                     h="48"
                     onClick={handleCancel}
                   >
-                    <Icon id="arrow-left" />
-                    {t('Cancel')}
+                    <span>
+                      <Icon id="arrow-left" />
+                      {t('Cancel')}
+                    </span>
                   </FormButton>
                 )}
                 {currentStep !== 1 && (
@@ -169,8 +171,10 @@ const AddPetForm = () => {
                     h="48"
                     onClick={handleGoBack}
                   >
-                    <Icon id="arrow-left" />
-                    {t('Back')}
+                    <span>
+                      <Icon id="arrow-left" />
+                      {t('Back')}
+                    </span>
                   </FormButton>
                 )}
                 {currentStep !== 3 && (

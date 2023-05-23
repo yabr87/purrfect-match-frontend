@@ -190,29 +190,63 @@ export const ButtonWrap = styled.div`
 `;
 
 export const ContactLink = styled.a`
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 40px;
-  padding: 10px;
 
-  font-family: ${props => props.theme.fonts.main};
-  font-weight: ${props => props.theme.fontWeiths.bold};
-  font-size: ${props => props.theme.fontSizes.s};
-  line-height: 1.38;
-  color: ${props => props.theme.colors.link};
+  span {
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
 
-  border: 2px solid ${props => props.theme.colors.link};
-  border-radius: ${props => props.theme.radius.normal};
   width: 100%;
+  height: 40px;
 
-  cursor: pointer;
+  font-family: inherit;
+  font-weight: ${({ theme }) => theme.fontWeiths.bold};
+  font-size: ${({ theme }) => theme.fontSizes.s};
+  line-height: 1.375;
+  letter-spacing: 0.04em;
+  color: ${({ theme }) => theme.colors.link};
 
-  &:hover,
-  &:focus,
-  &:active {
-    color: ${props => props.theme.colors.buttonText};
-    background: ${props => props.theme.colors.link};
+  background-color: transparent;
+  border-radius: ${({ theme }) => theme.radius.normal};
+  box-shadow: inset 0px 0px 0px 2px ${({ theme }) => theme.colors.link};
+  border: none;
+  outline: none;
+
+  transition: color 250ms ease;
+
+  :not([disabled]):hover,
+  :not([disabled]):focus-visible {
+    cursor: pointer;
+    color: ${({ theme }) => theme.colors.buttonText};
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: ${({ theme }) => theme.colors.gradient};
+    border-radius: ${({ theme }) => theme.radius.normal};
+    opacity: 0;
+    transition: opacity 250ms ease;
+  }
+
+  :not([disabled]):hover::before,
+  :not([disabled]):focus-visible::before {
+    opacity: 1;
+  }
+
+  :active,
+  :disabled {
+    filter: opacity(0.6);
   }
 
   @media ${props => props.theme.media.mobile} {

@@ -18,7 +18,7 @@ export const CircleBtn = styled.button`
   height: ${setSize};
 
   font-family: 'Manrope';
-  font-weight: ${({ theme }) => theme.fontWeiths.semiBold};
+  font-weight: ${({ theme }) => theme.fontWeiths.bold};
   font-size: ${({ theme }) => theme.fontSizes.xs};
   line-height: 1.33;
   color: ${setColor};

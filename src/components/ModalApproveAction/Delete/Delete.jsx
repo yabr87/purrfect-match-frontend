@@ -78,7 +78,7 @@ const Delete = ({ item, notice, close, approve }) => {
               }}
             >
               {t('Yes')}
-              <Icon id="trash" s="#FEF9F9" />
+              <Icon id="trash" />
             </Button>
           </ButtonWrap>
         </>
@@ -106,7 +106,7 @@ const Delete = ({ item, notice, close, approve }) => {
               g="8"
             >
               {t('Yes')}
-              <Icon id="trash" s="#FEF9F9" />
+              <Icon id="trash" />
             </Button>
           </ButtonWrap>
         </>
@@ -134,7 +134,7 @@ const Delete = ({ item, notice, close, approve }) => {
               g="8"
             >
               {t('Yes')}
-              <Icon id="trash" s="#FEF9F9" />
+              <Icon id="trash" />
             </Button>
           </ButtonWrap>
         </>
@@ -162,7 +162,7 @@ const Delete = ({ item, notice, close, approve }) => {
               g="8"
             >
               {t('Yes')}
-              <Icon id="trash" s="#FEF9F9" />
+              <Icon id="trash" />
             </Button>
           </ButtonWrap>
         </>

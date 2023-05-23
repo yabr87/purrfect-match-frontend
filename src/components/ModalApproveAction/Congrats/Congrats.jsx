@@ -32,12 +32,12 @@ const Congrats = ({ close }) => {
           }}
         >
           {t('Go_to_profile')}
-          <Icon id="paw" f="white" />
+          <Icon id="paw" f="currentColor" s="none" />
         </Button>
       ) : (
         <Button onClick={close} w="256" h="40" shape="solid" g="8">
           {t('Go_to_profile')}
-          <Icon id="paw" f="white" />
+          <Icon id="paw" f="currentColor" s="none" />
         </Button>
       )}
     </ContainerView>

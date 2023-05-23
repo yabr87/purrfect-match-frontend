@@ -136,32 +136,65 @@ export const ButtonsBox = styled.div`
 `;
 
 export const FormButton = styled.button`
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
+
+  span {
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
   width: 248px;
   height: 48px;
-  gap: 12px;
-  text-align: center;
-  border: none;
-  border-radius: ${props => props.theme.radius.normal};
-  outline: none;
-  cursor: pointer;
 
-  font-size: ${props => props.theme.fontSizes.s};
-  line-height: 1.37;
-  font-weight: ${props => props.theme.fontWeiths.bold};
+  font-family: inherit;
+  font-weight: ${({ theme }) => theme.fontWeiths.bold};
+  font-size: ${({ theme }) => theme.fontSizes.s};
+  line-height: 1.375;
   letter-spacing: 0.04em;
+  color: ${({ theme }) => theme.colors.link};
 
-  color: ${props => props.theme.colors.link};
-  background: ${props => props.theme.colors.backgroundModal};
-  transition: color 250ms ease, background 250ms ease;
+  // gap: 12px;
+  // text-align: center;
 
-  &:hover,
-  &:focus {
-    background: ${props => props.theme.colors.gradient};
-    color: ${props => props.theme.colors.buttonText};
-    outline: none;
+  background-color: transparent;
+  border-radius: ${({ theme }) => theme.radius.normal};
+  border: none;
+  outline: none;
+
+  transition: color 250ms ease;
+
+  :not([disabled]):hover,
+  :not([disabled]):focus-visible {
+    cursor: pointer;
+    color: ${({ theme }) => theme.colors.buttonText};
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: ${({ theme }) => theme.colors.gradient};
+    border-radius: ${({ theme }) => theme.radius.normal};
+    opacity: 0;
+    transition: opacity 250ms ease;
+  }
+
+  :not([disabled]):hover::before,
+  :not([disabled]):focus-visible::before {
+    opacity: 1;
+  }
+
+  :active,
+  :disabled {
+    filter: opacity(0.6);
   }
 
   @media ${props => props.theme.media.tab} {
