@@ -35,9 +35,9 @@ const initialState = {
 };
 
 const UserData = () => {
-  const userData = useSelector(store => store.user);
+  const userData = useSelector(store => store.auth.user);
   const [user, setUser] = useState(() => {
-    return userData || initialState;
+    return { ...userData, photo: userData.avatarUrl } || initialState;
   });
   const [isModalLogoutOpen, setIsModalLogoutOpen] = useState(false);
   const [isConfirm, setIsConfirm] = useState(false);
@@ -56,7 +56,6 @@ const UserData = () => {
 
   const handleUploadPhoto = async () => {
     try {
-      // await addAvatar(token, { avatar: user.photo });
       dispatch(updateAvatar({ avatar: user.photo }));
       setIsConfirm(false);
     } catch (error) {
@@ -85,10 +84,7 @@ const UserData = () => {
                 multiple={false}
               />
               {user.photo ? (
-                <Photo
-                  src={URL.createObjectURL(user.photo)}
-                  alt="Selected file"
-                />
+                <Photo src={user.photo} alt="Selected file" />
               ) : (
                 <Photo src={user.avatarUrl} alt="default avatar" />
               )}
