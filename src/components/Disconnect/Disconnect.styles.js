@@ -11,7 +11,7 @@ export const Title = styled.div`
   text-align: center;
   color: ${props => props.theme.colors.textColor};
   position: relative;
-  h2 {
+  h2 {margin-top: 20px;
     display: block;
     font-weight: 700;
     font-size: 32px;
