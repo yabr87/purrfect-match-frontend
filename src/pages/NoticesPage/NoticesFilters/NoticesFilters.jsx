@@ -18,7 +18,7 @@ const NoticesFilters = React.memo(
   ({ sex, age, setSex, setAge, setSearchParams }) => {
     const isUpToWidth480 = useMedia(['(max-width: 480px)'], [true], false);
 
-    // const [currentAgeValues, setCurrentAgeValues] = useState({ age });
+    // const [currentAgeValues, setCurrentAgeValues] = useState(age);
     // const [currentGender, setCurrentGender] = useState(sex);
 
     const [isFilterOpen, setIsFilterOpen] = useState(false);
