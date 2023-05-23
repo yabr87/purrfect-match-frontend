@@ -26,7 +26,7 @@ const Header = () => {
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
   const [isModalLogoutOpen, setIsModalLogoutOpen] = useState(false);
 
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn, token } = useAuth();
 
   const screenSize = useMedia(
     ['(min-width: 1280px)', '(min-width: 768px)'],
@@ -44,6 +44,8 @@ const Header = () => {
 
   const userBar = isLoggedIn ? (
     <UserNav handleLinkClick={handleLinkClick} />
+  ) : token ? (
+    <div style={{ marginLeft: 'auto' }}></div>
   ) : (
     <AuthNav handleLinkClick={handleLinkClick} />
   );
@@ -59,10 +61,10 @@ const Header = () => {
           <Logo />
           {isDesktop && (
             <>
-              <div style={{ display: 'flex', marginLeft: 'auto', gap: '40px'}}>
+              <div style={{ display: 'flex', marginLeft: 'auto', gap: '40px' }}>
                 {nav}
-                  <Switcher />
-                  <LanguageSwitcher />
+                <Switcher />
+                <LanguageSwitcher />
               </div>
               {userBar}
             </>
@@ -95,7 +97,14 @@ const Header = () => {
                 </OpenLinksButton>
                 {isMobileNavOpen && (
                   <MobileContainer>
-                    <div style={{display: 'flex', alignItems: 'center', gap: '40px', marginTop: '40px'}}>
+                    <div
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '40px',
+                        marginTop: '40px',
+                      }}
+                    >
                       <Switcher />
                       <LanguageSwitcher />
                     </div>
