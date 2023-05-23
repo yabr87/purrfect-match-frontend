@@ -38,12 +38,10 @@ const App = () => {
     const accessToken = searchParams.get('accessToken');
     const refreshToken = searchParams.get('refreshToken');
     if (accessToken && refreshToken) {
-      window.localStorage.setItem('accessToken', accessToken);
-      window.localStorage.setItem('refreshToken', refreshToken);
+      dispatch(setTokens({ accessToken, refreshToken }));
       searchParams.delete('accessToken');
       searchParams.delete('refreshToken');
       setSearchParams(searchParams);
-      dispatch(setTokens({ accessToken, refreshToken }));
     }
   }, [dispatch, searchParams, setSearchParams]);
 

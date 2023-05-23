@@ -36,8 +36,6 @@ const handleLogin = (store, { payload }) => {
   store.token = payload.accessToken;
   store.refreshToken = payload.refreshToken;
   store.isLogin = true;
-  window.localStorage.setItem('accessToken', payload.accessToken);
-  window.localStorage.setItem('refreshToken', payload.refreshToken);
 };
 
 const authSlice = createSlice({
@@ -54,6 +52,7 @@ const authSlice = createSlice({
       store.token = payload.accessToken;
       store.refreshToken = payload.refreshToken;
     },
+    forceLogout: (store, { payload }) => ({ ...initialState, error: payload }),
   },
   extraReducers: builder => {
     builder
@@ -103,4 +102,5 @@ const authSlice = createSlice({
 });
 
 export default authSlice;
-export const { clearError, statusIsRegister, setTokens } = authSlice.actions;
+export const { clearError, statusIsRegister, setTokens, forceLogout } =
+  authSlice.actions;
