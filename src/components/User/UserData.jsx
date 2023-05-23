@@ -36,9 +36,7 @@ const initialState = {
 
 const UserData = () => {
   const userData = useSelector(store => store.auth.user);
-  const [user, setUser] = useState(() => {
-    return { ...userData, photo: userData.avatarUrl } || initialState;
-  });
+  const [user, setUser] = useState(userData || initialState);
   const [isModalLogoutOpen, setIsModalLogoutOpen] = useState(false);
   const [isConfirm, setIsConfirm] = useState(false);
   const token = useSelector(store => store.auth.token);
@@ -95,7 +93,14 @@ const UserData = () => {
                 accept="image/png, image/jpeg"
                 multiple={false}
               />
-              <Photo src={user.photo} alt="Selected file" />
+              {user.photo ? (
+                <Photo
+                  src={URL.createObjectURL(user.photo)}
+                  alt="Selected file"
+                />
+              ) : (
+                <Photo src={userData.avatarUrl} alt="default avatar" />
+              )}
             </Avatar>
             {!isConfirm ? (
               <EditAvatarBtn>
