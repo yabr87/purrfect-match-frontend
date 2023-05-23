@@ -48,10 +48,14 @@ const validationSchema = (currentStep, selectedCategory, t) => {
         .required(`${t('Comments_are_required')}`)
         .min(8, `${t('Comments_at_least_8')}`)
         .max(120, `${t('Comments_not_exceed_120')}`),
-      sex: Yup.string().required(`${t('Sex_is_required')}`).oneOf(['male', 'female']),
+      sex: Yup.string()
+        .required(`${t('Sex_is_required')}`)
+        .oneOf(['male', 'female']),
       location: Yup.string()
         .required(`${t('Location_is_required')}`)
-        .matches(/^[\p{L}\s,']+$/u, `${t('Invalid_city_format')}`),
+        .matches(/^[\p{L}\s,']+$/u, `${t('Invalid_city_format')}`)
+        .min(2, `${t('Location_at_least_2')}`)
+        .max(20, `${t('Location_not_exceed_20')}`),
       price: Yup.number()
         .typeError(`${t('Price_must_be_number')}`)
         .required(`${t('Price_is_required')}`),

@@ -189,6 +189,8 @@ i18n
           Invalid_city_format: 'Invalid city format',
           Price_must_be_number: 'Price must be a number',
           Price_is_required: 'Price is required',
+          Location_at_least_2: 'Location must be at least 2 characters',
+          Location_not_exceed_20: 'Location must not exceed 20 characters',
 
           //404
           Ooops: 'Ooops',
@@ -397,6 +399,8 @@ i18n
           Invalid_city_format: 'Некоректний формат міста',
           Price_must_be_number: 'Ціна повинна бути числом',
           Price_is_required: 'Ціна - обовʼязкове поле',
+          Location_at_least_2: 'Місто має бути хоча б 2 символи',
+          Location_not_exceed_20: 'Місто не має перевищувати 20 символів',
 
           //404
           Ooops: 'Ууупс',
