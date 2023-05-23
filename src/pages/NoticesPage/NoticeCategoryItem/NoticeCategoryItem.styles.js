@@ -81,7 +81,7 @@ export const ImageDetailsItem = styled.p`
 export const ImageDetailsText = styled.span`
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 80px;
+  max-width: 30px;
   text-transform: capitalize;
 `;
 

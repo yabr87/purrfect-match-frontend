@@ -8,15 +8,16 @@ export const FilterOptions = styled.div`
   position: absolute;
   padding: 8px;
   ${'' /* top: 100%; */}
-  right: 0;
   z-index: 10;
   width: 152px;
   background: ${props => props.theme.colors.backgroundModal};
   box-shadow: ${props => props.theme.shadows.default};
   border-radius: ${props => props.theme.radius.small};
-  ${'' /* @media@media (min-width: 481px) {
+  ${
+    '' /* @media@media (min-width: 481px) {
     padding: 60px 75px;
-  } */}
+  } */
+  }
 `;
 
 export const FiltersTitle = styled.h3`
@@ -31,5 +32,5 @@ export const FiltersTitle = styled.h3`
 `;
 
 export const FilterContainerForAllGrup = styled.div`
-position: relative;
+  position: relative;
 `;
