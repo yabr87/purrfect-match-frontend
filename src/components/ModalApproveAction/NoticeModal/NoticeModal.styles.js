@@ -107,46 +107,41 @@ export const PetDataListWrap = styled.div`
 `;
 
 export const PetDataList = styled.table`
-  width: 100%;
   margin-bottom: 12px;
 
   @media ${props => props.theme.media.tab} {
-    width: 100%;
     height: 80%;
   }
 `;
 
 export const PetDataItem = styled.tr`
-  width: 100%;
-
   &:last-child {
     margin-bottom: 0;
-  }
-  @media ${props => props.theme.media.tab} {
-    max-width: 121px;
   }
 `;
 
 export const NameCategory = styled.th`
-  text-align: start;
+  text-align: left;
+  vertical-align: bottom;
   font-family: ${props => props.theme.fonts.main};
   font-style: normal;
   font-weight: ${props => props.theme.fontWeiths.semiBold};
   font-size: 14px;
   line-height: 19.12px;
   color: ${props => props.theme.colors.textColor};
-  height: 27px;
+  overflow: hidden;
   // display: block;
-  // overflow: hidden;
-  // text-overflow: ellipsis;
-  // white-space: nowrap;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 81px;
   @media ${props => props.theme.media.tab} {
-    // max-width: 121px;
+    min-width: 121px;
   }
 `;
 
 export const ValueCategory = styled.th`
-  text-align: start;
+  text-align: left;
+  vertical-align: bottom;
   font-style: normal;
   font-weight: ${props => props.theme.fontWeiths.semi};
   font-size: ${props => props.theme.fontSizes.xs};

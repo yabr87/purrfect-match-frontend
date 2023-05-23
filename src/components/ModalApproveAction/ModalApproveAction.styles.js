@@ -29,20 +29,6 @@ export const ModalContainer = styled.div`
   }
 `;
 
-// export const ModalView = styled.div`
-//   // width: calc(100% - 40px);
-//   // border-radius: 20px;
-//   // background-color: ${props => props.theme.colors.backgroundModal};
-//   // @media ${props => props.theme.media.phone} {
-//   //   max-width: 440px;
-//   // }
-
-//   // @media ${props => props.theme.media.tab} {
-//   //   border-radius: ${props => props.theme.radius.normal};
-//   //   max-width: 681px;
-//   // }
-// `;
-
 export const CloseIcon = styled.button`
   background: transparent;
   border: none;

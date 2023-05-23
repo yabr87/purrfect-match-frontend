@@ -34,12 +34,10 @@ const ModalApproveAction = ({ close, children, approve }) => {
   return createPortal(
     <ModalOverlay onClick={closeModal}>
       <ModalContainer>
-        {/* <ModalView> */}
         <CloseIcon onClick={close}>
           <Icon id="cross" s="#54ADFF" />
         </CloseIcon>
         {children}
-        {/* </ModalView> */}
       </ModalContainer>
     </ModalOverlay>,
     modalRoot
