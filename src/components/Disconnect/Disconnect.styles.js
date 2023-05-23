@@ -1,14 +1,9 @@
 import styled from 'styled-components';
 
 export const Disconnected = styled.div`
-  margin-top: 80px;
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  @media ${props => props.theme.media.tab} {
-    margin-top: 60px;
-  }
 `;
 export const Title = styled.div`
   font-style: normal;
@@ -22,7 +17,7 @@ export const Title = styled.div`
     font-size: 32px;
   }
   @media ${props => props.theme.media.tab} {
-    h2 {
+    h2 { margin-top: 60px;
       display: inline;
       font-weight: 600;
       font-size: 48px;
