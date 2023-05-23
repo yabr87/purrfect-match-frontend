@@ -12,6 +12,7 @@ import { useEffect, useState } from 'react';
 import { current } from 'redux/auth/authOperations';
 import { setTokens } from 'redux/auth/authSlice';
 
+import Loader from 'shared/components/Loader';
 import RestrictedRoute from 'routes/RestrictedRoute';
 import PrivateRoute from 'routes/PrivateRoute';
 import SharedLayout from 'layouts/SharedLayout';
@@ -28,6 +29,7 @@ const OurFriendsPage = lazy(() => import('pages/OurFriendsPage'));
 
 const App = () => {
   const dispatch = useDispatch();
+  const [isLoading, setLoading] = useState(true);
   const [searchParams, setSearchParams] = useSearchParams({});
 
   const [theme, setTheme] = useState(
@@ -45,7 +47,12 @@ const App = () => {
       setSearchParams(searchParams);
       dispatch(setTokens({ accessToken, refreshToken }));
     }
+
     dispatch(current());
+
+    setTimeout(() => {
+      setLoading(false);
+    }, 700);
   }, [dispatch, searchParams, setSearchParams]);
 
   useEffect(() => {
@@ -55,6 +62,7 @@ const App = () => {
         : setTheme(lightTheme);
     };
     window.addEventListener('storage', themeListener);
+
     return () => {
       window.removeEventListener('storage', themeListener);
     };
@@ -64,43 +72,64 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <I18nextProvider i18n={i18n}>
-        <Routes>
-          <Route path="/" element={<SharedLayout />}>
-            <Route index element={<MainPage />} />
-            <Route path="/notices/:categoryName" element={<NoticesPage />} />
-            <Route
-              path="/add-pet"
-              element={
-                <PrivateRoute redirectTo="/login" component={<AddPetPage />} />
-              }
-            />
-            <Route path="/notices" element={<Navigate to="/notices/sell" />} />
-            <Route
-              path="/register"
-              element={
-                <RestrictedRoute
-                  redirectTo="/user"
-                  component={<RegisterPage />}
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <>
+            <Routes>
+              <Route path="/" element={<SharedLayout />}>
+                <Route index element={<MainPage />} />
+                <Route
+                  path="/notices/:categoryName"
+                  element={<NoticesPage />}
                 />
-              }
-            />
-            <Route
-              path="/login"
-              element={
-                <RestrictedRoute redirectTo="/user" component={<LoginPage />} />
-              }
-            />
-            <Route
-              path="/user"
-              element={
-                <PrivateRoute redirectTo="/login" component={<UserPage />} />
-              }
-            />
-            <Route path="/news" element={<NewsPage />} />
-            <Route path="/friends" element={<OurFriendsPage />} />
-            <Route path="*" element={<ErrorPage />} />
-          </Route>
-        </Routes>
+                <Route
+                  path="/add-pet"
+                  element={
+                    <PrivateRoute
+                      redirectTo="/login"
+                      component={<AddPetPage />}
+                    />
+                  }
+                />
+                <Route
+                  path="/notices"
+                  element={<Navigate to="/notices/sell" />}
+                />
+                <Route
+                  path="/register"
+                  element={
+                    <RestrictedRoute
+                      redirectTo="/user"
+                      component={<RegisterPage />}
+                    />
+                  }
+                />
+                <Route
+                  path="/login"
+                  element={
+                    <RestrictedRoute
+                      redirectTo="/user"
+                      component={<LoginPage />}
+                    />
+                  }
+                />
+                <Route
+                  path="/user"
+                  element={
+                    <PrivateRoute
+                      redirectTo="/login"
+                      component={<UserPage />}
+                    />
+                  }
+                />
+                <Route path="/news" element={<NewsPage />} />
+                <Route path="/friends" element={<OurFriendsPage />} />
+                <Route path="*" element={<ErrorPage />} />
+              </Route>
+            </Routes>
+          </>
+        )}
       </I18nextProvider>
     </ThemeProvider>
   );
