@@ -37,7 +37,8 @@ const UserDataItem = ({ name, type, pattern, value, placeholder }) => {
         name === 'birthday'
           ? { [name]: convertToISODate(data) }
           : { [name]: data };
-      dispatch(update(token, req));
+      console.log(req);
+      dispatch(update(req));
       toast.success(`${t(`${name} is_updated_succesfully!`)}`);
       setDisable(true);
     } catch (error) {
