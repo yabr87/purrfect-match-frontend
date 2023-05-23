@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "https://yabr87.github.io/purrfect-match-frontend/static/css/main.4bd7e0f0.css",
-    "main.js": "https://yabr87.github.io/purrfect-match-frontend/static/js/main.e41f1b88.js",
+    "main.js": "https://yabr87.github.io/purrfect-match-frontend/static/js/main.7fb81ca6.js",
     "static/js/83.237c7a0d.chunk.js": "https://yabr87.github.io/purrfect-match-frontend/static/js/83.237c7a0d.chunk.js",
     "static/js/790.e338d8d5.chunk.js": "https://yabr87.github.io/purrfect-match-frontend/static/js/790.e338d8d5.chunk.js",
     "static/js/930.4504c77c.chunk.js": "https://yabr87.github.io/purrfect-match-frontend/static/js/930.4504c77c.chunk.js",
@@ -35,7 +35,7 @@
     "static/media/bg-tablet-min.png": "https://yabr87.github.io/purrfect-match-frontend/static/media/bg-tablet-min.1f23f50a8de903ac9b8e.png",
     "index.html": "https://yabr87.github.io/purrfect-match-frontend/index.html",
     "main.4bd7e0f0.css.map": "https://yabr87.github.io/purrfect-match-frontend/static/css/main.4bd7e0f0.css.map",
-    "main.e41f1b88.js.map": "https://yabr87.github.io/purrfect-match-frontend/static/js/main.e41f1b88.js.map",
+    "main.7fb81ca6.js.map": "https://yabr87.github.io/purrfect-match-frontend/static/js/main.7fb81ca6.js.map",
     "83.237c7a0d.chunk.js.map": "https://yabr87.github.io/purrfect-match-frontend/static/js/83.237c7a0d.chunk.js.map",
     "790.e338d8d5.chunk.js.map": "https://yabr87.github.io/purrfect-match-frontend/static/js/790.e338d8d5.chunk.js.map",
     "930.4504c77c.chunk.js.map": "https://yabr87.github.io/purrfect-match-frontend/static/js/930.4504c77c.chunk.js.map",
@@ -54,6 +54,6 @@
   },
   "entrypoints": [
     "static/css/main.4bd7e0f0.css",
-    "static/js/main.e41f1b88.js"
+    "static/js/main.7fb81ca6.js"
   ]
 }
