@@ -50,7 +50,7 @@ const UserData = () => {
   }, [dispatch, token]);
 
   const handlePhotoChange = e => {
-    setUser({ ...user, photo: e.target.files[0] });
+    setUser({ ...user, photo: URL.createObjectURL(e.target.files[0]) });
     setIsConfirm(true);
   };
 
@@ -58,6 +58,9 @@ const UserData = () => {
     try {
       dispatch(updateAvatar({ avatar: user.photo }));
       setIsConfirm(false);
+      toast.success(`${t('Photo_updated_successfully')}!`, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
     } catch (error) {
       toast.error(`${t('alert_Try_another_image')}!`, {
         position: toast.POSITION.TOP_RIGHT,
