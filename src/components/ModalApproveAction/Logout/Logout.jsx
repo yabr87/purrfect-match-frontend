@@ -58,7 +58,7 @@ const Logout = ({ close, idUser }) => {
               }}
             >
               {t('Yes')}
-              <Icon id="logout" s="#FEF9F9" />
+              <Icon id="logout" />
             </Button>
           </ButtonWrap>
         </>
@@ -86,7 +86,7 @@ const Logout = ({ close, idUser }) => {
               g="8"
             >
               {t('Yes')}
-              <Icon id="logout" s="#FEF9F9" />
+              <Icon id="logout" />
             </Button>
           </ButtonWrap>
         </>
@@ -114,7 +114,7 @@ const Logout = ({ close, idUser }) => {
               g="8"
             >
               {t('Yes')}
-              <Icon id="logout" s="#FEF9F9" />
+              <Icon id="logout" />
             </Button>
           </ButtonWrap>
         </>
@@ -142,7 +142,7 @@ const Logout = ({ close, idUser }) => {
               g="8"
             >
               {t('Yes')}
-              <Icon id="logout" s="#FEF9F9" />
+              <Icon id="logout" />
             </Button>
           </ButtonWrap>
         </>

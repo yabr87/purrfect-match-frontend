@@ -18,7 +18,7 @@ export const Btn = styled.button`
   padding: 10px;
 
   font-family: inherit;
-  font-weight: ${({ theme }) => theme.fontWeiths.semiBold};
+  font-weight: ${({ theme }) => theme.fontWeiths.bold};
   font-size: ${({ theme }) => theme.fontSizes.s};
   line-height: 1.375;
   letter-spacing: 0.04em;

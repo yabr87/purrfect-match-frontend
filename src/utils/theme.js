@@ -20,6 +20,10 @@ export const lightTheme = {
     notificationColorTheme: 'ligth',
     promo: '#c154c1',
   },
+  logo: {
+    text: '#303030',
+    paw: '#ffc107',
+  },
   shadows: {
     default: '3px 8px 14px rgba(136, 198, 253, 0.19)',
     hover: '7px 13px 14px rgba(116, 177, 232, 0.24)',
@@ -84,6 +88,10 @@ export const darkTheme = {
     buttonText: '#FEF9F9',
     notificationColorTheme: 'dark',
     promo: '#54ADFF',
+  },
+  logo: {
+    text: '#FEF9F9',
+    paw: '#ffc107',
   },
   shadows: {
     default: '3px 8px 14px rgba(136, 198, 253, 0.19)',

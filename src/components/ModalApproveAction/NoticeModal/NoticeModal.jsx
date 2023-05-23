@@ -176,7 +176,9 @@ const NoticeModal = ({ notice, close, setIsFavorite }) => {
                 s="white"
               />
             </Button>
-            <ContactLink href="tel:+380961111111">{t('Contact')}</ContactLink>
+            <ContactLink href="tel:+380961111111">
+              <span>{t('Contact')}</span>
+            </ContactLink>
           </ButtonWrap>
         )}
         {isMobile && (
@@ -200,7 +202,9 @@ const NoticeModal = ({ notice, close, setIsFavorite }) => {
                 s="white"
               />
             </Button>
-            <ContactLink href="tel:+380961111111">{t('Contact')}</ContactLink>
+            <ContactLink href="tel:+380961111111">
+              <span>{t('Contact')}</span>
+            </ContactLink>
           </ButtonWrap>
         )}
         {isTablet && (
@@ -220,7 +224,9 @@ const NoticeModal = ({ notice, close, setIsFavorite }) => {
                 s="white"
               />
             </Button>
-            <ContactLink href="tel:+380961111111">{t('Contact')}</ContactLink>
+            <ContactLink href="tel:+380961111111">
+              <span>{t('Contact')}</span>
+            </ContactLink>
           </ButtonWrap>
         )}
         {isDesktop && (
@@ -240,7 +246,9 @@ const NoticeModal = ({ notice, close, setIsFavorite }) => {
                 s="white"
               />
             </Button>
-            <ContactLink href="tel:+380961111111">{t('Contact')}</ContactLink>
+            <ContactLink href="tel:+380961111111">
+              <span>{t('Contact')}</span>
+            </ContactLink>
           </ButtonWrap>
         )}
       </ContainerView>
