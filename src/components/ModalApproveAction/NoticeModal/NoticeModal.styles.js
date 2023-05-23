@@ -1,10 +1,22 @@
 import styled from 'styled-components';
 
+export const ContainerModal = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 44px 20px 16px;
+  width: 100%;
+  height: 95vh;
+`;
+
 export const ContainerView = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
   padding: 44px 20px 16px 20px;
+  height: 100%;
+  width: 100%;
+  overflow-y: auto;
 
   @media ${props => props.theme.media.tab} {
     padding: 32px;
@@ -13,8 +25,10 @@ export const ContainerView = styled.div`
 `;
 
 export const PetCardData = styled.div`
-  display: flex;
-  flex-direction: column;
+  // display: flex;
+  // flex-direction: column;
+  // height: 100%;
+  // width: 100%;
 `;
 
 export const Wrap = styled.div`
