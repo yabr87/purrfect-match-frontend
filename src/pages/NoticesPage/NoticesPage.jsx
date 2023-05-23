@@ -43,7 +43,7 @@ function NoticesPage() {
   const [fetching, setFetching] = useState(false);
   const { categoryName } = useParams();
   const [category, setCategory] = useState(categoryName);
-  const [retrieved, setRetrieved] = useState([]);
+  // const [retrieved, setRetrieved] = useState([])
 
   const getAgeLabel = value => {
     switch (value) {
@@ -184,8 +184,11 @@ function NoticesPage() {
           setSex={setSex}
           setAge={setAge}
           onChange={updatedFilters => {
-            setRetrieved(updatedFilters);
+            console.log('Updated Filters:', updatedFilters);
           }}
+          // onChange={updatedFilters => {
+          //   setRetrieved(updatedFilters);
+          // }}
         />
       </div>
 
