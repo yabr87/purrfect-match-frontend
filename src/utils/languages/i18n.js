@@ -212,11 +212,10 @@ i18n
             'Failed to update notice. Please try again later.',
           alert_register_signin:
             'Please register or sign in to be able to add pet',
-          already_paid_days: 'You have',          
+          already_paid_days: 'You have',
           left: 'paid days left.',
           promo_currency: '1$ = 1 day',
           is_updated_succesfully: 'is succesfully updated',
-
         },
       },
       uk: {
@@ -257,7 +256,7 @@ i18n
           Edit_photo: 'Редагувати фото',
           Confirm: 'Підтвердити',
           Log_Out: 'Вийти',
-          Birthday: 'День народження',
+          Birthday: 'Д/н',
           City: 'Місто',
           Balance: 'Баланс',
 
@@ -422,7 +421,7 @@ i18n
           alert_You_removed_one_filters: 'Ви видалили один з фільтрів',
           already_paid_days: 'Залишилось',
           left: 'оплачених днів.',
-          promo_currency: '1$ це 1 день'
+          promo_currency: '1$ це 1 день',
         },
       },
     },
