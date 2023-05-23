@@ -31,7 +31,6 @@ function NoticesPage() {
 
   const handleAddPet = () => {
     isLoggedIn ? navigate('/add-pet') : toast.error(t('alert_register_signin'));
-      
   };
   const [age, setAge] = useState([]);
   const [sex, setSex] = useState('');
@@ -123,7 +122,7 @@ function NoticesPage() {
         setTotalPages(data.totalPages);
         setNotices(data.results);
       })
-      .catch(e => console.log(e))
+      .catch(e => toast.error('Failed to get notice:', e))
       .finally(setFetching(false));
   }, [categoryName, currentPage, title, sex, age, setSearchParams]);
 

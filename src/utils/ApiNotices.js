@@ -15,7 +15,7 @@ export const getNoticeById = async id => {
     const { data } = await noticesInstance.get(`/api/notices/${id}`);
     return data;
   } catch (error) {
-    console.error('Failed to delete notice', error);
+    console.error('Failed to get notice', error);
     throw error;
   }
 };
@@ -35,7 +35,10 @@ export const addNotice = async newNoticeParams => {
 
 export const editNotice = async (id, updatedFields) => {
   try {
-    const { data } = await noticesInstance.patch(`/api/notices/${id}`, updatedFields);
+    const { data } = await noticesInstance.patch(
+      `/api/notices/${id}`,
+      updatedFields
+    );
     return data;
   } catch (error) {
     console.error('Failed to edit notice', error);

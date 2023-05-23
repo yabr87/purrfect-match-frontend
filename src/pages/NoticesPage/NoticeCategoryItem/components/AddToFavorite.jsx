@@ -14,7 +14,7 @@ const AddToFavorite = ({ notice, setIsFavorite }) => {
   const handleUpdate = async () => {
     try {
       if (!isLoggedIn) {
-        alert(t('alert_signin_fav'));
+        toast.info(t('alert_signin_fav'));
         return;
       }
 

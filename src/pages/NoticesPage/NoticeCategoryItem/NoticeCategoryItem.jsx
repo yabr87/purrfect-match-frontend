@@ -85,7 +85,7 @@ const NoticeCategoryItem = ({ notice, deleteAndRefresh, setNotices }) => {
         return updatedNotices;
       });
     } catch (error) {
-      console.error('Failed to fetch updated notice:', error);
+      toast.error('Failed to fetch updated notice:', error);
     }
   };
 
