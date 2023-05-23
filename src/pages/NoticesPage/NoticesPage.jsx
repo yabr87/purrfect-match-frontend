@@ -31,7 +31,6 @@ function NoticesPage() {
 
   const handleAddPet = () => {
     isLoggedIn ? navigate('/add-pet') : toast.error(t('alert_register_signin'));
-      
   };
   const [age, setAge] = useState([]);
   const [sex, setSex] = useState('');
@@ -44,6 +43,7 @@ function NoticesPage() {
   const [fetching, setFetching] = useState(false);
   const { categoryName } = useParams();
   const [category, setCategory] = useState(categoryName);
+  // const [retrieved, setRetrieved] = useState([])
 
   const getAgeLabel = value => {
     switch (value) {
@@ -58,7 +58,10 @@ function NoticesPage() {
     }
   };
 
-  const selectedFilters = age.map(a => ({ label: getAgeLabel(a), value: a }));
+  const selectedFilters = [
+    ...(sex ? [{ label: sex, value: sex }] : []),
+    ...age.map(a => ({ label: getAgeLabel(a), value: a })),
+  ];
 
   const [title, setTitle] = useState(() => {
     const titleSearch = searchParams.get('title');
@@ -178,10 +181,14 @@ function NoticesPage() {
       >
         <SelectedFilters
           filters={selectedFilters}
+          setSex={setSex}
           setAge={setAge}
-          onChange={() => {
-            toast.warning(t('You removed one of the filters'));
+          onChange={updatedFilters => {
+            console.log('Updated Filters:', updatedFilters);
           }}
+          // onChange={updatedFilters => {
+          //   setRetrieved(updatedFilters);
+          // }}
         />
       </div>
 

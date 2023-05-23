@@ -5,30 +5,45 @@ import {
   SelectedFiltersItem,
 } from './SelectFilters.styles.js';
 
-const SelectedFilters = ({ filters = [], onChange, setAge, ...props }) => {
+const SelectedFilters = ({
+  filters = [],
+  onChange,
+  setSex,
+  setAge,
+  ...props
+}) => {
   const [selectedFilters, setSelectedFilters] = useState(filters);
-  useState(filters);
   useEffect(() => {
     setSelectedFilters(filters);
   }, [filters]);
 
   const handleRemove = value => {
-    const newAge = filters
-      .filter(el => el.value !== value)
-      .map(filter => filter.value);
-    setAge(newAge);
-    onChange(newAge);
+    let updatedFilters = selectedFilters.filter(
+      filter => filter.value !== value
+    );
+
+    if (value === 'male' || value === 'female') {
+      setSex(null);
+    } else {
+      const newAge = updatedFilters
+        .filter(filter => !['male', 'female'].includes(filter.value))
+        .map(filter => filter.value);
+      setAge(newAge);
+    }
+
+    setSelectedFilters(updatedFilters);
+    onChange(updatedFilters);
   };
 
   return (
     <SelectedFiltersList>
       {selectedFilters.map((filter, index) => (
-        <SelectedFiltersItem key={filter.value}>
+        <SelectedFiltersItem key={`${filter.value}-${index}`}>
           <span>{filter.label}</span>
           <Icon
             id="cross-small"
             style={{ display: 'inline' }}
-            onClick={handleRemove.bind(this, filter.value)}
+            onClick={() => handleRemove(filter.value)}
           />
         </SelectedFiltersItem>
       ))}
