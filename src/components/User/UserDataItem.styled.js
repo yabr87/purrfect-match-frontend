@@ -11,7 +11,7 @@ export const UserInput = styled.input`
   font-size: 12px;
 
   @media ${props => props.theme.media.tab} {
-    width: 255px;
+    max-width: 255px;
     font-size: ${props => props.theme.fontSizes.s};
   }
 `;
@@ -24,10 +24,10 @@ export const EditInputBtn = styled.button`
   cursor: pointer;
   padding: 2px;
 
-   @media ${props => props.theme.media.tab} {
+  @media ${props => props.theme.media.tab} {
     right: 12px;
     padding: 4px;
-   }
+  }
 `;
 
 export const UserLabel = styled.label`
