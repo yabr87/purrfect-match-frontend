@@ -6,11 +6,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useOnlineStatus } from '../shared/hooks/useOnlineStatus.js';
 import Header from 'components/Header';
 import Disconnect from 'components/Disconnect';
-import IMG from '../images/disconnected.png';
 
 export const SharedLayout = () => {
-  console.log(IMG);
-
   const isOnline = useOnlineStatus();
   return (
     <>
