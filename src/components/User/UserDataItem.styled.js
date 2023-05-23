@@ -11,7 +11,7 @@ export const UserInput = styled.input`
   font-size: 12px;
 
   @media ${props => props.theme.media.tab} {
-    width: 255px;
+    max-width: 255px;
     font-size: ${props => props.theme.fontSizes.s};
   }
 `;
