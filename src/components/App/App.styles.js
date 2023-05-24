@@ -77,4 +77,18 @@ body {
 .react-datepicker__navigation-icon--next:hover::before {
   border-color: ${({ theme }) => theme.colors.yellow}  !important;
 }
+
+.react-datepicker__day--disabled, 
+.react-datepicker__month-text--disabled, 
+.react-datepicker__quarter-text--disabled, 
+.react-datepicker__year-text--disabled {
+    color: #ccc !important;
+    cursor: default !important;
+
+    :hover {
+        background-color: ${({ theme }) => theme.colors.backgroundModal} !important;
+        color: #ccc !important;
+    }
+}
 `;
+
