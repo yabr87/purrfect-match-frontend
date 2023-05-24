@@ -43,7 +43,7 @@ function NoticesPage() {
     return page ? Number(page) : 1;
   });
   const [notices, setNotices] = useState([]);
-  const [fetching, setFetching] = useState(false);
+  const [fetching, setFetching] = useState(true);
   const { categoryName } = useParams();
   const [category, setCategory] = useState(categoryName);
 
@@ -101,7 +101,6 @@ function NoticesPage() {
     setCategory(categoryName);
   }
   useEffect(() => {
-    setFetching(true);
     const params = {
       page: currentPage,
     };
