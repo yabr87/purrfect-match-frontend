@@ -4,25 +4,22 @@ export const ContainerModal = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  padding: 44px 20px 16px;
+
   width: 100%;
-  height: 95vh;
+  // height: 95vh;
+  height: fit-content;
   @media ${props => props.theme.media.tab} {
     height: fit-content;
-    padding: 32px 32px 24px;
   }
 `;
 
 export const ContainerView = styled.div`
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  height: 100%;
-  width: 100%;
   overflow-y: auto;
-
+  padding: 44px 20px 16px;
   @media ${props => props.theme.media.tab} {
     align-items: normal;
+    min-width: 681px;
+    padding: 32px 32px 24px;
   }
 `;
 
@@ -162,7 +159,7 @@ export const PetComents = styled.p`
     font-size: 16px;
     line-height: 24px;
     margin-bottom: 70px;
-    max-width: 100%;
+    max-width: 618px;
   }
 `;
 

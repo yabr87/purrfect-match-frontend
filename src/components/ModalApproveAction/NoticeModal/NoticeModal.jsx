@@ -207,29 +207,7 @@ const NoticeModal = ({ notice, close, setIsFavorite }) => {
             </ContactLink>
           </ButtonWrap>
         )}
-        {isTablet && (
-          <ButtonWrap>
-            <Button
-              type="button"
-              onClick={() => approveAddFavorite(notice)}
-              w="129"
-              h="40"
-              shape="solid"
-              g="8"
-            >
-              {t('Add_to')}
-              <Icon
-                id="heart"
-                f={favorite ? '#ffffff' : 'transparent'}
-                s="white"
-              />
-            </Button>
-            <ContactLink href="tel:+380961111111">
-              <span>{t('Contact')}</span>
-            </ContactLink>
-          </ButtonWrap>
-        )}
-        {isDesktop && (
+        {isTablet ^ isDesktop && (
           <ButtonWrap>
             <Button
               type="button"

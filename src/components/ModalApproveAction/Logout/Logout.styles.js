@@ -7,9 +7,9 @@ export const ContainerView = styled.div`
   flex-direction: column;
 
   padding: 60px 16px;
-  width: 100%;
   @media ${props => props.theme.media.tab} {
-    padding: 108px 16px;
+    width: 608px;
+    height: 354px;
   }
 `;
 

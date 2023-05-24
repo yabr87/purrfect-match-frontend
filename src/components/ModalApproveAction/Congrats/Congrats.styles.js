@@ -9,7 +9,8 @@ export const ContainerView = styled.div`
 
   @media ${props => props.theme.media.tab} {
     padding: 60px 16px;
-    width: 100%;
+    width: 608px;
+    height: 354px;
   }
 `;
 
