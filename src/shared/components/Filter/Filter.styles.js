@@ -36,7 +36,7 @@ export const ContainerItem = styled.div`
   background: ${props => props.theme.colors.lightBlue};
   color: ${props => props.theme.colors.link};
   border-radius: ${props => props.theme.radius.small};
-  align-items: center;
+  align-items: flex-start;
   &:first-child {
     margin-bottom: 8px;
   }
