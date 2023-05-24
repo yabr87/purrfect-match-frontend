@@ -48,14 +48,6 @@ const UserData = () => {
   }, [dispatch, token]);
 
   const handlePhotoChange = e => {
-    // if (selectedFile && selectedFile.size <= 3 * 1024 * 1024) {
-    //   setFile(selectedFile);
-    //   setFieldValue('photo', selectedFile);
-    // } else {
-    //   setFile('');
-    //   setFieldValue('photo', '');
-    //   toast.error('Please select a file smaller than 3 MB.');
-    // }
     setUserAvatar(e.target.files[0]);
     setIsConfirm(true);
   };
