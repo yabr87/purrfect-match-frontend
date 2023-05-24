@@ -177,7 +177,6 @@ function NoticesPage() {
                 right: '24px',
               }}
               onClick={handleAddPet}
-              disabled={!isLoggedIn}
             >
               {t('Add_only_pet')}
             </CircleButton>

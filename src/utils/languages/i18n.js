@@ -103,7 +103,7 @@ i18n
           Add_to: 'Add to',
           Contact: 'Contact',
 
-          Already_leaving: 'Already_leaving',
+          Already_leaving: 'Already leaving',
           Cancel: 'Cancel',
           Yes: 'Yes',
           alert_LogOut_success: 'Log out successfully',
