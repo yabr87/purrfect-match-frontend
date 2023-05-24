@@ -41,9 +41,9 @@ const NoticesFilters = React.memo(
     };
 
     const ageFilterItems = [
-      { label: `0-12 ${t('months')}`, value: '0' },
+      { label: `0-12 ${t('m')}`, value: '0' },
       { label: `1 ${t('year')}`, value: '1' },
-      { label: `from 2 ${t('years')}`, value: '2' },
+      { label: `+2 ${t('years')}`, value: '2' },
     ];
 
     const genderFilterItems = [
@@ -69,7 +69,9 @@ const NoticesFilters = React.memo(
             onClick={handleFilterClick}
           ></CircleButton>
         ) : isFilterOpen ? (
-          <Button
+          <Button style={{
+            zIndex: 11,
+          }}
             type="button"
             w="152"
             shape="solid"

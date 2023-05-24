@@ -54,11 +54,11 @@ function NoticesPage() {
   const getAgeLabel = value => {
     switch (value) {
       case '0':
-        return `0-12 ${t('months')}`;
+        return `0-12 ${t('m')}`;
       case '1':
         return `1 ${t('year')}`;
       case '2':
-        return `from 2 ${t('years')}`;
+        return `+2 ${t('years')}`;
       default:
         return '';
     }

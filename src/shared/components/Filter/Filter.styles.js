@@ -10,6 +10,9 @@ export const FilterChose = styled.div`
   font-weight: ${props => props.theme.fontWeiths.normal};
   font-size: ${props => props.theme.fontSizes.xs};
   color: ${props => props.theme.colors.link};
+  &:second-child {
+    margin-left: 13px;
+  }
 `;
 
 export const FiltersItems = styled.div`

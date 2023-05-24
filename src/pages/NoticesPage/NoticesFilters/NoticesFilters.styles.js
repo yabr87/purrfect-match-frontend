@@ -7,13 +7,20 @@ export const FilterContainer = styled.div`
 export const FilterOptions = styled.div`
   position: absolute;
   padding: 8px;
-  right: 0;
   z-index: 10;
   width: 152px;
   background: ${props => props.theme.colors.backgroundModal};
   box-shadow: ${props => props.theme.shadows.default};
   border-radius: ${props => props.theme.radius.small};
 
+  @media  (max-width: 480px) {
+    right: 0;
+  }
+  @media  (min-width: 480px) {
+    padding-top: 30px;
+    top: 25px;
+  }
+  
   @media ${props => props.theme.media.tab} {
     left: 0;
   }
