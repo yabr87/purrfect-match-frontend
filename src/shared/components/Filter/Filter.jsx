@@ -15,33 +15,20 @@ const Filter = ({
   title,
   isSingleSelection = false,
   onChange,
-  ...props
+  selectedOptions = [],
 }) => {
-  const [selectedFilters, setSelectedFilters] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
 
-  useEffect(() => {
-    const selectedFiltersFull = {
-      name,
-      values: selectedFilters,
-    };
-    onChange(selectedFiltersFull);
-  }, [selectedFilters, name, onChange]);
-
-  const handleChange = ({ target }) => {
-    setSelectedFilters(prevState => {
-      if (target.checked) {
-        return isSingleSelection
-          ? [target.value]
-          : [...prevState, target.value];
-      } else {
-        return prevState.filter(item => item !== target.value);
-      }
-    });
+  const handleChange = ({ option, checked }) => {
+    if (checked) {
+      onChange(isSingleSelection ? [option] : [...selectedOptions, option]);
+    } else {
+      onChange(selectedOptions.filter(item => item !== option));
+    }
   };
 
   const isChecked = value => {
-    return !!selectedFilters.find(item => item === value);
+    return !!selectedOptions.find(item => item === value);
   };
 
   const collapseHandler = () => {
@@ -56,12 +43,12 @@ const Filter = ({
       </FiltersItems>
       {isOpen && (
         <FilterChose>
-          {filters.map(({ label, value }) => (
+          {filters.map(({ label, option }) => (
             <Checkbox
-              key={'filter_' + value}
-              value={value}
+              key={option}
+              option={option}
               label={label}
-              isChecked={isChecked.bind(this, value)}
+              checked={isChecked(option)}
               onChange={handleChange}
             ></Checkbox>
           ))}
@@ -75,13 +62,14 @@ Filter.propTypes = {
   filters: PropTypes.arrayOf(
     PropTypes.shape({
       label: PropTypes.string,
-      value: PropTypes.string.isRequired,
+      option: PropTypes.string.isRequired,
     })
   ).isRequired,
   name: PropTypes.string,
   isSingleSelection: PropTypes.bool,
   title: PropTypes.string,
   onChange: PropTypes.func,
+  selectedOptions: PropTypes.arrayOf(PropTypes.string),
 };
 
 export default Filter;
