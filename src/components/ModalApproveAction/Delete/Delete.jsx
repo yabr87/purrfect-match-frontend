@@ -49,7 +49,7 @@ const Delete = ({ item, notice, close, approve }) => {
 
   return (
     <ContainerView>
-      <Title>{t('Delete adverstiment')}?</Title>
+      <Title>{t('Delete_adverstiment')}?</Title>
       <TextWrap>{petName(item, notice)}</TextWrap>
       {isSmallMobile && (
         <>
