@@ -207,7 +207,7 @@ const NoticeModal = ({ notice, close, setIsFavorite }) => {
             </ContactLink>
           </ButtonWrap>
         )}
-        {isTablet ^ isDesktop && (
+        {(isTablet || isDesktop) && (
           <ButtonWrap>
             <Button
               type="button"
