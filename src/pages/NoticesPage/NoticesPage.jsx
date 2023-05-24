@@ -208,7 +208,7 @@ function NoticesPage() {
         )}
       </div>
 
-      {fetching && (
+      {!isFilterOpen && fetching && (
         <div
           style={{
             position: 'absolute',
