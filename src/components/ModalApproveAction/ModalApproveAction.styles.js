@@ -20,11 +20,10 @@ export const ModalContainer = styled.div`
   border-radius: 20px;
   background-color: ${props => props.theme.colors.backgroundModal};
   @media ${props => props.theme.media.phone} {
-    max-width: 440px;
+    width: 440px;
   }
   @media ${props => props.theme.media.tab} {
-    width: calc(100% - 86px);
-    max-width: 681px;
+    width: fit-content;
     border-radius: ${props => props.theme.radius.normal};
   }
 `;

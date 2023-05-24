@@ -12,6 +12,7 @@ export const EditContainer = styled.div`
   @media ${props => props.theme.media.tab} {
     height: fit-content;
     padding: 20px 32px;
+    width: 681px;
   }
 `;
 
@@ -231,11 +232,11 @@ export const EditboxRight = styled.div`
 `;
 
 export const PaidMessage = styled.p`
-font-size: 14px;
+  font-size: 14px;
   line-height: 150%;
   letter-spacing: 0.04em;
-  
+
   font-weight: ${props => props.theme.fontWeiths.bold};
   font-size: ${props => props.theme.fontSizes.search};
   color: ${props => props.theme.colors.accent};
-`
+`;
