@@ -6,8 +6,7 @@ export const ContainerModal = styled.div`
   flex-direction: column;
 
   width: 100%;
-  // height: 95vh;
-  height: fit-content;
+  height: 95vh;
   @media ${props => props.theme.media.tab} {
     height: fit-content;
   }
