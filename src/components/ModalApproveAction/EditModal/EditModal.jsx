@@ -1,6 +1,6 @@
 import { Form, Formik } from 'formik';
 import { useTranslation } from 'react-i18next';
-import { differenceInDays } from 'date-fns';
+import { differenceInHours } from 'date-fns';
 import Loader from 'shared/components/Loader';
 import { Error, FormButton } from 'components/AddPetForm/AddPetForm.styles';
 import { reverseISODate } from 'utils/reverseISODate';
@@ -49,9 +49,10 @@ const EditModal = ({ notice, close, approve, handleEditClose }) => {
     promo: 0,
   };
 
-    const startDate = new Date();
-    const endDate = new Date(notice.promoDate); 
-  const diffInDays = differenceInDays(endDate, startDate);
+  const startDate = new Date();
+  const endDate = new Date(notice.promoDate);
+  const diffInHours = Math.ceil(differenceInHours(endDate, startDate));
+  const diffInDays = Math.ceil(diffInHours / 24);
 
   const handleSubmit = async (values, { resetForm }) => {
     const changedFields = {};
@@ -129,17 +130,21 @@ const EditModal = ({ notice, close, approve, handleEditClose }) => {
                 <EditWrapper>
                   <EditboxLeft>
                     <EditTitle>{t('Edit_your_pet')}</EditTitle>
-                      <ImageContainer>
-              <ImageWrap>
-                <PetImage src={notice.photoUrl} alt={notice.title} />
-                <ImageCategoryEdit>
-                        {notice.category
-                          .replace('for-free', 'for free')
-                          .replace(/-/g, '/')}
-                      </ImageCategoryEdit>
-              </ImageWrap>
-            </ImageContainer>
-                      {diffInDays > 0 && <PaidMessage>{t('already_paid_days')} {diffInDays} {t('left')}</PaidMessage>}
+                    <ImageContainer>
+                      <ImageWrap>
+                        <PetImage src={notice.photoUrl} alt={notice.title} />
+                        <ImageCategoryEdit>
+                          {notice.category
+                            .replace('for-free', 'for free')
+                            .replace(/-/g, '/')}
+                        </ImageCategoryEdit>
+                      </ImageWrap>
+                    </ImageContainer>
+                    {diffInDays > 0 && (
+                      <PaidMessage>
+                        {t('already_paid_days')} {diffInDays} {t('left')}
+                      </PaidMessage>
+                    )}
                     <EditLabel htmlFor="promo">
                       {values.promo ? (
                         <p>
@@ -149,8 +154,8 @@ const EditModal = ({ notice, close, approve, handleEditClose }) => {
                         <>
                           <p>{t('You_can_add_payment')}!</p>
                         </>
-                        )}
-                        <p>{t('promo_currency')}</p>
+                      )}
+                      <p>{t('promo_currency')}</p>
                       <EditField
                         type="range"
                         id="promo"
