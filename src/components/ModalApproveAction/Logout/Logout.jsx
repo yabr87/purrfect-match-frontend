@@ -30,7 +30,7 @@ const Logout = ({ close, idUser }) => {
 
   return (
     <ContainerView>
-      <Title>{t('Already leaving')}?</Title>
+      <Title>{t('Already_leaving')}?</Title>
       {isSmallMobile && (
         <>
           <ButtonWrap>

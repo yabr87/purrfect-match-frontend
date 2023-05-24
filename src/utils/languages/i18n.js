@@ -2,10 +2,6 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 
-// import { useTranslation } from 'react-i18next';
-// const { t } = useTranslation();
-// {t('Closed')}
-
 i18n
   .use(LanguageDetector)
   .use(initReactI18next)
@@ -320,7 +316,7 @@ i18n
 
           Already_leaving: 'Вже йдете',
           alert_LogOut_success: 'Вихід успішний',
-          Cancel: 'Відмінити',
+          Cancel: 'Відміна',
           Yes: 'Так',
 
           Delete_adverstiment: 'Видалити оголошення',
