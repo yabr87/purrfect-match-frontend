@@ -1,14 +1,12 @@
-// import styled from 'styled-components';
-
-// export const Container = styled.div`
-//   width: 300px;
-//   background-color: ${props => props.theme.colors.lightBlue};
-//   border-color: ${props => props.theme.colors.accent};
-// `;
 import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
+
 body {
     background-color: ${props => props.theme.colors.backgroundColor};
     }
+    
+.react-datepicker__tab-loop {
+  z-index: 2;
+}
 `;
