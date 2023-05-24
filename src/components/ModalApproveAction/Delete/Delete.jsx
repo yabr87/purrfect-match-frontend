@@ -111,35 +111,7 @@ const Delete = ({ item, notice, close, approve }) => {
           </ButtonWrap>
         </>
       )}
-      {isTablet && (
-        <>
-          <ButtonWrap>
-            <Button
-              type="button"
-              onClick={close}
-              w="129"
-              h="40"
-              style={{
-                marginRight: '17px',
-              }}
-            >
-              {t('Cancel')}
-            </Button>
-            <Button
-              type="button"
-              onClick={approve}
-              w="129"
-              h="40"
-              shape="solid"
-              g="8"
-            >
-              {t('Yes')}
-              <Icon id="trash" />
-            </Button>
-          </ButtonWrap>
-        </>
-      )}
-      {isDesktop && (
+      {(isTablet || isDesktop) && (
         <>
           <ButtonWrap>
             <Button
