@@ -65,7 +65,7 @@ function NoticesPage() {
   };
 
   const selectedFilters = [
-    ...(sex ? [{ label: sex, value: sex }] : []),
+    ...(sex ? [{ label: t(sex), value: sex }] : []),
     ...age.map(a => ({ label: getAgeLabel(a), value: a })),
   ];
 
@@ -132,7 +132,7 @@ function NoticesPage() {
           setTotalPages(data.totalPages);
           setNotices(data.results);
         })
-        .catch(e => toast.error('Failed to get notice:', e))
+        .catch(e => toast.error(`${t('alert_Failed_to_get_notice!')}:`, e))
         .finally(setFetching(false));
     }
   }, [
@@ -143,6 +143,7 @@ function NoticesPage() {
     age,
     isFilterOpen,
     setSearchParams,
+    t,
   ]);
 
   return (
