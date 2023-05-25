@@ -209,6 +209,7 @@ i18n
           alert_register_signin:
             'Please register or sign in to be able to add pet',
           already_paid_days: 'You have',
+          alert_Failed_to_get_notice: 'Failed to get notice',
           left: 'paid days left.',
           promo_currency: '1$ = 1 day',
           is_updated_succesfully: 'is succesfully updated',
@@ -415,6 +416,7 @@ i18n
           alert_Pet_added_successfully: 'Тваринка додана успішно',
           alert_Failed_to_add_pet: 'Не вдалося додати тваринку',
           alert_You_removed_one_filters: 'Ви видалили один з фільтрів',
+          alert_Failed_to_get_notice: 'Не вдалося отримати оголошення',
           already_paid_days: 'Залишилось',
           left: 'оплачених днів.',
           promo_currency: '1$ це 1 день',

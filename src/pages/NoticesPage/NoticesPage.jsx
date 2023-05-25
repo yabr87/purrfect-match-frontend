@@ -132,7 +132,7 @@ function NoticesPage() {
           setTotalPages(data.totalPages);
           setNotices(data.results);
         })
-        .catch(e => toast.error('Failed to get notice:', e))
+        .catch(e => toast.error(`${t('alert_Failed_to_get_notice!')}:`, e))
         .finally(setFetching(false));
     }
   }, [
