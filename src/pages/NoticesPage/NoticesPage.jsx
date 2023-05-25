@@ -143,6 +143,7 @@ function NoticesPage() {
     age,
     isFilterOpen,
     setSearchParams,
+    t,
   ]);
 
   return (
