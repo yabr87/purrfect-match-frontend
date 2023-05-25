@@ -100,9 +100,9 @@ const EditModal = ({ notice, close, approve, handleEditClose }) => {
         error.response.data &&
         error.response.data.message === 'Not enough funds'
       ) {
-        return toast.error('Not enough funds. Please check your balance.');
+        return toast.error(t('alert_insufficient_funds'));
       } else {
-        toast.error(`{t('alert_Failed_to_edit_pet')}:${error}`);
+        toast.error(t('alert_Failed_to_edit_pet'));
       }
     }
   };
@@ -113,7 +113,7 @@ const EditModal = ({ notice, close, approve, handleEditClose }) => {
         <Formik
           onSubmit={handleSubmit}
           initialValues={initialValues}
-          validationSchema={validationSchemaEdit(notice.category)}
+          validationSchema={validationSchemaEdit(notice.category, t)}
         >
           {({
             isSubmitting,
@@ -230,6 +230,7 @@ const EditModal = ({ notice, close, approve, handleEditClose }) => {
                         errors={touched.location && errors.location}
                       />
                       <Error name="location" component="p" />
+                    </EditLabel>
                       {notice.category === 'sell' && (
                         <EditLabel htmlFor="price">
                           {t('Type_your_new_price')}:
@@ -244,7 +245,6 @@ const EditModal = ({ notice, close, approve, handleEditClose }) => {
                           <Error name="price" component="p" />
                         </EditLabel>
                       )}
-                    </EditLabel>
                     <EditLabel htmlFor="comments">
                       {t('Comments')}:
                       <EditText
