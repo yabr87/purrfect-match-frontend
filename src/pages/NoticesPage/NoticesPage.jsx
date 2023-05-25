@@ -65,7 +65,7 @@ function NoticesPage() {
   };
 
   const selectedFilters = [
-    ...(sex ? [{ label: sex, value: sex }] : []),
+    ...(sex ? [{ label: t(sex), value: sex }] : []),
     ...age.map(a => ({ label: getAgeLabel(a), value: a })),
   ];
 
