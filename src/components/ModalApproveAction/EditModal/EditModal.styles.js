@@ -51,6 +51,7 @@ export const EditWrapper = styled.div`
 `;
 
 export const EditLabel = styled.label`
+  position: relative;
   display: flex;
   flex-direction: column;
   font-weight: ${props => props.theme.fontWeiths.semiBold};
@@ -228,6 +229,7 @@ export const EditboxRight = styled.div`
 
   @media ${props => props.theme.media.tab} {
     flex-grow: 1;
+    gap: 16px;
   }
 `;
 
