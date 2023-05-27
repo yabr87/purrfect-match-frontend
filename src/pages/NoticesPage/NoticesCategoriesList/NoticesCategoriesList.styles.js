@@ -7,7 +7,7 @@ export const CollectionContainer = styled.div`
   margin-top: 24px;
   justify-content: space-around;
 
-  @media ${props => props.theme.media.desk} {
+  /* @media ${props => props.theme.media.desk} {
     margin-top: 42px;
-  }
+  } */
 `;

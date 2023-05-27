@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import Button from 'shared/components/Button';
@@ -15,6 +15,21 @@ import {
 import Filter from '../../../shared/components/Filter/Filter';
 
 const NoticesFilters = ({ onFilterOpenChange, sex, age, setSex, setAge }) => {
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = event => {
+      if (!containerRef.current.contains(event.target)) {
+        setIsFilterOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
   const isUpToWidth480 = useMedia(['(max-width: 480px)'], [true], false);
 
   const [isFilterOpen, setIsFilterOpen] = useState(false);
@@ -48,7 +63,7 @@ const NoticesFilters = ({ onFilterOpenChange, sex, age, setSex, setAge }) => {
   }, [isFilterOpen, onFilterOpenChange]);
 
   return (
-    <FilterContainer>
+    <FilterContainer ref={containerRef}>
       {isUpToWidth480 ? (
         <CircleButton
           id="filters"
@@ -61,7 +76,8 @@ const NoticesFilters = ({ onFilterOpenChange, sex, age, setSex, setAge }) => {
           onClick={handleFilterClick}
         ></CircleButton>
       ) : isFilterOpen ? (
-          <Button style={{
+        <Button
+          style={{
             zIndex: 11,
           }}
           type="button"
@@ -69,7 +85,7 @@ const NoticesFilters = ({ onFilterOpenChange, sex, age, setSex, setAge }) => {
           shape="solid"
           onClick={handleFilterClick}
         >
-          {t('Filter')}
+          {t('Apply')}
           <Icon id="filters" />
         </Button>
       ) : (

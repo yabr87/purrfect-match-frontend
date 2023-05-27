@@ -5,13 +5,7 @@ import {
   SelectedFiltersItem,
 } from './SelectFilters.styles.js';
 
-const SelectedFilters = ({
-  filters = [],
-  onChange,
-  setSex,
-  setAge,
-  ...props
-}) => {
+const SelectedFilters = ({ filters = [], setSex, setAge, ...props }) => {
   const [selectedFilters, setSelectedFilters] = useState(filters);
   useEffect(() => {
     setSelectedFilters(filters);
@@ -30,9 +24,7 @@ const SelectedFilters = ({
         .map(filter => filter.value);
       setAge(newAge);
     }
-
     setSelectedFilters(updatedFilters);
-    onChange(updatedFilters);
   };
 
   return (
