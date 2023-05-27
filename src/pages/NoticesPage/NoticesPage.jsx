@@ -20,8 +20,11 @@ import { toast } from 'react-toastify';
 
 import { getNotices } from 'utils/ApiNotices';
 import SelectedFilters from '../../shared/components/SelectedFilters/SelectedFilters';
+import { useTheme } from 'styled-components';
 
 function NoticesPage() {
+  const theme = useTheme();
+  const isTablet = useMedia([theme.media.tab], [true], false);
   const isUpToWidth480 = useMedia(['(max-width: 480px)'], [true], false);
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
@@ -160,7 +163,16 @@ function NoticesPage() {
         }}
       >
         <NoticesCategoriesNav />
-        <div style={{ display: 'flex', position: 'relative', gap: '12px' }}>
+        <div
+          style={{
+            display: 'flex',
+            flexWrap: isTablet ? 'nowrap' : 'wrap',
+            justifyContent: 'flex-end',
+            alignContent: 'flex-start',
+            position: 'relative',
+            gap: '12px',
+          }}
+        >
           <NoticesFilters
             sex={sex}
             age={age}
