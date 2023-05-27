@@ -85,7 +85,7 @@ const NoticesFilters = ({ onFilterOpenChange, sex, age, setSex, setAge }) => {
           shape="solid"
           onClick={handleFilterClick}
         >
-          {t('Select')}
+          {t('Apply')}
           <Icon id="filters" />
         </Button>
       ) : (
