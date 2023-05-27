@@ -31,7 +31,7 @@ export const StyledNavLink = styled(NavLink)`
   font-family: ${props => props.theme.fonts.main};
   font-weight: ${props => props.theme.fontWeiths.semi};
   font-size: ${props => props.theme.fontSizes.s};
-  line-height: 19px;
+  line-height: 1.17;
   letter-spacing: 0.04em;
   color: ${props => props.theme.colors.link};
 

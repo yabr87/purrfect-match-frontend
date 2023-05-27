@@ -1,24 +1,23 @@
 import styled from 'styled-components';
 
-
 export const SelectedFiltersList = styled.ul`
-    display: inline;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
 `;
 
 export const SelectedFiltersItem = styled.li`
-        display: inline-flex;
-        margin-bottom:  10px;
-        margin-right:  5px;
-        border-radius:  20px; 
-        background-color:  #FFFFFF;
-        padding:  8px 16px;
-        gap:  4px;
-        justify-content:  space-between;
-        box-shadow:  3px 8px 14px rgba(136, 198, 253, 0.19);
-        align-items:  center;
-        color:  #54ADFF;
-        font-family:  Inter;
-        font-style:  normal;
-        font-weight:  400;
-        font-size:  12px;
+  display: inline-flex;
+  border: ${props => props.theme.colors.inputOutline};
+  border-radius: ${props => props.theme.radius.small};
+  background: ${props => props.theme.colors.inputBackground};
+  padding: 3px 16px;
+  gap: 4px;
+  justify-content: space-between;
+  box-shadow: ${props => props.theme.shadows.default};
+  align-items: center;
+  color: ${props => props.theme.colors.link};
+  font-family: ${props => props.theme.fonts.placeholders};
+  font-size: ${props => props.theme.fontSizes.xs};
+  cursor: pointer;
 `;

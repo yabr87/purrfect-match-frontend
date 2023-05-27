@@ -35,7 +35,6 @@ function NoticesPage() {
 
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [age, setAge] = useState([]);
-
   const [sex, setSex] = useState('');
   const [totalPages, setTotalPages] = useState(null);
   const [currentPage, setCurrentPage] = useState(() => {
@@ -49,6 +48,17 @@ function NoticesPage() {
 
   const handleFilterOpenChange = isOpen => {
     setIsFilterOpen(isOpen);
+  };
+
+  const getSexLabel = value => {
+    switch (value) {
+      case 'male':
+        return t('male');
+      case 'female':
+        return t('female');
+      default:
+        return '';
+    }
   };
 
   const getAgeLabel = value => {
@@ -65,7 +75,7 @@ function NoticesPage() {
   };
 
   const selectedFilters = [
-    ...(sex ? [{ label: t(sex), value: sex }] : []),
+    ...(sex ? [{ label: getSexLabel(sex), value: sex }] : []),
     ...age.map(a => ({ label: getAgeLabel(a), value: a })),
   ];
 
@@ -201,9 +211,6 @@ function NoticesPage() {
             filters={selectedFilters}
             setSex={setSex}
             setAge={setAge}
-            onChange={updatedFilters => {
-              console.log('Updated Filters:', updatedFilters);
-            }}
           />
         )}
       </div>

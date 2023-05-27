@@ -13,14 +13,14 @@ export const FilterOptions = styled.div`
   box-shadow: ${props => props.theme.shadows.default};
   border-radius: ${props => props.theme.radius.small};
 
-  @media  (max-width: 480px) {
+  @media (max-width: 480px) {
     right: 0;
   }
-  @media  (min-width: 480px) {
+  @media (min-width: 480px) {
     padding-top: 30px;
     top: 25px;
   }
-  
+
   @media ${props => props.theme.media.tab} {
     left: 0;
   }
