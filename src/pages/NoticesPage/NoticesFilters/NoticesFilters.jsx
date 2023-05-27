@@ -19,10 +19,7 @@ const NoticesFilters = ({ onFilterOpenChange, sex, age, setSex, setAge }) => {
 
   useEffect(() => {
     const handleClickOutside = event => {
-      if (
-        containerRef.current &&
-        !containerRef.current.contains(event.target)
-      ) {
+      if (!containerRef.current.contains(event.target)) {
         setIsFilterOpen(false);
       }
     };
