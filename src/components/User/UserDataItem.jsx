@@ -5,6 +5,7 @@ import Icon from 'shared/components/Icon/Icon';
 import { useSelector, useDispatch } from 'react-redux';
 import { update } from 'redux/auth/authOperations';
 import { convertToISODate } from 'utils/convertToISODate';
+import { schema } from 'components/User/userValidation';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 import { reverseISODate } from 'utils/reverseISODate';
@@ -29,21 +30,21 @@ const UserDataItem = ({ name, type, pattern, value, placeholder }) => {
   };
 
   const handleInputSubmit = async () => {
+    const reqData = name === 'birthday' ? convertToISODate(data) : data;
     try {
       if (data === value) {
         setDisable(true);
         return;
       }
-      const req =
-        name === 'birthday'
-          ? { [name]: convertToISODate(data) }
-          : { [name]: data };
-
-      dispatch(update(req));
-      toast.success(`${name} ${t('is_updated_succesfully')}`, {
-        position: toast.POSITION.TOP_LEFT,
-      });
-      setDisable(true);
+      const isValid = await schema(name, t).isValid(reqData);
+      if (isValid) {
+        const req = { [name]: reqData };
+        dispatch(update(req));
+        toast.success(`${name} ${t('is_updated_succesfully')}`, {
+          position: toast.POSITION.TOP_LEFT,
+        });
+        setDisable(true);
+      }
     } catch (error) {
       toast.error(`${t('alert_Not_correct_value!')}!`, {
         position: toast.POSITION.TOP_LEFT,
