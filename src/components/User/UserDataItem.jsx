@@ -30,12 +30,12 @@ const UserDataItem = ({ name, type, pattern, value, placeholder }) => {
   };
 
   const handleInputSubmit = async () => {
-    const reqData = name === 'birthday' ? convertToISODate(data) : data;
     try {
       if (data === value) {
         setDisable(true);
         return;
       }
+      const reqData = name === 'birthday' ? convertToISODate(data) : data;
       const isValid = await schema(name, t).isValid(reqData);
       if (isValid) {
         const req = { [name]: reqData };
@@ -44,6 +44,8 @@ const UserDataItem = ({ name, type, pattern, value, placeholder }) => {
           position: toast.POSITION.TOP_LEFT,
         });
         setDisable(true);
+      } else {
+        throw new Error();
       }
     } catch (error) {
       toast.error(`${t('alert_Not_correct_value!')}!`, {
