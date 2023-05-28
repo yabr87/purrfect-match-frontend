@@ -125,13 +125,13 @@ const UserData = () => {
               placeholder="DD.MM.YYYY"
               value={user.birthday || ''}
               dateFormat="dd.MM.yyyy"
-              pattern="(0?[1-9]|[12][0-9]|3[01]).(0?[1-9]|1[012]).((19|20)\d\d)"
+              pattern="/(0?[1-9]|[12][0-9]|3[01]).(0?[1-9]|1[012]).((19|20)\d\d)/"
             />
             <InputItem
               name="phone"
               type="phone"
               value={user.phone}
-              pattern="[\+]\d{3}\s[\(]\d{2}[\)]\s\d{3}[\-]\d{2}[\-]\d{2}"
+              pattern="/^\+\d{12}$/"
               minlength="13"
               maxlength="13"
               placeholder="+380XXXXXXXXX"
