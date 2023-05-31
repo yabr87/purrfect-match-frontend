@@ -9,7 +9,7 @@ import i18n from '../../utils/languages/i18n';
 
 import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { current } from 'redux/auth/authOperations';
+import { current, verifyEmail } from 'redux/auth/authOperations';
 import { setTokens, statusIsRegister } from 'redux/auth/authSlice';
 import useIsReloading from 'shared/hooks/useIsReloading';
 
@@ -37,6 +37,14 @@ const App = () => {
   );
 
   useEffect(() => {
+    const verificationToken = searchParams.get('verificationToken');
+    const otp = searchParams.get('otp');
+    if (verificationToken && otp) {
+      dispatch(verifyEmail({ verificationToken, otp }));
+      searchParams.delete('verificationTokne');
+      searchParams.delete('otp');
+    }
+
     const accessToken = searchParams.get('accessToken');
     const refreshToken = searchParams.get('refreshToken');
     const newUser = searchParams.get('newUser');

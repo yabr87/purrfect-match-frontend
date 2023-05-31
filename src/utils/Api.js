@@ -240,4 +240,18 @@ export const updateUserInfo = async (token, data) => {
   }
 };
 
+export const verifyEmail = async data => {
+  try {
+    const response = await instance.post('api/users/verify', data);
+    return response;
+  } catch (error) {
+    const responseMessage = error.response?.data?.message;
+    const errorMessage = error.message;
+
+    throw new Error(
+      responseMessage || errorMessage || 'Failed to verify user email'
+    );
+  }
+};
+
 export default instance;

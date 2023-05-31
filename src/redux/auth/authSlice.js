@@ -8,6 +8,7 @@ import {
   current,
   update,
   updateAvatar,
+  verifyEmail,
 } from './authOperations';
 
 const initialState = {
@@ -18,6 +19,7 @@ const initialState = {
   isRefreshing: false,
   error: null,
   isRegister: false,
+  verified: false,
 };
 
 const handlePending = store => {
@@ -97,7 +99,12 @@ const authSlice = createSlice({
         store.isRefreshing = false;
         store.user.avatarUrl = payload.avatarUrl;
       })
-      .addCase(updateAvatar.rejected, handleRejected);
+      .addCase(updateAvatar.rejected, handleRejected)
+      .addCase(verifyEmail.pending, handlePending)
+      .addCase(verifyEmail.fulfilled, (store, { payload }) => {
+        store.verified = payload.verified;
+      })
+      .addCase(verifyEmail.rejected, handleRejected);
   },
 });
 
