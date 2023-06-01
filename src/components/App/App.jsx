@@ -9,7 +9,8 @@ import i18n from '../../utils/languages/i18n';
 
 import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { current, verifyEmail } from 'redux/auth/authOperations';
+import { current } from 'redux/auth/authOperations';
+import { verifyEmail } from 'utils/Api';
 import { setTokens, statusIsRegister } from 'redux/auth/authSlice';
 import useIsReloading from 'shared/hooks/useIsReloading';
 
@@ -40,8 +41,8 @@ const App = () => {
     const verificationToken = searchParams.get('verificationToken');
     const otp = searchParams.get('otp');
     if (verificationToken && otp) {
-      dispatch(verifyEmail({ verificationToken, otp }));
-      searchParams.delete('verificationTokne');
+      verifyEmail({ verificationToken, otp });
+      searchParams.delete('verificationToken');
       searchParams.delete('otp');
     }
 
