@@ -120,3 +120,15 @@ export const updateAvatar = createAsyncThunk(
     },
   }
 );
+
+export const verifyEmail = createAsyncThunk(
+  'auth/verify',
+  async (data, { rejectWithValue }) => {
+    try {
+      const result = await api.verifyEmail(data);
+      return result.data;
+    } catch ({ message }) {
+      return rejectWithValue(message);
+    }
+  }
+);
