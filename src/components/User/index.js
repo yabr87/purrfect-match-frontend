@@ -31,6 +31,7 @@ export const UserInput = ItemStyled.UserInput;
 export const EditInputBtn = ItemStyled.EditInputBtn;
 export const ItemContainer = Styled.ItemContainer;
 export const UserLabel = ItemStyled.UserLabel;
+export const VerifyWrapper = Styled.VerifyWrapper;
 
 export const InputItem = UserDataItem;
 export const PetsInfo = PetsData;

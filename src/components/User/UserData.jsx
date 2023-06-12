@@ -17,10 +17,15 @@ import {
   InputItem,
   InputContainer,
   Wrap,
+  VerifyWrapper,
 } from './';
+
 import Icon from 'shared/components/Icon/Icon';
+import Button from 'shared/components/Button';
 import ModalApproveAction from 'components/ModalApproveAction';
 import Logout from 'components/ModalApproveAction/Logout';
+import VerifyEmail from 'components/ModalApproveAction/VerifyEmail';
+
 import { current, updateAvatar } from 'redux/auth/authOperations';
 import { UserLabel } from './UserDataItem.styled';
 import { Balance, BalanceIcon } from './UserData.styled';
@@ -38,10 +43,13 @@ const UserData = () => {
   const user = useSelector(store => store.auth.user) || initialState;
   const [userAvatar, setUserAvatar] = useState(null);
   const [isModalLogoutOpen, setIsModalLogoutOpen] = useState(false);
+  const [isModalVerifyOpen, setIsModalVerifyOpen] = useState(false);
   const [isConfirm, setIsConfirm] = useState(false);
   const token = useSelector(store => store.auth.token);
   const { t } = useTranslation();
   const dispatch = useDispatch();
+
+  console.log(user);
 
   useEffect(() => {
     dispatch(current(token));
@@ -64,10 +72,6 @@ const UserData = () => {
         position: toast.POSITION.TOP_LEFT,
       });
     }
-  };
-
-  const handleLogOut = () => {
-    setIsModalLogoutOpen(true);
   };
 
   return (
@@ -106,19 +110,37 @@ const UserData = () => {
             )}
           </AvatarContainer>
           <InputContainer>
-            <InputItem
-              name="name"
-              type="text"
-              value={user.name || 'User'}
-              pattern="[A-Za-z]{1,32}"
-              placeholder={t('Name')}
-            />
+            <VerifyWrapper>
+              Email isn't verified:
+              <Button
+                onClick={() => setIsModalVerifyOpen(true)}
+                type="button"
+                w="120"
+                h="32"
+                shape="solid"
+              >
+                Verify
+              </Button>
+            </VerifyWrapper>
+            {isModalVerifyOpen && (
+              <ModalApproveAction close={() => setIsModalVerifyOpen(false)}>
+                <VerifyEmail />
+              </ModalApproveAction>
+            )}
+
             <InputItem
               name="email"
               type="email"
               value={user.email}
               pattern="/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/"
               placeholder={t('Email')}
+            />
+            <InputItem
+              name="name"
+              type="text"
+              value={user.name || 'User'}
+              pattern="[A-Za-z]{1,32}"
+              placeholder={t('Name')}
             />
             <InputItem
               name="birthday"
@@ -150,7 +172,7 @@ const UserData = () => {
                 <BalanceIcon id="dollar" s="none" f="currentColor" />
               </Balance>
             </UserLabel>
-            <LogOutBtn onClick={handleLogOut}>
+            <LogOutBtn onClick={() => setIsModalLogoutOpen(true)}>
               <Icon id="logout" s="#54ADFF" />
               <LogOutText>{t('Log_Out')}</LogOutText>
             </LogOutBtn>

@@ -177,3 +177,16 @@ export const BalanceIcon = styled(Icon)`
     height: 18px;
   }
 `;
+
+export const VerifyWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 14px;
+  color: ${props => props.theme.colors.textColor};
+  font-weight: ${props => props.theme.fontWeiths.semiBold};
+
+  @media ${props => props.theme.media.tab} {
+    font-size: 18px;
+  }
+`;
