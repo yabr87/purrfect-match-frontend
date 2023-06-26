@@ -110,18 +110,21 @@ const UserData = () => {
             )}
           </AvatarContainer>
           <InputContainer>
-            <VerifyWrapper>
-              Email isn't verified:
-              <Button
-                onClick={() => setIsModalVerifyOpen(true)}
-                type="button"
-                w="120"
-                h="32"
-                shape="solid"
-              >
-                Verify
-              </Button>
-            </VerifyWrapper>
+            {!user.verified && (
+              <VerifyWrapper>
+                Email isn't verified:
+                <Button
+                  onClick={() => setIsModalVerifyOpen(true)}
+                  type="button"
+                  w="120"
+                  h="32"
+                  shape="solid"
+                >
+                  Verify
+                </Button>
+              </VerifyWrapper>
+            )}
+
             {isModalVerifyOpen && (
               <ModalApproveAction close={() => setIsModalVerifyOpen(false)}>
                 <VerifyEmail />
