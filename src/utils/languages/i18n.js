@@ -2,6 +2,8 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 
+import { verifyEmail } from 'components/ModalApproveAction/VerifyEmail/translation';
+
 i18n
   .use(LanguageDetector)
   .use(initReactI18next)
@@ -214,6 +216,10 @@ i18n
           left: 'paid days left.',
           promo_currency: '1$ = 1 day',
           is_updated_succesfully: 'is succesfully updated',
+
+          ...verifyEmail.en,
+
+          // enter_code: 'Enter code',
         },
       },
       uk: {
@@ -422,6 +428,9 @@ i18n
           already_paid_days: 'Залишилось',
           left: 'оплачених днів.',
           promo_currency: '1$ це 1 день',
+          ...verifyEmail.ukr,
+
+          // enter_code: 'Введіть код',
         },
       },
     },
